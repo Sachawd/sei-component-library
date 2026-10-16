@@ -35,4 +35,4 @@ Agreed with Sacha, 16 Oct 2026. Modelled on the structure of REI's Cedar design 
 
 ## Image rule for every block
 
-Every photo slot is listed with its exact pixel size for phone and for desktop, the file type (JPG for photos, PNG for logos, never WebP) and the weight target (under 200 KB a photo). Photos must be on the image host before a block goes live, never on the preview site.
+Every photo slot is listed with its exact pixel size for phone and for desktop, the file type (JPG for photos, PNG for logos, never WebP) and the weight target (full-width desktop heroes up to 300 KB, every other photo under 200 KB; Sacha, 16 Oct 2026). Photos must be on the image host before a block goes live, never on the preview site.
