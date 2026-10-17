@@ -1,0 +1,813 @@
+<!-- Fastr CMS HTML widget — c19-selection-section--25-off-sitewide-v1
+     Reserved heights: 390: 989px  |  640: 1119px  |  1024: 1319px
+     Measured by verify_block.py at 390, 640 and 1024px before delivery. -->
+
+<style>
+  @font-face {
+    font-family: "WSS Nuova";
+    src: url("https://www.worldsoccershop.com/css/fonts/nuova-bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  #sel, #sel *, #sel *::before, #sel *::after { box-sizing: border-box; }
+
+  #sel {
+    --ink:        #0c0f1d;
+    --ink-soft:   #52566a;
+    --ink-mute:   #8a8ea0;
+    --rule:       #e4e5eb;
+    --tile:       #f5f5f5;
+    --paper:      #ffffff;
+    --navy:       #28387a;
+    --ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+    --ease-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 0 28px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #sel .sel-hero {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 8 / 9;
+    overflow: hidden;
+    background: #140f0c;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  @media (min-width: 640px) {
+    #sel .sel-hero { aspect-ratio: 16 / 9; }
+  }
+  #sel .sel-hero__pic,
+  #sel .sel-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  #sel .sel-hero__img {
+    object-fit: cover;
+    object-position: 62% 38%;
+    transform: scale(1.001);
+    transition: transform 900ms var(--ease-quart);
+  }
+  #sel .sel-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10, 8, 6, 0.00) 42%, rgba(10, 8, 6, 0.78) 100%),
+      linear-gradient(90deg,  rgba(10, 8, 6, 0.62) 0%,  rgba(10, 8, 6, 0.22) 48%, rgba(10, 8, 6, 0.00) 76%);
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #sel .sel-hero:hover .sel-hero__img { transform: scale(1.03); }
+  }
+
+  #sel .sel-hero__body {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 22px;
+    z-index: 2;
+    max-width: 580px;
+    pointer-events: none;
+  }
+  @media (min-width: 640px) {
+    #sel .sel-hero__body { left: 32px; right: 32px; bottom: 30px; }
+  }
+  @media (min-width: 1024px) {
+    #sel .sel-hero__body { left: 44px; right: 44px; bottom: 40px; }
+  }
+  #sel .sel-hero__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    padding: 5px 10px;
+    background: #ef433f;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  #sel .sel-hero__title {
+    margin: 0 0 8px;
+    font-family: "WSS Nuova", "Oswald", "Impact", "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5.2vw, 60px);
+    line-height: 0.96;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+  #sel .sel-hero__sub {
+    margin: 0 0 18px;
+    font-size: clamp(13px, 1.25vw, 16px);
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 46ch;
+  }
+  #sel .sel-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px;
+    background: #ffffff;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1;
+    transition: background-color 220ms var(--ease-quart), color 220ms var(--ease-quart), transform 220ms var(--ease-quart);
+  }
+  #sel .sel-hero__cta svg {
+    width: 13px;
+    height: 13px;
+    transition: transform 240ms var(--ease-quart);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #sel .sel-hero:hover .sel-hero__cta {
+      background: var(--ink);
+      color: #ffffff;
+    }
+    #sel .sel-hero:hover .sel-hero__cta svg { transform: translateX(3px); }
+  }
+
+  @keyframes selRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    #sel.is-ready .sel-hero__kicker { animation: selRise 560ms var(--ease-expo) 60ms both; }
+    #sel.is-ready .sel-hero__title  { animation: selRise 640ms var(--ease-expo) 130ms both; }
+    #sel.is-ready .sel-hero__sub    { animation: selRise 640ms var(--ease-expo) 200ms both; }
+    #sel.is-ready .sel-hero__cta    { animation: selRise 640ms var(--ease-expo) 270ms both; }
+  }
+
+  #sel .sel-bar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (min-width: 640px)  { #sel .sel-bar { padding: 20px 28px 0; } }
+  @media (min-width: 1024px) { #sel .sel-bar { padding: 22px 36px 0; } }
+
+  #sel .sel-tabs {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  #sel .sel-tabs::-webkit-scrollbar { display: none; }
+  @media (min-width: 640px) {
+    #sel .sel-tabs { gap: 28px; margin: 0; padding: 0; }
+  }
+
+  #sel .sel-tab {
+    position: relative;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 8px 0 13px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 180ms var(--ease-quart);
+  }
+  @media (min-width: 640px) {
+    #sel .sel-tab { font-size: 14px; padding: 8px 0 14px; }
+  }
+  #sel .sel-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 260ms var(--ease-expo);
+  }
+  #sel .sel-tab[aria-selected="true"] {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  #sel .sel-tab[aria-selected="true"]::after { transform: scaleX(1); }
+  @media (hover: hover) and (pointer: fine) {
+    #sel .sel-tab:hover { color: var(--ink); }
+  }
+
+  #sel .sel-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px 12px;
+  }
+  @media (min-width: 640px)  { #sel .sel-head { padding: 20px 28px 14px; } }
+  @media (min-width: 1024px) { #sel .sel-head { padding: 22px 36px 14px; } }
+
+  #sel .sel-head__title {
+    margin: 0;
+    font-family: "WSS Nuova", "Oswald", "Impact", "Arial Narrow", sans-serif;
+    font-weight: 700;
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  #sel .sel-head__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 4px 0;
+    border-bottom: 1.5px solid var(--ink);
+    transition: color 180ms var(--ease-quart), border-color 180ms var(--ease-quart);
+  }
+  #sel .sel-head__cta svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 220ms var(--ease-quart);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #sel .sel-head__cta:hover { color: var(--navy); border-color: var(--navy); }
+    #sel .sel-head__cta:hover svg { transform: translateX(3px); }
+  }
+
+  #sel .sel-railwrap { position: relative; }
+
+  #sel .sel-panel { display: block; }
+  #sel .sel-panel[hidden] { display: none; }
+
+  #sel .sel-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 44%;
+    gap: 8px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
+    padding: 2px 20px 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  #sel .sel-rail::-webkit-scrollbar { display: none; }
+  @media (min-width: 640px) {
+    #sel .sel-rail {
+      grid-auto-columns: 29.5%;
+      gap: 8px;
+      scroll-padding-left: 28px;
+      padding: 2px 28px 10px;
+    }
+  }
+  @media (min-width: 1024px) {
+    #sel .sel-rail {
+      grid-auto-columns: calc((100% - 40px) / 5.35);
+      gap: 8px;
+      scroll-padding-left: 36px;
+      padding: 2px 36px 10px;
+    }
+  }
+
+  #sel .sel-item {
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  #sel .sel-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--tile);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #sel .sel-card__img {
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+    display: block;
+    transition: transform 420ms var(--ease-quart);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #sel .sel-item:hover .sel-card__img { transform: scale(1.045); }
+    #sel .sel-item:hover .sel-name { text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  #sel .sel-name {
+    margin: 9px 0 0;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.7em;
+  }
+
+  #sel .sel-arrow {
+    display: none;
+    position: absolute;
+    top: calc(50% - 18px);
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid rgba(12, 15, 29, 0.14);
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--ink);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(12, 15, 29, 0.10);
+    transition: background-color 180ms var(--ease-quart), color 180ms var(--ease-quart), opacity 180ms var(--ease-quart), transform 180ms var(--ease-quart);
+  }
+  #sel .sel-arrow svg { width: 16px; height: 16px; }
+  #sel .sel-arrow--prev { left: 14px; }
+  #sel .sel-arrow--next { right: 14px; }
+  #sel .sel-arrow[disabled] { opacity: 0; pointer-events: none; }
+  @media (min-width: 1024px) {
+    #sel .sel-railwrap.has-overflow .sel-arrow { display: inline-flex; }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    #sel .sel-arrow:hover {
+      background: var(--ink);
+      color: #ffffff;
+      border-color: var(--ink);
+    }
+  }
+
+  #sel a:focus-visible,
+  #sel button:focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 2px;
+  }
+  #sel .sel-hero:focus-visible { outline-offset: -4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #sel *, #sel *::before, #sel *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+
+<div id="sel" role="region" aria-label="25% Off Sitewide featured selection">
+
+  <a class="sel-hero" target="_top" href="https://www.worldsoccershop.com/shop/365" aria-label="25% Off Sitewide — Use code FALL25 at checkout. Shop the sale.">
+    <picture class="sel-hero__pic">
+      <source media="(min-width: 640px)" srcset="https://www.imagehandler.net/dxassets/?img=Photos/2026_WSS_10-16_Fall-Promo_Hero_Desktop_1920x1080.jpg">
+      <img class="sel-hero__img" alt="National team and club kits on pitch — 25% Off Sitewide" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/dxassets/?img=Photos/2026_WSS_10-16_Fall-Promo_Hero_Mobile_960x1080.jpg" onerror="this.onerror=null;this.src='https://www.imagehandler.net/dxassets/?img=Photos/2026_WSS_04-14_Nike-WC-National-Team_Hero_Desktop.jpg'">
+    </picture>
+    <div class="sel-hero__body">
+      <span class="sel-hero__kicker">Use Code: FALL25</span>
+      <h2 class="sel-hero__title">25% Off Sitewide</h2>
+      <p class="sel-hero__sub">National Team &amp; Club Kits, Official Player Printing &amp; Pro Firm-Ground Cleats. Limited-time fall event.</p>
+      <span class="sel-hero__cta">
+        Shop the Sale
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <div class="sel-bar">
+    <div class="sel-tabs" role="tablist" aria-label="Featured sale categories">
+      <button class="sel-tab" type="button" role="tab" id="sel-tab-0" aria-selected="true" aria-controls="sel-panel-0" data-title="Best Sellers" data-cta="https://www.worldsoccershop.com/shop/365">Best Sellers</button>
+      <button class="sel-tab" type="button" role="tab" id="sel-tab-1" aria-selected="false" aria-controls="sel-panel-1" data-title="2026 National Team &amp; Club Kits" data-cta="https://www.worldsoccershop.com/shop/jerseys">2026 Kits</button>
+      <button class="sel-tab" type="button" role="tab" id="sel-tab-2" aria-selected="false" aria-controls="sel-panel-2" data-title="Official Player Jerseys" data-cta="https://www.worldsoccershop.com/shop/jerseys">Player Jerseys</button>
+      <button class="sel-tab" type="button" role="tab" id="sel-tab-3" aria-selected="false" aria-controls="sel-panel-3" data-title="Pro &amp; Elite Cleats" data-cta="https://www.worldsoccershop.com/shop/footwear/soccer-cleats">Cleats</button>
+    </div>
+  </div>
+
+  <div class="sel-head">
+    <h3 class="sel-head__title" id="sel-head-title">Best Sellers</h3>
+    <a class="sel-head__cta" id="sel-head-cta" target="_top" href="https://www.worldsoccershop.com/shop/365" aria-label="Shop all Best Sellers">
+      <span>Shop All</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"/></svg>
+    </a>
+  </div>
+
+  <div class="sel-railwrap" id="sel-railwrap">
+    <button class="sel-arrow sel-arrow--prev" type="button" data-sel="prev" aria-label="Scroll products left" disabled>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"/></svg>
+    </button>
+    <button class="sel-arrow sel-arrow--next" type="button" data-sel="next" aria-label="Scroll products right">
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="square"/></svg>
+    </button>
+    <div class="sel-panel" id="sel-panel-0" role="tabpanel" aria-labelledby="sel-tab-0">
+      <div class="sel-rail" role="list" aria-label="Best Sellers">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128893" aria-label="Brazil 26/27 Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="Brazil 26/27 Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128893000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Brazil 26/27 Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029985" aria-label="Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126454000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=AFAH26&amp;l3v=10&amp;l3a=0&amp;l4lc=0OB102&amp;l4s=19&amp;l4l=R1133126&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139414" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128899" aria-label="USMNT 26/27 Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 26/27 Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128899000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 26/27 Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031108" aria-label="Nike USMNT Home Top 2026 Pulisic">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Home Top 2026 Pulisic" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142072000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=18335A&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=PULISIC&amp;l2a=0&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=USA26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Home Top 2026 Pulisic</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1132817" aria-label="adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1132817000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128895" aria-label="England 26/27 Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="England 26/27 Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128895000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">England 26/27 Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031217" aria-label="Spain 2-Star 2026 Lamine Yamal Champions Home Jersey by adidas (FIFA World Cup 26&trade; Sleeve Patch)">
+          <span class="sel-card"><img class="sel-card__img" alt="Spain 2-Star 2026 Lamine Yamal Champions Home Jersey by adidas (FIFA World Cup 26&trade; Sleeve Patch)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142235000&amp;iset=0108&amp;c=999&amp;iindex=0007&amp;w=350&amp;h=350&amp;l1lc=0OR203&amp;l1s=4&amp;l1l=R1139416" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Spain 2-Star 2026 Lamine Yamal Champions Home Jersey by adidas (FIFA World Cup 26&trade; Sleeve Patch)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128901" aria-label="USMNT 26/27 Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 26/27 Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128901000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 26/27 Away Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126256" aria-label="Nike Mercurial Superfly Elite FG Cleats (Attack Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Mercurial Superfly Elite FG Cleats (Attack Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126256000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Mercurial Superfly Elite FG Cleats (Attack Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7028354" aria-label="Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand">
+          <span class="sel-card"><img class="sel-card__img" alt="Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128892000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=FFFFFF&amp;l2lc=0OB302&amp;l2s=10&amp;l2f=CBF26&amp;l2v=7&amp;l2a=0&amp;l3lc=0OB102&amp;l3s=19&amp;l3l=R1138477" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1135183" aria-label="adidas Manchester United EQT Jersey 26/27">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Manchester United EQT Jersey 26/27" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1135183000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Manchester United EQT Jersey 26/27</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1121081" aria-label="Club America 25/26 Authentic Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Club America 25/26 Authentic Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1121081000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Club America 25/26 Authentic Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029396" aria-label="Mexico 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Mexico 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126510000&amp;iset=0108&amp;c=999&amp;iindex=0007&amp;w=350&amp;h=350&amp;l1lc=0OR203&amp;l1s=4&amp;l1l=R1139410" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mexico 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126093" aria-label="adidas Predator Elite FG Cleats (Reverse Edition)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Predator Elite FG Cleats (Reverse Edition)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126093000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Predator Elite FG Cleats (Reverse Edition)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134112" aria-label="Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134112000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)</span>
+        </a>
+      </div>
+    </div>
+    <div class="sel-panel" id="sel-panel-1" role="tabpanel" aria-labelledby="sel-tab-1" hidden>
+      <div class="sel-rail" role="list" aria-label="2026 Kits">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128893" aria-label="Brazil 26/27 Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="Brazil 26/27 Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128893000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Brazil 26/27 Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128895" aria-label="England 26/27 Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="England 26/27 Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128895000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">England 26/27 Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128899" aria-label="USMNT 26/27 Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 26/27 Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128899000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 26/27 Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128901" aria-label="USMNT 26/27 Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 26/27 Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128901000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 26/27 Away Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142078" aria-label="Nike Brazil Home Top 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Brazil Home Top 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1142078000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Brazil Home Top 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128892" aria-label="Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand">
+          <span class="sel-card"><img class="sel-card__img" alt="Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128892000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1135183" aria-label="adidas Manchester United EQT Jersey 26/27">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Manchester United EQT Jersey 26/27" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1135183000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Manchester United EQT Jersey 26/27</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1121081" aria-label="Club America 25/26 Authentic Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Club America 25/26 Authentic Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1121081000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Club America 25/26 Authentic Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029450" aria-label="Germany 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Germany 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126487000&amp;iset=0108&amp;c=999&amp;iindex=0007&amp;w=350&amp;h=350&amp;l1lc=0OR203&amp;l1s=4&amp;l1l=R1139416" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Germany 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1121073" aria-label="Club America 2026 Authentic Third Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Club America 2026 Authentic Third Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1121073000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Club America 2026 Authentic Third Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029396" aria-label="Mexico 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Mexico 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126510000&amp;iset=0108&amp;c=999&amp;iindex=0007&amp;w=350&amp;h=350&amp;l1lc=0OR203&amp;l1s=4&amp;l1l=R1139410" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mexico 26/27 FIFA World Cup 26&trade; Patch Authentic Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126580" aria-label="Mexico 26/27 Women&#x27;s Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Mexico 26/27 Women&#x27;s Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1126580000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mexico 26/27 Women&#x27;s Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128889" aria-label="Nike USMNT Goalkeeper Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Goalkeeper Jersey 2026" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128889000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Goalkeeper Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142072" aria-label="USMNT 2026 Home Jersey T-Shirt by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 2026 Home Jersey T-Shirt by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1142072000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 2026 Home Jersey T-Shirt by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130982" aria-label="USMNT 2026 X2 Pre Match Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 2026 X2 Pre Match Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1130982000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 2026 X2 Pre Match Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1127315" aria-label="adidas Liverpool 1995 Stealth Jersey">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Liverpool 1995 Stealth Jersey" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1127315000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Liverpool 1995 Stealth Jersey</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1127312" aria-label="adidas Liverpool 1995 Away Jersey">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Liverpool 1995 Away Jersey" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1127312000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Liverpool 1995 Away Jersey</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126872" aria-label="adidas Arsenal x Places + Faces Lifestyler Jersey 25/26">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Arsenal x Places + Faces Lifestyler Jersey 25/26" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1126872000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Arsenal x Places + Faces Lifestyler Jersey 25/26</span>
+        </a>
+      </div>
+    </div>
+    <div class="sel-panel" id="sel-panel-2" role="tabpanel" aria-labelledby="sel-tab-2" hidden>
+      <div class="sel-rail" role="list" aria-label="Player Jerseys">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029985" aria-label="Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126454000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=AFAH26&amp;l3v=10&amp;l3a=0&amp;l4lc=0OB102&amp;l4s=19&amp;l4l=R1133126&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139414" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029530" aria-label="Men&#x27;s Replica adidas Messi Argentina Away Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Men&#x27;s Replica adidas Messi Argentina Away Jersey 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126550000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=FFFFFF&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFT26&amp;l3v=MESSI&amp;l3a=0&amp;l4c=FFFFFF&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=AFAA26&amp;l4v=10&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139416" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Men&#x27;s Replica adidas Messi Argentina Away Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031108" aria-label="Nike USMNT Home Top 2026 Pulisic">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Home Top 2026 Pulisic" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142072000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=18335A&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=PULISIC&amp;l2a=0&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=USA26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Home Top 2026 Pulisic</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031217" aria-label="Spain 2-Star 2026 Lamine Yamal Champions Home Jersey by adidas (FIFA World Cup 26&trade; Sleeve Patch)">
+          <span class="sel-card"><img class="sel-card__img" alt="Spain 2-Star 2026 Lamine Yamal Champions Home Jersey by adidas (FIFA World Cup 26&trade; Sleeve Patch)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142235000&amp;iset=0108&amp;c=999&amp;iindex=0007&amp;w=350&amp;h=350&amp;l1lc=0OR203&amp;l1s=4&amp;l1l=R1139416" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Spain 2-Star 2026 Lamine Yamal Champions Home Jersey by adidas (FIFA World Cup 26&trade; Sleeve Patch)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7028354" aria-label="Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand">
+          <span class="sel-card"><img class="sel-card__img" alt="Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128892000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=FFFFFF&amp;l2lc=0OB302&amp;l2s=10&amp;l2f=CBF26&amp;l2v=7&amp;l2a=0&amp;l3lc=0OB102&amp;l3s=19&amp;l3l=R1138477" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7026747" aria-label="Florian Wirtz Germany 26/27 Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Florian Wirtz Germany 26/27 Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126555000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=000000&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=DFBH26&amp;l2v=WIRTZ&amp;l2a=0&amp;l3c=000000&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=DFBH26&amp;l3v=17&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Florian Wirtz Germany 26/27 Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7032745" aria-label="Men&#x27;s Replica adidas Mora Mexico Home Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Men&#x27;s Replica adidas Mora Mexico Home Jersey 2026" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126561000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=FFFFFF&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=FMFH26&amp;l2v=G.MORA&amp;l2a=0&amp;l3c=FFFFFF&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=FMFH26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Men&#x27;s Replica adidas Mora Mexico Home Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031100" aria-label="Nike USMNT Home Top 2026 Adams">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Home Top 2026 Adams" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142072000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=18335A&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=ADAMS&amp;l2a=0&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=USA26&amp;l3v=4&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Home Top 2026 Adams</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7030562" aria-label="Gilberto Mora Mexico 26/27 Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Gilberto Mora Mexico 26/27 Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126561000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=FFFFFF&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFH26&amp;l3v=G.MORA&amp;l3a=0&amp;l4c=FFFFFF&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFH26&amp;l4v=19&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139412" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Gilberto Mora Mexico 26/27 Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029703" aria-label="Edson Alvarez Mexico 26/27 Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Edson Alvarez Mexico 26/27 Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126561000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=FFFFFF&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFH26&amp;l3v=E.ÁLVAREZ&amp;l3a=0&amp;l4c=FFFFFF&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFH26&amp;l4v=4&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139412" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Edson Alvarez Mexico 26/27 Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029641" aria-label="Raul Jimenez Mexico 26/27 Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Raul Jimenez Mexico 26/27 Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126563000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=0F380E&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFA26&amp;l3v=RAÚL&amp;l3a=0&amp;l4c=0F380E&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFA26&amp;l4v=9&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139410" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Raul Jimenez Mexico 26/27 Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7030817" aria-label="Julian Quinones Mexico 26/27 Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Julian Quinones Mexico 26/27 Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126563000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=0F380E&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFA26&amp;l3v=J.QUIÑONES&amp;l3a=0&amp;l4c=0F380E&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFA26&amp;l4v=16&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139410" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Julian Quinones Mexico 26/27 Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7027669" aria-label="Christian Pulisic USMNT 26/27 Youth Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="Christian Pulisic USMNT 26/27 Youth Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128905000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=999998&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=PULISIC&amp;l2a=0&amp;l3c=999998&amp;l3lc=0OB302&amp;l3s=8&amp;l3f=USA26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Christian Pulisic USMNT 26/27 Youth Away Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029069" aria-label="Weston McKennie USMNT 26/27 Youth Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="Weston McKennie USMNT 26/27 Youth Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128905000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=999998&amp;l2lc=0OB302&amp;l2s=8&amp;l2f=USA26&amp;l2v=8&amp;l2a=0&amp;l3lc=0OB102&amp;l3s=15&amp;l3l=R1138851" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Weston McKennie USMNT 26/27 Youth Away Jersey by Nike</span>
+        </a>
+      </div>
+    </div>
+    <div class="sel-panel" id="sel-panel-3" role="tabpanel" aria-labelledby="sel-tab-3" hidden>
+      <div class="sel-rail" role="list" aria-label="Cleats">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1132817" aria-label="adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1132817000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126256" aria-label="Nike Mercurial Superfly Elite FG Cleats (Attack Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Mercurial Superfly Elite FG Cleats (Attack Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126256000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Mercurial Superfly Elite FG Cleats (Attack Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130213" aria-label="Nike Mercurial Superfly Pro FG Cleats (Breakout Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Mercurial Superfly Pro FG Cleats (Breakout Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1130213000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Mercurial Superfly Pro FG Cleats (Breakout Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1133272" aria-label="adidas F50 Hyperfast Evo FG Cleats (Chaos vs Control Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas F50 Hyperfast Evo FG Cleats (Chaos vs Control Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1133272000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas F50 Hyperfast Evo FG Cleats (Chaos vs Control Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126093" aria-label="adidas Predator Elite FG Cleats (Reverse Edition)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Predator Elite FG Cleats (Reverse Edition)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126093000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Predator Elite FG Cleats (Reverse Edition)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128188" aria-label="adidas Copa Pure 3 Elite FG Cleats (Immortal DNA Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Copa Pure 3 Elite FG Cleats (Immortal DNA Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128188000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Copa Pure 3 Elite FG Cleats (Immortal DNA Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1132698" aria-label="Nike Tiempo Maestro Elite FG Cleats (Shadow Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Tiempo Maestro Elite FG Cleats (Shadow Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1132698000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Tiempo Maestro Elite FG Cleats (Shadow Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130210" aria-label="Nike Phantom 6 Pro Low Cut FG Cleats (Erling Haaland Edition)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Phantom 6 Pro Low Cut FG Cleats (Erling Haaland Edition)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1130210000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Phantom 6 Pro Low Cut FG Cleats (Erling Haaland Edition)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134695" aria-label="PUMA Ultra Nitro Ultimate FG Cleats (White Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="PUMA Ultra Nitro Ultimate FG Cleats (White Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134695000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">PUMA Ultra Nitro Ultimate FG Cleats (White Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134686" aria-label="PUMA Ultra Nitro Ultimate Laceless FG Cleats (Arrival Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="PUMA Ultra Nitro Ultimate Laceless FG Cleats (Arrival Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134686000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">PUMA Ultra Nitro Ultimate Laceless FG Cleats (Arrival Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1129540" aria-label="PUMA Future 9 Ultimate FG Cleats (City Edition Pack, LA)">
+          <span class="sel-card"><img class="sel-card__img" alt="PUMA Future 9 Ultimate FG Cleats (City Edition Pack, LA)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1129540000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">PUMA Future 9 Ultimate FG Cleats (City Edition Pack, LA)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134127" aria-label="Mizuno Morelia Neo V Beta Pro FG Firm Ground Soccer Cleat">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia Neo V Beta Pro FG Firm Ground Soccer Cleat" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134127000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia Neo V Beta Pro FG Firm Ground Soccer Cleat</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134112" aria-label="Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134112000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134095" aria-label="Mizuno Alpha III MIJ FG Cleats (Bright Black Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Alpha III MIJ FG Cleats (Bright Black Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134095000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Alpha III MIJ FG Cleats (Bright Black Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134156" aria-label="Mizuno Morelia II Japan FG Firm Ground Soccer Cleat">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia II Japan FG Firm Ground Soccer Cleat" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134156000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia II Japan FG Firm Ground Soccer Cleat</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('sel');
+  if (!root) return;
+  var tabs    = Array.prototype.slice.call(root.querySelectorAll('.sel-tab'));
+  var panels  = Array.prototype.slice.call(root.querySelectorAll('.sel-panel'));
+  var title   = document.getElementById('sel-head-title');
+  var cta     = document.getElementById('sel-head-cta');
+  var wrap    = document.getElementById('sel-railwrap');
+  if (!tabs.length || tabs.length !== panels.length || !title || !cta || !wrap) return;
+  var prevBtn = wrap.querySelector('[data-sel="prev"]');
+  var nextBtn = wrap.querySelector('[data-sel="next"]');
+  var active  = 0;
+  function currentRail() {
+    return panels[active].querySelector('.sel-rail');
+  }
+  function syncOverflow() {
+    var rail = currentRail();
+    if (!rail) return;
+    var over = rail.scrollWidth - rail.clientWidth > 2;
+    wrap.classList.toggle('has-overflow', over);
+    if (!over) return;
+    var x = rail.scrollLeft;
+    if (prevBtn) prevBtn.disabled = x <= 2;
+    if (nextBtn) nextBtn.disabled = x >= (rail.scrollWidth - rail.clientWidth - 2);
+  }
+  function step(dir) {
+    var rail = currentRail();
+    if (!rail) return;
+    var card = rail.querySelector('.sel-item');
+    var by   = card ? (card.getBoundingClientRect().width + 8) : Math.round(rail.clientWidth * 0.8);
+    rail.scrollBy({ left: dir * by, behavior: 'smooth' });
+  }
+  function select(i) {
+    if (i === active) return;
+    active = i;
+    tabs.forEach(function (t, n) {
+      t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+      t.setAttribute('tabindex', n === i ? '0' : '-1');
+    });
+    panels.forEach(function (p, n) {
+      if (n === i) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+    });
+    var t = tabs[i];
+    title.textContent = t.getAttribute('data-title') || t.textContent;
+    var href = t.getAttribute('data-cta');
+    if (href) {
+      cta.setAttribute('href', href);
+      cta.setAttribute('aria-label', 'Shop all ' + title.textContent);
+    }
+    syncOverflow();
+  }
+  tabs.forEach(function (t, i) {
+    t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft')  n = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home')       n = 0;
+      if (e.key === 'End')        n = tabs.length - 1;
+      if (n === null) return;
+      e.preventDefault();
+      select(n);
+      tabs[n].focus();
+    });
+  });
+  if (prevBtn) prevBtn.addEventListener('click', function () { step(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { step(1); });
+  panels.forEach(function (p) {
+    var rail = p.querySelector('.sel-rail');
+    if (rail) rail.addEventListener('scroll', syncOverflow, { passive: true });
+  });
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(syncOverflow, 120);
+  }, { passive: true });
+  root.classList.add('is-ready');
+  syncOverflow();
+  if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+    document.fonts.ready.then(syncOverflow);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  var BLOCK = "fastr_cms_c19_selection_section_25_off_sitewide_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("#sel a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { }
+  }, true);
+})();
+</script>

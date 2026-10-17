@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Code Library · Sports Endeavors DX</title>
+<style>
+:root{
+  --ink:#28387a; --red:#ef433f; --mid:#5b7dbc; --bar-text:#2a2a2a; --card-text:#27272a;
+  --col-wash:#f7faff; --sub-wash:#f6f9ff; --hair:rgba(97,99,103,.1); --paper:#fff;
+  --chip:#e8e8e8; --back:#3979ea;
+  --detail:#6b6868;
+  --quiet:#5c5c5c;
+  --face:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--face);background:#151313;color:var(--card-text);min-height:100vh;
+  -webkit-font-smoothing:antialiased}
+button{font:inherit}
+
+/* Sky background matching Tunnel v2 */
+#sky{position:fixed;inset:0;z-index:0;background:#151313;overflow:hidden;container-type:size}
+.sky-layer{position:absolute;inset:0;opacity:.9}
+.sky-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sky-layer iframe{position:absolute;top:50%;left:50%;width:max(100cqw,calc(100cqh / .5625));
+  height:max(100cqh,calc(100cqw * .5625));transform:translate(-50%,-50%);border:0;pointer-events:none;
+  opacity:0;transition:opacity .8s ease}
+.sky-layer iframe.is-ready{opacity:1}
+#wrap{position:relative;z-index:1;padding:20px 0 64px;overflow-x:clip}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;z-index:30;background:#fff;padding:8px 12px;border-radius:6px}
+
+/* Top navigation bar (identical to Tunnel v2) */
+.tv-head{position:relative;z-index:20;display:flex;flex-direction:column;align-items:center}
+.tv-bar{position:relative;z-index:3;display:flex;align-items:center;gap:32px;padding:16px 24px;
+  background:var(--paper);border-radius:12px;width:min(1296px,calc(100% - 48px));
+  transition:width .35s cubic-bezier(.65,0,.35,1)}
+.tv-logo{display:block;flex:none;width:26px;height:26px;position:relative}
+.tv-logo svg{position:absolute;left:.93%;right:1.18%;top:18.99%;bottom:16.98%;width:97.89%;height:64.03%}
+.tv-nav{flex:1 0 0;min-width:0;display:flex;align-items:center;justify-content:center}
+.tv-list{flex:1 0 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:12px;
+  margin:0;padding:0;list-style:none}
+.tv-item{display:inline-flex;align-items:center;height:32px;padding:0 10px;border:0;border-radius:4px;
+  background:var(--paper);cursor:pointer;color:var(--bar-text);font-size:15px;line-height:18px;
+  white-space:nowrap;text-decoration:none}
+.tv-item:hover{color:var(--ink)}
+.tv-item.here{color:var(--ink);font-weight:700}
+.tv-logout{flex:none;height:32px;padding:0 14px;border:0;border-radius:999px;background:var(--ink);
+  color:#fff;cursor:pointer;font-size:14px;font-weight:700;line-height:32px;text-decoration:none;display:inline-flex;align-items:center}
+.tv-logout:hover{background:#1d2b63}
+.tv-item:focus-visible,.tv-logout:focus-visible,.tv-logo:focus-visible,.tv-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* Sub-navigation chip bar (matches Tunnel v2 storebar) */
+.storebar{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:8px auto 0;padding:10px 20px;
+  width:min(1296px,calc(100% - 48px));border-radius:12px;background:var(--sub-wash)}
+.tv-chip{border:.5px solid var(--ink);border-radius:999px;background:#fff;cursor:pointer;
+  padding:9px 16px;font-size:13px;line-height:15px;font-weight:600;color:var(--ink);white-space:nowrap;
+  transition:background .15s ease,color .15s ease}
+.tv-chip:hover{background:#e9f0ff}
+.tv-chip[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.storebar .sep{width:0;height:21px;border-left:.5px dashed #bebebe;flex:none}
+
+/* Main page shell (matches Tunnel v2) */
+.brand-body{position:relative;width:min(1296px,calc(100% - 48px));margin:0 auto;padding:16px 0 0}
+.brand-body::before{content:"";position:absolute;left:-200px;top:-120px;width:1200px;height:420px;z-index:-1;
+  pointer-events:none;background:radial-gradient(closest-side,rgba(9,34,82,.52),rgba(9,34,82,.28) 55%,rgba(9,34,82,0))}
+.pg-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding:8px 0 12px}
+.pg-head-left{display:flex;flex-direction:column;gap:6px}
+.store-badge-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.store-pill{display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;background:var(--ink);color:#fff;
+  font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.ptitle{margin:0;font-size:36px;line-height:1.1;font-weight:300;color:#fff}
+.psub{margin:2px 0 0;font-size:17px;line-height:1.45;color:rgba(255,255,255,.92);max-width:680px}
+.head-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Frosted glass panel & white Tunnel cards */
+.panel{margin-top:8px;padding:24px;border-radius:16px;background:rgba(255,255,255,.22);backdrop-filter:blur(8px)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* Live Interactive Demo Card (Top of Component Page) */
+.demo-card{background:var(--paper);border-radius:12px;padding:20px;margin-bottom:18px;
+  box-shadow:0 2px 10px rgba(9,34,82,.06)}
+.demo-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+  padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--hair)}
+.demo-bar-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.demo-label{font-size:14px;font-weight:700;color:var(--ink)}
+.vp-pills{display:inline-flex;gap:6px;flex-wrap:wrap}
+.vp-pill{border:1px solid #d6e2f8;border-radius:999px;background:var(--col-wash);color:var(--ink);
+  padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s ease,color .15s ease}
+.vp-pill:hover{background:#e4eeff}
+.vp-pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.demo-stage{display:flex;justify-content:center;background:#f2f4f8;border-radius:10px;padding:16px;overflow-x:auto}
+.demo-iframe{width:100%;max-width:1440px;height:1180px;border:1px solid rgba(40,56,122,.12);border-radius:8px;
+  background:#fff;box-shadow:0 4px 16px rgba(9,34,82,.08);transition:width .22s ease,height .22s ease}
+
+/* Clean 3-column guide cards */
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.gcard{background:var(--paper);border-radius:12px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;
+  box-shadow:0 2px 10px rgba(9,34,82,.06)}
+.gcard-top{display:flex;flex-direction:column;gap:12px}
+.gcard-head{display:flex;align-items:center;gap:12px}
+.step-badge{width:34px;height:34px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:700;
+  display:inline-flex;align-items:center;justify-content:center;flex:none}
+.team-pill{display:inline-flex;align-items:center;align-self:flex-start;padding:4px 10px;border-radius:999px;
+  background:var(--col-wash);border:1px solid #d6e2f8;color:var(--ink);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.gcard h2{margin:0;font-size:20px;line-height:1.25;color:var(--ink);font-weight:700}
+.gcard h2::after{content:"";display:block;width:24px;height:2.5px;background:var(--red);margin-top:8px}
+.gcard p{margin:0;font-size:15.5px;line-height:1.55;color:var(--card-text)}
+
+/* Airy, 1-sentence bullet list */
+.clean-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.clean-list li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.5;color:var(--card-text)}
+.clean-list li::before{content:"";position:absolute;left:4px;top:9px;width:6px;height:6px;border-radius:999px;background:var(--mid)}
+.clean-list li strong{color:var(--ink)}
+
+/* Card bottom action buttons (matching Tunnel v2 .acts) */
+.gcard-acts{display:flex;flex-wrap:wrap;gap:8px;padding-top:8px;border-top:1px solid var(--hair)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 16px;
+  border-radius:999px;border:1px solid var(--ink);background:#fff;color:var(--ink);font-size:13.5px;font-weight:700;
+  text-decoration:none;cursor:pointer;transition:background .15s ease,color .15s ease}
+.btn:hover{background:var(--col-wash)}
+.btn.solid{background:var(--ink);color:#fff}
+.btn.solid:hover{background:#1d2b63}
+.btn.accent{background:var(--red);border-color:var(--red);color:#fff}
+.btn.accent:hover{background:#d7322e}
+
+/* Collapsible Code Drawer below the 3 cards */
+.code-details{margin-top:16px;background:var(--paper);border-radius:12px;overflow:hidden;
+  box-shadow:0 2px 10px rgba(9,34,82,.06)}
+.code-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;
+  cursor:pointer;font-size:15px;font-weight:700;color:var(--ink);list-style:none;user-select:none}
+.code-summary::-webkit-details-marker{display:none}
+.code-summary:hover{background:var(--col-wash)}
+.code-pre{margin:0;padding:20px 24px;max-height:420px;overflow:auto;background:#0f1222;color:#e6eaf2;
+  font-family:var(--mono);font-size:12.5px;line-height:1.55;white-space:pre}
+
+@media (max-width:991px){
+  .tv-bar{width:calc(100% - 24px);height:56px;padding:0 16px;justify-content:space-between}
+  .storebar,.brand-body{width:calc(100% - 24px)}
+  .ptitle{font-size:28px}
+  .panel{padding:16px}
+  .guide-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true">
+  <div class="sky-layer" id="skyvideo" data-vimeo="1228462310" data-vimeo-h="d7cf4e4369">
+    <img class="sky-still" src="sky.jpg" alt="" width="1600" height="900">
+  </div>
+</div>
+<a class="skip" href="#main">Skip to content</a>
+
+<div id="wrap">
+  <!-- Tunnel v2 Centered Rounded White Pill Bar -->
+  <header class="tv-head" id="head">
+    <div class="tv-bar" id="bar">
+      <a class="tv-logo" href="#components" data-view="components" aria-label="Sports Endeavors Code Library">
+        <svg viewBox="0 0 25.4501 16.6469" fill="none" aria-hidden="true" focusable="false"><path d="M3.63809 3.59217C3.90461 3.40883 4.20112 3.32055 4.54428 3.32055H25.4466V0H4.54761C3.37822 0 2.3421 0.359896 1.47256 1.06611C0.509732 1.8538 0 2.89954 0 4.08448V5.88396C0 7.0723 0.509732 8.11464 1.46923 8.89894C2.33877 9.61873 3.37489 9.98203 4.54761 9.98203H9.17184C9.52499 9.98203 9.82816 10.0737 10.0947 10.2536C10.3612 10.4438 10.4012 10.6 10.4012 10.746V12.559C10.4012 12.7016 10.3645 12.8612 10.1014 13.0479C9.83149 13.2347 9.52832 13.3263 9.17517 13.3263H0V16.6469H9.17184C10.3112 16.6469 11.3307 16.3006 12.2102 15.6147C13.2064 14.827 13.7328 13.7711 13.7328 12.5624V10.7494C13.7328 9.56441 13.223 8.51867 12.2536 7.72758C11.3773 7.02137 10.3412 6.66487 9.17184 6.66487H4.54761C4.20445 6.66487 3.91128 6.5732 3.64808 6.38646C3.33491 6.15898 3.33491 5.98243 3.33491 5.88736V4.08788C3.33491 3.94867 3.37156 3.79249 3.64142 3.59557" fill="#EF433F"/><path d="M16.0583 9.98181H25.4501V6.66126H14.5824C15.402 7.61193 15.9084 8.74934 16.055 9.98181" fill="#5B7DBC"/><path d="M14.5824 16.6439H25.4467V13.3234H16.0583C15.9117 14.5592 15.402 15.6966 14.5824 16.6439" fill="#28387A"/></svg>
+      </a>
+      <nav class="tv-nav" aria-label="Main navigation">
+        <ul class="tv-list">
+          <li><a class="tv-item here" href="#components" data-view="components">Components</a></li>
+          <li><a class="tv-item" href="photo-sizer/index.html?block=selection-section-hero">Photo Sizer</a></li>
+          <li><a class="tv-item" href="#guidelines" data-view="guidelines">Guidelines</a></li>
+          <li><a class="tv-item" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+        </ul>
+        <a class="tv-logout" href="photo-sizer/index.html?block=selection-section-hero">Open Photo Sizer</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Tunnel v2 Storebar Pill Bar -->
+    <div class="storebar" role="tablist" aria-label="Store Filter">
+      <button class="tv-chip" type="button" role="tab" aria-selected="true" data-filter="all">All Components</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button class="tv-chip" type="button" role="tab" aria-selected="false" data-filter="wss">WorldSoccerShop</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button class="tv-chip" type="button" role="tab" aria-selected="false" data-filter="sdc">Soccer.com</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button class="tv-chip" type="button" role="tab" aria-selected="false" data-filter="guidelines">Quick Rules</button>
+    </div>
+
+    <div class="brand-body">
+
+      <!-- ====================================================================
+           VIEW 1: SELECTION SECTION, HOME PAGE (DEFAULT COMPONENT VIEW)
+           ==================================================================== -->
+      <div id="view-components" class="tab-panel active">
+        <div class="pg-head">
+          <div class="pg-head-left">
+            <div class="store-badge-row">
+              <span class="store-pill">WorldSoccerShop</span>
+            </div>
+            <h1 class="ptitle">Selection Section, home page</h1>
+            <p class="psub">Full-width campaign hero with live HTML headline and promo pill above a four-tab product rail.</p>
+          </div>
+          <div class="head-actions">
+            <a class="btn solid" href="photo-sizer/index.html?block=selection-section-hero">Size Photos in Photo Sizer</a>
+            <button class="btn accent" type="button" id="topCopyCodeBtn">Copy Fastr CMS Code</button>
+          </div>
+        </div>
+
+        <div class="panel">
+
+          <!-- PART 1: TOP LIVE INTERACTIVE DEMO -->
+          <div class="demo-card">
+            <div class="demo-bar">
+              <div class="demo-bar-left">
+                <span class="demo-label">Live Preview</span>
+                <div class="vp-pills" role="group" aria-label="Preview screen size">
+                  <button class="vp-pill" type="button" data-vp="100%" data-h="1180" aria-pressed="true">Desktop</button>
+                  <button class="vp-pill" type="button" data-vp="640px" data-h="1119" aria-pressed="false">Tablet (640px)</button>
+                  <button class="vp-pill" type="button" data-vp="390px" data-h="989" aria-pressed="false">Phone (390px)</button>
+                </div>
+              </div>
+              <a class="btn" href="blocks/selection-section-home-page/fastr-paste.html" target="_blank" rel="noopener">Open Full Tab</a>
+            </div>
+            <div class="demo-stage">
+              <iframe class="demo-iframe" id="demoFrame" src="blocks/selection-section-home-page/fastr-paste.html" title="Selection Section, home page live preview"></iframe>
+            </div>
+          </div>
+
+          <!-- PART 2: THREE SCANNABLE CARDS FOR DESIGNERS -->
+          <div class="guide-grid">
+
+            <!-- CARD 1: PHOTO SIZES -->
+            <article class="gcard">
+              <div class="gcard-top">
+                <div class="gcard-head">
+                  <span class="step-badge">1</span>
+                  <span class="team-pill">JPG Only</span>
+                </div>
+                <h2>Photo Sizes</h2>
+                <ul class="clean-list">
+                  <li><strong>Desktop hero:</strong> 1920 by 1080 pixels, JPG under 300 KB.</li>
+                  <li><strong>Phone hero:</strong> 960 by 1080 pixels, JPG under 200 KB.</li>
+                  <li><strong>Product cards:</strong> 350 by 350 square cutouts served automatically from the product feed.</li>
+                </ul>
+              </div>
+              <div class="gcard-acts">
+                <a class="btn solid" href="photo-sizer/index.html?block=selection-section-hero">Open Photo Sizer</a>
+              </div>
+            </article>
+
+            <!-- CARD 2: WHAT YOU SWAP IN FIGMA / FASTR -->
+            <article class="gcard">
+              <div class="gcard-top">
+                <div class="gcard-head">
+                  <span class="step-badge">2</span>
+                  <span class="team-pill">Design &amp; Copy</span>
+                </div>
+                <h2>What You Swap in Figma &amp; Fastr</h2>
+                <ul class="clean-list">
+                  <li><strong>Background photos:</strong> Two clean JPGs with no text baked into the image.</li>
+                  <li><strong>Live text:</strong> Promo pill, main headline, subcopy, and button label plus link.</li>
+                  <li><strong>Category tabs:</strong> Four tab names and their Shop All links.</li>
+                </ul>
+              </div>
+              <div class="gcard-acts">
+                <a class="btn" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share</a>
+              </div>
+            </article>
+
+            <!-- CARD 3: FASTR CMS HEIGHTS & CODE -->
+            <article class="gcard">
+              <div class="gcard-top">
+                <div class="gcard-head">
+                  <span class="step-badge">3</span>
+                  <span class="team-pill">Reserves Space</span>
+                </div>
+                <h2>Fastr CMS Heights &amp; Code</h2>
+                <ul class="clean-list">
+                  <li><strong>Mobile (390px):</strong> 989px</li>
+                  <li><strong>Tablet (640px):</strong> 1119px</li>
+                  <li><strong>Desktop (1024px):</strong> 1319px</li>
+                </ul>
+              </div>
+              <div class="gcard-acts">
+                <button class="btn solid" type="button" id="cardCopyCodeBtn">Copy Fastr CMS Code</button>
+                <a class="btn" href="blocks/selection-section-home-page/fastr-paste.html" download="selection-section-home-page--fastr-paste.html">Download HTML</a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- COLLAPSIBLE CODE DRAWER (HIDDEN BY DEFAULT) -->
+          <details class="code-details">
+            <summary class="code-summary">
+              <span>Inspect Fastr CMS Paste Code (541 lines)</span>
+              <span>Click to expand or collapse</span>
+            </summary>
+            <pre class="code-pre" id="codePreview">Loading Fastr CMS paste code…</pre>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           VIEW 2: QUICK GUIDELINES (3 CLEAN CARDS)
+           ==================================================================== -->
+      <div id="view-guidelines" class="tab-panel">
+        <div class="pg-head">
+          <div class="pg-head-left">
+            <div class="store-badge-row">
+              <span class="store-pill">Standards</span>
+            </div>
+            <h1 class="ptitle">Designer &amp; Builder Rules</h1>
+            <p class="psub">Three rules that keep every Fastr CMS block fast, sharp, and accessible on both stores.</p>
+          </div>
+          <div class="head-actions">
+            <a class="btn solid" href="#components" data-view="components">Back to Components</a>
+            <a class="btn" href="photo-sizer/index.html">Open Photo Sizer</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="guide-grid">
+            <article class="gcard">
+              <div class="gcard-top">
+                <div class="gcard-head">
+                  <span class="step-badge">1</span>
+                  <span class="team-pill">Bucket Rule</span>
+                </div>
+                <h2>Export Real JPGs Only</h2>
+                <ul class="clean-list">
+                  <li>Our image server only renders JPG files uploaded to the S3 Photos bucket.</li>
+                  <li>Main hero backgrounds must stay at or under 300 KB, and all other photo slots at or under 200 KB.</li>
+                  <li>Never use spaces, plus signs, hashtags, or ampersands in file names.</li>
+                </ul>
+              </div>
+              <div class="gcard-acts">
+                <a class="btn solid" href="photo-sizer/index.html">Use Photo Sizer</a>
+              </div>
+            </article>
+
+            <article class="gcard">
+              <div class="gcard-top">
+                <div class="gcard-head">
+                  <span class="step-badge">2</span>
+                  <span class="team-pill">Live HTML Text</span>
+                </div>
+                <h2>Keep Copy Out of the Photo</h2>
+                <ul class="clean-list">
+                  <li>Headlines, promo pills, subcopy, and buttons are built as live HTML text over clean photography.</li>
+                  <li>Never export an animated GIF of words or bake headlines into the background JPG.</li>
+                  <li>The block code handles the entrance motion and contrast scrim automatically.</li>
+                </ul>
+              </div>
+              <div class="gcard-acts">
+                <a class="btn solid" href="#components" data-view="components">See Live Example</a>
+              </div>
+            </article>
+
+            <article class="gcard">
+              <div class="gcard-top">
+                <div class="gcard-head">
+                  <span class="step-badge">3</span>
+                  <span class="team-pill">Fastr CMS</span>
+                </div>
+                <h2>Use Reserves Space Heights</h2>
+                <ul class="clean-list">
+                  <li>Enter the three measured pixel heights for Mobile, 640px, and 1024px in the Fastr Dashboard.</li>
+                  <li>Always copy the embed code from the Reserves space tab so the page does not jump while loading.</li>
+                  <li>WorldSoccerShop and Soccer.com never mix product links or feeds.</li>
+                </ul>
+              </div>
+              <div class="gcard-acts">
+                <a class="btn solid" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var viewLinks = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+  var filterChips = Array.prototype.slice.call(document.querySelectorAll('[data-filter]'));
+  var viewComp = document.getElementById('view-components');
+  var viewGuide = document.getElementById('view-guidelines');
+  var navItems = Array.prototype.slice.call(document.querySelectorAll('.tv-list .tv-item'));
+
+  function showSection(sec) {
+    var isGuide = sec === 'guidelines';
+    viewComp.classList.toggle('active', !isGuide);
+    viewGuide.classList.toggle('active', isGuide);
+    navItems.forEach(function (a) {
+      var v = a.getAttribute('data-view');
+      if (v) a.classList.toggle('here', v === (isGuide ? 'guidelines' : 'components'));
+    });
+  }
+
+  viewLinks.forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      var v = el.getAttribute('data-view');
+      showSection(v);
+    });
+  });
+
+  filterChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      filterChips.forEach(function (c) {
+        c.setAttribute('aria-selected', c === chip ? 'true' : 'false');
+      });
+      var f = chip.getAttribute('data-filter');
+      if (f === 'guidelines') {
+        showSection('guidelines');
+      } else {
+        showSection('components');
+      }
+    });
+  });
+
+  // Viewport switcher for live demo
+  var vpBtns = Array.prototype.slice.call(document.querySelectorAll('[data-vp]'));
+  var demoFrame = document.getElementById('demoFrame');
+  vpBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      vpBtns.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      if (demoFrame) {
+        demoFrame.style.width = btn.getAttribute('data-vp');
+        demoFrame.style.height = btn.getAttribute('data-h') + 'px';
+      }
+    });
+  });
+
+  // Load Fastr paste code and wire both Copy buttons
+  var codePreview = document.getElementById('codePreview');
+  var copyBtns = [document.getElementById('topCopyCodeBtn'), document.getElementById('cardCopyCodeBtn')];
+  var rawPasteCode = '';
+
+  fetch('blocks/selection-section-home-page/fastr-paste.html')
+    .then(function (r) { return r.text(); })
+    .then(function (txt) {
+      rawPasteCode = txt;
+      if (codePreview) codePreview.textContent = txt;
+    });
+
+  copyBtns.forEach(function (btn) {
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      if (!rawPasteCode) return;
+      navigator.clipboard.writeText(rawPasteCode).then(function () {
+        var orig = btn.textContent;
+        btn.textContent = 'Copied Code!';
+        setTimeout(function () { btn.textContent = orig; }, 1800);
+      });
+    });
+  });
+
+  // Sky background video matching Tunnel v2
+  if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var box = document.getElementById('skyvideo');
+    if (box) {
+      var f = document.createElement('iframe');
+      f.src = 'https://player.vimeo.com/video/' + box.dataset.vimeo + '?h=' + box.dataset.vimeoH
+        + '&background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1';
+      f.title = 'Clouds drifting across a blue sky';
+      f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      f.setAttribute('tabindex', '-1');
+      f.setAttribute('aria-hidden', 'true');
+      f.addEventListener('load', function () { setTimeout(function () { f.classList.add('is-ready'); }, 700); });
+      box.appendChild(f);
+    }
+  }
+})();
+</script>
+</body>
+</html>
