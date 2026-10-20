@@ -1,0 +1,443 @@
+<!-- Product Tile Gallery, WorldSoccerShop. Edge-to-edge grid of product tiles, each with a swipe gallery.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe. Scoped to [data-block="product-tile-gallery-v1"].
+     Each tile: slide 1 is the product cut out from the site's image service (transparent PNG) with the Figma drop shadow;
+     slide 2 is the plain back where it makes sense; then any cleared photos from the Tunnel.
+     A slide whose image fails removes itself, and the bars count what is left. One slide: no bars, no arrows.
+     Filter bar follows the Naadam study (19 Oct): quiet uppercase shortcuts, Sort on the right with its own small menu (black edge, notch, chosen order underlined, arrow keys and Escape work), one drawer, live results, removable chips, sticky bar, choices kept in the web address (pt_team, pt_player, pt_price, pt_sort). Set --campaign-sticky-top to the site header height in Fastr.
+     Filters work on the tiles in this block only; a full page version would read the site's own filters.
+     Grid: 2 columns, 3 from 640px, 4 from 1024px. 1px hairlines. The page grows with the grid, so no fixed height.
+     Contrast: name #565656 on white 7.0:1 pass. Price 20.9:1 pass. Was price #757575 4.6:1 pass. Sale chip white on #D60730 5.6:1 pass. Filter text 20.9:1 pass. Chips 14.9:1 pass. Every control is at least 44px tall to tap. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+[data-block="product-tile-gallery-v1"]{--campaign-face:'Chakra Petch',Arial,sans-serif;--campaign-surface:#FFFFFF;--campaign-hairline:#E6E6E6;--campaign-photo-bg:#F5F5F5;--campaign-name:#565656;--campaign-price:#040000;--campaign-was:#757575;--campaign-sale:#D60730;--campaign-chip:#000000;--campaign-chip-ink:#FFFFFF;--campaign-bar:rgba(0,0,0,.18);--campaign-bar-on:rgba(0,0,0,.75);--campaign-arrow:rgba(255,255,255,.85);--campaign-arrow-ink:#111111;--campaign-pill-edge:#000000;--campaign-pill-ink:#192B1F;--campaign-pill-on:#000000;--campaign-pill-on-ink:#EDEADA;
+--campaign-product-shadow:drop-shadow(1px 6px 6.5px rgba(46,37,31,.2)) drop-shadow(2px 24px 12px rgba(46,37,31,.17)) drop-shadow(5px 53px 16px rgba(46,37,31,.1)) drop-shadow(10px 94px 19px rgba(46,37,31,.03));
+display:block;width:100%;background:var(--campaign-surface);font-family:var(--campaign-face);box-sizing:border-box}
+[data-block="product-tile-gallery-v1"] *,[data-block="product-tile-gallery-v1"] *::before,[data-block="product-tile-gallery-v1"] *::after{box-sizing:border-box}
+[data-block="product-tile-gallery-v1"] .ptg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* filter bar: quiet uppercase shortcuts, one shared drawer (Naadam pattern, improved) */
+[data-block="product-tile-gallery-v1"] .ptg-sentinel{height:1px;margin-bottom:-1px}
+[data-block="product-tile-gallery-v1"] .ptg-bar{position:sticky;top:var(--campaign-sticky-top,0px);z-index:5;background:var(--campaign-surface);padding:4px 16px 0;transition:box-shadow .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-bar.is-stuck{box-shadow:0 1px 0 var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-row{display:flex;align-items:center;gap:0 20px}
+[data-block="product-tile-gallery-v1"] .ptg-short,[data-block="product-tile-gallery-v1"] .ptg-sort-btn{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:none;color:var(--campaign-price);font:400 13px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+[data-block="product-tile-gallery-v1"] .ptg-short:hover,[data-block="product-tile-gallery-v1"] .ptg-sort-btn:hover{text-decoration:underline;text-underline-offset:4px}
+[data-block="product-tile-gallery-v1"] .ptg-short--wide{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-row .ptg-sort{margin-left:auto}
+[data-block="product-tile-gallery-v1"] .ptg-sort{position:relative}
+[data-block="product-tile-gallery-v1"] .ptg-sort-btn:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
+[data-block="product-tile-gallery-v1"] .ptg-sort-btn svg{transition:transform .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-sort-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+/* sort menu: white box, thin black edge, a small notch pointing at Sort, the chosen order underlined */
+[data-block="product-tile-gallery-v1"] .ptg-sort-list{position:absolute;top:calc(100% + 2px);right:0;z-index:6;min-width:168px;margin:0;padding:10px 14px;list-style:none;background:var(--campaign-surface);border:1px solid var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list::before{content:"";position:absolute;top:-6px;right:20px;width:10px;height:10px;background:var(--campaign-surface);border-top:1px solid var(--campaign-price);border-left:1px solid var(--campaign-price);transform:rotate(45deg)}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list:focus{outline:none}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list li{position:relative;display:flex;align-items:center;min-height:30px;margin:0 -6px;padding:0 6px;color:var(--campaign-pill-ink);font:400 13px/1.2 var(--campaign-face);white-space:nowrap;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list li[aria-selected="true"]::after{content:"";position:absolute;left:6px;right:6px;bottom:2px;height:1px;background:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list li:hover,[data-block="product-tile-gallery-v1"] .ptg-sort-list li.is-active{background:#F2F2F2}
+@media (pointer:coarse){[data-block="product-tile-gallery-v1"] .ptg-sort-list li{min-height:44px}}
+[data-block="product-tile-gallery-v1"] .ptg-short:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
+[data-block="product-tile-gallery-v1"] .ptg-n:not(:empty){margin-left:2px}
+[data-block="product-tile-gallery-v1"] .ptg-count{display:none;margin:0 0 0 auto;font:400 12px/16px var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;color:var(--campaign-name);white-space:nowrap}
+[data-block="product-tile-gallery-v1"] .ptg-chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:4px 0 12px}
+[data-block="product-tile-gallery-v1"] .ptg-chips[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-chip-x{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:6px 12px;border:1px solid var(--campaign-pill-edge);border-radius:999px;background:none;color:var(--campaign-pill-ink);font:500 13px/1 var(--campaign-face);cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-chip-x:hover{background:#F2F2F2}
+[data-block="product-tile-gallery-v1"] .ptg-clearlink{min-height:32px;padding:6px 4px;border:0;background:none;color:var(--campaign-price);font:400 13px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-scrim{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4)}
+[data-block="product-tile-gallery-v1"] .ptg-scrim[hidden],[data-block="product-tile-gallery-v1"] .ptg-drawer[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-drawer{position:fixed;inset:0;z-index:1001;display:flex;flex-direction:column;background:var(--campaign-surface);font-family:var(--campaign-face)}
+[data-block="product-tile-gallery-v1"] .ptg-dhead{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 20px;border-bottom:1px solid var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-dtitle{margin:0;font:600 14px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;color:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-close{width:44px;height:44px;border:0;background:none;color:var(--campaign-price);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-groups{flex:1 1 auto;overflow-y:auto;padding:0 20px}
+[data-block="product-tile-gallery-v1"] .ptg-group{border-bottom:1px solid var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-gh{margin:0}
+[data-block="product-tile-gallery-v1"] .ptg-gh button{display:flex;align-items:center;width:100%;min-height:56px;padding:0;border:0;background:none;color:var(--campaign-price);font:500 14px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-align:left}
+[data-block="product-tile-gallery-v1"] .ptg-gh svg{margin-left:auto;transition:transform .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-gh button[aria-expanded="true"] svg{transform:rotate(180deg)}
+[data-block="product-tile-gallery-v1"] .ptg-opts{padding:0 0 12px}
+[data-block="product-tile-gallery-v1"] .ptg-opts[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-opt{display:flex;align-items:center;gap:12px;min-height:44px;color:var(--campaign-pill-ink);font:400 14px/1.2 var(--campaign-face);cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-opt input{width:20px;height:20px;margin:0;accent-color:#000000;flex:none;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-opt input:disabled+span,[data-block="product-tile-gallery-v1"] .ptg-opt input:disabled~.ptg-c{opacity:.45}
+[data-block="product-tile-gallery-v1"] .ptg-c{margin-left:auto;color:var(--campaign-name);font-size:13px}
+[data-block="product-tile-gallery-v1"] .ptg-dfoot{display:flex;flex-direction:column;gap:8px;padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-clear,[data-block="product-tile-gallery-v1"] .ptg-view{min-height:48px;padding:12px 16px;font:500 14px/1.2 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-clear{border:1px solid var(--campaign-pill-edge);background:none;color:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-clear[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-view{border:0;background:var(--campaign-pill-on);color:var(--campaign-pill-on-ink)}
+[data-block="product-tile-gallery-v1"] .ptg-close:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-gh button:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-clear:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-view:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-chip-x:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-clearlink:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
+/* grid */
+[data-block="product-tile-gallery-v1"] .ptg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:0;padding:0;list-style:none;background:var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-tile{position:relative;min-width:0;background:var(--campaign-surface)}
+[data-block="product-tile-gallery-v1"] .ptg-tile[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-link{display:block;color:inherit;text-decoration:none}
+[data-block="product-tile-gallery-v1"] .ptg-link:focus-visible{outline:2px solid var(--campaign-price);outline-offset:-2px}
+[data-block="product-tile-gallery-v1"] .ptg-media{position:relative;aspect-ratio:2/3;background:var(--campaign-photo-bg);overflow:hidden}
+[data-block="product-tile-gallery-v1"] .ptg-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain}
+[data-block="product-tile-gallery-v1"] .ptg-track::-webkit-scrollbar{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-slide{position:relative;flex:0 0 100%;height:100%;scroll-snap-align:start;overflow:hidden}
+/* product cutout: centred left to right, its middle 46% down so the soft shadow below balances it */
+[data-block="product-tile-gallery-v1"] .ptg-cutout{position:absolute;left:50%;top:46%;width:97.4%;height:auto;aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%);filter:var(--campaign-product-shadow);display:block}
+[data-block="product-tile-gallery-v1"] .ptg-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+[data-block="product-tile-gallery-v1"] .ptg-chip{position:absolute;top:10px;left:10px;z-index:2;padding:4px 6px;background:var(--campaign-chip);color:var(--campaign-chip-ink);font:600 10px/1.2 var(--campaign-face);letter-spacing:1px;text-transform:uppercase}
+[data-block="product-tile-gallery-v1"] .ptg-chip--sale{background:var(--campaign-sale)}
+[data-block="product-tile-gallery-v1"] .ptg-bars{position:absolute;left:12px;right:12px;bottom:10px;z-index:2;display:flex;gap:4px;pointer-events:none}
+[data-block="product-tile-gallery-v1"] .ptg-bars span{flex:1 1 0;height:2px;background:var(--campaign-bar);transition:background-color .25s ease}
+[data-block="product-tile-gallery-v1"] .ptg-bars span.is-on{background:var(--campaign-bar-on)}
+/* on a photo the bars turn white so they stay visible */
+[data-block="product-tile-gallery-v1"] .ptg-tile[data-on-photo] .ptg-bars span{background:rgba(255,255,255,.45)}
+[data-block="product-tile-gallery-v1"] .ptg-tile[data-on-photo] .ptg-bars span.is-on{background:#FFFFFF}
+[data-block="product-tile-gallery-v1"] .ptg-bars:empty,[data-block="product-tile-gallery-v1"] .ptg-bars[data-count="1"]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-info{display:flex;flex-direction:column;gap:8px;padding:12px 12px 18px}
+[data-block="product-tile-gallery-v1"] .ptg-name{margin:0;font:400 12px/16px var(--campaign-face);letter-spacing:.02em;text-transform:uppercase;color:var(--campaign-name);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+[data-block="product-tile-gallery-v1"] .ptg-price{margin:0;display:flex;align-items:baseline;gap:6px}
+[data-block="product-tile-gallery-v1"] .ptg-price b{font:700 14px/1.2 var(--campaign-face);color:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-price s{font:400 12px/1.2 var(--campaign-face);color:var(--campaign-was)}
+[data-block="product-tile-gallery-v1"] .ptg-nav{position:absolute;top:0;left:0;right:0;aspect-ratio:2/3;z-index:3;pointer-events:none}
+[data-block="product-tile-gallery-v1"] .ptg-arrow{position:absolute;top:50%;width:32px;height:32px;margin-top:-16px;padding:0;border:0;border-radius:50%;background:var(--campaign-arrow);color:var(--campaign-arrow-ink);display:none;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:auto;transition:opacity .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-prev{left:10px} [data-block="product-tile-gallery-v1"] .ptg-next{right:10px}
+[data-block="product-tile-gallery-v1"] .ptg-arrow:focus-visible{outline:2px solid var(--campaign-arrow-ink);outline-offset:2px;opacity:1}
+@media (min-width:640px){
+[data-block="product-tile-gallery-v1"] .ptg-bar{padding:4px 24px 0}
+[data-block="product-tile-gallery-v1"] .ptg-row{gap:0 28px}
+[data-block="product-tile-gallery-v1"] .ptg-short--wide{display:inline-flex}
+[data-block="product-tile-gallery-v1"] .ptg-count{display:block}
+[data-block="product-tile-gallery-v1"] .ptg-row .ptg-sort{margin-left:0}
+[data-block="product-tile-gallery-v1"] .ptg-drawer{left:auto;width:400px;max-width:100%;box-shadow:-8px 0 24px rgba(0,0,0,.12)}
+[data-block="product-tile-gallery-v1"] .ptg-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+[data-block="product-tile-gallery-v1"] .ptg-info{padding:16px 17px 24px}
+[data-block="product-tile-gallery-v1"] .ptg-price b{font-size:15px}
+}
+@media (min-width:1024px){
+[data-block="product-tile-gallery-v1"] .ptg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:1024px) and (hover:hover){
+[data-block="product-tile-gallery-v1"].is-ready .ptg-arrow{display:flex}
+[data-block="product-tile-gallery-v1"] .ptg-tile:hover .ptg-arrow{opacity:1}
+[data-block="product-tile-gallery-v1"] .ptg-tile:hover .ptg-arrow[disabled]{opacity:.4;cursor:default}
+[data-block="product-tile-gallery-v1"] .ptg-tile[data-count="1"] .ptg-arrow{display:none}
+}
+@media (prefers-reduced-motion:reduce){[data-block="product-tile-gallery-v1"] .ptg-track{scroll-behavior:auto} [data-block="product-tile-gallery-v1"] .ptg-arrow,[data-block="product-tile-gallery-v1"] .ptg-bars span,[data-block="product-tile-gallery-v1"] .ptg-gh svg,[data-block="product-tile-gallery-v1"] .ptg-bar,[data-block="product-tile-gallery-v1"] .ptg-sort-btn svg{transition:none}}
+</style>
+
+<section data-block="product-tile-gallery-v1" aria-label="Jerseys on sale">
+  <div class="ptg-sentinel" aria-hidden="true"></div>
+  <div class="ptg-bar">
+    <div class="ptg-row">
+      <button class="ptg-short" type="button" data-open="team" aria-haspopup="dialog" aria-expanded="false">Team<span class="ptg-n"></span></button>
+      <button class="ptg-short ptg-short--wide" type="button" data-open="player" aria-haspopup="dialog" aria-expanded="false">Player<span class="ptg-n"></span></button>
+      <button class="ptg-short ptg-short--wide" type="button" data-open="price" aria-haspopup="dialog" aria-expanded="false">Price<span class="ptg-n"></span></button>
+      <button class="ptg-short" type="button" data-open="all" aria-haspopup="dialog" aria-expanded="false">All filters<span class="ptg-n"></span></button>
+      <p class="ptg-count" aria-live="polite"></p>
+      <div class="ptg-sort">
+        <button class="ptg-sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ptg-sort-list">Sort: <span class="ptg-sort-val">Featured</span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button>
+        <ul class="ptg-sort-list" id="ptg-sort-list" role="listbox" aria-label="Sort jerseys" tabindex="-1" hidden><li role="option" id="ptg-sort-order" data-value="order" data-short="Featured" aria-selected="true">Featured</li><li role="option" id="ptg-sort-low" data-value="low" data-short="Lowest price" aria-selected="false">Price, low to high</li><li role="option" id="ptg-sort-high" data-value="high" data-short="Highest price" aria-selected="false">Price, high to low</li><li role="option" id="ptg-sort-saving" data-value="saving" data-short="Biggest saving" aria-selected="false">Biggest saving</li></ul>
+      </div>
+    </div>
+    <div class="ptg-chips" hidden></div>
+  </div>
+  <div class="ptg-scrim" hidden></div>
+  <div class="ptg-drawer" role="dialog" aria-modal="true" aria-label="Filters" hidden>
+    <div class="ptg-dhead"><p class="ptg-dtitle">Filters</p><button class="ptg-close" type="button" aria-label="Close filters"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+    <div class="ptg-groups">
+      <section class="ptg-group" data-group="team"><h3 class="ptg-gh"><button type="button" aria-expanded="false">Team<span class="ptg-n"></span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button></h3>
+        <div class="ptg-opts" hidden><label class="ptg-opt"><input type="checkbox" value="club"><span>Clubs</span><span class="ptg-c"></span></label><label class="ptg-opt"><input type="checkbox" value="nation"><span>National teams</span><span class="ptg-c"></span></label></div></section>
+      <section class="ptg-group" data-group="player"><h3 class="ptg-gh"><button type="button" aria-expanded="false">Player<span class="ptg-n"></span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button></h3>
+        <div class="ptg-opts" hidden><label class="ptg-opt"><input type="checkbox" value="named"><span>With a player name</span><span class="ptg-c"></span></label><label class="ptg-opt"><input type="checkbox" value="plain"><span>No name</span><span class="ptg-c"></span></label></div></section>
+      <section class="ptg-group" data-group="price"><h3 class="ptg-gh"><button type="button" aria-expanded="false">Price<span class="ptg-n"></span><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></button></h3>
+        <div class="ptg-opts" hidden><label class="ptg-opt"><input type="checkbox" value="under75"><span>Under $75</span><span class="ptg-c"></span></label><label class="ptg-opt"><input type="checkbox" value="75to125"><span>$75 to $125</span><span class="ptg-c"></span></label><label class="ptg-opt"><input type="checkbox" value="over125"><span>Over $125</span><span class="ptg-c"></span></label></div></section>
+    </div>
+    <div class="ptg-dfoot"><button class="ptg-clear" type="button" hidden>Clear all</button><button class="ptg-view" type="button">View items</button></div>
+  </div>
+  <ul class="ptg-grid">
+      <li class="ptg-tile" data-team="club" data-player="plain" data-price="64.99" data-saving="85.0" data-order="1">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-authentic-adidas-charlotte-fc-third-jersey-2025_A1116910" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1116910000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div><div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0009&w=700&h=700&img=A1116910000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Charlotte FC 2025 Authentic Third Jersey by adidas</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$149.99</s> <b><span class="ptg-sr">Now </span>$64.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Charlotte FC 2025 Authentic Third Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Charlotte FC 2025 Authentic Third Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="nation" data-player="named" data-price="64.99" data-saving="35.0" data-order="2">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/nike-usmnt-home-top-2026-sullivan_RV7032734" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1142072000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$99.99</s> <b><span class="ptg-sr">Now </span>$64.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="nation" data-player="named" data-price="124.99" data-saving="10.0" data-order="3">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-nike-sullivan-usmnt-away-jersey-2026_RV7032730" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1128890000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Cavan Sullivan USMNT 26/27 Away Jersey by Nike</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$134.99</s> <b><span class="ptg-sr">Now </span>$124.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Cavan Sullivan USMNT 26/27 Away Jersey by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Cavan Sullivan USMNT 26/27 Away Jersey by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="club" data-player="plain" data-price="54.99" data-saving="45.0" data-order="4">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-fc-dallas-away-jersey-25-26_A1108663" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1108663000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div><div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0009&w=700&h=700&img=A1108663000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">FC Dallas 2025 Away Jersey by adidas</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$99.99</s> <b><span class="ptg-sr">Now </span>$54.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of FC Dallas 2025 Away Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of FC Dallas 2025 Away Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="club" data-player="plain" data-price="139.99" data-saving="30.0" data-order="5">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-authentic-nike-barcelona-home-jersey-25-26_A1121582" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1121582000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div><div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0009&w=700&h=700&img=A1121582000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Barcelona 25/26 Authentic Home Jersey by Nike</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$169.99</s> <b><span class="ptg-sr">Now </span>$139.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Barcelona 25/26 Authentic Home Jersey by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Barcelona 25/26 Authentic Home Jersey by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="club" data-player="named" data-price="108.99" data-saving="29.0" data-order="6">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-nike-lamine-yamal-barcelona-away-jersey-25-26_RV7025543" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1121588000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Lamine Yamal Barcelona 25/26 Away Jersey by Nike</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$137.99</s> <b><span class="ptg-sr">Now </span>$108.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Lamine Yamal Barcelona 25/26 Away Jersey by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Lamine Yamal Barcelona 25/26 Away Jersey by Nike"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="nation" data-player="named" data-price="129.99" data-saving="10.0" data-order="7">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-messi-argentina-away-jersey-2026-fifa-world-cup-26-patch_RV7029449" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1127436000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div><div class="ptg-slide ptg-slide--photo"><img class="ptg-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/argentina_2026_away_lifestyle_LIONEL_MESSI_3x4.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div><div class="ptg-slide ptg-slide--photo"><img class="ptg-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/argentina_2026_away_detail_01_3x4.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Lionel Messi Argentina 26/27 Away Jersey by adidas</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$139.99</s> <b><span class="ptg-sr">Now </span>$129.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Lionel Messi Argentina 26/27 Away Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Lionel Messi Argentina 26/27 Away Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+      <li class="ptg-tile" data-team="nation" data-player="named" data-price="124.99" data-saving="15.0" data-order="8">
+        <a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-messi-argentina-home-jersey-2026-fifa-world-cup-26-patch_RV7029424" target="_top">
+          <div class="ptg-media">
+            <div class="ptg-track">
+              <div class="ptg-slide ptg-slide--cutout"><img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&fmt=png&iindex=0007&w=700&h=700&img=A1127416000&c=999&retBlank=1x1" alt="" width="700" height="700" loading="lazy" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"></div>
+            </div>
+            <span class="ptg-chip ptg-chip--sale">Sale</span>
+            <div class="ptg-bars" aria-hidden="true"></div>
+          </div>
+          <div class="ptg-info">
+            <p class="ptg-name">Lionel Messi Argentina 26/27 Home Jersey by adidas</p>
+            <p class="ptg-price"><s><span class="ptg-sr">Was </span>$139.99</s> <b><span class="ptg-sr">Now </span>$124.99</b></p>
+          </div>
+        </a>
+        <div class="ptg-nav">
+          <button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Lionel Messi Argentina 26/27 Home Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Lionel Messi Argentina 26/27 Home Jersey by adidas"><svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </li>
+  </ul>
+</section>
+
+<script>
+(function(){
+  var root=document.querySelector('[data-block="product-tile-gallery-v1"]');
+  if(!root)return;
+  var grid=root.querySelector('.ptg-grid');
+  function setup(tile){
+    var track=tile.querySelector('.ptg-track'),bars=tile.querySelector('.ptg-bars');
+    var prev=tile.querySelector('.ptg-prev'),next=tile.querySelector('.ptg-next');
+    function slides(){return track.querySelectorAll('.ptg-slide');}
+    function index(){var w=track.clientWidth||1;return Math.round(track.scrollLeft/w);}
+    function draw(){
+      var n=slides().length,i=Math.min(index(),Math.max(n-1,0));
+      tile.setAttribute('data-count',n);bars.setAttribute('data-count',n);
+      if(bars.children.length!==n){bars.innerHTML='';for(var k=0;k<n;k++)bars.appendChild(document.createElement('span'));}
+      for(var j=0;j<bars.children.length;j++)bars.children[j].classList.toggle('is-on',j===i);
+      prev.disabled=i<=0;next.disabled=i>=n-1;
+      var cur=slides()[i];tile.toggleAttribute('data-on-photo',!!(cur&&cur.classList.contains('ptg-slide--photo')));
+    }
+    function go(d){
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      track.scrollTo({left:(index()+d)*track.clientWidth,behavior:reduce?'auto':'smooth'});
+    }
+    prev.addEventListener('click',function(){go(-1);});
+    next.addEventListener('click',function(){go(1);});
+    var t;track.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(draw,60);},{passive:true});
+    new MutationObserver(draw).observe(track,{childList:true});
+    window.addEventListener('resize',draw);
+    draw();
+  }
+  Array.prototype.forEach.call(root.querySelectorAll('.ptg-tile'),setup);
+  /* filters: one shared drawer, live results, chips, shareable web address */
+  var tiles=Array.prototype.slice.call(root.querySelectorAll('.ptg-tile'));
+  var LABEL={club:'Clubs',nation:'National teams',named:'With a player name',plain:'No name',under75:'Under $75','75to125':'$75 to $125',over125:'Over $125'};
+  var state={team:[],player:[],price:[]},sortKey='order';
+  var sortBtn=root.querySelector('.ptg-sort-btn'),sortList=root.querySelector('.ptg-sort-list'),sortOpts=Array.prototype.slice.call(sortList.querySelectorAll('[role="option"]')),activeIx=0;
+  var drawer=root.querySelector('.ptg-drawer'),scrim=root.querySelector('.ptg-scrim'),chips=root.querySelector('.ptg-chips');
+  var count=root.querySelector('.ptg-count'),view=root.querySelector('.ptg-view'),clear=root.querySelector('.ptg-clear');
+  var opener=null;
+  function bucket(p){p=+p;return p<75?'under75':p<=125?'75to125':'over125';}
+  function val(t,g){return g==='price'?bucket(t.getAttribute('data-price')):t.getAttribute('data-'+g);}
+  function match(t,skip){for(var g in state){if(g===skip||!state[g].length)continue;if(state[g].indexOf(val(t,g))<0)return false;}return true;}
+  function total(){return state.team.length+state.player.length+state.price.length;}
+  function writeUrl(){
+    try{var u=new URL(window.location.href);
+      for(var g in state){if(state[g].length)u.searchParams.set('pt_'+g,state[g].join(','));else u.searchParams.delete('pt_'+g);}
+      if(sortKey!=='order')u.searchParams.set('pt_sort',sortKey);else u.searchParams.delete('pt_sort');
+      history.replaceState(null,'',u.toString());}catch(e){}
+  }
+  function readUrl(){
+    try{var u=new URL(window.location.href);
+      for(var g in state){var v=u.searchParams.get('pt_'+g);state[g]=v?v.split(',').filter(function(x){return LABEL[x];}):[];}
+      var s=u.searchParams.get('pt_sort');if(s&&sortList.querySelector('[data-value="'+s+'"]'))sortKey=s;}catch(e){}
+  }
+  function render(){
+    var shown=0;tiles.forEach(function(t){var ok=match(t);t.hidden=!ok;if(ok)shown++;});
+    var words=shown+(shown===1?' item':' items');
+    count.textContent=words;view.textContent='View '+words;
+    var key=sortKey;
+    sortOpts.forEach(function(o){var on=o.getAttribute('data-value')===key;o.setAttribute('aria-selected',on?'true':'false');if(on)root.querySelector('.ptg-sort-val').textContent=o.getAttribute('data-short');});
+    tiles.slice().sort(function(a,b){var pa=+a.getAttribute('data-price'),pb=+b.getAttribute('data-price');
+      if(key==='low')return pa-pb;if(key==='high')return pb-pa;if(key==='saving')return +b.getAttribute('data-saving')-+a.getAttribute('data-saving');
+      return +a.getAttribute('data-order')-+b.getAttribute('data-order');}).forEach(function(t){grid.appendChild(t);});
+    Array.prototype.forEach.call(root.querySelectorAll('.ptg-group'),function(sec){
+      var g=sec.getAttribute('data-group'),n=state[g].length;
+      sec.querySelector('.ptg-n').textContent=n?' ('+n+')':'';
+      var sh=root.querySelector('.ptg-short[data-open="'+g+'"] .ptg-n');if(sh)sh.textContent=n?' ('+n+')':'';
+      Array.prototype.forEach.call(sec.querySelectorAll('input'),function(box){
+        box.checked=state[g].indexOf(box.value)>-1;
+        var c=tiles.filter(function(t){return match(t,g)&&val(t,g)===box.value;}).length;
+        box.parentNode.querySelector('.ptg-c').textContent='('+c+')';
+        box.disabled=!c&&!box.checked;
+      });
+    });
+    var all=root.querySelector('.ptg-short[data-open="all"] .ptg-n');all.textContent=total()?' ('+total()+')':'';
+    clear.hidden=!total();
+    chips.innerHTML='';chips.hidden=!total();
+    for(var g in state)state[g].forEach(function(v){var b=document.createElement('button');b.type='button';b.className='ptg-chip-x';b.setAttribute('aria-label','Remove filter: '+LABEL[v]);b.innerHTML=LABEL[v]+' <span aria-hidden="true">×</span>';b.addEventListener('click',(function(gg,vv){return function(){state[gg]=state[gg].filter(function(x){return x!==vv;});render();writeUrl();};})(g,v));chips.appendChild(b);});
+    if(total()){var c=document.createElement('button');c.type='button';c.className='ptg-clearlink';c.textContent='Clear all';c.addEventListener('click',reset);chips.appendChild(c);}
+  }
+  function reset(){for(var g in state)state[g]=[];render();writeUrl();}
+  function setGroup(sec,open){var b=sec.querySelector('.ptg-gh button');b.setAttribute('aria-expanded',open?'true':'false');sec.querySelector('.ptg-opts').hidden=!open;}
+  function focusables(){return Array.prototype.filter.call(drawer.querySelectorAll('button,input,select'),function(e){return !e.disabled&&e.offsetParent!==null;});}
+  function openDrawer(group,btn){
+    opener=btn;drawer.hidden=false;scrim.hidden=false;document.documentElement.style.overflow='hidden';
+    Array.prototype.forEach.call(root.querySelectorAll('.ptg-short'),function(s){s.setAttribute('aria-expanded',s===btn?'true':'false');});
+    var target=group==='all'?'team':group;
+    Array.prototype.forEach.call(drawer.querySelectorAll('.ptg-group'),function(sec){if(sec.getAttribute('data-group')===target)setGroup(sec,true);});
+    var sec=drawer.querySelector('.ptg-group[data-group="'+target+'"]');var first=sec&&sec.querySelector('input:not(:disabled)');
+    (first||drawer.querySelector('.ptg-close')).focus();
+  }
+  function closeDrawer(){drawer.hidden=true;scrim.hidden=true;document.documentElement.style.overflow='';
+    Array.prototype.forEach.call(root.querySelectorAll('.ptg-short'),function(s){s.setAttribute('aria-expanded','false');});
+    if(opener)opener.focus();}
+  Array.prototype.forEach.call(root.querySelectorAll('.ptg-short'),function(b){b.addEventListener('click',function(){openDrawer(b.getAttribute('data-open'),b);});});
+  Array.prototype.forEach.call(drawer.querySelectorAll('.ptg-group'),function(sec){
+    var g=sec.getAttribute('data-group');
+    sec.querySelector('.ptg-gh button').addEventListener('click',function(){setGroup(sec,this.getAttribute('aria-expanded')!=='true');});
+    Array.prototype.forEach.call(sec.querySelectorAll('input'),function(box){box.addEventListener('change',function(){
+      state[g]=state[g].filter(function(x){return x!==box.value;});if(box.checked)state[g].push(box.value);render();writeUrl();});});
+  });
+  drawer.querySelector('.ptg-close').addEventListener('click',closeDrawer);
+  scrim.addEventListener('click',closeDrawer);view.addEventListener('click',closeDrawer);clear.addEventListener('click',reset);
+  drawer.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){e.preventDefault();closeDrawer();return;}
+    if(e.key!=='Tab')return;var f=focusables();if(!f.length)return;
+    if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus();}
+    else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus();}
+  });
+  function markActive(i){activeIx=(i+sortOpts.length)%sortOpts.length;sortOpts.forEach(function(o,k){o.classList.toggle('is-active',k===activeIx);});sortList.setAttribute('aria-activedescendant',sortOpts[activeIx].id);}
+  function openSort(){sortList.hidden=false;sortBtn.setAttribute('aria-expanded','true');markActive(sortOpts.findIndex(function(o){return o.getAttribute('data-value')===sortKey;}));sortList.focus();}
+  function closeSort(back){sortList.hidden=true;sortBtn.setAttribute('aria-expanded','false');if(back)sortBtn.focus();}
+  function choose(i){sortKey=sortOpts[i].getAttribute('data-value');closeSort(true);render();writeUrl();}
+  sortBtn.addEventListener('click',function(){sortList.hidden?openSort():closeSort(true);});
+  sortBtn.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();openSort();}});
+  sortOpts.forEach(function(o,i){o.addEventListener('click',function(){choose(i);});o.addEventListener('mousemove',function(){markActive(i);});});
+  sortList.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){e.preventDefault();markActive(activeIx+1);}
+    else if(e.key==='ArrowUp'){e.preventDefault();markActive(activeIx-1);}
+    else if(e.key==='Home'){e.preventDefault();markActive(0);}
+    else if(e.key==='End'){e.preventDefault();markActive(sortOpts.length-1);}
+    else if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(activeIx);}
+    else if(e.key==='Escape'){e.preventDefault();closeSort(true);}
+    else if(e.key==='Tab'){closeSort(false);}
+  });
+  document.addEventListener('click',function(e){if(!sortList.hidden&&!root.querySelector('.ptg-sort').contains(e.target))closeSort(false);});
+  var bar=root.querySelector('.ptg-bar'),sentinel=root.querySelector('.ptg-sentinel');
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){bar.classList.toggle('is-stuck',!es[0].isIntersecting);}).observe(sentinel);
+  readUrl();render();
+  root.classList.add('is-ready');
+})();
+</script>

@@ -1,0 +1,90 @@
+<!-- Intent Selector, sale page. WorldSoccerShop.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe.
+     Reserved heights: Mobile 158 / 640px and up 122 / 1024px and up 122.
+     Every rule is scoped to #isel-sale-v1 and cannot reach the page.
+     Look comes from the campaign tokens at the top of the style block (ink on white 20.8:1 pass). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Mohave:wght@600&display=swap" rel="stylesheet">
+
+<style>
+#isel-sale-v1{--campaign-label-face:'Mohave',Impact,sans-serif;--campaign-face:'Chakra Petch',Arial,sans-serif;--campaign-ink:#070000;--campaign-surface:#FFFFFF;--campaign-chip:#FFFFFF;--campaign-chip-hover:#FFFFFF;--campaign-edge:#BABABA;--campaign-edge-hover:#070000;--campaign-ring:#F5F5F5;--campaign-shadow:0 4px 14px rgba(0,0,0,.12);display:block;width:100%;background:var(--campaign-surface);color:var(--campaign-ink);padding:24px 0;box-sizing:border-box}
+#isel-sale-v1 *,#isel-sale-v1 *::before,#isel-sale-v1 *::after{box-sizing:border-box}
+#isel-sale-v1 .isel-row{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+#isel-sale-v1 .isel-label{margin:0;padding:0 16px;font-family:var(--campaign-label-face);font-weight:600;font-size:22px;line-height:1;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+#isel-sale-v1 .isel-label .isel-arrow{font-family:var(--campaign-face);font-weight:400}
+#isel-sale-v1 .isel-list{display:flex;gap:12px;margin:0;padding:6px 16px 10px;list-style:none;width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-padding:0 16px}
+#isel-sale-v1 .isel-list::-webkit-scrollbar{display:none}
+#isel-sale-v1 .isel-list li{flex:none;margin:0;padding:0}
+#isel-sale-v1 .isel-btn{display:inline-flex;align-items:center;gap:8px;padding:4px 14px 4px 4px;background:var(--campaign-chip);border:.5px solid var(--campaign-edge);border-radius:2px;color:var(--campaign-ink);font-family:var(--campaign-face);font-weight:400;font-size:16px;line-height:1.2;text-transform:capitalize;text-decoration:none;white-space:nowrap;transition:border-color .2s ease,box-shadow .2s ease}
+#isel-sale-v1 .isel-pic{flex:none;width:48px;height:48px;border-radius:50%;background:var(--campaign-ring);overflow:hidden;display:flex;align-items:center;justify-content:center}
+#isel-sale-v1 .isel-pic img{display:block;width:45px;height:45px;border-radius:50%;object-fit:cover}
+#isel-sale-v1 .isel-btn .isel-arrow{font-size:20px;line-height:1;opacity:0;margin-left:-4px;transition:opacity .2s ease,transform .25s cubic-bezier(.32,.72,0,1)}
+#isel-sale-v1 .isel-btn:hover,#isel-sale-v1 .isel-btn:focus-visible{background:var(--campaign-chip-hover);border-color:var(--campaign-edge-hover);box-shadow:var(--campaign-shadow)}
+#isel-sale-v1 .isel-btn:hover .isel-arrow,#isel-sale-v1 .isel-btn:focus-visible .isel-arrow{opacity:1}
+#isel-sale-v1 .isel-btn:focus-visible{outline:2px solid var(--campaign-edge-hover);outline-offset:2px}
+#isel-sale-v1 .isel-nav{display:none;flex:none;gap:8px;padding-right:24px}
+#isel-sale-v1 .isel-step{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;margin:0;background:var(--campaign-surface);border:.5px solid var(--campaign-edge);border-radius:2px;color:var(--campaign-ink);font-family:var(--campaign-face);font-size:20px;line-height:1;cursor:pointer;transition:border-color .2s ease,opacity .2s ease}
+#isel-sale-v1 .isel-step:hover{border-color:var(--campaign-edge-hover)}
+#isel-sale-v1 .isel-step:focus-visible{outline:2px solid var(--campaign-edge-hover);outline-offset:2px}
+#isel-sale-v1 .isel-step:disabled{opacity:.35;cursor:default;border-color:var(--campaign-edge)}
+@media (prefers-reduced-motion:no-preference){#isel-sale-v1 .isel-btn:hover .isel-arrow,#isel-sale-v1 .isel-btn:focus-visible .isel-arrow{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){#isel-sale-v1 .isel-btn,#isel-sale-v1 .isel-btn .isel-arrow,#isel-sale-v1 .isel-step{transition:none}}
+@media (min-width:640px){
+#isel-sale-v1 .isel-row{flex-direction:row;align-items:center;gap:32px;padding-left:24px}
+#isel-sale-v1 .isel-label{padding:0;font-size:24px}
+#isel-sale-v1 .isel-list{flex:1 1 auto;min-width:0;padding:6px 24px 10px 0;scroll-padding:0 24px}
+#isel-sale-v1 .isel-btn{font-size:18px}
+}
+@media (min-width:1024px){
+#isel-sale-v1 .isel-row{gap:42px}
+#isel-sale-v1 .isel-list{padding-right:0}
+#isel-sale-v1.is-scrollable .isel-nav{display:flex}
+}
+</style>
+
+<nav id="isel-sale-v1" aria-label="Shop the sale by category">
+  <div class="isel-row">
+    <p class="isel-label" aria-hidden="true">Shop sale <span class="isel-arrow">→</span></p>
+    <ul class="isel-list">
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=96&amp;h=96&amp;img=A1116910000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>All sale <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jerseys" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=96&amp;h=96&amp;img=A1108663000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Jerseys <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__T-Shirts" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=96&amp;h=96&amp;img=A1128919000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>T-Shirts <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jackets" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=96&amp;h=96&amp;img=A1124424000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Jackets <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Shorts" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=96&amp;h=96&amp;img=A1117510000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Shorts <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale/footwear?filter=product_type__Lifestyle+Shoes" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0096&amp;w=96&amp;h=96&amp;img=A1118282000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Lifestyle footwear <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Firm+Ground+Shoes" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0088&amp;w=96&amp;h=96&amp;img=A1133248000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Firm ground cleats <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Indoor+Shoes" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0088&amp;w=96&amp;h=96&amp;img=A1133306000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Indoor shoes <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+      <li><a class="isel-btn" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Balls" target="_top"><span class="isel-pic"><img src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0062&amp;w=96&amp;h=96&amp;img=A1118986000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" alt="" width="45" height="45" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'"></span>Balls <span class="isel-arrow" aria-hidden="true">→</span></a></li>
+    </ul>
+    <div class="isel-nav">
+      <button class="isel-step" type="button" data-dir="-1" aria-label="Scroll categories left">←</button>
+      <button class="isel-step" type="button" data-dir="1" aria-label="Scroll categories right">→</button>
+    </div>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var root=document.getElementById('isel-sale-v1');
+  if(!root)return;
+  var list=root.querySelector('.isel-list');
+  var steps=root.querySelectorAll('.isel-step');
+  function update(){
+    var over=list.scrollWidth>list.clientWidth+1;
+    root.classList.toggle('is-scrollable',over);
+    steps[0].disabled=list.scrollLeft<=1;
+    steps[1].disabled=list.scrollLeft+list.clientWidth>=list.scrollWidth-1;
+  }
+  Array.prototype.forEach.call(steps,function(b){
+    b.addEventListener('click',function(){
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      list.scrollBy({left:Number(b.getAttribute('data-dir'))*list.clientWidth*0.8,behavior:reduce?'auto':'smooth'});
+    });
+  });
+  list.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(update);
+  update();
+})();
+</script>

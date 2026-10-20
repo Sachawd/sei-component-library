@@ -1,0 +1,176 @@
+<!-- Selection tiles, sale page. WorldSoccerShop.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe.
+     Reserved heights: Mobile 2552 / 640px and up 1280 / 1024px and up 1624.
+     Every rule is scoped to #sel-tiles-sale-v1 and cannot reach the page.
+     Look comes from the campaign tokens at the top of the style block. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=DM+Mono:wght@400&family=Figtree:wght@400&family=Mohave:wght@700&display=swap" rel="stylesheet">
+
+<style>
+#sel-tiles-sale-v1{--campaign-display:'Mohave',Impact,sans-serif;--campaign-mono:'DM Mono',ui-monospace,monospace;--campaign-body:'Aeonik','Figtree',Arial,sans-serif;--campaign-label:'Chakra Petch',Arial,sans-serif;--campaign-yellow:#FFE014;--campaign-rest-ink:var(--campaign-yellow);--campaign-white:#FFFFFF;--campaign-ink:#1A2C20;--campaign-chip-ink:#192B1F;--campaign-chip-edge:#969393;--campaign-panel:rgba(255,255,255,.9);--campaign-cta:#000000;--campaign-cta-ink:#EDEADA;--campaign-night:#111111;display:grid;grid-template-columns:1fr;gap:8px;width:100%;background:var(--campaign-white);box-sizing:border-box}
+#sel-tiles-sale-v1 *,#sel-tiles-sale-v1 *::before,#sel-tiles-sale-v1 *::after{box-sizing:border-box}
+#sel-tiles-sale-v1 .st-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:632px;overflow:hidden;background:var(--campaign-night);margin:0}
+#sel-tiles-sale-v1 .st-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;margin:0}
+#sel-tiles-sale-v1 .st-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.55) 100%);pointer-events:none}
+#sel-tiles-sale-v1 .st-rest,#sel-tiles-sale-v1 .st-panel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+#sel-tiles-sale-v1 .st-rest{gap:16px;padding:0 16px 40px}
+#sel-tiles-sale-v1 .st-eyebrow{margin:0;font-family:var(--campaign-mono);font-size:14px;line-height:1;text-transform:uppercase}
+#sel-tiles-sale-v1 .st-title{margin:4px 0 0;font-family:var(--campaign-display);font-weight:700;line-height:.9;letter-spacing:-.02em;text-transform:uppercase}
+#sel-tiles-sale-v1 .st-copy{margin:12px 0 0;font-family:var(--campaign-body);font-size:16px;line-height:1;text-transform:capitalize}
+#sel-tiles-sale-v1 .st-rest .st-eyebrow,#sel-tiles-sale-v1 .st-rest .st-title{color:var(--campaign-rest-ink)}
+#sel-tiles-sale-v1 .st-rest .st-title{font-size:64px}
+#sel-tiles-sale-v1 .st-rest .st-copy{color:var(--campaign-white)}
+#sel-tiles-sale-v1 .st-btn{display:inline-flex;align-items:center;justify-content:center;width:226px;padding:16px 24px;background:var(--campaign-white);color:var(--campaign-ink);font-family:var(--campaign-label);font-weight:500;font-size:16px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
+#sel-tiles-sale-v1 .st-panel{width:100%;gap:16px;padding:24px 16px 32px;background:var(--campaign-panel);color:var(--campaign-ink)}
+#sel-tiles-sale-v1 .st-panel .st-title{font-size:32px}
+#sel-tiles-sale-v1 .st-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;width:100%;margin:0;padding:0;list-style:none}
+#sel-tiles-sale-v1 .st-chips li{margin:0;padding:0}
+#sel-tiles-sale-v1 .st-chips--four li{flex:0 1 calc(50% - 6px)}
+#sel-tiles-sale-v1 .st-chips--four .st-chip{width:100%}
+#sel-tiles-sale-v1 .st-chip{display:inline-flex;align-items:center;justify-content:center;width:155px;padding:12px 16px;border:1px solid var(--campaign-chip-edge);border-radius:999px;background:transparent;color:var(--campaign-chip-ink);font-family:var(--campaign-label);font-weight:500;font-size:14px;line-height:1.2;text-transform:capitalize;text-decoration:none;transition:border-color .2s ease,background-color .2s ease}
+#sel-tiles-sale-v1 .st-chip:hover{border-color:var(--campaign-chip-ink)}
+#sel-tiles-sale-v1 .st-cta{display:inline-flex;align-items:center;justify-content:center;width:239px;padding:12px 16px;border:1px solid var(--campaign-cta);border-radius:999px;background:var(--campaign-cta);color:var(--campaign-cta-ink);font-family:var(--campaign-label);font-weight:500;font-size:14px;line-height:1.2;text-transform:capitalize;text-decoration:none}
+#sel-tiles-sale-v1 a:focus-visible{outline:2px solid var(--campaign-yellow);outline-offset:3px}
+#sel-tiles-sale-v1 .st-panel a:focus-visible{outline-color:var(--campaign-cta)}
+#sel-tiles-sale-v1 .st-has-panel .st-rest{display:none}
+#sel-tiles-sale-v1 .st-has-panel .st-photo{position:relative;inset:auto;flex:1 1 0;min-height:0;height:auto}
+@media (min-width:640px){
+#sel-tiles-sale-v1{grid-template-columns:1fr 1fr}
+#sel-tiles-sale-v1 .st-tile{height:636px}
+#sel-tiles-sale-v1 .st-rest .st-title{font-size:72px}
+}
+@media (min-width:1024px){
+#sel-tiles-sale-v1 .st-tile{height:808px}
+#sel-tiles-sale-v1 .st-eyebrow{font-size:16px}
+#sel-tiles-sale-v1 .st-copy{font-size:18px}
+#sel-tiles-sale-v1 .st-rest{padding-bottom:56px}
+#sel-tiles-sale-v1 .st-rest .st-title{font-size:92px}
+#sel-tiles-sale-v1 .st-panel{padding:24px 0 56px}
+#sel-tiles-sale-v1 .st-chips{padding:0 42px}
+#sel-tiles-sale-v1 .st-chips--four li{flex:1 1 0}
+}
+@media (min-width:1024px) and (hover:hover) and (pointer:fine){
+#sel-tiles-sale-v1 .st-has-panel .st-photo{position:absolute;inset:0;height:100%}
+#sel-tiles-sale-v1 .st-has-panel .st-rest{display:flex;transition:opacity .25s ease}
+#sel-tiles-sale-v1 .st-has-panel .st-panel{position:absolute;left:0;right:0;bottom:0;transform:translateY(100%);opacity:0;transition:transform .45s cubic-bezier(.32,.72,0,1),opacity .3s ease}
+#sel-tiles-sale-v1 .st-has-panel:hover .st-panel,#sel-tiles-sale-v1 .st-has-panel:focus-within .st-panel{transform:translateY(0);opacity:1}
+#sel-tiles-sale-v1 .st-has-panel:hover .st-rest,#sel-tiles-sale-v1 .st-has-panel:focus-within .st-rest{opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+#sel-tiles-sale-v1 .st-panel,#sel-tiles-sale-v1 .st-rest,#sel-tiles-sale-v1 .st-chip{transition:none}
+}
+</style>
+
+<section id="sel-tiles-sale-v1" aria-label="Shop the sale by category">
+
+  <article class="st-tile st-has-panel">
+    <img class="st-photo" src="" data-photo="jerseys" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'">
+    <div class="st-rest" aria-hidden="true">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <p class="st-title">Jerseys</p>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+    </div>
+    <div class="st-panel">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <h2 class="st-title">Jerseys</h2>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+      <ul class="st-chips">
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/clubs" target="_top">Shop by Club</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/national-teams" target="_top">Shop by Nation</a></li>
+      </ul>
+      <ul class="st-chips">
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Men" target="_top" aria-label="Men's sale jerseys">Mens</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Women" target="_top" aria-label="Women's sale jerseys">Womens</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Youth" target="_top" aria-label="Kids' sale jerseys">Kids</a></li>
+      </ul>
+      <a class="st-cta" href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top" aria-label="Shop all sale jerseys">Shop all</a>
+    </div>
+  </article>
+
+  <article class="st-tile st-has-panel">
+    <img class="st-photo" src="" data-photo="player-kits" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'">
+    <div class="st-rest" aria-hidden="true">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <p class="st-title">Player kits</p>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+    </div>
+    <div class="st-panel">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <h2 class="st-title">Player kits</h2>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+      <ul class="st-chips">
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/clubs" target="_top">Shop by Club</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/national-teams" target="_top">Shop by Nation</a></li>
+      </ul>
+      <ul class="st-chips st-chips--four">
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/players/lionel-messi" target="_top">Messi</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/players/kylian-mbappe" target="_top">Mbappe</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/players/lamine-yamal" target="_top">Yamal</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/players/erling-haaland" target="_top">Haaland</a></li>
+      </ul>
+      <a class="st-cta" href="https://www.worldsoccershop.com/shop/products/sale/player-jerseys" target="_top" aria-label="Shop all sale player kits">Shop all</a>
+    </div>
+  </article>
+
+  <article class="st-tile st-has-panel">
+    <img class="st-photo" src="" data-photo="apparel" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'">
+    <div class="st-rest" aria-hidden="true">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <p class="st-title">Apparel</p>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+    </div>
+    <div class="st-panel">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <h2 class="st-title">Apparel</h2>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+      <ul class="st-chips">
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/srch?query=apparel&amp;page=1&amp;filter=offers__Insider+Sale&amp;filter=offers__Sale&amp;drawer=facet-drawer" target="_top">Shop by Size</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/national-teams" target="_top">Shop by Nation</a></li>
+      </ul>
+      <ul class="st-chips">
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__T-Shirts" target="_top">Tees</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jackets" target="_top">Jackets</a></li>
+        <li><a class="st-chip" data-link-needed="sale-accessories">Accessories</a></li>
+      </ul>
+      <a class="st-cta" href="https://www.worldsoccershop.com/srch?query=apparel&amp;page=1&amp;filter=offers__Insider+Sale&amp;filter=offers__Sale" target="_top" aria-label="Shop all sale apparel">Shop all</a>
+    </div>
+  </article>
+
+  <article class="st-tile st-has-panel">
+    <img class="st-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-chaos-v-control-pack__H24781-FW26_MP3_PRODUCT_F50_EL~SHOT01_sRGB_Highres_4x5-1409657.jpg" data-photo="footwear" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'">
+    <div class="st-rest" aria-hidden="true">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <p class="st-title">Footwear</p>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+    </div>
+    <div class="st-panel">
+      <div>
+        <p class="st-eyebrow">Sale</p>
+        <h2 class="st-title">Footwear</h2>
+        <p class="st-copy">Up to 60% off</p>
+      </div>
+      <ul class="st-chips">
+        <li><a class="st-chip" data-link-needed="sale-footwear-by-size">Shop by Size</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Firm+Ground+Shoes" target="_top">Cleats</a></li>
+        <li><a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Lifestyle+Shoes" target="_top">Lifestyle</a></li>
+      </ul>
+      <a class="st-cta" href="https://www.worldsoccershop.com/shop/products/sale/footwear" target="_top" aria-label="Shop all sale footwear">Shop all</a>
+    </div>
+  </article>
+
+</section>

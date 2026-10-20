@@ -1,0 +1,83 @@
+<!-- Section Breaker. WorldSoccerShop. A headline band that sits between carousels and other blocks.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe. Paste it as many times as a page needs.
+     Every rule is scoped to [data-block="section-breaker-v1"] and cannot reach the page.
+     Change the look with the three settings on the <section> line:
+       data-align  = center | left | right | split   (split: words on the left, action on the right from 1024px up)
+       data-action = button | pills | link | none     (pills: a row of filter links; add aria-current="page" to the one that is on)
+       data-theme  = light | dark
+     Delete the stars, eyebrow or copy line if a breaker does not need them.
+     Give each pasted copy its own title id (sbk-1-title, sbk-2-title...).
+     Reserved heights: see the table in the handoff note (they change with the settings).
+     Contrast: black on white 21:1 pass. Button words on black 17.4:1 pass. Pill text 14.9:1 pass. Pill edge 3.05:1 pass (needs 3:1).
+               Dark: yellow on night 14.3:1 pass. White on night 18.9:1 pass. Black on yellow button 15.9:1 pass. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=DM+Mono:wght@400&family=Figtree:wght@400&family=Mohave:wght@700&display=swap" rel="stylesheet">
+
+<style>
+[data-block="section-breaker-v1"]{--campaign-display:'Mohave',Impact,sans-serif;--campaign-mono:'DM Mono',ui-monospace,monospace;--campaign-body:'Aeonik','Figtree',Arial,sans-serif;--campaign-label:'Chakra Petch',Arial,sans-serif;--campaign-surface:transparent;--campaign-ink:#000000;--campaign-star:#FFE014;--campaign-cta:#000000;--campaign-cta-ink:#EDEADA;--campaign-pill-ink:#192B1F;--campaign-pill-edge:#969393;--campaign-pill-edge-hover:#000000;display:block;width:100%;background:var(--campaign-surface);color:var(--campaign-ink);padding:14px 0;box-sizing:border-box}
+[data-block="section-breaker-v1"][data-theme="dark"]{--campaign-surface:#111111;--campaign-ink:#FFFFFF;--campaign-title:#FFE014;--campaign-cta:#FFE014;--campaign-cta-ink:#000000;--campaign-pill-ink:#FFFFFF;--campaign-pill-edge:#BABABA;--campaign-pill-edge-hover:#FFE014;padding:40px 0}
+[data-block="section-breaker-v1"] *,[data-block="section-breaker-v1"] *::before,[data-block="section-breaker-v1"] *::after{box-sizing:border-box}
+[data-block="section-breaker-v1"] .sbk-inner{max-width:1456px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+[data-block="section-breaker-v1"] .sbk-text{display:flex;flex-direction:column;align-items:center;width:100%}
+[data-block="section-breaker-v1"] .sbk-stars{display:block;flex:none;color:var(--campaign-star);margin-bottom:16px}
+[data-block="section-breaker-v1"] .sbk-eyebrow{margin:0 0 8px;font-family:var(--campaign-mono);font-weight:400;font-size:14px;line-height:1;text-transform:uppercase}
+[data-block="section-breaker-v1"] .sbk-title{margin:0;font-family:var(--campaign-display);font-weight:700;font-size:40px;line-height:.85;letter-spacing:-.02em;text-transform:uppercase;color:var(--campaign-title,var(--campaign-ink))}
+[data-block="section-breaker-v1"] .sbk-copy{margin:12px 0 0;font-family:var(--campaign-body);font-weight:400;font-size:16px;line-height:1;text-transform:capitalize}
+[data-block="section-breaker-v1"] .sbk-actions{display:flex;justify-content:center;width:100%;min-width:0}
+[data-block="section-breaker-v1"] .sbk-button,[data-block="section-breaker-v1"] .sbk-pills,[data-block="section-breaker-v1"] .sbk-link{display:none}
+[data-block="section-breaker-v1"][data-action="button"] .sbk-button{display:inline-flex}
+[data-block="section-breaker-v1"][data-action="pills"] .sbk-pills{display:flex}
+[data-block="section-breaker-v1"][data-action="link"] .sbk-link{display:inline-flex}
+[data-block="section-breaker-v1"][data-action="none"] .sbk-actions{display:none}
+[data-block="section-breaker-v1"] .sbk-button{align-items:center;justify-content:center;width:226px;max-width:100%;padding:12px 24px;background:var(--campaign-cta);color:var(--campaign-cta-ink);font-family:var(--campaign-label);font-weight:500;font-size:16px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;transition:opacity .2s ease}
+[data-block="section-breaker-v1"] .sbk-button:hover{opacity:.85}
+[data-block="section-breaker-v1"] .sbk-pills{gap:12px;margin:0;padding:2px 16px 4px;list-style:none;max-width:calc(100% + 32px);margin-inline:-16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+[data-block="section-breaker-v1"] .sbk-pills::-webkit-scrollbar{display:none}
+[data-block="section-breaker-v1"] .sbk-pills li{flex:none;margin:0;padding:0}
+[data-block="section-breaker-v1"] .sbk-pill{display:inline-flex;align-items:center;justify-content:center;min-width:120px;padding:12px 16px;border:1px solid var(--campaign-pill-edge);border-radius:999px;color:var(--campaign-pill-ink);font-family:var(--campaign-label);font-weight:500;font-size:14px;line-height:1.2;text-transform:capitalize;text-decoration:none;white-space:nowrap;transition:border-color .2s ease,background-color .2s ease}
+[data-block="section-breaker-v1"] .sbk-pill:hover{border-color:var(--campaign-pill-edge-hover)}
+[data-block="section-breaker-v1"] .sbk-pill[aria-current="page"]{background:var(--campaign-cta);border-color:var(--campaign-cta);color:var(--campaign-cta-ink)}
+[data-block="section-breaker-v1"] .sbk-link{align-items:center;gap:8px;padding:6px 0;color:var(--campaign-ink);font-family:var(--campaign-label);font-weight:500;font-size:16px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+[data-block="section-breaker-v1"] .sbk-link span{display:inline-block;text-decoration:none;transition:transform .25s cubic-bezier(.32,.72,0,1)}
+[data-block="section-breaker-v1"] .sbk-link:hover span{transform:translateX(4px)}
+[data-block="section-breaker-v1"] .sbk-button:focus-visible,[data-block="section-breaker-v1"] .sbk-pill:focus-visible,[data-block="section-breaker-v1"] .sbk-link:focus-visible{outline:2px solid var(--campaign-ink);outline-offset:3px}
+[data-block="section-breaker-v1"][data-align="left"] .sbk-inner,[data-block="section-breaker-v1"][data-align="split"] .sbk-inner{align-items:flex-start;text-align:left}
+[data-block="section-breaker-v1"][data-align="left"] .sbk-text,[data-block="section-breaker-v1"][data-align="split"] .sbk-text{align-items:flex-start}
+[data-block="section-breaker-v1"][data-align="left"] .sbk-actions,[data-block="section-breaker-v1"][data-align="split"] .sbk-actions{justify-content:flex-start}
+[data-block="section-breaker-v1"][data-align="right"] .sbk-inner{align-items:flex-end;text-align:right}
+[data-block="section-breaker-v1"][data-align="right"] .sbk-text{align-items:flex-end}
+[data-block="section-breaker-v1"][data-align="right"] .sbk-actions{justify-content:flex-end}
+@media (prefers-reduced-motion:reduce){[data-block="section-breaker-v1"] .sbk-button,[data-block="section-breaker-v1"] .sbk-pill,[data-block="section-breaker-v1"] .sbk-link span{display:inline-block;text-decoration:none;transition:none}}
+@media (min-width:640px){
+[data-block="section-breaker-v1"] .sbk-inner{padding:0 24px}
+[data-block="section-breaker-v1"] .sbk-title{font-size:52px;line-height:.75}
+[data-block="section-breaker-v1"] .sbk-copy{font-size:18px}
+[data-block="section-breaker-v1"] .sbk-pills{flex-wrap:wrap;justify-content:inherit;overflow:visible;margin-inline:0;padding:2px 0;max-width:100%}
+[data-block="section-breaker-v1"][data-align="center"] .sbk-pills{justify-content:center}
+[data-block="section-breaker-v1"][data-align="right"] .sbk-pills{justify-content:flex-end}
+}
+@media (min-width:1024px){
+[data-block="section-breaker-v1"] .sbk-title{font-size:64px}
+[data-block="section-breaker-v1"][data-align="split"] .sbk-inner{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:42px}
+[data-block="section-breaker-v1"][data-align="split"] .sbk-text{width:auto;flex:1 1 auto}
+[data-block="section-breaker-v1"][data-align="split"] .sbk-actions{width:auto;flex:0 1 auto;justify-content:flex-end}
+[data-block="section-breaker-v1"][data-align="split"] .sbk-pills{justify-content:flex-end}
+}
+</style>
+
+<section class="sbk" data-block="section-breaker-v1" data-align="center" data-action="button" data-theme="light" aria-labelledby="sbk-1-title">
+  <div class="sbk-inner">
+    <div class="sbk-text">
+      <svg class="sbk-stars" width="86" height="30" viewBox="0 0 86 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M43.4599 0L46.0237 8.09702L54.5156 8.03212L47.6031 12.9758L50.2913 21.0349L43.4599 15.9885L36.6232 21.0349L39.3113 12.9758L32.3989 8.03212L40.8961 8.09702L43.4599 0Z" fill="currentColor"/><path d="M78.2226 7.11256L77.2382 15.5449L85.0107 18.9741L76.6811 20.6401L75.8211 29.0941L71.6617 21.6894L63.3591 23.4851L69.1196 17.2379L64.8412 9.89811L72.565 13.4463L78.2226 7.11256Z" fill="currentColor"/><path d="M6.88004 7.0748L12.489 13.4572L20.2344 9.96852L15.9074 17.2759L21.6137 23.5663L13.3274 21.7057L9.10847 29.0779L8.31338 20.6185L0 18.8877L7.79954 15.5234L6.88004 7.0748Z" fill="currentColor"/></svg>
+      <p class="sbk-eyebrow">Sale</p>
+      <h2 class="sbk-title" id="sbk-1-title">Top jerseys on sale</h2>
+      <p class="sbk-copy">Up to 60% off</p>
+    </div>
+    <div class="sbk-actions">
+      <a class="sbk-button" href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top">Shop all</a>
+      <ul class="sbk-pills" aria-label="Filter sale jerseys"><li><a class="sbk-pill" href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top" aria-label="All sale jerseys">All</a></li><li><a class="sbk-pill" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Men" target="_top" aria-label="Men's sale jerseys">Mens</a></li><li><a class="sbk-pill" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Women" target="_top" aria-label="Women's sale jerseys">Womens</a></li><li><a class="sbk-pill" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Youth" target="_top" aria-label="Kids' sale jerseys">Kids</a></li></ul>
+      <a class="sbk-link" href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top">Shop all <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>

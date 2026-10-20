@@ -1,12 +1,12 @@
-# Design team code blocks: library plan
+# Sports Endeavors Marketing Code Library: library plan
 
-Ready-to-paste Fastr CMS blocks for WorldSoccerShop, Soccer.com and 431 Sports. Live, reviewed blocks only.
+Verified Fastr CMS blocks for Soccer.com, WorldSoccerShop and 431 Sports. Live, reviewed blocks, plus blocks still in progress, each clearly labelled "In progress" (Sacha, 20 Oct 2026; until then this said live, reviewed blocks only).
 
 Agreed with Sacha, 16 Oct 2026. Modelled on the structure of REI's Cedar design system site (cedar.rei.com). We copy how it is organised, never its branding: the look is Cabana.
 
 ## Rules for this repo
 
-- Public. A block goes in only after it is live on the site and has passed UX review.
+- Public. A live block goes in after it has passed UX review. An unfinished block may go in early so designers can build from it, labelled "In progress" on its card (Sacha, 20 Oct 2026; the 16 Oct rule allowed live blocks only).
 - Nothing unreleased: no embargoed packs, no promo codes before launch.
 - No passwords, keys or tokens, ever. A block that needs a key keeps it on a server.
 - Production-clean files only. One folder per block, named by its plain title.

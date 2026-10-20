@@ -1,0 +1,98 @@
+<!-- Hero, push slideshow photo pair. WorldSoccerShop sale page.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe.
+     Reserved heights: Mobile 560 / 640px and up 680 / 1024px and up 808.
+     Every rule is scoped to #hero-flip-sale-v1 and cannot reach the page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Instrument+Serif&family=Mohave:wght@700&display=swap" rel="stylesheet">
+
+<style>
+#hero-flip-sale-v1{--campaign-display:'Mohave',Impact,sans-serif;--campaign-serif:'Instrument Serif',Georgia,serif;--campaign-mono:'DM Mono',ui-monospace,monospace;--campaign-yellow:#FFE014;--campaign-yellow-soft:#F3D613;--campaign-ink:#000000;--campaign-night:#0B0B0B;--hf-loop:13.5s;--hf-beat:4.5s;position:relative;display:block;width:100%;height:560px;overflow:hidden;background:var(--campaign-night);box-sizing:border-box}
+#hero-flip-sale-v1 *,#hero-flip-sale-v1 *::before,#hero-flip-sale-v1 *::after{box-sizing:border-box}
+#hero-flip-sale-v1 .hf-halves{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:0}
+#hero-flip-sale-v1 .hf-side{position:relative;overflow:hidden;margin:0}
+#hero-flip-sale-v1 .hf-track{position:absolute;top:0;left:0;height:100%;width:400%;display:flex;will-change:transform}
+#hero-flip-sale-v1 .hf-photo{flex:0 0 25%;width:25%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+#hero-flip-sale-v1 .hf-side--left .hf-track{transform:translateX(-75%)}
+#hero-flip-sale-v1 .hf-side--right .hf-track{transform:translateX(0)}
+#hero-flip-sale-v1 .hf-shade{position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);pointer-events:none}
+#hero-flip-sale-v1 .hf-copy{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;width:max-content;max-width:92%}
+#hero-flip-sale-v1 .hf-stars{color:var(--campaign-yellow);font-size:18px;letter-spacing:.3em;line-height:1;margin:0 0 8px}
+#hero-flip-sale-v1 .hf-eyebrow{margin:0;font-family:var(--campaign-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--campaign-yellow-soft)}
+#hero-flip-sale-v1 .hf-title{margin:4px 0 12px;font-family:var(--campaign-display);font-weight:700;font-size:96px;line-height:.86;letter-spacing:-.01em;text-transform:uppercase;color:var(--campaign-yellow)}
+#hero-flip-sale-v1 .hf-cta{display:inline-block;padding:8px 16px 6px;background:var(--campaign-yellow);color:var(--campaign-ink);font-family:var(--campaign-serif);font-size:20px;line-height:1;text-transform:uppercase;text-decoration:none}
+#hero-flip-sale-v1 .hf-cta:focus-visible{outline:2px solid var(--campaign-yellow);outline-offset:3px}
+#hero-flip-sale-v1 .hf-toggle{position:absolute;right:12px;bottom:12px;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.55);color:#FFFFFF;font:600 12px/1 var(--campaign-mono);cursor:pointer;display:none}
+#hero-flip-sale-v1 .hf-toggle:focus-visible{outline:2px solid var(--campaign-yellow);outline-offset:2px}
+@media (prefers-reduced-motion:no-preference){
+#hero-flip-sale-v1 .hf-toggle{display:block}
+#hero-flip-sale-v1 .hf-side--left .hf-track{animation:hf-push-left var(--hf-loop) linear infinite}
+#hero-flip-sale-v1 .hf-side--right .hf-track{animation:hf-push-right var(--hf-loop) linear infinite}
+#hero-flip-sale-v1 .hf-eyebrow{animation:hf-pop var(--hf-beat) linear infinite}
+#hero-flip-sale-v1 .hf-title{animation:hf-squash var(--hf-beat) linear infinite}
+#hero-flip-sale-v1 .hf-cta{animation:hf-fade var(--hf-beat) linear infinite,hf-drop var(--hf-beat) linear infinite}
+#hero-flip-sale-v1.is-paused .hf-track,#hero-flip-sale-v1.is-paused .hf-eyebrow,#hero-flip-sale-v1.is-paused .hf-title,#hero-flip-sale-v1.is-paused .hf-cta{animation-play-state:paused}
+}
+/* Photos push in every 4.5s: 0.7s hold, 0.8s ease-in-out slide, then hold. Left pushes in from the left, right from the right. */
+@keyframes hf-push-left{0%{transform:translateX(-75%)}5.185%{transform:translateX(-75%);animation-timing-function:ease-in-out}11.111%{transform:translateX(-50%)}38.519%{transform:translateX(-50%);animation-timing-function:ease-in-out}44.444%{transform:translateX(-25%)}71.852%{transform:translateX(-25%);animation-timing-function:ease-in-out}77.778%{transform:translateX(0)}100%{transform:translateX(0)}}
+@keyframes hf-push-right{0%{transform:translateX(0)}5.185%{transform:translateX(0);animation-timing-function:ease-in-out}11.111%{transform:translateX(-25%)}38.519%{transform:translateX(-25%);animation-timing-function:ease-in-out}44.444%{transform:translateX(-50%)}71.852%{transform:translateX(-50%);animation-timing-function:ease-in-out}77.778%{transform:translateX(-75%)}100%{transform:translateX(-75%)}}
+/* Words, from the Figma timeline (4.5s loop) */
+@keyframes hf-pop{0%{animation-timing-function:ease-out;scale:1 1}4.667%{animation-timing-function:ease-out;scale:1.25 1.25}13.333%{scale:1 1}100%{scale:1 1}}
+@keyframes hf-squash{0%{scale:1 1}5.333%{animation-timing-function:ease-out;scale:1 1}11.333%{animation-timing-function:ease-out;scale:1.15 .9}15.333%{animation-timing-function:ease-out;scale:.9 1.1}19.333%{animation-timing-function:ease-out;scale:1.05 .97}25.333%{scale:1 1}100%{scale:1 1}}
+@keyframes hf-fade{0%{opacity:0}12.889%{animation-timing-function:ease-out;opacity:0}23.556%{opacity:1}100%{opacity:1}}
+@keyframes hf-drop{0%{translate:0 -16px}12.889%{animation-timing-function:ease-out;translate:0 -16px}20.356%{animation-timing-function:ease-out;translate:0 4px}23.556%{translate:0 0}100%{translate:0 0}}
+@media (min-width:640px){
+#hero-flip-sale-v1{height:680px}
+#hero-flip-sale-v1 .hf-eyebrow{font-size:15px}
+#hero-flip-sale-v1 .hf-title{font-size:140px}
+#hero-flip-sale-v1 .hf-cta{font-size:26px}
+}
+@media (min-width:1024px){
+#hero-flip-sale-v1{height:808px}
+#hero-flip-sale-v1 .hf-eyebrow{font-size:18px}
+#hero-flip-sale-v1 .hf-title{font-size:200px}
+#hero-flip-sale-v1 .hf-cta{font-size:32px;padding:10px 20px 8px}
+}
+</style>
+
+<section id="hero-flip-sale-v1" aria-label="Sale: best deals, up to 60% off">
+  <div class="hf-halves" aria-hidden="true">
+    <figure class="hf-side hf-side--left">
+      <div class="hf-track">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale__left_1.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale__left3.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale__left2.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale__left_1.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+      </div>
+    </figure>
+    <figure class="hf-side hf-side--right">
+      <div class="hf-track">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale_right1__6.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale_right2_5.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale__right_3.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+        <img class="hf-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/wss-fall-sale_right1__6.jpg" alt="" loading="eager" onerror="this.onerror=null;this.style.visibility='hidden'">
+      </div>
+    </figure>
+  </div>
+  <div class="hf-shade" aria-hidden="true"></div>
+  <div class="hf-copy">
+    <p class="hf-stars" aria-hidden="true">★★★</p>
+    <p class="hf-eyebrow">Say hello to the</p>
+    <h1 class="hf-title">Best deals</h1>
+    <a class="hf-cta" href="https://www.worldsoccershop.com/shop/products/sale" target="_top">Gear up to 60% off</a>
+  </div>
+  <button class="hf-toggle" type="button" aria-label="Pause the animation">II</button>
+</section>
+
+<script>
+(function(){
+  var root=document.getElementById('hero-flip-sale-v1');
+  if(!root)return;
+  var btn=root.querySelector('.hf-toggle');
+  btn.addEventListener('click',function(){
+    var paused=root.classList.toggle('is-paused');
+    btn.textContent=paused?'\u25B6':'II';
+    btn.setAttribute('aria-label',paused?'Play the animation':'Pause the animation');
+  });
+})();
+</script>
