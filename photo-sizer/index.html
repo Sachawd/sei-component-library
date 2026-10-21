@@ -274,6 +274,24 @@ button{font:inherit}
       ]
     },
     {
+      id: 'flipbook-hero-sale',
+      group: 'Sale page',
+      name: 'Flip-book hero · photo pair (full + phone and tablet copies)',
+      note: 'Each photo fills half the screen edge to edge at a fixed height, so phones see a tall narrow slice. The crop is fixed: centred, 30% from the top. Keep the subject in the middle third and above the bottom 40%; keep faces away from the centre of the pair. Check the four frame windows below before you upload.',
+      fixedPan: { x: 0.5, y: 0.3 },
+      frames: [
+        { label: 'Phone half',        w: 195, h: 560 },
+        { label: 'Tablet half',       w: 384, h: 680 },
+        { label: 'Desktop half',      w: 720, h: 808 },
+        { label: 'Wide desktop half', w: 960, h: 808 }
+      ],
+      outputs: [
+        { suffix: '',     key: 'full', label: 'Full file (2:3)',  w: 1600, h: 2400, maxKB: 300 },
+        { suffix: 'w960', label: 'Tablet copy (2:3)',  w: 960,  h: 1440, maxKB: 200 },
+        { suffix: 'w480', label: 'Phone copy (2:3)',   w: 480,  h: 720,  maxKB: 100 }
+      ]
+    },
+    {
       id: 'hero-banner-split',
       group: 'Hero banners',
       name: 'Full-width hero banner (Desktop + Phone)',
@@ -538,19 +556,62 @@ button{font:inherit}
 
       for (var o = 0; o < preset.outputs.length; o++) {
         var out = preset.outputs[o];
-        if (!item.pans[out.suffix]) item.pans[out.suffix] = { x: 0.5, y: 0.5 };
+        var key = out.key || out.suffix;
+        if (preset.fixedPan) item.pans[key] = { x: preset.fixedPan.x, y: preset.fixedPan.y };
+        else if (!item.pans[key]) item.pans[key] = { x: 0.5, y: 0.5 };
         var cardEl = await buildOutputCard(item, out);
         gridEl.appendChild(cardEl);
       }
+      if (preset.frames) gridEl.appendChild(buildFrameCheckCard(item, preset));
     }
   }
 
+  function buildFrameCheckCard(item, preset) {
+    var card = document.createElement('div');
+    card.className = 'out-card';
+    var W = 320, H = Math.round(W * item.h / item.w);
+    var canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(item.img, 0, 0, W, H);
+    ctx.fillStyle = 'rgba(0,0,0,.45)';
+    ctx.fillRect(0, 0, W, H);
+    var colours = ['#FFE014', '#7CD992', '#7FB8FF', '#FF9BD0'];
+    var legend = [];
+    var pan = preset.fixedPan || { x: 0.5, y: 0.5 };
+    preset.frames.forEach(function (f, i) {
+      var fa = f.w / f.h, ia = W / H, x, y, w, h;
+      if (fa < ia) { h = H; w = H * fa; x = (W - w) * pan.x; y = 0; }
+      else { w = W; h = W / fa; x = 0; y = (H - h) * pan.y; }
+      ctx.save();
+      ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+      ctx.drawImage(item.img, 0, 0, W, H);
+      ctx.restore();
+      ctx.strokeStyle = colours[i % colours.length];
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x + 1, y + 1, w - 2, h - 2);
+      legend.push('<span style="display:inline-flex;align-items:center;gap:6px;margin-right:12px"><span style="width:12px;height:12px;border:2px solid ' + colours[i % colours.length] + ';display:inline-block"></span>' + escapeHtml(f.label) + ' ' + f.w + '×' + f.h + '</span>');
+    });
+    card.innerHTML =
+      '<div class="out-card__top">' +
+        '<span class="out-card__label">Frame check · what each screen keeps</span>' +
+        '<span class="out-card__dims">crop centred, 30% from top</span>' +
+      '</div>' +
+      '<div class="stage"></div>' +
+      '<div class="out-card__filename" style="line-height:1.8">' + legend.join('') + '</div>' +
+      '<div class="out-card__filename">Bright = kept on that screen. Dim = cut off. If the subject sits in the dim edges on the phone frame, reframe the photo or deliver a tall phone crop.</div>';
+    card.querySelector('.stage').appendChild(canvas);
+    return card;
+  }
+
   async function buildOutputCard(item, out) {
-    var pan = item.pans[out.suffix];
+    var key = out.key || out.suffix;
+    var pan = item.pans[key];
+    var preset = currentPreset();
     var card = document.createElement('div');
     card.className = 'out-card';
 
-    var needCrop = state.fit === 'cover' &&
+    var needCrop = !preset.fixedPan && state.fit === 'cover' &&
       Math.abs((item.w / item.h) - (out.w / out.h)) > 0.01;
 
     card.innerHTML =
@@ -572,7 +633,7 @@ button{font:inherit}
     var fnEl    = card.querySelector('.out-card__filename');
     var dlBtn   = card.querySelector('[data-dl]');
 
-    var filename = item.stem + '--' + out.suffix + '.jpg';
+    var filename = out.suffix ? item.stem + '--' + out.suffix + '.jpg' : item.stem + '.jpg';
     fnEl.textContent = filename;
 
     async function renderNow() {
@@ -582,7 +643,7 @@ button{font:inherit}
       else stageEl.insertBefore(canvas, stageEl.firstChild);
 
       var res = await encodeUnderCeiling(canvas, out.maxKB);
-      item.outputs[out.suffix] = { blob: res.blob, filename: filename };
+      item.outputs[key] = { blob: res.blob, filename: filename };
 
       var kb = res.blob.size / 1024;
       var qPct = Math.round(res.quality * 100);
@@ -637,7 +698,7 @@ button{font:inherit}
     }
 
     dlBtn.addEventListener('click', function () {
-      var rec = item.outputs[out.suffix];
+      var rec = item.outputs[key];
       if (rec) triggerDownload(rec.blob, rec.filename);
     });
 
