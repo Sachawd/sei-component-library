@@ -851,8 +851,12 @@
     <div class="inbox-list" id="inboxList"></div>
   </section>
 
-  <!-- Click Your Name Bar -->
-  <section class="person-selector-box" aria-label="Choose your workspace">
+  <!-- Click Your Name Bar (Visible on Sacha/Jordan master link; hidden when ?for=name is used) -->
+  <section class="person-selector-box" id="personSelectorBox" aria-label="Choose your workspace">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <span style="font-size:13.5px;font-weight:600;color:var(--ink-soft);">Master Team Switcher (send anyone their personal ?for=name link to hide this bar)</span>
+      <button type="button" class="btn" id="copyPersonLinkBtn" style="min-height:34px;padding:4px 12px;font-size:13px;">Copy Rickey's Direct Link</button>
+    </div>
     <div class="person-groups-row">
       <div class="person-group">
         <span class="person-group-label">1 · Pilot &amp; Full Overview</span>
@@ -1543,8 +1547,12 @@
   ];
 
   var STORAGE_KEY = "sei_holiday_hub_kanban_v2";
+  var urlParams = new URLSearchParams(window.location.search);
+  var lockedPersonParam = (urlParams.get("for") || "").toLowerCase().trim();
+  var isSinglePersonMode = !!(lockedPersonParam && PEOPLE[lockedPersonParam]);
+
   var state = {
-    person: "rickey",
+    person: isSinglePersonMode ? lockedPersonParam : "rickey",
     filter: "todo",
     layout: "kanban",
     openCardId: null,
@@ -1554,6 +1562,11 @@
     readMsgMap: {},
     customMsgs: []
   };
+
+  if (isSinglePersonMode) {
+    var selBox = document.getElementById("personSelectorBox");
+    if (selBox) selBox.style.display = "none";
+  }
 
   try {
     var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
@@ -1701,7 +1714,7 @@
     var toggleBtn = document.getElementById("inboxToggleBtn");
     var countEl = document.getElementById("inboxUnreadCount");
     var labelEl = document.getElementById("inboxBtnLabel");
-    labelEl.textContent = p.name + "'s Inbox";
+    labelEl.textContent = p.name + "'s Updates";
     if (unreadCount > 0) {
       toggleBtn.classList.add("has-unread");
       countEl.style.display = "inline-flex";
@@ -1714,11 +1727,11 @@
     var drawer = document.getElementById("inboxDrawer");
     drawer.classList.toggle("open", !!state.inboxOpen);
     toggleBtn.setAttribute("aria-expanded", state.inboxOpen ? "true" : "false");
-    document.getElementById("inboxDrawerTitle").textContent = p.name + "'s Inbox (" + unreadCount + " unread)";
+    document.getElementById("inboxDrawerTitle").textContent = p.name + "'s Updates Feed (" + unreadCount + " unread)";
 
     var listEl = document.getElementById("inboxList");
     if (msgs.length === 0) {
-      listEl.innerHTML = '<p class="accordion-help">No messages yet for ' + escapeHtml(p.name) + '.</p>';
+      listEl.innerHTML = '<p class="accordion-help">No updates yet for ' + escapeHtml(p.name) + '.</p>';
       return;
     }
 
@@ -1769,6 +1782,10 @@
 
     document.getElementById("starterAccordionTitle").textContent = "Agent Prompt: Copy " + p.name + "'s Free-Claude Starter";
     document.getElementById("starterPromptText").textContent = p.starterPrompt;
+    var copyLinkBtn = document.getElementById("copyPersonLinkBtn");
+    if (copyLinkBtn) {
+      copyLinkBtn.textContent = "Copy " + p.name + "'s Direct Link";
+    }
 
     renderInbox();
 
@@ -1948,6 +1965,16 @@
     }
   });
 
+  var copyLinkBtnEl = document.getElementById("copyPersonLinkBtn");
+  if (copyLinkBtnEl) {
+    copyLinkBtnEl.addEventListener("click", function() {
+      var p = PEOPLE[state.person] || PEOPLE.rickey;
+      var baseUrl = window.location.origin + window.location.pathname;
+      var directUrl = baseUrl + "?for=" + state.person;
+      copyText(directUrl, "Copied " + p.name + "'s direct link (" + directUrl + ")");
+    });
+  }
+
   document.getElementById("copyStarterBtn").addEventListener("click", function() {
     var p = PEOPLE[state.person] || PEOPLE.rickey;
     copyText(p.starterPrompt, "Copied " + p.name + "'s Free-Claude Starter");
@@ -1960,7 +1987,7 @@
     var note = document.getElementById("updateNoteInput").value.trim() || "Ready for review.";
     pushNewInboxMessage(p.name, taskObj, note);
     var snippet = "[HOLIDAY HUB · " + p.name + " · 22 Oct]\nTask: " + (taskObj ? taskObj.text : selId) + "\nUpdate: " + note;
-    copyText(snippet, "Posted to Inbox & copied for ClickUp / Teams");
+    copyText(snippet, "Posted to Updates Feed & copied for ClickUp / Teams");
   });
 
   render();
