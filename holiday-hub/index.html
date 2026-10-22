@@ -1188,164 +1188,283 @@
 
   /* Clean, low-density Kanban tasks: 1 short sentence per card, direct Figma/ClickUp links, zero node numbers */
   var TASKS = [
+    /* Column 1: Holiday & Promotions */
     {
       id: "tpl-swap-vars",
-      col: "Holiday Templates",
+      col: "Holiday & Promotions",
       colClass: "chip-shoot",
       urgency: 1,
-      statusWord: "Build",
-      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha"],
-      text: "Keep Swap Variables on Whitney's Holiday Master file and fix the small template glitches.",
-      detail: "Uses Goal Club Days base with Swap Variables collections per campaign page so designers edit text lockups without detaching components.",
+      statusWord: "2pm Sync",
+      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha", "brock"],
+      text: "Holiday Master Templates: keep Swap Variables on Whitney's file, add Doorbusters, and sync with Sacha at 2pm.",
+      detail: "Adapt the 600px One Mother email pattern so Site, Email, and Motion (Static, GIF, MOV) work in context without detaching components.",
       figmaUrl: FIGMA_HOLIDAY_MASTER,
       clickupUrl: "https://app.clickup.com/t/868mdkw02"
     },
     {
-      id: "tpl-doorbusters",
-      col: "Holiday Templates",
+      id: "cu-team-holiday-popups",
+      col: "Holiday & Promotions",
       colClass: "chip-shoot",
       urgency: 2,
-      statusWord: "Build",
-      people: ["rickey", "whitney", "casey", "jordan", "sacha"],
-      text: "Add the new Doorbuster Deals module requested by Jordan, Casey, and Whitney.",
-      detail: "Add clean Doorbuster Deals lockup into Whitney's Holiday Master file so Black Friday and Cyber Week waves can toggle it on.",
-      figmaUrl: FIGMA_HOLIDAY_MASTER,
-      clickupUrl: "https://app.clickup.com/t/868mdkw3b"
+      statusWord: "Oct 27",
+      people: ["rickey", "brock", "darren", "sacha", "jordan"],
+      text: "Team Soccer: Holiday Pop Ups (47 clubs): export 2 dynamic 2x JPG email slices per club.",
+      detail: "Site Change Requests (Requested, due Tue 27 Oct). Sacha's bots built the 47 store pages and locked the 600px Zeta wrapper.",
+      figmaUrl: FIGMA_TEAM_POPUP,
+      previewUrl: PREVIEW_POPUP_HUB,
+      clickupUrl: "https://app.clickup.com/t/868mjpbrg"
     },
     {
-      id: "tpl-one-mother-sync",
-      col: "Holiday Templates",
+      id: "cu-tampa-bay-social",
+      col: "Holiday & Promotions",
       colClass: "chip-shoot",
       urgency: 3,
-      statusWord: "Sync",
-      people: ["rickey", "sacha", "whitney", "brock", "jordan"],
-      text: "2pm sync with Sacha: adapt the 600px One Mother email layout for Site, Email, and Motion.",
-      detail: "Design Email and Site in context together so Superside and our team can export Static, GIF, and MOV from one master.",
+      statusWord: "Due Today",
+      people: ["rickey", "sacha", "jordan", "casey"],
+      text: "Tampa Bay Super Cup Social Assets (adidas Club Partner Engagement, due Thu 22 Oct).",
+      detail: "Status: To do. Companion social assets for the Tampa Bay Super Cup landing page launching tomorrow.",
+      clickupUrl: "https://app.clickup.com/t/868mkqvyt"
+    },
+    {
+      id: "cu-promo-creative-assets",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 4,
+      statusWord: "Oct 27",
+      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha"],
+      text: "Promotions: Creative Assets (status: Planning, due Tue 27 Oct).",
+      detail: "Uses Whitney's Holiday Master file with Swap Variables.",
       figmaUrl: FIGMA_HOLIDAY_MASTER,
-      clickupUrl: "https://app.clickup.com/t/868mdkw02"
+      clickupUrl: "https://app.clickup.com/t/868mkcuj2"
     },
     {
       id: "tpl-tunnel-photos",
-      col: "Holiday Templates",
+      col: "Holiday & Promotions",
       colClass: "chip-shoot",
-      urgency: 4,
-      statusWord: "Upload",
+      urgency: 5,
+      statusWord: "Tunnel",
       people: ["danny", "sacha", "casey", "whitney", "matty", "michael"],
       text: "Load Danny's new Soccer.com holiday studio shoot photos into Tunnel V2.",
-      detail: "Once uploaded to Box as RGB JPGs, Sacha loads them into Tunnel V2 so designers can crop 16:9, 4:5, and email slices in one click.",
+      detail: "Danny sent retouched selects today; Sacha is loading them into Tunnel V2 for 1-click cropping.",
       previewUrl: PREVIEW_TUNNEL,
       clickupUrl: "https://app.clickup.com/t/868mdkw02"
     },
-
-    /* Column 2: Team Pop-Up Emails */
-    {
-      id: "popup-email-slices",
-      col: "Team Pop-Up Emails",
-      colClass: "chip-fastr",
-      urgency: 1,
-      statusWord: "Build",
-      people: ["rickey", "brock", "darren", "sacha", "jordan"],
-      text: "Export 2 dynamic 2x JPG slices (Club Hero + 16-Item Grid) per club by Tue 27 Oct.",
-      detail: "All 4 email campaigns are laid out in the Team Pop-Up Figma file. Zeta HTML wrapper stays identical across all 47 clubs.",
-      figmaUrl: FIGMA_TEAM_POPUP,
-      clickupUrl: "https://app.clickup.com/t/868mce1ah"
-    },
-    {
-      id: "popup-first-3-qa",
-      col: "Team Pop-Up Emails",
-      colClass: "chip-fastr",
-      urgency: 2,
-      statusWord: "QA",
-      people: ["sacha", "darren", "courtney", "rickey", "jordan"],
-      text: "Send the first 3 pilot club stores (Beach FC, HTX, Phoenix Rising) to Courtney QA by Mon 26 Oct.",
-      detail: "Verify club crests, brand logos, and 16-item product feeds on the first 3 stores before scaling to all 47 clubs.",
-      previewUrl: PREVIEW_POPUP_HUB,
-      clickupUrl: "https://app.clickup.com/t/868mce1ah"
-    },
-    {
-      id: "popup-csv-fixes",
-      col: "Team Pop-Up Emails",
-      colClass: "chip-fastr",
-      urgency: 3,
-      statusWord: "Decide",
-      people: ["darren", "sacha", "brock", "jordan"],
-      text: "Confirm the 3 CSV data fixes with Darren (15% vs 25% copy and Ben's holdout club list).",
-      detail: "Confirm whether non-pop-up clubs get the 25% Off Fill-In email on Nov 2 and lock the promo code spelling.",
-      previewUrl: PREVIEW_POPUP_HUB,
-      clickupUrl: "https://app.clickup.com/t/868mce1ah"
-    },
-
-    /* Column 3: 431 & Lookbooks / Site Launches */
-    {
-      id: "lookbook-431",
-      col: "431 & Site Launches",
-      colClass: "chip-comp",
-      urgency: 1,
-      statusWord: "Help",
-      people: ["rickey", "sacha", "darren", "jordan"],
-      text: "Flag which of Rickey's 22 active ClickUp tasks & 431 Lookbook pages Sacha's bots can offload.",
-      detail: "Sacha Fierce created the Designer Context Doc and found 22 active tasks across multiple lists for Rickey, including the 431 Printed Lookbook due Fri 30 Oct.",
-      clickupUrl: "https://app.clickup.com/9011460926/v/dc/8chzyty-52571"
-    },
-    {
-      id: "site-tampa-supercup",
-      col: "431 & Site Launches",
-      colClass: "chip-comp",
-      urgency: 2,
-      statusWord: "QA",
-      people: ["sacha", "courtney", "jordan", "casey"],
-      text: "Fri 23 Oct: Launch Tampa Bay Super Cup page and End of Season Sale (Soccer.com & WSS).",
-      detail: "Confirm final QA check with Courtney before publishing Fastr blocks live.",
-      clickupUrl: "https://app.clickup.com/t/868mdkw02"
-    },
-    {
-      id: "wss-eoss-launch",
-      col: "431 & Site Launches",
-      colClass: "chip-comp",
-      urgency: 2,
-      statusWord: "Launch",
-      people: ["tyler", "alex", "holly"],
-      text: "Fri 23 Oct: Launch WorldSoccerShop End of Season Sale hero and site strips.",
-      detail: "Verify all links against the approved WSS site link book before publishing.",
-      clickupUrl: "https://app.clickup.com/t/868mdkw02"
-    },
-
-    /* Column 4: Upcoming Holiday Waves */
     {
       id: "wave-early-access",
-      col: "Upcoming Promos",
-      colClass: "chip-site",
-      urgency: 1,
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 6,
       statusWord: "Oct 25",
-      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "courtney", "tyler", "alex", "holly"],
+      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "tyler", "alex", "holly"],
       text: "Sun 25 Oct: Goal Club Early Access 15% Off (plug copy into the locked Holiday Master template).",
-      detail: "Runs Oct 25 to Oct 27 across Site, Email, and Paid Social using Swap Variables.",
+      detail: "Runs Oct 25 to Oct 27 across Site, Email, and Paid Social.",
       figmaUrl: FIGMA_HOLIDAY_MASTER,
       clickupUrl: "https://app.clickup.com/t/868mdkw02"
     },
     {
       id: "wave-free-nn",
-      col: "Upcoming Promos",
-      colClass: "chip-site",
-      urgency: 2,
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 7,
       statusWord: "Oct 29",
-      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "courtney", "tyler", "alex", "holly"],
+      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "tyler", "alex", "holly"],
       text: "Thu 29 Oct: Free Name & Number Jersey Promo (use approved player jerseys from the safe list).",
-      detail: "Runs Oct 29 to Nov 2. Only feature verified in-stock player jerseys from the reference drawer below.",
+      detail: "Runs Oct 29 to Nov 2. Only feature verified in-stock player jerseys.",
       figmaUrl: FIGMA_HOLIDAY_MASTER,
       clickupUrl: "https://app.clickup.com/t/868mdkw1a"
     },
+
+    /* Column 2: 431 & Catalogs */
     {
-      id: "wave-nov-cyber",
-      col: "Upcoming Promos",
+      id: "cu-vb-lookbook-2027",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 1,
+      statusWord: "Offload · Oct 30",
+      people: ["rickey", "sacha", "darren", "jordan"],
+      text: "VB Lookbook 2027 (Printed 431 Lookbook for Darren, due Fri 30 Oct): Sacha's bots ready to help offload.",
+      detail: "Club Partner Catalogs (Status: To do). Flag which pages or product grids Sacha's agents can lay out for you.",
+      clickupUrl: "https://app.clickup.com/t/868mkp550"
+    },
+    {
+      id: "cu-nike-laser-shorts",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 2,
+      statusWord: "Due Fri Oct 23",
+      people: ["rickey", "darren", "sacha"],
+      text: "Nike Laser VI Shorts Update (Club Partner Catalogs, due tomorrow Fri 23 Oct).",
+      detail: "Status: To do. Quick catalog product update.",
+      clickupUrl: "https://app.clickup.com/t/868mkvjcv"
+    },
+    {
+      id: "cu-alumagoal-guide",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 3,
+      statusWord: "Offload · Oct 29",
+      people: ["rickey", "sacha", "darren"],
+      text: "Alumagoal Club Field Equipment Guide (Add-On Sales Collateral, due Thu 29 Oct).",
+      detail: "Status: To do. Great candidate for Sacha's agents to format and lay out so Rickey can focus on Holiday.",
+      clickupUrl: "https://app.clickup.com/t/868mkdm0v"
+    },
+    {
+      id: "cu-volleyball-2027",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 4,
+      statusWord: "Feedback · Oct 30",
+      people: ["rickey", "darren"],
+      text: "Volleyball 2027 Catalog (Club Partner Catalogs, due Fri 30 Oct · Waiting for feedback).",
+      detail: "Currently in Waiting for feedback status.",
+      clickupUrl: "https://app.clickup.com/t/868kuupj2"
+    },
+    {
+      id: "cu-team-catalog-2027",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 5,
+      statusWord: "Waiting copy",
+      people: ["rickey", "darren"],
+      text: "Team Catalog 2027 (Club Partner Catalogs, due Fri 30 Oct · Waiting for copy).",
+      detail: "Blocked waiting on copy.",
+      clickupUrl: "https://app.clickup.com/t/868kcpw5h"
+    },
+
+    /* Column 3: Club Emails & Events */
+    {
+      id: "cu-cpl-email-styling",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 1,
+      statusWord: "Offload · Oct 23",
+      people: ["rickey", "sacha", "brock"],
+      text: "CPL update email template styling to ES styling (due tomorrow Fri 23 Oct · Sacha's bots can code).",
+      detail: "Club Partner Communications / MISC (Status: To do). Sacha's email agents can restyle this template today.",
+      clickupUrl: "https://app.clickup.com/t/868mkx5x9"
+    },
+    {
+      id: "cu-epsc-showcase",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 2,
+      statusWord: "Due Fri Oct 23",
+      people: ["rickey", "darren"],
+      text: "EPSC College Showcase (Club Partner Communications, due tomorrow Fri 23 Oct).",
+      detail: "Status: To do.",
+      clickupUrl: "https://app.clickup.com/t/868mfc1nd"
+    },
+    {
+      id: "cu-ros-events",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 3,
+      statusWord: "In progress · Oct 23",
+      people: ["rickey"],
+      text: "ROS (Active Events, due tomorrow Fri 23 Oct · In progress).",
+      detail: "Active Events deliverable currently in progress.",
+      clickupUrl: "https://app.clickup.com/t/868kzgdr7"
+    },
+    {
+      id: "cu-playerpass-email",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 4,
+      statusWord: "Oct 27",
+      people: ["rickey", "brock"],
+      text: "PlayerPASS Emails: Email Assets (due Tue 27 Oct) & Social Assets.",
+      detail: "Email Assets (868mkwv95, due Tue 27 Oct) and companion Social Assets (868mkwv87).",
+      clickupUrl: "https://app.clickup.com/t/868mkwv95"
+    },
+    {
+      id: "cu-oct-feedback",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 5,
+      statusWord: "Feedback",
+      people: ["rickey"],
+      text: "Oct deliverable (due Today Thu 22 Oct · Waiting for feedback).",
+      detail: "Status: Waiting for feedback.",
+      clickupUrl: "https://app.clickup.com/t/868mh92yq"
+    },
+    {
+      id: "cu-waiting-copy-events",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 6,
+      statusWord: "Waiting copy",
+      people: ["rickey"],
+      text: "Active Events waiting on copy: Match Day Flier (Nov 5), Invite Creative (Nov 6), Enter To Win Pop Up.",
+      detail: "All 3 tasks are currently in Waiting for copy status (868k0exnj, 868k0exhy, 868m62z5w).",
+      clickupUrl: "https://app.clickup.com/t/868k0exnj"
+    },
+
+    /* Column 4: DX Pages & Enablement */
+    {
+      id: "cu-rfq-page",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 1,
+      statusWord: "Offload · Oct 28",
+      people: ["rickey", "sacha", "jordan"],
+      text: "RFQ Submission Page (Sales Enablement, due Wed 28 Oct): Sacha's agents can build this page.",
+      detail: "Status: To do. Sacha's Components agent can code or mock up the RFQ Submission Page so Rickey doesn't have to.",
+      clickupUrl: "https://app.clickup.com/t/868mh72bj"
+    },
+    {
+      id: "cu-caysa",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 2,
+      statusWord: "Oct 28",
+      people: ["rickey", "darren"],
+      text: "CAYSA (Sales Enablement / MISC, due Wed 28 Oct · To do).",
+      detail: "Sales Enablement deliverable due next Wednesday.",
+      clickupUrl: "https://app.clickup.com/t/868mkvqbw"
+    },
+    {
+      id: "cu-dx-club-mgmt",
+      col: "DX Pages & Enablement",
       colClass: "chip-site",
       urgency: 3,
-      statusWord: "Nov",
-      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "courtney", "tyler", "alex", "holly"],
-      text: "Nov Peak Waves: Early Black Friday (Nov 15), Black Friday (Nov 23), and Cyber Monday (Nov 29).",
-      detail: "Uses the same Holiday Master template and new Doorbuster Deals module so nobody starts from scratch.",
-      figmaUrl: FIGMA_HOLIDAY_MASTER,
-      clickupUrl: "https://app.clickup.com/t/868mdkw3b"
+      statusWord: "Offload · In progress",
+      people: ["rickey", "sacha"],
+      text: "DX Page Mock: Club Management Tool 2026 Update (In progress): Sacha's bots can prototype.",
+      detail: "Club Management Tool DX page mock. Sacha's agents can build interactive HTML or Fastr blocks for this.",
+      clickupUrl: "https://app.clickup.com/t/868hjh0pt"
+    },
+    {
+      id: "cu-custom-uniforms-mock",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 4,
+      statusWord: "Offload · To do",
+      people: ["rickey", "sacha", "darren"],
+      text: "Custom Uniforms Mock Up v1 (Team Sales Pages · To do): Sacha's bots can help mock up.",
+      detail: "Team Sales Pages mockup.",
+      clickupUrl: "https://app.clickup.com/t/868hhxtfr"
+    },
+    {
+      id: "cu-convention-headshots",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 5,
+      statusWord: "Reviewing · Oct 30",
+      people: ["rickey"],
+      text: "Headshots for Conventions (One-off event asks, due Fri 30 Oct · Reviewing).",
+      detail: "Currently in Reviewing status. Tunnel V2 can batch-crop any extra headshots if needed.",
+      clickupUrl: "https://app.clickup.com/t/868kxk5tv"
+    },
+    {
+      id: "wss-eoss-launch",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 2,
+      statusWord: "Fri Oct 23",
+      people: ["tyler", "alex", "holly", "sacha", "jordan"],
+      text: "Fri 23 Oct: Launch WorldSoccerShop End of Season Sale hero and site strips.",
+      detail: "Verify all links against the approved WSS site link book before publishing.",
+      clickupUrl: "https://app.clickup.com/t/868mdkw02"
     }
   ];
 
@@ -1670,7 +1789,7 @@
     }
 
     /* Group into Kanban columns */
-    var colOrder = ["Holiday Templates", "Team Pop-Up Emails", "431 & Site Launches", "Upcoming Promos"];
+    var colOrder = ["Holiday & Promotions", "431 & Catalogs", "Club Emails & Events", "DX Pages & Enablement"];
     var colMap = {};
     filtered.forEach(function(t) {
       if (!colMap[t.col]) {
