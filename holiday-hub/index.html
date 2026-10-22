@@ -1770,13 +1770,13 @@
       var isUnread = !state.readMsgMap[readKey];
       var links = "";
       if (m.figmaUrl) {
-        links += '<a class="today-open-link" href="' + escapeHtml(m.figmaUrl) + '" target="_blank" rel="noopener">Open Figma</a>';
+        links += '<a class="today-open-link" href="' + escapeHtml(m.figmaUrl) + '" target="_blank" rel="noopener" data-new-window="1">Open Figma ↗</a>';
       }
       if (m.previewUrl) {
-        links += '<a class="today-open-link" href="' + escapeHtml(m.previewUrl) + '" target="_blank" rel="noopener">Open Preview</a>';
+        links += '<a class="today-open-link" href="' + escapeHtml(m.previewUrl) + '" target="_blank" rel="noopener" data-new-window="1">Open Preview ↗</a>';
       }
       if (m.clickupUrl) {
-        links += '<a class="today-open-link" href="' + escapeHtml(m.clickupUrl) + '" target="_blank" rel="noopener">Open ClickUp</a>';
+        links += '<a class="today-open-link" href="' + escapeHtml(m.clickupUrl) + '" target="_blank" rel="noopener" data-new-window="1">Open ClickUp ↗</a>';
       }
       var readBtn = isUnread
         ? '<button type="button" class="inbox-mini-btn" data-mark-read="' + escapeHtml(m.id) + '">Mark read</button>'
@@ -1803,6 +1803,15 @@
 
   function render() {
     var p = PEOPLE[state.person] || PEOPLE.rickey;
+
+    document.querySelectorAll("[data-person]").forEach(function(b) {
+      b.classList.toggle("active", b.getAttribute("data-person") === state.person);
+    });
+
+    var sachaBar = document.getElementById("sachaPrivateLinksBar");
+    if (sachaBar) {
+      sachaBar.style.display = (state.person === "sacha") ? "flex" : "none";
+    }
 
     document.getElementById("activeRoleSubtitle").textContent = p.subtitle;
     document.getElementById("syncHeading").textContent = p.syncHeading;
@@ -1896,6 +1905,17 @@
 
   /* Event Delegation */
   document.addEventListener("click", function(e) {
+    var nwLink = e.target.closest("[data-new-window]");
+    if (nwLink && nwLink.href) {
+      e.preventDefault();
+      e.stopPropagation();
+      var win = window.open(nwLink.href, "_blank", "popup=yes,width=1440,height=920,left=80,top=60,resizable=yes,scrollbars=yes");
+      if (!win) {
+        window.open(nwLink.href, "_blank", "noopener,noreferrer");
+      }
+      return;
+    }
+
     if (e.target.closest("#inboxToggleBtn")) {
       state.inboxOpen = !state.inboxOpen;
       renderInbox();
