@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="en" class="one-pager">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Holiday 2026 Hub: Click Your Name</title>
+<link rel="stylesheet" href="./house-deck-style.css">
+<style>
+:root {
+  --ink: #151515;
+  --paper: #f6f5f1;
+  --white: #ffffff;
+  --muted: #5c5a55;
+  --rule: #cecac1;
+  --tint: #e8e5dd;
+  --signal: #d8ff57;
+  --pass-bg: #e6f4ea;
+  --pass-ink: #137333;
+  --warn-bg: #fef7e0;
+  --warn-ink: #8f4900;
+  --red-bg: #fce8e6;
+  --red-ink: #a50e0e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html.one-pager {
+  scroll-snap-type: none;
+  scroll-behavior: smooth;
+}
+
+body.one-pager {
+  margin: 0;
+  padding-top: 56px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.deckbar {
+  position: fixed;
+  z-index: 30;
+  inset: 0 0 auto;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  background: #151515;
+  color: #ffffff;
+  border-bottom: 1px solid #333333;
+}
+
+.deckbar-title {
+  font: 700 12px/1 Arial, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--signal);
+}
+
+.deckbar .actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deckbar button {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #151515;
+  font: 700 11.5px/1 Arial, sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.deckbar button.signal-btn {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: #151515;
+}
+
+.wrap-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px 28px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: clamp(32px, 3.8vw, 52px);
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: clamp(24px, 2.8vw, 36px);
+  margin-bottom: 16px;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.22;
+}
+
+.sub {
+  margin: 0 0 24px;
+  max-width: 65ch;
+  font-size: 17px;
+  line-height: 1.48;
+  color: var(--muted);
+}
+
+/* Name Chooser Grid */
+.role-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.role-group-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  padding: 18px 20px;
+}
+
+.role-group-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.person-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.person-btn {
+  padding: 9px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font: 700 13px/1.1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.person-btn:hover {
+  background: var(--tint);
+}
+
+.person-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--signal);
+}
+
+/* Personal Workspace Top 2-Col */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.box-card {
+  padding: 22px 24px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+
+.kicker {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.task-bullets {
+  margin: 0 0 18px;
+  padding: 0 0 0 18px;
+  font-size: 15.5px;
+  line-height: 1.48;
+}
+
+.task-bullets li {
+  margin-bottom: 8px;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: auto;
+}
+
+.house-btn {
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--white);
+  border: 1px solid var(--ink);
+  font: 700 11.5px/1 Arial, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.house-btn.secondary {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.prompt-preview {
+  display: none;
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+  color: var(--ink);
+}
+
+.prompt-preview.open {
+  display: block;
+}
+
+/* Store Filter Bar (only shown for Overview roles or to switch status) */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  background: var(--tint);
+  border-left: 5px solid var(--ink);
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 4px;
+}
+
+.pill-btn {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 6px 12px;
+  font: 700 11px/1.2 Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pill-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* Wave Rows */
+.layer {
+  display: grid;
+  grid-template-columns: 210px 1fr 200px;
+  gap: 22px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--ink);
+  align-items: start;
+}
+
+.store-badge {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.store-badge.sdc {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.store-badge.wss {
+  background: var(--tint);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.store-badge.team {
+  background: #2b4c7e;
+  color: var(--white);
+}
+
+.tag {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.wave-title {
+  margin: 0 0 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.wave-offer {
+  font-size: 15px;
+  line-height: 1.42;
+  margin: 0 0 12px;
+  padding: 0 0 0 18px;
+}
+
+.wave-offer li {
+  margin-bottom: 4px;
+}
+
+.wave-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.chan-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.chan-check.checked {
+  background: var(--pass-bg);
+  color: var(--pass-ink);
+  border-color: #9ce0b0;
+}
+
+.wave-note-input,
+.reply-input {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font: 14px/1.35 Arial, sans-serif;
+  color: var(--ink);
+}
+
+.status-select {
+  width: 100%;
+  padding: 8px 10px;
+  font: 700 11.5px/1.2 Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--ink);
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.status-select[data-val="Blocked"] {
+  background: var(--red-bg);
+  color: var(--red-ink);
+  border-color: var(--red-ink);
+}
+
+.status-select[data-val="Live"],
+.status-select[data-val="Ready"] {
+  background: var(--pass-bg);
+  color: var(--pass-ink);
+  border-color: var(--pass-ink);
+}
+
+.status-select[data-val="In Build"] {
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+  border-color: #e0b450;
+}
+
+/* Collapsible Drawers so page stays super clean */
+details.clean-drawer {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  margin-bottom: 16px;
+  padding: 16px 20px;
+}
+
+details.clean-drawer summary {
+  font: 700 15px/1.3 Arial, sans-serif;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+details.clean-drawer summary::after {
+  content: "+ Open";
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+details.clean-drawer[open] summary::after {
+  content: "- Close";
+}
+
+.drawer-body {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge.black {
+  background: var(--pass-bg);
+  color: var(--pass-ink);
+}
+
+.badge.red {
+  background: var(--red-bg);
+  color: var(--red-ink);
+}
+
+.badge.yellow {
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  right: 26px;
+  background: var(--ink);
+  color: var(--signal);
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: none;
+  z-index: 50;
+}
+
+@media (max-width: 900px) {
+  .role-groups,
+  .workspace-grid,
+  .layer {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body class="one-pager">
+
+<nav class="deckbar" aria-label="Top bar">
+  <span class="deckbar-title" id="active-view-label">Viewing as: Jordan (Full Overview)</span>
+  <div class="actions">
+    <button class="signal-btn" id="copy-summary-btn" type="button">Copy My View Summary</button>
+    <button id="reset-btn" type="button">Reset Ticks</button>
+  </div>
+</nav>
+
+<!-- STEP 1: CLICK YOUR NAME -->
+<section class="wrap-section">
+  <div class="eyebrow">
+    <span>Holiday 2026 Hub · Built for Free Claude</span>
+    <span>22 October 2026</span>
+  </div>
+  <h1>Click your name to open your workspace.</h1>
+  <p class="sub">Each person sees only their own store, their active tasks, a one-click Free Claude starter card, and a one-click box to send status updates back to ClickUp and Sacha.</p>
+
+  <div class="role-groups">
+    <div class="role-group-card">
+      <span class="role-group-label">1 · Pilot &amp; Full Overview</span>
+      <div class="person-pills">
+        <button class="person-btn" type="button" data-person="Rickey" aria-pressed="true">Rickey (Pilot #1)</button>
+        <button class="person-btn" type="button" data-person="Jordan" aria-pressed="false">Jordan (Pilot #2)</button>
+        <button class="person-btn" type="button" data-person="Sacha" aria-pressed="false">Sacha</button>
+        <button class="person-btn" type="button" data-person="Courtney" aria-pressed="false">Courtney (QA)</button>
+        <button class="person-btn" type="button" data-person="Brock" aria-pressed="false">Brock (Email)</button>
+      </div>
+    </div>
+
+    <div class="role-group-card">
+      <span class="role-group-label">2 · Soccer.com &amp; Team Sales Only</span>
+      <div class="person-pills">
+        <button class="person-btn" type="button" data-person="Casey" aria-pressed="false">Casey</button>
+        <button class="person-btn" type="button" data-person="Whitney" aria-pressed="false">Whitney</button>
+        <button class="person-btn" type="button" data-person="Matty" aria-pressed="false">Matty</button>
+        <button class="person-btn" type="button" data-person="Michael" aria-pressed="false">Michael</button>
+        <button class="person-btn" type="button" data-person="Darren" aria-pressed="false">Darren</button>
+        <button class="person-btn" type="button" data-person="Danny" aria-pressed="false">Danny</button>
+      </div>
+    </div>
+
+    <div class="role-group-card">
+      <span class="role-group-label">3 · WorldSoccerShop Only</span>
+      <div class="person-pills">
+        <button class="person-btn" type="button" data-person="Tyler" aria-pressed="false">Tyler</button>
+        <button class="person-btn" type="button" data-person="Alex" aria-pressed="false">Alex</button>
+        <button class="person-btn" type="button" data-person="Holly" aria-pressed="false">Holly</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2: PERSONAL WORKSPACE (TASKS + FREE CLAUDE + SEND UPDATE) -->
+<section class="wrap-section" id="personal-workspace">
+  <div class="eyebrow">
+    <span id="ws-eyebrow-role">Jordan · Site Production &amp; Promo Lead</span>
+    <span id="ws-eyebrow-store">Scope: Soccer.com, WorldSoccerShop &amp; Pop-Ups</span>
+  </div>
+
+  <div class="workspace-grid">
+    <!-- Left Card: Focus Today + Free Claude Button -->
+    <div class="box-card">
+      <span class="kicker">Step 1 · Your Focus &amp; Free-Claude Starter</span>
+      <h3 id="ws-role-heading">Jordan's checklist for today</h3>
+      <ul class="task-bullets" id="ws-role-bullets"></ul>
+
+      <div class="btn-row">
+        <button class="house-btn" id="copy-claude-btn" type="button">Copy My Free-Claude Starter</button>
+        <button class="house-btn secondary" id="toggle-claude-btn" type="button">Preview Starter Text</button>
+      </div>
+      <div class="prompt-preview" id="ws-claude-preview"></div>
+    </div>
+
+    <!-- Right Card: How to Send Updates Back -->
+    <div class="box-card">
+      <span class="kicker">Step 2 · Send an Update Back (ClickUp / Teams)</span>
+      <h3>Tell Sacha, Jordan &amp; the agents what changed</h3>
+      <p style="font-size:14.5px; line-height:1.45; color:var(--muted); margin:0 0 12px;">
+        Pick the wave you worked on, type one line (or paste a Figma / Jam link), and click Copy. Drop that into the ClickUp task comment or Teams so Sacha Fierce and Claude update the Hub automatically.
+      </p>
+
+      <label class="kicker" for="reply-wave" style="margin-bottom:4px;">Wave or Campaign</label>
+      <select id="reply-wave" class="status-select" style="margin-bottom:10px;"></select>
+
+      <label class="kicker" for="reply-note" style="margin-bottom:4px;">Your 1-Line Update, Link, or Blocker</label>
+      <input id="reply-note" type="text" class="reply-input" placeholder="e.g. Placed all 3 blocks and set heights; ready for QA." style="margin-bottom:14px;">
+
+      <div class="btn-row">
+        <button class="house-btn" id="copy-reply-btn" type="button">Copy Update for ClickUp / Teams</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Filtered Waves for this person -->
+  <h2 id="waves-heading">Your Holiday Waves</h2>
+
+  <div class="filter-bar">
+    <span id="store-filter-group" style="display:inline-flex; flex-wrap:wrap; align-items:center; gap:8px;">
+      <span class="filter-label">Store View:</span>
+      <button class="pill-btn" type="button" data-filter-store="ALL" aria-pressed="true">All Stores</button>
+      <button class="pill-btn" type="button" data-filter-store="SDC" aria-pressed="false">Soccer.com Only</button>
+      <button class="pill-btn" type="button" data-filter-store="TEAM" aria-pressed="false">Team Pop-Ups Only</button>
+      <button class="pill-btn" type="button" data-filter-store="WSS" aria-pressed="false">WorldSoccerShop Only</button>
+    </span>
+    <span class="filter-label" style="margin-left:8px;">Status:</span>
+    <button class="pill-btn" type="button" data-filter-status="ALL" aria-pressed="true">All</button>
+    <button class="pill-btn" type="button" data-filter-status="Blocked" aria-pressed="false">Blocked Only</button>
+    <button class="pill-btn" type="button" data-filter-status="In Build" aria-pressed="false">In Build</button>
+  </div>
+
+  <div id="wave-list"></div>
+</section>
+
+<!-- STEP 3: OPTIONAL TOOLS (TUCKED IN CLEAN DRAWERS) -->
+<section class="wrap-section">
+  <div class="eyebrow">
+    <span>Reference Tools (Closed by default to keep your screen calm)</span>
+    <span>Click to open when needed</span>
+  </div>
+
+  <details class="clean-drawer">
+    <summary>Safe Jersey Checker (Billy's 700-Jersey Free Name &amp; Number Rule)</summary>
+    <div class="drawer-body">
+      <p style="margin:0 0 14px; font-size:15px;">
+        <strong>Rule:</strong> Only feature <strong>BLACK-group</strong> jerseys in Free Name &amp; Number banners so nothing gets pulled on Nov 9. Never use Barcelona/Yamal or regular adult short-sleeve Home replicas (RED group) in Free N&amp;N banners.
+      </p>
+      <input type="search" id="jersey-search" class="reply-input" placeholder="Search a player, club, or SKU (e.g. Yamal, Haaland, Real Madrid, Palmer, Saka)..." style="margin-bottom:14px;">
+      <div id="jersey-list"></div>
+    </div>
+  </details>
+
+  <details class="clean-drawer" id="admin-prompts-drawer">
+    <summary>Sacha &amp; Jordan Admin Prompts (@Sacha Fierce ClickUp Auto-Builder &amp; Chase Notes)</summary>
+    <div class="drawer-body">
+      <div class="workspace-grid" style="margin-bottom:0;">
+        <div class="box-card">
+          <span class="kicker">Prompt 1 · Paste to @Sacha Fierce in ClickUp</span>
+          <h3>Load all 12 SDC waves &amp; fix WSS tasks in one paste</h3>
+          <div class="prompt-preview open" id="prompt-clickup" style="max-height:180px; overflow-y:auto; margin-bottom:12px;">@Sacha Fierce please update our Holiday 2026 tasks in SE Master Calendar > All Events (do not delete existing tasks):
+
+PART A - UPDATE WORLDSOCCERSHOP HOLIDAY (868mcnzzr):
+- Subtask 868mcpbtm ("Holiday campaign goes live"): Change due date from Sat 31 Oct to Mon 2 Nov 2026.
+- Task 868mh25ju ("WSS Shootify shoot"): Update to 20 e-com jerseys on light grey, 10 editorial jerseys on dark grey + gels with Giovanni (PSG Home dropped), and 20 extra layflats. Raw files due Thu 29 Oct.
+- Create subtask under 868mcnzzr: "[WSS] Free Player Name & Number Promo" (Tyler & Jordan; Black-group jerseys only).
+- Create subtask under 868mcnzzr: "[WSS] Build Holiday Gift Guide Page (Naadam layout)" (Sacha, Alex & Jordan).
+- Flag Tyler on 868mcp0v9, 868mcpbck (BF), and 868mcpbea (CM): Offer % fields are blank.
+
+PART B - CREATE 12 SOCCER.COM WAVES (Under 868mdkw02, each with 5 subtasks: Site, Email, Social, Display, QA):
+- [SDC] Wave 1 (Oct 22-27): End of Season Sale
+- [SDC] Wave 2 (Oct 28-29): 4X Points on Cleats
+- [SDC] Wave 3 (Oct 30 - Nov 9): 25-50% Off Sitewide + Free Name & Number (Black-group jerseys only)
+- [SDC] Wave 4 (Nov 10-16): 25-40% Off Footwear & Fan Jerseys + PUMA Ball GWP
+- [SDC] Wave 5 (Nov 17-23): Early Black Friday Deals (8 w/ Member Pricing)
+- [SDC] Wave 6 (Nov 24-25): 25-60% Off Sitewide + adidas Free N&N + adidas Cleat Bag GWP ($200+)
+- [SDC] Wave 7 (Nov 26-27): 25-60% Off Sitewide + adidas Free N&N + adidas Bag + SDC Grip Sock GWP
+- [SDC] Wave 8 (Nov 28-29): 25-60% Off Sitewide + adidas Free N&N + adidas Cleat Bag GWP
+- [SDC] Wave 9 (Nov 30 - Dec 1): 30% Off Sitewide + adidas Free N&N + SDC T-Shirt GWP + GC Stack / 3X Pts + Adi Pure Overnight (Dec 1)
+- [SDC] Wave 10 (Dec 2-8): Black Friday is Back + SDC T-Shirt GWP (to Dec 4) + Adi Pure Overnight (Dec 2) + Pred P0 Overnight (Dec 8)
+- [SDC] Wave 11 (Dec 9-21): 25-60% Off + Free Gift over $250 + Pred P0 Overnight (Dec 9) | Cutoffs: Ground Dec 16, 2-Day Dec 21
+- [SDC] Wave 12 (Dec 22 - Jan 4): 10% Off E-Gift Cards & 27% Off $100+ | Overnight Cutoff Dec 22</div>
+          <button class="house-btn" type="button" data-copy-target="prompt-clickup">Copy @Sacha Fierce Prompt</button>
+        </div>
+
+        <div class="box-card">
+          <span class="kicker">Prompt 2 · Chase Blockers (Colby/Juliana &amp; Tyler)</span>
+          <h3>Ready-to-send Teams messages</h3>
+          <div class="prompt-preview open" id="prompt-chase-both" style="max-height:180px; overflow-y:auto; margin-bottom:12px;">TO COLBY, JULIANA & CASEY (SOCCER.COM):
+1. End of Season start: Table says Oct 23, calendar grid says Oct 22 - which is official?
+2. Early BF (Nov 17-23): What are the 8 Member Pricing deals?
+3. Cyber Monday: Slide says 3X Points, table says GC Stack - which goes on creative?
+4. BF Cleat Bag GWP: Is Casey's Oct 21 shoe bag photo the adidas Cleat Bag ($200+)?
+5. Grip Sock GWP (Nov 26-27): Are Danny's 5 colours shot and in the Tunnel?
+6. SDC T-Shirt GWP (Nov 30): What is the SKU and is the sample ordered?
+7. Peak Gifting (Dec 9-21): What is the Free Gift over $250 item?
+
+TO TYLER (WORLDSOCCERSHOP):
+1. Shootify Final 20 On-Model Jerseys: Good to lock in Airtable?
+2. WSS Go-Live Date: Confirming Mon Nov 2 (updating subtask 868mcpbtm from Oct 31)?
+3. WSS Free Name & Number: Running on WSS, and what dates?
+4. WSS Offers: Can we fill the blank offer % on 868mcp0v9, BF (868mcpbck), and CM (868mcpbea)?</div>
+          <button class="house-btn" type="button" data-copy-target="prompt-chase-both">Copy Chase Questions</button>
+        </div>
+      </div>
+    </div>
+  </details>
+</section>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'sacha_jordan_holiday_2026_v3';
+
+  const PEOPLE = {
+    Jordan: {
+      role: 'Jordan · Site Production & Promo Lead',
+      scopeLabel: 'Full Overview (Soccer.com, WorldSoccerShop & Pop-Ups)',
+      allowedStores: ['ALL', 'SDC', 'TEAM', 'WSS'],
+      defaultStore: 'ALL',
+      heading: "Jordan's checklist for today",
+      bullets: [
+        'Tampa Bay Super Cup: Place Blocks 1, 2, 3 on soccer.com/tampa-bay-super-cup with the two DX widgets in between, update Block 3 heights to 3573 / 3839 / 3176, and test promo code XXXXX in cart.',
+        'Load ClickUp: Open the Admin drawer below and paste Prompt 1 to @Sacha Fierce so all 12 Soccer.com waves and WSS updates land in ClickUp.',
+        'Chase Soccer.com gaps: Send the 7 quick questions to Colby, Juliana, and Casey.'
+      ],
+      claude: `You are helping Jordan (Site Production & Promo Lead at Sports Endeavors). Reply in short bullets only, under 120 words.
+- ClickUp holds all dates: SDC Holiday (868mdkw02), WSS Holiday (868mcnzzr), Team Pop-Ups (868mce1ah). Teams asks must become ClickUp tasks first.
+- Soccer.com and WorldSoccerShop never share creative or product feeds.
+- Fastr pages use the sandwich build (Fastr blocks + DX widgets) and Fastr's own reserved-space embed code (Mobile / 640+ / 1024+).
+- Today (Thu 22 Oct): Place Tampa Super Cup Blocks 1, 2, 3 on soccer.com/tampa-bay-super-cup, set Block 3 heights to 3573 / 3839 / 3176, and test promo code XXXXX in a private window.
+- Next: First 3 Pop-Ups Wk of Oct 26; SDC Early Holiday Fri 30 Oct; WSS Holiday Mon 2 Nov.`
+    },
+    Sacha: {
+      role: 'Sacha · Creative Director (Full Overview)',
+      scopeLabel: 'Full Overview (Soccer.com, WorldSoccerShop & Pop-Ups)',
+      allowedStores: ['ALL', 'SDC', 'TEAM', 'WSS'],
+      defaultStore: 'ALL',
+      heading: "Sacha's focus for today",
+      bullets: [
+        'Test this Hub view with Jordan first so he can run Tampa Super Cup and paste the ClickUp auto-builder prompt.',
+        'Send Courtney the first 3 Holiday Pop-Up stores (Beach FC, HTX, Phoenix Rising) and QA criteria for Monday 26 Oct.',
+        'Send Brock the 1-template Zeta email map and send Superside the Holiday Style Guide + Safe BLACK-Group Jersey list.'
+      ],
+      claude: `You are helping Sacha (Creative Director at Sports Endeavors). Reply bottom-line first, short bullets, one idea per bullet, under 120 words.
+- Store separation: Soccer.com (12 waves, starts Fri 30 Oct) and WorldSoccerShop (7 waves, starts Mon 2 Nov) never share creative or feeds.
+- Team Pop-Up Stores: 47 parent clubs, first 3 (Beach FC, HTX, Phoenix Rising) in QA Mon 26 Oct; all 47 + Email 1 launch Mon 2 Nov.
+- Free Name & Number rule: Only feature BLACK-group jerseys in banners so nothing is pulled on Nov 9.`
+    },
+    Courtney: {
+      role: 'Courtney · QA & Sprint 151 Lead',
+      scopeLabel: 'Full QA Overview (Pop-Up Stores & Soccer.com Holiday)',
+      allowedStores: ['ALL', 'SDC', 'TEAM', 'WSS'],
+      defaultStore: 'ALL',
+      heading: "Courtney's QA checklist (Sprint 151)",
+      bullets: [
+        'First QA set due Monday 26 Oct (before Tue/Thu PTO): (1) First 3 Holiday Pop-Up Stores (Beach FC, HTX, Phoenix Rising), (2) Soccer.com Holiday Home Page, (3) Soccer.com Holiday Footwear Page.',
+        'Check that each Pop-Up Store contract ID pulls its 16 items and every product card clicks through to its product page.',
+        'Log any bug with a Jam recording link attached to the Jira ticket and update the shared Fastr QA Board.'
+      ],
+      claude: `You are helping Courtney (QA Lead at Sports Endeavors). Reply in short bullets, under 120 words.
+- First QA set due Mon 26 Oct (Sprint 151): (1) First 3 Holiday Pop-Up Stores (Beach FC #5638232, HTX #2004213190, Phoenix Rising #2002779944), (2) Soccer.com Holiday Home Page, (3) Soccer.com Holiday Footwear Page.
+- Every Jira ticket uses the same 5 fields: What it is, Page link, Fastr component ID, Reserved heights (Mobile / 640+ / 1024+), and What to test.
+- Test desktop and mobile in a private window and attach a Jam link for any bug.`
+    },
+    Brock: {
+      role: 'Brock · Email & Zeta Lead',
+      scopeLabel: 'Email Overview (Soccer.com, Team Pop-Ups & WSS)',
+      allowedStores: ['ALL', 'SDC', 'TEAM', 'WSS'],
+      defaultStore: 'ALL',
+      heading: "Brock's email checklist",
+      bullets: [
+        'Team Pop-Up Emails (47 Parent Clubs): Build ONE 600px master template in Zeta per campaign that swaps 3 CSV fields by Club Account Number (club_hero_image_url, product_grid_image_url, target_store_url).',
+        'Confirm with Zeta today: CSV lookup setup and S3 image folder path before Tuesday 27 Oct asset delivery (Email 1 sends Mon 2 Nov).',
+        'Soccer.com & WSS Holiday Emails: Follow the 12 SDC waves and 7 WSS waves below; only feature BLACK-group jerseys in Free Name & Number emails.'
+      ],
+      claude: `You are helping Brock (Email & Zeta Lead at Sports Endeavors). Reply in short bullets, under 120 words.
+- Team Pop-Up Emails (47 parent clubs, 4 campaigns): Build ONE 600px master template in Zeta per campaign.
+- Zeta swaps only 3 fields from a 1-row-per-club CSV keyed by Club Account Number: {{club_hero_image_url}} (2x JPG with crest + brand logo + club name baked in), {{product_grid_image_url}} (2x JPG 16-item grid), and {{target_store_url}}.
+- Assets deliver Tue Oct 27 for Mon Nov 2 send.
+- Holiday Emails: Only feature BLACK-group jerseys in Free Name & Number emails.`
+    },
+    Casey: {
+      role: 'Casey · Soccer.com Design & Studio Lead',
+      scopeLabel: 'Soccer.com Only (12 Holiday Waves)',
+      allowedStores: ['SDC'],
+      defaultStore: 'SDC',
+      heading: "Casey's Soccer.com checklist",
+      bullets: [
+        'Soccer.com Early Holiday launches Fri 30 Oct (25 to 50% off sitewide + Free Player Name & Number).',
+        'Studio photos: Danny uploads retouched model photos today with NO grain layer.',
+        'GWP checks: Confirm if the Oct 21 shoe bag photo is the Black Friday adidas Cleat Bag ($200+), check Danny 5 grip sock colours, and order the Nov 30 SDC T-Shirt sample.'
+      ],
+      claude: `You are helping Casey (Soccer.com Design & Studio Lead). Reply in short bullets, under 120 words.
+- Scope: Soccer.com Holiday only (12 promo waves, starts Fri 30 Oct). Never mix with WorldSoccerShop.
+- Studio photos: Upload retouched holiday model photos with NO grain layer.
+- Free Name & Number Jersey Rule: Only feature BLACK-group jerseys in promo banners (Man City Away/3rd Haaland, RM 3rd Mbappe/Bellingham, Chelsea Away/3rd Palmer, LFC 3rd Salah, Tottenham, Man Utd 3rd). Never feature Yamal/Barca or adult short-sleeve Home replicas (RED group, pulled before Nov 9).
+- Image weights: Desktop full-width heroes max 300 KB; mobile heroes/cards max 200 KB (JPG only).`
+    },
+    Whitney: {
+      role: 'Whitney · Soccer.com Designer (Master Copy & Layouts)',
+      scopeLabel: 'Soccer.com Only (12 Holiday Waves)',
+      allowedStores: ['SDC'],
+      defaultStore: 'SDC',
+      heading: "Whitney's Soccer.com design checklist",
+      bullets: [
+        'Your HOLIDAY-2026-Master-File (node 498-1516): https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516',
+        'Keep building the Soccer.com holiday master copy blocks across the 12 promo waves below (Rickey is helping wire the Swap Variables collections and Doorbuster Deals slot).',
+        'Flag any copy sizing issues when adapting from 16:9 desktop to 1:1 square placements, and use only BLACK-group jerseys in Free Name & Number banners.'
+      ],
+      claude: `You are helping Whitney (Soccer.com Designer). Reply in short bullets, under 120 words.
+- Scope: Soccer.com Holiday only (12 waves, starts Fri 30 Oct).
+- Your Figma file (HOLIDAY-2026-Master-File, node 498-1516): https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516
+- Master copy blocks: Keep copy scannable from 16:9 to 1:1; export names carry date, channel, size, and short description.
+- Free Name & Number Rule: Only use BLACK-group jerseys (Man City Away/3rd Haaland, RM 3rd Mbappe/Bellingham, Chelsea Away/3rd Palmer, LFC 3rd Salah, Tottenham). Never use Yamal/Barca or regular short-sleeve Home replicas (pulled before Nov 9).
+- Image weights: Desktop heroes max 300 KB; mobile/cards max 200 KB (JPG only, no spaces or +/#/& in filenames).`
+    },
+    Matty: {
+      role: 'Matty · Soccer.com Designer',
+      scopeLabel: 'Soccer.com Only (12 Holiday Waves)',
+      allowedStores: ['SDC'],
+      defaultStore: 'SDC',
+      heading: "Matty's Soccer.com design checklist",
+      bullets: [
+        'Build Soccer.com holiday campaign assets from the approved Holiday Style Guide and Danny retouched studio photos (no grain).',
+        'Before placing any player jersey in a Free Name & Number banner, check that it is in the BLACK group (use the Safe Jersey Checker below).',
+        'Keep full-width desktop heroes under 300 KB and mobile/card images under 200 KB (JPG only).'
+      ],
+      claude: `You are helping Matty (Soccer.com Designer). Reply in short bullets, under 120 words.
+- Scope: Soccer.com Holiday only (12 promo waves, starts Fri 30 Oct). Never mix with WorldSoccerShop assets.
+- Free Name & Number Rule: Only feature BLACK-group jerseys in banners (Man City Away/3rd Haaland, RM 3rd Mbappe/Bellingham, Chelsea Away/3rd Palmer, LFC 3rd Salah, Tottenham). Never use Yamal/Barca or adult short-sleeve Home replicas (pulled before Nov 9).
+- Image specs: JPG only for photos, PNG for logos (never WebP). Desktop heroes under 300 KB, all other images under 200 KB, no spaces or +/#/& in filenames.`
+    },
+    Michael: {
+      role: 'Michael · Soccer.com Design & Retouching',
+      scopeLabel: 'Soccer.com Only (12 Holiday Waves)',
+      allowedStores: ['SDC'],
+      defaultStore: 'SDC',
+      heading: "Michael's Soccer.com checklist",
+      bullets: [
+        'Holiday photo direction: Keep retouched Soccer.com holiday studio photos clean with NO grain layer.',
+        'Export all bucket-bound photography as JPG (never WebP), under 300 KB for full-width desktop heroes and under 200 KB for mobile and cards.',
+        'Use only BLACK-group jerseys in any Free Name & Number creative.'
+      ],
+      claude: `You are helping Michael (Soccer.com Design & Retouching). Reply in short bullets, under 120 words.
+- Scope: Soccer.com Holiday only (starts Fri 30 Oct).
+- Photo rule: No grain layer on Soccer.com holiday photos.
+- File rules: Upload JPG only to the image host (never WebP), no spaces or +/#/& in filenames. Full-width desktop heroes max 300 KB; mobile heroes, cards, and cutouts max 200 KB.
+- Free Name & Number Rule: Only feature BLACK-group jerseys so nothing gets pulled on Nov 9.`
+    },
+    Rickey: {
+      role: 'Rickey · Design Systems, Holiday Emails & Team Sales (Pilot #1)',
+      scopeLabel: 'Soccer.com, Team Pop-Ups & 431 Lookbook (Co-Pilot with Sacha)',
+      allowedStores: ['ALL', 'TEAM', 'SDC'],
+      defaultStore: 'ALL',
+      heading: "Rickey & Sacha's live sync (so we never duplicate work)",
+      bullets: [
+        'LIVE FROM SACHA BOT (22 Oct): Sacha is finishing Courtney QA handoff first, then pivoting this afternoon to the Consumer Holiday Master Templates (designing site + email + motion in context for Static/GIF/MOV) and loading Danny new holiday photos into Tunnel V2.',
+        'Track 1 (Whitney HOLIDAY-2026-Master-File copy, node 498-1516): Keep your Swap Variables setup on Whitney file and fix the small glitches + Doorbuster Deals slot, but do not rebuild the whole consumer email layout yet: we will adapt the "One Mother" 600px Team Sales email pattern together after 2pm.',
+        'Track 2 (Team Sales 47-Club Pop-Up Emails): Figma board node 146-1167 has all 4 campaigns laid out; only 2 dynamic 2x JPGs per club (Club Hero + 16-Item Grid) needed by Tue 27 Oct.',
+        'Track 3 (431 Printed Lookbook due Fri 30 Oct for Darren): Sacha agents are scanning your ClickUp queue today so Sacha can take heavy lifting off your plate: flag any tasks stressing you out in Step 2.'
+      ],
+      claude: `You are Rickey's Free-Claude Co-Pilot at Sports Endeavors, syncing directly with Sacha's agents. Keep replies under 120 words in short bullets.
+- LIVE SYNC FROM SACHA (Thu 22 Oct): Sacha is handing off Courtney QA, then building the Consumer Holiday Master Templates this afternoon so we design in context (one mother template for Site + 600px Email + Static/GIF/MOV) instead of random 16:9 blocks. Do not duplicate consumer layout builds before syncing after 2pm.
+- Track 1 (HOLIDAY-2026-Master-File, node 498-1516: https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516): Keep your Swap Variables collections per campaign page (so designers edit text lockups without detaching) and add the Doorbuster Deals module.
+- Track 2 (Team Holiday Pop-Up Emails, Figma node 146-1167): 47 parent clubs, 4 campaigns. Only export 2 dynamic 1200px 2x JPGs per club (Club Hero with crest/brand/name baked in + 16-Item Grid) by Tue Oct 27.
+- Track 3 (431 Printed Lookbook for Darren, due Fri Oct 30): Sacha's agents are helping offload this: tell Claude what pages/sections you need drafted or automated first.
+- Free Name & Number Rule: Only feature BLACK-group jerseys in promo banners.`
+    },
+    Darren: {
+      role: 'Darren · Team Sales & Pop-Up Stores Lead',
+      scopeLabel: 'Team Sales Holiday Pop-Ups (4 Campaigns)',
+      allowedStores: ['TEAM'],
+      defaultStore: 'TEAM',
+      heading: "Darren's Team Pop-Up checklist",
+      bullets: [
+        'Confirm exact promo code spelling in the system today (XXXXX (exact spelling in ClickUp)) and whether Campaign 1B and Campaign 2 use the same code.',
+        'Send the 47 parent club roll-up list (rolling up NCFC Youth, Steel Utd, BVB, Albion sub-contracts) and Ben holdout list (9/15 to 12/31 launches).',
+        'Review the 3 TPS CSV fixes with Gabby: cleat sizing listed as "4, 5", Trionda ball 07/30/26 end date, and HTX uncustomized prices above retail.'
+      ],
+      claude: `You are helping Darren (Team Sales & Pop-Up Stores Lead). Reply in short bullets, under 120 words.
+- Scope: 47 parent clubs total across 4 Team Sales Holiday campaigns (ClickUp 868mce1ah).
+- Campaign 1A: First 3 Pop-Up Stores (Beach FC #5638232, HTX #2004213190, Phoenix Rising #2002779944) in QA Mon 26 Oct; all 47 stores + Email 1 launch Mon 2 Nov.
+- Campaign 1B (Nov 2-8): Fill-in 25% off Team Store email for remaining clubs (excluding Ben's 9/15-12/31 holdouts).
+- Campaign 2 (Nov 16-22): 25% off Cold Weather push. Campaign 3 (Dec 7-14): $20 Goal Club reward.
+- Open today: Confirm promo code spelling, 47-club roll-up list, and 3 TPS CSV fixes with Gabby.`
+    },
+    Danny: {
+      role: 'Danny · Studio Photography Lead',
+      scopeLabel: 'Soccer.com Holiday Photography',
+      allowedStores: ['SDC'],
+      defaultStore: 'SDC',
+      heading: "Danny's studio checklist for today",
+      bullets: [
+        'Upload the retouched Soccer.com holiday model photos (Kaylee, Hugo, Malik, Afton, Miller) by end of day today (Thu 22 Oct) with NO grain layer.',
+        'Confirm status of the 5 Soccer.com grip sock colours for the Nov 26-27 Black Friday GWP.',
+        'All bucket uploads must be JPG (never WebP) with no spaces or +/#/& characters in filenames.'
+      ],
+      claude: `You are helping Danny (Studio Photographer at Sports Endeavors). Reply in short bullets, under 120 words.
+- Upload retouched Soccer.com holiday photos today (Thu 22 Oct) with NO grain layer.
+- Confirm if the 5 Soccer.com grip sock GWP colours are shot and ready for the Tunnel.
+- File spec: JPG only (never WebP), no spaces or +/#/& in filenames.`
+    },
+    Tyler: {
+      role: 'Tyler · WorldSoccerShop Holiday Lead',
+      scopeLabel: 'WorldSoccerShop Only (7 Holiday Waves)',
+      allowedStores: ['WSS'],
+      defaultStore: 'WSS',
+      heading: "Tyler's WorldSoccerShop checklist",
+      bullets: [
+        'Confirm the Final 20 on-model jerseys on the published WSS Shootify shot list today so Airtable can be locked.',
+        'Confirm Mon 2 Nov is the official WSS Holiday launch date (so subtask 868mcpbtm can be updated from Sat 31 Oct).',
+        'Confirm WSS Free Name & Number dates and fill in the blank 2026 WSS discount % fields on ClickUp tasks 868mcp0v9, Black Friday (868mcpbck), and Cyber Monday (868mcpbea).'
+      ],
+      claude: `You are helping Tyler (WorldSoccerShop Lead at Sports Endeavors). Reply in short bullets, under 120 words.
+- Scope: WorldSoccerShop Holiday only (ClickUp parent 868mcnzzr, kickoff Mon 2 Nov). Never mix with Soccer.com.
+- Shootify shoot (868mh25ju): 20 e-com jerseys on light neutral grey, 10 editorial jerseys on dark grey + gels with Giovanni (PSG Home dropped), 20 extra front/back layflats. Raw files due Thu 29 Oct.
+- Free Name & Number rule: Only feature BLACK-group jerseys in promo banners (Tottenham Home, RM 3rd, Man City Away/3rd, Chelsea Away/3rd) so nothing gets pulled on Nov 9.
+- Open today: Confirm Final 20 on-model jerseys, Mon 2 Nov launch date, Free N&N dates, and blank offer % fields in ClickUp.`
+    },
+    Alex: {
+      role: 'Alex · WorldSoccerShop Designer',
+      scopeLabel: 'WorldSoccerShop Only (7 Holiday Waves)',
+      allowedStores: ['WSS'],
+      defaultStore: 'WSS',
+      heading: "Alex's WorldSoccerShop design checklist",
+      bullets: [
+        'WSS Holiday launches Mon 2 Nov (raw Shootify files return Thu 29 Oct, so Nov 2 launches with graphic/fallback assets + the Naadam-style WSS Holiday Gift Guide page).',
+        'Jersey split rule: Use the 10 Shootify Editorial Home kits in the WSS Gift Guide story; use only BLACK-group kits (Tottenham Home, RM 3rd, Man City Away/3rd, Chelsea Away/3rd) in Free Name & Number promo banners.',
+        'Fastr CMS rules: Open only the --FINAL-- file from Downloads, keep full-width desktop heroes under 300 KB and mobile/cards under 200 KB (JPG only), and paste Fastr reserved-space embed code.'
+      ],
+      claude: `You are helping Alex (WorldSoccerShop Designer). Reply in short bullets, under 120 words.
+- Scope: WorldSoccerShop Holiday only (ClickUp 868mcnzzr, launches Mon 2 Nov). Never mix with Soccer.com assets.
+- Build the Naadam-style WSS Holiday Gift Guide blocks (868mcp0vb / 868mhfq5b) and WSS holiday promo banners.
+- Free Name & Number Rule: Only feature BLACK-group kits in Free N&N banners (Tottenham Home, RM 3rd, Man City Away/3rd, Chelsea Away/3rd). Keep Editorial Home kits for the Gift Guide story.
+- Fastr rules: Use only --FINAL-- files from Downloads, JPG under 300 KB desktop hero / 200 KB mobile & cards, and paste Fastr's own reserved-space embed code.`
+    },
+    Holly: {
+      role: 'Holly · WorldSoccerShop Designer & Shoot Styling',
+      scopeLabel: 'WorldSoccerShop Only (7 Holiday Waves)',
+      allowedStores: ['WSS'],
+      defaultStore: 'WSS',
+      heading: "Holly's WorldSoccerShop checklist",
+      bullets: [
+        'WSS Shootify shoot (868mh25ju): Lock styling shopping list, props, and model picks for the 10 editorial looks (Giovanni on dark grey + colour gels) and 20 e-com looks (light neutral grey).',
+        'WSS Holiday creative: Support Mon 2 Nov launch and Naadam-style Gift Guide layout; never share assets with Soccer.com.',
+        'Use only BLACK-group jerseys in any Free Name & Number promo graphics.'
+      ],
+      claude: `You are helping Holly (WorldSoccerShop Designer & Styling). Reply in short bullets, under 120 words.
+- Scope: WorldSoccerShop Holiday only (ClickUp 868mcnzzr, launches Mon 2 Nov) and Shootify shoot (868mh25ju).
+- Shootify setup: 10 editorial jerseys on dark grey with colour gels (Giovanni; PSG Home dropped) + 20 e-com jerseys on light neutral grey + 20 extra front/back layflats.
+- Free Name & Number Rule: Only feature BLACK-group jerseys in promo banners so nothing gets pulled on Nov 9.`
+    }
+  };
+
+  const DEFAULT_WAVES = [
+    {
+      id: 'rickey-templates',
+      store: 'SDC',
+      dates: 'Thu Oct 22 (After 2pm Sync)',
+      title: 'Consumer & Email Master Templates: Swap Variables, Doorbusters & One-Mother Setup',
+      bullets: [
+        'Whitney Figma Master File copy (node 498-1516): https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516',
+        'Rickey setup: Goal Club Days base with Swap Variables collections per campaign page so designers edit text lockups without detaching components.',
+        'New ask from Jordan, Casey & Whitney: Add Doorbuster Deals module and clean up minor template glitches.',
+        'Sacha & Rickey 2pm sync: Adapt the Team Sales "One Mother" 600px email pattern to Consumer Holiday so Site + Email + Motion (Static/GIF/MOV) are designed in context.'
+      ],
+      owner: 'Sacha / Rickey / Whitney / Casey / Matty / Jordan',
+      cuId: '868mdkw02',
+      status: 'In Build',
+      note: 'Figma link wired (node 498-1516); Sacha & Rickey syncing after 2pm today.'
+    },
+    {
+      id: 'team-431-lookbook',
+      store: 'TEAM',
+      dates: 'Due Fri Oct 30',
+      title: '431 Sports Printed Lookbook (Assigned to Rickey by Darren)',
+      bullets: [
+        'Assigned Wed 21 Oct: Printed lookbook for 431 Sports due next Friday (30 Oct).',
+        'Support plan: Sacha and her agents are scanning Rickey ClickUp queue today to offload pages and automate layout prep.'
+      ],
+      owner: 'Rickey / Sacha / Darren',
+      cuId: '868mce1ah',
+      status: 'In Build',
+      note: 'Sacha agents scanning Rickey ClickUp tasks to help offload before Fri 30 Oct.'
+    },
+    {
+      id: 'sdc-w1',
+      store: 'SDC',
+      dates: 'Oct 22/23 - Oct 27',
+      title: 'SDC Wave 1: End of Season Sale',
+      bullets: [
+        'Offer: Big End of Season Sale (Fall Transition).',
+        'Blocker: Page 1 table says Oct 23 start, while Page 2 calendar grid says Oct 22.'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Brock',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Confirm Oct 22 vs Oct 23 start date with Colby.'
+    },
+    {
+      id: 'team-c1a',
+      store: 'TEAM',
+      dates: 'Wk of Oct 26 (First 3) & Mon Nov 2 (All 47 + Email 1)',
+      title: 'Team Sales 1A: Holiday Pop-Up Shops (47 Parent Clubs)',
+      bullets: [
+        '47 parent clubs total; neutral festive holiday palette with club crest + Nike/adidas/PUMA logo.',
+        'First 3 stores (Beach FC, HTX, Phoenix Rising) go to Courtney QA by Mon 26 Oct.',
+        'Email 1 sends Mon Nov 2 (2x JPG slices due to Brock/Zeta Tue Oct 27).'
+      ],
+      owner: 'Sacha / Darren / Brock / Rickey / Jordan / Courtney',
+      cuId: '868mce1ah',
+      status: 'In Build',
+      note: 'Today: Send First 3 stores to Courtney QA + confirm promo code spelling and 3 CSV fixes with Darren.'
+    },
+    {
+      id: 'sdc-w2',
+      store: 'SDC',
+      dates: 'Oct 28 - Oct 29',
+      title: 'SDC Wave 2: Cleat Loyalty Push',
+      bullets: [
+        'Offer: 4X Goal Club Points on Cleats (2-day flash before Early Holiday).'
+      ],
+      owner: 'Jordan / Brock / Casey / Whitney / Matty',
+      cuId: '868mdkw02',
+      status: 'Ready',
+      note: '2-day mid-week flash before Early Holiday.'
+    },
+    {
+      id: 'sdc-w3',
+      store: 'SDC',
+      dates: 'Oct 30 - Nov 9',
+      title: 'SDC Wave 3: Early Holiday Kickoff + Free Name & Number',
+      bullets: [
+        'Offer: 25% to 50% off sitewide + Free Player Name & Number (BLACK-group jerseys only).',
+        'Studio: Danny uploads retouched player photos today with no grain.',
+        'QA gate: Main pages ready for Courtney QA by Monday 26 Oct.'
+      ],
+      owner: 'Sacha / Jordan / Casey / Whitney / Matty / Michael / Danny / Brock / Courtney',
+      cuId: '868mdkw02',
+      status: 'In Build',
+      note: 'Courtney QA on Monday 26 Oct; Danny photo upload today.'
+    },
+    {
+      id: 'wss-shoot',
+      store: 'WSS',
+      dates: 'Oct 22 - Oct 29',
+      title: 'WSS Shootify Studio Shoot & Delivery',
+      bullets: [
+        '20 e-com jerseys on light neutral grey + 10 editorial jerseys on dark grey with gels (Giovanni) + 20 extra layflats.',
+        'Raw files return Thursday 29 Oct for Mon 2 Nov launch.'
+      ],
+      owner: 'Sacha / Tyler / Alex / Holly',
+      cuId: '868mh25ju',
+      status: 'In Build',
+      note: 'Waiting on Tyler yes on final 20 on-model jerseys.'
+    },
+    {
+      id: 'wss-w1',
+      store: 'WSS',
+      dates: 'Mon Nov 2 - Nov 9',
+      title: 'WSS Wave 1: Holiday Kickoff + Free Name & Number',
+      bullets: [
+        'Offer: WSS Kickoff discount + Free Player Name & Number (BLACK-group jerseys only).',
+        'Blocker: Update subtask 868mcpbtm from Sat Oct 31 to Mon Nov 2 and fill blank offer % in ClickUp.'
+      ],
+      owner: 'Tyler / Sacha / Jordan / Alex / Holly / Brock',
+      cuId: '868mcnzzr',
+      status: 'Blocked',
+      note: 'Tyler to confirm Nov 2 date, Free N&N dates, and WSS offer %.'
+    },
+    {
+      id: 'team-c1b',
+      store: 'TEAM',
+      dates: 'Nov 2 - Nov 8',
+      title: 'Team Sales 1B: Fill-In 25% Off Email (Remaining Clubs)',
+      bullets: [
+        'Offer: 25% off club Team Store items for clubs without a Holiday Pop-Up store.',
+        'Blocker: Confirm Ben holdout list of clubs launching between 9/15 and 12/31.'
+      ],
+      owner: 'Darren / Rickey / Brock',
+      cuId: '868mce1ah',
+      status: 'Blocked',
+      note: 'Confirm Ben holdout club list before email audience build.'
+    },
+    {
+      id: 'sdc-w4',
+      store: 'SDC',
+      dates: 'Nov 10 - Nov 16',
+      title: 'SDC Wave 4: Pre-Game Holiday Week',
+      bullets: [
+        'Offer: 25% to 40% off Footwear & Fan Jerseys + Free PUMA Ball GWP (shot Oct 21).'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Danny / Brock',
+      cuId: '868mdkw02',
+      status: 'Ready',
+      note: 'PUMA Ball GWP shot on Oct 21.'
+    },
+    {
+      id: 'wss-w2',
+      store: 'WSS',
+      dates: 'Nov 10 - Nov 23',
+      title: 'WSS Wave 2: Editorial Gift Guide (Naadam Layout)',
+      bullets: [
+        'Naadam-style editorial Holiday Gift Guide on WSS using retouched Shootify editorial heroes + 20 layflats.'
+      ],
+      owner: 'Sacha / Alex / Holly / Jordan / Tyler',
+      cuId: '868mcp0vb',
+      status: 'In Build',
+      note: 'Add WSS Gift Guide subtask in ClickUp.'
+    },
+    {
+      id: 'team-c2',
+      store: 'TEAM',
+      dates: 'Nov 16 - Nov 22',
+      title: 'Team Sales 2: Cold Weather Team Store Push',
+      bullets: [
+        'Offer: 25% off cold weather gear on club Team Stores (jackets, hoodies, pants, hats, indoor shoes).'
+      ],
+      owner: 'Darren / Rickey / Brock',
+      cuId: '868mce1ah',
+      status: 'Planning',
+      note: 'Email push for club cold weather items.'
+    },
+    {
+      id: 'sdc-w5',
+      store: 'SDC',
+      dates: 'Nov 17 - Nov 23',
+      title: 'SDC Wave 5: Early Black Friday Access',
+      bullets: [
+        'Offer: Early Black Friday Deals (8 deals with Goal Club Member Pricing).',
+        'Blocker: Waiting on the list of 8 Member Pricing items from Colby and Juliana.'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Brock',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Waiting on the 8 Member Pricing deals from Colby and Juliana.'
+    },
+    {
+      id: 'sdc-w6',
+      store: 'SDC',
+      dates: 'Nov 24 - Nov 25',
+      title: 'SDC Wave 6: Black Friday Week Kickoff',
+      bullets: [
+        'Offer: 25% to 60% off sitewide + adidas Free Name & Number + adidas Cleat Bag GWP ($200+).'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Brock',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Confirm if Oct 21 shoe bag photo is the official adidas Cleat Bag GWP.'
+    },
+    {
+      id: 'wss-w3',
+      store: 'WSS',
+      dates: 'Nov 24 - Nov 29',
+      title: 'WSS Wave 3: Black Friday Sale',
+      bullets: [
+        'Offer: WSS Black Friday sitewide promo (ClickUp task 868mcpbck needs 2026 discount % filled in).'
+      ],
+      owner: 'Tyler / Jordan / Sacha / Alex / Holly / Brock',
+      cuId: '868mcpbck',
+      status: 'Blocked',
+      note: 'Tyler to fill in 2026 WSS Black Friday discount %.'
+    },
+    {
+      id: 'sdc-w7',
+      store: 'SDC',
+      dates: 'Nov 26 - Nov 27',
+      title: 'SDC Wave 7: Thanksgiving & Black Friday Peak',
+      bullets: [
+        'Offer: 25% to 60% off sitewide + adidas Free N&N + adidas Bag ($200+) + SDC Grip Sock GWP.'
+      ],
+      owner: 'Jordan / Brock / Casey / Whitney / Matty / Danny',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Check if Danny uploaded the 5 grip sock photos.'
+    },
+    {
+      id: 'sdc-w8',
+      store: 'SDC',
+      dates: 'Nov 28 - Nov 29',
+      title: 'SDC Wave 8: Small Biz Sat & Cyber Weekend',
+      bullets: [
+        'Offer: 25% to 60% off sitewide + adidas Free N&N + adidas Cleat Bag GWP (reuses Wave 6 creative).'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Brock',
+      cuId: '868mdkw02',
+      status: 'Planning',
+      note: 'Reuses Wave 6 creative templates.'
+    },
+    {
+      id: 'sdc-w9',
+      store: 'SDC',
+      dates: 'Nov 30 - Dec 1',
+      title: 'SDC Wave 9: Cyber Monday Window',
+      bullets: [
+        'Offer: 30% off sitewide + adidas Free N&N + SDC T-Shirt GWP + Adi Pure Overnight (Dec 1).',
+        'Blocker: SDC T-Shirt GWP SKU unknown/not ordered; confirm 3X Points vs GC Stack.'
+      ],
+      owner: 'Jordan / Brock / Casey / Whitney / Matty',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Need SDC T-Shirt SKU/sample and 3X Points vs GC Stack confirmation.'
+    },
+    {
+      id: 'wss-w4',
+      store: 'WSS',
+      dates: 'Nov 30 - Dec 8',
+      title: 'WSS Wave 4: Cyber Monday & Cyber Week',
+      bullets: [
+        'Offer: WSS Cyber Monday sitewide promo (ClickUp task 868mcpbea needs 2026 offer %).'
+      ],
+      owner: 'Tyler / Jordan / Alex / Holly / Brock',
+      cuId: '868mcpbea',
+      status: 'Blocked',
+      note: 'Tyler to confirm 2026 WSS Cyber Monday offer.'
+    },
+    {
+      id: 'sdc-w10a',
+      store: 'SDC',
+      dates: 'Dec 2 - Dec 4',
+      title: 'SDC Wave 10a: Cyber Week (Part 1)',
+      bullets: [
+        'Offer: "Black Friday is Back" + SDC T-Shirt GWP (through Dec 4) + Adi Pure Overnight (Dec 2).'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Brock',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Depends on SDC T-Shirt GWP sample & photo.'
+    },
+    {
+      id: 'sdc-w10b',
+      store: 'SDC',
+      dates: 'Dec 5 - Dec 8',
+      title: 'SDC Wave 10b: Cyber Week (Part 2)',
+      bullets: [
+        'Offer: "Black Friday is Back" continues + Predator P0 Overnight Shipping (Dec 8).'
+      ],
+      owner: 'Jordan / Casey / Whitney / Matty / Brock',
+      cuId: '868mdkw02',
+      status: 'Planning',
+      note: 'Modular swap removing T-Shirt GWP on Dec 5.'
+    },
+    {
+      id: 'team-c3',
+      store: 'TEAM',
+      dates: 'Dec 7 - Dec 14',
+      title: 'Team Sales 3: Customer Appreciation $20 Goal Club Gift',
+      bullets: [
+        'Offer: $20 in Goal Club points loaded into active Player Pass accounts.'
+      ],
+      owner: 'Darren / Rickey / Brock',
+      cuId: '868mce1ah',
+      status: 'Planning',
+      note: 'Confirm Goal Club point load timing with Darren.'
+    },
+    {
+      id: 'sdc-w11',
+      store: 'SDC',
+      dates: 'Dec 9 - Dec 21',
+      title: 'SDC Wave 11: Peak December Gifting Rush & Cutoffs',
+      bullets: [
+        'Offer: 25% to 60% off + Free Gift over $250 + Pred P0 Overnight (Dec 9) | Cutoffs: Ground Dec 16, 2-Day Dec 21.'
+      ],
+      owner: 'Jordan / Brock / Casey / Whitney / Matty',
+      cuId: '868mdkw02',
+      status: 'Blocked',
+      note: 'Blocker: What is the Free Gift over $250 item?'
+    },
+    {
+      id: 'wss-w5',
+      store: 'WSS',
+      dates: 'Dec 9 - Dec 21',
+      title: 'WSS Wave 5: Deals of the Day & Shipping Cutoffs',
+      bullets: [
+        'Offer: Rolling Deals of the Day on WorldSoccerShop | Cutoffs: Ground Dec 16, 2-Day Dec 21.'
+      ],
+      owner: 'Tyler / Jordan / Alex / Holly / Brock',
+      cuId: '868mcnzzr',
+      status: 'Planning',
+      note: 'Uses graphics-layer daily tile template.'
+    },
+    {
+      id: 'sdc-w12',
+      store: 'SDC',
+      dates: 'Dec 22 - Jan 4',
+      title: 'SDC & WSS Wave 12: Overnight Cutoff, E-Gift Cards & End of Year',
+      bullets: [
+        'Overnight Cutoff Dec 22 | 10% off E-Gift Cards (Dec 22-25) | 27% off $100+ (Dec 26 - Jan 4).'
+      ],
+      owner: 'Jordan / Tyler / Brock / Casey / Whitney / Matty / Alex',
+      cuId: '868mdkw02',
+      status: 'Planning',
+      note: 'Modular E-Gift Card and Boxing Day graphic swap.'
+    }
+  ];
+
+  const CHANNELS = ['Site', 'Email', 'Paid Social', 'Paid Display', 'QA'];
+
+  const JERSEY_DATA = [
+    { group: 'BLACK', club: 'Manchester City', kits: '26/27 Authentic Away (A1133927), Authentic 3rd (A1133929), Youth Away/3rd', players: 'Haaland (EH9), Foden (PF47), Doku (JD11), Gvardiol (JG24)', rule: 'SAFE ALL HOLIDAY: Feature in Free N&N banners.' },
+    { group: 'BLACK', club: 'Real Madrid', kits: '26/27 3rd Replica (A1134802), 3rd Authentic (A1134803), LS Home (A1132288), Youth', players: 'Mbappe (KM10), Bellingham (JB5), Vini Jr (VJR7), Valverde (FV8)', rule: 'SAFE ALL HOLIDAY: Use 3rd Kit or Long Sleeve Home (avoid regular Short-Sleeve Home).' },
+    { group: 'BLACK', club: 'Chelsea', kits: '26/27 Away (A1135647), 3rd (A1135660), Authentic Home (A1130614), Youth', players: 'Palmer (CP10), Neto (PN7), James (RJ24), Caicedo (MC25)', rule: 'SAFE ALL HOLIDAY: Use Away, 3rd, or Authentic Home.' },
+    { group: 'BLACK', club: 'Liverpool', kits: '26/27 3rd Replica (A1134829), 3rd Authentic (A1134786), LS Home/Away', players: 'Salah (MS11), Van Dijk (VVD4), Szoboszlai (DS8), Mac Allister (AMA10)', rule: 'SAFE ALL HOLIDAY: Use 3rd Kit or Long Sleeve Home/Away.' },
+    { group: 'BLACK', club: 'Manchester United & Arsenal', kits: 'Man Utd 3rd (A1134831); Arsenal Authentic 3rd (A1134731) & LS 3rd (A1134751)', players: 'Bruno (BF8), Mainoo (KM37), Saka (BS7), Odegaard (MO8), Rice (DR41)', rule: 'SAFE ALL HOLIDAY: Use 3rd kits (avoid regular adult short-sleeve Home).' },
+    { group: 'BLACK', club: 'Tottenham, Newcastle, Germany & Colombia', kits: 'All Tottenham (A1130601/606/662), All Newcastle, Germany Home/Away, Colombia Away', players: 'Maddison (JM10), Solanke (DS19), Wirtz (FW17), Musiala (JM10), Diaz (LD7)', rule: 'SAFE ALL HOLIDAY: Every Tottenham and Newcastle kit is BLACK group.' },
+    { group: 'RED', club: 'Barcelona (DO NOT USE IN FREE N&N)', kits: 'All Barcelona 26/27 Jerseys', players: 'Yamal (LY10), Pedri (PG8), Raphinha (R11)', rule: 'RED GROUP (Pulled before Nov 9): Never feature Yamal/Barca in Free N&N banners.' },
+    { group: 'RED', club: 'Regular Adult Short-Sleeve Home Replicas (Arsenal, RM, LFC, MUFC)', kits: 'A1132260, A1132285, A1132290, A1132291', players: 'Saka, Bellingham, Mbappe, Salah, Bruno (in regular Home replicas)', rule: 'RED GROUP (Pulled before Nov 9): Use their BLACK-group 3rd kits instead.' },
+    { group: 'YELLOW', club: 'Argentina, USMNT & Chelsea Regular Home Replica', kits: 'Argentina Home (A1126454), USMNT Home (A1142072), Chelsea Home Replica (A1130603)', players: 'Messi (LM10), Pulisic (CP10), Palmer (Home Replica)', rule: 'YELLOW GROUP (Ends Nov 9): Keep out of evergreen templates.' }
+  ];
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveState(s) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+    } catch (e) {}
+  }
+
+  let state = loadState();
+  let currentPerson = 'Rickey';
+  let filterStore = 'ALL';
+  let filterStatus = 'ALL';
+
+  function getWaveState(w) {
+    if (!state[w.id]) {
+      state[w.id] = { status: w.status, note: w.note, channels: {} };
+    }
+    return state[w.id];
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 1800);
+  }
+
+  function getVisibleWaves() {
+    const p = PEOPLE[currentPerson];
+    return DEFAULT_WAVES.filter((w) => {
+      if (!p.allowedStores.includes('ALL') && !p.allowedStores.includes(w.store)) return false;
+      if (filterStore !== 'ALL' && w.store !== filterStore) return false;
+      const ws = getWaveState(w);
+      if (filterStatus !== 'ALL' && ws.status !== filterStatus) return false;
+      if (currentPerson !== 'Sacha' && currentPerson !== 'Jordan' && currentPerson !== 'Courtney') {
+        if (!w.owner.toLowerCase().includes(currentPerson.toLowerCase())) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderPersonWorkspace() {
+    const p = PEOPLE[currentPerson];
+    document.getElementById('active-view-label').textContent = `Viewing as: ${p.role}`;
+    document.getElementById('ws-eyebrow-role').textContent = p.role;
+    document.getElementById('ws-eyebrow-store').textContent = p.scopeLabel;
+    document.getElementById('ws-role-heading').textContent = p.heading;
+
+    const ul = document.getElementById('ws-role-bullets');
+    ul.innerHTML = '';
+    p.bullets.forEach((b) => {
+      const li = document.createElement('li');
+      li.textContent = b;
+      ul.appendChild(li);
+    });
+
+    document.getElementById('ws-claude-preview').textContent = p.claude;
+    document.getElementById('copy-claude-btn').textContent = `Copy ${currentPerson}'s Free-Claude Starter`;
+
+    // Show/hide store filter pills based on whether person is single-store or overview
+    const storeGroup = document.getElementById('store-filter-group');
+    if (p.allowedStores.includes('ALL')) {
+      storeGroup.style.display = 'inline-flex';
+    } else {
+      storeGroup.style.display = 'none';
+      filterStore = 'ALL';
+    }
+
+    // Show admin drawer only for Sacha & Jordan
+    const adminDrawer = document.getElementById('admin-prompts-drawer');
+    if (adminDrawer) {
+      adminDrawer.style.display = (currentPerson === 'Sacha' || currentPerson === 'Jordan') ? 'block' : 'none';
+    }
+
+    // Update Reply Wave Dropdown to only show this person's waves
+    const replySel = document.getElementById('reply-wave');
+    replySel.innerHTML = '';
+    const myWaves = getVisibleWaves();
+    myWaves.forEach((w) => {
+      replySel.add(new Option(`${w.dates} · ${w.title}`, w.id));
+    });
+
+    document.getElementById('waves-heading').textContent = `${currentPerson}'s Holiday Waves (${myWaves.length})`;
+    renderBoard(myWaves);
+  }
+
+  function renderBoard(waves) {
+    const list = document.getElementById('wave-list');
+    list.innerHTML = '';
+
+    waves.forEach((w) => {
+      const ws = getWaveState(w);
+      const row = document.createElement('div');
+      row.className = 'layer';
+
+      const storeLabel = w.store === 'SDC' ? 'Soccer.com' : (w.store === 'WSS' ? 'WorldSoccerShop' : 'Team Pop-Ups');
+      const col1 = document.createElement('div');
+      col1.innerHTML = `
+        <span class="store-badge ${w.store.toLowerCase()}">${storeLabel}</span>
+        <div style="font-size:16px; font-weight:700; margin-top:4px;">${w.dates}</div>
+        <div class="tag" style="margin-top:8px;">Team: ${w.owner}</div>
+      `;
+
+      const col2 = document.createElement('div');
+      const titleEl = document.createElement('h3');
+      titleEl.className = 'wave-title';
+      titleEl.textContent = w.title;
+
+      const offerEl = document.createElement('ul');
+      offerEl.className = 'wave-offer';
+      (w.bullets || []).forEach((bText) => {
+        const li = document.createElement('li');
+        li.textContent = bText;
+        offerEl.appendChild(li);
+      });
+
+      const chansEl = document.createElement('div');
+      chansEl.className = 'wave-channels';
+      CHANNELS.forEach((c) => {
+        const lbl = document.createElement('label');
+        const isChecked = !!ws.channels[c];
+        lbl.className = 'chan-check' + (isChecked ? ' checked' : '');
+        const inp = document.createElement('input');
+        inp.type = 'checkbox';
+        inp.checked = isChecked;
+        inp.addEventListener('change', () => {
+          ws.channels[c] = inp.checked;
+          saveState(state);
+          renderPersonWorkspace();
+        });
+        lbl.appendChild(inp);
+        lbl.appendChild(document.createTextNode(c));
+        chansEl.appendChild(lbl);
+      });
+
+      const noteInp = document.createElement('input');
+      noteInp.type = 'text';
+      noteInp.className = 'wave-note-input';
+      noteInp.value = ws.note;
+      noteInp.placeholder = 'Add blocker or note...';
+      noteInp.addEventListener('input', () => {
+        ws.note = noteInp.value;
+        saveState(state);
+      });
+
+      col2.appendChild(titleEl);
+      col2.appendChild(offerEl);
+      col2.appendChild(chansEl);
+      col2.appendChild(noteInp);
+
+      const col3 = document.createElement('div');
+      const sel = document.createElement('select');
+      sel.className = 'status-select';
+      sel.setAttribute('data-val', ws.status);
+      ['Planning', 'In Build', 'Blocked', 'Ready', 'Live'].forEach((opt) => {
+        const o = document.createElement('option');
+        o.value = opt;
+        o.textContent = opt;
+        if (ws.status === opt) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', () => {
+        ws.status = sel.value;
+        saveState(state);
+        renderPersonWorkspace();
+      });
+
+      const link = document.createElement('a');
+      link.style.fontSize = '12px';
+      link.style.color = 'var(--muted)';
+      link.href = `https://app.clickup.com/t/${w.cuId}`;
+      link.target = '_blank';
+      link.textContent = `Open ClickUp (${w.cuId}) ↗`;
+
+      col3.appendChild(sel);
+      col3.appendChild(link);
+
+      row.appendChild(col1);
+      row.appendChild(col2);
+      row.appendChild(col3);
+      list.appendChild(row);
+    });
+  }
+
+  function renderJerseys(query) {
+    const container = document.getElementById('jersey-list');
+    container.innerHTML = '';
+    const q = (query || '').trim().toLowerCase();
+
+    JERSEY_DATA.forEach((row) => {
+      const hay = `${row.group} ${row.club} ${row.kits} ${row.players} ${row.rule}`.toLowerCase();
+      if (q && !hay.includes(q)) return;
+
+      const badgeClass = row.group === 'BLACK' ? 'black' : (row.group === 'RED' ? 'red' : 'yellow');
+      const layer = document.createElement('div');
+      layer.className = 'layer';
+      layer.innerHTML = `
+        <div>
+          <span class="badge ${badgeClass}">${row.group} GROUP</span>
+          <div style="font-size:17px; font-weight:700; margin-top:6px;">${row.club}</div>
+        </div>
+        <div>
+          <div style="font-size:14.5px; margin-bottom:4px;"><strong>Kits &amp; SKUs:</strong> ${row.kits}</div>
+          <div style="font-size:14.5px;"><strong>Players:</strong> ${row.players}</div>
+        </div>
+        <div style="font-size:13.5px; line-height:1.4;">
+          <strong>Rule:</strong><br>${row.rule}
+        </div>
+      `;
+      container.appendChild(layer);
+    });
+  }
+
+  // Person click handler
+  document.querySelectorAll('[data-person]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-person]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      currentPerson = btn.getAttribute('data-person');
+      filterStore = 'ALL';
+      filterStatus = 'ALL';
+      document.querySelectorAll('[data-filter-store]').forEach((b) => b.setAttribute('aria-pressed', b.getAttribute('data-filter-store') === 'ALL' ? 'true' : 'false'));
+      document.querySelectorAll('[data-filter-status]').forEach((b) => b.setAttribute('aria-pressed', b.getAttribute('data-filter-status') === 'ALL' ? 'true' : 'false'));
+      renderPersonWorkspace();
+    });
+  });
+
+  // Free Claude starter copy & preview toggle
+  document.getElementById('copy-claude-btn').addEventListener('click', () => {
+    navigator.clipboard.writeText(PEOPLE[currentPerson].claude).then(() => {
+      showToast(`Copied ${currentPerson}'s Free-Claude starter!`);
+    });
+  });
+
+  document.getElementById('toggle-claude-btn').addEventListener('click', () => {
+    document.getElementById('ws-claude-preview').classList.toggle('open');
+  });
+
+  // One-click Reply Builder
+  document.getElementById('copy-reply-btn').addEventListener('click', () => {
+    const waveId = document.getElementById('reply-wave').value;
+    const w = DEFAULT_WAVES.find((x) => x.id === waveId) || DEFAULT_WAVES[0];
+    const ws = getWaveState(w);
+    const customNote = document.getElementById('reply-note').value.trim() || ws.note;
+    const doneChans = CHANNELS.filter((c) => ws.channels[c]);
+    const chanStr = doneChans.length ? doneChans.join(', ') : 'None ticked yet';
+    const replyText = `[HOLIDAY HUB UPDATE · ${currentPerson} · 22 Oct 2026]\n- Wave: ${w.title} (${w.dates})\n- ClickUp Task: https://app.clickup.com/t/${w.cuId}\n- Status: ${ws.status} | Channels Done: ${chanStr}\n- Update: ${customNote}`;
+    navigator.clipboard.writeText(replyText).then(() => showToast('Copied update for ClickUp / Teams!'));
+  });
+
+  // Store & Status Filters
+  document.querySelectorAll('[data-filter-store]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter-store]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      filterStore = btn.getAttribute('data-filter-store');
+      renderPersonWorkspace();
+    });
+  });
+
+  document.querySelectorAll('[data-filter-status]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter-status]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      filterStatus = btn.getAttribute('data-filter-status');
+      renderPersonWorkspace();
+    });
+  });
+
+  document.getElementById('jersey-search').addEventListener('input', (e) => {
+    renderJerseys(e.target.value);
+  });
+
+  document.querySelectorAll('[data-copy-target]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-copy-target');
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard!'));
+    });
+  });
+
+  document.getElementById('copy-summary-btn').addEventListener('click', () => {
+    const waves = getVisibleWaves();
+    const lines = [`HOLIDAY 2026 UPDATE (${currentPerson.toUpperCase()} VIEW):`, ''];
+    waves.forEach((w) => {
+      const ws = getWaveState(w);
+      const doneChans = CHANNELS.filter((c) => ws.channels[c]);
+      const chanStr = doneChans.length ? `Done: ${doneChans.join(', ')}` : 'No channels ticked';
+      lines.push(`- [${w.store}] ${w.dates} | ${w.title} -> ${ws.status} (${chanStr}) | Note: ${ws.note}`);
+    });
+    navigator.clipboard.writeText(lines.join('\n')).then(() => showToast('Copied view summary!'));
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    state = {};
+    renderPersonWorkspace();
+    showToast('Reset to defaults.');
+  });
+
+  renderPersonWorkspace();
+  renderJerseys('');
+})();
+</script>
+
+</body>
+</html>
