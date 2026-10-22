@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chivas 2027 Third Email: Zeta Preview & Code</title>
+<style>
+  :root {
+    --ink: #151515;
+    --ink-soft: #3f3e3a;
+    --muted: #6f6d67;
+    --paper: #f6f5f1;
+    --white: #ffffff;
+    --rule: #cecac1;
+    --tint: #e8e5dd;
+    --signal: #d8ff57;
+    --ok: #1b6b3a;
+    --ok-bg: #e7f3ec;
+    --sans: "Helvetica Neue", Arial, sans-serif;
+    --serif: Georgia, "Times New Roman", serif;
+    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .deckbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 56px;
+    background: var(--ink);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    border-bottom: 1px solid #2c2c29;
+  }
+  .deckbar-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .deckbar-tag {
+    background: var(--signal);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .deckbar-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab-btn {
+    background: #252522;
+    color: #c7c4bc;
+    border: 1px solid #3a3a35;
+    padding: 7px 14px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+  .tab-btn:hover {
+    color: var(--white);
+    border-color: #6f6d67;
+  }
+  .tab-btn.active {
+    background: var(--signal);
+    color: var(--ink);
+    border-color: var(--signal);
+  }
+  .header-strip {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .lede {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 72ch;
+  }
+  .fact-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .fact-pill {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .fact-pill strong {
+    color: var(--ink);
+    display: block;
+    font-size: 13px;
+  }
+  .workspace {
+    display: grid;
+    grid-template-columns: 650px 1fr;
+    min-height: calc(100vh - 170px);
+  }
+  @media (max-width: 1180px) {
+    .workspace { grid-template-columns: 1fr; }
+  }
+  .pane-left {
+    background: var(--tint);
+    border-right: 1px solid var(--rule);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pane-bar {
+    width: 100%;
+    max-width: 602px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .badge-ok {
+    background: var(--ok-bg);
+    color: var(--ok);
+    border: 1px solid #b7dec6;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .iframe-shell {
+    width: 602px;
+    max-width: 100%;
+    background: var(--white);
+    border: 1px solid var(--rule);
+  }
+  iframe {
+    width: 100%;
+    height: 1850px;
+    border: 0;
+    display: block;
+  }
+  .pane-right {
+    background: var(--paper);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+  }
+  .card-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .card ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+  .card li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--ink);
+  }
+  .code-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: var(--ink);
+    color: var(--white);
+    padding: 12px 16px;
+  }
+  .code-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: #d6d3cb;
+  }
+  .code-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .btn-copy {
+    background: var(--signal);
+    color: var(--ink);
+    border: 1px solid var(--signal);
+    padding: 8px 16px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .btn-copy.copied {
+    background: var(--ok);
+    color: var(--white);
+    border-color: var(--ok);
+  }
+  .btn-dl {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid #4a4a44;
+    padding: 8px 14px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .code-box {
+    width: 100%;
+    height: 620px;
+    background: #151515;
+    color: #f6f5f1;
+    border: 1px solid var(--ink);
+    border-top: 1px solid #2c2c29;
+    padding: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.55;
+    resize: vertical;
+    white-space: pre;
+    overflow: auto;
+  }
+  .table-mini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .table-mini th, .table-mini td {
+    text-align: left;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .table-mini th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: var(--paper);
+  }
+  .mono {
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="deckbar">
+  <div class="deckbar-title">
+    <span class="deckbar-tag">Zeta Ready</span>
+    <span>WorldSoccerShop / Chivas 2027 Third Email</span>
+  </div>
+  <div class="deckbar-tabs">
+    <button class="tab-btn active" id="tab-gif" onclick="selectVariant('gif')">1. Rotating GIF Hero (14 KB)</button>
+    <button class="tab-btn" id="tab-static" onclick="selectVariant('static')">2. Static JPG Fallback (14 KB)</button>
+  </div>
+</div>
+
+<div class="header-strip">
+  <div>
+    <div class="eyebrow">Why the Previous Draft Failed in Zeta &amp; How This Fixes It</div>
+    <h1 class="headline">Chivas 2027 Third Jersey Email</h1>
+    <p class="lede">The previous HTML file was 2.34 MB because all three images (including the 1.33 MB rotating GIF) were pasted inside the HTML as raw base64 text strings. Zeta blocks inline base64 GIF strings and truncates HTML files over 250 KB. All three images are now hosted as real HTTPS files on GitHub Pages, dropping the HTML to 14 KB so the rotating GIF works cleanly.</p>
+  </div>
+  <div class="fact-pills">
+    <div class="fact-pill"><strong>14.2 KB HTML</strong>Down from 2.34 MB (99.4% smaller)</div>
+    <div class="fact-pill"><strong>0 Base64 Strings</strong>All 3 images hosted via HTTPS</div>
+    <div class="fact-pill"><strong>2 Hero Options</strong>Rotating GIF + Static JPG Fallback</div>
+  </div>
+</div>
+
+<div class="workspace">
+  <div class="pane-left">
+    <div class="pane-bar">
+      <span id="preview-label">Live 600px Email Preview: Rotating GIF Hero</span>
+      <span class="badge-ok">Isolated Email Frame</span>
+    </div>
+    <div class="iframe-shell">
+      <iframe id="preview-frame" title="Chivas Email Preview"></iframe>
+    </div>
+  </div>
+
+  <div class="pane-right">
+    <div class="card">
+      <div class="card-title">Quick Notes for Brock</div>
+      <ul>
+        <li><strong>The GIF is healthy:</strong> Zeta rejected the previous file because the GIF was embedded as 1.77 million characters of base64 text inside the HTML tag instead of an HTTPS image URL.</li>
+        <li><strong>Ready to paste:</strong> Click <strong>Copy HTML Code</strong> below and paste directly into Zeta. All three image URLs are live on HTTPS.</li>
+        <li><strong>Static fallback included:</strong> If you ever want to compare or send a static first-frame JPEG instead of the rotating GIF, click tab 2 in the top bar.</li>
+        <li><strong>CTA Link URL:</strong> All links currently point to <span class="mono">https://www.worldsoccershop.com/shop/clubs/chivas</span> and can be swapped for your final tracking or PDP link.</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="code-toolbar">
+        <div class="code-meta" id="code-meta">File: chivas-email--zeta-gif-hero--2026-10-22.html (14.2 KB)</div>
+        <div class="code-actions">
+          <button class="btn-copy" id="copy-btn" onclick="copyCode()">Copy HTML Code</button>
+          <button class="btn-dl" onclick="downloadCode()">Download .html</button>
+        </div>
+      </div>
+      <textarea class="code-box" id="code-box" readonly spellcheck="false"></textarea>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Hosted Image Assets in This Email</div>
+      <table class="table-mini">
+        <thead>
+          <tr><th>Slot</th><th>Dimension</th><th>Hosted HTTPS URL</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hero (Tab 1: GIF)</td>
+            <td>600 x 800</td>
+            <td class="mono">https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-hero-rotating.gif</td>
+          </tr>
+          <tr>
+            <td>Hero (Tab 2: JPG)</td>
+            <td>600 x 800</td>
+            <td class="mono">https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-hero-static.jpg</td>
+          </tr>
+          <tr>
+            <td>Details Photo</td>
+            <td>260 x 347</td>
+            <td class="mono">https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-details.jpg</td>
+          </tr>
+          <tr>
+            <td>Closing Photo</td>
+            <td>520 x 650</td>
+            <td class="mono">https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-charra.jpg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const VARIANTS = {"gif": {"label": "Rotating GIF Hero (14 KB HTML)", "filename": "chivas-email--zeta-gif-hero--2026-10-22.html", "hero_asset": "chivas-hero-rotating.gif (Hosted HTTPS URL)", "html": "<!DOCTYPE html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"x-apple-disable-message-reformatting\">\n<meta name=\"format-detection\" content=\"telephone=no, date=no, address=no, email=no\">\n<meta name=\"color-scheme\" content=\"dark\">\n<meta name=\"supported-color-schemes\" content=\"dark\">\n<title>Chivas Email Preview</title>\n<!--[if mso]>\n<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>\n<style>td,div,a,span{font-family:Arial,Helvetica,sans-serif !important;}</style>\n<![endif]-->\n<!--[if !mso]><!-->\n<link href=\"https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Inter:wght@400;500;600&family=Mohave:wght@600;700&display=swap\" rel=\"stylesheet\">\n<!--<![endif]-->\n<style>\n:root{color-scheme:dark;supported-color-schemes:dark;}\nbody{margin:0 !important;padding:0 !important;width:100% !important;background-color:#0E0E0E;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}\ntable{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}\nimg{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}\na{text-decoration:none;}\na[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;}\nu + #body a{color:inherit;text-decoration:none;}\n@media only screen and (max-width:620px){\n  .wrap{width:100% !important;}\n  .fluid{width:100% !important;max-width:100% !important;height:auto !important;}\n  .stack{display:block !important;width:100% !important;box-sizing:border-box !important;}\n  .pad-x{padding-left:24px !important;padding-right:24px !important;}\n  .details-photo{padding:0 0 32px 0 !important;text-align:center !important;}\n  .details-photo img{margin:0 auto !important;}\n  .details-copy{padding:0 24px 36px 24px !important;}\n  .hero-body{font-size:20px !important;line-height:28px !important;}\n  .closing{font-size:32px !important;line-height:36px !important;}\n}\n</style>\n</head>\n<body id=\"body\" bgcolor=\"#0E0E0E\" style=\"margin:0;padding:0;background-color:#0E0E0E;\">\n<div style=\"display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;color:#0E0E0E;\">A tribute to rich Mexican cultural heritage. A tribute to every charro, every Rojiblanco.&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>\n<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" bgcolor=\"#0E0E0E\" style=\"background-color:#0E0E0E;\">\n  <tr>\n    <td align=\"center\" bgcolor=\"#0E0E0E\" style=\"background-color:#0E0E0E;\">\n      <!--[if mso]><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\"><tr><td><![endif]-->\n      <table role=\"presentation\" class=\"wrap\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\" bgcolor=\"#0E0E0E\" style=\"width:600px;max-width:600px;background-color:#0E0E0E;\">\n\n        <tr>\n          <td bgcolor=\"#0E0E0E\" style=\"background-color:#0E0E0E;\">\n            <a href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" target=\"_blank\" style=\"display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-hero-rotating.gif\" width=\"600\" height=\"800\" alt=\"Chivas 26/27 Third Jersey. C.D. Guadalajara, El Reba\u00f1o.\" class=\"fluid\" style=\"display:block;width:600px;max-width:600px;height:auto;border:0;color:#FFE014;font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:40px;line-height:44px;font-weight:700;text-align:center;background-color:#2B2B2B;\">\n            </a>\n          </td>\n        </tr>\n\n        <tr>\n          <td class=\"pad-x\" align=\"center\" bgcolor=\"#0E0E0E\" style=\"padding:56px 40px 52px 40px;background-color:#0E0E0E;\">\n            <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;line-height:26px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#FFE014;padding-bottom:16px;\">El charro no se hace, nace</div>\n            <div class=\"hero-body\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:24px;line-height:30px;font-weight:400;color:#FFE014;\">A tribute to rich Mexican cultural heritage. A tribute to every charro, every Rojiblanco.</div>\n          </td>\n        </tr>\n\n        <tr>\n          <td height=\"1\" bgcolor=\"#FFFFFF\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFFFFF;\">&nbsp;</td>\n        </tr>\n\n        <tr>\n          <td bgcolor=\"#0E0E0E\" style=\"padding:0 0 21px 0;background-color:#0E0E0E;\">\n            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n              <tr>\n                <td class=\"stack details-photo\" width=\"333\" valign=\"middle\" style=\"width:333px;padding:0;\">\n                  <img src=\"https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-details.jpg\" width=\"333\" height=\"630\" alt=\"Close-up of the Chivas 2027 Third jersey: polo-style collar, golden piteado detailing and the original crest.\" class=\"fluid\" style=\"display:block;width:333px;max-width:333px;height:auto;border:0;color:#F4EDE1;font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;background-color:#2B2B2B;\">\n                </td>\n                <td class=\"stack details-copy\" valign=\"middle\" style=\"padding:0 24px 0 20px;\">\n                  <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                      <tr>\n                        <td style=\"padding-bottom:28px;\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">01</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Single-button, polo-style collar</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding-bottom:28px;\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">02</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Ornate, golden detailing inspired by charro&rsquo;s piteado belts</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding-bottom:28px;\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">03</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Historic, original club crest used from 1908-1911</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">04</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Built to reflect traditional traje de charros</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <tr>\n          <td height=\"1\" bgcolor=\"#FFFFFF\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFFFFF;\">&nbsp;</td>\n        </tr>\n\n        <tr>\n          <td class=\"pad-x\" align=\"center\" bgcolor=\"#0E0E0E\" style=\"padding:36px 40px 64px 40px;background-color:#0E0E0E;\">\n            <a href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" target=\"_blank\" style=\"display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-charra.jpg\" width=\"520\" height=\"650\" alt=\"A young charra in the Chivas 2027 Third jersey holding a woven sarape.\" class=\"fluid\" style=\"display:block;width:520px;max-width:520px;height:auto;border:0;margin:0 auto;color:#F4EDE1;font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;background-color:#2B2B2B;\">\n            </a>\n            <div class=\"closing\" style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:40px;line-height:42px;font-weight:700;text-transform:uppercase;color:#FFE014;padding:40px 0 12px 0;\">Vestirse de charro es vestirse de M&eacute;xico.</div>\n            <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;font-weight:500;color:#BDB5A8;padding-bottom:28px;\">Shop the Chivas 2027 Third Jersey by Nike</div>\n            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n              <tr>\n                <td align=\"center\" bgcolor=\"#FFFFFF\" style=\"background-color:#FFFFFF;\">\n                  <!--[if mso]><v:rect xmlns:v=\"urn:schemas-microsoft-com:vml\" href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" style=\"height:48px;v-text-anchor:middle;width:226px;\" stroked=\"false\" fillcolor=\"#FFFFFF\"><w:anchorlock/><center style=\"color:#1A2C20;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;letter-spacing:0.3px;\">SADDLE UP</center></v:rect><![endif]-->\n                  <!--[if !mso]><!--><a href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" target=\"_blank\" style=\"display:inline-block;min-width:178px;padding:15px 24px;font-family:'Chakra Petch','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:18px;font-weight:500;letter-spacing:0.3px;text-transform:uppercase;color:#1A2C20;background-color:#FFFFFF;text-align:center;mso-hide:all;\">Saddle Up</a><!--<![endif]-->\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n      </table>\n      <!--[if mso]></td></tr></table><![endif]-->\n    </td>\n  </tr>\n</table>\n</body>\n</html>\n"}, "static": {"label": "Static JPG Hero Fallback (14 KB HTML)", "filename": "chivas-email--zeta-static-hero--2026-10-22.html", "hero_asset": "chivas-hero-static.jpg (Hosted HTTPS URL)", "html": "<!DOCTYPE html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"x-apple-disable-message-reformatting\">\n<meta name=\"format-detection\" content=\"telephone=no, date=no, address=no, email=no\">\n<meta name=\"color-scheme\" content=\"dark\">\n<meta name=\"supported-color-schemes\" content=\"dark\">\n<title>Chivas Email Preview</title>\n<!--[if mso]>\n<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>\n<style>td,div,a,span{font-family:Arial,Helvetica,sans-serif !important;}</style>\n<![endif]-->\n<!--[if !mso]><!-->\n<link href=\"https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Inter:wght@400;500;600&family=Mohave:wght@600;700&display=swap\" rel=\"stylesheet\">\n<!--<![endif]-->\n<style>\n:root{color-scheme:dark;supported-color-schemes:dark;}\nbody{margin:0 !important;padding:0 !important;width:100% !important;background-color:#0E0E0E;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}\ntable{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}\nimg{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}\na{text-decoration:none;}\na[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;}\nu + #body a{color:inherit;text-decoration:none;}\n@media only screen and (max-width:620px){\n  .wrap{width:100% !important;}\n  .fluid{width:100% !important;max-width:100% !important;height:auto !important;}\n  .stack{display:block !important;width:100% !important;box-sizing:border-box !important;}\n  .pad-x{padding-left:24px !important;padding-right:24px !important;}\n  .details-photo{padding:0 0 32px 0 !important;text-align:center !important;}\n  .details-photo img{margin:0 auto !important;}\n  .details-copy{padding:0 24px 36px 24px !important;}\n  .hero-body{font-size:20px !important;line-height:28px !important;}\n  .closing{font-size:32px !important;line-height:36px !important;}\n}\n</style>\n</head>\n<body id=\"body\" bgcolor=\"#0E0E0E\" style=\"margin:0;padding:0;background-color:#0E0E0E;\">\n<div style=\"display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;color:#0E0E0E;\">A tribute to rich Mexican cultural heritage. A tribute to every charro, every Rojiblanco.&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>\n<table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" bgcolor=\"#0E0E0E\" style=\"background-color:#0E0E0E;\">\n  <tr>\n    <td align=\"center\" bgcolor=\"#0E0E0E\" style=\"background-color:#0E0E0E;\">\n      <!--[if mso]><table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\"><tr><td><![endif]-->\n      <table role=\"presentation\" class=\"wrap\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"600\" bgcolor=\"#0E0E0E\" style=\"width:600px;max-width:600px;background-color:#0E0E0E;\">\n\n        <tr>\n          <td bgcolor=\"#0E0E0E\" style=\"background-color:#0E0E0E;\">\n            <a href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" target=\"_blank\" style=\"display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-hero-static.jpg\" width=\"600\" height=\"800\" alt=\"Chivas 26/27 Third Jersey. C.D. Guadalajara, El Reba\u00f1o.\" class=\"fluid\" style=\"display:block;width:600px;max-width:600px;height:auto;border:0;color:#FFE014;font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:40px;line-height:44px;font-weight:700;text-align:center;background-color:#2B2B2B;\">\n            </a>\n          </td>\n        </tr>\n\n        <tr>\n          <td class=\"pad-x\" align=\"center\" bgcolor=\"#0E0E0E\" style=\"padding:56px 40px 52px 40px;background-color:#0E0E0E;\">\n            <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;line-height:26px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#FFE014;padding-bottom:16px;\">El charro no se hace, nace</div>\n            <div class=\"hero-body\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:24px;line-height:30px;font-weight:400;color:#FFE014;\">A tribute to rich Mexican cultural heritage. A tribute to every charro, every Rojiblanco.</div>\n          </td>\n        </tr>\n\n        <tr>\n          <td height=\"1\" bgcolor=\"#FFFFFF\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFFFFF;\">&nbsp;</td>\n        </tr>\n\n        <tr>\n          <td bgcolor=\"#0E0E0E\" style=\"padding:0 0 21px 0;background-color:#0E0E0E;\">\n            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n              <tr>\n                <td class=\"stack details-photo\" width=\"333\" valign=\"middle\" style=\"width:333px;padding:0;\">\n                  <img src=\"https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-details.jpg\" width=\"333\" height=\"630\" alt=\"Close-up of the Chivas 2027 Third jersey: polo-style collar, golden piteado detailing and the original crest.\" class=\"fluid\" style=\"display:block;width:333px;max-width:333px;height:auto;border:0;color:#F4EDE1;font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;background-color:#2B2B2B;\">\n                </td>\n                <td class=\"stack details-copy\" valign=\"middle\" style=\"padding:0 24px 0 20px;\">\n                  <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                      <tr>\n                        <td style=\"padding-bottom:28px;\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">01</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Single-button, polo-style collar</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding-bottom:28px;\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">02</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Ornate, golden detailing inspired by charro&rsquo;s piteado belts</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding-bottom:28px;\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">03</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Historic, original club crest used from 1908-1911</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"\">\n                          <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">\n                            <tr>\n                              <td width=\"28\" valign=\"top\" style=\"width:28px;padding-top:10px;\">\n                                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"28\"><tr><td height=\"1\" bgcolor=\"#FFE014\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFE014;\">&nbsp;</td></tr></table>\n                              </td>\n                              <td width=\"12\" style=\"width:12px;font-size:0;line-height:0;\">&nbsp;</td>\n                              <td valign=\"top\" style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;\">\n                                <div style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:20px;font-weight:600;letter-spacing:1.4px;color:#FFE014;padding-bottom:4px;\">04</div>\n                                <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;color:#F4EDE1;\">Built to reflect traditional traje de charros</div>\n                              </td>\n                            </tr>\n                          </table>\n                        </td>\n                      </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <tr>\n          <td height=\"1\" bgcolor=\"#FFFFFF\" style=\"height:1px;line-height:1px;font-size:1px;background-color:#FFFFFF;\">&nbsp;</td>\n        </tr>\n\n        <tr>\n          <td class=\"pad-x\" align=\"center\" bgcolor=\"#0E0E0E\" style=\"padding:36px 40px 64px 40px;background-color:#0E0E0E;\">\n            <a href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" target=\"_blank\" style=\"display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/chivas-email/assets/chivas-charra.jpg\" width=\"520\" height=\"650\" alt=\"A young charra in the Chivas 2027 Third jersey holding a woven sarape.\" class=\"fluid\" style=\"display:block;width:520px;max-width:520px;height:auto;border:0;margin:0 auto;color:#F4EDE1;font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;background-color:#2B2B2B;\">\n            </a>\n            <div class=\"closing\" style=\"font-family:Mohave,'Arial Narrow','Helvetica Neue',Arial,sans-serif;font-size:40px;line-height:42px;font-weight:700;text-transform:uppercase;color:#FFE014;padding:40px 0 12px 0;\">Vestirse de charro es vestirse de M&eacute;xico.</div>\n            <div style=\"font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:24px;font-weight:500;color:#BDB5A8;padding-bottom:28px;\">Shop the Chivas 2027 Third Jersey by Nike</div>\n            <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n              <tr>\n                <td align=\"center\" bgcolor=\"#FFFFFF\" style=\"background-color:#FFFFFF;\">\n                  <!--[if mso]><v:rect xmlns:v=\"urn:schemas-microsoft-com:vml\" href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" style=\"height:48px;v-text-anchor:middle;width:226px;\" stroked=\"false\" fillcolor=\"#FFFFFF\"><w:anchorlock/><center style=\"color:#1A2C20;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;letter-spacing:0.3px;\">SADDLE UP</center></v:rect><![endif]-->\n                  <!--[if !mso]><!--><a href=\"https://www.worldsoccershop.com/shop/clubs/chivas\" target=\"_blank\" style=\"display:inline-block;min-width:178px;padding:15px 24px;font-family:'Chakra Petch','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:18px;font-weight:500;letter-spacing:0.3px;text-transform:uppercase;color:#1A2C20;background-color:#FFFFFF;text-align:center;mso-hide:all;\">Saddle Up</a><!--<![endif]-->\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n      </table>\n      <!--[if mso]></td></tr></table><![endif]-->\n    </td>\n  </tr>\n</table>\n</body>\n</html>\n"}};
+let currentKey = "gif";
+
+function selectVariant(key) {
+  currentKey = key;
+  const v = VARIANTS[key];
+  document.getElementById("tab-gif").classList.toggle("active", key === "gif");
+  document.getElementById("tab-static").classList.toggle("active", key === "static");
+  document.getElementById("preview-label").textContent = "Live 600px Email Preview: " + v.label;
+  document.getElementById("code-meta").textContent = "File: " + v.filename + " (" + (v.html.length / 1024).toFixed(1) + " KB)";
+  document.getElementById("code-box").value = v.html;
+  document.getElementById("preview-frame").srcdoc = v.html;
+  const btn = document.getElementById("copy-btn");
+  btn.textContent = "Copy HTML Code";
+  btn.classList.remove("copied");
+}
+
+function copyCode() {
+  const box = document.getElementById("code-box");
+  navigator.clipboard.writeText(box.value).then(() => {
+    const btn = document.getElementById("copy-btn");
+    btn.textContent = "Copied to Clipboard";
+    btn.classList.add("copied");
+    setTimeout(() => {
+      btn.textContent = "Copy HTML Code";
+      btn.classList.remove("copied");
+    }, 2200);
+  });
+}
+
+function downloadCode() {
+  const v = VARIANTS[currentKey];
+  const blob = new Blob([v.html], { type: "text/html;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = v.filename;
+  a.click();
+}
+
+selectVariant("gif");
+</script>
+</body>
+</html>
