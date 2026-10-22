@@ -649,6 +649,167 @@
     display: none;
     z-index: 999;
   }
+
+  /* Notification Bell & Inbox Drawer */
+  .inbox-toggle-btn {
+    position: relative;
+    gap: 8px;
+  }
+
+  .inbox-toggle-btn.has-unread {
+    border-color: #dc2626;
+    background: #fef2f2;
+    color: #991b1b;
+  }
+
+  .unread-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    line-height: 1;
+  }
+
+  .person-unread-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    margin-left: 6px;
+    line-height: 1;
+  }
+
+  .person-btn.active .person-unread-dot {
+    background: #ef4444;
+    color: #ffffff;
+  }
+
+  .inbox-drawer {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+  }
+
+  .inbox-drawer.open {
+    display: flex;
+  }
+
+  .inbox-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .inbox-drawer-title {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .inbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inbox-msg {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .inbox-msg.unread {
+    background: #fffbeb;
+    border-color: #f59e0b;
+  }
+
+  .inbox-msg-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .inbox-msg-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .inbox-new-tag {
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .inbox-msg-text {
+    font-size: 15px;
+    line-height: 1.33;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .inbox-msg-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .inbox-mini-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .inbox-mini-btn:hover {
+    background: var(--surface-open);
+  }
 </style>
 </head>
 <body>
@@ -660,6 +821,11 @@
       <span class="brand-sub" id="activeRoleSubtitle">Rickey · Design Systems, Holiday Emails &amp; Team Sales</span>
     </div>
     <div class="header-links">
+      <button type="button" class="btn inbox-toggle-btn has-unread" id="inboxToggleBtn" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span id="inboxBtnLabel">Inbox</span>
+        <span class="unread-pill" id="inboxUnreadCount">2</span>
+      </button>
       <a class="btn" href="https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516" target="_blank" rel="noopener">Open Holiday Figma</a>
       <a class="btn" href="https://www.figma.com/design/c612z21n2S7G3w4E8P7x5k/Team-Sales-2026?node-id=146-1167" target="_blank" rel="noopener">Open Team Pop-Up Figma</a>
       <a class="btn" href="https://app.clickup.com/45040162/v/f/90117940202" target="_blank" rel="noopener">Open ClickUp Folder</a>
@@ -668,6 +834,21 @@
 </header>
 
 <main class="today-page">
+
+  <!-- Team Inbox Drawer (Opens when you click the Bell button in the header) -->
+  <section class="inbox-drawer" id="inboxDrawer" aria-label="Team Inbox">
+    <div class="inbox-drawer-header">
+      <div class="inbox-drawer-title">
+        <span id="inboxDrawerTitle">Rickey's Inbox</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="btn" id="markAllReadBtn">Mark all read</button>
+        <button type="button" class="btn" id="closeInboxBtn">Close</button>
+      </div>
+    </div>
+    <p class="accordion-help">When someone sends an update in ClickUp or Teams, Sacha's bots post it here and light up your Inbox badge. Click any message to jump to the file or mark it read.</p>
+    <div class="inbox-list" id="inboxList"></div>
+  </section>
 
   <!-- Click Your Name Bar -->
   <section class="person-selector-box" aria-label="Choose your workspace">
@@ -1167,29 +1348,106 @@
     }
   ];
 
+  var INBOX_MESSAGES = [
+    {
+      id: "msg-rickey-templates",
+      from: "Rickey",
+      to: ["sacha", "jordan", "whitney", "casey"],
+      time: "Thu 22 Oct · 11:15am",
+      chip: "Holiday Templates",
+      chipClass: "chip-shoot",
+      text: "Set up Swap Variables collections per campaign page on Whitney's Holiday Master file so nobody has to detach components. Jordan, Casey, and Whitney also asked to add a Doorbuster Deals module.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER
+    },
+    {
+      id: "msg-rickey-431",
+      from: "Rickey",
+      to: ["sacha", "darren", "jordan"],
+      time: "Thu 22 Oct · 11:20am",
+      chip: "431 & Site Launches",
+      chipClass: "chip-comp",
+      text: "Assigned the 431 Sports Printed Lookbook yesterday for next Friday (30 Oct). Would love help offloading layout prep where we can.",
+      clickupUrl: "https://app.clickup.com/t/868mce1ah"
+    },
+    {
+      id: "msg-sacha-to-rickey-1",
+      from: "Sacha",
+      to: ["rickey", "whitney", "casey"],
+      time: "Thu 22 Oct · 11:35am",
+      chip: "Holiday Templates",
+      chipClass: "chip-shoot",
+      text: "Finishing Courtney's QA handoff first, then joining you after 2pm to adapt the 600px One Mother email pattern for Site, Email, and Motion.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER
+    },
+    {
+      id: "msg-sacha-to-rickey-2",
+      from: "Sacha (Bot)",
+      to: ["rickey", "darren"],
+      time: "Thu 22 Oct · 11:40am",
+      chip: "431 & Site Launches",
+      chipClass: "chip-comp",
+      text: "Scanning Rickey's ClickUp queue today so we can take heavy lifting on the 431 Printed Lookbook off his plate before Fri 30 Oct.",
+      clickupUrl: "https://app.clickup.com/t/868mce1ah"
+    },
+    {
+      id: "msg-bot-qa",
+      from: "Argon (Bot)",
+      to: ["sacha", "courtney", "jordan"],
+      time: "Thu 22 Oct · 11:45am",
+      chip: "Team Pop-Up Emails",
+      chipClass: "chip-fastr",
+      text: "First 3 pilot Team Holiday Pop-Up stores (Beach FC, HTX, Phoenix Rising) are staged for Mon 26 Oct QA check.",
+      previewUrl: PREVIEW_POPUP_HUB
+    }
+  ];
+
   var STORAGE_KEY = "sei_holiday_hub_kanban_v2";
   var state = {
     person: "rickey",
     filter: "todo",
     layout: "kanban",
     openCardId: null,
+    inboxOpen: false,
     doneMap: {},
-    noteMap: {}
+    noteMap: {},
+    readMsgMap: {},
+    customMsgs: []
   };
 
   try {
     var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     if (saved.doneMap) state.doneMap = saved.doneMap;
     if (saved.noteMap) state.noteMap = saved.noteMap;
+    if (saved.readMsgMap) state.readMsgMap = saved.readMsgMap;
+    if (Array.isArray(saved.customMsgs)) state.customMsgs = saved.customMsgs;
   } catch (e) {}
 
   function saveState() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
         doneMap: state.doneMap,
-        noteMap: state.noteMap
+        noteMap: state.noteMap,
+        readMsgMap: state.readMsgMap,
+        customMsgs: state.customMsgs
       }));
     } catch (e) {}
+  }
+
+  function getAllMessages() {
+    return state.customMsgs.concat(INBOX_MESSAGES);
+  }
+
+  function getMessagesForPerson(personKey) {
+    return getAllMessages().filter(function(m) {
+      if (personKey === "sacha" || personKey === "jordan") return true;
+      return m.to.indexOf(personKey) !== -1 || m.to.indexOf("all") !== -1;
+    });
+  }
+
+  function getUnreadCountForPerson(personKey) {
+    return getMessagesForPerson(personKey).filter(function(m) {
+      return !state.readMsgMap[m.id + "__" + personKey];
+    }).length;
   }
 
   function escapeHtml(str) {
@@ -1278,6 +1536,87 @@
     );
   }
 
+  function renderInbox() {
+    var p = PEOPLE[state.person] || PEOPLE.rickey;
+    var msgs = getMessagesForPerson(state.person);
+    var unreadCount = getUnreadCountForPerson(state.person);
+
+    /* Update unread dots on every person pill */
+    document.querySelectorAll("[data-person]").forEach(function(btn) {
+      var pk = btn.getAttribute("data-person");
+      if (!btn.getAttribute("data-base-label")) {
+        btn.setAttribute("data-base-label", btn.textContent.trim());
+      }
+      var baseLabel = btn.getAttribute("data-base-label");
+      var uCount = getUnreadCountForPerson(pk);
+      if (uCount > 0) {
+        btn.innerHTML = escapeHtml(baseLabel) + ' <span class="person-unread-dot">' + uCount + '</span>';
+      } else {
+        btn.textContent = baseLabel;
+      }
+    });
+
+    /* Update header Bell button */
+    var toggleBtn = document.getElementById("inboxToggleBtn");
+    var countEl = document.getElementById("inboxUnreadCount");
+    var labelEl = document.getElementById("inboxBtnLabel");
+    labelEl.textContent = p.name + "'s Inbox";
+    if (unreadCount > 0) {
+      toggleBtn.classList.add("has-unread");
+      countEl.style.display = "inline-flex";
+      countEl.textContent = unreadCount + " new";
+    } else {
+      toggleBtn.classList.remove("has-unread");
+      countEl.style.display = "none";
+    }
+
+    var drawer = document.getElementById("inboxDrawer");
+    drawer.classList.toggle("open", !!state.inboxOpen);
+    toggleBtn.setAttribute("aria-expanded", state.inboxOpen ? "true" : "false");
+    document.getElementById("inboxDrawerTitle").textContent = p.name + "'s Inbox (" + unreadCount + " unread)";
+
+    var listEl = document.getElementById("inboxList");
+    if (msgs.length === 0) {
+      listEl.innerHTML = '<p class="accordion-help">No messages yet for ' + escapeHtml(p.name) + '.</p>';
+      return;
+    }
+
+    listEl.innerHTML = msgs.map(function(m) {
+      var readKey = m.id + "__" + state.person;
+      var isUnread = !state.readMsgMap[readKey];
+      var links = "";
+      if (m.figmaUrl) {
+        links += '<a class="today-open-link" href="' + escapeHtml(m.figmaUrl) + '" target="_blank" rel="noopener">Open Figma</a>';
+      }
+      if (m.previewUrl) {
+        links += '<a class="today-open-link" href="' + escapeHtml(m.previewUrl) + '" target="_blank" rel="noopener">Open Preview</a>';
+      }
+      if (m.clickupUrl) {
+        links += '<a class="today-open-link" href="' + escapeHtml(m.clickupUrl) + '" target="_blank" rel="noopener">Open ClickUp</a>';
+      }
+      var readBtn = isUnread
+        ? '<button type="button" class="inbox-mini-btn" data-mark-read="' + escapeHtml(m.id) + '">Mark read</button>'
+        : '<span style="font-size:12.5px;color:var(--ink-soft);">Read</span>';
+
+      return (
+        '<div class="inbox-msg ' + (isUnread ? "unread" : "") + '">' +
+          '<div class="inbox-msg-top">' +
+            '<div class="inbox-msg-meta">' +
+              (isUnread ? '<span class="inbox-new-tag">New</span>' : '') +
+              '<span>From <strong>' + escapeHtml(m.from) + '</strong> &middot; ' + escapeHtml(m.time) + '</span>' +
+              '<span class="project-chip ' + escapeHtml(m.chipClass || "chip-shoot") + '" style="font-size:12px;padding:1px 8px;">' + escapeHtml(m.chip || "Update") + '</span>' +
+            '</div>' +
+            '<div class="inbox-msg-actions">' +
+              links +
+              readBtn +
+            '</div>' +
+          '</div>' +
+          '<p class="inbox-msg-text">' + escapeHtml(m.text) + '</p>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
   function render() {
     var p = PEOPLE[state.person] || PEOPLE.rickey;
 
@@ -1289,6 +1628,8 @@
 
     document.getElementById("starterAccordionTitle").textContent = "Agent Prompt: Copy " + p.name + "'s Free-Claude Starter";
     document.getElementById("starterPromptText").textContent = p.starterPrompt;
+
+    renderInbox();
 
     var personTasks = getTasksForPerson(state.person);
 
@@ -1347,8 +1688,57 @@
     container.innerHTML = '<div class="kanban-board">' + colsHtml + '</div>';
   }
 
+  function pushNewInboxMessage(fromName, taskObj, noteText) {
+    var newMsg = {
+      id: "msg-custom-" + Date.now(),
+      from: fromName,
+      to: ["sacha", "jordan", "rickey"],
+      time: "Just now",
+      chip: taskObj ? taskObj.col : "Update",
+      chipClass: taskObj ? taskObj.colClass : "chip-shoot",
+      text: (taskObj ? taskObj.text + " -> " : "") + noteText,
+      figmaUrl: taskObj ? taskObj.figmaUrl : "",
+      clickupUrl: taskObj ? taskObj.clickupUrl : ""
+    };
+    state.customMsgs.unshift(newMsg);
+    state.inboxOpen = true;
+    saveState();
+    render();
+  }
+
   /* Event Delegation */
   document.addEventListener("click", function(e) {
+    if (e.target.closest("#inboxToggleBtn")) {
+      state.inboxOpen = !state.inboxOpen;
+      renderInbox();
+      return;
+    }
+
+    if (e.target.closest("#closeInboxBtn")) {
+      state.inboxOpen = false;
+      renderInbox();
+      return;
+    }
+
+    if (e.target.closest("#markAllReadBtn")) {
+      var msgs = getMessagesForPerson(state.person);
+      msgs.forEach(function(m) {
+        state.readMsgMap[m.id + "__" + state.person] = true;
+      });
+      saveState();
+      renderInbox();
+      return;
+    }
+
+    var markReadBtn = e.target.closest("[data-mark-read]");
+    if (markReadBtn) {
+      var mid = markReadBtn.getAttribute("data-mark-read");
+      state.readMsgMap[mid + "__" + state.person] = true;
+      saveState();
+      renderInbox();
+      return;
+    }
+
     var personBtn = e.target.closest("[data-person]");
     if (personBtn) {
       state.person = personBtn.getAttribute("data-person");
@@ -1400,10 +1790,11 @@
       var inputEl = document.querySelector('[data-note-input="' + cardId + '"]');
       var noteText = inputEl ? inputEl.value.trim() : "";
       state.noteMap[cardId] = noteText;
-      saveState();
       var pName = (PEOPLE[state.person] || PEOPLE.rickey).name;
-      var snippet = "[HOLIDAY HUB · " + pName + " · 22 Oct]\nTask: " + (taskObj ? taskObj.text : cardId) + "\nUpdate: " + (noteText || "Marked complete / ready for review.");
-      copyText(snippet, "Copied update for ClickUp / Teams");
+      var finalNote = noteText || "Marked complete / ready for review.";
+      pushNewInboxMessage(pName, taskObj, finalNote);
+      var snippet = "[HOLIDAY HUB · " + pName + " · 22 Oct]\nTask: " + (taskObj ? taskObj.text : cardId) + "\nUpdate: " + finalNote;
+      copyText(snippet, "Posted to Inbox & copied for ClickUp / Teams");
       return;
     }
 
@@ -1426,8 +1817,9 @@
     var selId = document.getElementById("updateTaskSelect").value;
     var taskObj = TASKS.find(function(t) { return t.id === selId; });
     var note = document.getElementById("updateNoteInput").value.trim() || "Ready for review.";
+    pushNewInboxMessage(p.name, taskObj, note);
     var snippet = "[HOLIDAY HUB · " + p.name + " · 22 Oct]\nTask: " + (taskObj ? taskObj.text : selId) + "\nUpdate: " + note;
-    copyText(snippet, "Copied update for ClickUp / Teams");
+    copyText(snippet, "Posted to Inbox & copied for ClickUp / Teams");
   });
 
   render();
