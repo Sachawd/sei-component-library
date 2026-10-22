@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holiday Pop-Up Zeta Email Preview &amp; Code</title>
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --card: #ffffff;
+    --ink: #151515;
+    --muted: #5c5a55;
+    --rule: #dcd7cc;
+    --accent: #d8ff57;
+    --forest: #1e2d24;
+    --gold: #b08d57;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    border-bottom: 3px solid var(--accent);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .top-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .code-input {
+    padding: 6px 10px;
+    background: #262626;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    font: 700 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    width: 110px;
+    text-transform: uppercase;
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .tab-btn {
+    padding: 9px 16px;
+    background: #262626;
+    color: #fff;
+    border: 1px solid #555;
+    font: 700 12px/1 Arial, sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+  .workspace {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 24px 28px 60px;
+    display: grid;
+    grid-template-columns: 640px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  @media (max-width: 1180px) {
+    .workspace {
+      grid-template-columns: 1fr;
+    }
+  }
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 22px;
+  }
+  .panel-right {
+    position: sticky;
+    top: 76px;
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .panel-title {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 9px;
+    background: var(--forest);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  #preview-frame {
+    width: 100%;
+    height: 1480px;
+    border: 1px solid var(--rule);
+    background: #e5e2da;
+    display: block;
+  }
+  .copy-primary {
+    width: 100%;
+    padding: 15px 20px;
+    background: var(--accent);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    font: 700 13px/1 Arial, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .copy-secondary {
+    padding: 9px 14px;
+    background: var(--ink);
+    color: #fff;
+    border: 1px solid var(--ink);
+    font: 700 11px/1 Arial, sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  pre.code-box {
+    background: #181818;
+    color: #f0ece1;
+    padding: 16px;
+    font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+    height: 440px;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    border: 1px solid var(--ink);
+    margin: 0 0 18px;
+  }
+  .notes-box {
+    background: #f8f6f0;
+    border-left: 4px solid var(--forest);
+    padding: 14px 18px;
+    font-size: 13.5px;
+  }
+  .notes-box h3 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--forest);
+  }
+  .notes-box ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .notes-box li {
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="top-title">
+    <span>Holiday Pop-Up Zeta Email Test</span>
+    <label for="promo-input" style="font-size:11px; color:#b08d57;">Promo Code:</label>
+    <input id="promo-input" class="code-input" type="text" value="XXXXX" oninput="renderActive()" />
+  </div>
+  <div class="tabs">
+    <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:#b08d57; font-weight:700; margin-right:4px;">Select Club:</span>
+    <button type="button" class="tab-btn active" data-club="beach" onclick="selectClub('beach', this)">Beach FC (#5638232)</button>
+    <button type="button" class="tab-btn" data-club="htx" onclick="selectClub('htx', this)">HTX Soccer (#2004213190)</button>
+    <button type="button" class="tab-btn" data-club="phx" onclick="selectClub('phx', this)">Phoenix Rising (#2002779944)</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <!-- LEFT: LIVE 600PX EMAIL PREVIEW -->
+  <section class="panel">
+    <div class="panel-header">
+      <h2 class="panel-title" id="left-title">Live 600px Email Preview: Beach FC</h2>
+      <span class="badge" id="code-badge">USE CODE: XXXXX</span>
+    </div>
+    <iframe id="preview-frame" title="Live 600px Email Preview"></iframe>
+  </section>
+
+  <!-- RIGHT: COPY CODE + SHORT NOTES FOR BROCK -->
+  <section class="panel panel-right">
+    <div class="panel-header">
+      <h2 class="panel-title" id="right-title">Email-Compliant HTML Code: Beach FC</h2>
+      <button type="button" class="copy-secondary" onclick="copyCsv(this)">Copy Zeta CSV</button>
+    </div>
+
+    <button type="button" class="copy-primary" id="main-copy-btn" onclick="copyCurrentHtml(this)">
+      Copy Beach FC Email HTML
+    </button>
+
+    <pre class="code-box" id="code-display"></pre>
+
+    <div class="notes-box">
+      <h3>Quick Notes for Brock</h3>
+      <ul>
+        <li><strong>Club Hero Photos Added:</strong> Each club email now uses its own club hero image at the top (Beach FC, HTX Soccer, and Phoenix Rising).</li>
+        <li><strong>100% Hosted HTTPS Images (Zero Base64):</strong> Every image (club hero photo, club crest, pine garland background, model card, and 4 product tiles) uses a live HTTPS URL so Zeta renders all images immediately.</li>
+        <li><strong>Promo Code Ready:</strong> Use the Promo Code box in the top bar (or open with the URL parameter) so the HTML and CSV copy with the active promo code.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<script>
+const CLUBS_TEMPLATE = {
+  beach: {
+    name: "Beach FC",
+    html: "<!DOCTYPE html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"x-apple-disable-message-reformatting\">\n<title>Your Beach FC Holiday Store Is Open</title>\n<!--[if mso]>\n<noscript>\n  <xml>\n    <o:OfficeDocumentSettings>\n      <o:PixelsPerInch>96</o:PixelsPerInch>\n    </o:OfficeDocumentSettings>\n  </xml>\n</noscript>\n<![endif]-->\n</head>\n<body style=\"margin:0; padding:0; width:100% !important; background-color:#e5e2da; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;\">\n<!-- Hidden Preheader Text -->\n<div style=\"display:none; font-size:1px; line-height:1px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; mso-hide:all; font-family:Arial, sans-serif;\">\n  The official Soccer.com Beach FC holiday store is open with 25% off top gifts.\n</div>\n\n<!-- Full-Width Email Wrapper Table -->\n<table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#e5e2da\" style=\"background-color:#e5e2da;\">\n  <tr>\n    <td align=\"center\" valign=\"top\" style=\"padding:24px 10px;\">\n\n      <!-- 600px Master Email Container -->\n      <table role=\"presentation\" width=\"600\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#f0ece1\" style=\"width:600px; max-width:600px; background-color:#f0ece1;\">\n\n        <!-- 01. TOP BAR (#151515 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#151515\" style=\"background-color:#151515; padding:14px 20px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; line-height:14px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#ffffff;\">\n            SOCCER.COM &nbsp;&middot;&nbsp; OFFICIAL CLUB HOLIDAY POP-UP SHOP\n          </td>\n        </tr>\n\n        <!-- 02. SHARED PHOTO HERO (STATIC NCFC HOLIDAY PHOTO - ZETA DOES NOT SWAP) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; padding:0; line-height:0; font-size:0;\">\n            <a href=\"https://ncfc-holiday-demo.netlify.app/beach-fc/\" target=\"_blank\" style=\"text-decoration:none; display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/beach.jpg\" alt=\"Official Club Holiday Pop-Up Shop\" width=\"600\" style=\"width:600px; max-width:100%; height:auto; display:block; border:0;\" />\n            </a>\n          </td>\n        </tr>\n\n        <!-- 03. MARQUEE BAR (#1A2C20 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1a2c20\" style=\"background-color:#1a2c20; padding:12px 10px; border-top:1px solid #2b4032; border-bottom:1px solid #2b4032; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; line-height:15px; letter-spacing:0.9px; text-transform:uppercase; color:#d8d3c5; white-space:nowrap; overflow:hidden;\">\n            25% OFF TOP GIFTS WITH CODE: <strong style=\"color:#ffffff;\">XXXXX</strong> &nbsp;&nbsp;&#9733;&nbsp;&nbsp; 25% OFF TOP GIFTS WITH CODE: <strong style=\"color:#ffffff;\">XXXXX</strong>\n          </td>\n        </tr>\n\n        <!-- 04. CLUB HERO BLOCK (#1E2D24 - SWAPPED AS 2X JPG IN ZETA VIA {{club_hero_image_url}} OR HTML) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; padding:44px 40px 52px 40px; text-align:center;\">\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <!-- Club Crest -->\n              <tr>\n                <td align=\"center\" style=\"padding-bottom:16px;\">\n                  <img id=\"pv-logo\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/logo-beach-fc.png\" alt=\"Beach FC Crest\" width=\"76\" style=\"width:76px; height:auto; display:block; margin:0 auto; border:0;\" />\n                </td>\n              </tr>\n              <!-- Eyebrow -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:9.5px; line-height:14px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#d8d3c5; padding-bottom:12px;\">\n                  OFFICIAL HOLIDAY POP-UP SHOP\n                </td>\n              </tr>\n              <!-- Bold Sans Headline -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:36px; line-height:41px; font-weight:800; letter-spacing:-0.5px; color:#ffffff; padding-bottom:18px;\">\n                  The holidays came early<br>for <span id=\"pv-club-1\">Beach FC</span>!\n                </td>\n              </tr>\n              <!-- Gold Rule (#B08D57) -->\n              <tr>\n                <td align=\"center\" style=\"padding-bottom:18px;\">\n                  <table role=\"presentation\" width=\"44\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"2\" bgcolor=\"#b08d57\" style=\"background-color:#b08d57; height:2px; line-height:2px; font-size:2px;\">&nbsp;</td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n              <!-- Body Copy -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#c9c5bc; padding:0 24px;\">\n                  The official Soccer.com <span id=\"pv-club-2\">Beach FC</span> holiday store is open with 25%<br>off top gifts.\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- 05. OFFER BOX SECTION OVER PINE GARLAND TEXTURED BACKGROUND -->\n        <tr>\n          <td align=\"center\" valign=\"top\" bgcolor=\"#cec9b8\" background=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg\" style=\"background-color:#cec9b8; background-image:url('https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg'); background-size:cover; background-position:top center; background-repeat:no-repeat; padding:74px 48px 46px 48px;\">\n            <!--[if gte mso 9]>\n            <v:rect xmlns:v=\"urn:schemas-microsoft-com:vml\" fill=\"true\" stroke=\"false\" style=\"width:600px;height:560px;\">\n              <v:fill type=\"frame\" src=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg\" color=\"#cec9b8\" />\n              <v:textbox inset=\"0,0,0,0\">\n            <![endif]-->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <!-- Frosted Cream Offer Card -->\n              <tr>\n                <td align=\"center\" bgcolor=\"#dcd8ca\" style=\"background-color:#dcd8ca; border:1px solid #c2bca9; border-radius:12px; padding:38px 32px 34px 32px; text-align:center;\">\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:72px; line-height:72px; font-weight:800; letter-spacing:-2px; color:#1e2d24;\">\n                    25% OFF\n                  </div>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:30px; font-weight:bold; color:#1e2d24; padding-top:6px; padding-bottom:20px;\">\n                    Top Gifts\n                  </div>\n                  <!-- Dashed Code Pill -->\n                  <table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" style=\"margin:0 auto;\">\n                    <tr>\n                      <td align=\"center\" style=\"border:1.5px dashed #7a7669; border-radius:4px; padding:12px 28px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; line-height:18px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#1e2d24;\">\n                        USE CODE: XXXXX\n                      </td>\n                    </tr>\n                  </table>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; color:#5c5a55; padding-top:14px;\">\n                    Apply at checkout. Select items only. Exclusions apply.\n                  </div>\n                </td>\n              </tr>\n              <!-- Spacer -->\n              <tr>\n                <td height=\"24\" style=\"height:24px; line-height:24px; font-size:24px;\">&nbsp;</td>\n              </tr>\n              <!-- Dark Evergreen Primary CTA Button -->\n              <tr>\n                <td align=\"center\">\n                  <table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">\n                    <tr>\n                      <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; border-radius:4px;\">\n                        <a href=\"https://ncfc-holiday-demo.netlify.app/beach-fc/\" target=\"_blank\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11.5px; line-height:15px; font-weight:bold; letter-spacing:1.4px; text-transform:uppercase; color:#ffffff; text-decoration:none; padding:16px 32px; display:inline-block;\">\n                          SHOP YOUR HOLIDAY STORE &nbsp;&rarr;\n                        </a>\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n            <!--[if gte mso 9]>\n              </v:textbox>\n            </v:rect>\n            <![endif]-->\n          </td>\n        </tr>\n\n        <!-- 06. PRODUCT GRID SECTION (#F0ECE1 - SWAPPED AS 2X JPG IN ZETA VIA {{product_grid_image_url}}) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#f0ece1\" style=\"background-color:#f0ece1; padding:24px 20px 32px 20px;\">\n            <!-- Top Row: 2 Tall Model Cards (Club Model + Generic Model) -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <!-- Left: Club Model Card -->\n                <td width=\"272\" valign=\"bottom\" align=\"center\" bgcolor=\"#ddd6c6\" style=\"width:272px; height:340px; background-color:#ddd6c6; padding:0; overflow:hidden;\">\n                  <img id=\"pv-model\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/model-beach-fc.png\" alt=\"Beach FC Adult Club Model\" width=\"272\" style=\"width:272px; height:340px; object-fit:cover; object-position:top center; display:block; border:0;\" />\n                </td>\n                <td width=\"16\" style=\"width:16px;\">&nbsp;</td>\n                <!-- Right: Generic Model Card -->\n                <td width=\"272\" valign=\"middle\" align=\"center\" bgcolor=\"#ddd6c6\" style=\"width:272px; height:340px; background-color:#ddd6c6; padding:24px;\">\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; font-weight:bold; letter-spacing:0.6px; text-transform:uppercase; color:#151515; padding-bottom:4px;\">\n                    GENERIC MODEL\n                  </div>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; color:#3d3b37;\">\n                    Black, unbranded photography. Use for any youth<br>item.\n                  </div>\n                </td>\n              </tr>\n            </table>\n\n            <!-- Spacer between 2-up models and 4-up product tiles -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <td height=\"16\" style=\"height:16px; line-height:16px; font-size:16px;\">&nbsp;</td>\n              </tr>\n            </table>\n\n            <!-- Bottom Row: 4 Product Cards -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <!-- Tile 1 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-1-img\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/flat-beach-fleece-crew.png\" alt=\"Club Fleece\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-1-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        adidas Fleece Crew\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 2 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-2-img\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/flat-beach-tiro-top.png\" alt=\"Club 1/4 Zip\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-2-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        Tiro 25 1/4-Zip Top\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 3 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-3-img\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/flat-beach-pregame-tee.png\" alt=\"Training Top\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-3-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        Pregame Tee\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 4 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-4-img\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/flat-shared-training-pant.png\" alt=\"Training Pant\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-4-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        Squadra Training Pant\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- 07. FOOTER (#151515 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#151515\" style=\"background-color:#151515; padding:26px 28px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:18px; color:#9e9b93;\">\n            Sent by Soccer.com &middot; Official Team Store Partner of <span id=\"pv-club-3\">Beach FC</span><br>\n            431 US Hwy 70A East, Hillsborough, NC 27278<br>\n            <span style=\"color:#ffffff; font-weight:bold;\">Unsubscribe</span> &nbsp;&middot;&nbsp; <span style=\"color:#ffffff; font-weight:bold;\">Manage preferences</span>\n          </td>\n        </tr>\n\n      </table>\n      <!-- End 600px Master Email Container -->\n\n    </td>\n  </tr>\n</table>\n\n</body>\n</html>\n"
+  },
+  htx: {
+    name: "HTX Soccer",
+    html: "<!DOCTYPE html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"x-apple-disable-message-reformatting\">\n<title>Your HTX Soccer Holiday Store Is Open</title>\n<!--[if mso]>\n<noscript>\n  <xml>\n    <o:OfficeDocumentSettings>\n      <o:PixelsPerInch>96</o:PixelsPerInch>\n    </o:OfficeDocumentSettings>\n  </xml>\n</noscript>\n<![endif]-->\n</head>\n<body style=\"margin:0; padding:0; width:100% !important; background-color:#e5e2da; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;\">\n<!-- Hidden Preheader Text -->\n<div style=\"display:none; font-size:1px; line-height:1px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; mso-hide:all; font-family:Arial, sans-serif;\">\n  The official Soccer.com HTX Soccer holiday store is open with 25% off top gifts.\n</div>\n\n<!-- Full-Width Email Wrapper Table -->\n<table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#e5e2da\" style=\"background-color:#e5e2da;\">\n  <tr>\n    <td align=\"center\" valign=\"top\" style=\"padding:24px 10px;\">\n\n      <!-- 600px Master Email Container -->\n      <table role=\"presentation\" width=\"600\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#f0ece1\" style=\"width:600px; max-width:600px; background-color:#f0ece1;\">\n\n        <!-- 01. TOP BAR (#151515 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#151515\" style=\"background-color:#151515; padding:14px 20px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; line-height:14px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#ffffff;\">\n            SOCCER.COM &nbsp;&middot;&nbsp; OFFICIAL CLUB HOLIDAY POP-UP SHOP\n          </td>\n        </tr>\n\n        <!-- 02. SHARED PHOTO HERO (STATIC NCFC HOLIDAY PHOTO - ZETA DOES NOT SWAP) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; padding:0; line-height:0; font-size:0;\">\n            <a href=\"https://ncfc-holiday-demo.netlify.app/htx-soccer/\" target=\"_blank\" style=\"text-decoration:none; display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/htx.jpg\" alt=\"Official Club Holiday Pop-Up Shop\" width=\"600\" style=\"width:600px; max-width:100%; height:auto; display:block; border:0;\" />\n            </a>\n          </td>\n        </tr>\n\n        <!-- 03. MARQUEE BAR (#1A2C20 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1a2c20\" style=\"background-color:#1a2c20; padding:12px 10px; border-top:1px solid #2b4032; border-bottom:1px solid #2b4032; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; line-height:15px; letter-spacing:0.9px; text-transform:uppercase; color:#d8d3c5; white-space:nowrap; overflow:hidden;\">\n            25% OFF TOP GIFTS WITH CODE: <strong style=\"color:#ffffff;\">XXXXX</strong> &nbsp;&nbsp;&#9733;&nbsp;&nbsp; 25% OFF TOP GIFTS WITH CODE: <strong style=\"color:#ffffff;\">XXXXX</strong>\n          </td>\n        </tr>\n\n        <!-- 04. CLUB HERO BLOCK (#1E2D24 - SWAPPED AS 2X JPG IN ZETA VIA {{club_hero_image_url}} OR HTML) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; padding:44px 40px 52px 40px; text-align:center;\">\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <!-- Club Crest -->\n              <tr>\n                <td align=\"center\" style=\"padding-bottom:16px;\">\n                  <img id=\"pv-logo\" src=\"https://ncfc-holiday-demo.netlify.app/htx-soccer/images/logo-htx-soccer.png\" alt=\"HTX Soccer Crest\" width=\"76\" style=\"width:76px; height:auto; display:block; margin:0 auto; border:0;\" />\n                </td>\n              </tr>\n              <!-- Eyebrow -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:9.5px; line-height:14px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#d8d3c5; padding-bottom:12px;\">\n                  OFFICIAL HOLIDAY POP-UP SHOP\n                </td>\n              </tr>\n              <!-- Bold Sans Headline -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:36px; line-height:41px; font-weight:800; letter-spacing:-0.5px; color:#ffffff; padding-bottom:18px;\">\n                  The holidays came early<br>for <span id=\"pv-club-1\">HTX Soccer</span>!\n                </td>\n              </tr>\n              <!-- Gold Rule (#B08D57) -->\n              <tr>\n                <td align=\"center\" style=\"padding-bottom:18px;\">\n                  <table role=\"presentation\" width=\"44\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"2\" bgcolor=\"#b08d57\" style=\"background-color:#b08d57; height:2px; line-height:2px; font-size:2px;\">&nbsp;</td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n              <!-- Body Copy -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#c9c5bc; padding:0 24px;\">\n                  The official Soccer.com <span id=\"pv-club-2\">HTX Soccer</span> holiday store is open with 25%<br>off top gifts.\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- 05. OFFER BOX SECTION OVER PINE GARLAND TEXTURED BACKGROUND -->\n        <tr>\n          <td align=\"center\" valign=\"top\" bgcolor=\"#cec9b8\" background=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg\" style=\"background-color:#cec9b8; background-image:url('https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg'); background-size:cover; background-position:top center; background-repeat:no-repeat; padding:74px 48px 46px 48px;\">\n            <!--[if gte mso 9]>\n            <v:rect xmlns:v=\"urn:schemas-microsoft-com:vml\" fill=\"true\" stroke=\"false\" style=\"width:600px;height:560px;\">\n              <v:fill type=\"frame\" src=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg\" color=\"#cec9b8\" />\n              <v:textbox inset=\"0,0,0,0\">\n            <![endif]-->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <!-- Frosted Cream Offer Card -->\n              <tr>\n                <td align=\"center\" bgcolor=\"#dcd8ca\" style=\"background-color:#dcd8ca; border:1px solid #c2bca9; border-radius:12px; padding:38px 32px 34px 32px; text-align:center;\">\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:72px; line-height:72px; font-weight:800; letter-spacing:-2px; color:#1e2d24;\">\n                    25% OFF\n                  </div>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:30px; font-weight:bold; color:#1e2d24; padding-top:6px; padding-bottom:20px;\">\n                    Top Gifts\n                  </div>\n                  <!-- Dashed Code Pill -->\n                  <table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" style=\"margin:0 auto;\">\n                    <tr>\n                      <td align=\"center\" style=\"border:1.5px dashed #7a7669; border-radius:4px; padding:12px 28px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; line-height:18px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#1e2d24;\">\n                        USE CODE: XXXXX\n                      </td>\n                    </tr>\n                  </table>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; color:#5c5a55; padding-top:14px;\">\n                    Apply at checkout. Select items only. Exclusions apply.\n                  </div>\n                </td>\n              </tr>\n              <!-- Spacer -->\n              <tr>\n                <td height=\"24\" style=\"height:24px; line-height:24px; font-size:24px;\">&nbsp;</td>\n              </tr>\n              <!-- Dark Evergreen Primary CTA Button -->\n              <tr>\n                <td align=\"center\">\n                  <table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">\n                    <tr>\n                      <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; border-radius:4px;\">\n                        <a href=\"https://ncfc-holiday-demo.netlify.app/htx-soccer/\" target=\"_blank\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11.5px; line-height:15px; font-weight:bold; letter-spacing:1.4px; text-transform:uppercase; color:#ffffff; text-decoration:none; padding:16px 32px; display:inline-block;\">\n                          SHOP YOUR HOLIDAY STORE &nbsp;&rarr;\n                        </a>\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n            <!--[if gte mso 9]>\n              </v:textbox>\n            </v:rect>\n            <![endif]-->\n          </td>\n        </tr>\n\n        <!-- 06. PRODUCT GRID SECTION (#F0ECE1 - SWAPPED AS 2X JPG IN ZETA VIA {{product_grid_image_url}}) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#f0ece1\" style=\"background-color:#f0ece1; padding:24px 20px 32px 20px;\">\n            <!-- Top Row: 2 Tall Model Cards (Club Model + Generic Model) -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <!-- Left: Club Model Card -->\n                <td width=\"272\" valign=\"bottom\" align=\"center\" bgcolor=\"#ddd6c6\" style=\"width:272px; height:340px; background-color:#ddd6c6; padding:0; overflow:hidden;\">\n                  <img id=\"pv-model\" src=\"https://ncfc-holiday-demo.netlify.app/htx-soccer/images/model-htx-soccer.png\" alt=\"HTX Soccer Adult Club Model\" width=\"272\" style=\"width:272px; height:340px; object-fit:cover; object-position:top center; display:block; border:0;\" />\n                </td>\n                <td width=\"16\" style=\"width:16px;\">&nbsp;</td>\n                <!-- Right: Generic Model Card -->\n                <td width=\"272\" valign=\"middle\" align=\"center\" bgcolor=\"#ddd6c6\" style=\"width:272px; height:340px; background-color:#ddd6c6; padding:24px;\">\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; font-weight:bold; letter-spacing:0.6px; text-transform:uppercase; color:#151515; padding-bottom:4px;\">\n                    GENERIC MODEL\n                  </div>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; color:#3d3b37;\">\n                    Black, unbranded photography. Use for any youth<br>item.\n                  </div>\n                </td>\n              </tr>\n            </table>\n\n            <!-- Spacer between 2-up models and 4-up product tiles -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <td height=\"16\" style=\"height:16px; line-height:16px; font-size:16px;\">&nbsp;</td>\n              </tr>\n            </table>\n\n            <!-- Bottom Row: 4 Product Cards -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <!-- Tile 1 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-1-img\" src=\"https://ncfc-holiday-demo.netlify.app/htx-soccer/images/flat-htx-grey-hoodie.png\" alt=\"Club Fleece\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-1-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        HTX Grey Fleece\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 2 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-2-img\" src=\"https://ncfc-holiday-demo.netlify.app/htx-soccer/images/flat-htx-fleece-crew.png\" alt=\"Club 1/4 Zip\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-2-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        HTX Black Fleece Crew\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 3 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-3-img\" src=\"https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=600&h=600&img=A1120727000&c=100\" alt=\"Training Top\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-3-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        HTX White Top\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 4 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-4-img\" src=\"https://ncfc-holiday-demo.netlify.app/beach-fc/images/flat-shared-training-pant.png\" alt=\"Training Pant\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-4-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        Training Pant\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- 07. FOOTER (#151515 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#151515\" style=\"background-color:#151515; padding:26px 28px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:18px; color:#9e9b93;\">\n            Sent by Soccer.com &middot; Official Team Store Partner of <span id=\"pv-club-3\">HTX Soccer</span><br>\n            431 US Hwy 70A East, Hillsborough, NC 27278<br>\n            <span style=\"color:#ffffff; font-weight:bold;\">Unsubscribe</span> &nbsp;&middot;&nbsp; <span style=\"color:#ffffff; font-weight:bold;\">Manage preferences</span>\n          </td>\n        </tr>\n\n      </table>\n      <!-- End 600px Master Email Container -->\n\n    </td>\n  </tr>\n</table>\n\n</body>\n</html>\n"
+  },
+  phx: {
+    name: "Phoenix Rising",
+    html: "<!DOCTYPE html>\n<html lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<meta name=\"x-apple-disable-message-reformatting\">\n<title>Your Phoenix Rising Holiday Store Is Open</title>\n<!--[if mso]>\n<noscript>\n  <xml>\n    <o:OfficeDocumentSettings>\n      <o:PixelsPerInch>96</o:PixelsPerInch>\n    </o:OfficeDocumentSettings>\n  </xml>\n</noscript>\n<![endif]-->\n</head>\n<body style=\"margin:0; padding:0; width:100% !important; background-color:#e5e2da; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;\">\n<!-- Hidden Preheader Text -->\n<div style=\"display:none; font-size:1px; line-height:1px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; mso-hide:all; font-family:Arial, sans-serif;\">\n  The official Soccer.com Phoenix Rising holiday store is open with 25% off top gifts.\n</div>\n\n<!-- Full-Width Email Wrapper Table -->\n<table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#e5e2da\" style=\"background-color:#e5e2da;\">\n  <tr>\n    <td align=\"center\" valign=\"top\" style=\"padding:24px 10px;\">\n\n      <!-- 600px Master Email Container -->\n      <table role=\"presentation\" width=\"600\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#f0ece1\" style=\"width:600px; max-width:600px; background-color:#f0ece1;\">\n\n        <!-- 01. TOP BAR (#151515 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#151515\" style=\"background-color:#151515; padding:14px 20px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10px; line-height:14px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#ffffff;\">\n            SOCCER.COM &nbsp;&middot;&nbsp; OFFICIAL CLUB HOLIDAY POP-UP SHOP\n          </td>\n        </tr>\n\n        <!-- 02. SHARED PHOTO HERO (STATIC NCFC HOLIDAY PHOTO - ZETA DOES NOT SWAP) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; padding:0; line-height:0; font-size:0;\">\n            <a href=\"https://ncfc-holiday-demo.netlify.app/phoenix-rising/\" target=\"_blank\" style=\"text-decoration:none; display:block;\">\n              <img src=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/arizona.jpg\" alt=\"Official Club Holiday Pop-Up Shop\" width=\"600\" style=\"width:600px; max-width:100%; height:auto; display:block; border:0;\" />\n            </a>\n          </td>\n        </tr>\n\n        <!-- 03. MARQUEE BAR (#1A2C20 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1a2c20\" style=\"background-color:#1a2c20; padding:12px 10px; border-top:1px solid #2b4032; border-bottom:1px solid #2b4032; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; line-height:15px; letter-spacing:0.9px; text-transform:uppercase; color:#d8d3c5; white-space:nowrap; overflow:hidden;\">\n            25% OFF TOP GIFTS WITH CODE: <strong style=\"color:#ffffff;\">XXXXX</strong> &nbsp;&nbsp;&#9733;&nbsp;&nbsp; 25% OFF TOP GIFTS WITH CODE: <strong style=\"color:#ffffff;\">XXXXX</strong>\n          </td>\n        </tr>\n\n        <!-- 04. CLUB HERO BLOCK (#1E2D24 - SWAPPED AS 2X JPG IN ZETA VIA {{club_hero_image_url}} OR HTML) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; padding:44px 40px 52px 40px; text-align:center;\">\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <!-- Club Crest -->\n              <tr>\n                <td align=\"center\" style=\"padding-bottom:16px;\">\n                  <img id=\"pv-logo\" src=\"https://ncfc-holiday-demo.netlify.app/phoenix-rising/images/logo-phoenix-rising.png\" alt=\"Phoenix Rising Crest\" width=\"76\" style=\"width:76px; height:auto; display:block; margin:0 auto; border:0;\" />\n                </td>\n              </tr>\n              <!-- Eyebrow -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:9.5px; line-height:14px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#d8d3c5; padding-bottom:12px;\">\n                  OFFICIAL HOLIDAY POP-UP SHOP\n                </td>\n              </tr>\n              <!-- Bold Sans Headline -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:36px; line-height:41px; font-weight:800; letter-spacing:-0.5px; color:#ffffff; padding-bottom:18px;\">\n                  The holidays came early<br>for <span id=\"pv-club-1\">Phoenix Rising</span>!\n                </td>\n              </tr>\n              <!-- Gold Rule (#B08D57) -->\n              <tr>\n                <td align=\"center\" style=\"padding-bottom:18px;\">\n                  <table role=\"presentation\" width=\"44\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"2\" bgcolor=\"#b08d57\" style=\"background-color:#b08d57; height:2px; line-height:2px; font-size:2px;\">&nbsp;</td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n              <!-- Body Copy -->\n              <tr>\n                <td align=\"center\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; line-height:21px; color:#c9c5bc; padding:0 24px;\">\n                  The official Soccer.com <span id=\"pv-club-2\">Phoenix Rising</span> holiday store is open with 25%<br>off top gifts.\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- 05. OFFER BOX SECTION OVER PINE GARLAND TEXTURED BACKGROUND -->\n        <tr>\n          <td align=\"center\" valign=\"top\" bgcolor=\"#cec9b8\" background=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg\" style=\"background-color:#cec9b8; background-image:url('https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg'); background-size:cover; background-position:top center; background-repeat:no-repeat; padding:74px 48px 46px 48px;\">\n            <!--[if gte mso 9]>\n            <v:rect xmlns:v=\"urn:schemas-microsoft-com:vml\" fill=\"true\" stroke=\"false\" style=\"width:600px;height:560px;\">\n              <v:fill type=\"frame\" src=\"https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/pine-garland-card-bg.jpg\" color=\"#cec9b8\" />\n              <v:textbox inset=\"0,0,0,0\">\n            <![endif]-->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <!-- Frosted Cream Offer Card -->\n              <tr>\n                <td align=\"center\" bgcolor=\"#dcd8ca\" style=\"background-color:#dcd8ca; border:1px solid #c2bca9; border-radius:12px; padding:38px 32px 34px 32px; text-align:center;\">\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:72px; line-height:72px; font-weight:800; letter-spacing:-2px; color:#1e2d24;\">\n                    25% OFF\n                  </div>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:30px; font-weight:bold; color:#1e2d24; padding-top:6px; padding-bottom:20px;\">\n                    Top Gifts\n                  </div>\n                  <!-- Dashed Code Pill -->\n                  <table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" style=\"margin:0 auto;\">\n                    <tr>\n                      <td align=\"center\" style=\"border:1.5px dashed #7a7669; border-radius:4px; padding:12px 28px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px; line-height:18px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#1e2d24;\">\n                        USE CODE: XXXXX\n                      </td>\n                    </tr>\n                  </table>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; color:#5c5a55; padding-top:14px;\">\n                    Apply at checkout. Select items only. Exclusions apply.\n                  </div>\n                </td>\n              </tr>\n              <!-- Spacer -->\n              <tr>\n                <td height=\"24\" style=\"height:24px; line-height:24px; font-size:24px;\">&nbsp;</td>\n              </tr>\n              <!-- Dark Evergreen Primary CTA Button -->\n              <tr>\n                <td align=\"center\">\n                  <table role=\"presentation\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\">\n                    <tr>\n                      <td align=\"center\" bgcolor=\"#1e2d24\" style=\"background-color:#1e2d24; border-radius:4px;\">\n                        <a href=\"https://ncfc-holiday-demo.netlify.app/phoenix-rising/\" target=\"_blank\" style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11.5px; line-height:15px; font-weight:bold; letter-spacing:1.4px; text-transform:uppercase; color:#ffffff; text-decoration:none; padding:16px 32px; display:inline-block;\">\n                          SHOP YOUR HOLIDAY STORE &nbsp;&rarr;\n                        </a>\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n            <!--[if gte mso 9]>\n              </v:textbox>\n            </v:rect>\n            <![endif]-->\n          </td>\n        </tr>\n\n        <!-- 06. PRODUCT GRID SECTION (#F0ECE1 - SWAPPED AS 2X JPG IN ZETA VIA {{product_grid_image_url}}) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#f0ece1\" style=\"background-color:#f0ece1; padding:24px 20px 32px 20px;\">\n            <!-- Top Row: 2 Tall Model Cards (Club Model + Generic Model) -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <!-- Left: Club Model Card -->\n                <td width=\"272\" valign=\"bottom\" align=\"center\" bgcolor=\"#ddd6c6\" style=\"width:272px; height:340px; background-color:#ddd6c6; padding:0; overflow:hidden;\">\n                  <img id=\"pv-model\" src=\"https://ncfc-holiday-demo.netlify.app/phoenix-rising/images/model-phoenix-rising.png\" alt=\"Phoenix Rising Adult Club Model\" width=\"272\" style=\"width:272px; height:340px; object-fit:cover; object-position:top center; display:block; border:0;\" />\n                </td>\n                <td width=\"16\" style=\"width:16px;\">&nbsp;</td>\n                <!-- Right: Generic Model Card -->\n                <td width=\"272\" valign=\"middle\" align=\"center\" bgcolor=\"#ddd6c6\" style=\"width:272px; height:340px; background-color:#ddd6c6; padding:24px;\">\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; font-weight:bold; letter-spacing:0.6px; text-transform:uppercase; color:#151515; padding-bottom:4px;\">\n                    GENERIC MODEL\n                  </div>\n                  <div style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:15px; color:#3d3b37;\">\n                    Black, unbranded photography. Use for any youth<br>item.\n                  </div>\n                </td>\n              </tr>\n            </table>\n\n            <!-- Spacer between 2-up models and 4-up product tiles -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <td height=\"16\" style=\"height:16px; line-height:16px; font-size:16px;\">&nbsp;</td>\n              </tr>\n            </table>\n\n            <!-- Bottom Row: 4 Product Cards -->\n            <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n              <tr>\n                <!-- Tile 1 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-1-img\" src=\"https://ncfc-holiday-demo.netlify.app/phoenix-rising/images/flat-phx-grey-hoodie.png\" alt=\"Club Fleece\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-1-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        PHX Grey Fleece\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 2 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-2-img\" src=\"https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=600&h=600&img=A1120727000&c=100\" alt=\"Club 1/4 Zip\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-2-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        PHX Pregame Tee\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 3 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-3-img\" src=\"https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=600&h=600&img=A1126454000&c=999\" alt=\"Training Top\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-3-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        Argentina Messi 26 Jersey\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n                <td width=\"12\" style=\"width:12px;\">&nbsp;</td>\n                <!-- Tile 4 -->\n                <td width=\"131\" valign=\"top\" align=\"center\">\n                  <table role=\"presentation\" width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n                    <tr>\n                      <td height=\"184\" align=\"center\" valign=\"middle\" bgcolor=\"#f9f7f3\" style=\"height:184px; background-color:#f9f7f3; padding:6px;\">\n                        <img id=\"pv-tile-4-img\" src=\"https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0062&w=600&h=600&img=A1119147000&c=999\" alt=\"Training Pant\" width=\"118\" style=\"max-width:118px; max-height:168px; object-fit:contain; display:block; border:0;\" />\n                      </td>\n                    </tr>\n                    <tr>\n                      <td id=\"pv-tile-4-label\" align=\"center\" style=\"padding-top:10px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px; font-weight:bold; color:#151515;\">\n                        World Cup 26 Trionda Ball\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n\n        <!-- 07. FOOTER (#151515 STATIC) -->\n        <tr>\n          <td align=\"center\" bgcolor=\"#151515\" style=\"background-color:#151515; padding:26px 28px; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:10.5px; line-height:18px; color:#9e9b93;\">\n            Sent by Soccer.com &middot; Official Team Store Partner of <span id=\"pv-club-3\">Phoenix Rising</span><br>\n            431 US Hwy 70A East, Hillsborough, NC 27278<br>\n            <span style=\"color:#ffffff; font-weight:bold;\">Unsubscribe</span> &nbsp;&middot;&nbsp; <span style=\"color:#ffffff; font-weight:bold;\">Manage preferences</span>\n          </td>\n        </tr>\n\n      </table>\n      <!-- End 600px Master Email Container -->\n\n    </td>\n  </tr>\n</table>\n\n</body>\n</html>\n"
+  }
+};
+
+const CSV_TEMPLATE = "parent_club_id,club_number,parent_club_name,brand_partner,promo_code,club_hero_image_url,product_grid_image_url,target_store_url\nBEACH_FC,5638232,Beach FC,adidas,XXXXX,https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/beach.jpg,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-grid-beach-fc.jpg,https://www.soccer.com/beach-fc-holiday-shop\nHTX_SC,2004213190,HTX Soccer,adidas,XXXXX,https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/htx.jpg,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-grid-htx.jpg,https://www.soccer.com/htx-holiday-shop\nPHX_RISING,2002779944,Phoenix Rising,adidas,XXXXX,https://sachawd.github.io/sei-component-library/holiday-popup-emails/assets/arizona.jpg,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-grid-phx-rising.jpg,https://www.soccer.com/phoenix-rising-holiday-shop\n";
+let activeKey = "beach";
+
+(function initFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const qCode = params.get("code");
+  if (qCode && qCode.trim()) {
+    document.getElementById("promo-input").value = qCode.trim().toUpperCase();
+  }
+})();
+
+function getPromoCode() {
+  const val = document.getElementById("promo-input").value.trim().toUpperCase();
+  return val || "XXXXX";
+}
+
+function getResolvedHtml(key) {
+  const code = getPromoCode();
+  return CLUBS_TEMPLATE[key].html.replace(/XXXXX/g, code);
+}
+
+function getResolvedCsv() {
+  const code = getPromoCode();
+  return CSV_TEMPLATE.replace(/XXXXX/g, code);
+}
+
+function selectClub(key, btnEl) {
+  activeKey = key;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  if (btnEl) btnEl.classList.add("active");
+  renderActive();
+}
+
+function renderActive() {
+  const club = CLUBS_TEMPLATE[activeKey];
+  const code = getPromoCode();
+  const resolvedHtml = getResolvedHtml(activeKey);
+
+  document.getElementById("left-title").textContent = "Live 600px Email Preview: " + club.name;
+  document.getElementById("right-title").textContent = "Email-Compliant HTML Code: " + club.name;
+  document.getElementById("code-badge").textContent = "USE CODE: " + code;
+  document.getElementById("main-copy-btn").textContent = "Copy " + club.name + " Email HTML (" + code + ")";
+  document.getElementById("code-display").textContent = resolvedHtml;
+
+  const frame = document.getElementById("preview-frame");
+  frame.srcdoc = resolvedHtml;
+}
+
+function copyCurrentHtml(btn) {
+  const club = CLUBS_TEMPLATE[activeKey];
+  const code = getPromoCode();
+  const orig = "Copy " + club.name + " Email HTML (" + code + ")";
+  navigator.clipboard.writeText(getResolvedHtml(activeKey)).then(() => {
+    btn.textContent = "Copied " + club.name + " HTML!";
+    setTimeout(() => { btn.textContent = orig; }, 1800);
+  });
+}
+
+function copyCsv(btn) {
+  const orig = "Copy Zeta CSV";
+  navigator.clipboard.writeText(getResolvedCsv()).then(() => {
+    btn.textContent = "Copied CSV!";
+    setTimeout(() => { btn.textContent = orig; }, 1800);
+  });
+}
+
+renderActive();
+</script>
+
+</body>
+</html>

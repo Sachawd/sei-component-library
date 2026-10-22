@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First 3 Holiday Pop-Up Stores · Gabby's TPS Data, Rickey's Model List &amp; Courtney's QA Brief</title>
+<style>
+:root {
+  --paper: #f6f5f1;
+  --tint: #e8e5dd;
+  --ink: #151515;
+  --muted: #5c5a55;
+  --rule: #c9c5bc;
+  --signal: #d8ff57;
+  --white: #ffffff;
+  --pass-bg: #e1f5ea;
+  --pass-ink: #0f5328;
+  --red-bg: #fde8e7;
+  --red-ink: #8f1d18;
+  --warn-bg: #fff4d6;
+  --warn-ink: #6e4b00;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+.slide {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 48px 56px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.slide.dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.eyebrow {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .eyebrow {
+  border-bottom-color: #383838;
+  color: #b8b5ad;
+}
+
+h1, h2, h3 {
+  margin: 14px 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+h1 { font-size: clamp(36px, 4.2vw, 56px); }
+h2 { font-size: clamp(26px, 2.8vw, 38px); }
+h3 { font-size: 22px; }
+
+.label {
+  display: inline-block;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  padding: 4px 9px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.dark .label {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.lede-list {
+  max-width: 68ch;
+  margin: 14px 0 0;
+  padding: 0 0 0 22px;
+  font-size: 19px;
+  line-height: 1.48;
+}
+
+.lede-list li { margin-bottom: 9px; }
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.box-card {
+  padding: 20px 22px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+}
+
+.dark .box-card {
+  background: #202020;
+  border-color: #383838;
+  border-top: 3px solid var(--signal);
+  color: var(--white);
+}
+
+.box-card .kicker {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .box-card .kicker { color: var(--signal); }
+
+.big-number {
+  display: block;
+  margin: 4px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 3.4vw, 48px);
+  line-height: 0.98;
+}
+
+.dark .big-number { color: var(--signal); }
+
+.callout {
+  padding: 18px 22px;
+  background: var(--tint);
+  border-left: 6px solid var(--ink);
+  margin: 18px 0;
+}
+
+.callout.alert {
+  background: var(--red-bg);
+  border-left-color: var(--red-ink);
+  color: var(--red-ink);
+}
+
+.callout ul, .box-card ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.callout li, .box-card li {
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+  background: var(--white);
+  font-size: 13.5px;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--ink);
+  color: var(--white);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  background: var(--tint);
+  padding: 2px 5px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.badge.logo { background: var(--pass-bg); color: var(--pass-ink); }
+.badge.plain { background: var(--tint); color: var(--ink); }
+.badge.flag { background: var(--red-bg); color: var(--red-ink); }
+
+.house-btn {
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--signal);
+  border: 2px solid var(--ink);
+  font: 700 11.5px/1 Arial, sans-serif;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<!-- Shared Package Navigation Bar -->
+<nav id="pkg-shared-nav" style="position:sticky; top:0; z-index:9999; background:#151515; color:#ffffff; padding:12px 24px; border-bottom:3px solid #d8ff57; display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-family:Arial, Helvetica, sans-serif;">
+  <strong style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#d8ff57; margin-right:8px;">Holiday Pop-Up Package:</strong>
+  <a href="00-Cover-Letter-and-Package-Hub.html" style="padding:8px 14px; background:#242424; color:#ffffff; border:1px solid #484848; font:700 11px/1 Arial, sans-serif; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; display:inline-block;">00 · Cover Letter & Hub</a><a href="01-Team-Sales-Holiday-PopUp-Master-Package.html" style="padding:8px 14px; background:#242424; color:#ffffff; border:1px solid #484848; font:700 11px/1 Arial, sans-serif; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; display:inline-block;">01 · Zeta Email Spec & Calendar</a><a href="02-First-3-Stores-SKUs-Logos-and-3-TPS-Fixes.html" style="padding:8px 14px; background:#d8ff57; color:#151515; border:1px solid #d8ff57; font:700 11px/1 Arial, sans-serif; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; display:inline-block;">02 · First 3 Stores, SKUs & 3 TPS Fixes</a><a href="03-zeta-master-email-template-preview.html" style="padding:8px 14px; background:#242424; color:#ffffff; border:1px solid #484848; font:700 11px/1 Arial, sans-serif; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; display:inline-block;">03 · Standalone 600px Email Preview</a>
+  <a href="07-Brock-Zeta-Email-Preview-and-Code.html" style="padding:8px 14px; background:#d8ff57; color:#151515; border:1px solid #d8ff57; font:700 11px/1 Arial, sans-serif; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; display:inline-block;">07 · Clean Side-by-Side Email Preview &amp; Copy</a>
+</nav>
+
+
+<section class="slide dark">
+  <div class="eyebrow">
+    <span>Holiday Pop-Up Shops · Pilot 3 TPS Contracts Decoded</span>
+    <span>Beach FC · HTX Soccer · Phoenix Rising · 22 October 2026</span>
+  </div>
+  <span class="label">Gabby's TPS Export Decoded</span>
+  <h1>First 3 Pop-Up Stores: SKUs, Logo IDs, Rickey's Model List &amp; Courtney's QA</h1>
+  <ul class="lede-list">
+    <li>All 3 pilot stores (Beach FC, HTX, Phoenix Rising) are <strong>adidas contracts</strong> running <strong>10/09/2026 – 12/31/2026</strong>.</li>
+    <li>Because all 3 share the same core adidas blanks (<code>A1120727</code> Tee, <code>A1120199</code> Crew, <code>A1120251</code> Hoodie), Rickey only needs a tiny set of base model shots.</li>
+    <li>We caught <strong>3 TPS data bugs in Gabby's CSVs</strong> (cleat sizing set to ball sizes <code>4, 5</code>, an expired ball validity date, and HTX rebate pushing uncustomized items above retail) to flag right now.</li>
+  </ul>
+
+  <div class="grid4">
+    <div class="box-card">
+      <span class="kicker">Beach FC (adidas)</span>
+      <span class="big-number">5638232</span>
+      <p>19 Products (8 Crested · 11 Uncrested) · 14% Rebate.</p>
+    </div>
+    <div class="box-card">
+      <span class="kicker">HTX Soccer (adidas)</span>
+      <span class="big-number">2004213190</span>
+      <p>16 Products (9 Crested · 7 Uncrested) · 20% Rebate.</p>
+    </div>
+    <div class="box-card">
+      <span class="kicker">Phoenix Rising (adidas)</span>
+      <span class="big-number">2002779944</span>
+      <p>13 Products (4 Crested · 9 Uncrested) · 10% Rebate.</p>
+    </div>
+    <div class="box-card">
+      <span class="kicker">TPS Bugs Caught</span>
+      <span class="big-number">3 Fixes</span>
+      <p>Cleat sizes <code>4, 5</code> · Ball expired <code>07/30/26</code> · HTX price &gt; retail.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01: 3 TPS DATA BUGS TO FLAG FOR GABBY, DARREN & COURTNEY -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>01 · Immediate TPS Contract Catches</span>
+    <span>Send to Gabby &amp; Darren + Courtney QA</span>
+  </div>
+  <h2>3 TPS contract bugs we just caught in the CSV</h2>
+
+  <div class="callout alert">
+    <strong>Why checking the raw CSV saved us before launch:</strong>
+    <ul>
+      <li><strong>Bug 1 — Cleats &amp; Indoor Shoes have Soccer Ball sizes (<code>"4, 5"</code>) in all 3 stores:</strong> Items <code>A1133352</code> (F50 Hyperfast Pro FG), <code>A1133371</code> (Predator Pro FT FG), and <code>A1133375</code> (Predator League IN) have <code>Sizing: "4, 5"</code> copied from the Trionda Soccer Ball row above them.</li>
+      <li><strong>Bug 2 — World Cup Trionda Ball (<code>A1119147</code>) validity date expired on <code>07/30/26</code>:</strong> In all 3 contracts, <code>A1119147</code> lists <code>Product Validity: 10/06/25 - 07/30/26</code>, which is already in the past and may hide the ball on the store.</li>
+      <li><strong>Bug 3 — HTX 20% Rebate pushes uncustomized items above Soccer.com Retail Price:</strong> Because HTX has a <code>0.20</code> rebate added to the 15% discounted club price, uncustomized items in HTX list a Total Price higher than Retail (e.g., Argentina Jersey <code>A1126454</code> is <code>$99.99</code> retail, but <code>$101.99</code> Total Price in HTX; Predator Pro <code>A1133371</code> is <code>$169.99</code> retail, but <code>$173.38</code> in HTX).</li>
+    </ul>
+  </div>
+
+  <button type="button" class="house-btn" id="copy-gabby-btn">Copy Note to Gabby &amp; Darren (3 TPS Fixes)</button>
+  <pre id="gabby-note" style="display:none;">Hi Gabby and Darren — thank you so much for sending the Beach FC (5638232), HTX (2004213190), and Phoenix Rising (2002779944) holiday contract CSVs!
+
+While setting up the pages and Courtney's QA checklist, we spotted 3 quick data items in the CSVs to check in TPS:
+• Cleat & Indoor Shoe Sizing ("4, 5"): On all 3 contracts, A1133352 (F50 Hyperfast FG), A1133371 (Predator Pro FG), and A1133375 (Predator League IN) list Sizing as "4, 5" (copied from the soccer ball row above them).
+• Trionda Ball (A1119147) Expired Validity Date: On all 3 contracts, the World Cup Trionda Ball lists Product Validity as "10/06/25 - 07/30/26" — does that end date need to be extended to 12/31/26 so it displays on the site?
+• HTX Uncustomized Prices Above Retail: Because HTX has a 20% rebate on top of the 15% discount, uncustomized items (Socks, Argentina Jersey $101.99 vs $99.99 retail, Cleats $173.38 vs $169.99 retail) are pricing slightly above retail — is that part of the price adjustment you and Darren are running?</pre>
+</section>
+
+<!-- SECTION 02: RICKEY'S FIGMA MODEL GENERATION LIST -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>02 · Rickey's Figma Virtual Try-On List</span>
+    <span>Only adult logoed tops need club model generation</span>
+  </div>
+  <h2>What Rickey actually needs to generate for the First 3 Stores</h2>
+
+  <div class="grid3">
+    <div class="box-card">
+      <span class="kicker">Store 01 · Club #5638232</span>
+      <h3>Beach FC (adidas)</h3>
+      <ul>
+        <li><strong>Hero Model 1 (Red Training Top):</strong> <code>A1109226</code> / <code>A1109240</code> adidas Tiro 25 Comp Training Top in <strong>RED</strong> + Logo <code>L1324755</code> (Upper Left Front).</li>
+        <li><strong>Hero Model 2 (Black Fleece Crew):</strong> <code>A1120199</code> adidas Fleece Crew in <strong>BLACK</strong> + Logo <code>L1348792</code> (Middle Center Front).</li>
+        <li><strong>Flat / Secondary (Black Tee &amp; White LS):</strong> <code>A1120727</code> Black Pregame Tee (<code>L0109824</code>) + <code>A1130339</code> White Fresh LS Tee (<code>L1382943</code>).</li>
+      </ul>
+    </div>
+    <div class="box-card">
+      <span class="kicker">Store 02 · Club #2004213190</span>
+      <h3>HTX Soccer (adidas)</h3>
+      <ul>
+        <li><strong>Hero Model 1 (Grey Fleece Hoodie):</strong> <code>A1120251</code> / <code>A1120267</code> adidas Fleece Hoodie in <strong>GREY</strong> + Logo <code>L1383635</code> (Upper Center Front).</li>
+        <li><strong>Hero Model 2 (Black Fleece Crew):</strong> <code>A1120199</code> adidas Fleece Crew in <strong>BLACK</strong> + Logo <code>L1383632</code> (Upper Center Front).</li>
+        <li><strong>Flat / Secondary (White Tee &amp; Grey Pant):</strong> <code>A1120727</code> White Pregame Tee (<code>L1382921</code>) + <code>A1120265</code> Grey Fleece Pant (<code>L1349508</code>).</li>
+      </ul>
+    </div>
+    <div class="box-card">
+      <span class="kicker">Store 03 · Club #2002779944</span>
+      <h3>Phoenix Rising (adidas)</h3>
+      <ul>
+        <li><strong>Hero Model 1 (Grey Full-Zip Hoodie):</strong> <code>A1120155</code> / <code>A1120167</code> adidas Game &amp; Go Full-Zip Hoodie in <strong>GREY</strong> + Logo <code>L1371127</code> (Upper Right Front).</li>
+        <li><strong>Hero Model 2 (White Pregame Tee):</strong> <code>A1120727</code> / <code>A1120731</code> adidas Pregame Tee in <strong>WHITE</strong> + Logo <code>L1386816</code> (Upper Center Front).</li>
+        <li><strong>Uncrested Pants:</strong> <code>A1126342</code> / <code>A1126343</code> Black/White Tiro 26 Training Pant (no logo).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: CLEAN DE-DUPED PRODUCT TABLE ACROSS ALL 3 STORES -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>03 · De-duped SKU &amp; Logo Map (Coach / Player / GK merged)</span>
+    <span>Exact data for the 1-Block Dynamic Grid &amp; Courtney's QA</span>
+  </div>
+  <h2>All unique items across Beach FC, HTX &amp; Phoenix Rising</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Club &amp; Contract #</th>
+        <th>SKU (Item #)</th>
+        <th>Product Description</th>
+        <th>Color &amp; Sizing</th>
+        <th>Logo ID &amp; Placement</th>
+        <th>Retail</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BEACH FC -->
+      <tr>
+        <td><strong>Beach FC</strong><br><code>5638232</code></td>
+        <td><code>A1109226</code><br><code>A1109240</code> (W)</td>
+        <td>adidas Tiro 25 Competition Training Top</td>
+        <td>RED<br>YXS-YXL, S-3XL / W: XS-2XL</td>
+        <td><span class="badge logo">L1324755</span><br>Upper Left Front (HP)</td>
+        <td>$64.99</td>
+        <td><strong>$68.22</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Beach FC</strong><br><code>5638232</code></td>
+        <td><code>A1120727</code><br><code>A1120731</code> (W)</td>
+        <td>adidas Pregame T-Shirt</td>
+        <td>BLACK<br>YXS-YXL, XS-4XL / W: XS-2XL</td>
+        <td><span class="badge logo">L0109824</span><br>Middle Center Front (HP)</td>
+        <td>$29.99</td>
+        <td><strong>$34.31</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Beach FC</strong><br><code>5638232</code></td>
+        <td><code>A1120199</code></td>
+        <td>adidas Fleece Crew</td>
+        <td>BLACK<br>Adult S-3XL / Youth YXS-YXL</td>
+        <td><span class="badge logo">L1348792</span><br>Middle Center Front (HP)</td>
+        <td>$44.99 (A)<br>$39.99 (Y)</td>
+        <td><strong>$48.84 (A)</strong><br><strong>$44.00 (Y)</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Beach FC</strong><br><code>5638232</code></td>
+        <td><code>A1130339</code><br><code>A1129090</code> (W)</td>
+        <td>adidas Fresh Long Sleeve T-Shirt 2.0</td>
+        <td>WHITE<br>S-3XL / W: XS-2XL</td>
+        <td><span class="badge logo">L1382943</span><br>Upper Center Front (HP)</td>
+        <td>$24.99</td>
+        <td><strong>$29.46</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Beach FC</strong><br><code>5638232</code></td>
+        <td><code>A1110794</code></td>
+        <td>adidas Stadium 4 Backpack</td>
+        <td>LIGHT GREY (One Size)</td>
+        <td><span class="badge logo">L0204666 + 2" Number</span><br>Middle Center Flap (EMB)</td>
+        <td>$64.99</td>
+        <td><strong>$79.47</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Beach FC</strong><br><code>5638232</code></td>
+        <td><code>A1109206</code> / <code>A1109212</code> (W)<br><code>A1109174</code> / <code>A1109182</code> (W)<br><code>A1092314</code></td>
+        <td>Tastigo 25 Short (Red) · Squadra 25 Training Pant (Black/White) · Copa OTC Socks (Light Grey)</td>
+        <td>Adult, Women's &amp; Youth Sizes</td>
+        <td><span class="badge plain">No Club Logo</span></td>
+        <td>$15.99 – $44.99</td>
+        <td><strong>$15.49 – $43.59</strong></td>
+      </tr>
+
+      <!-- HTX -->
+      <tr>
+        <td><strong>HTX Soccer</strong><br><code>2004213190</code></td>
+        <td><code>A1120251</code><br><code>A1120267</code> (W)</td>
+        <td>adidas Fleece Hoodie</td>
+        <td>GREY<br>YXS-YXL, XS-3XL / W: XS-2XL</td>
+        <td><span class="badge logo">L1383635</span><br>Upper Center Front (HP)</td>
+        <td>$44.99 (M/Y)<br>$49.99 (W)</td>
+        <td><strong>$51.14 (M/Y)</strong><br><strong>$56.24 (W)</strong></td>
+      </tr>
+      <tr>
+        <td><strong>HTX Soccer</strong><br><code>2004213190</code></td>
+        <td><code>A1120199</code></td>
+        <td>adidas Fleece Crew</td>
+        <td>BLACK<br>Adult S-3XL / Youth YXS-YXL</td>
+        <td><span class="badge logo">L1383632</span><br>Upper Center Front (HP)</td>
+        <td>$44.99 (A)<br>$39.99 (Y)</td>
+        <td><strong>$51.14 (A)</strong><br><strong>$46.04 (Y)</strong></td>
+      </tr>
+      <tr>
+        <td><strong>HTX Soccer</strong><br><code>2004213190</code></td>
+        <td><code>A1120727</code><br><code>A1120731</code> (W)</td>
+        <td>adidas Pregame T-Shirt</td>
+        <td>WHITE<br>YXS-YXL, XS-4XL / W: XS-2XL</td>
+        <td><span class="badge logo">L1382921</span><br>Upper Center Front (HP)</td>
+        <td>$29.99</td>
+        <td><strong>$35.84</strong></td>
+      </tr>
+      <tr>
+        <td><strong>HTX Soccer</strong><br><code>2004213190</code></td>
+        <td><code>A1120265</code><br><code>A1120269</code> (W)</td>
+        <td>adidas Fleece Pant</td>
+        <td>GREY<br>S-3XL, YXS-YXL / W: XS-2XL</td>
+        <td><span class="badge logo">L1349508</span><br>Upper Left Front (HP)</td>
+        <td>$49.99 (A/W)<br>$44.99 (Y)</td>
+        <td><strong>$56.24 (A/W)</strong><br><strong>$51.14 (Y)</strong></td>
+      </tr>
+      <tr>
+        <td><strong>HTX Soccer</strong><br><code>2004213190</code></td>
+        <td><code>A1109192</code><br><code>A1109200</code> (W)</td>
+        <td>adidas Squadra 25 Short</td>
+        <td>BLACK/WHITE<br>S-3XL, Y2XS-YXL / W: XS-2XL</td>
+        <td><span class="badge logo">L1349509</span><br>Lower Right Front (HP)</td>
+        <td>$24.99 (A/W)<br>$19.99 (Y)</td>
+        <td><strong>$30.74 (A/W)</strong><br><strong>$25.64 (Y)</strong></td>
+      </tr>
+
+      <!-- PHOENIX RISING -->
+      <tr>
+        <td><strong>Phoenix Rising</strong><br><code>2002779944</code></td>
+        <td><code>A1120155</code><br><code>A1120167</code> (W)</td>
+        <td>adidas Game &amp; Go Full Zip Hoodie</td>
+        <td>GREY<br>S-2XL / W: XS-2XL</td>
+        <td><span class="badge logo">L1371127</span><br>Upper Right Front (HP)</td>
+        <td>$64.99</td>
+        <td><strong>$66.01</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Phoenix Rising</strong><br><code>2002779944</code></td>
+        <td><code>A1120727</code><br><code>A1120731</code> (W)</td>
+        <td>adidas Pregame T-Shirt</td>
+        <td>WHITE<br>YXS-YXL, XS-4XL / W: XS-2XL</td>
+        <td><span class="badge logo">L1386816</span><br>Upper Center Front (HP)</td>
+        <td>$29.99</td>
+        <td><strong>$33.29</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Phoenix Rising</strong><br><code>2002779944</code></td>
+        <td><code>A1126342</code><br><code>A1126343</code> (W)<br><code>A1107744</code></td>
+        <td>Tiro 26 Training Pant (Black/White) · Crew Sock 3-Pack (White)</td>
+        <td>Adult, Women's &amp; Youth Sizes</td>
+        <td><span class="badge plain">No Club Logo</span></td>
+        <td>$15.99 – $49.99</td>
+        <td><strong>$14.95 – $46.74</strong></td>
+      </tr>
+
+      <!-- SHARED ACROSS ALL 3 -->
+      <tr>
+        <td><strong>All 3 Stores</strong><br>Shared Non-Logo Items</td>
+        <td><code>A1134350</code> / <code>A1134349</code><br><code>A1119147</code><br><code>A1126454</code><br><code>A1133352</code><br><code>A1133371</code><br><code>A1133375</code></td>
+        <td>adiFlex Shin Guard · World Cup 2026 Trionda Ball · Argentina 2026 Home Jersey · F50 Hyperfast Pro FG · Predator Pro FT FG · Predator League FT IN</td>
+        <td><span class="badge flag">QA Check:</span> Ball expired <code>07/30/26</code> &amp; Footwear sizes say <code>"4, 5"</code></td>
+        <td><span class="badge plain">No Club Logo</span></td>
+        <td>$11.99 – $169.99</td>
+        <td>Varies by club rebate (10% / 14% / 20%)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 04: COURTNEY QA BRIEF & TAMPA SUPER CUP HOST-CSS SHIELD -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>04 · Courtney QA Brief &amp; Tampa Super Cup Host-CSS Shield</span>
+    <span>Next Steps for Courtney + Host-CSS Bleed Protection Across All Stores</span>
+  </div>
+  <h2>Next Steps for Courtney &amp; Host-CSS Shield (Tampa Super Cup Fix)</h2>
+
+  <div class="grid3" style="margin-bottom:20px;">
+    <div class="box-card">
+      <span class="kicker">Step 01 · Product &amp; Logo QA</span>
+      <h3>Audit the 3 Pilot Stores</h3>
+      <p>Open Beach FC (<code>5638232</code>), HTX Soccer (<code>2004213190</code>), and Phoenix Rising (<code>2002779944</code>). Check every SKU and Club Logo ID against the table above and confirm whether clicking a tile opens a dead Quick View modal or a buyable PDP.</p>
+    </div>
+    <div class="box-card">
+      <span class="kicker">Step 02 · TPS Contract Bug Check</span>
+      <h3>Verify the 3 CSV Fixes</h3>
+      <p>Check whether adult footwear sizes appear on the 3 cleats (or if they still show soccer ball sizes <code>4, 5</code>), whether the Trionda Ball (<code>A1119147</code>) is hidden due to the expired <code>07/30/26</code> validity date, and record live vs retail prices on HTX.</p>
+    </div>
+    <div class="box-card">
+      <span class="kicker">Step 03 · Host-CSS Bleed QA</span>
+      <h3>Run the Tampa Super Cup CSS Check</h3>
+      <p>When a Fastr block sits on a live Soccer.com page, legacy <code>#body</code> styles try to leak in. Verify on Holiday Pop-Up, CFCS (Chicago Fire), and Goal Club stores that no bullets appear on nav pills, visited buttons stay styled, and headings keep their font size.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-bottom:18px;">
+    <strong>Why the Tampa Super Cup CSS Fix Must Apply to All Holiday Pop-Up, CFCS &amp; Goal Club Stores:</strong>
+    <ul>
+      <li>On live Soccer.com and WorldSoccerShop pages, legacy stylesheet rules use <code>#body h1..h6</code>, <code>#body p</code>, <code>#body ul li::before</code>, and <code>#body a:visited</code> (specificity <code>0,1,0,1</code>), which outrank single-class wrappers like <code>.gcd</code> or <code>.bfc</code> (specificity <code>0,0,1,0</code>).</li>
+      <li>Every Holiday Pop-Up, CFCS (Chicago Fire / Club Fanwear), and Goal Club Days Fastr block must use the <strong>Tampa Bay Super Cup 5-Part Host-CSS Shield</strong> below: doubled root ID selector (<code>#block-id#block-id</code>, specificity <code>0,2,0,0</code>) + scoped <code>:where(...)</code> element, list, link, button, and media resets.</li>
+    </ul>
+  </div>
+
+  <button type="button" class="house-btn" id="copy-courtney-btn" style="margin-bottom:14px; margin-right:10px;">Copy Developer-Filled QA Reply for Courtney</button>
+  <button type="button" class="house-btn secondary" id="copy-css-shield-btn" style="margin-bottom:14px;">Copy Tampa Super Cup Host-CSS Shield</button>
+
+  <pre id="courtney-note" style="background:var(--white); border:1px solid var(--rule); padding:18px; font:12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; white-space:pre-wrap; margin-bottom:16px;">Hi Courtney — thank you for this complete 4-part QA checklist! Here are the 3 pilot Holiday Pop-Up Stores with the Developer Answers pre-filled against your 4 sections so you can test right away:
+
+TEST HUB & 3 PILOT STORE LINKS (ONCE DEPLOYED):
+• All 3 Pilot Stores Hub: https://ncfc-holiday-demo.netlify.app/pilots/
+• Beach FC (Full Layout · Club/Contract #5638232 · 19 items, 8 crested): https://ncfc-holiday-demo.netlify.app/beach-fc/
+• HTX Soccer (Full Layout · Club/Contract #2004213190 · 16 items, 9 crested): https://ncfc-holiday-demo.netlify.app/htx-soccer/
+• Phoenix Rising (Compact Layout · Club/Contract #2002779944 · 13 items, 4 crested): https://ncfc-holiday-demo.netlify.app/phoenix-rising/
+
+1. LAYOUT, BREAKPOINTS (390 / 768 / 1440) & RESERVED HEIGHTS — DEVELOPER PRE-FILL:
+• Breakpoints & Sideways Scroll: Verified in headless Chromium at 390px, 768px, and 1440px — 0px horizontal overflow.
+• Store Variations: Beach FC and HTX use the Full Layout (Hero, Category Circles, Club Gear, Gift Finder with For Him / For Her / For Kids, Training Gear, Holiday Extras). Phoenix Rising uses the Compact Layout (4-card Club Spotlight + Training Gear + Holiday Extras) because its contract has only 2 crested styles.
+• Cabana & Campaign Palette Confirmed: Campaign colors sit in one block on #hps#hps (--paper:#F6F5F1, --paper-2:#F0ECE1, --ink:#151515, --green:#1E2D24, --gold:#B08D57) with DM Serif Display + Figtree.
+• Host-CSS Bleed Shield Applied: Uses the Tampa Bay Super Cup 5-part doubled-ID shield (#hps#hps + :where(...) resets) so Soccer.com #body styles cannot leak into headings, lists, buttons, or visited links.
+
+2. LINKS, NAVIGATION JUMPS & PRODUCT CARD CLICK-THROUGHS — DEVELOPER PRE-FILL:
+• Sticky Header Jumps: #hps#hps [id] sets scroll-margin-top: 72px so section jumps never hide under the sticky nav bar.
+• Product & Club Store Links: 47 of 48 contract rows are matched to their live Soccer.com PDP links from the Oct 19 Reflektion feed, and the header/footer club store links point to https://www.soccer.com/club/#/{Account}/fanwear?brand=adidas (target="_top").
+• Native DX Quick View vs PDP Check: On the live Beach FC page right now, clicking a native DX contract item opens a Quick View modal with no CTA button — please log that native DX widget behavior alongside our Fastr block click-through test.
+
+3. PROMO CODES, CART PRICING & CONTRACT ID PRODUCT PULLS — DEVELOPER PRE-FILL:
+• Master Promo Code Confirmed: XXXXX (25% off).
+• Contract Match: Every product and Total Price is pulled directly from Gabby's TPS contract spreadsheets (Beach FC 5638232 = 14% rebate; HTX 2004213190 = 20% rebate; Phoenix Rising 2002779944 = 10% rebate).
+• 3 TPS Contract Data Bugs Pre-Flagged for QA & TPS Team:
+  1) Footwear Sizing ("4, 5"): A1133352 (F50 FG), A1133371 (Predator Pro FG), and A1133375 (Predator IN) list Sizing as "4, 5" (copied from the soccer ball row above them).
+  2) Expired World Cup Trionda Ball (A1119147): Product Validity in all 3 contracts ended 07/30/26.
+  3) HTX Uncustomized Prices vs Retail: Because HTX has a 20% rebate added to the 15% club discount, uncustomized items (such as Argentina Jersey A1126454 at $101.99 vs $99.99 retail, and Predator Pro A1133371 at $173.38 vs $169.99 retail) list a Total Price slightly above retail.
+
+4. PAGE SPEED, ACCESSIBILITY & BROWSER/DEVICE CHECKS — DEVELOPER PRE-FILL:
+• Note on Image Loading (Eager by House Rule): Per our Fastr CMS house rule (ruled Oct 20), images inside fixed-height Fastr blocks intentionally use loading="eager" (never loading="lazy") with explicit width/height so images never pop in late or shift reserved heights. Please do not flag loading="eager" as a defect.
+• Heading Order, Focus & Reduced Motion: One H1 per store (.hps-hero__h1), 3px gold focus-visible outline (#B08D57), and no auto-playing motion loops.</pre>
+
+  <pre id="css-shield-note" style="background:#181818; color:#F6F5F1; border:1px solid #333; padding:18px; font:12px/1.48 ui-monospace, SFMono-Regular, Menlo, monospace; white-space:pre-wrap;">/* TAMPA SUPER CUP HOST-CSS SHIELD (22 Oct 2026)
+   Apply to every Holiday Pop-Up, CFCS (Chicago Fire / Club Fanwear), and Goal Club Days block.
+   Doubled ID (#popup-root#popup-root) gives (0,2,0,0) specificity to beat Soccer.com #body rules without !important. */
+
+#popup-root#popup-root {
+  position: relative; display: block; width: 100%; max-width: none;
+  margin: 0; padding: 0; border: 0; overflow: hidden;
+  font-size: 16px; font-weight: 400; font-style: normal; line-height: 1.4;
+  letter-spacing: normal; text-transform: none; -webkit-font-smoothing: antialiased;
+  text-align: left; box-sizing: border-box;
+}
+#popup-root#popup-root, #popup-root#popup-root *, #popup-root#popup-root *::before, #popup-root#popup-root *::after {
+  box-sizing: border-box;
+}
+#popup-root#popup-root :where(header,nav,section,footer,form,fieldset,legend,label,h1,h2,h3,h4,h5,h6,p,ul,ol,li,hr) {
+  margin: 0; padding: 0; border: 0; background: none; box-shadow: none;
+  font-family: inherit; font-size: inherit; font-weight: inherit; font-style: normal;
+  line-height: inherit; letter-spacing: normal; text-transform: none; color: inherit;
+}
+#popup-root#popup-root :where(ul,ol,li) { list-style: none; }
+#popup-root#popup-root :where(ul,ol,li)::before, #popup-root#popup-root :where(ul,ol,li)::after { content: none; }
+#popup-root#popup-root :where(img,video,svg) { display: block; max-width: none; margin: 0; padding: 0; border: 0; }
+#popup-root#popup-root :where(a,a:hover,a:focus,a:active,a:visited) {
+  color: inherit; text-decoration: none; background: none; font-family: inherit;
+}
+#popup-root#popup-root :where(button,button:hover,button:focus,button:active) {
+  -webkit-appearance: none; appearance: none; margin: 0; padding: 0; border: 0; border-radius: 0;
+  background: none; box-shadow: none; font: inherit; color: inherit;
+  letter-spacing: inherit; text-transform: none; cursor: pointer;
+}</pre>
+</section>
+
+<script>
+document.getElementById('copy-gabby-btn').addEventListener('click', (e) => {
+  navigator.clipboard.writeText(document.getElementById('gabby-note').textContent).then(() => {
+    e.target.textContent = 'Copied Note to Gabby & Darren!';
+    setTimeout(() => { e.target.textContent = 'Copy Note to Gabby & Darren (3 TPS Fixes)'; }, 1800);
+  });
+});
+
+document.getElementById('copy-courtney-btn').addEventListener('click', (e) => {
+  navigator.clipboard.writeText(document.getElementById('courtney-note').textContent).then(() => {
+    e.target.textContent = 'Copied Courtney QA Brief!';
+    setTimeout(() => { e.target.textContent = 'Copy Courtney QA Brief'; }, 1800);
+  });
+});
+
+document.getElementById('copy-css-shield-btn').addEventListener('click', (e) => {
+  navigator.clipboard.writeText(document.getElementById('css-shield-note').textContent).then(() => {
+    e.target.textContent = 'Copied Tampa Host-CSS Shield!';
+    setTimeout(() => { e.target.textContent = 'Copy Tampa Super Cup Host-CSS Shield'; }, 1800);
+  });
+});
+</script>
+
+</body>
+</html>

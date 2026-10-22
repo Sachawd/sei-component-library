@@ -1,0 +1,4 @@
+parent_club_id,club_number,parent_club_name,brand_partner,promo_code,club_hero_image_url,product_grid_image_url,target_store_url
+BEACH_FC,5638232,Beach FC,adidas,XXXXX,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-hero-1a-beach-fc.jpg,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-grid-beach-fc.jpg,https://www.soccer.com/beach-fc-holiday-shop
+HTX_SC,2004213190,HTX Soccer,adidas,XXXXX,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-hero-1a-htx.jpg,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-grid-htx.jpg,https://www.soccer.com/htx-holiday-shop
+PHX_RISING,2002779944,Phoenix Rising,adidas,XXXXX,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-hero-1a-phx-rising.jpg,https://www.imagehandler.net/dxassets/?img=Photos/popup-26-grid-phx-rising.jpg,https://www.soccer.com/phoenix-rising-holiday-shop
