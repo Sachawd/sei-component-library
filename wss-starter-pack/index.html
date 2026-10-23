@@ -349,21 +349,83 @@ h3 {
   overflow-y: auto;
 }
 
-.vimeo-wrap {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%;
-  background: #000000;
-  border: 1px solid var(--rule);
-  margin-top: 10px;
+.video-launch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding: 14px 16px;
+  background: #151515;
+  color: #ffffff;
+  border: 1px solid #151515;
+  text-decoration: none;
+  transition: background 0.15s ease;
 }
 
-.vimeo-wrap iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.video-launch-card:hover {
+  background: #2b2b2b;
+}
+
+.video-launch-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.play-circle {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.video-launch-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.video-launch-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.video-launch-sub {
+  font-size: 11.5px;
+  color: #cfcfcf;
+}
+
+.chapter-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.chapter-pill {
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+.chapter-pill strong {
+  display: block;
+  margin-bottom: 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--muted);
 }
 
 @media (max-width: 960px) {
@@ -446,19 +508,31 @@ h3 {
   </div>
   <div class="content">
     <h2>1. Watch the edited workshop clips anytime.</h2>
-    <p class="section-intro">We trimmed Friday's 73-minute recording down to the exact step-by-step demos so you can replay any step in 3 to 6 minutes.</p>
+    <p class="section-intro">We trimmed Friday's 73-minute recording down to the exact step-by-step demos. Click any card below to open that video directly on Vimeo.</p>
 
     <div class="box-card" style="margin-bottom: 20px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
         <div>
-          <span class="kicker">Master Highlight Reel &middot; 23m 56s</span>
-          <h3 style="margin-bottom: 4px;">Full 5-Step Walkthrough (Stitched Highlight Reel)</h3>
-          <p style="margin: 0;">00:00 Step 1 Figma &amp; Annotations &middot; 03:59 Step 2 Code Library, Photo Sizer &amp; Tunnel V2 &middot; 09:12 Step 3 AI Prompt &amp; Reserved Heights &middot; 15:36 Step 4 PageSpeed &amp; Jam &middot; 19:54 Step 5 ClickUp &amp; Code Share.</p>
+          <span class="kicker">Master Highlight Reel &middot; 23 Mins 56 Secs</span>
+          <h3 style="margin-bottom: 4px;">00. Complete 5-Step Fastr Coding Walkthrough (Full Reel)</h3>
+          <p style="margin: 0;">All five steps stitched in order with zero side chatter. Watch from start to finish or jump to any chapter timestamp below.</p>
         </div>
-        <a class="action-link" href="https://vimeo.com/1238938862/3d23afdc54" target="_blank" rel="noopener">Open Full Reel on Vimeo &nearr;</a>
+        <a class="video-launch-card" style="margin-top: 0; min-width: 260px;" href="https://vimeo.com/1238938862/3d23afdc54" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Play Full Reel on Vimeo &nearr;</span>
+              <span class="video-launch-sub">Duration: 23m 56s</span>
+            </span>
+          </span>
+        </a>
       </div>
-      <div class="vimeo-wrap" style="max-width: 760px; padding-top: 36%;">
-        <iframe src="https://player.vimeo.com/video/1238938862?h=3d23afdc54&amp;badge=0&amp;autopause=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Full Workshop Highlight Reel"></iframe>
+      <div class="chapter-strip">
+        <div class="chapter-pill"><strong>00:00 &middot; Step 1</strong>Figma Auto Layout &amp; Annotations</div>
+        <div class="chapter-pill"><strong>03:59 &middot; Step 2</strong>Code Library, Photo Sizer &amp; Tunnel</div>
+        <div class="chapter-pill"><strong>09:12 &middot; Step 3</strong>AI Prompt &amp; Fastr Reserved Heights</div>
+        <div class="chapter-pill"><strong>15:36 &middot; Step 4</strong>PageSpeed, Jam.dev &amp; ADA Contrast</div>
+        <div class="chapter-pill"><strong>19:54 &middot; Step 5</strong>ClickUp Intake, Box &amp; Code Share</div>
       </div>
     </div>
 
@@ -466,77 +540,95 @@ h3 {
       <div class="box-card">
         <span class="kicker">Clip 01 &middot; 3m 59s</span>
         <h3>1. Figma Auto Layout, Code Blocks &amp; Annotations</h3>
-        <p>Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations for your AI agent.</p>
-        <div class="vimeo-wrap">
-          <iframe src="https://player.vimeo.com/video/1238938857?h=a3c5285707&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 01 Figma Auto Layout"></iframe>
-        </div>
-        <div class="link-bar">
-          <a class="action-link secondary" href="https://vimeo.com/1238938857/a3c5285707" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
-        </div>
+        <p>Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations so your AI agent reads notes straight from your frame.</p>
+        <a class="video-launch-card" href="https://vimeo.com/1238938857/a3c5285707" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Watch Clip 01 on Vimeo &nearr;</span>
+              <span class="video-launch-sub">3 mins 59 secs</span>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="box-card">
         <span class="kicker">Clip 02 &middot; 5m 13s</span>
         <h3>2. Code Library, Photo Sizer &amp; Tunnel V2</h3>
-        <p>Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying CDN URLs from Tunnel V2.</p>
-        <div class="vimeo-wrap">
-          <iframe src="https://player.vimeo.com/video/1238938861?h=dfce103722&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 02 Code Library and Photo Sizer"></iframe>
-        </div>
-        <div class="link-bar">
-          <a class="action-link secondary" href="https://vimeo.com/1238938861/dfce103722" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
-        </div>
+        <p>Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying verified CDN URLs from Tunnel V2.</p>
+        <a class="video-launch-card" href="https://vimeo.com/1238938861/dfce103722" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Watch Clip 02 on Vimeo &nearr;</span>
+              <span class="video-launch-sub">5 mins 13 secs</span>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="box-card">
         <span class="kicker">Clip 03 &middot; 6m 24s</span>
         <h3>3. AI Prompt, Code Editor &amp; Reserved Heights</h3>
-        <p>Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr's 3 Reserved Heights.</p>
-        <div class="vimeo-wrap">
-          <iframe src="https://player.vimeo.com/video/1238938860?h=b1ded6c0a0&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 03 AI Prompt and Code Editor"></iframe>
-        </div>
-        <div class="link-bar">
-          <a class="action-link secondary" href="https://vimeo.com/1238938860/b1ded6c0a0" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
-        </div>
+        <p>Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr's 3 Reserved Heights + Reserves space tab.</p>
+        <a class="video-launch-card" href="https://vimeo.com/1238938860/b1ded6c0a0" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Watch Clip 03 on Vimeo &nearr;</span>
+              <span class="video-launch-sub">6 mins 24 secs</span>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="box-card">
         <span class="kicker">Clip 04 &middot; 4m 18s</span>
         <h3>4. Testing: PageSpeed, Jam &amp; ADA Contrast</h3>
-        <p>Running before-and-after PageSpeed checks, recording mobile + desktop Jam videos, and catching ADA contrast issues.</p>
-        <div class="vimeo-wrap">
-          <iframe src="https://player.vimeo.com/video/1238938935?h=b3dfba5e0f&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 04 Testing PageSpeed and Contrast"></iframe>
-        </div>
-        <div class="link-bar">
-          <a class="action-link secondary" href="https://vimeo.com/1238938935/b3dfba5e0f" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
-        </div>
+        <p>Running before-and-after PageSpeed checks, recording mobile + desktop Jam videos, and catching ADA contrast and storefront font bugs.</p>
+        <a class="video-launch-card" href="https://vimeo.com/1238938935/b3dfba5e0f" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Watch Clip 04 on Vimeo &nearr;</span>
+              <span class="video-launch-sub">4 mins 18 secs</span>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="box-card">
         <span class="kicker">Clip 05 &middot; 4m 02s</span>
         <h3>5. ClickUp Intake, Box &amp; Code Share</h3>
-        <p>Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing via Code Share.</p>
-        <div class="vimeo-wrap">
-          <iframe src="https://player.vimeo.com/video/1238939053?h=46d10487e0&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 05 ClickUp Intake and Code Share"></iframe>
-        </div>
-        <div class="link-bar">
-          <a class="action-link secondary" href="https://vimeo.com/1238939053/46d10487e0" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
-        </div>
+        <p>Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing clean HTML via Code Share.</p>
+        <a class="video-launch-card" href="https://vimeo.com/1238939053/46d10487e0" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Watch Clip 05 on Vimeo &nearr;</span>
+              <span class="video-launch-sub">4 mins 02 secs</span>
+            </span>
+          </span>
+        </a>
       </div>
 
       <div class="box-card">
         <span class="kicker">Clip 06 (Bonus) &middot; 2m 48s</span>
         <h3>6. Bonus: Chrome-to-Figma Auto Layout Capture</h3>
-        <p>Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for "Let's Build It".</p>
-        <div class="vimeo-wrap">
-          <iframe src="https://player.vimeo.com/video/1238939112?h=64ba03df58&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 06 Chrome to Figma"></iframe>
-        </div>
-        <div class="link-bar">
-          <a class="action-link secondary" href="https://vimeo.com/1238939112/64ba03df58" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
-        </div>
+        <p>Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for our "Let's Build It" page.</p>
+        <a class="video-launch-card" href="https://vimeo.com/1238939112/64ba03df58" target="_blank" rel="noopener">
+          <span class="video-launch-left">
+            <span class="play-circle" aria-hidden="true">&#9654;</span>
+            <span class="video-launch-meta">
+              <span class="video-launch-title">Watch Clip 06 on Vimeo &nearr;</span>
+              <span class="video-launch-sub">2 mins 48 secs</span>
+            </span>
+          </span>
+        </a>
       </div>
     </div>
   </div>
-  <p class="note">All 7 videos are also linked inside the full 6-Step Designer Guide on the next page.</p>
+  <p class="note">All 7 video cards open directly on Vimeo in a new tab.</p>
 </section>
 
 <!-- SLIDE 3: ALL 12 TOOLS & LINKS IN ONE PLACE -->
