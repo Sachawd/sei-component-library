@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorldSoccerShop Designer Starter Package: Alex &amp; Holly</title>
+<style>
+:root {
+  --ink: #151515;
+  --paper: #f6f5f1;
+  --white: #ffffff;
+  --muted: #5c5a55;
+  --rule: #cecac1;
+  --tint: #e8e5dd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding-top: 54px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.deckbar {
+  position: fixed;
+  z-index: 20;
+  inset: 0 0 auto;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+  background: #151515;
+  color: #ffffff;
+  border-bottom: 1px solid #333333;
+}
+
+.deckbar button,
+.deckbar select {
+  height: 32px;
+  border-radius: 0;
+  font: 600 12px/1 Arial, sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.deckbar button {
+  padding: 0 12px;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #151515;
+}
+
+.deckbar button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.deckbar select {
+  max-width: 48vw;
+  padding: 0 10px;
+  border: 1px solid #777777;
+  background: #151515;
+  color: #ffffff;
+}
+
+.count {
+  margin-left: auto;
+  color: #d6d6d6;
+  font-size: 12px;
+}
+
+.slide {
+  min-height: calc(100vh - 54px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 7vw 26px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.dark {
+  background: #151515;
+  color: #ffffff;
+  border-color: #151515;
+}
+
+.eyebrow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid currentColor;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dark .eyebrow {
+  color: #e7e7e7;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 26px 0 20px;
+  max-width: 1220px;
+}
+
+.note {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.dark .note {
+  border-color: #555555;
+  color: #c8c8c8;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  max-width: 18ch;
+  font-size: clamp(40px, 4.8vw, 70px);
+}
+
+h2 {
+  max-width: 26ch;
+  margin-bottom: 14px;
+  font-size: clamp(30px, 3.5vw, 48px);
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.22;
+}
+
+.label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .label {
+  color: #c5c5c5;
+}
+
+.lede {
+  max-width: 62ch;
+  margin: 18px 0 28px;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.45;
+}
+
+.section-intro {
+  max-width: 68ch;
+  margin: 0 0 22px;
+  font-size: 17px;
+  line-height: 1.48;
+  color: var(--ink);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.box-card {
+  padding: 20px 22px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .box-card {
+  background: #202020;
+  border-color: #383838;
+  border-top: 3px solid #ffffff;
+  color: #ffffff;
+}
+
+.box-card .kicker {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .box-card .kicker {
+  color: #d6d6d6;
+}
+
+.box-card p,
+.box-card li {
+  font-size: 15px;
+  line-height: 1.42;
+}
+
+.box-card p {
+  margin: 0 0 10px;
+}
+
+.box-card p:last-child {
+  margin-bottom: 0;
+}
+
+.kv-list {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.kv-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.kv-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.kv-list strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.callout {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: var(--tint);
+  border-left: 6px solid var(--ink);
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+
+.dark .callout {
+  background: #202020;
+  color: #ffffff;
+  border: 1px solid #383838;
+  border-left: 6px solid #ffffff;
+}
+
+.link-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.action-link,
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--ink);
+  color: var(--white);
+  border: 1px solid var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.action-link.secondary {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.dark .action-link {
+  background: #ffffff;
+  color: #151515;
+  border-color: #ffffff;
+}
+
+.prompt-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+@media (max-width: 960px) {
+  .slide {
+    padding: 28px 22px 20px;
+  }
+  .grid2,
+  .grid3,
+  .grid4 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media print {
+  .deckbar {
+    display: none;
+  }
+  body {
+    padding-top: 0;
+  }
+  html {
+    scroll-snap-type: none;
+  }
+  .slide {
+    min-height: 100vh;
+    page-break-after: always;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="deckbar" aria-label="Slide navigation">
+  <button id="prev" type="button">&larr; Back</button>
+  <button id="next" type="button">Next &rarr;</button>
+  <select id="jump" aria-label="Jump to section"></select>
+  <span id="count" class="count">Page 1 of 4</span>
+</nav>
+
+<!-- SLIDE 1: STARTER PACKAGE COVER & FIRST 2 PILOTS -->
+<section class="slide dark">
+  <div class="eyebrow">
+    <span>01 &middot; WorldSoccerShop Starter Package</span>
+    <span>For Alex &amp; Holly &middot; 23 Oct 2026</span>
+  </div>
+  <div class="content">
+    <p class="label">Everything from Friday Morning's Call in One Place</p>
+    <h1>Your Fastr CMS &amp; AI coding starter package.</h1>
+    <p class="lede">
+      Thank you both for being the first pilots on this workflow. Everything we walked through on Friday morning is linked in this 4-page kit: all your tools, the fresh AI reset prompt, how to annotate in Figma, and your first practice builds.
+    </p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Pilot Build 01 &middot; Alex</span>
+        <h3>WorldSoccerShop Shop by Club section</h3>
+        <p>Take the lingering Shop by Club section, lay it out in Figma with Auto Layout and annotations, adapt the verified code block with Claude, and test on your Fastr test page.</p>
+      </div>
+      <div class="box-card">
+        <span class="kicker">Pilot Build 02 &middot; Holly</span>
+        <h3>Premier League Shop by Club logo rail</h3>
+        <p>Take the Champions League Shop by Club logo rail from the Code Library, swap in the Premier League clubs and Link Book URLs, and test on your Fastr test page.</p>
+      </div>
+      <div class="box-card">
+        <span class="kicker">How We Improve This Together</span>
+        <h3>Log any hiccups in a Markdown note</h3>
+        <p>Tell your AI agent: "If anything in this process is unclear or breaks, write a short Markdown note for Sacha so she can fix the workflow." Or just text Sacha anytime.</p>
+      </div>
+    </div>
+  </div>
+  <p class="note">Use Left and Right arrow keys or the top bar to view your All-Links Bookmark Bar (Page 2), Fresh AI Prompt (Page 3), and 5-Step Checklist (Page 4).</p>
+</section>
+
+<!-- SLIDE 2: ALL 12 TOOLS & LINKS IN ONE PLACE -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>02 &middot; Your Daily Toolkit</span>
+    <span>Bookmark These 12 Links</span>
+  </div>
+  <div class="content">
+    <h2>1. Every link we covered on the call.</h2>
+    <p class="section-intro">Open and bookmark these four groups of tools before starting your first practice build.</p>
+
+    <div class="grid4">
+      <div class="box-card">
+        <span class="kicker">Group A &middot; Code &amp; Guides</span>
+        <h3>Library &amp; Docs</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>SE Code Library</strong>
+            Preview blocks at Desktop, Tablet, and Phone widths and download starting HTML.
+          </li>
+          <li>
+            <strong>Read-Only GitHub Repo</strong>
+            Clone or pull the latest verified blocks in GitHub Desktop (read-only; never push).
+          </li>
+          <li>
+            <strong>Full 6-Step Guide &amp; Workshop</strong>
+            Step-by-step handbook and Friday's 6-slide workshop deck.
+          </li>
+        </ul>
+        <div class="link-bar">
+          <a class="action-link" href="https://sachawd.github.io/sei-component-library/" target="_blank" rel="noopener">Code Library &nearr;</a>
+          <a class="action-link secondary" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">GitHub Repo &nearr;</a>
+          <a class="action-link secondary" href="https://sachawd.github.io/sei-component-library/workshop/" target="_blank" rel="noopener">Workshop Deck &nearr;</a>
+          <a class="action-link secondary" href="designer-guide.html" target="_blank" rel="noopener">6-Step Guide &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Group B &middot; Photos &amp; Assets</span>
+        <h3>Tunnel V2 &amp; Sizer</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>The Tunnel V2</strong>
+            Select verified store photos, copy CDN URLs, or grab product picks.
+          </li>
+          <li>
+            <strong>Photo Sizer</strong>
+            Crop at 2x (300 KB hero / 200 KB rest) and export 480, 960, and full widths.
+          </li>
+          <li>
+            <strong>Box UX Folder &amp; Helper Plugin</strong>
+            Contains SITE-LINKS (the Link Book), universal AI rules, and the Claude helper plugin.
+          </li>
+        </ul>
+        <div class="link-bar">
+          <a class="action-link" href="https://the-tunnel.netlify.app/v2/index.html" target="_blank" rel="noopener">Tunnel V2 &nearr;</a>
+          <a class="action-link secondary" href="https://sachawd.github.io/sei-component-library/photo-sizer/index.html?block=flipbook-hero-sale" target="_blank" rel="noopener">Photo Sizer &nearr;</a>
+          <a class="action-link secondary" href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Box Folder &nearr;</a>
+          <a class="action-link secondary" href="https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" target="_blank" rel="noopener">Claude Plugin &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Group C &middot; Build &amp; Test</span>
+        <h3>Fastr, Speed &amp; Jam</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>Fastr CMS Workspace</strong>
+            Paste into your test page, enter the 3 heights, and copy the Reserves space tab.
+          </li>
+          <li>
+            <strong>PageSpeed Insights</strong>
+            Run before and after speed checks on desktop and mobile.
+          </li>
+          <li>
+            <strong>Jam.dev &amp; Responsively</strong>
+            Check all 5 widths (360 to 1440) and record desktop + phone walkthroughs.
+          </li>
+        </ul>
+        <div class="link-bar">
+          <a class="action-link" href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Fastr CMS &nearr;</a>
+          <a class="action-link secondary" href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed &nearr;</a>
+          <a class="action-link secondary" href="https://jam.dev/" target="_blank" rel="noopener">Jam.dev &nearr;</a>
+          <a class="action-link secondary" href="https://responsively.app/" target="_blank" rel="noopener">Responsively &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Group D &middot; Intake &amp; Hand-In</span>
+        <h3>ClickUp &amp; Code Share</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>Site Change Requests (ClickUp)</strong>
+            Every site change starts here (never in Teams, Slack, or email).
+          </li>
+          <li>
+            <strong>Code Share (in The Tunnel)</strong>
+            Paste your FINAL HTML file to check contrast and generate 1 clean link for ClickUp.
+          </li>
+          <li>
+            <strong>Chrome Figma Capture</strong>
+            Search "Figma" in the Chrome Web Store to capture live web inspiration into Auto Layout on our "Let's Build It" page.
+          </li>
+        </ul>
+        <div class="link-bar">
+          <a class="action-link" href="https://app.clickup.com/9011460926/v/l/li/901115447365" target="_blank" rel="noopener">ClickUp List &nearr;</a>
+          <a class="action-link secondary" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share &nearr;</a>
+          <a class="action-link secondary" href="first-build-walkthrough.html" target="_blank" rel="noopener">Visual Walkthrough &nearr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">If you do not have a paid AI tier on a task, design and annotate the Figma frame and tell Sacha so she can run the code generation for you.</p>
+</section>
+
+<!-- SLIDE 3: FRESH AI RESET PROMPT (ANSWERING ALEX'S QUESTION) -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>03 &middot; Your AI Agent Setup</span>
+    <span>Copy &amp; Paste into Claude or Cursor</span>
+  </div>
+  <div class="content">
+    <h2>2. The "Forget Old Rules" AI prompt.</h2>
+    <p class="section-intro">Alex asked on the call: "Can I just give my agent the new rules and tell it to forget everything from before?" Yes. Paste this exact block at the start of your chat, along with your starting HTML file from the Code Library.</p>
+
+    <div class="box-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span class="kicker" style="margin: 0;">1-Click Copy: Master Reset &amp; Build Prompt for WorldSoccerShop Designers</span>
+        <button type="button" class="copy-btn" id="copyResetBtn" onclick="copyResetPrompt()">Copy Master AI Prompt</button>
+      </div>
+      <pre class="prompt-box" id="resetPromptText">Forget all previous instructions and older Fastr or Composer rules. Follow only this updated WorldSoccerShop Fastr CMS workflow:
+
+1. STARTING CODE (NEVER START FROM SCRATCH):
+- Start strictly from the attached reference HTML file from the Sports Endeavors Marketing Code Library (https://sachawd.github.io/sei-component-library/).
+- Keep the layout engine, class names, and structure intact. Change only the content (text, links, and image filenames) to match my Figma frame and Figma annotations.
+
+2. CSS SHIELD &amp; SCOPING (PREVENT STOREFRONT FONT/COLOR BUGS):
+- Fastr injects HTML directly into the WorldSoccerShop page with no iframe sandbox.
+- Never style html, body, :root, or bare *, and never use vh/100vh units.
+- Prefix every CSS rule with the component's doubled root ID selector (#root-id#root-id) and include the doubled-ID :where(...) reset so legacy store CSS cannot override fonts, link hover states, or inputs. Use explicit px font sizes instead of rem.
+
+3. LINKS, PRODUCTS &amp; PROMO CODES:
+- Every destination URL must come from the WorldSoccerShop Link Book (SITE-LINKS in Box). If a URL is missing from the Link Book, write "Unknown" and ask me so we can add it the same day. Never invent or guess a URL.
+- Every link must include target="_top" and carry no internal ?utm_ parameters.
+- Products come from the requester's CSV or Tunnel Product picks link. Never invent SKUs or prices.
+- Test pages are public: use PROMO-CODE-HERE for any unreleased promo code until the cart test passes.
+
+4. IMAGES &amp; SPEED (NO LAZY LOADING):
+- Every image loads eagerly (never use loading="lazy") and carries explicit width and height attributes.
+- Mark only the very first hero image fetchpriority="high" (one per block, never more).
+- Bucket photos on https://www.imagehandler.net/dxassets/?img=Photos/ ignore width parameters, so wire --w480.jpg and --w960.jpg responsive copies using srcset and sizes (with a self-disarming onerror fallback that strips srcset first). Upload JPG only (300 KB max for desktop heroes, under 200 KB for all other photos, never WebP, and encode + as %2B).
+
+5. ADA ACCESSIBILITY &amp; SEO:
+- Check contrast before finishing: body text must be at least 4.5:1, large text and buttons at least 3:1. Tell me immediately if any color pair in my design fails ADA contrast.
+- Include descriptive alt text on content images, empty alt="" on decorative images, 24px minimum tap targets, visible keyboard focus, and prefers-reduced-motion support.
+
+6. OUTPUT &amp; RESERVED HEIGHTS (NO LAYOUT SHIFT):
+- Before coding, write a 5-line "Done means" checklist in plain words.
+- Output the complete, unbroken HTML file from the first line to the closing tag (never truncate with "rest of code" comments, and include zero Figma node numbers or working comments).
+- Give me the 3 measured pixel heights in order at the top of the file: Mobile (390px wide), Tablet (640px and up), and Desktop (1024px and up) so I can enter them into Fastr's Reserved Height boxes and use the "Reserves space" embed tab.
+
+7. PILOT FEEDBACK LOG FOR SACHA:
+- If any instruction, asset, or step in this build is unclear or causes an issue, write a short Markdown summary titled "Process Feedback for Sacha" at the end of our session so I can send it to her.</pre>
+    </div>
+
+    <div class="callout">
+      <strong>Figma Annotations Tip from Friday's Call:</strong><br>
+      In Figma, use the <strong>Annotate</strong> tool (instead of regular comments) to tag frames with notes like "use placeholder date", "swap to Premier League clubs", or "link to /shop/clubs/arsenal". AI agents read Figma annotations directly from the frame.
+    </div>
+  </div>
+  <p class="note">Always open the saved HTML file in Visual Studio Code, Cursor, Antigravity IDE, or Dreamweaver to copy it (never copy code directly out of a chat window).</p>
+</section>
+
+<!-- SLIDE 4: YOUR FIRST BUILD CHECKLIST -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>04 &middot; First Practice Run</span>
+    <span>6 Steps from Figma to ClickUp</span>
+  </div>
+  <div class="content">
+    <h2>3. Your 6-step checklist for Pilot #1.</h2>
+    <p class="section-intro">Use this single page as your cheat sheet while running your first practice build.</p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Steps 1 &amp; 2 &middot; Prep</span>
+        <h3>Task &amp; Figma Frame</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Log in Site Change Requests</strong>
+            Make sure the task is in the ClickUp Site Change Requests list (never work from a raw Teams or Slack message).
+          </li>
+          <li>
+            <strong>2. Build with Auto Layout in Figma</strong>
+            Pull the component from Cabana 8 (Code Blocks &rarr; Builders) into the WSS Site Updates Figma file, set Auto Layout, and add any Figma Annotations.
+          </li>
+          <li>
+            <strong>3. Prep photos in Tunnel &amp; Photo Sizer</strong>
+            Pick existing photos in Tunnel V2, or crop new JPGs in Photo Sizer (300 KB hero / 200 KB rest, plus 480 and 960 copies) for Sacha or Anthony to upload to S3.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Steps 3 &amp; 4 &middot; Code &amp; Paste</span>
+        <h3>AI Build &amp; Fastr Test Page</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>4. Run the Master AI Prompt</strong>
+            Give Claude your starting HTML file from the Code Library, the Master Prompt from Page 3, your Link Book URLs, and your Figma frame.
+          </li>
+          <li>
+            <strong>5. Browser check, then Code Editor copy</strong>
+            Open the HTML file in Safari/Chrome on your Mac first to confirm every photo shows. Then open it in VS Code, Cursor, or Dreamweaver, press Command+A and Command+C.
+          </li>
+          <li>
+            <strong>6. Paste into Fastr &amp; "Reserves space"</strong>
+            Paste into your Fastr component (Brand: WorldSoccerShop), enter the 3 Reserved Heights (390 / 640+ / 1024+), click Save, and place the <strong>Reserves space</strong> embed on your test page.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Steps 5 &amp; 6 &middot; Test &amp; Share</span>
+        <h3>PageSpeed, Jam &amp; Code Share</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>7. Check a second browser if cached</strong>
+            If Fastr shows your old version after clicking Save, open the test page URL in a second browser (like Safari) before re-pasting.
+          </li>
+          <li>
+            <strong>8. Run PageSpeed &amp; record 1 Jam</strong>
+            Test the preview URL in PageSpeed Insights and record a quick desktop + mobile Jam video (checking that store fonts did not override your block).
+          </li>
+          <li>
+            <strong>9. Create 1 Code Share link for ClickUp</strong>
+            Paste your HTML into Code Share (`the-tunnel.netlify.app/code-share/`), copy the share link into the ClickUp task's HTML Code row, and send Sacha any process notes.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Need help or hit a wall?</strong><br>
+      Do not spin your wheels. If a component is missing in Figma, a photo needs uploading to the S3 bucket, or an AI tier cuts off a file, message Sacha on Teams or text her right away.
+    </div>
+  </div>
+  <p class="note">Contrast check (WCAG 2.1, measured): #151515 on #f6f5f1 = 16.74:1 (AAA pass) &middot; #5c5a55 on #f6f5f1 = 6.32:1 (AA pass) &middot; #151515 on #e8e5dd = 14.51:1 (AAA pass) &middot; #ffffff on #151515 = 18.26:1 (AAA pass).</p>
+</section>
+
+<script>
+function copyResetPrompt() {
+  var text = document.getElementById('resetPromptText').textContent;
+  var btn = document.getElementById('copyResetBtn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'Copied to Clipboard';
+      setTimeout(function () {
+        btn.textContent = 'Copy Master AI Prompt';
+      }, 2000);
+    });
+  }
+}
+
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var jump = document.getElementById('jump');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var count = document.getElementById('count');
+
+  slides.forEach(function (s, i) {
+    var label = s.querySelector('.eyebrow span').textContent;
+    jump.add(new Option((i + 1) + '. ' + label, i));
+  });
+
+  var cur = 0;
+
+  function update() {
+    cur = slides.reduce(function (best, s, i) {
+      return s.getBoundingClientRect().top <= window.innerHeight * 0.45 ? i : best;
+    }, 0);
+    jump.value = cur;
+    count.textContent = 'Page ' + (cur + 1) + ' of ' + slides.length;
+    prev.disabled = cur === 0;
+    next.disabled = cur === slides.length - 1;
+  }
+
+  function go(index) {
+    var target = slides[Math.max(0, Math.min(slides.length - 1, index))];
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  prev.onclick = function () { go(cur - 1); };
+  next.onclick = function () { go(cur + 1); };
+  jump.onchange = function () { go(+jump.value); };
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'SELECT') return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      go(cur + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      go(cur - 1);
+    }
+  });
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+</body>
+</html>
