@@ -349,6 +349,23 @@ h3 {
   overflow-y: auto;
 }
 
+.vimeo-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  background: #000000;
+  border: 1px solid var(--rule);
+  margin-top: 10px;
+}
+
+.vimeo-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 @media (max-width: 960px) {
   .slide {
     padding: 28px 22px 20px;
@@ -384,7 +401,7 @@ h3 {
   <button id="prev" type="button">&larr; Back</button>
   <button id="next" type="button">Next &rarr;</button>
   <select id="jump" aria-label="Jump to section"></select>
-  <span id="count" class="count">Page 1 of 4</span>
+  <span id="count" class="count">Page 1 of 5</span>
 </nav>
 
 <!-- SLIDE 1: STARTER PACKAGE COVER & FIRST 2 PILOTS -->
@@ -397,7 +414,7 @@ h3 {
     <p class="label">Everything from Friday Morning's Call in One Place</p>
     <h1>Your Fastr CMS &amp; AI coding starter package.</h1>
     <p class="lede">
-      Thank you both for being the first pilots on this workflow. Everything we walked through on Friday morning is linked in this 4-page kit: all your tools, the fresh AI reset prompt, how to annotate in Figma, and your first practice builds.
+      Thank you both for being the first pilots on this workflow. Everything we walked through on Friday morning is linked in this 5-page kit: edited Vimeo video clips, all 12 daily tools, the fresh AI reset prompt, and your first practice builds.
     </p>
 
     <div class="grid3">
@@ -418,17 +435,118 @@ h3 {
       </div>
     </div>
   </div>
-  <p class="note">Use Left and Right arrow keys or the top bar to view your All-Links Bookmark Bar (Page 2), Fresh AI Prompt (Page 3), and 5-Step Checklist (Page 4).</p>
+  <p class="note">Use Left and Right arrow keys or the top bar to view the Edited Workshop Videos (Page 2), All-Links Bookmark Bar (Page 3), Fresh AI Prompt (Page 4), and 6-Step Checklist (Page 5).</p>
 </section>
 
-<!-- SLIDE 2: ALL 12 TOOLS & LINKS IN ONE PLACE -->
+<!-- SLIDE 2: EDITED VIMEO WALKTHROUGH VIDEOS -->
 <section class="slide">
   <div class="eyebrow">
-    <span>02 &middot; Your Daily Toolkit</span>
+    <span>02 &middot; Video Walkthroughs (Vimeo)</span>
+    <span>Full 24-Min Highlight Reel + 6 Short Topic Clips</span>
+  </div>
+  <div class="content">
+    <h2>1. Watch the edited workshop clips anytime.</h2>
+    <p class="section-intro">We trimmed Friday's 73-minute recording down to the exact step-by-step demos so you can replay any step in 3 to 6 minutes.</p>
+
+    <div class="box-card" style="margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div>
+          <span class="kicker">Master Highlight Reel &middot; 23m 56s</span>
+          <h3 style="margin-bottom: 4px;">Full 5-Step Walkthrough (Stitched Highlight Reel)</h3>
+          <p style="margin: 0;">00:00 Step 1 Figma &amp; Annotations &middot; 03:59 Step 2 Code Library, Photo Sizer &amp; Tunnel V2 &middot; 09:12 Step 3 AI Prompt &amp; Reserved Heights &middot; 15:36 Step 4 PageSpeed &amp; Jam &middot; 19:54 Step 5 ClickUp &amp; Code Share.</p>
+        </div>
+        <a class="action-link" href="https://vimeo.com/1238938862/3d23afdc54" target="_blank" rel="noopener">Open Full Reel on Vimeo &nearr;</a>
+      </div>
+      <div class="vimeo-wrap" style="max-width: 760px; padding-top: 36%;">
+        <iframe src="https://player.vimeo.com/video/1238938862?h=3d23afdc54&amp;badge=0&amp;autopause=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Full Workshop Highlight Reel"></iframe>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Clip 01 &middot; 3m 59s</span>
+        <h3>1. Figma Auto Layout, Code Blocks &amp; Annotations</h3>
+        <p>Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations for your AI agent.</p>
+        <div class="vimeo-wrap">
+          <iframe src="https://player.vimeo.com/video/1238938857?h=a3c5285707&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 01 Figma Auto Layout"></iframe>
+        </div>
+        <div class="link-bar">
+          <a class="action-link secondary" href="https://vimeo.com/1238938857/a3c5285707" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Clip 02 &middot; 5m 13s</span>
+        <h3>2. Code Library, Photo Sizer &amp; Tunnel V2</h3>
+        <p>Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying CDN URLs from Tunnel V2.</p>
+        <div class="vimeo-wrap">
+          <iframe src="https://player.vimeo.com/video/1238938861?h=dfce103722&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 02 Code Library and Photo Sizer"></iframe>
+        </div>
+        <div class="link-bar">
+          <a class="action-link secondary" href="https://vimeo.com/1238938861/dfce103722" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Clip 03 &middot; 6m 24s</span>
+        <h3>3. AI Prompt, Code Editor &amp; Reserved Heights</h3>
+        <p>Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr's 3 Reserved Heights.</p>
+        <div class="vimeo-wrap">
+          <iframe src="https://player.vimeo.com/video/1238938860?h=b1ded6c0a0&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 03 AI Prompt and Code Editor"></iframe>
+        </div>
+        <div class="link-bar">
+          <a class="action-link secondary" href="https://vimeo.com/1238938860/b1ded6c0a0" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Clip 04 &middot; 4m 18s</span>
+        <h3>4. Testing: PageSpeed, Jam &amp; ADA Contrast</h3>
+        <p>Running before-and-after PageSpeed checks, recording mobile + desktop Jam videos, and catching ADA contrast issues.</p>
+        <div class="vimeo-wrap">
+          <iframe src="https://player.vimeo.com/video/1238938935?h=b3dfba5e0f&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 04 Testing PageSpeed and Contrast"></iframe>
+        </div>
+        <div class="link-bar">
+          <a class="action-link secondary" href="https://vimeo.com/1238938935/b3dfba5e0f" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Clip 05 &middot; 4m 02s</span>
+        <h3>5. ClickUp Intake, Box &amp; Code Share</h3>
+        <p>Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing via Code Share.</p>
+        <div class="vimeo-wrap">
+          <iframe src="https://player.vimeo.com/video/1238939053?h=46d10487e0&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 05 ClickUp Intake and Code Share"></iframe>
+        </div>
+        <div class="link-bar">
+          <a class="action-link secondary" href="https://vimeo.com/1238939053/46d10487e0" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Clip 06 (Bonus) &middot; 2m 48s</span>
+        <h3>6. Bonus: Chrome-to-Figma Auto Layout Capture</h3>
+        <p>Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for "Let's Build It".</p>
+        <div class="vimeo-wrap">
+          <iframe src="https://player.vimeo.com/video/1238939112?h=64ba03df58&amp;badge=0&amp;autopause=0" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Clip 06 Chrome to Figma"></iframe>
+        </div>
+        <div class="link-bar">
+          <a class="action-link secondary" href="https://vimeo.com/1238939112/64ba03df58" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">All 7 videos are also linked inside the full 6-Step Designer Guide on the next page.</p>
+</section>
+
+<!-- SLIDE 3: ALL 12 TOOLS & LINKS IN ONE PLACE -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>03 &middot; Your Daily Toolkit</span>
     <span>Bookmark These 12 Links</span>
   </div>
   <div class="content">
-    <h2>1. Every link we covered on the call.</h2>
+    <h2>2. Every link we covered on the call.</h2>
     <p class="section-intro">Open and bookmark these four groups of tools before starting your first practice build.</p>
 
     <div class="grid4">
@@ -532,17 +650,17 @@ h3 {
       </div>
     </div>
   </div>
-  <p class="note">If you do not have a paid AI tier on a task, design and annotate the Figma frame and tell Sacha so she can run the code generation for you.</p>
+  <p class="note">Cabana 8 Figma Library is now published so you can open Assets &rarr; Code Blocks &rarr; Builders directly in Figma.</p>
 </section>
 
-<!-- SLIDE 3: FRESH AI RESET PROMPT (ANSWERING ALEX'S QUESTION) -->
+<!-- SLIDE 4: FRESH AI RESET PROMPT (ANSWERING ALEX'S QUESTION) -->
 <section class="slide">
   <div class="eyebrow">
-    <span>03 &middot; Your AI Agent Setup</span>
+    <span>04 &middot; Your AI Agent Setup</span>
     <span>Copy &amp; Paste into Claude or Cursor</span>
   </div>
   <div class="content">
-    <h2>2. The "Forget Old Rules" AI prompt.</h2>
+    <h2>3. The "Forget Old Rules" AI prompt.</h2>
     <p class="section-intro">Alex asked on the call: "Can I just give my agent the new rules and tell it to forget everything from before?" Yes. Paste this exact block at the start of your chat, along with your starting HTML file from the Code Library.</p>
 
     <div class="box-card">
@@ -593,14 +711,14 @@ h3 {
   <p class="note">Always open the saved HTML file in Visual Studio Code, Cursor, Antigravity IDE, or Dreamweaver to copy it (never copy code directly out of a chat window).</p>
 </section>
 
-<!-- SLIDE 4: YOUR FIRST BUILD CHECKLIST -->
+<!-- SLIDE 5: YOUR FIRST BUILD CHECKLIST -->
 <section class="slide">
   <div class="eyebrow">
-    <span>04 &middot; First Practice Run</span>
+    <span>05 &middot; First Practice Run</span>
     <span>6 Steps from Figma to ClickUp</span>
   </div>
   <div class="content">
-    <h2>3. Your 6-step checklist for Pilot #1.</h2>
+    <h2>4. Your 6-step checklist for Pilot #1.</h2>
     <p class="section-intro">Use this single page as your cheat sheet while running your first practice build.</p>
 
     <div class="grid3">
@@ -629,7 +747,7 @@ h3 {
         <ul class="kv-list">
           <li>
             <strong>4. Run the Master AI Prompt</strong>
-            Give Claude your starting HTML file from the Code Library, the Master Prompt from Page 3, your Link Book URLs, and your Figma frame.
+            Give Claude your starting HTML file from the Code Library, the Master Prompt from Page 4, your Link Book URLs, and your Figma frame.
           </li>
           <li>
             <strong>5. Browser check, then Code Editor copy</strong>
@@ -656,7 +774,7 @@ h3 {
           </li>
           <li>
             <strong>9. Create 1 Code Share link for ClickUp</strong>
-            Paste your HTML into Code Share (`the-tunnel.netlify.app/code-share/`), copy the share link into the ClickUp task's HTML Code row, and send Sacha any process notes.
+            Paste your HTML into Code Share (the-tunnel.netlify.app/code-share/), copy the share link into the ClickUp task's HTML Code row, and send Sacha any process notes.
           </li>
         </ul>
       </div>
