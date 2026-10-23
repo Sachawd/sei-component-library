@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V2 Tokens to shadcn-vue (Reka UI) Cheat Sheet · 23 Oct 2026</title>
+  <style>
+    :root {
+      --ink: #151515;
+      --paper: #f6f5f1;
+      --white: #ffffff;
+      --muted: #5c5a55;
+      --rule: #cecac1;
+      --tint: #e8e5dd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 54px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deckbar {
+      position: fixed;
+      z-index: 20;
+      inset: 0 0 auto;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 22px;
+      background: #151515;
+      color: #ffffff;
+    }
+
+    .deckbar button,
+    .deckbar select {
+      height: 32px;
+      border-radius: 0;
+      font: 600 12px/1 Arial, sans-serif;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+    }
+
+    .deckbar button {
+      padding: 0 12px;
+      border: 1px solid #ffffff;
+      background: #ffffff;
+      color: #151515;
+    }
+
+    .deckbar button:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .deckbar select {
+      max-width: 47vw;
+      padding: 0 8px;
+      border: 1px solid #777777;
+      background: #151515;
+      color: #ffffff;
+    }
+
+    .count {
+      margin-left: auto;
+      color: #d6d6d6;
+      font-size: 12px;
+    }
+
+    .slide {
+      min-height: calc(100vh - 54px);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      padding: 34px 7vw 26px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+    }
+
+    .dark {
+      background: #151515;
+      color: #ffffff;
+      border-color: #151515;
+    }
+
+    .eyebrow {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid currentColor;
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .dark .eyebrow {
+      color: #e7e7e7;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 0 20px;
+    }
+
+    .note {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      font-size: 11px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .dark .note {
+      border-color: #777777;
+      color: #c8c8c8;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      max-width: 18ch;
+      font-size: clamp(38px, 4.6vw, 68px);
+    }
+
+    h2 {
+      max-width: 24ch;
+      margin-bottom: 20px;
+      font-size: clamp(30px, 3.6vw, 52px);
+    }
+
+    h3 {
+      margin: 0 0 9px;
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+    .lede {
+      max-width: 58ch;
+      margin: 18px 0 28px;
+      font-size: clamp(17px, 1.5vw, 22px);
+      line-height: 1.45;
+    }
+
+    .section-intro {
+      max-width: 68ch;
+      margin: 0 0 22px;
+      font-size: 17px;
+      line-height: 1.48;
+      color: var(--ink);
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .box-card {
+      padding: 22px 24px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dark .box-card {
+      background: #202020;
+      border-color: #383838;
+      border-top: 3px solid #ffffff;
+      color: #ffffff;
+    }
+
+    .box-card .kicker {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dark .box-card .kicker {
+      color: #d6d6d6;
+    }
+
+    .box-card p,
+    .box-card li {
+      font-size: 15px;
+      line-height: 1.42;
+    }
+
+    .box-card ul {
+      margin: 0;
+      padding: 0 0 0 18px;
+    }
+
+    .box-card li {
+      margin-bottom: 10px;
+    }
+
+    .box-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout {
+      margin-top: 22px;
+      padding: 16px 20px;
+      background: var(--tint);
+      border-left: 6px solid var(--ink);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .dark .callout {
+      background: #f0eee8;
+      color: #151515;
+    }
+
+    table.mono-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      font-size: 14px;
+    }
+
+    table.mono-table th,
+    table.mono-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    table.mono-table th {
+      background: var(--tint);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    table.mono-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92em;
+      background: var(--tint);
+      padding: 2px 5px;
+      color: var(--ink);
+    }
+
+    .dark code {
+      background: #2b2b2b;
+      color: #ffffff;
+    }
+
+    @media (max-width: 860px) {
+      .grid3,
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      .slide {
+        padding: 28px 20px 20px;
+      }
+      table.mono-table {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="deckbar" aria-label="Slide navigation">
+    <button type="button" id="prevBtn" aria-label="Previous slide">← Back</button>
+    <button type="button" id="nextBtn" aria-label="Next slide">Next →</button>
+    <select id="slideSelect" aria-label="Jump to slide">
+      <option value="0">01 · Overview: Vue 3 + shadcn-vue + V2 Tokens</option>
+      <option value="1">02 · Core Preset Mapping (shadcn-vue to V2 Roles)</option>
+      <option value="2">03 · Commerce &amp; Multi-Brand Extensions</option>
+      <option value="3">04 · Remaining V2 Scope &amp; Roadmap Sequence</option>
+    </select>
+    <span class="count" id="slideCount">Page 1 of 4</span>
+  </nav>
+
+  <!-- SLIDE 1 -->
+  <section class="slide dark" id="slide-0">
+    <div class="eyebrow">
+      <span>01 · Design System V2 &amp; Vue 3 Architecture</span>
+      <span>23 Oct 2026 · Design &amp; Frontend Engineering</span>
+    </div>
+    <div class="content">
+      <h1>Vue 3 + shadcn-vue + V2 Tokens</h1>
+      <p class="lede">
+        Once Frontend reaches Vue 3, pairing shadcn-vue (Reka UI) with our 68-role V2 token set gives Soccer.com, WorldSoccerShop, and 431 Sports accessible components out of the box without building twice.
+      </p>
+      <div class="grid3">
+        <div class="box-card">
+          <span class="kicker">1 · The V1 Lesson</span>
+          <h3>Sequence the Foundation First</h3>
+          <ul>
+            <li>In V1, timeline constraints kept the build on Node 16 instead of modern Node LTS tooling.</li>
+            <li>Player Pass launched on an early V1 baseline, requiring custom patches across design and logic.</li>
+            <li>Sequencing the foundation first prevents repeating that maintenance burden in V2.</li>
+          </ul>
+        </div>
+        <div class="box-card">
+          <span class="kicker">2 · Why Sequence with Vue 3</span>
+          <h3>shadcn-vue + Reka UI</h3>
+          <ul>
+            <li>Vue 3 unlocks shadcn-vue, which runs on Reka UI headless primitives.</li>
+            <li>Keyboard navigation, focus traps, and ARIA roles come built in.</li>
+            <li>Sequencing PDP, Cart, and Checkout behind Vue 3 lets us build once on modern primitives.</li>
+          </ul>
+        </div>
+        <div class="box-card">
+          <span class="kicker">3 · V2 Token Fit</span>
+          <h3>Already Built on Tailwind Base</h3>
+          <ul>
+            <li>Our Sept 9 V2 proposal (WEB-16658) already sits on a Tailwind base layer.</li>
+            <li>Our 68 semantic colour roles use explicit fill and on-colour pairs.</li>
+            <li>Those pairs map 1-to-1 into a shadcn-vue editable preset per brand.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Roadmap Alignment:</strong> Full UX page redesigns (PDP, Cart, Checkout) and the V2 token rollout are sequenced with the Vue 3 upgrade so Engineering and Design build once on shadcn-vue and Reka UI.
+      </div>
+    </div>
+    <div class="note">
+      Sources: WEB-16658 (9 Sept 2026), V2 Role Vocabulary &amp; Lab Mapping (14 Sept 2026). Contrast verified AAA (18.26:1 white on #151515).
+    </div>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="slide" id="slide-1">
+    <div class="eyebrow">
+      <span>02 · Core Preset Mapping</span>
+      <span>shadcn-vue Create Preset to V2 Lab Roles</span>
+    </div>
+    <div class="content">
+      <h2>How Our V2 Roles Map to a shadcn-vue Preset</h2>
+      <p class="section-intro">
+        Every standard variable in a shadcn-vue preset has a direct home in the Sept 14 V2 Lab set. Values below are the resolved hex codes from our V2 Lab files across all three stores.
+      </p>
+      <table class="mono-table">
+        <thead>
+          <tr>
+            <th>shadcn-vue Variable</th>
+            <th>Our V2 Semantic Role</th>
+            <th>Soccer.com</th>
+            <th>WorldSoccerShop</th>
+            <th>431 Sports</th>
+            <th>Usage Rule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--background</code></td>
+            <td><code>surface.page</code></td>
+            <td>#ffffff</td>
+            <td>#ffffff</td>
+            <td>#ffffff</td>
+            <td>Default page background</td>
+          </tr>
+          <tr>
+            <td><code>--foreground</code></td>
+            <td><code>text.default</code></td>
+            <td>#27272a</td>
+            <td>#27272a</td>
+            <td>#042540</td>
+            <td>Primary body copy</td>
+          </tr>
+          <tr>
+            <td><code>--card</code> / <code>--popover</code></td>
+            <td><code>surface.default</code></td>
+            <td>#ffffff</td>
+            <td>#ffffff</td>
+            <td>#ffffff</td>
+            <td>Cards, drawers, modals, popovers</td>
+          </tr>
+          <tr>
+            <td><code>--primary</code></td>
+            <td><code>action.primary.default</code></td>
+            <td>#27272a</td>
+            <td>#27272a</td>
+            <td>#317f89</td>
+            <td>Primary action buttons</td>
+          </tr>
+          <tr>
+            <td><code>--primary-foreground</code></td>
+            <td><code>text.on-primary</code></td>
+            <td>#ffffff</td>
+            <td>#ffffff</td>
+            <td>#ffffff</td>
+            <td>Label on primary action button</td>
+          </tr>
+          <tr>
+            <td><code>--secondary</code> / <code>--muted</code></td>
+            <td><code>surface.sunken</code></td>
+            <td>#f5f5f5</td>
+            <td>#f5f5f5</td>
+            <td>#f5f5f5</td>
+            <td>Quiet wells, filter bars, secondary fills</td>
+          </tr>
+          <tr>
+            <td><code>--muted-foreground</code></td>
+            <td><code>text.muted</code></td>
+            <td>#525252</td>
+            <td>#525252</td>
+            <td>#525252</td>
+            <td>One quiet grey for helper and meta copy</td>
+          </tr>
+          <tr>
+            <td><code>--accent</code></td>
+            <td><code>surface.brand</code></td>
+            <td>#e0154a</td>
+            <td>#796a39</td>
+            <td>#317f89</td>
+            <td>Store brand accent surface</td>
+          </tr>
+          <tr>
+            <td><code>--destructive</code></td>
+            <td><code>tone.error.bg</code> / <code>text</code></td>
+            <td>#ef4444 / #991b1b</td>
+            <td>#ef4444 / #991b1b</td>
+            <td>#ef4444 / #991b1b</td>
+            <td>Error states and destructive actions</td>
+          </tr>
+          <tr>
+            <td><code>--border</code></td>
+            <td><code>border.subtle</code></td>
+            <td>#e5e5e5</td>
+            <td>#e5e5e5</td>
+            <td>#e5e5e5</td>
+            <td>Default card and section dividers</td>
+          </tr>
+          <tr>
+            <td><code>--input</code></td>
+            <td><code>input.border.default</code></td>
+            <td>#525252</td>
+            <td>#525252</td>
+            <td>#525252</td>
+            <td>Form input border at rest (AA 3:1 pass)</td>
+          </tr>
+          <tr>
+            <td><code>--ring</code></td>
+            <td><code>border.action.focus</code></td>
+            <td>#1f2937</td>
+            <td>#1f2937</td>
+            <td>#317f89</td>
+            <td>Keyboard focus ring across Reka UI primitives</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      Source: 004_Design-System/proposals/v2-lab/MAPPING--v1-to-v2--2026-09-14.md. All 12 core shadcn-vue slots resolve cleanly without inventing new primitives.
+    </div>
+  </section>
+
+  <!-- SLIDE 3 -->
+  <section class="slide" id="slide-2">
+    <div class="eyebrow">
+      <span>03 · Commerce &amp; Multi-Brand Extensions</span>
+      <span>What We Add to Tailwind @theme Beside shadcn-vue</span>
+    </div>
+    <div class="content">
+      <h2>Store Roles That Sit Beside the Base Preset</h2>
+      <p class="section-intro">
+        Because shadcn-vue registers tokens in Tailwind CSS variables, our commerce roles slot right beside the standard preset inside the same Supernova exporter pipeline.
+      </p>
+      <div class="grid3">
+        <div class="box-card">
+          <span class="kicker">Commerce Actions &amp; Badges</span>
+          <h3>Cart, Sale, Loyalty, Stock</h3>
+          <ul>
+            <li><strong>Add to Cart:</strong> <code>action.cart.default</code> (#0348CF) and <code>action.cart.hover</code> (#0341ba) stay distinct from general primary buttons.</li>
+            <li><strong>Sale Pricing:</strong> <code>sale.bg</code> and <code>sale.text</code> (#9d0f34) plus proposed <code>text.on-sale</code> pair.</li>
+            <li><strong>Goal Club Loyalty:</strong> <code>loyalty.bg</code> (#f0eee7), <code>loyalty.text</code> (#837139), and <code>loyalty.icon</code>.</li>
+            <li><strong>Inventory Pills:</strong> <code>stock.in</code>, <code>stock.backorder</code>, and <code>stock.out</code>.</li>
+          </ul>
+        </div>
+        <div class="box-card">
+          <span class="kicker">Typography &amp; Elevation</span>
+          <h3>Fluid Clamp &amp; 4 Shadow Steps</h3>
+          <ul>
+            <li><strong>Store Fonts:</strong> Figtree on Soccer.com, Chakra Petch + Inter on WorldSoccerShop, Roboto Condensed on 431 Sports.</li>
+            <li><strong>Fluid Scale:</strong> 6 semantic type roles using CSS <code>clamp()</code> so headings scale smoothly without breakpoint jumps.</li>
+            <li><strong>Elevation:</strong> Cut from 14 unused template shadows down to 4 named steps: <code>raised</code>, <code>lifted</code>, <code>overlay</code>, and <code>pop</code>.</li>
+          </ul>
+        </div>
+        <div class="box-card">
+          <span class="kicker">Shared Motion &amp; Campaign Layer</span>
+          <h3>9 Motion Intents + 5 Campaign Roles</h3>
+          <ul>
+            <li><strong>One Shared Motion Set:</strong> 9 semantic intents (<code>press</code>, <code>hover</code>, <code>focus</code>, <code>reveal</code>, <code>dismiss</code>, <code>story</code>) with reduced-motion handled at the token level once.</li>
+            <li><strong>Campaign Layer Stays Separate:</strong> Seasonal Fastr blocks use the 5-role <code>--campaign-*</code> block (<code>surface</code>, <code>primary</code>, <code>on-primary</code>, <code>headline</code>, <code>body</code>) so short-lived sales never pollute Cabana.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      Source: 004_Design-System/proposals/v2-role-vocabulary--draft-2026-09-09.md and 2026-10-17 Cabana vs. Campaign Tokens explainer.
+    </div>
+  </section>
+
+  <!-- SLIDE 4 -->
+  <section class="slide" id="slide-3">
+    <div class="eyebrow">
+      <span>04 · Remaining V2 Scope &amp; Roadmap Sequence</span>
+      <span>32 Hours Remaining · Sequenced with Vue 3</span>
+    </div>
+    <div class="content">
+      <h2>Remaining Token Scope &amp; Roadmap Sequence</h2>
+      <p class="section-intro">
+        48 hours of V2 token groundwork are complete (production CSS audit, 68 semantic roles, 272-token JSON, and 3-brand lab). The remaining 32 hours are sequenced with the Vue 3 upgrade.
+      </p>
+      <div class="grid2">
+        <div class="box-card">
+          <span class="kicker">Remaining V2 Token Tasks (32h)</span>
+          <h3>Design &amp; Engineering Alignment</h3>
+          <ul>
+            <li><strong>Fix 2 Contrast Failures (6h):</strong> White on <code>sale.bg</code> measures 3.76:1 on WorldSoccerShop and 2.80:1 on 431 (below AA). Goal Club chip measures 4.12:1 across all three brands. Add <code>text.on-sale</code> and darken badge fills.</li>
+            <li><strong>Close 7 Unmapped V1 Holes (6h):</strong> Decide whether <code>bg.Loyalty-Dark</code>, <code>bg.surface.scrollbar</code>, and <code>bg.surface.progress</code> become component tokens or retire.</li>
+            <li><strong>Lock Motion &amp; Stress Test (12h):</strong> Finalize the 9 motion intent CSS strings and stress-test the shadcn-vue preset on 1 PDP, 1 Player Pass view, and 1 marketing block.</li>
+            <li><strong>Vendor Token Handoff Guide (8h):</strong> Document final token governance once Vue 3 preset naming is locked.</li>
+          </ul>
+        </div>
+        <div class="box-card">
+          <span class="kicker">Roadmap Sequence</span>
+          <h3>Three Phased Tracks</h3>
+          <ul>
+            <li><strong>1. Ready Now (Zero Dev Time):</strong> Holiday campaign assets, paid media, emails, and Fastr CMS sandwich blocks ship immediately using existing V1 page tokens plus scoped campaign blocks.</li>
+            <li><strong>2. Sequenced with Vue 3:</strong> Adopt shadcn-vue and Reka UI with built-in accessibility and our 68-role V2 token preset across Soccer.com, WorldSoccerShop, and 431 Sports.</li>
+            <li><strong>3. Core UX Page Redesigns:</strong> Build PDP, Cart, and Checkout once on Vue 3 + shadcn-vue + V2 tokens to avoid duplicate engineering work.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>Open Architecture Decision:</strong> When creating the editable preset at <code>shadcn-vue.com/create</code>, decide whether Supernova emits shadcn's CSS variable names (<code>--primary</code>, <code>--muted-foreground</code>) directly or aliases them to our <code>--v2-*</code> role names.
+      </div>
+    </div>
+    <div class="note">
+      Contrast check: Ink #151515 on Paper #f6f5f1 = 16.74:1 (AAA). Ink #151515 on Tint #e8e5dd = 14.51:1 (AAA). All text passes WCAG 2.1 AA and AAA.
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const select = document.getElementById('slideSelect');
+      const count = document.getElementById('slideCount');
+      let current = 0;
+
+      function updateUI(index) {
+        current = Math.max(0, Math.min(slides.length - 1, index));
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === slides.length - 1;
+        select.value = String(current);
+        count.textContent = 'Page ' + (current + 1) + ' of ' + slides.length;
+      }
+
+      function goTo(index) {
+        const target = slides[index];
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          updateUI(index);
+        }
+      }
+
+      prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      nextBtn.addEventListener('click', function () { goTo(current + 1); });
+      select.addEventListener('change', function (e) { goTo(Number(e.target.value)); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+          e.preventDefault();
+          goTo(current + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          goTo(current - 1);
+        }
+      });
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const idx = slides.indexOf(entry.target);
+            if (idx !== -1) updateUI(idx);
+          }
+        });
+      }, { threshold: 0.55 });
+
+      slides.forEach(function (slide) { observer.observe(slide); });
+      updateUI(0);
+    })();
+  </script>
+</body>
+</html>
