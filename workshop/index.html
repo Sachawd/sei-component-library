@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorldSoccerShop Designer Workshop: Coding Fastr Experiences</title>
+<style>
+:root {
+  --ink: #151515;
+  --paper: #f6f5f1;
+  --white: #ffffff;
+  --muted: #5c5a55;
+  --rule: #cecac1;
+  --tint: #e8e5dd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding-top: 54px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.deckbar {
+  position: fixed;
+  z-index: 20;
+  inset: 0 0 auto;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+  background: #151515;
+  color: #ffffff;
+  border-bottom: 1px solid #333333;
+}
+
+.deckbar button,
+.deckbar select {
+  height: 32px;
+  border-radius: 0;
+  font: 600 12px/1 Arial, sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.deckbar button {
+  padding: 0 12px;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #151515;
+}
+
+.deckbar button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.deckbar select {
+  max-width: 48vw;
+  padding: 0 10px;
+  border: 1px solid #777777;
+  background: #151515;
+  color: #ffffff;
+}
+
+.count {
+  margin-left: auto;
+  color: #d6d6d6;
+  font-size: 12px;
+}
+
+.slide {
+  min-height: calc(100vh - 54px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 7vw 26px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.dark {
+  background: #151515;
+  color: #ffffff;
+  border-color: #151515;
+}
+
+.eyebrow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid currentColor;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dark .eyebrow {
+  color: #e7e7e7;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 26px 0 20px;
+  max-width: 1220px;
+}
+
+.note {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.dark .note {
+  border-color: #555555;
+  color: #c8c8c8;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  max-width: 18ch;
+  font-size: clamp(40px, 4.8vw, 72px);
+}
+
+h2 {
+  max-width: 26ch;
+  margin-bottom: 14px;
+  font-size: clamp(30px, 3.5vw, 50px);
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.22;
+}
+
+.label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .label {
+  color: #c5c5c5;
+}
+
+.lede {
+  max-width: 60ch;
+  margin: 18px 0 28px;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.45;
+}
+
+.section-intro {
+  max-width: 68ch;
+  margin: 0 0 22px;
+  font-size: 17px;
+  line-height: 1.48;
+  color: var(--ink);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.box-card {
+  padding: 20px 22px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .box-card {
+  background: #202020;
+  border-color: #383838;
+  border-top: 3px solid #ffffff;
+  color: #ffffff;
+}
+
+.box-card .kicker {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .box-card .kicker {
+  color: #d6d6d6;
+}
+
+.box-card p,
+.box-card li {
+  font-size: 15px;
+  line-height: 1.42;
+}
+
+.box-card p {
+  margin: 0 0 10px;
+}
+
+.box-card p:last-child {
+  margin-bottom: 0;
+}
+
+.kv-list {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.kv-list li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.kv-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.kv-list strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.callout {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: var(--tint);
+  border-left: 6px solid var(--ink);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.dark .callout {
+  background: #202020;
+  color: #ffffff;
+  border: 1px solid #383838;
+  border-left: 6px solid #ffffff;
+}
+
+.speaker-tag {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dark .speaker-tag {
+  color: #c8c8c8;
+}
+
+.link-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.action-link,
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--ink);
+  color: var(--white);
+  border: 1px solid var(--ink);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.action-link.secondary {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.prompt-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  max-height: 190px;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .slide {
+    padding: 28px 22px 20px;
+  }
+  .grid2,
+  .grid3 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media print {
+  .deckbar {
+    display: none;
+  }
+  body {
+    padding-top: 0;
+  }
+  html {
+    scroll-snap-type: none;
+  }
+  .slide {
+    min-height: 100vh;
+    page-break-after: always;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="deckbar" aria-label="Slide navigation">
+  <button id="prev" type="button">&larr; Back</button>
+  <button id="next" type="button">Next &rarr;</button>
+  <select id="jump" aria-label="Jump to section"></select>
+  <span id="count" class="count">Page 1 of 6</span>
+</nav>
+
+<!-- SLIDE 1: COVER & 3 GOLDEN RULES -->
+<section class="slide dark">
+  <div class="eyebrow">
+    <span>01 &middot; Workshop Overview (3 mins)</span>
+    <span>WorldSoccerShop Design Team &middot; 23 Oct 2026</span>
+  </div>
+  <div class="content">
+    <p class="label">30-Minute Live Walkthrough &middot; 6 Short Slides</p>
+    <h1>Coding Fastr experiences without starting from scratch.</h1>
+    <p class="lede">
+      You never have to write code from a blank screen or guess how a block works. Every WorldSoccerShop experience starts from a verified HTML block in our Code Library, swaps in your Figma content and sized photos using AI, and lands on your own Fastr test page first.
+    </p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Rule 01 &middot; Starting Code</span>
+        <h3>Start from the Code Library, never a screenshot</h3>
+        <p>Pick a verified WorldSoccerShop component from the Marketing Code Library. Change the content (words, photos, links), never the underlying layout engine.</p>
+      </div>
+      <div class="box-card">
+        <span class="kicker">Rule 02 &middot; Clean Files</span>
+        <h3>One FINAL file in Downloads, opened in a code editor</h3>
+        <p>Never copy code out of a chat window or click the chat Download button. Open the single FINAL HTML file in Visual Studio Code or Cursor to copy cleanly.</p>
+      </div>
+      <div class="box-card">
+        <span class="kicker">Rule 03 &middot; Safe Testing</span>
+        <h3>You paste to your test page; site authors publish live</h3>
+        <p>You only ever paste into your own Fastr test page using the 3 reserved heights and the Reserves space tab. You never touch a live store page.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="speaker-tag">Talking baseline for Sacha (30 seconds)</span><br>
+      "Today we are walking through one calm, repeatable loop from Figma to your Fastr test page. You do not need to be a developer. You pick a finished WorldSoccerShop block from our library, let AI swap your copy and photos under strict guardrails, and paste one checked file into your test page."
+    </div>
+  </div>
+  <p class="note">Use Left and Right arrow keys or the top bar to step through the workshop one screen at a time.</p>
+</section>
+
+<!-- SLIDE 2: STEP 1 - PICK YOUR BLOCK, PHOTOS & LINKS -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>02 &middot; Step 1: Pick &amp; Prep (5 mins)</span>
+    <span>Code Library &middot; Photo Sizer &middot; Link Book</span>
+  </div>
+  <div class="content">
+    <h2>1. Gather your starting code, photos, and links.</h2>
+    <p class="section-intro">Before you open AI or Fastr, lock these three inputs in your Box folder so nothing is guessed during the build.</p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Input 01 &middot; The Starting HTML</span>
+        <h3>Pull from the SE Code Library</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>Filter to WorldSoccerShop</strong>
+            Open the Marketing Code Library and preview the component at Desktop, Tablet, and Phone widths.
+          </li>
+          <li>
+            <strong>Download the reference HTML</strong>
+            Click Download HTML (or copy the file from the read-only GitHub repo into your working folder).
+          </li>
+          <li>
+            <strong>Check the 3 standard heights</strong>
+            Note the component's baseline Mobile (390px), Tablet (640px+), and Desktop (1024px+) pixel heights.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Input 02 &middot; Photos &amp; Speed</span>
+        <h3>Crop in Photo Sizer first</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>Weight ceilings (JPG only, never WebP)</strong>
+            Full-width desktop heroes up to 300 KB. Every other photo under 200 KB. Logos under 20 KB.
+          </li>
+          <li>
+            <strong>Export the 3 responsive widths</strong>
+            Bucket photos need 480px (--w480.jpg), 960px (--w960.jpg), and full width because the image host ignores width parameters on bucket files.
+          </li>
+          <li>
+            <strong>Flip-book hero framing rule</strong>
+            Keep subjects in the middle third and faces away from the centre headline. Use the Flip-Book Hero preset in Photo Sizer to check all 4 crops at once.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Input 03 &middot; Verified URLs</span>
+        <h3>Link Book &amp; Tunnel picks only</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>Every page link from SITE-LINKS</strong>
+            Take every destination URL from the Link Book in Box. If a link is missing, ask Components so it gets added the same day.
+          </li>
+          <li>
+            <strong>Products from Tunnel picks</strong>
+            The requester supplies a Tunnel Product picks link. Never type SKUs or prices by hand.
+          </li>
+          <li>
+            <strong>Mask unreleased promo codes</strong>
+            Test pages are public. Use PROMO-CODE-HERE until the requester's cart test passes.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="link-bar">
+      <a class="action-link" href="https://sachawd.github.io/sei-component-library/" target="_blank" rel="noopener">Open Code Library &nearr;</a>
+      <a class="action-link secondary" href="https://sachawd.github.io/sei-component-library/photo-sizer/index.html?block=flipbook-hero-sale" target="_blank" rel="noopener">Open Photo Sizer (Flip-Book Preset) &nearr;</a>
+      <a class="action-link secondary" href="https://the-tunnel.netlify.app" target="_blank" rel="noopener">Open The Tunnel &nearr;</a>
+      <a class="action-link secondary" href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Open Box Folder &nearr;</a>
+    </div>
+
+    <div class="callout">
+      <span class="speaker-tag">Talking baseline for Sacha (30 seconds)</span><br>
+      "Most bugs happen when an AI guesses a link or uses an oversized photo. If you give the AI a real WorldSoccerShop HTML file from the Code Library, photos sized in Photo Sizer, and real URLs from the Link Book, 90 percent of the hard work is already done."
+    </div>
+  </div>
+  <p class="note">Keep only 1 current HTML file at the top of your Box folder; move older drafts into zz_old-versions.</p>
+</section>
+
+<!-- SLIDE 3: STEP 2 - ADAPTING CODE WITH AI -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>03 &middot; Step 2: Adapt with AI (8 mins)</span>
+    <span>Step Zero Prompt &middot; What Changes vs. What Stays Locked</span>
+  </div>
+  <div class="content">
+    <h2>2. Give your AI the Step Zero rules and your starting file.</h2>
+    <p class="section-intro">Before asking Claude, Cursor, or ChatGPT to touch any code, paste the Step Zero prompt below so it knows what is off-limits.</p>
+
+    <div class="grid2">
+      <div class="box-card">
+        <span class="kicker">What AI is allowed to change</span>
+        <h3>Content, photos, and verified links only</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Headlines, body copy, and button labels</strong>
+            Taken straight from your frozen Cabana 8 Figma frame, using HTML entities for any special characters.
+          </li>
+          <li>
+            <strong>2. Image addresses and alt text</strong>
+            Swapping in your uploaded imagehandler.net filenames (with --w480.jpg and --w960.jpg srcset copies) and descriptive alt text.
+          </li>
+          <li>
+            <strong>3. Link Book URLs with target="_top"</strong>
+            Every link opens in the parent window (target="_top") and carries no internal tracking parameters.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">What AI must never touch</span>
+        <h3>The layout engine, CSS scoping, and page shell</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Scoped CSS and Host-CSS Shield</strong>
+            Never style html, body, :root, or bare *, and never use 100vh. Keep the component's doubled root ID shield intact so storefront CSS cannot shrink fonts.
+          </li>
+          <li>
+            <strong>2. Eager image loading &amp; fixed dimensions</strong>
+            Every img tag keeps explicit width and height attributes. Never add loading="lazy". Only the first hero photo gets fetchpriority="high".
+          </li>
+          <li>
+            <strong>3. Complete, unbroken file output</strong>
+            Never accept truncated code with "rest of code here" comments. Always require the full file from first line to closing tag.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box-card" style="margin-top: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <span class="kicker" style="margin: 0;">Copy-Paste Step Zero Prompt for Designers</span>
+        <button type="button" class="copy-btn" id="copyPromptBtn" onclick="copyWorkshopPrompt()">Copy Step Zero Prompt</button>
+      </div>
+      <pre class="prompt-box" id="workshopPrompt">You are helping me adapt a verified WorldSoccerShop Fastr CMS component. Follow these strict rules:
+1. Start from the attached HTML file from the Sports Endeavors Marketing Code Library. Change the content (copy, links, image filenames), never the layout or CSS architecture.
+2. Write a 5-line "Done means" list in plain words before coding (hero photo shows, buttons go to Link Book URLs, works at 390px phone width, no placeholders).
+3. Keep all CSS scoped to the component root (never target html, body, :root, bare *, or 100vh). Keep explicit px font sizes and the doubled root ID selector shield.
+4. Every link must come from SITE-LINKS (never invent a URL) and include target="_top". Use PROMO-CODE-HERE for any unreleased promo code.
+5. Every image must load eagerly (no loading="lazy") with explicit width and height, and use the uploaded --w480.jpg and --w960.jpg srcset copies for bucket photos.
+6. Output the complete, unbroken HTML file with zero working comments or Figma node numbers, and list the 3 measured heights (390px / 640px / 1024px) at the top.</pre>
+    </div>
+  </div>
+  <p class="note">Reminder: Turn off "Improve the model for everyone" in AI settings before uploading briefs or Figma frames, and never paste passwords or product feeds.</p>
+</section>
+
+<!-- SLIDE 4: STEP 3 - FROM DOWNLOADS TO FASTR TEST PAGE -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>04 &middot; Step 3: Paste into Fastr (7 mins)</span>
+    <span>Downloads &rarr; Browser Check &rarr; Code Editor &rarr; Fastr Reserves Space</span>
+  </div>
+  <div class="content">
+    <h2>3. How to paste into Fastr without losing a single character.</h2>
+    <p class="section-intro">Chat windows cut long files off and turn straight quotes into curly quotes that break HTML. Follow this exact 3-step paste routine every time.</p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Step 3A &middot; Before You Copy</span>
+        <h3>Open the FINAL file in a browser first</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Find the FINAL file in Downloads</strong>
+            Look for the exact filename with FINAL, date, and time (for example: wss-sale-page--FINAL--2026-10-20-1035.html). Never use the chat Download button.
+          </li>
+          <li>
+            <strong>2. Right-click &rarr; Open With Safari or Chrome</strong>
+            Scroll top to bottom on your Mac before touching Fastr.
+          </li>
+          <li>
+            <strong>3. Stop if any photo is blank</strong>
+            If you see a dark empty box or broken image icon, stop and tell the agent before pasting into Fastr.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Step 3B &middot; Copy Cleanly</span>
+        <h3>Open in VS Code, Cursor, or Antigravity</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. File &rarr; Open in your code editor</strong>
+            Open the FINAL file in Visual Studio Code, Cursor, Antigravity IDE, or BBEdit. Never use Word, Pages, Notes, or rich-text TextEdit.
+          </li>
+          <li>
+            <strong>2. Press Command + A</strong>
+            Select everything from line 1 to the bottom.
+          </li>
+          <li>
+            <strong>3. Check the closing tag, then Command + C</strong>
+            Scroll to the very last line to verify the closing tag is highlighted, then press Command + C.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Step 3C &middot; In Fastr CMS</span>
+        <h3>Paste, enter 3 heights, and copy "Reserves space"</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Command + A, Delete, Command + V</strong>
+            In your Fastr HTML widget (Brand set to WorldSoccerShop), clear the old box completely, paste your new code, and enter the 3 heights (Mobile 390 / 640+ / 1024+, max 10000).
+          </li>
+          <li>
+            <strong>2. Click Save, then pick "Reserves space"</strong>
+            In the embed panel, always copy the Reserves space tab (never Standard) so the page holds the height before loading.
+          </li>
+          <li>
+            <strong>3. Place on your test page only</strong>
+            Paste that embed onto your own Fastr test page.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="speaker-tag">Talking baseline for Sacha (30 seconds)</span><br>
+      "Two things save hours of debugging here: always open the FINAL file in Safari first to see that every photo loads, and always copy from a real code editor like VS Code or Cursor so a chat window never clips the bottom of your file."
+    </div>
+  </div>
+  <p class="note">Why Reserved Heights matter: without the 3 numbers in the Reserves space tab, the store page jumps downward while your block loads.</p>
+</section>
+
+<!-- SLIDE 5: STEP 4 - SAFE EDITS VS REBUILDS & THE 2 FASTR BUGS -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>05 &middot; Step 4: Edits &amp; Platform Bugs (5 mins)</span>
+    <span>What You Can Tweak vs. When to Ask Components</span>
+  </div>
+  <div class="content">
+    <h2>4. What you can edit yourself vs. what needs a rebuild.</h2>
+    <p class="section-intro">Once your block is on your test page, small text or link swaps are safe to do in your code editor, while layout or style changes go back to Components.</p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Safe for Designers</span>
+        <h3>Quick swaps you can make in your code editor</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. A headline or word swap</strong>
+            Safe to edit yourself as long as the text stays on the exact same number of lines at phone, tablet, and desktop widths.
+          </li>
+          <li>
+            <strong>2. A destination URL</strong>
+            Swapping one verified Link Book address for another inside an existing href attribute.
+          </li>
+          <li>
+            <strong>3. An uploaded photo filename</strong>
+            Swapping in a new imagehandler.net filename that is already uploaded at the exact same crop and dimensions (plus its --w480 and --w960 copies).
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Send to Components</span>
+        <h3>Changes that require a fresh build &amp; height check</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Anything inside the &lt;style&gt; block</strong>
+            Colours, font sizes, spacing, padding, or breakpoint rules.
+          </li>
+          <li>
+            <strong>2. Anything that changes the 3 heights</strong>
+            Adding extra lines of copy, taller images, or new rows that change the pixel height at 390px, 640px, or 1024px.
+          </li>
+          <li>
+            <strong>3. Adding, removing, or reordering cards</strong>
+            Changing the number of tiles, buttons, or sections in the component.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Watch Out in Fastr CMS</span>
+        <h3>Two live platform bugs every designer hits</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>Bug 1: Stale cache after clicking Save</strong>
+            Fastr often keeps showing your old version in the browser where you just clicked Save. Always paste your test page URL into a second browser (like Safari) before re-pasting or reporting a bug.
+          </li>
+          <li>
+            <strong>Bug 2: No edit lock on components</strong>
+            Fastr does not warn you if someone else has the same component open. The second person to click Save overwrites the first. Check nobody else is in the component before opening it.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="speaker-tag">Talking baseline for Sacha (30 seconds)</span><br>
+      "If you click Save in Fastr, refresh your test page, and still see the old headline, do not panic and do not re-paste five times. Open Safari and check the link there first. Nine times out of ten, Chrome is just holding onto Fastr's cached copy."
+    </div>
+  </div>
+  <p class="note">Important rule: If you make a small word or link swap in Fastr, send one quick message to Components so the master file on the Mac and in GitHub is updated to match.</p>
+</section>
+
+<!-- SLIDE 6: STEP 5 - TEST, CODE SHARE & HAND-IN -->
+<section class="slide">
+  <div class="eyebrow">
+    <span>06 &middot; Step 5: Test &amp; Hand In (5 mins)</span>
+    <span>Responsively &middot; Jam &middot; Code Share &middot; ClickUp</span>
+  </div>
+  <div class="content">
+    <h2>5. Five-minute quality check and ClickUp hand-in.</h2>
+    <p class="section-intro">Never paste thousands of lines of raw HTML into a ClickUp comment. Use Code Share to generate one clean link for your task.</p>
+
+    <div class="grid3">
+      <div class="box-card">
+        <span class="kicker">Check 01 &middot; 5 Screen Widths</span>
+        <h3>Verify in Responsively &amp; record a Jam</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Check 360, 390, 768, 1024, and 1440</strong>
+            Open your Fastr test page in Responsively App. Confirm no bottom clipping, no horizontal scrollbars, and no layout jump on load.
+          </li>
+          <li>
+            <strong>2. Check Safari on Mac</strong>
+            Confirm fonts, images, and interactive tabs or lightboxes work cleanly.
+          </li>
+          <li>
+            <strong>3. Record 1 Jam video</strong>
+            Record desktop and mobile widths plus every interactive state (tabs, drawers, pop-ups).
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Check 02 &middot; Code Share Link</span>
+        <h3>Turn your HTML file into 1 link</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Open Code Share in The Tunnel</strong>
+            Click "+ Paste &amp; share a new file" and paste your complete FINAL HTML file.
+          </li>
+          <li>
+            <strong>2. Automatic pre-flight check</strong>
+            Code Share checks your line count, scans for leaked secrets or promo codes, and verifies WCAG colour contrast automatically.
+          </li>
+          <li>
+            <strong>3. Click "Create share link &amp; copy"</strong>
+            Paste that single link into the HTML Code field on your ClickUp task.
+          </li>
+        </ul>
+      </div>
+
+      <div class="box-card">
+        <span class="kicker">Check 03 &middot; Move to UX Review</span>
+        <h3>The 7 hand-in items (1 day before launch)</h3>
+        <ul class="kv-list">
+          <li>
+            <strong>1. Code Share link &amp; Box file path</strong>
+            In the HTML Code row and at the top of the page's Box folder.
+          </li>
+          <li>
+            <strong>2. Preview sign-off, Figma &amp; Test Page links</strong>
+            Requester approval date, frozen Figma frame link, and Fastr test page URL.
+          </li>
+          <li>
+            <strong>3. Jam link, 3 heights &amp; Done-means check</strong>
+            Jam video, the 3 heights (390 / 640 / 1024), and Pass / Fail / Not checked self-check.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="link-bar">
+      <a class="action-link" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share &nearr;</a>
+      <a class="action-link secondary" href="https://sachawd.github.io/sei-component-library/" target="_blank" rel="noopener">Open SE Code Library &nearr;</a>
+      <a class="action-link secondary" href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Open Fastr CMS &nearr;</a>
+    </div>
+
+    <div class="callout">
+      <span class="speaker-tag">Talking baseline for Sacha (30 seconds)</span><br>
+      "Let's open the Code Library and Photo Sizer together right now and walk through one real WorldSoccerShop block from start to Code Share link so everyone has done the clicks once."
+    </div>
+  </div>
+  <p class="note">Contrast check (WCAG 2.1, measured): #151515 on #f6f5f1 = 16.74:1 (AAA pass) &middot; #5c5a55 on #f6f5f1 = 6.32:1 (AA pass) &middot; #151515 on #e8e5dd = 14.51:1 (AAA pass) &middot; #ffffff on #151515 = 18.26:1 (AAA pass).</p>
+</section>
+
+<script>
+function copyWorkshopPrompt() {
+  var text = document.getElementById('workshopPrompt').textContent;
+  var btn = document.getElementById('copyPromptBtn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'Copied to Clipboard';
+      setTimeout(function () {
+        btn.textContent = 'Copy Step Zero Prompt';
+      }, 2000);
+    });
+  }
+}
+
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var jump = document.getElementById('jump');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var count = document.getElementById('count');
+
+  slides.forEach(function (s, i) {
+    var label = s.querySelector('.eyebrow span').textContent;
+    jump.add(new Option((i + 1) + '. ' + label, i));
+  });
+
+  var cur = 0;
+
+  function update() {
+    cur = slides.reduce(function (best, s, i) {
+      return s.getBoundingClientRect().top <= window.innerHeight * 0.45 ? i : best;
+    }, 0);
+    jump.value = cur;
+    count.textContent = 'Page ' + (cur + 1) + ' of ' + slides.length;
+    prev.disabled = cur === 0;
+    next.disabled = cur === slides.length - 1;
+  }
+
+  function go(index) {
+    var target = slides[Math.max(0, Math.min(slides.length - 1, index))];
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  prev.onclick = function () { go(cur - 1); };
+  next.onclick = function () { go(cur + 1); };
+  jump.onchange = function () { go(+jump.value); };
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'SELECT') return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      go(cur + 1);
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      go(cur - 1);
+    }
+  });
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+
+</body>
+</html>
