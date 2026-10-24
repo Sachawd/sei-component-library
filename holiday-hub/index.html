@@ -995,6 +995,7 @@
 (function() {
   var FIGMA_HOLIDAY_MASTER = "https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516";
   var FIGMA_TEAM_POPUP = "https://www.figma.com/design/9RL3RjhkNi37wkOGXCtiVR/SE-Marketing---Partner-Creative?node-id=146-1167";
+  var FIGMA_431_LOOKBOOK = "https://www.figma.com/design/RzKs6FADtuzQmecNP6WQCN/431-Sports---Master-File?node-id=1010-6004";
   var PREVIEW_POPUP_HUB = "../holiday-popup-package/00-Cover-Letter-and-Package-Hub.html";
   var PREVIEW_TUNNEL = "../photo-sizer/index.html";
 
@@ -1002,19 +1003,19 @@
     rickey: {
       name: "Rickey",
       subtitle: "Rickey · Design Systems, Holiday Emails & Team Sales (Pilot #1)",
-      syncHeading: "End-of-Day Wrap (6:30pm PT) & Friday Priorities (Rickey & Sacha)",
+      syncHeading: "Friday Morning Update (7:10am PT) & Ready for Rickey to Test",
       syncBullets: [
-        "Wrapped tonight (6:30pm PT): Sacha launched the Soccer.com Holiday 2026 Superside Hub on Netlify (creative direction, 67 products, 31 sizes across Static/GIF/MP4, and 235 studio photo selects).",
-        "Tunnel V2 & Box complete: All 235 of Danny's holiday photos + 15 OrbitView 360 spins are compressed, SKU-mapped, uploaded to Box, and injected into Tunnel V2.",
-        "Tampa Bay Super Cup & 47-Club Pop-Ups: All 3 Tampa Fastr paste files passed 9/9 checks for tomorrow's launch, and the 3 pilot Team Holiday Pop-Up stores + Zeta emails are staged for Sprint 151 QA."
+        "431 Volleyball Lookbook 2027 (Due Fri 30 Oct): Sacha's Components agent pre-built all 16 US Letter pages (LB 01 to LB 16) + Lookbook Master Components right beside your catalog pages in the 431 Master File without touching your 78 original pages. Ready for you to test.",
+        "Soccer.com Holiday 2026 Superside Hub is live on Netlify (creative direction, 67 products, 31 sizes across Static/GIF/MP4, and 235 studio photo selects) and all 250 Danny/OrbitView files are SKU-mapped in Box and Tunnel V2.",
+        "Tampa Bay Super Cup (3 Fastr paste files passed 9/9 checks) launches today, and the 3 pilot Team Holiday Pop-Up stores + Zeta emails are staged for Sprint 151 QA."
       ],
       starterPrompt: [
         "You are assisting Rickey (Senior Designer, Sports Endeavors) on Holiday 2026.",
         "Active tracks:",
-        "1. Whitney's Holiday Master File: using Swap Variables collections per campaign page so designers edit text lockups without detaching components, plus adding a Doorbuster Deals module.",
-        "2. Superside Holiday Hub (live at sdc-shoots.netlify.app/holiday-2026/superside/): 31 sizes across Static, GIF, and MP4/MOV.",
-        "3. Team Sales 47-Club Pop-Up Emails: 2 dynamic 2x JPG slices per club due Tue 27 Oct.",
-        "4. 431 Sports Printed Lookbook: due Fri 30 Oct (Sacha's bots ready to help offload pages).",
+        "1. 431 Sports Volleyball Lookbook 2027 (due Fri 30 Oct): Sacha's Components agent pre-built all 16 pages (LB 01 to LB 16) + Master Components in Figma (431 Sports Master File, node 1010-6004) with 27 feed-synced SKUs (8 DNA SKUs flagged). Ready for Rickey to test and art-direct.",
+        "2. Whitney's Holiday Master File: using Swap Variables collections per campaign page so designers edit text lockups without detaching components, plus adding a Doorbuster Deals module.",
+        "3. Superside Holiday Hub (live at sdc-shoots.netlify.app/holiday-2026/superside/): 31 sizes across Static, GIF, and MP4/MOV.",
+        "4. Team Sales 47-Club Pop-Up Emails: 2 dynamic 2x JPG slices per club due Tue 27 Oct.",
         "Keep every reply under 120 words with short bullets."
       ].join("\n")
     },
@@ -1141,15 +1142,15 @@
     darren: {
       name: "Darren",
       subtitle: "Darren · Team Sales & 431 Sports Lead",
-      syncHeading: "End-of-Day Team Sales & 431 Wrap (6:30pm PT · Darren)",
+      syncHeading: "Friday Morning Update (7:10am PT · Darren)",
       syncBullets: [
+        "431 Volleyball Lookbook 2027 (Due Fri 30 Oct): All 16 pages (LB 01 to LB 16) + Master Components are now pre-built in Figma with 27 feed-synced SKUs (8 DNA SKUs flagged) and ready for Rickey to test.",
         "First 3 pilot Team Holiday Pop-Up stores (Beach FC, HTX Soccer, Phoenix Rising) are live as NCFC clones on Netlify and staged for Sprint 151 QA.",
-        "All 47 club store feeds (47 of 48 product photos verified from Reflektion feed) and 3 Zeta email HTML templates are staged.",
-        "Sacha's agents have Rickey's 431 Volleyball Lookbook 2027 (due Fri 30 Oct) flagged as Priority 1 Offload support."
+        "All 47 club store feeds (47 of 48 product photos verified from Reflektion feed) and 3 Zeta email HTML templates are staged."
       ],
       starterPrompt: [
         "You are assisting Darren on Team Sales Holiday Pop-Up Shops (47 clubs) and the 431 Sports Printed Lookbook.",
-        "Pilot stores are staged for Sprint 151 QA; all 47 stores + Email 1 launch Mon 2 Nov.",
+        "431 Lookbook 16-page build is staged in Figma for Rickey to test; pilot stores are staged for Sprint 151 QA; all 47 stores + Email 1 launch Mon 2 Nov.",
         "Keep replies under 120 words."
       ].join("\n")
     },
@@ -1309,10 +1310,11 @@
       col: "431 & Catalogs",
       colClass: "chip-comp",
       urgency: 1,
-      statusWord: "Offload · Oct 30",
+      statusWord: "Built · Rickey to Test",
       people: ["rickey", "sacha", "darren", "jordan"],
-      text: "VB Lookbook 2027 (Printed 431 Lookbook for Darren, due Fri 30 Oct): Sacha's bots ready to help offload.",
-      detail: "Club Partner Catalogs (Status: To do). Flag which pages or product grids Sacha's agents can lay out for you.",
+      text: "VB Lookbook 2027 (Printed 431 Lookbook for Darren, due Fri 30 Oct): 16 pages + Master Components built in Figma; Rickey to test.",
+      detail: "16 US Letter pages (LB 01 to LB 16) + Lookbook Master Components built beside Rickey's catalog with 27 feed-synced SKUs (8 DNA SKUs and 10 product photos flagged).",
+      figmaUrl: FIGMA_431_LOOKBOOK,
       clickupUrl: "https://app.clickup.com/t/868mkp550"
     },
     {
@@ -1595,11 +1597,12 @@
       id: "msg-sacha-to-rickey-2",
       from: "Sacha (Bot)",
       to: ["rickey", "darren"],
-      time: "Thu 22 Oct · 11:40am",
+      time: "Fri 23 Oct · 7:10am",
       chip: "431 & Site Launches",
       chipClass: "chip-comp",
-      text: "Scanning Rickey's ClickUp queue today so we can take heavy lifting on the 431 Printed Lookbook off his plate before Fri 30 Oct.",
-      clickupUrl: "https://app.clickup.com/t/868mce1ah"
+      text: "Built all 16 US Letter pages (LB 01 to LB 16) + Lookbook Master Components right beside your catalog in the 431 Master File with 27 feed-synced SKUs. Ready for Rickey to test.",
+      figmaUrl: FIGMA_431_LOOKBOOK,
+      clickupUrl: "https://app.clickup.com/t/868mkp550"
     },
     {
       id: "msg-bot-qa",

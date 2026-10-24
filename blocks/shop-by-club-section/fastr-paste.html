@@ -1,0 +1,291 @@
+<!-- Shop by Club section: background photo, search for any club or player. WorldSoccerShop. Club search header (C-17).
+     Fastr CMS paste: one HTML widget, direct embed, no iframe.
+     Reserved heights: Mobile 340 / 640px and up 380 / 1024px and up 412.
+     Every rule is scoped to .c17 and cannot reach the page.
+     Background photo: set --hero-img at the top of the style block to url("https://...jpg"). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+
+.c17{
+  --hero-img: none;
+  --hero-bg: #14181c;
+  --ink:#0d1114;
+  --paper:#fff;
+  --line:rgba(255,255,255,.24);
+  --accent:#0d1114;
+  --radius:6px;
+  --pad:24px;
+  --title:"SHOP BY CLUB";
+}
+
+.c17,.c17 *,.c17 *::before,.c17 *::after{margin:0;padding:0;box-sizing:border-box}
+.c17{position:relative;width:100%;height:412px;overflow:hidden;background:var(--hero-bg);
+  font-family:"Chakra Petch",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;text-align:left;}
+.c17__bg{position:absolute;inset:0;background:var(--hero-img) center/cover no-repeat,
+  linear-gradient(115deg,#1b2229 0%,#2b343d 45%,#151a1f 100%);}
+.c17__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.55));}
+.c17__inner{position:relative;height:100%;display:flex;flex-direction:column;justify-content:center;
+  padding:0 var(--pad);max-width:1456px;margin:0 auto;transition:padding .18s ease,justify-content 0s}
+
+.c17.is-open .c17__inner{justify-content:flex-start;padding-top:18px}
+.c17__eyebrow,.c17__rule{transition:opacity .14s ease,max-height .18s ease,margin .18s ease}
+.c17.is-open .c17__eyebrow,.c17.is-open .c17__rule{opacity:0;max-height:0;margin:0;overflow:hidden}
+.c17__h1{transition:font-size .18s ease,margin .18s ease}
+.c17.is-open .c17__h1{margin:0 0 12px}
+
+.c17__eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:600}
+.c17__h1{font-size:clamp(30px,5.4vw,54px);line-height:.98;letter-spacing:-.01em;text-transform:uppercase;
+  font-weight:700;color:#fff;margin:8px 0 4px}
+.c17__rule{width:76px;height:4px;background:#fff;margin:14px 0 20px}
+
+.c17__searchwrap{max-width:660px;width:100%;position:relative;display:none}
+.c17.is-ready .c17__searchwrap{display:block}
+.c17__field{display:flex;align-items:center;gap:12px;background:var(--paper);border-radius:var(--radius);
+  padding:0 16px;height:56px;box-shadow:0 10px 34px rgba(0,0,0,.28)}
+.c17__mag{width:19px;height:19px;flex:none;opacity:.5}
+.c17__input{flex:1;border:0;outline:0;font:600 16px/1 "Chakra Petch",sans-serif;color:var(--ink);background:transparent;min-width:0}
+.c17__input::placeholder{color:#8a949d;font-weight:500}
+
+.c17__input::-ms-clear{display:none}
+.c17__clear{border:0;background:transparent;cursor:pointer;font-size:20px;line-height:1;color:#8a949d;
+  padding:6px;display:none}
+.c17.is-typing .c17__clear{display:block}
+
+.c17__nojs{display:inline-block;margin-top:4px;color:#fff;font-weight:600;font-size:15px;
+  border-bottom:2px solid rgba(255,255,255,.6);text-decoration:none;padding-bottom:2px}
+.c17.is-ready .c17__nojs{display:none}
+
+.c17__panel{position:absolute;left:0;right:0;top:calc(100% + 8px);background:var(--paper);
+  border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.34);overflow:hidden;display:none;z-index:5}
+.c17.is-open .c17__panel{display:block}
+.c17__scroll{max-height:var(--panelmax,190px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.c17__kicker{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#939da6;font-weight:700;
+  padding:11px 16px 6px;background:#fafbfb;border-bottom:1px solid #eef1f2}
+
+.c17__row{display:flex;align-items:center;gap:13px;padding:11px 16px;text-decoration:none;color:var(--ink);
+  border-bottom:1px solid #f0f2f3;cursor:pointer}
+.c17__row:last-child{border-bottom:0}
+.c17__row:hover,.c17__row.is-sel{background:#f4f6f7}
+.c17__crest{width:34px;height:34px;flex:none;object-fit:contain}
+.c17__crestph{width:34px;height:34px;flex:none;border-radius:50%;background:#eceff1}
+.c17__t{flex:1;min-width:0}
+.c17__t b{display:block;font-size:15px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c17__t em{display:block;font-style:normal;font-size:11.5px;color:#8a949d;margin-top:1px;font-weight:500;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c17__go{font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#6f7a83;flex:none;text-transform:uppercase}
+
+.c17__row--sub{padding-left:30px;position:relative}
+.c17__row--sub::before{content:"";position:absolute;left:16px;top:13px;bottom:13px;width:3px;background:#e2e6e9;border-radius:2px}
+.c17__doc{width:24px;height:30px;flex:none;border-radius:3px;background:#eceff1}
+
+.c17__empty{padding:20px 16px}
+.c17__empty b{display:block;font-size:15px;margin-bottom:3px}
+.c17__empty span{display:block;font-size:13px;color:#8a949d;margin-bottom:13px}
+.c17__cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-size:12.5px;
+  font-weight:700;letter-spacing:.05em;padding:11px 18px;border-radius:var(--radius);text-transform:uppercase}
+
+@media (max-width:1023px){ .c17{--pad:20px;height:380px} .c17__field{height:52px} }
+@media (max-width:639px){
+  .c17{--pad:16px;height:340px}
+  .c17__rule{margin:10px 0 14px;width:56px}
+  .c17__field{height:48px;padding:0 13px}
+  .c17__input{font-size:16px}
+  .c17__crest,.c17__crestph{width:28px;height:28px}
+  .c17__t b{font-size:14px}
+  .c17.is-open .c17__h1{font-size:26px;margin:0 0 10px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .c17__panel{animation:c17in .16s ease-out}
+  @keyframes c17in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+}
+</style>
+
+<div class="c17" id="c17">
+  <div class="c17__bg" aria-hidden="true"></div>
+  <div class="c17__scrim" aria-hidden="true"></div>
+
+  <div class="c17__inner">
+    <div class="c17__eyebrow">World Soccer Shop</div>
+    <h1 class="c17__h1">Shop by Club</h1>
+    <div class="c17__rule" aria-hidden="true"></div>
+
+    <a class="c17__nojs" href="https://www.worldsoccershop.com/shop/clubs" target="_top">Browse all clubs &rarr;</a>
+
+    <div class="c17__searchwrap">
+      <div class="c17__field">
+        <svg class="c17__mag" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="6.4" stroke="currentColor" stroke-width="2"></circle>
+          <path d="M13.8 13.8 18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+        <input class="c17__input" id="c17q" type="text" enterkeyhint="search" autocomplete="off" autocorrect="off"
+               autocapitalize="off" spellcheck="false" placeholder="Search a club — try &ldquo;barca&rdquo;, &ldquo;rayados&rdquo;, &ldquo;spurs&rdquo;…"
+               aria-label="Search for a club" aria-expanded="false" aria-controls="c17panel" role="combobox">
+        <button class="c17__clear" id="c17x" type="button" aria-label="Clear search">&times;</button>
+      </div>
+      <div class="c17__panel" id="c17panel" role="listbox" aria-label="Club results">
+        <div class="c17__scroll" id="c17scroll"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var DATA = {"clubs":[{"n":"Barcelona","s":"barcelona","l":"La Liga","a":["FC Barcelona","Barca","FCB","Blaugrana","Futbol Club Barcelona"],"c":"https://images.getfastr.com/c3/4b/ae6184594058b8fae9a0a4322080.png","v":34223},{"n":"Chelsea","s":"chelsea","l":"Premier League","a":["Chelsea FC","CFC","The Blues"],"c":"https://images.getfastr.com/c2/4f/b5c713484133b5362bec7d8dabae.png","v":30931},{"n":"Liverpool","s":"liverpool","l":"Premier League","a":["Liverpool FC","LFC","The Reds","Reds"],"c":"https://images.getfastr.com/4f/c6/1672ee624c5ebe0d78cda317758c.png","v":29304},{"n":"Arsenal","s":"arsenal","l":"Premier League","a":["Arsenal FC","AFC","The Gunners"],"c":"https://images.getfastr.com/59/13/621afd11463d95d4ec0860121ab9.png","v":18357},{"n":"Real Madrid","s":"real-madrid","l":"La Liga","a":["Real","Real Madrid CF","Los Blancos","RMCF"],"c":"https://images.getfastr.com/7c/e3/94139f8c45659d404f990fc2652c.png","v":16018},{"n":"Manchester United","s":"manchester-united","l":"Premier League","a":["Man United","Manchester United FC","Man Utd","MUFC","The Red Devils","Manchester Utd"],"c":"https://images.getfastr.com/af/31/02454f2e4790882965e9380eda7d.png","v":12763},{"n":"AC Milan","s":"ac-milan","l":"Serie A","a":["Milan","ACM","AC Milan FC","Associazione Calcio Milan"],"c":"https://images.getfastr.com/26/50/5632f4584b878f25fd31f4abe5ab.png","v":9213},{"n":"Bayern Munich","s":"bayern-munich","l":"Bundesliga","a":["Bayern","FC Bayern","FC Bayern Munich","Bayern Munchen","Die Bayern"],"c":"https://images.getfastr.com/72/d5/9c5a56c74aaa8f610e5b1788d09c.png","v":9048},{"n":"Inter Miami CF","s":"miami-cf","l":"MLS","a":["Inter Miami FC","Club Internacional de Futbol Miami","IMCF","Miami"],"c":"https://images.getfastr.com/46/f8/d40ba52e494a8cbbfef0903ec8b2.png","v":7318},{"n":"Manchester City","s":"manchester-city","l":"Premier League","a":["Man City","Manchester City FC","MCFC","The Citizens","Manchester City Football Club"],"c":"https://images.getfastr.com/b4/58/c8bb3c5a418e8b502c2b65d4fb4b.png","v":6877},{"n":"Cruz Azul","s":"cruz-azul","l":"Liga MX","a":["La Maquina","CRUZ","Cruz Azul FC"],"c":"https://images.getfastr.com/15/06/f3edb36d4146b308291850ce942b.png","v":6152},{"n":"Monterrey","s":"monterrey","l":"Liga MX","a":["CF Monterrey","Rayados","Rayados de Monterrey"],"c":"https://images.getfastr.com/0f/aa/6ae33f054b41b9fbc2f25255fd15.png","v":5863},{"n":"Tottenham","s":"tottenham","l":"Premier League","a":["Spurs","Tottenham Hotspur FC","THFC"],"c":"https://images.getfastr.com/fd/a4/77e50bf44d8d9a6a594db7c6865d.png","v":5432},{"n":"Wrexham","s":"wrexham-afc","l":"EFL League One","a":["Wrexham AFC"],"c":"https://images.getfastr.com/c8/64/c3a8229a4d5fa04fdc50b4e66c23.png","v":5368},{"n":"Club America","s":"club-america","l":"Liga MX","a":["CF America","America","Aguilas del America","CA","Las Aguilas"],"c":"https://images.getfastr.com/4f/06/a0fd1c73413aaf9d97fbae57f932.png","v":4818},{"n":"Paris Saint-Germain","s":"paris-saint-germain","l":"Ligue 1","a":["PSG","Paris SG","Paris Saint Germain","Paris Saint-Germain FC"],"c":"https://images.getfastr.com/bb/04/7a876dd242dbb8cce1b80c3c5d5d.png","v":4251},{"n":"Newcastle United","s":"newcastle-united","l":"Premier League","a":["Newcastle","NUFC","Newcastle United FC","Toon","The Magpies"],"c":"https://images.getfastr.com/9d/42/5e1ee4c941e98fc5fc62d88bd232.png","v":3578},{"n":"Tigres UANL","s":"tigres-uanl","l":"Liga MX","a":["Tigres","UANL","Club Tigres"],"c":"https://images.getfastr.com/22/d5/c25d048e4d77aa55abbb4d58c1be.png","v":2685},{"n":"Juventus","s":"juventus","l":"Serie A","a":["Juve","Juventus FC","La Vecchia Signora","Bianconeri"],"c":"https://images.getfastr.com/12/3d/b94859c340fdba6607a1003be7a6.png","v":2636},{"n":"Borussia Dortmund","s":"borussia-dortmund","l":"Bundesliga","a":["BVB","Dortmund","Die Borussen","BVB 09"],"c":"https://images.getfastr.com/a2/f6/19e4e22d4567a1bcbea77dd5adf0.png","v":2630},{"n":"Inter Milan","s":"inter-milan","l":"Serie A","a":["Inter","Internazionale","FC Internazionale Milano","FC Inter","Nerazzurri"],"c":"https://images.getfastr.com/a3/53/1d9686b447199340377433277ac9.png","v":1902},{"n":"Benfica","s":"benfica","l":"Primeira Liga","a":["SL Benfica","SLB","Glorioso"],"c":"https://images.getfastr.com/e3/8c/1fd66aed4fcb84b5cce2a9b6d35d.png","v":1610},{"n":"Celtic","s":"celtic","l":"Scottish Premiership","a":["Celtic FC","The Bhoys","Glasgow Celtic"],"c":"https://images.getfastr.com/e8/31/90cc37584f11a7aa4541b710338f.png","v":1601},{"n":"Atletico Madrid","s":"atletico-madrid","l":"La Liga","a":["Atletico de Madrid","Atletico","Atlético de Madrid","Ath Madrid","ATM","Los Rojiblancos"],"c":"https://images.getfastr.com/86/be/ad9617bb49e38daf1fd7a1e0f58a.png","v":1462},{"n":"Crystal Palace","s":"crystal-palace","l":"Premier League","a":["Crystal Palace FC","CPFC","The Eagles","Palace"],"c":"https://images.getfastr.com/2f/3c/8cbd3bd5497692f970ef4d530993.png","v":1248},{"n":"Chivas","s":"chivas","l":"Liga MX","a":["Club Guadalajara","Guadalajara","Chivas Guadalajara","CDG","Deportivo Guadalajara"],"c":"https://images.getfastr.com/b9/ac/8a489097480b8890aa9173115f67.png","v":1202},{"n":"West Ham United","s":"west-ham-united","l":"Premier League","a":["West Ham","WHUFC","The Hammers","Hammers"],"c":"https://images.getfastr.com/34/fd/d77029b9453c90521d1049c5971b.png","v":1187},{"n":"Ajax Amsterdam","s":"ajax-amsterdam","l":"Eredivisie","a":["Ajax","AFC Ajax","Ajax FC","AFC Ajax Amsterdam"],"c":"https://images.getfastr.com/86/e0/80bb0509404b93544c0f4c9c1c20.png","v":1086},{"n":"Pumas UNAM","s":"pumas-unam","l":"Liga MX","a":["Pumas","UNAM","Club Universidad Nacional"],"c":"https://images.getfastr.com/dd/2c/1d632d454dcea59957569efbc672.png","v":976},{"n":"Wolverhampton Wanderers","s":"wolverhampton-wanderers","l":"Premier League","a":["Wolves","WWFC","Wolverhampton"],"c":"https://images.getfastr.com/28/7f/75b1d92248448a490954215ba287.png","v":898},{"n":"Fulham","s":"fulham-fc","l":"Premier League","a":["Fulham FC","FFC","The Cottagers","Cottagers"],"c":"https://images.getfastr.com/ef/fe/2ea23f3346e8a2a5a303a27e2cc2.png","v":839},{"n":"Necaxa","s":"necaxa","l":"Liga MX","a":["Necaxa FC","FC Necaxa","Necaxa Club"],"c":"https://images.getfastr.com/e6/f2/d4bf581145a4b49b4f8b998afb8f.png","v":687},{"n":"Charlotte FC","s":"charlotte-fc","l":"MLS","a":["Charlotte","Crown Town"],"c":"https://images.getfastr.com/e4/a3/67a6c2d540839a5b5c72d78f520e.png","v":621},{"n":"AS Roma","s":"as-roma","l":"Serie A","a":["Roma","Giallorossi","Calcio Roma"],"c":"https://images.getfastr.com/56/66/8ba23c79423bbb337a1e1ad8ab40.png","v":593},{"n":"Aston Villa","s":"aston-villa","l":"Premier League","a":["AVFC","Villa","Aston Villa FC"],"c":"https://images.getfastr.com/f1/60/72dc836e41d5bf16d22a1e66b84b.png","v":553},{"n":"DC United","s":"dc-united","l":"MLS","a":["D.C. United","DCU","Washington United"],"c":"https://images.getfastr.com/bd/48/cf42fe934af3896950d39c045880.png","v":503},{"n":"FC Porto","s":"fc-porto","l":"Primeira Liga","a":["Porto","FCP"],"c":"https://images.getfastr.com/4c/ea/8abde0a64c17b154f4ee9ce21d5f.png","v":495},{"n":"Lazio","s":"lazio","l":"Serie A","a":["SS Lazio","Biancocelesti"],"c":"https://images.getfastr.com/e0/2b/6e04c1c04ea28f535e05e0eeb5a1.png","v":477},{"n":"Minnesota United","s":"minnesota-united","l":"MLS","a":["Minnesota United FC","MNUFC","Loons"],"c":"https://images.getfastr.com/ea/e4/bfa1fec44ce19164bede870512ba.png","v":451},{"n":"Vancouver Whitecaps","s":"vancouver-whitecaps","l":"MLS","a":["Whitecaps","Vancouver Whitecaps FC","VWFC"],"c":"https://images.getfastr.com/41/ba/c396a9f147fcb5bd05f69d948fa5.png","v":410},{"n":"Brighton & Hove Albion","s":"brighton-hove-albion","l":"Premier League","a":["Brighton","Brighton Hove Albion","BHAFC","Brighton and Hove Albion","The Seagulls","Brighton FC"],"c":"https://images.getfastr.com/cb/c3/3ad6e9ec4bcf9543e16f7d8c2456.png","v":406},{"n":"Atlanta United","s":"atlanta-united","l":"MLS","a":["Atlanta United FC","Five Stripes"],"c":"https://images.getfastr.com/97/a7/0096b0654c4abe151fce20c44b2b.png","v":333},{"n":"Galatasaray","s":"galatasaray","l":"Süper Lig","a":["GS","Galata","Galatasaray SK"],"c":"https://images.getfastr.com/88/40/280c901042edb356eba1cbbabcbd.png","v":318},{"n":"Seattle Sounders","s":"seattle-sounders","l":"MLS","a":["Sounders","Sounders FC"],"c":"https://images.getfastr.com/43/cd/5ffa4a4d444bb52db06542914958.png","v":317},{"n":"New England Revolution","s":"new-england-revolution","l":"MLS","a":["New England Rev","NE Revolution","New England Revs","Revolution"],"c":"https://images.getfastr.com/f1/34/586cbaab4337adcc8c02139c1726.png","v":311},{"n":"San Jose Earthquakes","s":"san-jose-earthquakes","l":"MLS","a":["San Jose","Earthquakes","Quakes","SJ Earthquakes"],"c":"https://images.getfastr.com/a3/af/de97c86840cf89273b3919a0ab79.png","v":281},{"n":"Columbus Crew","s":"columbus-crew","l":"MLS","a":["Crew","Crew SC","COC","Columbus"],"c":"https://images.getfastr.com/2b/4f/d0b364704a639ca1cf8b9a71b526.png","v":256},{"n":"Queretaro","s":"queretaro","l":"Liga MX","a":["Queretaro FC","FC Queretaro","Queretaro Club"],"c":"https://images.getfastr.com/35/c1/7292ea804f37a9e88f06ac1b3c8c.png","v":252},{"n":"Mazatlán FC","s":"mazatlan-fc","l":"Liga MX","a":["Mazatlán","Mazatlán-FC"],"c":"https://images.getfastr.com/32/2e/bd9c24b74f14a737764ea3775257.png","v":242},{"n":"Portland Timbers","s":"portland-timbers","l":"MLS","a":["Timbers","Portland Timbers FC"],"c":"https://images.getfastr.com/1d/b2/a0547ccf449b95fd65ed215cb625.png","v":240},{"n":"Leon","s":"leon","l":"Liga MX","a":["Club Leon FC"],"c":"https://images.getfastr.com/80/dc/de39428c4d5d93b7ec64559aaf3e.png","v":217},{"n":"Olympique Marseille","s":"olympique-marseille","l":"Ligue 1","a":["Marseille","OM","Olympique de Marseille"],"c":"https://images.getfastr.com/83/ad/e864a80c439eaeb7c2423fd3a773.png","v":215},{"n":"Toluca","s":"toluca","l":"Liga MX","a":["Deportivo Toluca","Diablos Rojos"],"c":"https://images.getfastr.com/6e/6a/2dd137f84a61975926e38efe42ff.png","v":214},{"n":"Palermo","s":"palermo","l":"Serie B","a":["Palermo FC","FC Palermo","Palermo Club"],"c":"https://images.getfastr.com/b5/79/c09f247a4a8f91b5a759c6a6740e.png","v":186},{"n":"LAFC","s":"lafc","l":"MLS","a":["Los Angeles Football Club"],"c":"https://images.getfastr.com/69/48/55916e3d45d09cdb2313339c980c.png","v":173},{"n":"Philadelphia Union","s":"philadelphia-union","l":"MLS","a":["Union","PHI","Philly Union"],"c":"https://images.getfastr.com/99/11/973744f949ecba2c7dbd367f41d4.png","v":163},{"n":"AFC Bournemouth","s":"afc-bournemouth","l":"Premier League","a":["Bournemouth","AFCB","AFC Bournemouth FC"],"c":"https://images.getfastr.com/61/53/bf47f84548289f08e1e0b5000b85.png","v":160},{"n":"Bayer 04 Leverkusen","s":"bayer-04-leverkusen","l":"Bundesliga","a":["Bayer Leverkusen","Leverkusen","B04","Die Werkself"],"c":"https://images.getfastr.com/b8/f0/a9463d29434e9ab60c274686fba6.png","v":140},{"n":"Red Star Belgrade","s":"red-star-belgrade","l":"Serbian SuperLiga","a":["Crvena Zvezda","FK Red Star Belgrade"],"c":"","v":130},{"n":"Leicester City","s":"leicester-city","l":"Premier League","a":["Leicester","LCFC","Leicester City FC","The Foxes","Foxes"],"c":"https://images.getfastr.com/42/10/83f7ef4d4fc99914f9c723e52d6e.png","v":125},{"n":"Lille OSC","s":"lille-osc","l":"Ligue 1","a":["Lille","LOSC","LOSC Lille","Les Dogues"],"c":"https://images.getfastr.com/d8/84/d8142e3d4f16b079ab2106755d37.png","v":115},{"n":"Nuremberg","s":"nuremberg","l":"Bundesliga","a":["Nuremberg FC","FC Nuremberg","Nuremberg Club"],"c":"https://images.getfastr.com/6b/dd/1a8b785d4fb6a5ae2f761b8c394d.png","v":110},{"n":"Atlas","s":"atlas","l":"Liga MX","a":["Atlas FC","Atlas Guadalajara"],"c":"https://images.getfastr.com/67/d4/62cf11fd4bb3a70c82ecfd7a79c6.png","v":102},{"n":"Rangers FC","s":"rangers-fc","l":"Scottish Premiership","a":["Rangers","Glasgow Rangers"],"c":"https://images.getfastr.com/24/9d/a326948f4232ade0e2ae72cf92ca.png","v":100},{"n":"Everton","s":"everton","l":"Premier League","a":["Everton FC","EVE","The Toffees","Toffees"],"c":"https://images.getfastr.com/37/df/7d54777a40deb96b2b54ffa192b1.png","v":99},{"n":"Napoli","s":"napoli","l":"Serie A","a":["SSC Napoli","SSCN","Partenopei","Gli Azzurri"],"c":"https://images.getfastr.com/a5/74/89b4a06344c187b86241886a9575.png","v":99},{"n":"St. Louis City SC","s":"st-louis-city-sc","l":"MLS","a":["St Louis City","STLCSC","Saint Louis City SC"],"c":"https://images.getfastr.com/04/f9/5a2864f5483d89b64c36bcc6c0a2.png","v":96},{"n":"New York Red Bulls","s":"new-york-red-bulls","l":"MLS","a":["NY Red Bulls","Red Bulls","NYRB","New York RB"],"c":"https://images.getfastr.com/59/85/bac7901843a1bec9b1dcf7d6e628.png","v":96},{"n":"Olympique Lyonnais","s":"olympique-lyonnais","l":"Ligue 1","a":["Lyon","OL","Olympique Lyon","Les Gones"],"c":"https://images.getfastr.com/a0/97/389ee3bd4db8955ca0b2cf875bce.png","v":90},{"n":"Pachuca","s":"pachuca","l":"Liga MX","a":["CF Pachuca","Tuzos"],"c":"https://images.getfastr.com/bb/ef/5c8f3ccb4c31b92faae44bfefd44.png","v":86},{"n":"PSV Eindhoven","s":"psv-eindhoven","l":"Eredivisie","a":["PSV","Eindhoven"],"c":"https://images.getfastr.com/a1/99/8555039842cdb20776fee7d5852d.png","v":81},{"n":"FC Santa Claus","s":"fc-santa-claus","l":"Finland","a":[],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":75},{"n":"LA Galaxy","s":"la-galaxy","l":"MLS","a":["L.A. Galaxy","Galaxy","Los Angeles Galaxy"],"c":"https://images.getfastr.com/9e/e0/e9769b3f47e4a56fabb45592f2a8.png","v":60},{"n":"Austin FC","s":"austin-fc","l":"MLS","a":["Austin","Verde Austin"],"c":"https://images.getfastr.com/d2/81/e02a7a79478b85dafd2fd53b1f2a.png","v":59},{"n":"Sampdoria","s":"sampdoria","l":"Serie A","a":["Sampdoria FC","FC Sampdoria","Sampdoria Club"],"c":"https://images.getfastr.com/fd/fc/704ceefe4073a7cf4da5e41b0d91.png","v":0},{"n":"Nashville SC","s":"nashville-sc","l":"MLS","a":["Nashville Soccer Club","NSC","Nashville"],"c":"https://images.getfastr.com/0a/3b/19b246e34ff0adf518147369358f.png","v":0},{"n":"Atalanta BC","s":"atalanta-bc","l":"Serie A","a":["Atalanta","La Dea"],"c":"https://images.getfastr.com/de/b0/2eb356054b568275969a65697a00.png","v":0},{"n":"Swansea City","s":"swansea-city","l":"EFL Championship","a":["Swansea-City"],"c":"https://images.getfastr.com/f0/29/741c4d06414eaae754598b33f9e0.png","v":0},{"n":"San Diego FC","s":"san-diego-fc","l":"MLS","a":["San Diego","San-Diego-FC"],"c":"https://images.getfastr.com/d0/0a/fbe34c2f4207a485dfb3a0c44726.png","v":0},{"n":"Cagliari","s":"cagliari","l":"Serie A","a":["Cagliari Calcio"],"c":"https://images.getfastr.com/36/20/491525ba479eb6e79bfc0b7ba43b.png","v":0},{"n":"Colorado Rapids","s":"colorado-rapids","l":"MLS","a":["Rapids","COR","Colorado"],"c":"https://images.getfastr.com/43/f1/c3a5092149419f495892f0b3525c.png","v":0},{"n":"West Brom","s":"west-brom","l":"EFL Championship","a":["WBA","The Baggies","West Bromwich"],"c":"https://images.getfastr.com/95/0d/8e31bfc34a6fbd98249704784ef3.png","v":0},{"n":"Santos Laguna","s":"santos-laguna","l":"Liga MX","a":["Santos","Guerreros"],"c":"https://images.getfastr.com/19/ed/2cbea2fd429da6f8c4eac6284123.png","v":0},{"n":"Burnley","s":"burnley","l":"Premier League","a":["Burnley FC","The Clarets"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"RB Leipzig","s":"red-bull-leipzig","l":"Bundesliga","a":["Leipzig","RBL","Red Bull Leipzig"],"c":"https://images.getfastr.com/34/4f/7fdecadd4c758e944da869e45d5b.png","v":0},{"n":"St. Pauli","s":"st-pauli","l":"Bundesliga","a":["Pauli","Pauli FC","St.-Pauli"],"c":"https://images.getfastr.com/3a/3b/876d5959441aa9c22d28c9b8f053.png","v":0},{"n":"Villarreal CF","s":"villarreal-cf","l":"La Liga","a":["Villarreal","El Submarino Amarillo","Yellow Submarine"],"c":"https://images.getfastr.com/69/90/9277d7394fa6b0df4a61ab6b1539.png","v":0},{"n":"Sevilla","s":"sevilla","l":"La Liga","a":["Sevilla FC","SFC"],"c":"https://images.getfastr.com/58/c7/7f34d91749589db2203d42a9fb14.png","v":0},{"n":"Valencia","s":"valencia","l":"La Liga","a":["Valencia CF","VCF","Los Che"],"c":"https://images.getfastr.com/2e/46/5fdbcfb64bc0988b03a61b95d22b.png","v":0},{"n":"Hearts of Midlothian","s":"hearts-of-midlothian","l":"Scottish Premiership","a":["Hearts","Heart of Midlothian","HMFC"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"Toronto FC","s":"toronto-fc","l":"MLS","a":["TFC","Toronto"],"c":"https://images.getfastr.com/48/b4/484f7473404e898eeba454b11d8c.png","v":0},{"n":"Schalke 04","s":"schalke-04","l":"Bundesliga","a":["Schalke","FC Schalke 04","S04"],"c":"https://images.getfastr.com/b2/05/aeff74fa4c7fb07e0317b02d07ad.png","v":0},{"n":"Sheffield United","s":"sheffield-united","l":"Premier League","a":["Sheffield-United"],"c":"https://images.getfastr.com/39/0f/fc0b46a947e18508eca9c6052696.png","v":0},{"n":"Lobos BUAP","s":"lobos-buap","l":"Liga MX","a":["BUAP","BUAP FC","Lobos-BUAP"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"Hertha Berlin","s":"hertha-berlin","l":"Bundesliga","a":["Berlin","Berlin FC","Hertha-Berlin"],"c":"https://images.getfastr.com/d5/27/199dddb348f7b063ecb273a5cf4c.png","v":0},{"n":"Southampton","s":"southampton","l":"EFL Championship","a":["Southampton FC","Saints","SCFC"],"c":"https://images.getfastr.com/16/f7/74ab270d41ce982b7118132ddec0.png","v":0},{"n":"Xolos Tijuana","s":"xolos-tijuana","l":"Liga MX","a":["Club Tijuana","Xolos","Tijuana","Xoloitzcuintles","Tijuana Xolos"],"c":"https://images.getfastr.com/6e/6a/2dd137f84a61975926e38efe42ff.png","v":0},{"n":"Torino","s":"torino","l":"Serie A","a":["Torino FC","FC Torino","Torino Club"],"c":"https://images.getfastr.com/8c/3f/85c9dc0349818ff6cc7b94ad268c.png","v":0},{"n":"FC Dallas","s":"fc-dallas","l":"MLS","a":["Dallas","FCD"],"c":"https://images.getfastr.com/7c/bb/b54ca76240aab686808b4b4ab1be.png","v":0},{"n":"Bologna","s":"bologna","l":"Serie A","a":["Bologna FC","BFC","I Rossoblu"],"c":"https://images.getfastr.com/c5/de/6c80abe24deb90f61281715d1472.png","v":0},{"n":"Orlando City","s":"orlando-city","l":"MLS","a":["Orlando City SC","OCSC","Lions"],"c":"https://images.getfastr.com/70/8f/38f629e949c4a5ca0b82df75929e.png","v":0},{"n":"Getafe","s":"getafe","l":"La Liga","a":["Getafe CF","Azulones"],"c":"https://images.getfastr.com/80/f6/e236606441ce9f7d9c7433ac946d.png","v":0},{"n":"Werder Bremen","s":"werder-bremen","l":"Bundesliga","a":["Werder","SVW","SV Werder Bremen"],"c":"https://images.getfastr.com/7b/f2/bcdf4a094cc5af284145afe787f1.png","v":0},{"n":"Wolfsburg","s":"wolfsburg","l":"Bundesliga","a":["VfL Wolfsburg","Die Wolfe"],"c":"https://images.getfastr.com/25/fe/dbc39cbc4e9fbd5c1f90cb34c6b4.png","v":0},{"n":"Zenit St Petersburg","s":"zenit-st-petersburg","l":"Russian Premier League","a":["Zenit","Zenit Saint Petersburg","FK Zenit","Zenit Saint-Petersburg"],"c":"https://images.getfastr.com/50/bd/3e5e193e48dab8d707677f8a699c.png","v":0},{"n":"Watford","s":"watford","l":"EFL Championship","a":["Watford FC","FC Watford","Watford Club"],"c":"https://images.getfastr.com/9d/4b/4891bc154e36a6e265b527511b95.png","v":0},{"n":"Houston Dynamo","s":"houston-dynamo","l":"MLS","a":["Dynamo","HOU","Houston Dynamo FC"],"c":"https://images.getfastr.com/69/88/ce1c98c447cab674a27df39fed69.png","v":0},{"n":"Tiburones Rojos Veracruz","s":"tiburones-rojos-veracruz","l":"Liga MX","a":["Veracruz","Veracruz FC","Tiburones-Rojos-Veracruz"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"Stoke City","s":"stoke-city","l":"EFL Championship","a":["Stoke-City"],"c":"https://images.getfastr.com/ab/29/ef3c245f4ac28636ea84eb3fefce.png","v":0},{"n":"Chicago Fire","s":"chicago-fire","l":"MLS","a":["Chicago Fire FC","Fire FC","CFI","Chicago"],"c":"https://images.getfastr.com/78/a8/2e0c5cd04d879f9933029366a8a6.png","v":0},{"n":"Chievo Verona","s":"chievo-verona","l":"Serie A","a":["Verona","Verona FC","Chievo-Verona"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"NYCFC","s":"nycfc","l":"MLS","a":["New York City","NYC FC"],"c":"https://images.getfastr.com/06/70/c38f67884012b6398a1b987909c3.png","v":0},{"n":"Mainz 05","s":"mainz-05","l":"Bundesliga","a":["05","05 FC","Mainz-05"],"c":"https://images.getfastr.com/7d/11/4301a16a4d4c9e642f30c418d19e.png","v":0},{"n":"Norwich City","s":"norwich-city","l":"EFL Championship","a":["Norwich-City"],"c":"https://images.getfastr.com/85/4a/b54ece454f3baa48caa8632505c9.png","v":0},{"n":"Real Salt Lake","s":"real-salt-lake","l":"MLS","a":["RSL","Salt Lake"],"c":"https://images.getfastr.com/72/6b/f790a0214567b68585ac13c9e839.png","v":0},{"n":"TSG Hoffenheim","s":"tsg-hoffenheim","l":"Bundesliga","a":["Hoffenheim","Hoffenheim FC","TSG-Hoffenheim"],"c":"https://images.getfastr.com/64/24/4a77bf694bb4a9bb1eba59fba93c.png","v":0},{"n":"FC Cincinnati","s":"fc-cincinnati","l":"MLS","a":["Cincinnati","FC Cincy","FCC","Cincy"],"c":"https://images.getfastr.com/30/a9/00b3307c4274a6e2df29b17e6a29.png","v":0},{"n":"Borussia Monchengladbach","s":"borussia-monchengladbach","l":"Bundesliga","a":["Gladbach","BMG","Die Fohlen"],"c":"https://images.getfastr.com/1a/88/2658e7014475b2b6dabd525a75eb.png","v":0},{"n":"Sunderland","s":"sunderland","l":"EFL Championship","a":["Sunderland FC","FC Sunderland","Sunderland Club"],"c":"https://images.getfastr.com/bb/e3/4f06c35049469b0935fbe9d926be.png","v":0},{"n":"Athletic Bilbao","s":"athletic-bilbao","l":"La Liga","a":["Athletic Club","Athletic Club Bilbao","Los Leones"],"c":"https://images.getfastr.com/3c/05/656346f9413d882967322e3e8f9c.png","v":0},{"n":"Jaguares de Chiapas","s":"jaguares-de-chiapas","l":"Liga MX","a":["Chiapas","Chiapas FC","Jaguares-de-Chiapas"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"Sporting KC","s":"sporting-kc","l":"MLS","a":["Kansas City Wizards","SKC"],"c":"https://images.getfastr.com/bc/f9/5ac8073043c28d0fbe32c1b5234c.png","v":0},{"n":"Sporting Lisbon","s":"sporting-lisbon","l":"Primeira Liga","a":["Sporting Lisboa","SCP","Sporting Clube de Portugal"],"c":"https://images.getfastr.com/c8/8e/ef0b1cdb42379253f2ed3c594976.png","v":0},{"n":"Udinese","s":"udinese","l":"Serie A","a":["Udinese FC","FC Udinese","Udinese Club"],"c":"https://images.getfastr.com/cf/39/31f68d7a47f092fa6f58551a8d7c.png","v":0},{"n":"Monarcas Morelia","s":"monarcas-morelia","l":"Liga MX","a":["Morelia","Morelia FC","Monarcas-Morelia"],"c":"https://images.getfastr.com/94/7b/8e35f7b34eb4a4fe481a67018d9a.png","v":0},{"n":"CF Montreal","s":"montreal-impact","l":"MLS","a":["Montreal Impact","Impact","CFMTL","Club de Foot Montreal"],"c":"https://images.getfastr.com/ec/71/006441fd4008af8e5523af71b169.png","v":0}],"players":[{"n":"Bukayo Saka","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/bukayo-saka"},{"n":"Federico Valverde","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/federico-valverde"},{"n":"Weston McKennie","c":"Juventus","u":"https://www.worldsoccershop.com/shop/players/weston-mckennie"},{"n":"Crystal Dunn","c":"Paris Saint-Germain","u":"https://www.worldsoccershop.com/shop/players/crystal-dunn"},{"n":"Alex Oxlade-Chamberlain","c":"Celtic","u":"https://www.worldsoccershop.com/shop/players/alex-oxlade-chamberlain"},{"n":"Harry Kane","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/harry-kane"},{"n":"Walker Zimmerman","c":"Toronto FC","u":"https://www.worldsoccershop.com/shop/players/walker-zimmerman"},{"n":"Mason Mount","c":"Manchester United","u":"https://www.worldsoccershop.com/shop/players/mason-mount"},{"n":"Andrew Robertson","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/andrew-robertson"},{"n":"Ollie Watkins","c":"Aston Villa","u":"https://www.worldsoccershop.com/shop/players/ollie-watkins"},{"n":"Cody Gakpo","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/cody-gakpo"},{"n":"Sergio Busquets","c":"Inter Miami CF","u":"https://www.worldsoccershop.com/shop/players/sergio-busquets"},{"n":"João Neves","c":"Paris Saint-Germain","u":"https://www.worldsoccershop.com/shop/players/joao-neves"},{"n":"William Saliba","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/william-saliba"},{"n":"Mauro Icardi","c":"Galatasaray","u":"https://www.worldsoccershop.com/shop/players/mauro-icardi"},{"n":"Raphinha","c":"Barcelona","u":"https://www.worldsoccershop.com/shop/players/raphinha"},{"n":"Erling Haaland","c":"Manchester City","u":"https://www.worldsoccershop.com/shop/players/erling-haaland"},{"n":"Tammy Abraham","c":"Aston Villa","u":"https://www.worldsoccershop.com/shop/players/tammy-abraham"},{"n":"Chicharito","c":"Chivas","u":"https://www.worldsoccershop.com/shop/players/chicharito"},{"n":"David Alaba","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/david-alaba"},{"n":"Ousmane Dembélé","c":"Paris Saint-Germain","u":"https://www.worldsoccershop.com/shop/players/ousmane-dembele"},{"n":"Achraf Hakimi","c":"Paris Saint-Germain","u":"https://www.worldsoccershop.com/shop/players/achraf-hakimi"},{"n":"Martin Ødegaard","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/martin-odegaard"},{"n":"Diego Luna","c":"Real Salt Lake","u":"https://www.worldsoccershop.com/shop/players/diego-luna"},{"n":"Vinícius Júnior","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/vinicius-junior"},{"n":"Andrés Guardado","c":"Leon","u":"https://www.worldsoccershop.com/shop/players/andres-guardado"},{"n":"Eberechi Eze","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/eberechi-eze"},{"n":"Jadon Sancho","c":"Aston Villa","u":"https://www.worldsoccershop.com/shop/players/jadon-sancho"},{"n":"Timothy Weah","c":"Olympique Marseille","u":"https://www.worldsoccershop.com/shop/players/tim-weah"},{"n":"Florian Wirtz","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/florian-wirtz"},{"n":"Timo Werner","c":"San Jose Earthquakes","u":"https://www.worldsoccershop.com/shop/players/timo-werner"},{"n":"Antoine Griezmann","c":"Atletico Madrid","u":"https://www.worldsoccershop.com/shop/players/antoine-griezmann"},{"n":"Kylian Mbappé","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/kylian-mbappe"},{"n":"Paulo Dybala","c":"AS Roma","u":"https://www.worldsoccershop.com/shop/players/paulo-dybala"},{"n":"Jack Grealish","c":"Everton","u":"https://www.worldsoccershop.com/shop/players/jack-grealish"},{"n":"Phil Foden","c":"Manchester City","u":"https://www.worldsoccershop.com/shop/players/phil-foden"},{"n":"Santiago Giménez","c":"AC Milan","u":"https://www.worldsoccershop.com/shop/players/santiago-gimenez"},{"n":"Yunus Musah","c":"Atalanta BC","u":"https://www.worldsoccershop.com/shop/players/yunus-musah"},{"n":"Dušan Vlahović","c":"Juventus","u":"https://www.worldsoccershop.com/shop/players/dusan-vlahovic"},{"n":"Alexander Isak","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/alexander-isak"},{"n":"Moisés Caicedo","c":"Chelsea","u":"https://www.worldsoccershop.com/shop/players/moises-caicedo"},{"n":"Lautaro Martínez","c":"Inter Milan","u":"https://www.worldsoccershop.com/shop/players/lautaro-martinez"},{"n":"Jamal Musiala","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/jamal-musiala"},{"n":"Hector Herrera","c":"Toluca","u":"https://www.worldsoccershop.com/shop/players/hector-herrera"},{"n":"Gabriel Martinelli","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/gabriel-martinelli"},{"n":"Viktor Gyökeres","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/viktor-gyokeres"},{"n":"Endrick","c":"Olympique Lyonnais","u":"https://www.worldsoccershop.com/shop/players/endrick"},{"n":"Mohamed Salah","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/mohamed-salah"},{"n":"Olivier Giroud","c":"Lille OSC","u":"https://www.worldsoccershop.com/shop/players/olivier-giroud"},{"n":"Omar Marmoush","c":"Manchester City","u":"https://www.worldsoccershop.com/shop/players/omar-marmoush"},{"n":"Richarlison","c":"Tottenham","u":"https://www.worldsoccershop.com/shop/players/richarlison"},{"n":"Frenkie de Jong","c":"Barcelona","u":"https://www.worldsoccershop.com/shop/players/frenkie-de-jong"},{"n":"Alexis Mac Allister","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/alexis-mac-allister"},{"n":"Milos Kerkez","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/milos-kerkez"},{"n":"Marc Cucurella","c":"Chelsea","u":"https://www.worldsoccershop.com/shop/players/marc-cucurella"},{"n":"Gabriel Jesus","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/gabriel-jesus"},{"n":"Matheus Cunha","c":"Manchester United","u":"https://www.worldsoccershop.com/shop/players/matheus-cunha"},{"n":"Lamine Yamal","c":"Barcelona","u":"https://www.worldsoccershop.com/shop/players/lamine-yamal"},{"n":"Manuel Neuer","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/manuel-neuer"},{"n":"Romelu Lukaku","c":"Napoli","u":"https://www.worldsoccershop.com/shop/players/romelu-lukaku"},{"n":"Rodri","c":"Wrexham","u":"https://www.worldsoccershop.com/shop/players/rodri"},{"n":"Son Heung-min","c":"LAFC","u":"https://www.worldsoccershop.com/shop/players/son-heung-min"},{"n":"Riccardo Calafiori","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/riccardo-calafiori"},{"n":"Sandro Tonali","c":"Newcastle United","u":"https://www.worldsoccershop.com/shop/players/sandro-tonali"},{"n":"Lionel Messi","c":"Inter Miami CF","u":"https://www.worldsoccershop.com/shop/players/lionel-messi"},{"n":"Désiré Doué","c":"Paris Saint-Germain","u":"https://www.worldsoccershop.com/shop/players/desire-doue"},{"n":"James Rodríguez","c":"Leon","u":"https://www.worldsoccershop.com/shop/players/james-rodriguez"},{"n":"Alphonso Davies","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/alphonso-davies"},{"n":"Trent Alexander-Arnold","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/trent-alexander-arnold"},{"n":"Bryan Mbeumo","c":"Manchester United","u":"https://www.worldsoccershop.com/shop/players/bryan-mbeumo"},{"n":"Raúl Jiménez","c":"Fulham","u":"https://www.worldsoccershop.com/shop/players/raul-jimenez"},{"n":"Bruno Fernandes","c":"Manchester United","u":"https://www.worldsoccershop.com/shop/players/bruno-fernandes"},{"n":"Malik Tillman","c":"Bayer 04 Leverkusen","u":"https://www.worldsoccershop.com/shop/players/malik-tillman"},{"n":"Declan Rice","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/declan-rice"},{"n":"Robert Lewandowski","c":"Barcelona","u":"https://www.worldsoccershop.com/shop/players/robert-lewandowski"},{"n":"Giovanni Reyna","c":"Borussia Monchengladbach","u":"https://www.worldsoccershop.com/shop/players/giovanni-reyna"},{"n":"Miles Robinson","c":"FC Cincinnati","u":"https://www.worldsoccershop.com/shop/players/miles-robinson"},{"n":"Marcus Rashford","c":"Barcelona","u":"https://www.worldsoccershop.com/shop/players/marcus-rashford"},{"n":"Enzo Fernández","c":"Chelsea","u":"https://www.worldsoccershop.com/shop/players/enzo-fernandez"},{"n":"Christian Pulisic","c":"AC Milan","u":"https://www.worldsoccershop.com/shop/players/christian-pulisic"},{"n":"Rafael Leão","c":"AC Milan","u":"https://www.worldsoccershop.com/shop/players/rafael-leao"},{"n":"Eduardo Camavinga","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/eduardo-camavinga"},{"n":"Marco Reus","c":"LA Galaxy","u":"https://www.worldsoccershop.com/shop/players/marco-reus"},{"n":"Granit Xhaka","c":"Sunderland","u":"https://www.worldsoccershop.com/shop/players/granit-xhaka"},{"n":"Leon Goretzka","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/leon-goretzka"},{"n":"Joshua Kimmich","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/joshua-kimmich"},{"n":"Tyler Adams","c":"AFC Bournemouth","u":"https://www.worldsoccershop.com/shop/players/tyler-adams"},{"n":"Christian Eriksen","c":"Wolfsburg","u":"https://www.worldsoccershop.com/shop/players/christian-eriksen"},{"n":"Casemiro","c":"Manchester United","u":"https://www.worldsoccershop.com/shop/players/casemiro"},{"n":"Luis Díaz","c":"Bayern Munich","u":"https://www.worldsoccershop.com/shop/players/luis-diaz"},{"n":"Harry Maguire","c":"Manchester United","u":"https://www.worldsoccershop.com/shop/players/harry-maguire"},{"n":"Virgil van Dijk","c":"Liverpool","u":"https://www.worldsoccershop.com/shop/players/virgil-van-dijk"},{"n":"Cole Palmer","c":"Chelsea","u":"https://www.worldsoccershop.com/shop/players/cole-palmer"},{"n":"Kai Havertz","c":"Arsenal","u":"https://www.worldsoccershop.com/shop/players/kai-havertz"},{"n":"Jude Bellingham","c":"Real Madrid","u":"https://www.worldsoccershop.com/shop/players/jude-bellingham"}],"tifo":{"Barcelona":[["El Clásico","https://www.worldsoccershop.com/guide/el-clasico-history"]],"Real Madrid":[["El Clásico","https://www.worldsoccershop.com/guide/el-clasico-history"]],"Manchester United":[["The Manchester Derby","https://www.worldsoccershop.com/guide/manchester-derby-history-man-united-man-city"]],"Manchester City":[["The Manchester Derby","https://www.worldsoccershop.com/guide/manchester-derby-history-man-united-man-city"]],"Arsenal":[["The North London Derby","https://www.worldsoccershop.com/guide/history-of-the-north-london-derby-arsenal-tottenham"]],"Tottenham":[["The North London Derby","https://www.worldsoccershop.com/guide/history-of-the-north-london-derby-arsenal-tottenham"]],"Liverpool":[["History of the Liverpool Jersey","https://www.worldsoccershop.com/guide/liverpool-jersey-history"]],"Chivas":[["El Súper Clásico","https://www.worldsoccershop.com/guide/the-history-of-el-super-clasico-chivas-america"]],"Club America":[["El Súper Clásico","https://www.worldsoccershop.com/guide/the-history-of-el-super-clasico-chivas-america"]]},"order":["Premier League","La Liga","Liga MX","Serie A","MLS","Bundesliga","Ligue 1"]};
+  var SRCH = "https://www.worldsoccershop.com/srch?query=";
+  var BASE = "https://www.worldsoccershop.com/shop/clubs/";
+
+  var root=document.getElementById("c17"), q=document.getElementById("c17q"),
+      panel=document.getElementById("c17panel"), scroll=document.getElementById("c17scroll"),
+      clearBtn=document.getElementById("c17x");
+  if(!root||!q||!scroll) return;
+
+  function fold(s){
+    s=String(s||"").toLowerCase();
+    try{ s=s.normalize("NFD").replace(/[̀-ͯ]/g,""); }catch(e){}
+    return " "+s.replace(/[^a-z0-9]+/g," ").trim()+" ";
+  }
+
+  var CL=DATA.clubs||[], PL=DATA.players||[], TIFO=DATA.tifo||{};
+  for(var i=0;i<CL.length;i++){
+    var c=CL[i], hay=fold(c.n);
+    for(var a=0;a<(c.a||[]).length;a++) hay+=fold(c.a[a]);
+    c._h=hay; c._n=fold(c.n);
+  }
+  for(var p=0;p<PL.length;p++) PL[p]._h=fold(PL[p].n);
+
+  function esc(s){return String(s).replace(/[&<>"']/g,function(m){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m];});}
+
+  function matchedAlias(c,t){
+    for(var a=0;a<(c.a||[]).length;a++){ if((" "+fold(c.a[a]).trim()).indexOf(t)===0) return c.a[a]; }
+    for(var b=0;b<(c.a||[]).length;b++){ if(fold(c.a[b]).indexOf(t)>-1) return c.a[b]; }
+    return null;
+  }
+
+  function search(raw){
+    var t=fold(raw).trim(); if(!t) return {clubs:[],players:[]};
+    t=" "+t;
+    var starts=[],inside=[],ppl=[];
+    for(var i=0;i<CL.length;i++){
+      var c=CL[i];
+      if(c._n.indexOf(t)===0) starts.push(c);
+      else if(c._h.indexOf(t)>-1) inside.push(c);
+    }
+    for(var j=0;j<PL.length&&ppl.length<4;j++) if(PL[j]._h.indexOf(t)>-1) ppl.push(PL[j]);
+
+    return {clubs:starts.concat(inside).slice(0,8), players:ppl, term:t};
+  }
+
+  function crest(c){
+    if(!c.c) return '<span class="c17__crestph" aria-hidden="true"></span>';
+    return '<img class="c17__crest" src="'+esc(c.c)+'" alt="" width="34" height="34" '+
+           'onerror="this.onerror=null;this.style.visibility=\'hidden\';">';
+  }
+  function clubRow(c,note){
+    return '<a class="c17__row" role="option" target="_top" href="'+esc(BASE+c.s)+'">'+
+      crest(c)+'<span class="c17__t"><b>'+esc(c.n)+'</b><em>'+esc(note||c.l)+'</em></span>'+
+      '<span class="c17__go">Shop &rarr;</span></a>';
+  }
+  function tifoRows(c){
+    var arts=TIFO[c.n]; if(!arts) return "";
+    var out="";
+    for(var i=0;i<arts.length;i++){
+      out+='<a class="c17__row c17__row--sub" role="option" target="_top" href="'+esc(arts[i][1])+'">'+
+        '<span class="c17__doc" aria-hidden="true"></span>'+
+        '<span class="c17__t"><b>'+esc(arts[i][0])+'</b><em>From The Tifo</em></span>'+
+        '<span class="c17__go">Read &rarr;</span></a>';
+    }
+    return out;
+  }
+
+  function render(raw){
+    var html="", r=search(raw);
+    if(!raw.trim()){
+      html='<div class="c17__kicker">Most shopped</div>';
+      for(var i=0;i<8&&i<CL.length;i++) html+=clubRow(CL[i]);
+    } else if(r.clubs.length||r.players.length){
+      if(r.clubs.length){
+        html+='<div class="c17__kicker">'+(r.clubs.length===1?"Club":"Clubs")+'</div>';
+        for(var k=0;k<r.clubs.length;k++){
+          var c=r.clubs[k], al=matchedAlias(c,r.term);
+          html+=clubRow(c, al? c.l+" · matched “"+al+"”" : c.l);
+          if(k===0) html+=tifoRows(c);
+        }
+      }
+      if(r.players.length){
+        html+='<div class="c17__kicker">Players</div>';
+        for(var m=0;m<r.players.length;m++){
+          var pl=r.players[m];
+          html+='<a class="c17__row" role="option" target="_top" href="'+esc(pl.u)+'">'+
+            '<span class="c17__crestph" aria-hidden="true"></span>'+
+            '<span class="c17__t"><b>'+esc(pl.n)+'</b><em>'+esc(pl.c)+'</em></span>'+
+            '<span class="c17__go">Shop &rarr;</span></a>';
+        }
+      }
+    } else {
+      html='<div class="c17__empty"><b>No club page for &ldquo;'+esc(raw.trim())+'&rdquo; yet.</b>'+
+        '<span>We may still stock them &mdash; have a look.</span>'+
+        '<a class="c17__cta" target="_top" href="'+esc(SRCH+encodeURIComponent(raw.trim()))+'">'+
+        'Search the store &rarr;</a></div>'+
+        '<div class="c17__kicker">Or jump to</div>';
+      for(var z=0;z<4&&z<CL.length;z++) html+=clubRow(CL[z]);
+    }
+    scroll.innerHTML=html; sel=-1;
+  }
+
+  function fit(){
+    var f=scroll.getBoundingClientRect(), b=root.getBoundingClientRect(), room=b.bottom-f.top-16;
+    var h=Math.max(96,Math.min(340,room));
+    scroll.style.maxHeight=h+"px";
+  }
+  function open(){
+    if(root.classList.contains("is-open")){ fit(); return; }
+    root.classList.add("is-open");
+    q.setAttribute("aria-expanded","true");
+    fit();
+    requestAnimationFrame(fit);
+    setTimeout(fit,200);
+  }
+  function close(){ root.classList.remove("is-open"); q.setAttribute("aria-expanded","false"); sel=-1; }
+
+  var sel=-1;
+  function rows(){ return scroll.querySelectorAll(".c17__row"); }
+  function move(d){
+    var r=rows(); if(!r.length)return;
+    if(sel>-1&&r[sel]) r[sel].classList.remove("is-sel");
+    sel=(sel+d+r.length)%r.length;
+    r[sel].classList.add("is-sel");
+    var el=r[sel], top=el.offsetTop, h=el.offsetHeight;
+    if(top<scroll.scrollTop) scroll.scrollTop=top;
+    else if(top+h>scroll.scrollTop+scroll.clientHeight) scroll.scrollTop=top+h-scroll.clientHeight;
+  }
+
+  q.addEventListener("input",function(){
+    root.classList.toggle("is-typing", q.value.length>0);
+    render(q.value); open();
+  });
+  q.addEventListener("focus",function(){ render(q.value); open(); });
+  q.addEventListener("keydown",function(e){
+    if(e.key==="ArrowDown"){e.preventDefault();move(1);}
+    else if(e.key==="ArrowUp"){e.preventDefault();move(-1);}
+    else if(e.key==="Enter"){ var r=rows(); if(sel>-1&&r[sel]){e.preventDefault();r[sel].click();} }
+    else if(e.key==="Escape"){ close(); q.blur(); }
+  });
+  clearBtn.addEventListener("click",function(){
+    q.value=""; root.classList.remove("is-typing"); render(""); q.focus();
+  });
+  document.addEventListener("click",function(e){
+    if(!e.target.closest(".c17__searchwrap")) close();
+  });
+  window.addEventListener("resize",function(){ if(root.classList.contains("is-open")) fit(); });
+
+  window.addEventListener("pageshow",function(e){ if(e.persisted) close(); });
+
+  root.classList.add("is-ready");
+})();
+</script>
