@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Designer guide · Nutmeg</title>
+<meta name="description" content="Build a Fastr CMS block or page from Figma to ClickUp in six steps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+</head>
+<body>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <div class="nm-header__links">
+    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
+    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
+  </div>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
+<ul>
+<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
+<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
+<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
+</ul></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
+<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
+<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
+</ul></li>
+</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
+<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
+<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
+<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
+<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
+<ul class="nm-nav__sub" id="nm-sub-blocks" hidden>
+<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
+<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
+<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
+<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
+<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
+<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
+<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
+</ul></li>
+</ul>
+<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--purple">Designer guide</span><span class="nm-chip nm-chip--grey">All brands</span></div>
+  <h1>Designer guide</h1>
+  <p class="nm-lede">Build a Fastr CMS block or page from Figma to ClickUp in six steps.</p>
+  <hr class="nm-divider">
+</div>
+
+<div class="nm-callout"><strong>You only paste into your own Fastr test page.</strong><p>Designers never publish to a live store page. Your store's site author publishes live after UX review, QA, and business sign-off (Sacha, 15 Oct 2026).</p></div>
+
+<section class="nm-section" id="overview">
+<div class="nm-section__head"><h2 class="nm-h2">The six steps<button type="button" class="nm-anchor" aria-label="Copy a link to The six steps"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Select any step to jump to its checklist and rules.</p></div>
+<ul class="nm-steps">
+<li><a class="nm-step" href="#step-1" style="text-decoration:none"><span class="nm-step__meta"><span class="nm-step__time">Step 01</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Intake</span></span><span class="nm-step__text">Check the brief in ClickUp</span></a></li>
+<li><a class="nm-step" href="#step-2" style="text-decoration:none"><span class="nm-step__meta"><span class="nm-step__time">Step 02</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Figma &amp; Box</span></span><span class="nm-step__text">Design frames and prepare Box</span></a></li>
+<li><a class="nm-step" href="#step-3" style="text-decoration:none"><span class="nm-step__meta"><span class="nm-step__time">Step 03</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Build</span></span><span class="nm-step__text">Adapt code and measure heights</span></a></li>
+<li><a class="nm-step" href="#step-4" style="text-decoration:none"><span class="nm-step__meta"><span class="nm-step__time">Step 04</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Paste</span></span><span class="nm-step__text">Copy the FINAL file into Fastr</span></a></li>
+<li><a class="nm-step" href="#step-5" style="text-decoration:none"><span class="nm-step__meta"><span class="nm-step__time">Step 05</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Test</span></span><span class="nm-step__text">Check five widths and record a Jam</span></a></li>
+<li><a class="nm-step" href="#step-6" style="text-decoration:none"><span class="nm-step__meta"><span class="nm-step__time">Step 06</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Hand in</span></span><span class="nm-step__text">Share one Code Share link in ClickUp</span></a></li>
+</ul>
+</section>
+
+<section class="nm-section" id="before">
+<div class="nm-section__head"><h2 class="nm-h2">Before you start<button type="button" class="nm-anchor" aria-label="Copy a link to Before you start"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Confirm you can open these tools before picking up your first task. This workflow covers Soccer.com, WorldSoccerShop, 431 Sports, Team Soccer, Soccer Master, and Partners (Sacha, 15 Oct 2026).</p></div>
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Tool</th><th>What you use it for</th><th>Link</th></tr></thead>
+<tbody>
+<tr><td>All blocks (Code Library)</td><td>Preview verified blocks at three widths and copy or download the starting HTML file.</td><td><a href="blocks.html">Open blocks</a></td></tr>
+<tr><td>Photo Sizer</td><td>Crop and compress new JPG photos at 2x (300 KB max for desktop heroes, under 200 KB for all others).</td><td><a href="../photo-sizer/index.html">Open Photo Sizer</a></td></tr>
+<tr><td>Code Share</td><td>Check line count, secrets, and contrast, then generate one link for the ClickUp HTML Code row.</td><td><a href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share</a></td></tr>
+<tr><td>Cabana 8 Figma</td><td>Pull shared brand components and Code Blocks Builders into your Figma file.</td><td><a href="https://www.figma.com/design/h8pZSXaiWrSdY6qkS3efzD/?node-id=10376-44689" target="_blank" rel="noopener">Open Cabana 8</a></td></tr>
+<tr><td>MotionFX plugin</td><td>Check and note Figma motion presets (once on load, on scroll, or loop).</td><td><a href="https://www.figma.com/community/plugin/1657016495590941470" target="_blank" rel="noopener">Open MotionFX</a></td></tr>
+<tr><td>The Tunnel</td><td>Copy verified store photo addresses and requester product picks.</td><td><a href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">Open The Tunnel</a></td></tr>
+<tr><td>Fastr CMS</td><td>Paste your code into your store test page and set the three reserved heights.</td><td><a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Open Fastr CMS</a></td></tr>
+<tr><td>Site Change Requests</td><td>Read the brief, link your files, and move the task through the 12 ClickUp statuses.</td><td><a href="https://app.clickup.com/9011460926/v/l/li/901115447365" target="_blank" rel="noopener">Open ClickUp list</a></td></tr>
+<tr><td>Site Updates chat</td><td>Post status updates in the ClickUp Site Updates channel.</td><td><a href="https://app.clickup.com/9011460926/chat/r/8chzyty-50231" target="_blank" rel="noopener">Open ClickUp chat</a></td></tr>
+<tr><td>Box folder</td><td>Read the Link Book (SITE-LINKS) and store your page folder, sized images, and HTML paste file.</td><td><a href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Open Box folder</a></td></tr>
+<tr><td>Responsively App</td><td>Check your test page across all five widths (360, 390, 768, 1024, and 1440).</td><td><a href="https://responsively.app" target="_blank" rel="noopener">Open Responsively</a></td></tr>
+<tr><td>Jam</td><td>Record one walkthrough of desktop and phone widths for ClickUp.</td><td><a href="https://jam.dev/" target="_blank" rel="noopener">Open Jam</a></td></tr>
+</tbody>
+</table></div>
+
+<h3 class="nm-h3">How to get your starting code file</h3>
+<ul class="nm-list">
+<li>In your browser: open <a href="blocks.html">All blocks</a>, preview the component across Phone, Tablet, and Desktop widths, check its three Fastr heights, and copy or download the starting HTML file (Sacha, 16 Oct 2026).</li>
+<li>In GitHub Desktop (read-only): clone <a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">github.com/Sachawd/sei-component-library</a> once, pull before each build, and copy the file into your own working folder. Never edit inside the repository folder, and never commit or push (Sacha, 16 Oct 2026).</li>
+</ul>
+</section>
+
+<section class="nm-section" id="step-1">
+<div class="nm-section__head"><h2 class="nm-h2">Step 1: Check the brief<button type="button" class="nm-anchor" aria-label="Copy a link to Step 1: Check the brief"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Every build starts as one task in ClickUp Site Change Requests, one brand per task. Wait for Triage to mark whether the block exists, needs adapting, or gets built new (Sacha, 15 Oct 2026).</p></div>
+<ul class="nm-list">
+<li>Confirm the brand, target URL, go-live date, 7-day read date, and removal date are filled in on the ClickUp task.</li>
+<li>Confirm products come from the requester's ordered Tunnel Product picks link. Never choose products or type SKUs yourself (Sacha, 15 Oct 2026).</li>
+<li>Keep placeholder text (such as <span class="nm-code">PROMO-CODE-HERE</span>) for any unreleased promo code on public previews and test pages until the requester's cart test passes (Sacha, 15 Oct 2026).</li>
+<li>Confirm Triage marked Exists or Adapt, and download your starting HTML file from the code library.</li>
+<li>Have your building agent write a 5-line (or shorter) "Done means" list in plain words before coding starts (for example: hero photo shows, button goes to the link book address, works at phone width, no blank placeholders) and check it at the end alongside the code rules (Sacha and Fable, 20 Oct 2026).</li>
+</ul>
+
+<h3 class="nm-h3">The 12 ClickUp statuses in order</h3>
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Status</th><th>Owner</th><th>What happens</th></tr></thead>
+<tbody>
+<tr><td>1. Requested</td><td>Requester</td><td>Submitted through the intake form or forwarded email into Site Change Requests.</td></tr>
+<tr><td>2. Triage or Needs info</td><td>UX</td><td>UX checks completeness, sets brand watchers, and marks the route (Exists, Adapt, or Build).</td></tr>
+<tr><td>3. Ready for design</td><td>Designer</td><td>Move here once your responsive Cabana 8 Figma frame is locked and linked on the task.</td></tr>
+<tr><td>4. In design</td><td>Designer</td><td>Size new photos in Photo Sizer and set up your Box folder.</td></tr>
+<tr><td>5. In build</td><td>Designer</td><td>Adapt code from the library, paste into your Fastr test page with Reserves space, test in Responsively, and record a Jam.</td></tr>
+<tr><td>6. UX review</td><td>Designer</td><td>After requester preview approval, paste your Code Share link in the HTML Code row, attach all 7 items at least 1 working day before launch, and move here (Sacha, 15 Oct 2026).</td></tr>
+<tr><td>7. DEV and QA</td><td>UX &amp; QA</td><td>UX approves and commits to GitHub. QA tests on DEV and QA environments and logs results on Jira ticket WEB-16706.</td></tr>
+<tr><td>8. Business sign-off</td><td>Business owner</td><td>Final go-ahead. If Offer code is filled, ClickUp creates the "Promo code tested in the cart" subtask and blocks Ready to publish until it passes with a screenshot (Fable, 15 Oct 2026).</td></tr>
+<tr><td>9. Ready to publish</td><td>Site author</td><td>Creates the requester's "Live check" subtask for launch day.</td></tr>
+<tr><td>10. Published</td><td>Site author</td><td>Site author publishes live, checks in two browsers, and records a live Jam. Requester marks "Live check" Pass within 1 hour of launch (Sacha, 15 Oct 2026).</td></tr>
+<tr><td>11. Measuring</td><td>UX</td><td>Day-of-live PageSpeed check is logged while the 7-day read and final read subtasks run.</td></tr>
+<tr><td>12. Complete</td><td>UX</td><td>Final read is logged and any expired offer is removed. ClickUp blocks Complete unless Live check is Pass (Fable, 15 Oct 2026).</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="nm-section" id="step-2">
+<div class="nm-section__head"><h2 class="nm-h2">Step 2: Design and prepare Box<button type="button" class="nm-anchor" aria-label="Copy a link to Step 2: Design and prepare Box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Lock your responsive frames in Figma, size new photos in Photo Sizer, and organize one Box folder before generating code.</p></div>
+
+<div class="nm-cards nm-cards--3">
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Top of Box folder</span><h3 class="nm-card__title">One HTML paste file</h3></div><p class="nm-card__text">Keep only the current HTML file at the top of the page folder. Move older drafts into <span class="nm-code">zz_old-versions</span> (Sacha, 15 Oct 2026).</p></article>
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Subfolder: images</span><h3 class="nm-card__title">300 KB hero / 200 KB rest</h3></div><p class="nm-card__text">Crop at 2x in Photo Sizer as JPG only (never WebP). Full-width desktop heroes up to 300 KB; all other photos under 200 KB (Sacha, 7 Aug and 20 Oct 2026).</p></article>
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Subfolders</span><h3 class="nm-card__title">working images &amp; Info</h3></div><p class="nm-card__text">Keep layered source files in <span class="nm-code">working images</span> and campaign notes or custom fonts in <span class="nm-code">Info</span>.</p></article>
+</div>
+
+<h3 class="nm-h3">How slots work in Figma</h3>
+<div class="nm-prose">
+<p>A slot is an empty pocket inside a component. The outer frame stays the same while you drop different content into the pocket (Components, 17 Oct 2026).</p>
+<p>In the hero component, the Words slot can hold campaign lettering, an everyday headline with copy and a button, or stay empty for a photo-only hero. Set Brand on each piece separately: the hero, the text inside it, and the button inside that. Use a slot when changing the structure inside a container; use a regular text field or toggle when only changing words or hiding one element.</p>
+</div>
+
+<h3 class="nm-h3">Images and speed rules (ruled 20 Oct 2026)</h3>
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Rule</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><td>1. Fixed width and height</td><td>Every image tag carries explicit <span class="nm-code">width</span> and <span class="nm-code">height</span> attributes.</td></tr>
+<tr><td>2. Smaller copies for bucket photos</td><td>The image host ignores width parameters on bucket photos (<span class="nm-code">dxassets</span>). Export 480px (<span class="nm-code">--w480.jpg</span>) and 960px (<span class="nm-code">--w960.jpg</span>) copies alongside the full JPG so the code can wire <span class="nm-code">srcset</span> and <span class="nm-code">sizes</span> with a self-disarming <span class="nm-code">onerror</span> fallback. Product photos from <span class="nm-code">/preview/</span> take a width parameter and need no copies.</td></tr>
+<tr><td>3. First photo high priority</td><td>Mark only the first photo a visitor sees in a block <span class="nm-code">fetchpriority="high"</span>. One per block, never more.</td></tr>
+<tr><td>4. No lazy loading</td><td>Every photo loads eagerly. Never use <span class="nm-code">loading="lazy"</span>.</td></tr>
+<tr><td>5. Flip-book hero framing</td><td>Each photo fills half the screen edge to edge, so phones show a tall narrow slice. Keep subjects inside the middle third and above the bottom 40 percent, keep faces away from the center headline, or supply a 1:3 phone crop. Use the <a href="../photo-sizer/index.html?block=flipbook-hero-sale">Flip-book hero preset in Photo Sizer</a> to check all four frame shapes at once.</td></tr>
+<tr><td>6. PageSpeed before and after</td><td>Measure before and after on the component preview with <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a> and log both scores. Preview links carry an 0.8s CMS embed delay on phones, so judge mobile scores on the live template.</td></tr>
+<tr><td>7. Verified links only</td><td>Take every destination URL from the Link Book (<span class="nm-code">SITE-LINKS</span> in Box). Never guess a URL; if one is missing, tell Components so it goes into the Link Book the same day (Sacha, 3 Aug and 15 Oct 2026).</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="nm-section" id="step-3">
+<div class="nm-section__head"><h2 class="nm-h2">Step 3: Build on your test page<button type="button" class="nm-anchor" aria-label="Copy a link to Step 3: Build on your test page"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Give your AI the Step Zero prompt, your starting HTML file from the code library, and your frozen Figma frame.</p></div>
+
+<div class="nm-stats">
+<div class="nm-stat"><span class="nm-stat__num">390 px</span><span class="nm-stat__cap">Mobile box: measure block height at 390px wide (narrow edge).</span></div>
+<div class="nm-stat"><span class="nm-stat__num">640 px</span><span class="nm-stat__cap">640px and up box: measure block height at 640px wide (narrow edge).</span></div>
+<div class="nm-stat"><span class="nm-stat__num">1024 px</span><span class="nm-stat__cap">1024px and up box: measure block height at 1024px wide (narrow edge).</span></div>
+</div>
+
+<div class="nm-prose" style="margin-top:24px">
+<p>Reserved heights tell the store page how much vertical space to hold open before your block finishes loading (FASTR-FACTS, 9 Sept 2026). If the height is too short, the bottom of your block clips or the page jumps. If it is too tall, an empty gap sits below your block.</p>
+<p>Enter the three numbers into Fastr's Reserved height boxes (maximum 10000), click Save, and always copy the <strong>Reserves space</strong> embed tab (never Standard) to place on your test page.</p>
+</div>
+</section>
+
+<section class="nm-section" id="step-4">
+<div class="nm-section__head"><h2 class="nm-h2">Step 4: Get the final code<button type="button" class="nm-anchor" aria-label="Copy a link to Step 4: Get the final code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Copy the checked HTML file from your Downloads folder into Fastr without losing a single character (Sacha, 20 Oct 2026).</p></div>
+
+<div class="nm-callout"><strong>Never copy code from a chat window or click the chat Download button.</strong><p>Chat windows cut long files off and turn straight quotes into curly quotes. Always open the saved <span class="nm-code">FINAL</span> file from your Mac's Downloads folder in a code editor (Sacha, 20 Oct 2026).</p></div>
+
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Order</th><th>Action</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td>1. Find the FINAL file</td><td>Open your Mac's <strong>Downloads</strong> folder.</td><td>Find the single file named <span class="nm-code">&lt;page&gt;--FINAL--&lt;date&gt;-&lt;time&gt;.html</span> (for example <span class="nm-code">wss-sale-page--FINAL--2026-10-20-1035.html</span>). Only a file that passed Fable's check carries FINAL.</td></tr>
+<tr><td>2. Check photos in a browser</td><td>Right-click the FINAL file and open with <strong>Safari</strong> or <strong>Chrome</strong>.</td><td>Scroll top to bottom and confirm every photo loads. If any photo is blank or broken, stop and tell the agent before pasting into Fastr.</td></tr>
+<tr><td>3. Open in a code editor</td><td>Open the FINAL file in <strong>Visual Studio Code</strong>, <strong>Cursor</strong>, <strong>Antigravity IDE</strong>, <strong>BBEdit</strong>, or plain-text <strong>TextEdit</strong>.</td><td>Never open code in Word, Pages, Notes, rich-text TextEdit, a browser, or Figma.</td></tr>
+<tr><td>4. Select all and copy</td><td>Click inside the code window, press <strong>Command A</strong>, check the last line, and press <strong>Command C</strong>.</td><td>Scroll to the bottom first to confirm the closing tag the agent named in chat is highlighted.</td></tr>
+<tr><td>5. Paste into Fastr</td><td>In your Fastr HTML widget, click in the code box, press <strong>Command A</strong>, <strong>Delete</strong>, <strong>Command V</strong>, and click <strong>Save</strong>.</td><td>Clear all old code before pasting your new code.</td></tr>
+<tr><td>6. Check a second browser</td><td>Open your Fastr test page URL in a second browser if needed.</td><td>Fastr's cache can keep showing the old version in the browser where you clicked Save (verified 9 Sept 2026). Check Safari if you saved in Chrome before re-pasting.</td></tr>
+</tbody>
+</table></div>
+</section>
+
+<section class="nm-section" id="step-5">
+<div class="nm-section__head"><h2 class="nm-h2">Step 5: Test and record a Jam<button type="button" class="nm-anchor" aria-label="Copy a link to Step 5: Test and record a Jam"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Check your test page at five screen widths, verify accessibility and SEO, and record one Jam video.</p></div>
+<ul class="nm-list">
+<li>Open <a href="https://responsively.app" target="_blank" rel="noopener">Responsively App</a> and check 360, 390, 768, 1024, and 1440 widths for bottom clipping, sideways scrollbars, or layout jump.</li>
+<li>Open the test page in Safari on your Mac to confirm fonts, images, and interactive controls load cleanly.</li>
+<li>Record ADA accessibility checks as Pass, Fail, or Not checked: body text contrast at least 4.5 to 1, large text and buttons at least 3 to 1, alt text on content images, 24px minimum tap targets, visible keyboard focus, and reduced motion respected.</li>
+<li>Confirm one <span class="nm-code">h1</span> heading is used only if the block is the top hero on the page, with sub-headings in order and descriptive link text.</li>
+<li>Record one <a href="https://jam.dev/" target="_blank" rel="noopener">Jam</a> video showing desktop and 390px phone widths plus every tab, drawer, or pop-up.</li>
+</ul>
+</section>
+
+<section class="nm-section" id="step-6">
+<div class="nm-section__head"><h2 class="nm-h2">Step 6: Hand in seven items<button type="button" class="nm-anchor" aria-label="Copy a link to Step 6: Hand in seven items"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">After the requester approves your preview, attach these seven items on the ClickUp task at least 1 working day before launch and move the status to UX review (Sacha, 15 Oct 2026).</p></div>
+
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Item</th><th>Where it goes</th></tr></thead>
+<tbody>
+<tr><td>1. Code Share link</td><td>Open <a href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a>, click <strong>+ Paste &amp; share a new file</strong>, click <strong>Create share link &amp; copy</strong>, and paste the link into the ClickUp task's <strong>HTML Code</strong> row (checked 20 Oct 2026).</td></tr>
+<tr><td>2. Box file path</td><td>Single clean HTML paste file at the top of the page's Box folder (older drafts in <span class="nm-code">zz_old-versions</span>).</td></tr>
+<tr><td>3. Requester preview approval</td><td>Requester's confirmation and date that the preview matches the brief.</td></tr>
+<tr><td>4. Frozen Figma frame link</td><td>Direct link to the final Figma frame in the ClickUp Links row.</td></tr>
+<tr><td>5. Fastr test page link</td><td>Link to your store test page running the Reserves space embed.</td></tr>
+<tr><td>6. Jam recording link</td><td>Desktop and mobile walkthrough link in the ClickUp Links row.</td></tr>
+<tr><td>7. Self-check, Done means, and 3 heights</td><td>Pass / Fail / Not checked table, 5-line Done means result, Link Book confirmation, measured contrast ratios, and the 3 heights (390 / 640 / 1024).</td></tr>
+<tr><td>8. QA handoff to Anthony</td><td>Send Anthony the test page address and QA Pre-Read link. He logs QA results on Jira ticket <strong>WEB-16706</strong> with recordings in the Jam folder "Fastr CMS Tests" (20 Oct 2026).</td></tr>
+</tbody>
+</table></div>
+
+<h3 class="nm-h3">Safe edits later vs. rebuilds, and two Fastr bugs</h3>
+<div class="nm-cards nm-cards--3">
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Safe to change yourself</span><h3 class="nm-card__title">Words, links, or same-size photos</h3></div><ul class="nm-list"><li>A word or headline that stays on the same number of lines</li><li>A destination URL from the Link Book</li><li>An uploaded photo filename at the exact same crop and size</li></ul><p class="nm-card__text">Tell Components in one message after any Fastr edit so the master file on the Mac and in GitHub is updated to match.</p></article>
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Needs Components</span><h3 class="nm-card__title">Styles, heights, or card count</h3></div><ul class="nm-list"><li>Anything inside the <span class="nm-code">&lt;style&gt;</span> block</li><li>Any change that wraps text onto extra lines or alters the 3 heights</li><li>Adding, removing, or reordering cards or sections</li></ul></article>
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Two Fastr CMS bugs (9 Sept 2026)</span><h3 class="nm-card__title">No edit lock &amp; stale cache</h3></div><ul class="nm-list"><li>No edit lock: the second person to click Save overwrites the first. Check nobody else is in the component before opening it.</li><li>Stale cache: check a second browser before re-pasting if an old version still shows after Save.</li></ul></article>
+</div>
+</section>
+
+<section class="nm-section" id="prompt">
+<div class="nm-section__head"><h2 class="nm-h2">Step Zero AI prompt<button type="button" class="nm-anchor" aria-label="Copy a link to Step Zero AI prompt"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste this prompt at the start of your AI chat along with your starting HTML file from the code library (updated 20 Oct 2026).</p></div>
+
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>Step Zero prompt</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>You are helping me build a Fastr CMS component or full page for one brand (Soccer.com, WorldSoccerShop, 431 Sports, Team Soccer, Soccer Master, or Partners). Rules:
+- Use only existing components for that brand. Never mix brands. Change the content, not the look.
+- Start from the reference page or component code from the Sports Endeavors Marketing Code Library (https://sachawd.github.io/sei-component-library/) or the read-only GitHub repository (https://github.com/Sachawd/sei-component-library), never from a screenshot. Copy the file into my working folder and change content only. Never commit or push.
+- Follow the team's component generation rules: scope every CSS selector to the block or store class prefix (never style html, body, :root, bare *, or use vh units); reference production --theme-* colour tokens with a fallback value (16 Sept ruling); name fonts by family from the brand's font list; flag any newly typed colour or size as a proposal to the design system.
+- Take every link from the link book (SITE-LINKS); if I need a link that is not there, tell Components so it goes into the link book the same day. Take photos from my Tunnel picks page, using each photo's real file name and https://www.imagehandler.net/dxassets/?img=Photos/ address. For new uploaded photos (cropped and compressed in Photo Sizer: up to 300 KB for full-width desktop heroes, under 200 KB for everything else), check the S3 bucket listing (Photos/) first and swap the address in only once the listing shows the file; never check through the image host. Products come from the requester's Tunnel Product picks link, never typed SKUs. Never invent a URL, file name, SKU or ID: write Unknown and ask instead. Never rename a Tunnel photo.
+- Read sizes, fonts, colours, filled slots, and motion from the Figma frame's layers; photos come from Box, never from Figma.
+- A whole page or block is one paste file: one wrapper, one font link, body only. Keep one HTML paste file at the top of the page's Box folder and move older versions to zz_old-versions (never overwrite or delete). Write every visible special character (dashes, curly quotes, accented letters) as an HTML entity. Any script that needs an outside library (like a map or font loader) must wait for it to finish loading before running.
+- Ship production-clean code with no working notes or Figma node comments. Every image loads eagerly with a fixed width and height (never lazy load). Mark the first photo a visitor sees in a block fetchpriority="high" (one per block, never more). Because the image host ignores a width parameter on bucket photos (dxassets), every bucket photo offers smaller copies for phones and tablets (about 480 and 960 wide beside the full file, named --w480.jpg and --w960.jpg and wired with srcset and sizes; the agent makes the copies and the designer uploads them under the names the code expects; product pictures from /preview/ take a width parameter and need no copies). For the flip-book hero, follow the half-screen photo rule (subject inside the middle third and above the bottom 40%, faces away from the centre headline/button, or deliver a second 1:3 phone crop) and use the flip-book hero preset in Photo Sizer (https://sachawd.github.io/sei-component-library/photo-sizer/index.html?block=flipbook-hero-sale). Measure before and after with PageSpeed on the component preview and write the two scores in the handoff (knowing the preview carries the ~0.8s CMS embed delay on phones before the first image can start, so judge mobile on the live template). Every link opens with target="_top" and carries no internal ?utm_ parameters.
+- Measure the rendered page height at the narrow edge of each Fastr breakpoint range: Mobile (at 390px wide), 640px and up (measured at 640px wide), and 1024px and up (measured at 1024px wide). Put those three numbers in order in a comment at the top of the file and in my hand-in so I can type them into the Fastr Reserved height boxes, copy the "Reserves space" embed tab, and create my Code Share link for ClickUp.
+- Accessibility (ADA) and widths: check layout across 360, 390, 768, 1024, and 1440 widths. Measure colour contrast for text, buttons and text over images (at least 4.5:1 for body text, 3:1 for large text and controls); alt text where an image says something, blank alt on decoration; no words baked into images; every control reachable by keyboard with visible focus; tap targets at least 24px; motion stops under reduced motion.
+- Search (SEO) and Tracking: one main heading per page only if this block is at the top; sub-headings in order; headings and link names in words a shopper would search for; keep the block ID and click tracking beacon; never add outside scripts.
+- Offers: show terms beside every offer; keep placeholder words for any promo code on public previews or test pages until the requester's cart test is marked Pass; flag any prices so they get re-checked before go-live and at 7 days.
+- Before I hand in (at least 1 working day before launch; Sacha, 15 Oct), run the self-check and record each check as Pass, Fail, or Not checked (never mark an unperformed check as Pass), including confirming that every link in this build is in the link book and listing the measured contrast ratios. After launch, the live check happens within 1 hour of launch (Sacha, 15 Oct).
+- Once the file has passed Fable's check, save the handoff copy for me to paste from directly to my Downloads folder as one file named &lt;page&gt;--FINAL--&lt;date&gt;-&lt;time&gt;.html (for example wss-sale-page--FINAL--2026-10-20-1035.html), state the exact filename and the closing tag in chat, and remind me not to use the chat Download button or copy code out of chat. Keep the canon filename (no FINAL) in the build folder. Never name an unchecked draft FINAL.
+- Before coding starts, write a 5-line (or shorter) "Done means" list in plain words at the top of the build handoff (for example: hero photo shows, button goes to the link book address, works at phone width, no blank placeholders) and check it at the end alongside the code rules.
+- Directly above "🟠 NEEDS SACHA" (or "🔶 Questions for Sacha"), include a "⚠️ NOT FINISHED" block in every reply that delivers code or a page (one line per item that is deliberately incomplete, a stand-in, or a known risk; write "Nothing unfinished." if empty, and never omit it).
+- End every reply with a 5-line "Next up" list in plain words, outside the 150-word limit, using only these marks: ✅ done, 👉 do this now, ⏳ waiting on someone (say who), ➖ not needed (say why). Lines 1 to 4 are the next four steps; line 5 always starts with "Then:" and names every remaining step in order all the way to the 7-day and final reads, never stopping at the paste.</code></pre></div>
+
+<h3 class="nm-h3">Five safety rules for ChatGPT, Gemini, or Copilot</h3>
+<ul class="nm-list">
+<li>Turn off model training ("Improve the model for everyone") in settings before uploading briefs or Figma frames.</li>
+<li>Never paste passwords, API keys, wholesale product feeds, or embargoed packs into AI chats.</li>
+<li>Mask unreleased promo codes as <span class="nm-code">PROMO-CODE-HERE</span> until the requester's cart test passes.</li>
+<li>Measure the three heights (390px, 640px, and 1024px) yourself in Safari or Responsively if your AI cannot measure browser rendering.</li>
+<li>Require the complete, unbroken HTML file. Free AI tiers cut long files short with "rest of code" comments; never accept a truncated file (Fable, 15 Oct 2026).</li>
+</ul>
+
+<h3 class="nm-h3">Claude Page Route helper plugin (page-route 0.1.2)</h3>
+<div class="nm-prose">
+<p>The Claude helper plugin (<span class="nm-code">page-route 0.1.2</span>, built 15 Oct 2026) automates intake checks, single-file builds, height measurements, and hand-in summaries. Whenever the plugin and a team document disagree, the team document wins. Find it in Box at <a href="https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" target="_blank" rel="noopener">Sacha Work Files / SEI UX / 01 Fastr CMS / Helper tool</a> after completing your first unassisted walkthrough and receiving Fable's approval (Sacha, 16 Oct 2026).</p>
+</div>
+</section>
+
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+</body>
+</html>
