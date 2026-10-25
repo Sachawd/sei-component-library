@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Showcase Slider · Nutmeg</title>
+<meta name="description" content="A looping row of projects. Tap one and its cover grows into a gallery of that project&#x27;s photos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <div class="nm-header__links">
+    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
+    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
+  </div>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
+<ul>
+<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
+<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
+<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
+</ul></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
+<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
+<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
+</ul></li>
+</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
+<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
+<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
+<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
+<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
+<ul class="nm-nav__sub" id="nm-sub-blocks">
+<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
+<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
+<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
+<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
+<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
+<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
+<li><a class="nm-nav__sublink" href="showcase-slider.html" aria-current="page">Showcase Slider</a></li>
+</ul></li>
+</ul>
+<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">All brands</span></div>
+  <h1>Showcase Slider</h1>
+  <p class="nm-lede">A looping row of projects. Tap one and its cover grows into a gallery of that project&#x27;s photos.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the brand and the screen width.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Skin" id="skin-tabs"><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-skin="docs" aria-selected="true" tabindex="0">Documentation</button><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-skin="sdc" aria-selected="false" tabindex="-1">Soccer.com</button><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-skin="wss" aria-selected="false" tabindex="-1">WorldSoccerShop</button><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-skin="431" aria-selected="false" tabindex="-1">431 Sports</button></div><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="ss-frame"><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="ss-frame" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="ss-frame" src="../blocks/showcase-slider/demo.html" height="547" data-heights="343,470,547" title="Showcase Slider, live demo"></iframe></div></div>
+</section><section class="nm-section" id="how">
+<div class="nm-section__head"><h2 class="nm-h2">How it&#x27;s built<button type="button" class="nm-anchor" aria-label="Copy a link to How it&#x27;s built"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-prose"><p>The covers and gallery are photos. The title, eyebrow, label and counts are real text. The row moves with your finger, a trackpad or the mouse, and loops. Tapping a cover grows it into that project's gallery, and the other cards slide away.</p><p>Each brand has its own skin: Soccer.com in Figtree with its red label, WorldSoccerShop in Chakra Petch and Inter with its gold label, 431 Sports in Roboto Condensed with its teal label. The colours come from the V2 lab, which carries the Cabana values.</p><p>It runs on two small scripts, GSAP and Smooothy, fixed to one version each. If they do not load, the cards sit in a plain row you can swipe.</p></div>
+</section><section class="nm-section" id="when">
+<div class="nm-section__head"><h2 class="nm-h2">When to use it<button type="button" class="nm-anchor" aria-label="Copy a link to When to use it"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-cards"><article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Use it for</span><h3 class="nm-card__title">A few projects with several photos each</h3></div><ul class="nm-list"><li>Lookbooks</li><li>Kit stories</li><li>Campaign recaps</li></ul><button type="button" class="nm-btn" ><span>Good fit</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></button></article><article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Not for</span><h3 class="nm-card__title">Shopping lists or one photo per card</h3></div><ul class="nm-list"><li>Product grids</li><li>Single heroes</li><li>Anything that must be read in order</li></ul><button type="button" class="nm-btn" ><span>Pick another block</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></button></article></div>
+</section><section class="nm-section" id="change">
+<div class="nm-section__head"><h2 class="nm-h2">What you change<button type="button" class="nm-anchor" aria-label="Copy a link to What you change"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th>What</th><th>Where</th></tr></thead><tbody><tr><td>Cover photo</td><td>The first image inside each card</td></tr><tr><td>Gallery photos</td><td>The hidden images under each card, in order</td></tr><tr><td>Title, eyebrow, label</td><td>The text inside each card</td></tr><tr><td>Brand</td><td>The <span class="nm-code">data-skin</span> setting: docs, sdc, wss or 431</td></tr></tbody></table></div>
+</section><section class="nm-section" id="images">
+<div class="nm-section__head"><h2 class="nm-h2">Images<button type="button" class="nm-anchor" aria-label="Copy a link to Images"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th>Photo slot</th><th>Size</th><th>Type and weight</th></tr></thead><tbody><tr><td>Cover and gallery, every slot</td><td>1520 by 800 px</td><td>JPG, under 200 KB</td></tr></tbody></table></div><div class="nm-callout" style="margin-top:16px"><p>The purple pictures in the demo are stand-ins. Real photos go on the image host before the block goes live.</p></div>
+</section><section class="nm-section" id="heights">
+<div class="nm-section__head"><h2 class="nm-h2">Fastr heights<button type="button" class="nm-anchor" aria-label="Copy a link to Fastr heights"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Type these into the three Reserved height boxes.</p></div>
+<div class="nm-stats"><div class="nm-stat"><span class="nm-stat__num">343</span><span class="nm-stat__cap">pixels on phones (Mobile box).</span></div><div class="nm-stat"><span class="nm-stat__num">470</span><span class="nm-stat__cap">pixels from 640 wide.</span></div><div class="nm-stat"><span class="nm-stat__num">547</span><span class="nm-stat__cap">pixels from 1024 wide.</span></div></div>
+</section><section class="nm-section" id="accessibility">
+<div class="nm-section__head"><h2 class="nm-h2">Accessibility<button type="button" class="nm-anchor" aria-label="Copy a link to Accessibility"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody><tr><td>Title on the background, 12.5 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Eyebrow and "Selected work", 5.4 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Label pill, Documentation, 9.6 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Label pill, Soccer.com, 4.8 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Label pill, WorldSoccerShop, 5.3 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Label pill, 431 Sports, 4.6 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Arrow on its button, 11.1 to 1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Edge of the round arrow button, 1.1 to 1</td><td><span class="nm-result nm-result--fail">Fail, the arrow inside carries it</span></td></tr><tr><td>Keyboard: Tab, Enter, arrow keys, Escape</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Reduce motion opens and closes at once</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr></tbody></table></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste the whole file into one Fastr HTML component.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>fastr-paste.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!--
+  Slider / Showcase Slider, v1. Fastr CMS component, no iframe.
+  Osmo: Showcase Slider. Serial: none yet. Skin: Documentation (the default), from the design frame &quot;Osmo - ShowCase Slider&quot;.
+  Reserved heights: Mobile 343 · 640px and up 470 · 1024px and up 547
+  Swap per use: each project&#x27;s cover, its gallery photos, title, eyebrow and label. Photos come from the image handler as JPG with width and height set.
+  Brand skins: set data-skin on the wrapper to docs, sdc (Soccer.com), wss (WorldSoccerShop) or 431 (431 Sports), and swap the font line below for that brand&#x27;s line:
+    sdc  https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap
+    wss  https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&amp;family=Inter:wght@400;500&amp;display=swap
+    431  https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700&amp;display=swap
+  More than one on a page: give each wrapper its own id and use that id in the style block.
+--&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Adamina&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+#sei-showcase-slider#sei-showcase-slider{
+  /* Contrast, measured on the Documentation skin: title 12.5:1 pass, eyebrow and &quot;Selected work&quot; 5.4:1 pass, label pill 9.6:1 pass, arrow icon on its button 11.1:1 pass, focus ring 12.5:1 pass. Arrow button edge on the surface 1.1:1 fails 3:1; the arrow icon identifies it. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#2E2E2B;
+  --sss-muted:#646462;
+  --sss-frame:#DADADA;
+  --sss-chip-bg:#EAE6FD;
+  --sss-chip-ink:#402287;
+  --sss-title-face:&quot;Adamina&quot;,Georgia,&quot;Times New Roman&quot;,serif;
+  --sss-body-face:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;
+  --sss-title-size:20px;
+  --sss-title-weight:400;
+  --sss-title-case:none;
+  --sss-title-track:-0.4px;
+  --sss-eyebrow-size:10px;
+  --sss-eyebrow-track:-0.2px;
+  --sss-chip-size:12px;
+  --sss-chip-track:0.48px;
+  --sss-height:343px;
+  --sss-frame-h:174px;
+  --sss-viewer-frame-h:211px;
+}
+#sei-showcase-slider#sei-showcase-slider[data-skin=&quot;sdc&quot;]{
+  /* Contrast: title 13.7:1 pass, eyebrow 7.2:1 pass, label pill 4.8:1 pass, arrow icon 12.2:1 pass. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#27272A;
+  --sss-muted:#525252;
+  --sss-frame:#E5E5E5;
+  --sss-chip-bg:#E0154A;
+  --sss-chip-ink:#FFFFFF;
+  --sss-title-face:&quot;Figtree&quot;,-apple-system,&quot;Segoe UI&quot;,Arial,sans-serif;
+  --sss-body-face:&quot;Figtree&quot;,-apple-system,&quot;Segoe UI&quot;,Arial,sans-serif;
+  --sss-title-weight:600;
+  --sss-title-track:-0.2px;
+  --sss-eyebrow-size:11px;
+  --sss-eyebrow-track:0.6px;
+}
+#sei-showcase-slider#sei-showcase-slider[data-skin=&quot;wss&quot;]{
+  /* Contrast: title 13.7:1 pass, eyebrow 7.2:1 pass, label pill 5.3:1 pass, arrow icon 12.2:1 pass. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#27272A;
+  --sss-muted:#525252;
+  --sss-frame:#E5E5E5;
+  --sss-chip-bg:#796A39;
+  --sss-chip-ink:#FFFFFF;
+  --sss-title-face:&quot;Chakra Petch&quot;,-apple-system,&quot;Segoe UI&quot;,Arial,sans-serif;
+  --sss-body-face:&quot;Inter&quot;,-apple-system,&quot;Segoe UI&quot;,Arial,sans-serif;
+  --sss-title-weight:600;
+  --sss-title-track:0;
+  --sss-title-case:uppercase;
+  --sss-eyebrow-size:11px;
+  --sss-eyebrow-track:0.6px;
+}
+#sei-showcase-slider#sei-showcase-slider[data-skin=&quot;431&quot;]{
+  /* Contrast: title 14.3:1 pass, eyebrow 7.2:1 pass, label pill 4.6:1 pass, arrow icon 12.8:1 pass. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#042540;
+  --sss-muted:#525252;
+  --sss-frame:#E5E5E5;
+  --sss-chip-bg:#317F89;
+  --sss-chip-ink:#FFFFFF;
+  --sss-title-face:&quot;Roboto Condensed&quot;,&quot;Arial Narrow&quot;,Arial,sans-serif;
+  --sss-body-face:&quot;Roboto Condensed&quot;,&quot;Arial Narrow&quot;,Arial,sans-serif;
+  --sss-title-weight:700;
+  --sss-title-track:0;
+  --sss-title-case:uppercase;
+  --sss-eyebrow-size:11px;
+  --sss-eyebrow-track:0.6px;
+}
+
+#sei-showcase-slider#sei-showcase-slider,#sei-showcase-slider#sei-showcase-slider *,#sei-showcase-slider#sei-showcase-slider *::before,#sei-showcase-slider#sei-showcase-slider *::after{box-sizing:border-box}
+#sei-showcase-slider#sei-showcase-slider :where(div,span,p,h1,h2,h3,h4,h5,h6,ul,ol,li){margin:0;padding:0;border:0;background:none;box-shadow:none;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;line-height:inherit;letter-spacing:normal;text-transform:none;color:inherit}
+#sei-showcase-slider#sei-showcase-slider :where(ul,ol,li){list-style:none}
+#sei-showcase-slider#sei-showcase-slider :where(ul,ol,li)::before,#sei-showcase-slider#sei-showcase-slider :where(ul,ol,li)::after{content:none}
+#sei-showcase-slider#sei-showcase-slider :where(img,svg){display:block;margin:0;padding:0;border:0}
+#sei-showcase-slider#sei-showcase-slider :where(a,a:hover,a:focus,a:active,a:visited){color:inherit;text-decoration:none;background:none;font-family:inherit}
+#sei-showcase-slider#sei-showcase-slider :where(button,button:hover,button:focus,button:active){-webkit-appearance:none;appearance:none;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;color:inherit;letter-spacing:inherit;text-transform:none;cursor:pointer}
+
+/* ⚠️DEVIATION 1: every Osmo selector below is prefixed with the doubled wrapper id; store styles on Soccer.com, WorldSoccerShop and 431 cannot reach the .showcase-slider__ classes */
+/* ⚠️DEVIATION 2: min-height:100svh, 75vw and 90vw are replaced by fixed pixel slots and a fixed height per breakpoint; aspect-ratio on both frames is replaced by a fixed pixel height at the design ratio 365:230 */
+/* ⚠️DEVIATION 3: type, colour, the 8px card gap and the label pill follow the design frame through the skin layer above; the muted label and eyebrow use a solid colour at full opacity so they pass contrast */
+
+#sei-showcase-slider#sei-showcase-slider {
+  --showcase-slider-slot: 292px; /* ⚠️DEVIATION 2 */
+  --showcase-slider-gap: 16px; /* ⚠️DEVIATION 2 */
+  --showcase-slider-grow: 1.7;
+  --showcase-slider-viewer-slot: 351px; /* ⚠️DEVIATION 2 */
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+  height: var(--sss-height); /* ⚠️DEVIATION 2 */
+  padding-top: 2em;
+  padding-bottom: 2em;
+  overflow: hidden;
+  overscroll-behavior-x: contain;
+  user-select: none;
+  background: var(--sss-surface); /* ⚠️DEVIATION 3 */
+  color: var(--sss-ink); /* ⚠️DEVIATION 3 */
+  font: 400 16px/1.2 var(--sss-body-face); /* ⚠️DEVIATION 3 */
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__stage {
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__collection {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  align-self: center;
+}
+
+#sei-showcase-slider#sei-showcase-slider[data-showcase-slider-status=&quot;open&quot;] .showcase-slider__collection {
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__list {
+  display: flex;
+  overflow: hidden;
+  padding-left: calc(50% - var(--showcase-slider-slot) / 2);
+  touch-action: pan-y;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__item {
+  flex: 0 0 var(--showcase-slider-slot);
+  padding-left: calc(var(--showcase-slider-gap) / 2);
+  padding-right: calc(var(--showcase-slider-gap) / 2);
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ⚠️DEVIATION 3 */
+  width: 100%;
+  padding: 0;
+  border-style: none;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 0.25em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--sss-frame-h); /* ⚠️DEVIATION 2 */
+  overflow: hidden;
+  border-radius: 0.25em;
+  background-color: var(--sss-frame); /* ⚠️DEVIATION 3 */
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__image {
+  position: absolute;
+  top: 0%;
+  left: -10%;
+  width: 120%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__chip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: var(--sss-chip-bg);
+  color: var(--sss-chip-ink);
+  font: 500 var(--sss-chip-size)/1 var(--sss-body-face);
+  letter-spacing: var(--sss-chip-track);
+  white-space: nowrap;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* ⚠️DEVIATION 3 */
+  gap: 18px; /* ⚠️DEVIATION 3 */
+  font-size: 0.875em;
+  line-height: 1.286;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__title {
+  font-weight: 500;
+  font: var(--sss-title-weight) var(--sss-title-size)/1.2 var(--sss-title-face); /* ⚠️DEVIATION 3 */
+  text-transform: var(--sss-title-case); /* ⚠️DEVIATION 3 */
+  letter-spacing: var(--sss-title-track); /* ⚠️DEVIATION 3 */
+  min-width: 0;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__meta {
+  opacity: 1; /* ⚠️DEVIATION 3 */
+  color: var(--sss-muted); /* ⚠️DEVIATION 3 */
+  font: 400 var(--sss-eyebrow-size)/1.2 var(--sss-body-face); /* ⚠️DEVIATION 3 */
+  letter-spacing: var(--sss-eyebrow-track); /* ⚠️DEVIATION 3 */
+  text-transform: uppercase; /* ⚠️DEVIATION 3 */
+  white-space: nowrap;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__gallery-collection {
+  display: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider[data-showcase-slider-status=&quot;open&quot;] .showcase-slider__viewer {
+  pointer-events: auto;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-list {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  overflow: hidden;
+  padding-left: calc(50% - var(--showcase-slider-viewer-slot) / 2);
+  visibility: hidden;
+  touch-action: pan-y;
+}
+
+#sei-showcase-slider#sei-showcase-slider[data-showcase-slider-status=&quot;open&quot;] .showcase-slider__viewer-list[data-showcase-slider-status=&quot;active&quot;] {
+  visibility: visible;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-item {
+  flex: 0 0 var(--showcase-slider-viewer-slot);
+  padding-left: calc(var(--showcase-slider-gap) / 2);
+  padding-right: calc(var(--showcase-slider-gap) / 2);
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-frame {
+  position: relative;
+  width: 100%;
+  height: var(--sss-viewer-frame-h); /* ⚠️DEVIATION 2 */
+  overflow: hidden;
+  border-radius: 0.25em;
+  background-color: var(--sss-frame); /* ⚠️DEVIATION 3 */
+  cursor: pointer;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-image {
+  position: absolute;
+  top: 0%;
+  left: -10%;
+  width: 120%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__bar {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.875em;
+  line-height: 1.286;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-bar {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.875em;
+  line-height: 1.286;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__label {
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 1; /* ⚠️DEVIATION 3 */
+  color: var(--sss-muted); /* ⚠️DEVIATION 3 */
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__count {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__crumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  min-width: 0;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__back {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0;
+  border-style: none;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__back:hover {
+  opacity: 0.6;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__back:focus-visible {
+  opacity: 0.6;
+  outline: 2px solid currentColor;
+  outline-offset: 0.125em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__divider {
+  opacity: 0.35;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__crumb-title {
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__actions {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrows {
+  display: flex;
+  gap: 0.25em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.25em;
+  height: 2.25em;
+  padding: 0;
+  border-style: none;
+  border-radius: 50%;
+  background-color: rgba(22, 21, 19, 0.06);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow:hover {
+  background-color: rgba(22, 21, 19, 0.14);
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow:focus-visible {
+  background-color: rgba(22, 21, 19, 0.14);
+  outline: 2px solid currentColor;
+  outline-offset: 0.125em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+/* ⚠️DEVIATION 4: until both scripts have landed the cards sit in a plain row that scrolls sideways */
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__list {
+  overflow-x: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__list::-webkit-scrollbar {
+  display: none;
+}
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__item {
+  scroll-snap-align: start;
+}
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__card {
+  cursor: default;
+}
+
+@media (min-width: 640px) {
+  #sei-showcase-slider#sei-showcase-slider {
+    --showcase-slider-slot: 360px;
+    --showcase-slider-gap: 24px;
+    --showcase-slider-viewer-slot: 560px;
+    --sss-height: 470px;
+    --sss-frame-h: 212px;
+    --sss-viewer-frame-h: 338px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #sei-showcase-slider#sei-showcase-slider {
+    --showcase-slider-slot: 402px;
+    --showcase-slider-viewer-slot: 683px;
+    --sss-height: 547px;
+    --sss-frame-h: 238px;
+    --sss-viewer-frame-h: 415px;
+  }
+}
+&lt;/style&gt;
+
+&lt;div id=&quot;sei-showcase-slider&quot; data-skin=&quot;docs&quot; data-preview=&quot;false&quot; data-showcase-slider-init data-showcase-slider-status=&quot;closed&quot; class=&quot;showcase-slider&quot;&gt;
+  &lt;div class=&quot;showcase-slider__stage&quot;&gt;
+    &lt;div data-showcase-slider-collection class=&quot;showcase-slider__collection&quot;&gt;
+      &lt;div data-showcase-slider-list class=&quot;showcase-slider__list&quot;&gt;
+        &lt;div data-showcase-slider-item class=&quot;showcase-slider__item&quot;&gt;
+          &lt;button data-showcase-slider-open type=&quot;button&quot; class=&quot;showcase-slider__card&quot;&gt;
+            &lt;span data-showcase-slider-frame class=&quot;showcase-slider__frame&quot;&gt;&lt;img data-showcase-slider-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-01-1.jpg&quot; alt=&quot;Title 01, image 1&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__image&quot;&gt;&lt;span class=&quot;showcase-slider__chip&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;
+            &lt;span data-showcase-slider-info class=&quot;showcase-slider__info&quot;&gt;&lt;span data-showcase-slider-content=&quot;title&quot; class=&quot;showcase-slider__title&quot;&gt;Title 01&lt;/span&gt;&lt;span class=&quot;showcase-slider__meta&quot;&gt;Eyebrow&lt;/span&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;showcase-slider__gallery-collection&quot;&gt;
+            &lt;div class=&quot;showcase-slider__gallery-list&quot;&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-01-2.jpg&quot; alt=&quot;Title 01, image 2&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-01-3.jpg&quot; alt=&quot;Title 01, image 3&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-01-4.jpg&quot; alt=&quot;Title 01, image 4&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-showcase-slider-item class=&quot;showcase-slider__item&quot;&gt;
+          &lt;button data-showcase-slider-open type=&quot;button&quot; class=&quot;showcase-slider__card&quot;&gt;
+            &lt;span data-showcase-slider-frame class=&quot;showcase-slider__frame&quot;&gt;&lt;img data-showcase-slider-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-02-1.jpg&quot; alt=&quot;Title 02, image 1&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__image&quot;&gt;&lt;span class=&quot;showcase-slider__chip&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;
+            &lt;span data-showcase-slider-info class=&quot;showcase-slider__info&quot;&gt;&lt;span data-showcase-slider-content=&quot;title&quot; class=&quot;showcase-slider__title&quot;&gt;Title 02&lt;/span&gt;&lt;span class=&quot;showcase-slider__meta&quot;&gt;Eyebrow&lt;/span&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;showcase-slider__gallery-collection&quot;&gt;
+            &lt;div class=&quot;showcase-slider__gallery-list&quot;&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-02-2.jpg&quot; alt=&quot;Title 02, image 2&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-02-3.jpg&quot; alt=&quot;Title 02, image 3&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-02-4.jpg&quot; alt=&quot;Title 02, image 4&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-showcase-slider-item class=&quot;showcase-slider__item&quot;&gt;
+          &lt;button data-showcase-slider-open type=&quot;button&quot; class=&quot;showcase-slider__card&quot;&gt;
+            &lt;span data-showcase-slider-frame class=&quot;showcase-slider__frame&quot;&gt;&lt;img data-showcase-slider-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-03-1.jpg&quot; alt=&quot;Title 03, image 1&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__image&quot;&gt;&lt;span class=&quot;showcase-slider__chip&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;
+            &lt;span data-showcase-slider-info class=&quot;showcase-slider__info&quot;&gt;&lt;span data-showcase-slider-content=&quot;title&quot; class=&quot;showcase-slider__title&quot;&gt;Title 03&lt;/span&gt;&lt;span class=&quot;showcase-slider__meta&quot;&gt;Eyebrow&lt;/span&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;showcase-slider__gallery-collection&quot;&gt;
+            &lt;div class=&quot;showcase-slider__gallery-list&quot;&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-03-2.jpg&quot; alt=&quot;Title 03, image 2&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-03-3.jpg&quot; alt=&quot;Title 03, image 3&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-03-4.jpg&quot; alt=&quot;Title 03, image 4&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-showcase-slider-item class=&quot;showcase-slider__item&quot;&gt;
+          &lt;button data-showcase-slider-open type=&quot;button&quot; class=&quot;showcase-slider__card&quot;&gt;
+            &lt;span data-showcase-slider-frame class=&quot;showcase-slider__frame&quot;&gt;&lt;img data-showcase-slider-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-04-1.jpg&quot; alt=&quot;Title 04, image 1&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__image&quot;&gt;&lt;span class=&quot;showcase-slider__chip&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;
+            &lt;span data-showcase-slider-info class=&quot;showcase-slider__info&quot;&gt;&lt;span data-showcase-slider-content=&quot;title&quot; class=&quot;showcase-slider__title&quot;&gt;Title 04&lt;/span&gt;&lt;span class=&quot;showcase-slider__meta&quot;&gt;Eyebrow&lt;/span&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;showcase-slider__gallery-collection&quot;&gt;
+            &lt;div class=&quot;showcase-slider__gallery-list&quot;&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-04-2.jpg&quot; alt=&quot;Title 04, image 2&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-04-3.jpg&quot; alt=&quot;Title 04, image 3&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-04-4.jpg&quot; alt=&quot;Title 04, image 4&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-showcase-slider-item class=&quot;showcase-slider__item&quot;&gt;
+          &lt;button data-showcase-slider-open type=&quot;button&quot; class=&quot;showcase-slider__card&quot;&gt;
+            &lt;span data-showcase-slider-frame class=&quot;showcase-slider__frame&quot;&gt;&lt;img data-showcase-slider-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-05-1.jpg&quot; alt=&quot;Title 05, image 1&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__image&quot;&gt;&lt;span class=&quot;showcase-slider__chip&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;
+            &lt;span data-showcase-slider-info class=&quot;showcase-slider__info&quot;&gt;&lt;span data-showcase-slider-content=&quot;title&quot; class=&quot;showcase-slider__title&quot;&gt;Title 05&lt;/span&gt;&lt;span class=&quot;showcase-slider__meta&quot;&gt;Eyebrow&lt;/span&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;showcase-slider__gallery-collection&quot;&gt;
+            &lt;div class=&quot;showcase-slider__gallery-list&quot;&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-05-2.jpg&quot; alt=&quot;Title 05, image 2&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-05-3.jpg&quot; alt=&quot;Title 05, image 3&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-05-4.jpg&quot; alt=&quot;Title 05, image 4&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div data-showcase-slider-item class=&quot;showcase-slider__item&quot;&gt;
+          &lt;button data-showcase-slider-open type=&quot;button&quot; class=&quot;showcase-slider__card&quot;&gt;
+            &lt;span data-showcase-slider-frame class=&quot;showcase-slider__frame&quot;&gt;&lt;img data-showcase-slider-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-06-1.jpg&quot; alt=&quot;Title 06, image 1&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__image&quot;&gt;&lt;span class=&quot;showcase-slider__chip&quot;&gt;Label&lt;/span&gt;&lt;/span&gt;
+            &lt;span data-showcase-slider-info class=&quot;showcase-slider__info&quot;&gt;&lt;span data-showcase-slider-content=&quot;title&quot; class=&quot;showcase-slider__title&quot;&gt;Title 06&lt;/span&gt;&lt;span class=&quot;showcase-slider__meta&quot;&gt;Eyebrow&lt;/span&gt;&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;showcase-slider__gallery-collection&quot;&gt;
+            &lt;div class=&quot;showcase-slider__gallery-list&quot;&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-06-2.jpg&quot; alt=&quot;Title 06, image 2&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-06-3.jpg&quot; alt=&quot;Title 06, image 3&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+              &lt;div class=&quot;showcase-slider__gallery-item&quot;&gt;&lt;img data-showcase-slider-slide src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-06-4.jpg&quot; alt=&quot;Title 06, image 4&quot; width=&quot;1520&quot; height=&quot;800&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__gallery-image&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div data-showcase-slider-viewer inert class=&quot;showcase-slider__viewer&quot;&gt;
+      &lt;div data-showcase-slider-viewer-list class=&quot;showcase-slider__viewer-list&quot;&gt;
+        &lt;div data-showcase-slider-viewer-item role=&quot;group&quot; aria-roledescription=&quot;slide&quot; class=&quot;showcase-slider__viewer-item&quot;&gt;
+          &lt;div data-showcase-slider-viewer-frame class=&quot;showcase-slider__viewer-frame&quot;&gt;
+            &lt;img data-showcase-slider-viewer-image src=&quot;showcase-slider--preview-images/showcase-slider--placeholder-01-1.jpg&quot; alt=&quot;&quot; width=&quot;1520&quot; height=&quot;800&quot; draggable=&quot;false&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; class=&quot;showcase-slider__viewer-image&quot;&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;showcase-slider__controls&quot;&gt;
+    &lt;div data-showcase-slider-bar class=&quot;showcase-slider__bar&quot;&gt;
+      &lt;p class=&quot;showcase-slider__label&quot;&gt;Selected work&lt;/p&gt;
+      &lt;p class=&quot;showcase-slider__count&quot;&gt;&lt;span data-showcase-slider-index&gt;01&lt;/span&gt;&lt;span&gt; / &lt;/span&gt;&lt;span data-showcase-slider-total&gt;06&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div data-showcase-slider-viewer-bar inert class=&quot;showcase-slider__viewer-bar&quot;&gt;
+      &lt;div class=&quot;showcase-slider__crumb&quot;&gt;
+        &lt;button data-showcase-slider-close type=&quot;button&quot; class=&quot;showcase-slider__back&quot;&gt;
+          &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; class=&quot;showcase-slider__icon&quot;&gt;&lt;path d=&quot;M10 3L5 8L10 13&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+          &lt;span&gt;All projects&lt;/span&gt;
+        &lt;/button&gt;
+        &lt;span aria-hidden=&quot;true&quot; class=&quot;showcase-slider__divider&quot;&gt;/&lt;/span&gt;
+        &lt;span data-showcase-slider-slot=&quot;title&quot; class=&quot;showcase-slider__crumb-title&quot;&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;showcase-slider__actions&quot;&gt;
+        &lt;p class=&quot;showcase-slider__count&quot;&gt;&lt;span data-showcase-slider-index&gt;01&lt;/span&gt;&lt;span&gt; / &lt;/span&gt;&lt;span data-showcase-slider-total&gt;04&lt;/span&gt;&lt;/p&gt;
+        &lt;div class=&quot;showcase-slider__arrows&quot;&gt;
+          &lt;button data-showcase-slider-prev type=&quot;button&quot; aria-label=&quot;Previous image&quot; class=&quot;showcase-slider__arrow&quot;&gt;
+            &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; class=&quot;showcase-slider__icon&quot;&gt;&lt;path d=&quot;M10 3L5 8L10 13&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+          &lt;/button&gt;
+          &lt;button data-showcase-slider-next type=&quot;button&quot; aria-label=&quot;Next image&quot; class=&quot;showcase-slider__arrow&quot;&gt;
+            &lt;svg viewBox=&quot;0 0 16 16&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; class=&quot;showcase-slider__icon&quot;&gt;&lt;path d=&quot;M6 3L11 8L6 13&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(function () {
+  function initShowcaseSlider() {
+    let reduceMotion = false;
+    gsap.matchMedia().add(&quot;(prefers-reduced-motion: reduce)&quot;, () =&gt; {
+      reduceMotion = true;
+      return () =&gt; {
+        reduceMotion = false;
+      };
+    });
+
+    document.querySelectorAll(&quot;[data-showcase-slider-init]&quot;).forEach((root) =&gt; {
+      // ⚠️DEVIATION 5: each wrapper starts once, even when two pasted copies run this script
+      if (root.hasAttribute(&quot;data-showcase-slider-live&quot;)) return;
+      root.setAttribute(&quot;data-showcase-slider-live&quot;, &quot;&quot;);
+
+      const parallaxStrength = 8; // % of the image width it shifts at the edge of the slider
+
+      const collection = root.querySelector(&quot;[data-showcase-slider-collection]&quot;);
+      const list = root.querySelector(&quot;[data-showcase-slider-list]&quot;);
+      const items = [...list.querySelectorAll(&quot;[data-showcase-slider-item]&quot;)];
+      const cards = items.map((item) =&gt; item.querySelector(&quot;[data-showcase-slider-open]&quot;));
+      const frames = items.map((item) =&gt; item.querySelector(&quot;[data-showcase-slider-frame]&quot;));
+      const images = items.map((item) =&gt; item.querySelector(&quot;[data-showcase-slider-image]&quot;));
+      const infos = items.map((item) =&gt; item.querySelector(&quot;[data-showcase-slider-info]&quot;));
+      const viewer = root.querySelector(&quot;[data-showcase-slider-viewer]&quot;);
+      const viewerTemplate = viewer.querySelector(&quot;[data-showcase-slider-viewer-list]&quot;);
+      const viewerItemTemplate = viewerTemplate.querySelector(&quot;[data-showcase-slider-viewer-item]&quot;);
+      const bar = root.querySelector(&quot;[data-showcase-slider-bar]&quot;);
+      const viewerBar = root.querySelector(&quot;[data-showcase-slider-viewer-bar]&quot;);
+      const slots = [...root.querySelectorAll(&quot;[data-showcase-slider-slot]&quot;)];
+      const closeButton = root.querySelector(&quot;[data-showcase-slider-close]&quot;);
+      const prevButton = root.querySelector(&quot;[data-showcase-slider-prev]&quot;);
+      const nextButton = root.querySelector(&quot;[data-showcase-slider-next]&quot;);
+      const setText = (scope, hook, value) =&gt; {
+        const element = scope.querySelector(`[data-showcase-slider-${hook}]`);
+        if (element) element.textContent = String(value).padStart(2, &quot;0&quot;);
+      };
+
+      const count = items.length;
+      const projects = [];
+      let active = null;
+      let activeIndex = -1;
+      let isOpen = false;
+      let busy = false;
+      let openedByKeyboard = false;
+      let pointerStartX = 0;
+
+      const centerX = (element) =&gt; element.getBoundingClientRect().left + element.offsetWidth / 2;
+      const offset = (from, to) =&gt; {
+        const a = from.getBoundingClientRect();
+        const b = to.getBoundingClientRect();
+        return { x: a.x - b.x + (a.width - b.width) / 2, y: a.y - b.y + (a.height - b.height) / 2, scale: a.width / b.width };
+      };
+      const matchInput = (slider) =&gt; {
+        const slideWidth = slider.viewport.itemWidth || 1;
+        slider.config.dragSensitivity = 1 / slideWidth;
+        slider.config.scrollSensitivity = 2000 / slideWidth;
+      };
+      const wasDrag = (event) =&gt; event.detail !== 0 &amp;&amp; Math.abs(event.clientX - pointerStartX) &gt; 6;
+
+      const createTrack = (slider, trackImages, loop) =&gt; ({
+        slider,
+        loop,
+        setters: trackImages.map((image) =&gt; gsap.quickSetter(image, &quot;xPercent&quot;)),
+      });
+
+      const renderParallax = (track) =&gt; {
+        const { slider } = track;
+        const ratio = slider.viewport.itemWidth / (slider.viewport.wrapperWidth / 2 || 1);
+        const strength = reduceMotion ? 0 : parallaxStrength;
+        track.setters.forEach((setX, index) =&gt; {
+          const position = track.loop ? gsap.utils.wrap(-count / 2, count / 2, index + slider.current) : index + slider.current;
+          setX(-position * ratio * strength);
+        });
+      };
+
+      const base = new Smooothy(list, {
+        infinite: true,
+        snap: true,
+        onResize: matchInput,
+        onSlideChange: (current) =&gt; setText(bar, &quot;index&quot;, current + 1),
+      });
+      const baseTrack = createTrack(base, images, true);
+      setText(bar, &quot;total&quot;, count);
+
+      const updateViewer = (current) =&gt; {
+        setText(viewerBar, &quot;index&quot;, current + 1);
+        prevButton.disabled = current === 0;
+        nextButton.disabled = current === active.frames.length - 1;
+      };
+
+      const buildProject = (index) =&gt; {
+        if (projects[index]) return projects[index];
+
+        const sources = [images[index], ...items[index].querySelectorAll(&quot;[data-showcase-slider-slide]&quot;)];
+        const viewerList = viewerTemplate.cloneNode(false);
+        viewerList.setAttribute(&quot;data-showcase-slider-status&quot;, &quot;active&quot;);
+        viewer.appendChild(viewerList);
+
+        const viewerFrames = [];
+        const viewerImages = [];
+        sources.forEach((source, sourceIndex) =&gt; {
+          const viewerItem = viewerItemTemplate.cloneNode(true);
+          const viewerFrame = viewerItem.querySelector(&quot;[data-showcase-slider-viewer-frame]&quot;);
+          const viewerImage = viewerItem.querySelector(&quot;[data-showcase-slider-viewer-image]&quot;);
+          [&quot;src&quot;, &quot;srcset&quot;, &quot;sizes&quot;, &quot;alt&quot;].forEach((attribute) =&gt; {
+            if (source.hasAttribute(attribute)) viewerImage.setAttribute(attribute, source.getAttribute(attribute));
+            else viewerImage.removeAttribute(attribute);
+          });
+          viewerItem.setAttribute(&quot;aria-label&quot;, `${sourceIndex + 1} of ${sources.length}`);
+          viewerFrame.addEventListener(&quot;click&quot;, (event) =&gt; {
+            if (!wasDrag(event) &amp;&amp; !busy) projects[index].slider.target = -sourceIndex;
+          });
+          viewerList.appendChild(viewerItem);
+          viewerFrames.push(viewerFrame);
+          viewerImages.push(viewerImage);
+        });
+
+        const slider = new Smooothy(viewerList, {
+          infinite: false,
+          snap: true,
+          onResize: matchInput,
+          onSlideChange: (current) =&gt; updateViewer(current),
+        });
+        viewerList.addEventListener(&quot;scroll&quot;, () =&gt; {
+          viewerList.scrollLeft = 0;
+        });
+
+        projects[index] = {
+          list: viewerList,
+          slider,
+          frames: viewerFrames,
+          images: viewerImages,
+          track: createTrack(slider, viewerImages, false),
+        };
+        return projects[index];
+      };
+
+      const setOpen = (open) =&gt; {
+        isOpen = open;
+        root.setAttribute(&quot;data-showcase-slider-status&quot;, open ? &quot;open&quot; : &quot;closed&quot;);
+        collection.inert = open;
+        viewer.inert = !open;
+        viewerBar.inert = !open;
+        base.paused = open;
+      };
+
+      const open = (index, fromKeyboard) =&gt; {
+        if (busy || isOpen) return;
+        busy = true;
+        activeIndex = index;
+        openedByKeyboard = fromKeyboard;
+        base.target = base.current;
+        projects.forEach((project) =&gt; project.list.removeAttribute(&quot;data-showcase-slider-status&quot;));
+        active = buildProject(index);
+        active.list.setAttribute(&quot;data-showcase-slider-status&quot;, &quot;active&quot;);
+        setOpen(true);
+
+        active.slider.current = active.slider.target = 0;
+        active.slider.paused = false;
+        active.slider.resize();
+        renderParallax(active.track);
+        updateViewer(0);
+        setText(viewerBar, &quot;total&quot;, active.frames.length);
+        slots.forEach((slot) =&gt; {
+          const content = items[index].querySelector(`[data-showcase-slider-content=&quot;${slot.getAttribute(&quot;data-showcase-slider-slot&quot;)}&quot;]`);
+          slot.replaceChildren(...(content ? content.cloneNode(true).childNodes : []));
+        });
+
+        const move = offset(frames[index], active.frames[0]);
+        const push = root.offsetWidth * 0.35;
+        const tl = gsap.timeline({
+          defaults: {
+            ease: &quot;expo.inOut&quot;,
+          },
+          onComplete: () =&gt; {
+            busy = false;
+          },
+        });
+
+        tl.set(frames[index], {
+          autoAlpha: 0,
+        })
+        .fromTo(active.frames[0], {
+          x: move.x,
+          y: move.y,
+          scale: move.scale,
+        }, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+        })
+        .fromTo(active.images[0], {
+          xPercent: gsap.getProperty(images[index], &quot;xPercent&quot;),
+        }, {
+          xPercent: gsap.getProperty(active.images[0], &quot;xPercent&quot;),
+          duration: 1.1,
+        }, &quot;&lt;&quot;)
+        .to(cards.filter((card, cardIndex) =&gt; cardIndex !== index), {
+          x: (cardIndex, card) =&gt; Math.sign(centerX(card) - centerX(cards[index])) * push,
+          autoAlpha: 0,
+          duration: 1,
+        }, &quot;&lt;&quot;)
+        .to([infos[index], bar], {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: &quot;power1.out&quot;,
+        }, &quot;&lt;&quot;)
+        .fromTo(active.frames.slice(1), {
+          x: push * 0.6,
+          autoAlpha: 0,
+        }, {
+          x: 0,
+          autoAlpha: 1,
+          duration: 1,
+          ease: &quot;expo.out&quot;,
+          stagger: 0.05,
+        }, &quot;&lt;+=0.6&quot;)
+        .fromTo([viewerBar, ...slots], {
+          autoAlpha: 0,
+        }, {
+          autoAlpha: 1,
+          duration: 0.5,
+          ease: &quot;power1.out&quot;,
+        }, &quot;&lt;&quot;);
+        if (fromKeyboard) tl.call(() =&gt; closeButton.focus({ preventScroll: true }), null, 0.65);
+        if (reduceMotion) tl.progress(1);
+      };
+
+      const close = () =&gt; {
+        if (busy || !isOpen) return;
+        busy = true;
+        const current = active.slider.currentSlide;
+        const frame = active.frames[current];
+        const keyboardInside = root.contains(document.activeElement) &amp;&amp; document.activeElement.matches(&quot;:focus-visible&quot;);
+        const move = offset(frames[activeIndex], frame);
+        const push = root.offsetWidth * 0.35;
+
+        const tl = gsap.timeline({
+          defaults: {
+            ease: &quot;expo.inOut&quot;,
+          },
+          onComplete: () =&gt; {
+            gsap.set([...active.frames, ...cards], {
+              clearProps: &quot;transform,opacity,visibility&quot;,
+            });
+            active.slider.paused = true;
+            setOpen(false);
+            busy = false;
+            if (openedByKeyboard || keyboardInside) cards[activeIndex].focus({ preventScroll: true });
+          },
+        });
+
+        tl.to(frame, {
+          x: `+=${move.x}`,
+          y: `+=${move.y}`,
+          scale: move.scale,
+          duration: 1.1,
+        })
+        .to(active.images[current], {
+          xPercent: gsap.getProperty(images[activeIndex], &quot;xPercent&quot;),
+          duration: 1.1,
+        }, &quot;&lt;&quot;)
+        .to(active.frames.filter((other) =&gt; other !== frame), {
+          x: (frameIndex, other) =&gt; Math.sign(centerX(other) - centerX(frame)) * push * 0.6,
+          autoAlpha: 0,
+          duration: 0.6,
+          ease: &quot;power3.in&quot;,
+        }, &quot;&lt;&quot;)
+        .to([viewerBar, ...slots], {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: &quot;power1.out&quot;,
+        }, &quot;&lt;&quot;)
+        .to(cards.filter((card, cardIndex) =&gt; cardIndex !== activeIndex), {
+          x: 0,
+          autoAlpha: 1,
+          duration: 1,
+        }, &quot;&lt;+=0.1&quot;)
+        .to([infos[activeIndex], bar], {
+          autoAlpha: 1,
+          duration: 0.5,
+          ease: &quot;power1.out&quot;,
+        }, 0.8)
+        .set(frames[activeIndex], {
+          autoAlpha: 1,
+        }, &quot;&lt;&quot;)
+        .to(frame, {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: &quot;power1.out&quot;,
+        }, &quot;&lt;&quot;);
+        if (reduceMotion) tl.progress(1);
+      };
+
+      root.addEventListener(&quot;pointerdown&quot;, (event) =&gt; {
+        pointerStartX = event.clientX;
+      }, true);
+
+      cards.forEach((card, index) =&gt; {
+        card.addEventListener(&quot;click&quot;, (event) =&gt; {
+          if (!wasDrag(event)) open(index, event.detail === 0);
+        });
+        card.addEventListener(&quot;focus&quot;, () =&gt; {
+          if (isOpen || !card.matches(&quot;:focus-visible&quot;)) return;
+          base.target = -index + count * Math.round((base.target + index) / count);
+        });
+      });
+
+      list.addEventListener(&quot;scroll&quot;, () =&gt; {
+        list.scrollLeft = 0;
+      });
+      closeButton.addEventListener(&quot;click&quot;, close);
+      prevButton.addEventListener(&quot;click&quot;, () =&gt; active.slider.goToPrev());
+      nextButton.addEventListener(&quot;click&quot;, () =&gt; active.slider.goToNext());
+
+      document.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+        if (isOpen) {
+          if (event.key === &quot;Escape&quot;) close();
+          if (event.key === &quot;ArrowRight&quot;) nextButton.click();
+          if (event.key === &quot;ArrowLeft&quot;) prevButton.click();
+        }
+      });
+
+      gsap.ticker.add(() =&gt; {
+        if (!isOpen) {
+          base.update();
+          renderParallax(baseTrack);
+        }
+        if (isOpen &amp;&amp; !busy) {
+          active.slider.update();
+          renderParallax(active.track);
+        }
+      });
+    });
+  }
+
+  // ⚠️DEVIATION 6: GSAP and Smooothy are pinned to exact versions and loaded here; the slider starts only when both have landed
+  function load(src, ready, done) {
+    if (ready()) return done();
+    var s = document.createElement(&quot;script&quot;);
+    s.src = src; s.async = false; s.onload = done; s.onerror = done;
+    document.head.appendChild(s);
+  }
+
+  function start() {
+    if (typeof window.gsap === &quot;undefined&quot; || typeof window.Smooothy === &quot;undefined&quot;) return;
+    try {
+      initShowcaseSlider();
+    } catch (e) {
+      document.querySelectorAll(&quot;[data-showcase-slider-init]&quot;).forEach(function (root) { root.removeAttribute(&quot;data-showcase-slider-live&quot;); });
+      if (window.console) console.warn(&quot;Showcase Slider:&quot;, e);
+    }
+  }
+
+  function boot() {
+    load(&quot;https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js&quot;, function () { return typeof window.gsap !== &quot;undefined&quot;; }, function () {
+      if (typeof window.gsap === &quot;undefined&quot;) return;
+      load(&quot;https://cdn.jsdelivr.net/npm/smooothy@0.0.35/dist/smooothy.min.js&quot;, function () { return typeof window.Smooothy !== &quot;undefined&quot;; }, start);
+    });
+  }
+
+  // ⚠️DEVIATION 7: started at once when the page has already loaded, because a Fastr component arrives after DOMContentLoaded
+  if (document.readyState !== &quot;loading&quot;) boot();
+  else document.addEventListener(&quot;DOMContentLoaded&quot;, boot);
+})();
+&lt;/script&gt;
+</code></pre></div>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+<script>
+(function () {
+  var frame = document.getElementById("ss-frame");
+  document.getElementById("skin-tabs").addEventListener("nm-tab", function (e) {
+    frame.src = "../blocks/showcase-slider/demo.html?skin=" + e.detail.getAttribute("data-skin");
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Section Breaker · Nutmeg</title>
+<meta name="description" content="A headline band between carousels: stars, eyebrow, headline, copy, then a button, filter pills or a link.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <div class="nm-header__links">
+    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
+    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
+  </div>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
+<ul>
+<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
+<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
+<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
+</ul></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
+<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
+<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
+</ul></li>
+</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
+<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
+<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
+<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
+<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
+<ul class="nm-nav__sub" id="nm-sub-blocks">
+<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
+<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
+<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
+<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
+<li><a class="nm-nav__sublink" href="section-breaker.html" aria-current="page">Section Breaker</a></li>
+<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
+<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
+</ul></li>
+</ul>
+<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
+  <h1>Section Breaker</h1>
+  <p class="nm-lede">A headline band between carousels: stars, eyebrow, headline, copy, then a button, filter pills or a link.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-section-breaker"><button type="button" class="nm-tab" role="tab" aria-controls="frame-section-breaker" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-section-breaker" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-section-breaker" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/section-breaker/fastr-paste.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-section-breaker" src="../blocks/section-breaker/fastr-paste.html" height="720" title="Section Breaker, live demo"></iframe></div></div>
+</section><section class="nm-section" id="how">
+<div class="nm-section__head"><h2 class="nm-h2">How it&#x27;s built<button type="button" class="nm-anchor" aria-label="Copy a link to How it&#x27;s built"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-prose"><p>A headline band between carousels: stars, eyebrow, headline, copy, then a button, filter pills or a link. Can be pasted many times on one page.</p></div><h3 class="nm-h3">Notes from the code</h3><ul class="nm-list"><li>Change the look with the three settings on the &lt;section&gt; line:</li><li>data-align  = center | left | right | split   (split: words on the left, action on the right from 1024px up)</li><li>data-action = button | pills | link | none     (pills: a row of filter links; add aria-current=&quot;page&quot; to the one that is on)</li><li>data-theme  = light | dark</li><li>Delete the stars, eyebrow or copy line if a breaker does not need them.</li><li>Give each pasted copy its own title id (sbk-1-title, sbk-2-title...).</li></ul>
+</section><section class="nm-section" id="heights">
+<div class="nm-section__head"><h2 class="nm-h2">Fastr heights<button type="button" class="nm-anchor" aria-label="Copy a link to Fastr heights"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>No single set of heights.</strong><p>This block's height changes with its settings or its content. Measure it for each use. The notes from the code say why.</p></div>
+</section><section class="nm-section" id="accessibility">
+<div class="nm-section__head"><h2 class="nm-h2">Accessibility<button type="button" class="nm-anchor" aria-label="Copy a link to Accessibility"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Contrast measured when the block was built.</p></div>
+<ul class="nm-list"><li>Black on white 21:1 pass.</li><li>Button words on black 17.4:1 pass.</li><li>Pill text 14.9:1 pass.</li><li>Pill edge 3.05:1 pass (needs 3:1).</li><li>Dark: yellow on night 14.3:1 pass.</li><li>White on night 18.9:1 pass.</li><li>Black on yellow button 15.9:1 pass.</li></ul>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste the whole file into one Fastr HTML component.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>fastr-paste.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!-- Section Breaker. WorldSoccerShop. A headline band that sits between carousels and other blocks.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe. Paste it as many times as a page needs.
+     Every rule is scoped to [data-block=&quot;section-breaker-v1&quot;] and cannot reach the page.
+     Change the look with the three settings on the &lt;section&gt; line:
+       data-align  = center | left | right | split   (split: words on the left, action on the right from 1024px up)
+       data-action = button | pills | link | none     (pills: a row of filter links; add aria-current=&quot;page&quot; to the one that is on)
+       data-theme  = light | dark
+     Delete the stars, eyebrow or copy line if a breaker does not need them.
+     Give each pasted copy its own title id (sbk-1-title, sbk-2-title...).
+     Reserved heights: see the table in the handoff note (they change with the settings).
+     Contrast: black on white 21:1 pass. Button words on black 17.4:1 pass. Pill text 14.9:1 pass. Pill edge 3.05:1 pass (needs 3:1).
+               Dark: yellow on night 14.3:1 pass. White on night 18.9:1 pass. Black on yellow button 15.9:1 pass. --&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&amp;family=DM+Mono:wght@400&amp;family=Figtree:wght@400&amp;family=Mohave:wght@700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;style&gt;
+[data-block=&quot;section-breaker-v1&quot;]{--campaign-display:&#x27;Mohave&#x27;,Impact,sans-serif;--campaign-mono:&#x27;DM Mono&#x27;,ui-monospace,monospace;--campaign-body:&#x27;Aeonik&#x27;,&#x27;Figtree&#x27;,Arial,sans-serif;--campaign-label:&#x27;Chakra Petch&#x27;,Arial,sans-serif;--campaign-surface:transparent;--campaign-ink:#000000;--campaign-star:#FFE014;--campaign-cta:#000000;--campaign-cta-ink:#EDEADA;--campaign-pill-ink:#192B1F;--campaign-pill-edge:#969393;--campaign-pill-edge-hover:#000000;display:block;width:100%;background:var(--campaign-surface);color:var(--campaign-ink);padding:14px 0;box-sizing:border-box}
+[data-block=&quot;section-breaker-v1&quot;][data-theme=&quot;dark&quot;]{--campaign-surface:#111111;--campaign-ink:#FFFFFF;--campaign-title:#FFE014;--campaign-cta:#FFE014;--campaign-cta-ink:#000000;--campaign-pill-ink:#FFFFFF;--campaign-pill-edge:#BABABA;--campaign-pill-edge-hover:#FFE014;padding:40px 0}
+[data-block=&quot;section-breaker-v1&quot;] *,[data-block=&quot;section-breaker-v1&quot;] *::before,[data-block=&quot;section-breaker-v1&quot;] *::after{box-sizing:border-box}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-inner{max-width:1456px;margin:0 auto;padding:0 16px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-text{display:flex;flex-direction:column;align-items:center;width:100%}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-stars{display:block;flex:none;color:var(--campaign-star);margin-bottom:16px}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-eyebrow{margin:0 0 8px;font-family:var(--campaign-mono);font-weight:400;font-size:14px;line-height:1;text-transform:uppercase}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-title{margin:0;font-family:var(--campaign-display);font-weight:700;font-size:40px;line-height:.85;letter-spacing:-.02em;text-transform:uppercase;color:var(--campaign-title,var(--campaign-ink))}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-copy{margin:12px 0 0;font-family:var(--campaign-body);font-weight:400;font-size:16px;line-height:1;text-transform:capitalize}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-actions{display:flex;justify-content:center;width:100%;min-width:0}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-button,[data-block=&quot;section-breaker-v1&quot;] .sbk-pills,[data-block=&quot;section-breaker-v1&quot;] .sbk-link{display:none}
+[data-block=&quot;section-breaker-v1&quot;][data-action=&quot;button&quot;] .sbk-button{display:inline-flex}
+[data-block=&quot;section-breaker-v1&quot;][data-action=&quot;pills&quot;] .sbk-pills{display:flex}
+[data-block=&quot;section-breaker-v1&quot;][data-action=&quot;link&quot;] .sbk-link{display:inline-flex}
+[data-block=&quot;section-breaker-v1&quot;][data-action=&quot;none&quot;] .sbk-actions{display:none}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-button{align-items:center;justify-content:center;width:226px;max-width:100%;padding:12px 24px;background:var(--campaign-cta);color:var(--campaign-cta-ink);font-family:var(--campaign-label);font-weight:500;font-size:16px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;transition:opacity .2s ease}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-button:hover{opacity:.85}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pills{gap:12px;margin:0;padding:2px 16px 4px;list-style:none;max-width:calc(100% + 32px);margin-inline:-16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pills::-webkit-scrollbar{display:none}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pills li{flex:none;margin:0;padding:0}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pill{display:inline-flex;align-items:center;justify-content:center;min-width:120px;padding:12px 16px;border:1px solid var(--campaign-pill-edge);border-radius:999px;color:var(--campaign-pill-ink);font-family:var(--campaign-label);font-weight:500;font-size:14px;line-height:1.2;text-transform:capitalize;text-decoration:none;white-space:nowrap;transition:border-color .2s ease,background-color .2s ease}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pill:hover{border-color:var(--campaign-pill-edge-hover)}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pill[aria-current=&quot;page&quot;]{background:var(--campaign-cta);border-color:var(--campaign-cta);color:var(--campaign-cta-ink)}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-link{align-items:center;gap:8px;padding:6px 0;color:var(--campaign-ink);font-family:var(--campaign-label);font-weight:500;font-size:16px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-link span{display:inline-block;text-decoration:none;transition:transform .25s cubic-bezier(.32,.72,0,1)}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-link:hover span{transform:translateX(4px)}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-button:focus-visible,[data-block=&quot;section-breaker-v1&quot;] .sbk-pill:focus-visible,[data-block=&quot;section-breaker-v1&quot;] .sbk-link:focus-visible{outline:2px solid var(--campaign-ink);outline-offset:3px}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;left&quot;] .sbk-inner,[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-inner{align-items:flex-start;text-align:left}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;left&quot;] .sbk-text,[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-text{align-items:flex-start}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;left&quot;] .sbk-actions,[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-actions{justify-content:flex-start}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;right&quot;] .sbk-inner{align-items:flex-end;text-align:right}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;right&quot;] .sbk-text{align-items:flex-end}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;right&quot;] .sbk-actions{justify-content:flex-end}
+@media (prefers-reduced-motion:reduce){[data-block=&quot;section-breaker-v1&quot;] .sbk-button,[data-block=&quot;section-breaker-v1&quot;] .sbk-pill,[data-block=&quot;section-breaker-v1&quot;] .sbk-link span{display:inline-block;text-decoration:none;transition:none}}
+@media (min-width:640px){
+[data-block=&quot;section-breaker-v1&quot;] .sbk-inner{padding:0 24px}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-title{font-size:52px;line-height:.75}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-copy{font-size:18px}
+[data-block=&quot;section-breaker-v1&quot;] .sbk-pills{flex-wrap:wrap;justify-content:inherit;overflow:visible;margin-inline:0;padding:2px 0;max-width:100%}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;center&quot;] .sbk-pills{justify-content:center}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;right&quot;] .sbk-pills{justify-content:flex-end}
+}
+@media (min-width:1024px){
+[data-block=&quot;section-breaker-v1&quot;] .sbk-title{font-size:64px}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-inner{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:42px}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-text{width:auto;flex:1 1 auto}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-actions{width:auto;flex:0 1 auto;justify-content:flex-end}
+[data-block=&quot;section-breaker-v1&quot;][data-align=&quot;split&quot;] .sbk-pills{justify-content:flex-end}
+}
+&lt;/style&gt;
+
+&lt;section class=&quot;sbk&quot; data-block=&quot;section-breaker-v1&quot; data-align=&quot;center&quot; data-action=&quot;button&quot; data-theme=&quot;light&quot; aria-labelledby=&quot;sbk-1-title&quot;&gt;
+  &lt;div class=&quot;sbk-inner&quot;&gt;
+    &lt;div class=&quot;sbk-text&quot;&gt;
+      &lt;svg class=&quot;sbk-stars&quot; width=&quot;86&quot; height=&quot;30&quot; viewBox=&quot;0 0 86 30&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M43.4599 0L46.0237 8.09702L54.5156 8.03212L47.6031 12.9758L50.2913 21.0349L43.4599 15.9885L36.6232 21.0349L39.3113 12.9758L32.3989 8.03212L40.8961 8.09702L43.4599 0Z&quot; fill=&quot;currentColor&quot;/&gt;&lt;path d=&quot;M78.2226 7.11256L77.2382 15.5449L85.0107 18.9741L76.6811 20.6401L75.8211 29.0941L71.6617 21.6894L63.3591 23.4851L69.1196 17.2379L64.8412 9.89811L72.565 13.4463L78.2226 7.11256Z&quot; fill=&quot;currentColor&quot;/&gt;&lt;path d=&quot;M6.88004 7.0748L12.489 13.4572L20.2344 9.96852L15.9074 17.2759L21.6137 23.5663L13.3274 21.7057L9.10847 29.0779L8.31338 20.6185L0 18.8877L7.79954 15.5234L6.88004 7.0748Z&quot; fill=&quot;currentColor&quot;/&gt;&lt;/svg&gt;
+      &lt;p class=&quot;sbk-eyebrow&quot;&gt;Sale&lt;/p&gt;
+      &lt;h2 class=&quot;sbk-title&quot; id=&quot;sbk-1-title&quot;&gt;Top jerseys on sale&lt;/h2&gt;
+      &lt;p class=&quot;sbk-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;sbk-actions&quot;&gt;
+      &lt;a class=&quot;sbk-button&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys&quot; target=&quot;_top&quot;&gt;Shop all&lt;/a&gt;
+      &lt;ul class=&quot;sbk-pills&quot; aria-label=&quot;Filter sale jerseys&quot;&gt;&lt;li&gt;&lt;a class=&quot;sbk-pill&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys&quot; target=&quot;_top&quot; aria-label=&quot;All sale jerseys&quot;&gt;All&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a class=&quot;sbk-pill&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Men&quot; target=&quot;_top&quot; aria-label=&quot;Men&#x27;s sale jerseys&quot;&gt;Mens&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a class=&quot;sbk-pill&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Women&quot; target=&quot;_top&quot; aria-label=&quot;Women&#x27;s sale jerseys&quot;&gt;Womens&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a class=&quot;sbk-pill&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Youth&quot; target=&quot;_top&quot; aria-label=&quot;Kids&#x27; sale jerseys&quot;&gt;Kids&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+      &lt;a class=&quot;sbk-link&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys&quot; target=&quot;_top&quot;&gt;Shop all &lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/section-breaker/fastr-paste.html" download="section-breaker--fastr-paste.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="to-write">
+<div class="nm-section__head"><h2 class="nm-h2">Still to write<button type="button" class="nm-anchor" aria-label="Copy a link to Still to write"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>These parts of the page are not written yet.</strong><p>When to use it, What you change, Images.</p></div>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>

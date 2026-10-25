@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workshop walkthrough · Nutmeg</title>
+<meta name="description" content="The five-step build, from Figma to a live Fastr page. Watch it all or jump to the step you need.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.11"></script>
+<style>
+.bunny-player {
+  pointer-events: none;
+  color: #fff;
+  isolation: isolate;
+  border-radius: 1em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  transform: translateX(0);
+}
+.bunny-player__before { padding-top: 62.5%; }
+[data-bunny-player-init] :is(.bunny-player__placeholder, .bunny-player__dark, .bunny-player__playpause, .bunny-player__loading) {
+  transition: opacity 0.3s linear, visibility 0.3s linear;
+}
+.bunny-player__placeholder {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+[data-bunny-player-init][data-player-status="playing"] .bunny-player__placeholder,
+[data-bunny-player-init][data-player-status="paused"] .bunny-player__placeholder,
+[data-bunny-player-init][data-player-activated="true"][data-player-status="ready"] .bunny-player__placeholder {
+  opacity: 0;
+  visibility: hidden;
+}
+.bunny-player__dark {
+  opacity: .1;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+[data-bunny-player-init][data-player-status="paused"] .bunny-player__dark,
+[data-bunny-player-init][data-player-status="playing"][data-player-hover="active"] .bunny-player__dark { opacity: 0.3; }
+[data-bunny-player-init][data-player-status="playing"] .bunny-player__dark { opacity: 0; }
+.bunny-player__video {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 0;
+  padding-right: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.bunny-player__playpause {
+  pointer-events: auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+}
+[data-bunny-player-init][data-player-status="playing"] .bunny-player__playpause,
+[data-bunny-player-init][data-player-status="loading"] .bunny-player__playpause { opacity: 0; }
+[data-bunny-player-init][data-player-status="playing"][data-player-hover="active"] .bunny-player__playpause { opacity: 1; }
+[data-bunny-player-init][data-player-status="playing"] .bunny-player__play-svg,
+[data-bunny-player-init][data-player-status="loading"] .bunny-player__play-svg { display: none; }
+[data-bunny-player-init][data-player-status="playing"] .bunny-player__pause-svg,
+[data-bunny-player-init][data-player-status="loading"] .bunny-player__pause-svg { display: block; }
+.bunny-player__loading {
+  opacity: 0;
+  visibility: hidden;
+  background-color: #00000054;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+}
+[data-bunny-player-init][data-player-status="loading"] .bunny-player__loading { opacity: 1; visibility: visible; }
+.bunny-player__interface {
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: baseline;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  transition: all 0.6s cubic-bezier(0.625, 0.05, 0, 1);
+}
+[data-bunny-player-init][data-player-status="playing"] .bunny-player__interface,
+[data-bunny-player-init][data-player-status="loading"] .bunny-player__interface {
+  opacity: 0;
+  transform: translateY(1em) rotate(0.001deg);
+}
+[data-bunny-player-init][data-player-status="playing"][data-player-hover="active"] .bunny-player__interface,
+[data-bunny-player-init][data-player-status="loading"][data-player-hover="active"] .bunny-player__interface {
+  opacity: 1;
+  transform: translateY(0em) rotate(0.001deg);
+}
+.bunny-player__interface-bottom {
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  pointer-events: auto;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: min(2em, 4vw);
+  display: flex;
+  position: relative;
+}
+.bunny-player__toggle-mute,
+.bunny-player__toggle-fullscreen { cursor: pointer; width: 1.5em; height: 1.5em; }
+.bunny-player__timeline {
+  cursor: pointer;
+  flex: 1;
+  align-items: center;
+  height: 1em;
+  margin-left: .5em;
+  margin-right: .5em;
+  display: flex;
+  position: relative;
+}
+[data-bunny-player-init][data-player-status="idle"][data-player-activated="false"] .bunny-player__timeline,
+[data-bunny-player-init][data-player-status="ready"][data-player-activated="false"] .bunny-player__timeline { pointer-events: none; }
+.bunny-player__timeline-progress {
+  pointer-events: none;
+  background-color: #ff4c24;
+  border-radius: 1em;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateX(-100%);
+}
+.bunny-player__timeline-buffered {
+  opacity: .2;
+  pointer-events: none;
+  background-color: #fff;
+  border-radius: 1em;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateX(-100%);
+}
+.bunny-player__timeline-handle {
+  transition: transform 0.15s ease-in-out;
+  pointer-events: none;
+  background-color: #ff4c24;
+  border-radius: 1em;
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%)scale(0);
+}
+[data-bunny-player-init][data-timeline-drag="true"] .bunny-player__timeline-handle { transform: translate(-50%, -50%) scale(1); }
+.bunny-player__timeline-bar {
+  border-radius: 1em;
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  overflow: hidden;
+}
+.bunny-player__time {
+  grid-column-gap: .125em;
+  grid-row-gap: .125em;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  width: 5.75em;
+  display: flex;
+}
+.bunny-player__timeline-bg {
+  background-color: #ffffff26;
+  border-radius: 1em;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.bunny-player__toggle-playpause { cursor: pointer; width: 1.5em; height: 1.5em; }
+.bunny-player__text { white-space: nowrap; margin-bottom: 0; font-size: .9375em; line-height: 1; }
+.bunny-player__big-btn {
+  -webkit-backdrop-filter: blur(1em);
+  backdrop-filter: blur(1em);
+  cursor: pointer;
+  background-color: #64646433;
+  border: 1px solid #ffffff1a;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 6em;
+  height: 6em;
+  padding: 2em;
+  display: flex;
+  position: relative;
+}
+.bunny-player__loading-svg { width: 6em; }
+.bunny-player__pause-svg { display: none; }
+.bunny-player__interface-fade {
+  opacity: .5;
+  background-image: linear-gradient(#0000, #000);
+  width: 100%;
+  height: 25%;
+  position: absolute;
+  bottom: 0;
+}
+.bunny-player__interface-btns { grid-column-gap: .5em; grid-row-gap: .5em; align-items: center; display: flex; }
+[data-bunny-player-init][data-player-muted="true"] .bunny-player__volume-mute-svg { display: block; }
+[data-bunny-player-init][data-player-muted="true"] .bunny-player__volume-up-svg { display: none; }
+.bunny-player__volume-mute-svg { display: none; }
+.bunny-player__volume-up-svg { display: block; }
+.bunny-player__fullscreen-shrink-svg { display: none; }
+.bunny-player__fullscreen-scale-svg { display: block; }
+[data-bunny-player-init][data-player-fullscreen="true"] .bunny-player__fullscreen-shrink-svg { display: block; }
+[data-bunny-player-init][data-player-fullscreen="true"] .bunny-player__fullscreen-scale-svg { display: none; }
+[data-bunny-player-init][data-player-update-size="cover"] { height: 100%; top: 0; left: 0; position: absolute; }
+[data-bunny-player-init][data-player-update-size="cover"] [data-player-before] { display: none; }
+[data-bunny-player-init][data-player-update-size="cover"][data-player-fullscreen="false"] .bunny-player__video { object-fit: cover; }
+
+.bunny-player { border-radius: var(--nm-radius-md); background: var(--nm-black); font-size: 16px; }
+.bunny-player__before { padding-top: 56.25%; }
+.bunny-player__timeline-progress, .bunny-player__timeline-handle { background-color: var(--nm-purple); }
+.bunny-player__big-btn { width: 5em; height: 5em; padding: 1.6em; background-color: rgba(17, 16, 16, 0.6); border-color: rgba(255, 255, 255, 0.35); }
+.bunny-player__text { font-family: var(--nm-sans); }
+.bunny-player__placeholder.nm-title-card { padding: clamp(16px, 3vw, 32px); }
+.bunny-player__placeholder .nm-title-card__num { font-size: clamp(40px, 7vw, 96px); }
+[data-player-control]:focus-visible { outline: 3px solid var(--nm-white); outline-offset: 3px; }
+@media (max-width: 560px) { .bunny-player { font-size: 13px; } .bunny-player__placeholder .nm-title-card__label { display: none; } }
+@media (prefers-reduced-motion: reduce) { .bunny-player__interface, [data-bunny-player-init] :is(.bunny-player__placeholder, .bunny-player__dark, .bunny-player__playpause, .bunny-player__loading) { transition: none; } }
+</style>
+</head>
+<body>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <div class="nm-header__links">
+    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
+    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
+  </div>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
+<ul>
+<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
+<ul class="nm-nav__sub" id="nm-sub-guides">
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
+<li><a class="nm-nav__sublink" href="videos.html" aria-current="page">Workshop walkthrough</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
+</ul></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
+<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
+<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
+</ul></li>
+</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
+<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
+<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
+<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
+<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
+<ul class="nm-nav__sub" id="nm-sub-blocks" hidden>
+<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
+<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
+<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
+<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
+<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
+<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
+<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
+</ul></li>
+</ul>
+<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  
+  <h1>Workshop walkthrough</h1>
+  <p class="nm-lede">The five-step build, from Figma to a live Fastr page. Watch it all or jump to the step you need.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="watch">
+<div class="nm-section__head"><h2 class="nm-h2">Watch<button type="button" class="nm-anchor" aria-label="Copy a link to Watch"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-video-feature">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938862.m3u8?s=798c087d5e8c0c49580b05db9feb57769f49fa73&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="meta" id="reel">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Complete 5-step Fastr coding walkthrough, full reel"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">00</span><span class="nm-title-card__label">Full walkthrough · 23 min 56 s</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-video-feature__text">
+  <span class="nm-chip nm-chip--sm" id="clip-chip">Full reel</span>
+  <span class="nm-video-feature__meta"><span id="clip-time">23:56</span><span aria-hidden="true">|</span><span>Workshop</span></span>
+  <h2 class="nm-video-feature__title" id="clip-title">Complete 5-step Fastr coding walkthrough</h2>
+  <p class="nm-card__text" id="clip-text" style="max-width:736px">All five steps in order. Watch from start to finish or jump to a chapter.</p>
+</div>
+</div>
+</section><section class="nm-section" id="chapters">
+<div class="nm-section__head"><h2 class="nm-h2">Chapters<button type="button" class="nm-anchor" aria-label="Copy a link to Chapters"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Tap a chapter to jump to that step.</p></div>
+<ul class="nm-steps" id="chapters"><li><button type="button" class="nm-step" data-chapter="0"><span class="nm-step__meta"><span class="nm-step__time">00:00</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 1</span></span><span class="nm-step__text">Figma Auto Layout and Annotations</span></button></li><li><button type="button" class="nm-step" data-chapter="239"><span class="nm-step__meta"><span class="nm-step__time">03:59</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 2</span></span><span class="nm-step__text">Code Library, Photo Sizer and Tunnel</span></button></li><li><button type="button" class="nm-step" data-chapter="552"><span class="nm-step__meta"><span class="nm-step__time">09:12</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 3</span></span><span class="nm-step__text">AI Prompt and Fastr Reserved Heights</span></button></li><li><button type="button" class="nm-step" data-chapter="936"><span class="nm-step__meta"><span class="nm-step__time">15:36</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 4</span></span><span class="nm-step__text">PageSpeed, Jam.dev and ADA Contrast</span></button></li><li><button type="button" class="nm-step" data-chapter="1194"><span class="nm-step__meta"><span class="nm-step__time">19:54</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 5</span></span><span class="nm-step__text">ClickUp Intake, Box and Code Share</span></button></li></ul>
+</section><section class="nm-section" id="clips">
+<div class="nm-section__head"><h2 class="nm-h2">Short clips<button type="button" class="nm-anchor" aria-label="Copy a link to Short clips"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Each step on its own.</p></div>
+<div class="nm-cards nm-cards--3" id="clip-grid"></div>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+<script>
+var CLIPS = [
+  { num: '01', kicker: 'Clip 01 · 3 min 59 s', title: '1. Figma Auto Layout, Code Blocks and Annotations',
+    text: 'Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations so your AI agent reads notes straight from your frame.',
+    src: 'https://player.vimeo.com/external/1238938857.m3u8?s=4c22ded32bf283bf1cd3b465bba58889d7502af3&logging=false' },
+  { num: '02', kicker: 'Clip 02 · 5 min 13 s', title: '2. Code Library, Photo Sizer and Tunnel V2',
+    text: 'Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying verified CDN URLs from Tunnel V2.',
+    src: 'https://player.vimeo.com/external/1238938861.m3u8?s=5725e8e9f38c5dccc0e3155eb21df9ea871e4020&logging=false' },
+  { num: '03', kicker: 'Clip 03 · 6 min 24 s', title: '3. AI Prompt, Code Editor and Reserved Heights',
+    text: "Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr's 3 Reserved Heights and the Reserves space tab.",
+    src: 'https://player.vimeo.com/external/1238938860.m3u8?s=e291f5a0a9978beba07a30d1c369f92d814021df&logging=false' },
+  { num: '04', kicker: 'Clip 04 · 4 min 18 s', title: '4. Testing: PageSpeed, Jam and ADA Contrast',
+    text: 'Running before-and-after PageSpeed checks, recording mobile and desktop Jam videos, and catching ADA contrast and storefront font bugs.',
+    src: 'https://player.vimeo.com/external/1238938935.m3u8?s=de46acfabecab034955203b6059f7b08757796bd&logging=false' },
+  { num: '05', kicker: 'Clip 05 · 4 min 02 s', title: '5. ClickUp Intake, Box and Code Share',
+    text: 'Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing clean HTML via Code Share.',
+    src: 'https://player.vimeo.com/external/1238939053.m3u8?s=e75733b96e513dd09d385091fec74ffd30edcc75&logging=false' },
+  { num: '06', kicker: 'Clip 06 (bonus) · 2 min 48 s', title: '6. Bonus: Chrome-to-Figma Auto Layout Capture',
+    text: 'Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for our "Let\'s Build It" page.',
+    src: 'https://player.vimeo.com/external/1238939112.m3u8?s=3a77d2af5607c20a7ae2ed471325c82d36c13dcb&logging=false' }
+];
+(function () {
+  var reel = document.getElementById("reel");
+  var q = new URLSearchParams(location.search).get("clip");
+  var n = q ? parseInt(q, 10) : 0;
+  var clip = n >= 1 && n <= CLIPS.length ? CLIPS[n - 1] : null;
+  if (clip) {
+    reel.setAttribute("data-player-src", clip.src);
+    reel.querySelector(".nm-title-card__num").textContent = clip.num;
+    reel.querySelector(".nm-title-card__label").textContent = clip.kicker;
+    reel.querySelector("video").setAttribute("aria-label", clip.title);
+    document.getElementById("clip-chip").textContent = "Clip " + clip.num;
+    document.getElementById("clip-time").textContent = clip.kicker.split("· ")[1] || "";
+    document.getElementById("clip-title").textContent = clip.title.replace(/^\d+\.\s*/, "");
+    document.getElementById("clip-text").textContent = clip.text;
+    document.getElementById("chapters").closest("section").hidden = true;
+  }
+  var grid = document.getElementById("clip-grid");
+  var cards = [{ num: "00", kicker: "Full reel · 23 min 56 s", title: "Complete 5-step walkthrough", text: "All five steps in order.", href: "videos.html" }].concat(CLIPS.map(function (c, i) { return { num: c.num, kicker: c.kicker, title: c.title.replace(/^\d+\.\s*/, ""), text: c.text, href: "videos.html?clip=" + (i + 1) }; }));
+  cards.forEach(function (c, i) {
+    var a = document.createElement("a");
+    a.className = "nm-video-card";
+    a.href = c.href;
+    if (i === n || (!clip && i === 0)) a.setAttribute("aria-current", "true");
+    a.innerHTML = '<span class="nm-video-card__media"><span class="nm-title-card"><span class="nm-title-card__num"></span><span class="nm-title-card__label"></span></span></span><span><span class="nm-video-card__title"></span><span class="nm-video-card__desc"></span></span>';
+    a.querySelector(".nm-title-card__num").textContent = c.num;
+    a.querySelector(".nm-title-card__label").textContent = c.kicker;
+    a.querySelector(".nm-video-card__title").textContent = c.title;
+    a.querySelector(".nm-video-card__desc").textContent = c.text;
+    grid.appendChild(a);
+  });
+})();
+</script>
+<script>
+function initBunnyPlayer() {
+  document.querySelectorAll('[data-bunny-player-init]').forEach(function(player) {
+    var src = player.getAttribute('data-player-src');
+    if (!src) return;
+
+    var video = player.querySelector('video');
+    if (!video) return;
+
+    try { video.pause(); } catch(_) {}
+    try { video.removeAttribute('src'); video.load(); } catch(_) {}
+
+    function setStatus(s) {
+      if (player.getAttribute('data-player-status') !== s) {
+        player.setAttribute('data-player-status', s);
+      }
+    }
+    function setMutedState(v) {
+      video.muted = !!v;
+      player.setAttribute('data-player-muted', video.muted ? 'true' : 'false');
+    }
+    function setFsAttr(v) { player.setAttribute('data-player-fullscreen', v ? 'true' : 'false'); }
+    function setActivated(v) { player.setAttribute('data-player-activated', v ? 'true' : 'false'); }
+    if (!player.hasAttribute('data-player-activated')) setActivated(false);
+
+    var timeline = player.querySelector('[data-player-timeline]');
+    var progressBar = player.querySelector('[data-player-progress]');
+    var bufferedBar = player.querySelector('[data-player-buffered]');
+    var handle = player.querySelector('[data-player-timeline-handle]');
+    var timeDurationEls = player.querySelectorAll('[data-player-time-duration]');
+    var timeProgressEls = player.querySelectorAll('[data-player-time-progress]');
+
+    var updateSize = player.getAttribute('data-player-update-size');
+    var lazyMode = player.getAttribute('data-player-lazy');
+    var isLazyTrue = lazyMode === 'true';
+    var isLazyMeta = lazyMode === 'meta';
+    var autoplay = player.getAttribute('data-player-autoplay') === 'true';
+    var initialMuted = player.getAttribute('data-player-muted') === 'true';
+
+    var pendingPlay = false;
+
+    if (autoplay) { setMutedState(true); video.loop = true; } else { setMutedState(initialMuted); }
+
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.playsInline = true;
+    if (typeof video.disableRemotePlayback !== 'undefined') video.disableRemotePlayback = true;
+    if (autoplay) video.autoplay = false;
+
+    var canPlayNativeHls = !!video.canPlayType('application/vnd.apple.mpegurl');
+    var preferNativeHls = canPlayNativeHls && 'ManagedMediaSource' in window;
+    var canUseHlsJs = !!(window.Hls && Hls.isSupported()) && !preferNativeHls;
+
+    if (updateSize === 'true' && !isLazyMeta) {
+      if (isLazyTrue) {
+      } else {
+        var prev = video.preload;
+        video.preload = 'metadata';
+        var onMeta2 = function() {
+          setBeforeRatio(player, updateSize, video.videoWidth, video.videoHeight);
+          video.removeEventListener('loadedmetadata', onMeta2);
+          video.preload = prev || '';
+        };
+        video.addEventListener('loadedmetadata', onMeta2, { once: true });
+        video.src = src;
+      }
+    }
+
+    function fetchMetaOnce() {
+      getSourceMeta(src, canUseHlsJs).then(function(meta){
+        if (meta.width && meta.height) setBeforeRatio(player, updateSize, meta.width, meta.height);
+        if (timeDurationEls.length && isFinite(meta.duration) && meta.duration > 0) {
+          setText(timeDurationEls, formatTime(meta.duration));
+        }
+        readyIfIdle(player, pendingPlay);
+      });
+    }
+
+    var isAttached = false;
+    var userInteracted = false;
+    var lastPauseBy = '';
+    function attachMediaOnce() {
+      if (isAttached) return;
+      isAttached = true;
+
+      if (player._hls) { try { player._hls.destroy(); } catch(_) {} player._hls = null; }
+
+      if (preferNativeHls) {
+        video.preload = (isLazyTrue || isLazyMeta) ? 'auto' : video.preload;
+        video.src = src;
+        video.addEventListener('loadedmetadata', function() {
+          readyIfIdle(player, pendingPlay);
+          if (updateSize === 'true') setBeforeRatio(player, updateSize, video.videoWidth, video.videoHeight);
+          if (timeDurationEls.length) setText(timeDurationEls, formatTime(video.duration));
+        }, { once: true });
+      } else if (canUseHlsJs) {
+        var hls = new Hls({ maxBufferLength: 10 });
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, function() { hls.loadSource(src); });
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          readyIfIdle(player, pendingPlay);
+          if (updateSize === 'true') {
+            var lvls = hls.levels || [];
+            var best = bestLevel(lvls);
+            if (best && best.width && best.height) setBeforeRatio(player, updateSize, best.width, best.height);
+          }
+        });
+        hls.on(Hls.Events.LEVEL_LOADED, function(e, data) {
+          if (data && data.details && isFinite(data.details.totalduration)) {
+            if (timeDurationEls.length) setText(timeDurationEls, formatTime(data.details.totalduration));
+          }
+        });
+        player._hls = hls;
+      } else {
+        video.src = src;
+      }
+    }
+
+    if (isLazyMeta) {
+      fetchMetaOnce();
+      video.preload = 'none';
+    } else if (isLazyTrue) {
+      video.preload = 'none';
+    } else {
+      attachMediaOnce();
+    }
+
+    function togglePlay() {
+      userInteracted = true;
+      if (video.paused || video.ended) {
+        if ((isLazyTrue || isLazyMeta) && !isAttached) attachMediaOnce();
+        pendingPlay = true;
+        lastPauseBy = '';
+        setStatus('loading');
+        safePlay(video);
+      } else {
+        lastPauseBy = 'manual';
+        video.pause();
+      }
+    }
+
+    function toggleMute() {
+      video.muted = !video.muted;
+      player.setAttribute('data-player-muted', video.muted ? 'true' : 'false');
+    }
+
+    function isFsActive() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+    function enterFullscreen() {
+      if (player.requestFullscreen) return player.requestFullscreen();
+      if (video.requestFullscreen) return video.requestFullscreen();
+      if (video.webkitSupportsFullscreen && typeof video.webkitEnterFullscreen === 'function') return video.webkitEnterFullscreen();
+    }
+    function exitFullscreen() {
+      if (document.exitFullscreen) return document.exitFullscreen();
+      if (document.webkitExitFullscreen) return document.webkitExitFullscreen();
+      if (video.webkitDisplayingFullscreen && typeof video.webkitExitFullscreen === 'function') return video.webkitExitFullscreen();
+    }
+    function toggleFullscreen() { if (isFsActive() || video.webkitDisplayingFullscreen) exitFullscreen(); else enterFullscreen(); }
+    document.addEventListener('fullscreenchange', function() { setFsAttr(isFsActive()); });
+    document.addEventListener('webkitfullscreenchange', function() { setFsAttr(isFsActive()); });
+    video.addEventListener('webkitbeginfullscreen', function() { setFsAttr(true); });
+    video.addEventListener('webkitendfullscreen', function() { setFsAttr(false); });
+
+    player.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-player-control]');
+      if (!btn || !player.contains(btn)) return;
+      var type = btn.getAttribute('data-player-control');
+      if (type === 'play' || type === 'pause' || type === 'playpause') togglePlay();
+      else if (type === 'mute') toggleMute();
+      else if (type === 'fullscreen') toggleFullscreen();
+    });
+
+    function updateTimeTexts() {
+      if (timeDurationEls.length) setText(timeDurationEls, formatTime(video.duration));
+      if (timeProgressEls.length) setText(timeProgressEls, formatTime(video.currentTime));
+    }
+    video.addEventListener('timeupdate', updateTimeTexts);
+    video.addEventListener('loadedmetadata', function(){ updateTimeTexts(); maybeSetRatioFromVideo(player, updateSize, video); });
+    video.addEventListener('loadeddata', function(){ maybeSetRatioFromVideo(player, updateSize, video); });
+    video.addEventListener('playing', function(){ maybeSetRatioFromVideo(player, updateSize, video); });
+    video.addEventListener('durationchange', updateTimeTexts);
+
+    var rafId;
+    function updateProgressVisuals() {
+      if (!video.duration) return;
+      var playedPct = (video.currentTime / video.duration) * 100;
+      if (progressBar) progressBar.style.transform = 'translateX(' + (-100 + playedPct) + '%)';
+      if (handle) handle.style.left = playedPct + '%';
+    }
+    function loop() {
+      updateProgressVisuals();
+      if (!video.paused && !video.ended) rafId = requestAnimationFrame(loop);
+    }
+
+    function updateBufferedBar() {
+      if (!bufferedBar || !video.duration || !video.buffered.length) return;
+      var end = video.buffered.end(video.buffered.length - 1);
+      var buffPct = (end / video.duration) * 100;
+      bufferedBar.style.transform = 'translateX(' + (-100 + buffPct) + '%)';
+    }
+    video.addEventListener('progress', updateBufferedBar);
+    video.addEventListener('loadedmetadata', updateBufferedBar);
+    video.addEventListener('durationchange', updateBufferedBar);
+
+    video.addEventListener('play', function() { setActivated(true); cancelAnimationFrame(rafId); loop(); setStatus('playing'); });
+    video.addEventListener('playing', function() { pendingPlay = false; setStatus('playing'); });
+    video.addEventListener('pause', function() { pendingPlay = false; cancelAnimationFrame(rafId); updateProgressVisuals(); setStatus('paused'); });
+    video.addEventListener('waiting', function() { setStatus('loading'); });
+    video.addEventListener('canplay', function() { readyIfIdle(player, pendingPlay); });
+    video.addEventListener('ended', function() { pendingPlay = false; cancelAnimationFrame(rafId); updateProgressVisuals(); setStatus('paused'); setActivated(false); });
+
+    if (timeline) {
+      var dragging = false, wasPlaying = false, targetTime = 0, lastSeekTs = 0, seekThrottle = 180, rect = null;
+      window.addEventListener('resize', function() { if (!dragging) rect = null; });
+      function getFractionFromX(x) {
+        if (!rect) rect = timeline.getBoundingClientRect();
+        var f = (x - rect.left) / rect.width; if (f < 0) f = 0; if (f > 1) f = 1; return f;
+      }
+      function previewAtFraction(f) {
+        if (!video.duration) return;
+        var pct = f * 100;
+        if (progressBar) progressBar.style.transform = 'translateX(' + (-100 + pct) + '%)';
+        if (handle) handle.style.left = pct + '%';
+        if (timeProgressEls.length) setText(timeProgressEls, formatTime(f * video.duration));
+      }
+      function maybeSeek(now) {
+        if (!video.duration) return;
+        if ((now - lastSeekTs) < seekThrottle) return;
+        lastSeekTs = now; video.currentTime = targetTime;
+      }
+      function onPointerDown(e) {
+        if (!video.duration) return;
+        dragging = true; wasPlaying = !video.paused && !video.ended; if (wasPlaying) video.pause();
+        player.setAttribute('data-timeline-drag', 'true'); rect = timeline.getBoundingClientRect();
+        var f = getFractionFromX(e.clientX); targetTime = f * video.duration; previewAtFraction(f); maybeSeek(performance.now());
+        timeline.setPointerCapture && timeline.setPointerCapture(e.pointerId);
+        window.addEventListener('pointermove', onPointerMove, { passive: false });
+        window.addEventListener('pointerup', onPointerUp, { passive: true });
+        e.preventDefault();
+      }
+      function onPointerMove(e) {
+        if (!dragging) return;
+        var f = getFractionFromX(e.clientX); targetTime = f * video.duration; previewAtFraction(f); maybeSeek(performance.now()); e.preventDefault();
+      }
+      function onPointerUp() {
+        if (!dragging) return;
+        dragging = false; player.setAttribute('data-timeline-drag', 'false'); rect = null; video.currentTime = targetTime;
+        if (wasPlaying) safePlay(video); else { updateProgressVisuals(); updateTimeTexts(); }
+        window.removeEventListener('pointermove', onPointerMove);
+        window.removeEventListener('pointerup', onPointerUp);
+      }
+      timeline.addEventListener('pointerdown', onPointerDown, { passive: false });
+      if (handle) handle.addEventListener('pointerdown', onPointerDown, { passive: false });
+    }
+
+    var hoverTimer;
+    var hoverHideDelay = 3000;
+    function setHover(state) {
+      if (player.getAttribute('data-player-hover') !== state) {
+        player.setAttribute('data-player-hover', state);
+      }
+    }
+    function scheduleHide() { clearTimeout(hoverTimer); hoverTimer = setTimeout(function() { setHover('idle'); }, hoverHideDelay); }
+    function wakeControls() { setHover('active'); scheduleHide(); }
+    player.addEventListener('pointerdown', wakeControls);
+    document.addEventListener('fullscreenchange', wakeControls);
+    document.addEventListener('webkitfullscreenchange', wakeControls);
+    var trackingMove = false;
+    function onPointerMoveGlobal(e) {
+      var r = player.getBoundingClientRect();
+      if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) wakeControls();
+    }
+    player.addEventListener('pointerenter', function() {
+      wakeControls();
+      if (!trackingMove) { trackingMove = true; window.addEventListener('pointermove', onPointerMoveGlobal, { passive: true }); }
+    });
+    player.addEventListener('pointerleave', function() {
+      setHover('idle'); clearTimeout(hoverTimer);
+      if (trackingMove) { trackingMove = false; window.removeEventListener('pointermove', onPointerMoveGlobal); }
+    });
+
+    if (autoplay) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          var inView = entry.isIntersecting && entry.intersectionRatio > 0;
+          if (inView) {
+            if ((isLazyTrue || isLazyMeta) && !isAttached) attachMediaOnce();
+            if (video.paused) {
+              lastPauseBy = '';
+              pendingPlay = true;
+              setStatus('loading');
+              safePlay(video);
+            } else {
+              setStatus('playing');
+            }
+          } else {
+            if (!video.paused && !video.ended) {
+              lastPauseBy = 'io';
+              video.pause();
+              setStatus('paused');
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      io.observe(player);
+    }
+  });
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) return '00:00';
+    var s = Math.floor(sec), h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60;
+    return h > 0 ? (h + ':' + pad2(m) + ':' + pad2(r)) : (pad2(m) + ':' + pad2(r));
+  }
+  function setText(nodes, text) { nodes.forEach(function(n){ n.textContent = text; }); }
+
+  function bestLevel(levels) {
+    if (!levels || !levels.length) return null;
+    return levels.reduce(function(a, b) { return ((b.width||0) > (a.width||0)) ? b : a; }, levels[0]);
+  }
+
+  function safePlay(video) {
+    var p = video.play();
+    if (p && typeof p.then === 'function') p.catch(function(){});
+  }
+
+  function readyIfIdle(player, pendingPlay) {
+    if (!pendingPlay &&
+        player.getAttribute('data-player-activated') !== 'true' &&
+        player.getAttribute('data-player-status') === 'idle') {
+      player.setAttribute('data-player-status', 'ready');
+    }
+  }
+
+  function setBeforeRatio(player, updateSize, w, h) {
+    if (updateSize !== 'true' || !w || !h) return;
+    var before = player.querySelector('[data-player-before]');
+    if (!before) return;
+    before.style.paddingTop = (h / w * 100) + '%';
+  }
+  function maybeSetRatioFromVideo(player, updateSize, video) {
+    if (updateSize !== 'true') return;
+    var before = player.querySelector('[data-player-before]');
+    if (!before) return;
+    var hasPad = before.style.paddingTop && before.style.paddingTop !== '0%';
+    if (!hasPad && video.videoWidth && video.videoHeight) {
+      setBeforeRatio(player, updateSize, video.videoWidth, video.videoHeight);
+    }
+  }
+
+  function resolveUrl(base, rel) { try { return new URL(rel, base).toString(); } catch(_) { return rel; } }
+
+  function getSourceMeta(src, useHlsJs) {
+    return new Promise(function(resolve) {
+      if (useHlsJs && window.Hls && Hls.isSupported()) {
+        try {
+          var tmp = new Hls();
+          var out = { width: 0, height: 0, duration: NaN };
+          var haveLvls = false, haveDur = false;
+          tmp.on(Hls.Events.MANIFEST_PARSED, function(e, data) {
+            var lvls = (data && data.levels) || tmp.levels || [];
+            var best = bestLevel(lvls);
+            if (best && best.width && best.height) { out.width = best.width; out.height = best.height; haveLvls = true; }
+          });
+          tmp.on(Hls.Events.LEVEL_LOADED, function(e, data) {
+            if (data && data.details && isFinite(data.details.totalduration)) { out.duration = data.details.totalduration; haveDur = true; }
+          });
+          tmp.on(Hls.Events.ERROR, function(){ try { tmp.destroy(); } catch(_) {} resolve(out); });
+          tmp.on(Hls.Events.LEVEL_LOADED, function(){ try { tmp.destroy(); } catch(_) {} resolve(out); });
+          tmp.loadSource(src);
+          return;
+        } catch(_) {
+          resolve({ width:0, height:0, duration:NaN });
+          return;
+        }
+      }
+
+      function parseMaster(masterText) {
+        var lines = masterText.split(/\r?\n/);
+        var bestW = 0, bestH = 0, firstMedia = null, lastInf = null;
+        for (var i=0;i<lines.length;i++) {
+          var line = lines[i];
+          if (line.indexOf('#EXT-X-STREAM-INF:') === 0) {
+            lastInf = line;
+          } else if (lastInf && line && line[0] !== '#') {
+            if (!firstMedia) firstMedia = line.trim();
+            var m = /RESOLUTION=(\d+)x(\d+)/.exec(lastInf);
+            if (m) {
+              var w = parseInt(m[1],10), h = parseInt(m[2],10);
+              if (w > bestW) { bestW = w; bestH = h; }
+            }
+            lastInf = null;
+          }
+        }
+        return { bestW: bestW, bestH: bestH, media: firstMedia };
+      }
+      function sumDuration(mediaText) {
+        var dur = 0, re = /#EXTINF:([\d.]+)/g, m;
+        while ((m = re.exec(mediaText))) dur += parseFloat(m[1]);
+        return dur;
+      }
+
+      fetch(src, { credentials: 'omit', cache: 'no-store' }).then(function(r){
+        if (!r.ok) throw new Error('master');
+        return r.text();
+      }).then(function(master){
+        var info = parseMaster(master);
+        if (!info.media) { resolve({ width: info.bestW||0, height: info.bestH||0, duration: NaN }); return; }
+        var mediaUrl = resolveUrl(src, info.media);
+        return fetch(mediaUrl, { credentials: 'omit', cache: 'no-store' }).then(function(r){
+          if (!r.ok) throw new Error('media');
+          return r.text();
+        }).then(function(mediaText){
+          resolve({ width: info.bestW||0, height: info.bestH||0, duration: sumDuration(mediaText) });
+        });
+      }).catch(function(){ resolve({ width:0, height:0, duration:NaN }); });
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initBunnyPlayer();
+});
+</script>
+<script>
+(function () {
+  var labels = { playpause: "Play or pause", mute: "Mute or unmute", fullscreen: "Full screen" };
+  document.querySelectorAll("[data-player-control]").forEach(function (el) {
+    var type = el.getAttribute("data-player-control");
+    el.setAttribute("role", "button");
+    el.setAttribute("aria-label", labels[type] || type);
+    el.setAttribute("tabindex", el.classList.contains("bunny-player__toggle-playpause") ? "-1" : "0");
+    el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); } });
+  });
+  var reel = document.getElementById("reel");
+  var video = reel.querySelector("video");
+  var big = reel.querySelector(".bunny-player__playpause");
+  var buttons = Array.prototype.slice.call(document.querySelectorAll("[data-chapter]"));
+  function mark() {
+    var t = video.currentTime, current = buttons[0];
+    buttons.forEach(function (b) { if (t >= +b.getAttribute("data-chapter") - 0.5) current = b; });
+    buttons.forEach(function (b) {
+      var on = b === current && reel.getAttribute("data-player-activated") === "true";
+      if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
+    });
+  }
+  video.addEventListener("timeupdate", mark);
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var t = +b.getAttribute("data-chapter");
+      if (video.readyState >= 1) { video.currentTime = t; if (video.paused) big.click(); }
+      else { video.addEventListener("loadedmetadata", function () { video.currentTime = t; }, { once: true }); big.click(); }
+      reel.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
+})();
+</script>
+</body>
+</html>

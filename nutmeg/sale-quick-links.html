@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sale quick links strip · Nutmeg</title>
+<meta name="description" content="A row of round product pictures linking to sale categories.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <div class="nm-header__links">
+    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
+    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
+  </div>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
+<ul>
+<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
+<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
+<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
+</ul></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
+<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
+<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
+</ul></li>
+</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
+<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
+<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
+<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
+<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
+<ul class="nm-nav__sub" id="nm-sub-blocks">
+<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
+<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
+<li><a class="nm-nav__sublink" href="sale-quick-links.html" aria-current="page">Sale quick links strip</a></li>
+<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
+<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
+<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
+<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
+</ul></li>
+</ul>
+<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
+  <h1>Sale quick links strip</h1>
+  <p class="nm-lede">A row of round product pictures linking to sale categories.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-sale-quick-links"><button type="button" class="nm-tab" role="tab" aria-controls="frame-sale-quick-links" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-sale-quick-links" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-sale-quick-links" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/sale-quick-links/fastr-paste.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-sale-quick-links" src="../blocks/sale-quick-links/fastr-paste.html" height="122" data-heights="158,122,122" title="Sale quick links strip, live demo"></iframe></div></div>
+</section><section class="nm-section" id="how">
+<div class="nm-section__head"><h2 class="nm-h2">How it&#x27;s built<button type="button" class="nm-anchor" aria-label="Copy a link to How it&#x27;s built"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-prose"><p>A row of round product pictures linking to sale categories. Pictures come straight from the site&#x27;s product image service.</p></div>
+</section><section class="nm-section" id="heights">
+<div class="nm-section__head"><h2 class="nm-h2">Fastr heights<button type="button" class="nm-anchor" aria-label="Copy a link to Fastr heights"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Type these into the three Reserved height boxes.</p></div>
+<div class="nm-stats"><div class="nm-stat"><span class="nm-stat__num">158</span><span class="nm-stat__cap">pixels on phones (Mobile box).</span></div><div class="nm-stat"><span class="nm-stat__num">122</span><span class="nm-stat__cap">pixels from 640 wide.</span></div><div class="nm-stat"><span class="nm-stat__num">122</span><span class="nm-stat__cap">pixels from 1024 wide.</span></div></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste the whole file into one Fastr HTML component.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>fastr-paste.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!-- Intent Selector, sale page. WorldSoccerShop.
+     Fastr CMS paste: one HTML widget, direct embed, no iframe.
+     Reserved heights: Mobile 158 / 640px and up 122 / 1024px and up 122.
+     Every rule is scoped to #isel-sale-v1 and cannot reach the page.
+     Look comes from the campaign tokens at the top of the style block (ink on white 20.8:1 pass). --&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&amp;family=Mohave:wght@600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+&lt;style&gt;
+#isel-sale-v1{--campaign-label-face:&#x27;Mohave&#x27;,Impact,sans-serif;--campaign-face:&#x27;Chakra Petch&#x27;,Arial,sans-serif;--campaign-ink:#070000;--campaign-surface:#FFFFFF;--campaign-chip:#FFFFFF;--campaign-chip-hover:#FFFFFF;--campaign-edge:#BABABA;--campaign-edge-hover:#070000;--campaign-ring:#F5F5F5;--campaign-shadow:0 4px 14px rgba(0,0,0,.12);display:block;width:100%;background:var(--campaign-surface);color:var(--campaign-ink);padding:24px 0;box-sizing:border-box}
+#isel-sale-v1 *,#isel-sale-v1 *::before,#isel-sale-v1 *::after{box-sizing:border-box}
+#isel-sale-v1 .isel-row{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+#isel-sale-v1 .isel-label{margin:0;padding:0 16px;font-family:var(--campaign-label-face);font-weight:600;font-size:22px;line-height:1;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+#isel-sale-v1 .isel-label .isel-arrow{font-family:var(--campaign-face);font-weight:400}
+#isel-sale-v1 .isel-list{display:flex;gap:12px;margin:0;padding:6px 16px 10px;list-style:none;width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-padding:0 16px}
+#isel-sale-v1 .isel-list::-webkit-scrollbar{display:none}
+#isel-sale-v1 .isel-list li{flex:none;margin:0;padding:0}
+#isel-sale-v1 .isel-btn{display:inline-flex;align-items:center;gap:8px;padding:4px 14px 4px 4px;background:var(--campaign-chip);border:.5px solid var(--campaign-edge);border-radius:2px;color:var(--campaign-ink);font-family:var(--campaign-face);font-weight:400;font-size:16px;line-height:1.2;text-transform:capitalize;text-decoration:none;white-space:nowrap;transition:border-color .2s ease,box-shadow .2s ease}
+#isel-sale-v1 .isel-pic{flex:none;width:48px;height:48px;border-radius:50%;background:var(--campaign-ring);overflow:hidden;display:flex;align-items:center;justify-content:center}
+#isel-sale-v1 .isel-pic img{display:block;width:45px;height:45px;border-radius:50%;object-fit:cover}
+#isel-sale-v1 .isel-btn .isel-arrow{font-size:20px;line-height:1;opacity:0;margin-left:-4px;transition:opacity .2s ease,transform .25s cubic-bezier(.32,.72,0,1)}
+#isel-sale-v1 .isel-btn:hover,#isel-sale-v1 .isel-btn:focus-visible{background:var(--campaign-chip-hover);border-color:var(--campaign-edge-hover);box-shadow:var(--campaign-shadow)}
+#isel-sale-v1 .isel-btn:hover .isel-arrow,#isel-sale-v1 .isel-btn:focus-visible .isel-arrow{opacity:1}
+#isel-sale-v1 .isel-btn:focus-visible{outline:2px solid var(--campaign-edge-hover);outline-offset:2px}
+#isel-sale-v1 .isel-nav{display:none;flex:none;gap:8px;padding-right:24px}
+#isel-sale-v1 .isel-step{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;margin:0;background:var(--campaign-surface);border:.5px solid var(--campaign-edge);border-radius:2px;color:var(--campaign-ink);font-family:var(--campaign-face);font-size:20px;line-height:1;cursor:pointer;transition:border-color .2s ease,opacity .2s ease}
+#isel-sale-v1 .isel-step:hover{border-color:var(--campaign-edge-hover)}
+#isel-sale-v1 .isel-step:focus-visible{outline:2px solid var(--campaign-edge-hover);outline-offset:2px}
+#isel-sale-v1 .isel-step:disabled{opacity:.35;cursor:default;border-color:var(--campaign-edge)}
+@media (prefers-reduced-motion:no-preference){#isel-sale-v1 .isel-btn:hover .isel-arrow,#isel-sale-v1 .isel-btn:focus-visible .isel-arrow{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){#isel-sale-v1 .isel-btn,#isel-sale-v1 .isel-btn .isel-arrow,#isel-sale-v1 .isel-step{transition:none}}
+@media (min-width:640px){
+#isel-sale-v1 .isel-row{flex-direction:row;align-items:center;gap:32px;padding-left:24px}
+#isel-sale-v1 .isel-label{padding:0;font-size:24px}
+#isel-sale-v1 .isel-list{flex:1 1 auto;min-width:0;padding:6px 24px 10px 0;scroll-padding:0 24px}
+#isel-sale-v1 .isel-btn{font-size:18px}
+}
+@media (min-width:1024px){
+#isel-sale-v1 .isel-row{gap:42px}
+#isel-sale-v1 .isel-list{padding-right:0}
+#isel-sale-v1.is-scrollable .isel-nav{display:flex}
+}
+&lt;/style&gt;
+
+&lt;nav id=&quot;isel-sale-v1&quot; aria-label=&quot;Shop the sale by category&quot;&gt;
+  &lt;div class=&quot;isel-row&quot;&gt;
+    &lt;p class=&quot;isel-label&quot; aria-hidden=&quot;true&quot;&gt;Shop sale &lt;span class=&quot;isel-arrow&quot;&gt;→&lt;/span&gt;&lt;/p&gt;
+    &lt;ul class=&quot;isel-list&quot;&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0007&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1116910000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;All sale &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jerseys&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0007&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1108663000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Jerseys &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__T-Shirts&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0007&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1128919000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;T-Shirts &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jackets&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0007&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1124424000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Jackets &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Shorts&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0007&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1117510000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Shorts &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/footwear?filter=product_type__Lifestyle+Shoes&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0096&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1118282000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Lifestyle footwear &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Firm+Ground+Shoes&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0088&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1133248000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Firm ground cleats &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Indoor+Shoes&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0088&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1133306000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Indoor shoes &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class=&quot;isel-btn&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Balls&quot; target=&quot;_top&quot;&gt;&lt;span class=&quot;isel-pic&quot;&gt;&lt;img src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;amp;fmt=jpg&amp;amp;iindex=0062&amp;amp;w=96&amp;amp;h=96&amp;amp;img=A1118986000&amp;amp;c=999&amp;amp;bg=f5f5f5&amp;amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;45&quot; height=&quot;45&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.visibility=&#x27;hidden&#x27;&quot;&gt;&lt;/span&gt;Balls &lt;span class=&quot;isel-arrow&quot; aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;isel-nav&quot;&gt;
+      &lt;button class=&quot;isel-step&quot; type=&quot;button&quot; data-dir=&quot;-1&quot; aria-label=&quot;Scroll categories left&quot;&gt;←&lt;/button&gt;
+      &lt;button class=&quot;isel-step&quot; type=&quot;button&quot; data-dir=&quot;1&quot; aria-label=&quot;Scroll categories right&quot;&gt;→&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;script&gt;
+(function(){
+  var root=document.getElementById(&#x27;isel-sale-v1&#x27;);
+  if(!root)return;
+  var list=root.querySelector(&#x27;.isel-list&#x27;);
+  var steps=root.querySelectorAll(&#x27;.isel-step&#x27;);
+  function update(){
+    var over=list.scrollWidth&gt;list.clientWidth+1;
+    root.classList.toggle(&#x27;is-scrollable&#x27;,over);
+    steps[0].disabled=list.scrollLeft&lt;=1;
+    steps[1].disabled=list.scrollLeft+list.clientWidth&gt;=list.scrollWidth-1;
+  }
+  Array.prototype.forEach.call(steps,function(b){
+    b.addEventListener(&#x27;click&#x27;,function(){
+      var reduce=window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
+      list.scrollBy({left:Number(b.getAttribute(&#x27;data-dir&#x27;))*list.clientWidth*0.8,behavior:reduce?&#x27;auto&#x27;:&#x27;smooth&#x27;});
+    });
+  });
+  list.addEventListener(&#x27;scroll&#x27;,update,{passive:true});
+  window.addEventListener(&#x27;resize&#x27;,update);
+  if(document.fonts&amp;&amp;document.fonts.ready)document.fonts.ready.then(update);
+  update();
+})();
+&lt;/script&gt;
+</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/sale-quick-links/fastr-paste.html" download="sale-quick-links--fastr-paste.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="to-write">
+<div class="nm-section__head"><h2 class="nm-h2">Still to write<button type="button" class="nm-anchor" aria-label="Copy a link to Still to write"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>These parts of the page are not written yet.</strong><p>When to use it, What you change, Images, Accessibility.</p></div>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>

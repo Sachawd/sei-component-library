@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Showcase Slider demo</title>
+<style>body{margin:0;background:#F5F5F5}</style>
+</head>
+<body>
+<!--
+  Slider / Showcase Slider, v1. Fastr CMS component, no iframe.
+  Osmo: Showcase Slider. Serial: none yet. Skin: Documentation (the default), from the design frame "Osmo - ShowCase Slider".
+  Reserved heights: Mobile 343 · 640px and up 470 · 1024px and up 547
+  Swap per use: each project's cover, its gallery photos, title, eyebrow and label. Photos come from the image handler as JPG with width and height set.
+  Brand skins: set data-skin on the wrapper to docs, sdc (Soccer.com), wss (WorldSoccerShop) or 431 (431 Sports), and swap the font line below for that brand's line:
+    sdc  https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap
+    wss  https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Inter:wght@400;500&display=swap
+    431  https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700&display=swap
+  More than one on a page: give each wrapper its own id and use that id in the style block.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Figtree:wght@400;500&family=Chakra+Petch:wght@400;500&family=Inter:wght@400;500&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
+<style>
+#sei-showcase-slider#sei-showcase-slider{
+  /* Contrast, measured on the Documentation skin: title 12.5:1 pass, eyebrow and "Selected work" 5.4:1 pass, label pill 9.6:1 pass, arrow icon on its button 11.1:1 pass, focus ring 12.5:1 pass. Arrow button edge on the surface 1.1:1 fails 3:1; the arrow icon identifies it. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#2E2E2B;
+  --sss-muted:#646462;
+  --sss-frame:#DADADA;
+  --sss-chip-bg:#EAE6FD;
+  --sss-chip-ink:#402287;
+  --sss-title-face:"Adamina",Georgia,"Times New Roman",serif;
+  --sss-body-face:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --sss-title-size:20px;
+  --sss-title-weight:400;
+  --sss-title-case:none;
+  --sss-title-track:-0.4px;
+  --sss-eyebrow-size:10px;
+  --sss-eyebrow-track:-0.2px;
+  --sss-chip-size:12px;
+  --sss-chip-track:0.48px;
+  --sss-height:343px;
+  --sss-frame-h:174px;
+  --sss-viewer-frame-h:211px;
+}
+#sei-showcase-slider#sei-showcase-slider[data-skin="sdc"]{
+  /* Contrast: title 13.7:1 pass, eyebrow 7.2:1 pass, label pill 4.8:1 pass, arrow icon 12.2:1 pass. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#27272A;
+  --sss-muted:#525252;
+  --sss-frame:#E5E5E5;
+  --sss-chip-bg:#E0154A;
+  --sss-chip-ink:#FFFFFF;
+  --sss-title-face:"Figtree",-apple-system,"Segoe UI",Arial,sans-serif;
+  --sss-body-face:"Figtree",-apple-system,"Segoe UI",Arial,sans-serif;
+  --sss-title-weight:600;
+  --sss-title-track:-0.2px;
+  --sss-eyebrow-size:11px;
+  --sss-eyebrow-track:0.6px;
+}
+#sei-showcase-slider#sei-showcase-slider[data-skin="wss"]{
+  /* Contrast: title 13.7:1 pass, eyebrow 7.2:1 pass, label pill 5.3:1 pass, arrow icon 12.2:1 pass. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#27272A;
+  --sss-muted:#525252;
+  --sss-frame:#E5E5E5;
+  --sss-chip-bg:#796A39;
+  --sss-chip-ink:#FFFFFF;
+  --sss-title-face:"Chakra Petch",-apple-system,"Segoe UI",Arial,sans-serif;
+  --sss-body-face:"Inter",-apple-system,"Segoe UI",Arial,sans-serif;
+  --sss-title-weight:600;
+  --sss-title-track:0;
+  --sss-title-case:uppercase;
+  --sss-eyebrow-size:11px;
+  --sss-eyebrow-track:0.6px;
+}
+#sei-showcase-slider#sei-showcase-slider[data-skin="431"]{
+  /* Contrast: title 14.3:1 pass, eyebrow 7.2:1 pass, label pill 4.6:1 pass, arrow icon 12.8:1 pass. */
+  --sss-surface:#F5F5F5;
+  --sss-ink:#042540;
+  --sss-muted:#525252;
+  --sss-frame:#E5E5E5;
+  --sss-chip-bg:#317F89;
+  --sss-chip-ink:#FFFFFF;
+  --sss-title-face:"Roboto Condensed","Arial Narrow",Arial,sans-serif;
+  --sss-body-face:"Roboto Condensed","Arial Narrow",Arial,sans-serif;
+  --sss-title-weight:700;
+  --sss-title-track:0;
+  --sss-title-case:uppercase;
+  --sss-eyebrow-size:11px;
+  --sss-eyebrow-track:0.6px;
+}
+
+#sei-showcase-slider#sei-showcase-slider,#sei-showcase-slider#sei-showcase-slider *,#sei-showcase-slider#sei-showcase-slider *::before,#sei-showcase-slider#sei-showcase-slider *::after{box-sizing:border-box}
+#sei-showcase-slider#sei-showcase-slider :where(div,span,p,h1,h2,h3,h4,h5,h6,ul,ol,li){margin:0;padding:0;border:0;background:none;box-shadow:none;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;line-height:inherit;letter-spacing:normal;text-transform:none;color:inherit}
+#sei-showcase-slider#sei-showcase-slider :where(ul,ol,li){list-style:none}
+#sei-showcase-slider#sei-showcase-slider :where(ul,ol,li)::before,#sei-showcase-slider#sei-showcase-slider :where(ul,ol,li)::after{content:none}
+#sei-showcase-slider#sei-showcase-slider :where(img,svg){display:block;margin:0;padding:0;border:0}
+#sei-showcase-slider#sei-showcase-slider :where(a,a:hover,a:focus,a:active,a:visited){color:inherit;text-decoration:none;background:none;font-family:inherit}
+#sei-showcase-slider#sei-showcase-slider :where(button,button:hover,button:focus,button:active){-webkit-appearance:none;appearance:none;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;color:inherit;letter-spacing:inherit;text-transform:none;cursor:pointer}
+
+/* ⚠️DEVIATION 1: every Osmo selector below is prefixed with the doubled wrapper id; store styles on Soccer.com, WorldSoccerShop and 431 cannot reach the .showcase-slider__ classes */
+/* ⚠️DEVIATION 2: min-height:100svh, 75vw and 90vw are replaced by fixed pixel slots and a fixed height per breakpoint; aspect-ratio on both frames is replaced by a fixed pixel height at the design ratio 365:230 */
+/* ⚠️DEVIATION 3: type, colour, the 8px card gap and the label pill follow the design frame through the skin layer above; the muted label and eyebrow use a solid colour at full opacity so they pass contrast */
+
+#sei-showcase-slider#sei-showcase-slider {
+  --showcase-slider-slot: 292px; /* ⚠️DEVIATION 2 */
+  --showcase-slider-gap: 16px; /* ⚠️DEVIATION 2 */
+  --showcase-slider-grow: 1.7;
+  --showcase-slider-viewer-slot: 351px; /* ⚠️DEVIATION 2 */
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+  height: var(--sss-height); /* ⚠️DEVIATION 2 */
+  padding-top: 2em;
+  padding-bottom: 2em;
+  overflow: hidden;
+  overscroll-behavior-x: contain;
+  user-select: none;
+  background: var(--sss-surface); /* ⚠️DEVIATION 3 */
+  color: var(--sss-ink); /* ⚠️DEVIATION 3 */
+  font: 400 16px/1.2 var(--sss-body-face); /* ⚠️DEVIATION 3 */
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__stage {
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__collection {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  align-self: center;
+}
+
+#sei-showcase-slider#sei-showcase-slider[data-showcase-slider-status="open"] .showcase-slider__collection {
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__list {
+  display: flex;
+  overflow: hidden;
+  padding-left: calc(50% - var(--showcase-slider-slot) / 2);
+  touch-action: pan-y;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__item {
+  flex: 0 0 var(--showcase-slider-slot);
+  padding-left: calc(var(--showcase-slider-gap) / 2);
+  padding-right: calc(var(--showcase-slider-gap) / 2);
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* ⚠️DEVIATION 3 */
+  width: 100%;
+  padding: 0;
+  border-style: none;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__card:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 0.25em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--sss-frame-h); /* ⚠️DEVIATION 2 */
+  overflow: hidden;
+  border-radius: 0.25em;
+  background-color: var(--sss-frame); /* ⚠️DEVIATION 3 */
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__image {
+  position: absolute;
+  top: 0%;
+  left: -10%;
+  width: 120%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__chip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: var(--sss-chip-bg);
+  color: var(--sss-chip-ink);
+  font: 500 var(--sss-chip-size)/1 var(--sss-body-face);
+  letter-spacing: var(--sss-chip-track);
+  white-space: nowrap;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* ⚠️DEVIATION 3 */
+  gap: 18px; /* ⚠️DEVIATION 3 */
+  font-size: 0.875em;
+  line-height: 1.286;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__title {
+  font-weight: 500;
+  font: var(--sss-title-weight) var(--sss-title-size)/1.2 var(--sss-title-face); /* ⚠️DEVIATION 3 */
+  text-transform: var(--sss-title-case); /* ⚠️DEVIATION 3 */
+  letter-spacing: var(--sss-title-track); /* ⚠️DEVIATION 3 */
+  min-width: 0;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__meta {
+  opacity: 1; /* ⚠️DEVIATION 3 */
+  color: var(--sss-muted); /* ⚠️DEVIATION 3 */
+  font: 400 var(--sss-eyebrow-size)/1.2 var(--sss-body-face); /* ⚠️DEVIATION 3 */
+  letter-spacing: var(--sss-eyebrow-track); /* ⚠️DEVIATION 3 */
+  text-transform: uppercase; /* ⚠️DEVIATION 3 */
+  white-space: nowrap;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__gallery-collection {
+  display: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider[data-showcase-slider-status="open"] .showcase-slider__viewer {
+  pointer-events: auto;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-list {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  overflow: hidden;
+  padding-left: calc(50% - var(--showcase-slider-viewer-slot) / 2);
+  visibility: hidden;
+  touch-action: pan-y;
+}
+
+#sei-showcase-slider#sei-showcase-slider[data-showcase-slider-status="open"] .showcase-slider__viewer-list[data-showcase-slider-status="active"] {
+  visibility: visible;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-item {
+  flex: 0 0 var(--showcase-slider-viewer-slot);
+  padding-left: calc(var(--showcase-slider-gap) / 2);
+  padding-right: calc(var(--showcase-slider-gap) / 2);
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-frame {
+  position: relative;
+  width: 100%;
+  height: var(--sss-viewer-frame-h); /* ⚠️DEVIATION 2 */
+  overflow: hidden;
+  border-radius: 0.25em;
+  background-color: var(--sss-frame); /* ⚠️DEVIATION 3 */
+  cursor: pointer;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-image {
+  position: absolute;
+  top: 0%;
+  left: -10%;
+  width: 120%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__bar {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.875em;
+  line-height: 1.286;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__viewer-bar {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.875em;
+  line-height: 1.286;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__label {
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 1; /* ⚠️DEVIATION 3 */
+  color: var(--sss-muted); /* ⚠️DEVIATION 3 */
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__count {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__crumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  min-width: 0;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__back {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0;
+  border-style: none;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__back:hover {
+  opacity: 0.6;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__back:focus-visible {
+  opacity: 0.6;
+  outline: 2px solid currentColor;
+  outline-offset: 0.125em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__divider {
+  opacity: 0.35;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__crumb-title {
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__actions {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrows {
+  display: flex;
+  gap: 0.25em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.25em;
+  height: 2.25em;
+  padding: 0;
+  border-style: none;
+  border-radius: 50%;
+  background-color: rgba(22, 21, 19, 0.06);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow:hover {
+  background-color: rgba(22, 21, 19, 0.14);
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow:focus-visible {
+  background-color: rgba(22, 21, 19, 0.14);
+  outline: 2px solid currentColor;
+  outline-offset: 0.125em;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+#sei-showcase-slider#sei-showcase-slider .showcase-slider__icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+/* ⚠️DEVIATION 4: until both scripts have landed the cards sit in a plain row that scrolls sideways */
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__list {
+  overflow-x: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__list::-webkit-scrollbar {
+  display: none;
+}
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__item {
+  scroll-snap-align: start;
+}
+#sei-showcase-slider#sei-showcase-slider:not([data-showcase-slider-live]) .showcase-slider__card {
+  cursor: default;
+}
+
+@media (min-width: 640px) {
+  #sei-showcase-slider#sei-showcase-slider {
+    --showcase-slider-slot: 360px;
+    --showcase-slider-gap: 24px;
+    --showcase-slider-viewer-slot: 560px;
+    --sss-height: 470px;
+    --sss-frame-h: 212px;
+    --sss-viewer-frame-h: 338px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #sei-showcase-slider#sei-showcase-slider {
+    --showcase-slider-slot: 402px;
+    --showcase-slider-viewer-slot: 683px;
+    --sss-height: 547px;
+    --sss-frame-h: 238px;
+    --sss-viewer-frame-h: 415px;
+  }
+}
+</style>
+
+<div id="sei-showcase-slider" data-skin="docs" data-preview="false" data-showcase-slider-init data-showcase-slider-status="closed" class="showcase-slider">
+  <div class="showcase-slider__stage">
+    <div data-showcase-slider-collection class="showcase-slider__collection">
+      <div data-showcase-slider-list class="showcase-slider__list">
+        <div data-showcase-slider-item class="showcase-slider__item">
+          <button data-showcase-slider-open type="button" class="showcase-slider__card">
+            <span data-showcase-slider-frame class="showcase-slider__frame"><img data-showcase-slider-image src="images/showcase-slider--placeholder-01-1.jpg" alt="Title 01, image 1" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__image"><span class="showcase-slider__chip">Label</span></span>
+            <span data-showcase-slider-info class="showcase-slider__info"><span data-showcase-slider-content="title" class="showcase-slider__title">Title 01</span><span class="showcase-slider__meta">Eyebrow</span></span>
+          </button>
+          <div class="showcase-slider__gallery-collection">
+            <div class="showcase-slider__gallery-list">
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-01-2.jpg" alt="Title 01, image 2" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-01-3.jpg" alt="Title 01, image 3" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-01-4.jpg" alt="Title 01, image 4" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+            </div>
+          </div>
+        </div>
+        <div data-showcase-slider-item class="showcase-slider__item">
+          <button data-showcase-slider-open type="button" class="showcase-slider__card">
+            <span data-showcase-slider-frame class="showcase-slider__frame"><img data-showcase-slider-image src="images/showcase-slider--placeholder-02-1.jpg" alt="Title 02, image 1" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__image"><span class="showcase-slider__chip">Label</span></span>
+            <span data-showcase-slider-info class="showcase-slider__info"><span data-showcase-slider-content="title" class="showcase-slider__title">Title 02</span><span class="showcase-slider__meta">Eyebrow</span></span>
+          </button>
+          <div class="showcase-slider__gallery-collection">
+            <div class="showcase-slider__gallery-list">
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-02-2.jpg" alt="Title 02, image 2" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-02-3.jpg" alt="Title 02, image 3" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-02-4.jpg" alt="Title 02, image 4" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+            </div>
+          </div>
+        </div>
+        <div data-showcase-slider-item class="showcase-slider__item">
+          <button data-showcase-slider-open type="button" class="showcase-slider__card">
+            <span data-showcase-slider-frame class="showcase-slider__frame"><img data-showcase-slider-image src="images/showcase-slider--placeholder-03-1.jpg" alt="Title 03, image 1" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__image"><span class="showcase-slider__chip">Label</span></span>
+            <span data-showcase-slider-info class="showcase-slider__info"><span data-showcase-slider-content="title" class="showcase-slider__title">Title 03</span><span class="showcase-slider__meta">Eyebrow</span></span>
+          </button>
+          <div class="showcase-slider__gallery-collection">
+            <div class="showcase-slider__gallery-list">
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-03-2.jpg" alt="Title 03, image 2" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-03-3.jpg" alt="Title 03, image 3" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-03-4.jpg" alt="Title 03, image 4" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+            </div>
+          </div>
+        </div>
+        <div data-showcase-slider-item class="showcase-slider__item">
+          <button data-showcase-slider-open type="button" class="showcase-slider__card">
+            <span data-showcase-slider-frame class="showcase-slider__frame"><img data-showcase-slider-image src="images/showcase-slider--placeholder-04-1.jpg" alt="Title 04, image 1" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__image"><span class="showcase-slider__chip">Label</span></span>
+            <span data-showcase-slider-info class="showcase-slider__info"><span data-showcase-slider-content="title" class="showcase-slider__title">Title 04</span><span class="showcase-slider__meta">Eyebrow</span></span>
+          </button>
+          <div class="showcase-slider__gallery-collection">
+            <div class="showcase-slider__gallery-list">
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-04-2.jpg" alt="Title 04, image 2" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-04-3.jpg" alt="Title 04, image 3" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-04-4.jpg" alt="Title 04, image 4" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+            </div>
+          </div>
+        </div>
+        <div data-showcase-slider-item class="showcase-slider__item">
+          <button data-showcase-slider-open type="button" class="showcase-slider__card">
+            <span data-showcase-slider-frame class="showcase-slider__frame"><img data-showcase-slider-image src="images/showcase-slider--placeholder-05-1.jpg" alt="Title 05, image 1" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__image"><span class="showcase-slider__chip">Label</span></span>
+            <span data-showcase-slider-info class="showcase-slider__info"><span data-showcase-slider-content="title" class="showcase-slider__title">Title 05</span><span class="showcase-slider__meta">Eyebrow</span></span>
+          </button>
+          <div class="showcase-slider__gallery-collection">
+            <div class="showcase-slider__gallery-list">
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-05-2.jpg" alt="Title 05, image 2" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-05-3.jpg" alt="Title 05, image 3" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-05-4.jpg" alt="Title 05, image 4" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+            </div>
+          </div>
+        </div>
+        <div data-showcase-slider-item class="showcase-slider__item">
+          <button data-showcase-slider-open type="button" class="showcase-slider__card">
+            <span data-showcase-slider-frame class="showcase-slider__frame"><img data-showcase-slider-image src="images/showcase-slider--placeholder-06-1.jpg" alt="Title 06, image 1" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__image"><span class="showcase-slider__chip">Label</span></span>
+            <span data-showcase-slider-info class="showcase-slider__info"><span data-showcase-slider-content="title" class="showcase-slider__title">Title 06</span><span class="showcase-slider__meta">Eyebrow</span></span>
+          </button>
+          <div class="showcase-slider__gallery-collection">
+            <div class="showcase-slider__gallery-list">
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-06-2.jpg" alt="Title 06, image 2" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-06-3.jpg" alt="Title 06, image 3" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+              <div class="showcase-slider__gallery-item"><img data-showcase-slider-slide src="images/showcase-slider--placeholder-06-4.jpg" alt="Title 06, image 4" width="1520" height="800" loading="eager" decoding="async" class="showcase-slider__gallery-image"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-showcase-slider-viewer inert class="showcase-slider__viewer">
+      <div data-showcase-slider-viewer-list class="showcase-slider__viewer-list">
+        <div data-showcase-slider-viewer-item role="group" aria-roledescription="slide" class="showcase-slider__viewer-item">
+          <div data-showcase-slider-viewer-frame class="showcase-slider__viewer-frame">
+            <img data-showcase-slider-viewer-image src="images/showcase-slider--placeholder-01-1.jpg" alt="" width="1520" height="800" draggable="false" loading="eager" decoding="async" class="showcase-slider__viewer-image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="showcase-slider__controls">
+    <div data-showcase-slider-bar class="showcase-slider__bar">
+      <p class="showcase-slider__label">Selected work</p>
+      <p class="showcase-slider__count"><span data-showcase-slider-index>01</span><span> / </span><span data-showcase-slider-total>06</span></p>
+    </div>
+    <div data-showcase-slider-viewer-bar inert class="showcase-slider__viewer-bar">
+      <div class="showcase-slider__crumb">
+        <button data-showcase-slider-close type="button" class="showcase-slider__back">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="showcase-slider__icon"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5"></path></svg>
+          <span>All projects</span>
+        </button>
+        <span aria-hidden="true" class="showcase-slider__divider">/</span>
+        <span data-showcase-slider-slot="title" class="showcase-slider__crumb-title"></span>
+      </div>
+      <div class="showcase-slider__actions">
+        <p class="showcase-slider__count"><span data-showcase-slider-index>01</span><span> / </span><span data-showcase-slider-total>04</span></p>
+        <div class="showcase-slider__arrows">
+          <button data-showcase-slider-prev type="button" aria-label="Previous image" class="showcase-slider__arrow">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="showcase-slider__icon"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5"></path></svg>
+          </button>
+          <button data-showcase-slider-next type="button" aria-label="Next image" class="showcase-slider__arrow">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="showcase-slider__icon"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  function initShowcaseSlider() {
+    let reduceMotion = false;
+    gsap.matchMedia().add("(prefers-reduced-motion: reduce)", () => {
+      reduceMotion = true;
+      return () => {
+        reduceMotion = false;
+      };
+    });
+
+    document.querySelectorAll("[data-showcase-slider-init]").forEach((root) => {
+      // ⚠️DEVIATION 5: each wrapper starts once, even when two pasted copies run this script
+      if (root.hasAttribute("data-showcase-slider-live")) return;
+      root.setAttribute("data-showcase-slider-live", "");
+
+      const parallaxStrength = 8; // % of the image width it shifts at the edge of the slider
+
+      const collection = root.querySelector("[data-showcase-slider-collection]");
+      const list = root.querySelector("[data-showcase-slider-list]");
+      const items = [...list.querySelectorAll("[data-showcase-slider-item]")];
+      const cards = items.map((item) => item.querySelector("[data-showcase-slider-open]"));
+      const frames = items.map((item) => item.querySelector("[data-showcase-slider-frame]"));
+      const images = items.map((item) => item.querySelector("[data-showcase-slider-image]"));
+      const infos = items.map((item) => item.querySelector("[data-showcase-slider-info]"));
+      const viewer = root.querySelector("[data-showcase-slider-viewer]");
+      const viewerTemplate = viewer.querySelector("[data-showcase-slider-viewer-list]");
+      const viewerItemTemplate = viewerTemplate.querySelector("[data-showcase-slider-viewer-item]");
+      const bar = root.querySelector("[data-showcase-slider-bar]");
+      const viewerBar = root.querySelector("[data-showcase-slider-viewer-bar]");
+      const slots = [...root.querySelectorAll("[data-showcase-slider-slot]")];
+      const closeButton = root.querySelector("[data-showcase-slider-close]");
+      const prevButton = root.querySelector("[data-showcase-slider-prev]");
+      const nextButton = root.querySelector("[data-showcase-slider-next]");
+      const setText = (scope, hook, value) => {
+        const element = scope.querySelector(`[data-showcase-slider-${hook}]`);
+        if (element) element.textContent = String(value).padStart(2, "0");
+      };
+
+      const count = items.length;
+      const projects = [];
+      let active = null;
+      let activeIndex = -1;
+      let isOpen = false;
+      let busy = false;
+      let openedByKeyboard = false;
+      let pointerStartX = 0;
+
+      const centerX = (element) => element.getBoundingClientRect().left + element.offsetWidth / 2;
+      const offset = (from, to) => {
+        const a = from.getBoundingClientRect();
+        const b = to.getBoundingClientRect();
+        return { x: a.x - b.x + (a.width - b.width) / 2, y: a.y - b.y + (a.height - b.height) / 2, scale: a.width / b.width };
+      };
+      const matchInput = (slider) => {
+        const slideWidth = slider.viewport.itemWidth || 1;
+        slider.config.dragSensitivity = 1 / slideWidth;
+        slider.config.scrollSensitivity = 2000 / slideWidth;
+      };
+      const wasDrag = (event) => event.detail !== 0 && Math.abs(event.clientX - pointerStartX) > 6;
+
+      const createTrack = (slider, trackImages, loop) => ({
+        slider,
+        loop,
+        setters: trackImages.map((image) => gsap.quickSetter(image, "xPercent")),
+      });
+
+      const renderParallax = (track) => {
+        const { slider } = track;
+        const ratio = slider.viewport.itemWidth / (slider.viewport.wrapperWidth / 2 || 1);
+        const strength = reduceMotion ? 0 : parallaxStrength;
+        track.setters.forEach((setX, index) => {
+          const position = track.loop ? gsap.utils.wrap(-count / 2, count / 2, index + slider.current) : index + slider.current;
+          setX(-position * ratio * strength);
+        });
+      };
+
+      const base = new Smooothy(list, {
+        infinite: true,
+        snap: true,
+        onResize: matchInput,
+        onSlideChange: (current) => setText(bar, "index", current + 1),
+      });
+      const baseTrack = createTrack(base, images, true);
+      setText(bar, "total", count);
+
+      const updateViewer = (current) => {
+        setText(viewerBar, "index", current + 1);
+        prevButton.disabled = current === 0;
+        nextButton.disabled = current === active.frames.length - 1;
+      };
+
+      const buildProject = (index) => {
+        if (projects[index]) return projects[index];
+
+        const sources = [images[index], ...items[index].querySelectorAll("[data-showcase-slider-slide]")];
+        const viewerList = viewerTemplate.cloneNode(false);
+        viewerList.setAttribute("data-showcase-slider-status", "active");
+        viewer.appendChild(viewerList);
+
+        const viewerFrames = [];
+        const viewerImages = [];
+        sources.forEach((source, sourceIndex) => {
+          const viewerItem = viewerItemTemplate.cloneNode(true);
+          const viewerFrame = viewerItem.querySelector("[data-showcase-slider-viewer-frame]");
+          const viewerImage = viewerItem.querySelector("[data-showcase-slider-viewer-image]");
+          ["src", "srcset", "sizes", "alt"].forEach((attribute) => {
+            if (source.hasAttribute(attribute)) viewerImage.setAttribute(attribute, source.getAttribute(attribute));
+            else viewerImage.removeAttribute(attribute);
+          });
+          viewerItem.setAttribute("aria-label", `${sourceIndex + 1} of ${sources.length}`);
+          viewerFrame.addEventListener("click", (event) => {
+            if (!wasDrag(event) && !busy) projects[index].slider.target = -sourceIndex;
+          });
+          viewerList.appendChild(viewerItem);
+          viewerFrames.push(viewerFrame);
+          viewerImages.push(viewerImage);
+        });
+
+        const slider = new Smooothy(viewerList, {
+          infinite: false,
+          snap: true,
+          onResize: matchInput,
+          onSlideChange: (current) => updateViewer(current),
+        });
+        viewerList.addEventListener("scroll", () => {
+          viewerList.scrollLeft = 0;
+        });
+
+        projects[index] = {
+          list: viewerList,
+          slider,
+          frames: viewerFrames,
+          images: viewerImages,
+          track: createTrack(slider, viewerImages, false),
+        };
+        return projects[index];
+      };
+
+      const setOpen = (open) => {
+        isOpen = open;
+        root.setAttribute("data-showcase-slider-status", open ? "open" : "closed");
+        collection.inert = open;
+        viewer.inert = !open;
+        viewerBar.inert = !open;
+        base.paused = open;
+      };
+
+      const open = (index, fromKeyboard) => {
+        if (busy || isOpen) return;
+        busy = true;
+        activeIndex = index;
+        openedByKeyboard = fromKeyboard;
+        base.target = base.current;
+        projects.forEach((project) => project.list.removeAttribute("data-showcase-slider-status"));
+        active = buildProject(index);
+        active.list.setAttribute("data-showcase-slider-status", "active");
+        setOpen(true);
+
+        active.slider.current = active.slider.target = 0;
+        active.slider.paused = false;
+        active.slider.resize();
+        renderParallax(active.track);
+        updateViewer(0);
+        setText(viewerBar, "total", active.frames.length);
+        slots.forEach((slot) => {
+          const content = items[index].querySelector(`[data-showcase-slider-content="${slot.getAttribute("data-showcase-slider-slot")}"]`);
+          slot.replaceChildren(...(content ? content.cloneNode(true).childNodes : []));
+        });
+
+        const move = offset(frames[index], active.frames[0]);
+        const push = root.offsetWidth * 0.35;
+        const tl = gsap.timeline({
+          defaults: {
+            ease: "expo.inOut",
+          },
+          onComplete: () => {
+            busy = false;
+          },
+        });
+
+        tl.set(frames[index], {
+          autoAlpha: 0,
+        })
+        .fromTo(active.frames[0], {
+          x: move.x,
+          y: move.y,
+          scale: move.scale,
+        }, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+        })
+        .fromTo(active.images[0], {
+          xPercent: gsap.getProperty(images[index], "xPercent"),
+        }, {
+          xPercent: gsap.getProperty(active.images[0], "xPercent"),
+          duration: 1.1,
+        }, "<")
+        .to(cards.filter((card, cardIndex) => cardIndex !== index), {
+          x: (cardIndex, card) => Math.sign(centerX(card) - centerX(cards[index])) * push,
+          autoAlpha: 0,
+          duration: 1,
+        }, "<")
+        .to([infos[index], bar], {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: "power1.out",
+        }, "<")
+        .fromTo(active.frames.slice(1), {
+          x: push * 0.6,
+          autoAlpha: 0,
+        }, {
+          x: 0,
+          autoAlpha: 1,
+          duration: 1,
+          ease: "expo.out",
+          stagger: 0.05,
+        }, "<+=0.6")
+        .fromTo([viewerBar, ...slots], {
+          autoAlpha: 0,
+        }, {
+          autoAlpha: 1,
+          duration: 0.5,
+          ease: "power1.out",
+        }, "<");
+        if (fromKeyboard) tl.call(() => closeButton.focus({ preventScroll: true }), null, 0.65);
+        if (reduceMotion) tl.progress(1);
+      };
+
+      const close = () => {
+        if (busy || !isOpen) return;
+        busy = true;
+        const current = active.slider.currentSlide;
+        const frame = active.frames[current];
+        const keyboardInside = root.contains(document.activeElement) && document.activeElement.matches(":focus-visible");
+        const move = offset(frames[activeIndex], frame);
+        const push = root.offsetWidth * 0.35;
+
+        const tl = gsap.timeline({
+          defaults: {
+            ease: "expo.inOut",
+          },
+          onComplete: () => {
+            gsap.set([...active.frames, ...cards], {
+              clearProps: "transform,opacity,visibility",
+            });
+            active.slider.paused = true;
+            setOpen(false);
+            busy = false;
+            if (openedByKeyboard || keyboardInside) cards[activeIndex].focus({ preventScroll: true });
+          },
+        });
+
+        tl.to(frame, {
+          x: `+=${move.x}`,
+          y: `+=${move.y}`,
+          scale: move.scale,
+          duration: 1.1,
+        })
+        .to(active.images[current], {
+          xPercent: gsap.getProperty(images[activeIndex], "xPercent"),
+          duration: 1.1,
+        }, "<")
+        .to(active.frames.filter((other) => other !== frame), {
+          x: (frameIndex, other) => Math.sign(centerX(other) - centerX(frame)) * push * 0.6,
+          autoAlpha: 0,
+          duration: 0.6,
+          ease: "power3.in",
+        }, "<")
+        .to([viewerBar, ...slots], {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: "power1.out",
+        }, "<")
+        .to(cards.filter((card, cardIndex) => cardIndex !== activeIndex), {
+          x: 0,
+          autoAlpha: 1,
+          duration: 1,
+        }, "<+=0.1")
+        .to([infos[activeIndex], bar], {
+          autoAlpha: 1,
+          duration: 0.5,
+          ease: "power1.out",
+        }, 0.8)
+        .set(frames[activeIndex], {
+          autoAlpha: 1,
+        }, "<")
+        .to(frame, {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: "power1.out",
+        }, "<");
+        if (reduceMotion) tl.progress(1);
+      };
+
+      root.addEventListener("pointerdown", (event) => {
+        pointerStartX = event.clientX;
+      }, true);
+
+      cards.forEach((card, index) => {
+        card.addEventListener("click", (event) => {
+          if (!wasDrag(event)) open(index, event.detail === 0);
+        });
+        card.addEventListener("focus", () => {
+          if (isOpen || !card.matches(":focus-visible")) return;
+          base.target = -index + count * Math.round((base.target + index) / count);
+        });
+      });
+
+      list.addEventListener("scroll", () => {
+        list.scrollLeft = 0;
+      });
+      closeButton.addEventListener("click", close);
+      prevButton.addEventListener("click", () => active.slider.goToPrev());
+      nextButton.addEventListener("click", () => active.slider.goToNext());
+
+      document.addEventListener("keydown", (event) => {
+        if (isOpen) {
+          if (event.key === "Escape") close();
+          if (event.key === "ArrowRight") nextButton.click();
+          if (event.key === "ArrowLeft") prevButton.click();
+        }
+      });
+
+      gsap.ticker.add(() => {
+        if (!isOpen) {
+          base.update();
+          renderParallax(baseTrack);
+        }
+        if (isOpen && !busy) {
+          active.slider.update();
+          renderParallax(active.track);
+        }
+      });
+    });
+  }
+
+  // ⚠️DEVIATION 6: GSAP and Smooothy are pinned to exact versions and loaded here; the slider starts only when both have landed
+  function load(src, ready, done) {
+    if (ready()) return done();
+    var s = document.createElement("script");
+    s.src = src; s.async = false; s.onload = done; s.onerror = done;
+    document.head.appendChild(s);
+  }
+
+  function start() {
+    if (typeof window.gsap === "undefined" || typeof window.Smooothy === "undefined") return;
+    try {
+      initShowcaseSlider();
+    } catch (e) {
+      document.querySelectorAll("[data-showcase-slider-init]").forEach(function (root) { root.removeAttribute("data-showcase-slider-live"); });
+      if (window.console) console.warn("Showcase Slider:", e);
+    }
+  }
+
+  function boot() {
+    load("https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js", function () { return typeof window.gsap !== "undefined"; }, function () {
+      if (typeof window.gsap === "undefined") return;
+      load("https://cdn.jsdelivr.net/npm/smooothy@0.0.35/dist/smooothy.min.js", function () { return typeof window.Smooothy !== "undefined"; }, start);
+    });
+  }
+
+  // ⚠️DEVIATION 7: started at once when the page has already loaded, because a Fastr component arrives after DOMContentLoaded
+  if (document.readyState !== "loading") boot();
+  else document.addEventListener("DOMContentLoaded", boot);
+})();
+</script>
+
+<script>
+(function () {
+  var s = new URLSearchParams(location.search).get("skin");
+  if (s && /^(docs|sdc|wss|431)$/.test(s)) document.getElementById("sei-showcase-slider").setAttribute("data-skin", s);
+})();
+</script>
+</body>
+</html>

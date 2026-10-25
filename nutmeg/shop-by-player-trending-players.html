@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop by Player, Trending Players · Nutmeg</title>
+<meta name="description" content="Twelve tall player photos on a swipe rail, title and Shop all on top, arrows on desktop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <div class="nm-header__links">
+    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
+    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
+  </div>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
+<ul>
+<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
+<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
+<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
+<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
+</ul></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
+<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
+<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
+<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
+<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
+</ul></li>
+</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
+<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
+<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
+<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
+<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
+<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
+<ul class="nm-nav__sub" id="nm-sub-blocks">
+<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
+<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
+<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
+<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
+<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
+<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
+<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
+<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html" aria-current="page">Shop by Player, Trending Players</a></li>
+<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
+</ul></li>
+</ul>
+<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
+  <h1>Shop by Player, Trending Players</h1>
+  <p class="nm-lede">Twelve tall player photos on a swipe rail, title and Shop all on top, arrows on desktop.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-shop-by-player-trending-players"><button type="button" class="nm-tab" role="tab" aria-controls="frame-shop-by-player-trending-players" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-shop-by-player-trending-players" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-shop-by-player-trending-players" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/shop-by-player-trending-players/fastr-paste.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-shop-by-player-trending-players" src="../blocks/shop-by-player-trending-players/fastr-paste.html" height="568" data-heights="473,518,568" title="Shop by Player, Trending Players, live demo"></iframe></div></div>
+</section><section class="nm-section" id="how">
+<div class="nm-section__head"><h2 class="nm-h2">How it&#x27;s built<button type="button" class="nm-anchor" aria-label="Copy a link to How it&#x27;s built"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-prose"><p>Twelve tall player photos on a swipe rail, title and Shop all on top, arrows on desktop. Replaces the old Shop by Player section.</p></div>
+</section><section class="nm-section" id="heights">
+<div class="nm-section__head"><h2 class="nm-h2">Fastr heights<button type="button" class="nm-anchor" aria-label="Copy a link to Fastr heights"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Type these into the three Reserved height boxes.</p></div>
+<div class="nm-stats"><div class="nm-stat"><span class="nm-stat__num">473</span><span class="nm-stat__cap">pixels on phones (Mobile box).</span></div><div class="nm-stat"><span class="nm-stat__num">518</span><span class="nm-stat__cap">pixels from 640 wide.</span></div><div class="nm-stat"><span class="nm-stat__num">568</span><span class="nm-stat__cap">pixels from 1024 wide.</span></div></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste the whole file into one Fastr HTML component.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>fastr-paste.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!-- Shop by Player rail, Trending Players. WorldSoccerShop. Shop-by Rail (C-20).
+     Fastr CMS paste: one HTML widget, direct embed, no iframe.
+     Reserved heights: Mobile 473 / 640px and up 518 / 1024px and up 568.
+     Every rule is scoped to #sb-players-v1 and cannot reach the page. --&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&amp;family=Mohave:wght@600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+#sb-players-v1{--button-009-color:#fff;
+  --button-009-color-background:#000;
+  --button-009-color-focus:#000;
+  --button-009-border-radius:0;
+  --button-009-icon-size:1.2143em;
+  --button-009-padding-top:0.8571em;
+  --button-009-padding-right:1.1429em;
+  --button-009-padding-bottom:0.8571em;
+  --button-009-padding-left:1.1429em;
+  --button-009-gap:0.5714em;
+  --button-009-overflow:clip;
+  --button-009-focus-inset:-0.125em;
+  --button-009-click-scale:0.955 0.925;
+  --button-009-ease-hover:cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click:cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus:cubic-bezier(0.32, 0.72, 0, 1);
+
+  --ws-font-label:&#x27;Chakra Petch&#x27;,Figtree,sans-serif;
+  --ws-cta-size:14px;
+  --ws-cta-weight:600;
+  --ws-cta-line:1.0714;
+  --ws-cta-line-em:1.0714em;
+  --ws-cta-tracking:0.08em;
+  --ws-cta-arrow-size:1.5714em;
+  --ws-cta-arrow-tracking:0.02em;
+  --ws-cta-hairline:0.75px solid #797474;}
+#sb-players-v1 .button-009{color:var(--button-009-color);
+  -webkit-user-select:none;user-select:none;
+  background-color:#0000;
+  outline-style:none;
+  padding:0;
+  line-height:1;
+  text-decoration:none;
+  display:inline-grid;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  transition:scale 0.15s var(--button-009-ease-click);}
+#sb-players-v1 .button-009::after{content:&#x27;&#x27;;display:block;position:absolute;
+  inset:var(--button-009-focus-inset);
+  border-radius:var(--button-009-border-radius);
+  transition:box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events:none;z-index:1;}
+#sb-players-v1 .button-009:is(:focus-visible)::after{box-shadow:0 0 0 0.125em var(--button-009-color-focus);}
+#sb-players-v1 .button-009:active{scale:var(--button-009-click-scale);}
+#sb-players-v1 .button-009__inner{pointer-events:none;
+  grid-column-gap:var(--button-009-gap);
+  grid-row-gap:var(--button-009-gap);
+  padding-top:var(--button-009-padding-top);
+  padding-right:var(--button-009-padding-right);
+  padding-bottom:var(--button-009-padding-bottom);
+  padding-left:var(--button-009-padding-left);
+  z-index:1;
+  border-radius:var(--button-009-border-radius);
+  overflow:var(--button-009-overflow);
+  grid-area:1 / 1;
+  justify-content:center;align-items:center;
+  display:flex;position:relative;}
+#sb-players-v1 .button-009__icon{width:var(--button-009-icon-size);
+  height:var(--button-009-icon-size);
+  flex:none;
+  transition:translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;}
+#sb-players-v1 .button-009__icon.is--left{left:var(--button-009-padding-right);
+  position:absolute;
+  opacity:0;
+  translate:-1.5em 0 0;}
+#sb-players-v1 .button-009__text{flex:none; transition:translate 0.5s var(--button-009-ease-hover);}
+#sb-players-v1 .button-009__bg{background-color:var(--button-009-color-background);
+  border-radius:var(--button-009-border-radius);
+  grid-area:1 / 1;width:100%;height:100%;padding:0;}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){#sb-players-v1 .button-009:is(:hover, :focus-visible) .button-009__text,#sb-players-v1 [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text{translate:calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover);}
+#sb-players-v1 .button-009:is(:hover, :focus-visible) .button-009__icon.is--left,#sb-players-v1 [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left{translate:0 0 0;opacity:1;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;}
+#sb-players-v1 .button-009:is(:hover, :focus-visible) .button-009__icon.is--right,#sb-players-v1 [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right{translate:1.5em 0 0;opacity:0;
+    transition:translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;}}
+#sb-players-v1 .button-009{font-family:var(--ws-font-label);
+  font-size:var(--ws-cta-size);}
+#sb-players-v1 .button-009__text{font-weight:var(--ws-cta-weight);
+  line-height:var(--ws-cta-line);
+  letter-spacing:var(--ws-cta-tracking);
+  margin-right:calc(var(--ws-cta-tracking) * -1);
+  text-transform:uppercase;}
+#sb-players-v1 .button-009__icon{height:var(--ws-cta-line-em);
+  display:flex;align-items:center;justify-content:center;}
+#sb-players-v1 .button-009__icon &gt; i{font-style:normal;
+  font-weight:400;
+  font-size:var(--ws-cta-arrow-size);
+  letter-spacing:var(--ws-cta-arrow-tracking);
+  line-height:1;
+  display:block;}
+#sb-players-v1 .button-009[data-theme=&#x27;secondary&#x27;]{--button-009-color:#000;
+  --button-009-color-background:#fff;}
+#sb-players-v1 .button-009[data-theme=&#x27;secondary&#x27;] .button-009__bg{border:var(--ws-cta-hairline);}
+#sb-players-v1 .button-009[data-theme=&#x27;on-dark&#x27;]{--button-009-color:#0A0A0A;
+  --button-009-color-background:#fff;
+  --button-009-color-focus:#fff;}
+#sb-players-v1{--sb-ground:#FFFFFF;
+  --sb-tile-ground:#2A2622;
+  --sb-scrim:rgba(0,0,0,.10);
+  --sb-chip-ground:#FFFFFF;
+  --sb-chip-ink:#27272A;
+  --sb-label-font:&#x27;Chakra Petch&#x27;,Figtree,system-ui,sans-serif;
+  --sb-label-size:14px;
+  --sb-label-track:0.08em;
+  --sb-chip-pad:8px;
+  --sb-focus:#C4623F;
+
+  --tile-zoom:1.04;
+  --sb-ease:cubic-bezier(.25,1,.5,1);
+  --sb-dur:.4s;
+
+  --sb-arrow-size:34px;
+  --sb-arrow-ground:#FFFFFF;
+  --sb-arrow-ink:#131313;
+  --sb-arrow-line:#797474;
+  --sb-arrow-ground-hover:#131313;
+  --sb-arrow-ink-hover:#FFFFFF;
+
+  --sb-gutter:16px;
+  --sb-gap:8px;
+  --sb-tile-w:220px;
+  --sb-tile-h:355px;
+  --sb-tile-pad:12px;
+  --sb-pad-bottom:12px;}
+@media (min-width:640px){#sb-players-v1{--sb-gutter:24px; --sb-tile-w:248px; --sb-tile-h:400px; --sb-tile-pad:13px;}}
+@media (min-width:1024px){#sb-players-v1{--sb-gutter:12px; --sb-tile-w:279px; --sb-tile-h:450px; --sb-tile-pad:13px;}}
+#sb-players-v1 *,#sb-players-v1 *::before,#sb-players-v1 *::after{box-sizing:border-box}
+#sb-players-v1.sb{position:relative;
+  width:100%;
+  padding-bottom:var(--sb-pad-bottom);
+  background:var(--sb-ground);
+  font-family:var(--sb-label-font);
+  -webkit-font-smoothing:antialiased;}
+#sb-players-v1 .sb-rail{display:flex;
+  gap:var(--sb-gap);
+  padding:0 var(--sb-gutter);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  scroll-padding-inline-start:var(--sb-gutter);
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  touch-action:pan-x pan-y;}
+#sb-players-v1 .sb-rail::-webkit-scrollbar{display:none}
+#sb-players-v1 .sb-tile{position:relative;
+  flex:0 0 auto;
+  width:var(--sb-tile-w);
+  height:var(--sb-tile-h);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  padding:0 0 var(--sb-tile-pad) var(--sb-tile-pad);
+  background:var(--sb-tile-ground);
+  overflow:hidden;
+  scroll-snap-align:start;
+  text-decoration:none;
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;}
+#sb-players-v1 .sb-tile:focus-visible{outline:2px solid var(--sb-focus);outline-offset:3px}
+#sb-players-v1 .sb-tile__img{position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;border:0;
+  transition:transform var(--sb-dur) var(--sb-ease);}
+#sb-players-v1 .sb-tile__scrim{position:absolute;inset:0;
+  background:var(--sb-scrim);
+  pointer-events:none;}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){#sb-players-v1 .sb-tile:hover .sb-tile__img{transform:scale(var(--tile-zoom))}}
+#sb-players-v1 .sb-tile__chip{position:relative;z-index:2;
+  display:inline-flex;align-items:center;
+  height:calc(var(--sb-label-size) + (var(--sb-chip-pad) * 2));
+  padding:0 var(--sb-chip-pad);
+  background:var(--sb-chip-ground);
+  color:var(--sb-chip-ink);
+  font-weight:600;
+  font-size:var(--sb-label-size);
+  line-height:1;
+  letter-spacing:var(--sb-label-track);
+  text-transform:uppercase;
+  white-space:nowrap;}
+#sb-players-v1{--sb-head-h:39px;
+  --sb-head-gap:20px;
+  --sb-title-size:24px;
+  --sb-title-ink:#131313;
+
+  --sb-title-font:&#x27;Chakra Petch&#x27;,Figtree,system-ui,sans-serif;
+
+  --sb-center-title:26px;}
+@media (max-width:639px){#sb-players-v1{--sb-title-size:16px;}}
+#sb-players-v1 .sb-head{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  height:var(--sb-head-h);
+  padding:0 var(--sb-gutter);
+  margin-bottom:var(--sb-head-gap);}
+#sb-players-v1 .sb-head__title{flex:1 1 auto;min-width:0;margin:0;
+  font-family:var(--sb-title-font);
+  font-size:var(--sb-title-size);font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;line-height:1.1;
+  color:var(--sb-title-ink);
+
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
+#sb-players-v1 .sb-head__actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+#sb-players-v1 .sb-head__arrows{display:none;gap:8px;flex:0 0 auto}
+@media (hover:hover) and (pointer:fine) and (min-width:1024px){#sb-players-v1.sb.is-ready.has-overflow .sb-head__arrows{display:flex}}
+#sb-players-v1 .sb-head--center{flex-direction:column;justify-content:center;gap:8px;
+  height:calc(var(--sb-head-h) * 2 + 8px);
+  text-align:center;}
+#sb-players-v1 .sb-head--center .sb-head__title{flex:0 0 auto;width:100%;-webkit-line-clamp:1;
+  font-family:var(--sb-title-font);
+  font-size:var(--sb-center-title);font-weight:var(--sb-title-weight,700);letter-spacing:.02em;
+  line-height:var(--sb-head-h);}
+@media (min-width:640px){#sb-players-v1{--sb-center-title:34px;}}
+@media (min-width:1024px){#sb-players-v1{--sb-center-title:38px;}}
+#sb-players-v1 .sb-head--center .sb-head__actions{justify-content:center}
+#sb-players-v1 .sb-head--center .sb-head__arrows{display:none !important}
+#sb-players-v1 .sb-head .sb-arrow{position:static;display:flex;top:auto;left:auto;right:auto}
+#sb-players-v1 .sb-head__cta{flex:none}
+#sb-players-v1 .sb-arrow{display:none;
+  position:absolute;
+  top:calc(var(--sb-rail-top, 0px) + (var(--sb-tile-h) / 2) - (var(--sb-arrow-size) / 2));
+  width:var(--sb-arrow-size);height:var(--sb-arrow-size);
+  align-items:center;justify-content:center;
+  background:var(--sb-arrow-ground);color:var(--sb-arrow-ink);
+  border:0.75px solid var(--sb-arrow-line);border-radius:0;
+  padding:0;cursor:pointer;z-index:3;line-height:1;
+  transition:background var(--sb-dur) var(--sb-ease),color var(--sb-dur) var(--sb-ease),transform .15s cubic-bezier(.4,0,.2,1);
+  -webkit-tap-highlight-color:transparent;}
+#sb-players-v1 .sb-arrow svg{width:16px;height:16px;display:block}
+#sb-players-v1 .sb-arrow--prev{left:var(--sb-gutter)}
+#sb-players-v1 .sb-arrow--prev svg{transform:rotate(180deg)}
+#sb-players-v1 .sb-arrow--next{right:var(--sb-gutter)}
+@media (hover:hover) and (pointer:fine) and (min-width:1024px){#sb-players-v1.sb.is-ready.has-overflow .sb-arrow{display:flex}
+#sb-players-v1 .sb-arrow:hover{background:var(--sb-arrow-ground-hover);color:var(--sb-arrow-ink-hover)}}
+#sb-players-v1 .sb-arrow:active{transform:scale(.94)}
+#sb-players-v1 .sb-arrow:focus-visible{outline:2px solid var(--sb-focus);outline-offset:2px}
+#sb-players-v1 .sb-arrow[disabled]{opacity:.35;pointer-events:none}
+@media (prefers-reduced-motion:reduce){#sb-players-v1 .sb-rail{scroll-behavior:auto}
+#sb-players-v1 .sb-tile__img,#sb-players-v1 .sb-arrow{transition:none}}
+@media (prefers-reduced-motion:reduce){#sb-players-v1 .sb-arrow:active{transform:none}
+#sb-players-v1 .sb-head__cta:active{scale:none}
+#sb-players-v1 .sb-head__cta{transition:none}}
+#sb-players-v1{--sb-ground:#F0EBE6;
+
+  --sb-title-font:&#x27;Mohave&#x27;,&#x27;Chakra Petch&#x27;,Figtree,system-ui,sans-serif;
+  --sb-title-weight:600;
+  --sb-center-title:32px;}
+@media (min-width:640px){#sb-players-v1{--sb-center-title:38px;}}
+@media (min-width:1024px){#sb-players-v1{--sb-center-title:42px;}}
+#sb-players-v1{box-sizing:border-box;height:473px;overflow:hidden}
+@media (min-width:640px){#sb-players-v1{height:518px}}
+@media (min-width:1024px){#sb-players-v1{height:568px}}
+&lt;/style&gt;
+&lt;div class=&quot;sb&quot; id=&quot;sb-players-v1&quot; data-block-id=&quot;c20-shopby-rail--players-v1&quot;&gt;
+
+  &lt;button class=&quot;sb-arrow sb-arrow--prev&quot; type=&quot;button&quot; data-sb=&quot;prev&quot; aria-label=&quot;Previous players&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M14 19L21 12L14 5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-miterlimit=&quot;10&quot;/&gt;&lt;path d=&quot;M21 12H2&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-miterlimit=&quot;10&quot;/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;button class=&quot;sb-arrow sb-arrow--next&quot; type=&quot;button&quot; data-sb=&quot;next&quot; aria-label=&quot;More players&quot;&gt;
+    &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M14 19L21 12L14 5&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-miterlimit=&quot;10&quot;/&gt;&lt;path d=&quot;M21 12H2&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-miterlimit=&quot;10&quot;/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+
+  &lt;div class=&quot;sb-head sb-head--center&quot;&gt;
+    &lt;h2 class=&quot;sb-head__title&quot;&gt;Trending Players&lt;/h2&gt;
+    &lt;div class=&quot;sb-head__actions&quot;&gt;
+      &lt;a class=&quot;button-009 sb-head__cta&quot; data-theme=&quot;secondary&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/&quot;&gt;
+        &lt;span class=&quot;button-009__inner&quot;&gt;
+          &lt;span aria-hidden=&quot;true&quot; class=&quot;button-009__icon is--left&quot;&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class=&quot;button-009__text&quot;&gt;Shop all&lt;/span&gt;
+          &lt;span aria-hidden=&quot;true&quot; class=&quot;button-009__icon is--right&quot;&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;button-009__bg&quot;&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;sb-rail&quot; role=&quot;list&quot; aria-label=&quot;Trending players&quot;&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/lionel-messi&quot; aria-label=&quot;Shop Lionel Messi&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; fetchpriority=&quot;high&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player-Messi.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Lionel Messi&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/lamine-yamal&quot; aria-label=&quot;Shop Lamine Yamal&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; fetchpriority=&quot;high&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Yamal.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Lamine Yamal&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/kylian-mbappe&quot; aria-label=&quot;Shop Kylian Mbappé&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot; fetchpriority=&quot;high&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Mbappe.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Kylian Mbappé&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/cristiano-ronaldo&quot; aria-label=&quot;Shop Cristiano Ronaldo&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Ronaldo.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Cristiano Ronaldo&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/erling-haaland&quot; aria-label=&quot;Shop Erling Haaland&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Haaland.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Erling Haaland&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/christian-pulisic&quot; aria-label=&quot;Shop Christian Pulisic&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Pulisic.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Christian Pulisic&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/harry-kane&quot; aria-label=&quot;Shop Harry Kane&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Kane.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Harry Kane&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/michael-olise&quot; aria-label=&quot;Shop Michael Olise&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Olise.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Michael Olise&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/ousmane-dembele&quot; aria-label=&quot;Shop Ousmane Dembélé&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Dembele.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Ousmane Dembélé&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/raul-jimenez&quot; aria-label=&quot;Shop Raúl Jiménez&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Raul-Jiminez.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Raúl Jiménez&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/julian-quinones&quot; aria-label=&quot;Shop Julián Quiñones&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Quinones.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Julián Quiñones&lt;/span&gt;
+    &lt;/a&gt;
+
+    &lt;a class=&quot;sb-tile&quot; role=&quot;listitem&quot; target=&quot;_top&quot; href=&quot;https://www.worldsoccershop.com/shop/players/vinicius-junior&quot; aria-label=&quot;Shop Vinícius Júnior&quot;&gt;
+      &lt;img class=&quot;sb-tile__img&quot; width=&quot;279&quot; height=&quot;450&quot; alt=&quot;&quot; loading=&quot;eager&quot; decoding=&quot;async&quot;
+           src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/Shop_by_Player_Vini_Jr.jpg&quot;
+           onerror=&quot;this.onerror=null;this.style.opacity=&#x27;.15&#x27;&quot;&gt;
+      &lt;span class=&quot;sb-tile__scrim&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;sb-tile__chip&quot;&gt;Vinícius Júnior&lt;/span&gt;
+    &lt;/a&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+
+(function(){
+  var root=document.getElementById(&#x27;sb-players-v1&#x27;); if(!root) return;
+  var rail=root.querySelector(&#x27;.sb-rail&#x27;); if(!rail) return;
+  var prev=root.querySelector(&#x27;[data-sb=&quot;prev&quot;]&#x27;), next=root.querySelector(&#x27;[data-sb=&quot;next&quot;]&#x27;);
+  function sync(){
+    root.style.setProperty(&#x27;--sb-rail-top&#x27;,rail.offsetTop+&#x27;px&#x27;);
+    var over=rail.scrollWidth-rail.clientWidth&gt;2;
+    root.classList.toggle(&#x27;has-overflow&#x27;,over);
+    if(!over) return;
+    var x=rail.scrollLeft;
+    if(prev) prev.disabled=x&lt;=2;
+    if(next) next.disabled=x&gt;=(rail.scrollWidth-rail.clientWidth-2);
+  }
+  function step(d){
+    var t=rail.querySelector(&#x27;.sb-tile&#x27;);
+    var by=t?(t.getBoundingClientRect().width+8):Math.round(rail.clientWidth*0.8);
+    rail.scrollBy({left:d*by,behavior:&#x27;smooth&#x27;});
+  }
+  if(prev) prev.addEventListener(&#x27;click&#x27;,function(){step(-1)});
+  if(next) next.addEventListener(&#x27;click&#x27;,function(){step(1)});
+  rail.addEventListener(&#x27;scroll&#x27;,sync,{passive:true});
+  var rt; window.addEventListener(&#x27;resize&#x27;,function(){clearTimeout(rt);rt=setTimeout(sync,120)},{passive:true});
+  root.classList.add(&#x27;is-ready&#x27;); sync();
+  if(document.fonts&amp;&amp;document.fonts.ready&amp;&amp;typeof document.fonts.ready.then===&#x27;function&#x27;){document.fonts.ready.then(sync);}
+})();
+&lt;/script&gt;
+</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/shop-by-player-trending-players/fastr-paste.html" download="shop-by-player-trending-players--fastr-paste.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="to-write">
+<div class="nm-section__head"><h2 class="nm-h2">Still to write<button type="button" class="nm-anchor" aria-label="Copy a link to Still to write"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>These parts of the page are not written yet.</strong><p>When to use it, What you change, Images, Accessibility.</p></div>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>
