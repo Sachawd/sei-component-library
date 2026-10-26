@@ -59,6 +59,41 @@
   .hh-tasklink:hover { color: var(--nm-purple-text); text-decoration-color: currentColor; }
   .hh-panel .nm-table-wrap, .hh-details__body .nm-table-wrap { margin: 0 -8px; }
   .hh-table-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hh-cu { display: flex; flex-wrap: nowrap; gap: 6px; justify-content: flex-end; }
+  .hh-cu .hh-btn--sm { white-space: nowrap; }
+  .hh-cu__yes { background: rgba(255, 107, 196, 0.4); border-color: transparent; color: #6A3215; }
+  .hh-cu__yes:hover { background: rgba(255, 107, 196, 0.55); border-color: transparent; color: #6A3215; }
+  .hh-cu-row td { padding-top: 0; }
+  .hh-cu-box { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .hh-cu-box .hh-input { flex: 1 1 280px; width: auto; }
+  .hh-ask[hidden] { display: none; }
+  .hh-ask__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .hh-ask__head h2 { margin: 0; color: var(--nm-ink); font: 400 32px/38px var(--nm-serif); }
+  .hh-ask__nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .hh-ask__count { color: var(--nm-muted); font: 400 14px/20px var(--nm-sans); }
+  .hh-ask__card { display: flex; flex-direction: column; gap: 20px; padding: 32px; border-radius: var(--nm-radius-lg); background: var(--nm-white); }
+  .hh-ask__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .hh-ask__date { margin-left: auto; color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
+  .hh-ask__title { margin: 0; color: var(--nm-ink); font: 400 26px/32px var(--nm-serif); }
+  .hh-ask__block { display: flex; flex-direction: column; gap: 8px; }
+  .hh-ask__block p { max-width: 760px; margin: 0; color: var(--nm-text); font: 400 16px/24px var(--nm-sans); }
+  .hh-ask__question { max-width: 760px; margin: 0; padding: 16px 20px; border-left: 3px solid var(--nm-purple); border-radius: 0 var(--nm-radius-sm) var(--nm-radius-sm) 0; background: #F6F2FF; color: var(--nm-title); font: 500 18px/26px var(--nm-sans); }
+  .hh-ask__links, .hh-ask__options, .hh-ask__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .hh-ask__option { min-height: 40px; padding: 8px 18px; border: 1px solid rgba(129, 77, 250, 0.35); border-radius: var(--nm-radius-pill); background: var(--nm-white); color: var(--nm-purple-text); font: 400 15px/20px var(--nm-sans); cursor: pointer; }
+  .hh-ask__option:hover { background: rgba(129, 77, 250, 0.06); }
+  .hh-ask__option[aria-pressed="true"] { border-color: transparent; background: rgba(129, 77, 250, 0.2); color: #402287; font-weight: 500; }
+  .hh-ask__option:focus-visible { outline: 2px solid var(--nm-purple-text); outline-offset: 2px; }
+  .hh-ask__route { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .hh-ask__route[hidden] { display: none; }
+  .hh-ask__route select { width: auto; min-width: 180px; }
+  .hh-ask__list { margin-top: 16px; }
+  .hh-ask__list ol { margin: 0; padding-left: 22px; }
+  .hh-ask__list li { padding: 8px 0; border-bottom: 1px solid #EBEBEB; font: 400 15px/21px var(--nm-sans); }
+  .hh-ask__list li:last-child { border-bottom: 0; }
+  .hh-ask__list button { padding: 0; border: 0; background: none; color: var(--nm-title); font: inherit; text-align: left; text-decoration: underline; text-decoration-color: #CFC2FD; text-underline-offset: 3px; cursor: pointer; }
+  .hh-ask__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; color: var(--nm-muted); font: 400 14px/20px var(--nm-sans); }
+  .hh-ask__empty { padding: 32px; border-radius: var(--nm-radius-lg); background: var(--nm-white); }
+  .hh-ask__empty p { max-width: 640px; margin: 0 0 16px; color: var(--nm-text); font: 400 16px/24px var(--nm-sans); }
   .hh-table-links .hh-link { font-size: 13px; }
   .hh-updates { margin-top: var(--nm-space-6); padding: 24px; border-top: 4px solid var(--nm-purple); border-radius: var(--nm-radius-md); background: var(--nm-white); box-shadow: var(--nm-shadow-raised); }
   .hh-updates[hidden] { display: none; }
@@ -73,6 +108,7 @@
   .hh-msg__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
   .hh-new { padding: 3px 8px; border-radius: var(--nm-radius-pill); background: var(--nm-purple-text); color: var(--nm-white); font: 700 10px/1.2 var(--nm-sans); letter-spacing: 0.6px; text-transform: uppercase; }
   .hh-read { color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
+  .hh-msg__via { max-width: 760px; margin: 0; color: var(--nm-muted); font: 400 14px/20px var(--nm-sans); }
 
   .hh-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
   .hh-stat { display: flex; flex-direction: column; gap: 12px; }
@@ -237,7 +273,8 @@
     .hh-stat__card { min-height: 112px; padding: 16px; }
     .hh-stat__num { font-size: 44px; }
     .hh-stat__cap { font-size: 15px; line-height: 21px; }
-    .hh-panel, .hh-updates, .hh-note-card { padding: 20px 16px; }
+    .hh-panel, .hh-updates, .hh-note-card, .hh-ask__card, .hh-ask__empty { padding: 20px 16px; }
+    .hh-ask__date { margin-left: 0; width: 100%; }
     .hh-cal__day { min-height: 48px; padding: 4px; }
     .hh-cal__head { padding: 2px; font-size: 10px; letter-spacing: 0.4px; }
     .hh-ev { display: block; width: 8px; height: 8px; padding: 0; border-radius: 50%; font-size: 0; }
@@ -304,6 +341,10 @@
 
 <div class="hh-view" id="view-my-day" data-view="my-day" hidden>
   <div class="hh-chips" id="hhMyChips"></div>
+  <section class="hh-ask hh-sec" id="sec-ask" aria-labelledby="askTitle" hidden>
+    <div class="hh-ask__head"><h2 id="askTitle">Waiting on you</h2><div class="hh-ask__nav" id="hhAskNav"></div></div>
+    <div id="hhAskBody"></div>
+  </section>
   <div class="hh-note-card hh-sec" id="sec-note"><span class="hh-eyebrow" id="hhUpdateTime"></span><ul class="nm-list" id="hhUpdateList"></ul></div>
   <section class="hh-sec" id="sec-tasks" aria-labelledby="boardTitle">
   <div class="hh-boardbar">
@@ -845,42 +886,42 @@
   ];
 
   var MESSAGES = [
-    { id: "msg-tyler-948am-ready-to-ship", from: "Tyler", time: "Mon 26 Oct, 9:48am", col: "Holiday & Promotions", to: WSS,
+    { id: "msg-tyler-948am-ready-to-ship", src: "clickup", via: "Tyler's comment on the WorldSoccerShop Holiday task in ClickUp, copied in by Components.", project: "WorldSoccerShop Holiday", from: "Tyler", time: "Mon 26 Oct, 9:48am", col: "Holiday & Promotions", to: WSS,
       text: "Holiday premade plan added to the WorldSoccerShop Holiday task: 86 ready-to-ship player jerseys in stock across 9 teams, 3,609 units. They sell on the Ready-to-Ship page.",
       previewUrl: WSS_READY_TO_SHIP, clickupUrl: WSS_HOLIDAY_TASK },
-    { id: "msg-eod-630pm-superside", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "Holiday & Promotions", to: SDC,
+    { id: "msg-eod-630pm-superside", src: "agent", via: "Argon wrote this in your name from your end-of-day notes on Thu 22 Oct.", project: "Superside", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "Holiday & Promotions", to: SDC,
       text: "The Soccer.com Holiday Superside hub is live on Netlify: creative direction, 67 products, 31 sizes in static, GIF and video, and 235 photo selects. It's gone to Colby and Brian.",
       previewUrl: SUPERSIDE_HUB, figmaUrl: FIGMA_HOLIDAY_MASTER },
-    { id: "msg-eod-630pm-tunnel-box", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "Holiday & Promotions", to: SDC,
+    { id: "msg-eod-630pm-tunnel-box", src: "agent", via: "Argon wrote this in your name from your end-of-day notes on Thu 22 Oct.", project: "Holiday Photography", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "Holiday & Promotions", to: SDC,
       text: "Danny's 235 holiday photos and 15 OrbitView spins are compressed, renamed by shot, matched to 56 products, and in Box and the Tunnel.",
       previewUrl: PHOTO_SELECTS, clickupUrl: PHOTO_BOX },
-    { id: "msg-eod-630pm-tampa-popups", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "431 & Catalogs", to: ["rickey", "jordan", "sacha", "darren", "brock", "casey", "courtney"],
+    { id: "msg-eod-630pm-tampa-popups", src: "agent", via: "Argon wrote this in your name from your end-of-day notes on Thu 22 Oct.", project: "Tampa and Team Pop-Up Stores", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "431 & Catalogs", to: ["rickey", "jordan", "sacha", "darren", "brock", "casey", "courtney"],
       text: "Tampa Bay Super Cup passed all 9 checks and is ready to go live. The 3 pilot pop-up stores (Beach FC, HTX, Phoenix Rising) and 3 Zeta email templates are ready for QA.",
       previewUrl: "https://ncfc-holiday-demo.netlify.app/pilots/", clickupUrl: "https://app.clickup.com/t/868mjpbrg" },
-    { id: "msg-sacha-236pm", from: "Sacha", time: "Thu 22 Oct, 2:36pm", col: "Holiday & Promotions", to: ["rickey", "whitney", "casey", "jordan", "brock"],
+    { id: "msg-sacha-236pm", src: "unknown", via: "Copied in by Argon. Where it came from wasn't recorded.", project: "Holiday 2026", from: "Sacha", time: "Thu 22 Oct, 2:36pm", col: "Holiday & Promotions", to: ["rickey", "whitney", "casey", "jordan", "brock"],
       text: "I'm on the Tampa Bay Super Cup launch, the 47-club pop-ups and emails, and the Chivas email for Brock and Eric right now, so I haven't opened the Holiday design system file yet.",
       figmaUrl: FIGMA_HOLIDAY_MASTER },
-    { id: "msg-sf-live-team-view", from: "Sacha Fierce (ClickUp AI)", time: "Thu 22 Oct, 12:30pm", col: "Holiday & Promotions",
+    { id: "msg-sf-live-team-view", src: "clickup", via: "Your ClickUp assistant's note, copied in by Argon.", project: "Design Team in ClickUp", from: "Sacha Fierce (ClickUp AI)", time: "Thu 22 Oct, 12:30pm", col: "Holiday & Promotions",
       to: ["sacha", "rickey", "jordan", "whitney", "casey", "matty", "michael", "darren", "danny", "tyler", "alex", "holly", "brock"],
       text: "Danny and Tyler are now in the Design Team Current Work view in ClickUp, with all 9 designers, Jordan, Darren and Brock. It's grouped by person and shows open work only.",
       clickupUrl: CLICKUP_TEAM_VIEW },
-    { id: "msg-sf-context-doc", from: "Sacha Fierce (ClickUp AI)", time: "Thu 22 Oct, 12:08pm", col: "431 & Catalogs",
+    { id: "msg-sf-context-doc", src: "clickup", via: "Your ClickUp assistant's note, copied in by Argon.", project: "Design Team in ClickUp", from: "Sacha Fierce (ClickUp AI)", time: "Thu 22 Oct, 12:08pm", col: "431 & Catalogs",
       to: ["sacha", "rickey", "jordan", "whitney", "casey", "matty", "michael", "alex", "holly"],
       text: "The shared Designer Context Doc is in ClickUp and covers all 9 designers. It found 22 open tasks for Rickey.",
       clickupUrl: CLICKUP_CONTEXT_DOC },
-    { id: "msg-rickey-templates", from: "Rickey", time: "Thu 22 Oct, 11:15am", col: "Holiday & Promotions", to: ["sacha", "jordan", "whitney", "casey"],
+    { id: "msg-rickey-templates", src: "call", via: "From your call with Rickey on Thu 22 Oct, written up by Argon.", project: "Holiday Master File", from: "Rickey", time: "Thu 22 Oct, 11:15am", col: "Holiday & Promotions", to: ["sacha", "jordan", "whitney", "casey"],
       text: "I've set up Swap Variables for each campaign page on Whitney's Holiday Master file, so nobody has to detach components. Jordan, Casey and Whitney asked for a Doorbuster Deals module too.",
       figmaUrl: FIGMA_HOLIDAY_MASTER },
-    { id: "msg-rickey-431", from: "Rickey", time: "Thu 22 Oct, 11:20am", col: "431 & Catalogs", to: ["sacha", "darren", "jordan"],
+    { id: "msg-rickey-431", src: "call", via: "From your call with Rickey on Thu 22 Oct, written up by Argon.", project: "431 Lookbook", from: "Rickey", time: "Thu 22 Oct, 11:20am", col: "431 & Catalogs", to: ["sacha", "darren", "jordan"],
       text: "The printed 431 Lookbook came in yesterday, due next Friday, 30 Oct. I'd love help with the layout prep.",
       clickupUrl: "https://app.clickup.com/t/868mce1ah" },
-    { id: "msg-sacha-to-rickey-1", from: "Sacha", time: "Thu 22 Oct, 11:35am", col: "Holiday & Promotions", to: ["rickey", "whitney", "casey"],
+    { id: "msg-sacha-to-rickey-1", src: "call", via: "From your call with Rickey on Thu 22 Oct, written up by Argon.", project: "Holiday Master File", from: "Sacha", time: "Thu 22 Oct, 11:35am", col: "Holiday & Promotions", to: ["rickey", "whitney", "casey"],
       text: "Finishing Courtney's QA handoff first. After 2pm I'll join you to adapt the 600px One Mother email pattern for site, email and motion.",
       figmaUrl: FIGMA_HOLIDAY_MASTER },
-    { id: "msg-sacha-to-rickey-2", from: "Sacha's agent", time: "Fri 23 Oct, 7:10am", col: "431 & Catalogs", to: ["rickey", "darren"],
+    { id: "msg-sacha-to-rickey-2", src: "agent", via: "Written by one of your agents. Which one wasn't recorded.", project: "431 Lookbook", from: "Sacha's agent", time: "Fri 23 Oct, 7:10am", col: "431 & Catalogs", to: ["rickey", "darren"],
       text: "All 16 Lookbook pages and the master components are built beside your catalog in the 431 Master File, with 27 products from the feed. Ready for you to test.",
       figmaUrl: FIGMA_431_LOOKBOOK, clickupUrl: "https://app.clickup.com/t/868mkp550" },
-    { id: "msg-bot-qa", from: "Argon", time: "Thu 22 Oct, 11:45am", col: "Club Emails & Events", to: ["sacha", "courtney", "jordan"],
+    { id: "msg-bot-qa", src: "agent", via: "Argon's note to the team.", project: "Team Pop-Up Stores", from: "Argon", time: "Thu 22 Oct, 11:45am", col: "Club Emails & Events", to: ["sacha", "courtney", "jordan"],
       text: "The first 3 pilot pop-up stores (Beach FC, HTX, Phoenix Rising) are ready for the Mon 26 Oct QA check.",
       previewUrl: PREVIEW_POPUP_HUB }
   ];
@@ -1006,6 +1047,112 @@
     return '<a class="hh-tasklink" href="' + esc(url) + '" target="_blank" rel="noopener" data-new-window="1">' + esc(t.text) + '<span class="hh-visually-hidden"> (opens in a new window)</span></a>';
   }
 
+  var CU_QUEUE = "hh-clickup-queue-v1";
+  var cu = { confirm: null, commentFor: null, sending: false };
+
+  function cuId(t) {
+    var m = t.clickupUrl && t.clickupUrl.match(/app\.clickup\.com\/t\/(?:\d+\/)?([a-z0-9]+)\/?$/i);
+    return m ? m[1] : "";
+  }
+
+  function cuQueue() {
+    try { return JSON.parse(localStorage.getItem(CU_QUEUE) || "[]"); } catch (e) { return []; }
+  }
+
+  function cuSaveQueue(q) {
+    try { localStorage.setItem(CU_QUEUE, JSON.stringify(q)); } catch (e) {}
+  }
+
+  function cuWaiting(taskId) {
+    return cuQueue().some(function (q) { return q.task_id === taskId; });
+  }
+
+  function cuCell(t) {
+    if (state.person !== "sacha") return "";
+    var id = cuId(t);
+    if (!id) return '<td></td>';
+    if (cuWaiting(id)) return '<td><span class="hh-cu">' + chip("orange", "Waiting for your Mac") + '</span></td>';
+    var done = cu.confirm === t.id
+      ? '<button type="button" class="hh-btn hh-btn--sm hh-cu__yes" data-cu-done="' + t.id + '">Yes, mark done</button>'
+      : '<button type="button" class="hh-btn hh-btn--sm" data-cu-ask="' + t.id + '">Mark done</button>';
+    return '<td><span class="hh-cu">' + done + '<button type="button" class="hh-btn hh-btn--sm" data-cu-comment="' + t.id + '" aria-expanded="' + (cu.commentFor === t.id) + '">Comment</button></span></td>';
+  }
+
+  function cuHead() {
+    return state.person === "sacha" ? '<th scope="col"><span class="hh-visually-hidden">ClickUp</span></th>' : "";
+  }
+
+  function cuCommentRow(t, cols) {
+    if (state.person !== "sacha" || cu.commentFor !== t.id) return "";
+    return '<tr class="hh-cu-row"><td colspan="' + cols + '"><div class="hh-cu-box"><input type="text" class="hh-input" data-cu-note="' + t.id + '" aria-label="Comment on ' + esc(t.text) + '" placeholder="Type or dictate your comment for ClickUp">' +
+      '<button type="button" class="hh-btn hh-btn--solid hh-btn--sm" data-cu-send="' + t.id + '">Save comment</button>' +
+      '<button type="button" class="hh-btn hh-btn--sm" data-cu-cancel>Cancel</button></div></td></tr>';
+  }
+
+  function cuPost(item) {
+    return fetch("http://127.0.0.1:8765/api/clickup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) })
+      .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); });
+  }
+
+  function cuSend(item, word) {
+    cuPost(item).then(function (res) {
+      if (res && res.ok) toast(word + " in ClickUp");
+      else { toast("ClickUp said no" + (res && res.error ? ": " + res.error : "") + ". Nothing changed"); if (item.action === "done") { delete state.doneMap[item.hub_id]; saveState(); } render(); }
+    }).catch(function () {
+      var q = cuQueue(); q.push(item); cuSaveQueue(q);
+      toast("Saved. It goes to ClickUp when your Mac is on");
+      render();
+    });
+  }
+
+  function cuFlush() {
+    var q = cuQueue();
+    if (!q.length || cu.sending || state.person !== "sacha") return;
+    cu.sending = true;
+    var left = [];
+    var next = function (i) {
+      if (i >= q.length) { cuSaveQueue(left); cu.sending = false; if (left.length < q.length) { toast((q.length - left.length) + " waiting ClickUp change" + (q.length - left.length === 1 ? "" : "s") + " sent"); render(); } return; }
+      cuPost(q[i]).then(function (res) { if (!(res && res.ok)) left.push(q[i]); next(i + 1); })
+        .catch(function () { left = left.concat(q.slice(i)); cuSaveQueue(left); cu.sending = false; });
+    };
+    next(0);
+  }
+
+  function cuClick(e) {
+    var ask = e.target.closest("[data-cu-ask]");
+    if (ask) { cu.confirm = ask.getAttribute("data-cu-ask"); render(); clearTimeout(cuClick.timer); cuClick.timer = setTimeout(function () { cu.confirm = null; render(); }, 5000); return true; }
+    var dn = e.target.closest("[data-cu-done]");
+    if (dn) {
+      var t = TASKS.find(function (x) { return x.id === dn.getAttribute("data-cu-done"); });
+      cu.confirm = null;
+      state.doneMap[t.id] = true; saveState();
+      cuSend({ action: "done", task_id: cuId(t), hub_id: t.id, task: t.text, text: "", sent_at: new Date().toISOString() }, "Marked done");
+      render();
+      return true;
+    }
+    var cm = e.target.closest("[data-cu-comment]");
+    if (cm) {
+      var id = cm.getAttribute("data-cu-comment");
+      cu.commentFor = cu.commentFor === id ? null : id;
+      render();
+      var box = Array.prototype.find.call(document.querySelectorAll('[data-cu-note="' + id + '"]'), function (el) { return el.offsetParent; });
+      if (box) box.focus();
+      return true;
+    }
+    if (e.target.closest("[data-cu-cancel]")) { cu.commentFor = null; render(); return true; }
+    var sd = e.target.closest("[data-cu-send]");
+    if (sd) {
+      var task = TASKS.find(function (x) { return x.id === sd.getAttribute("data-cu-send"); });
+      var note = sd.closest(".hh-cu-box").querySelector("input").value || "";
+      if (!note.trim()) { toast("Type a comment first"); return true; }
+      cu.commentFor = null;
+      cuSend({ action: "comment", task_id: cuId(task), hub_id: task.id, task: task.text, text: note.trim(), sent_at: new Date().toISOString() }, "Comment saved");
+      render();
+      return true;
+    }
+    return false;
+  }
+
   function namesOf(t) {
     return t.people.filter(function (k) { return k !== "sacha" && PEOPLE[k]; }).map(function (k) { return PEOPLE[k].name; }).join(", ");
   }
@@ -1122,9 +1269,9 @@
     $("hhRiskChips").innerHTML = (count.late ? chip("pink", count.late + " late") : "") + (count.soon ? chip("orange", count.soon + " due soon") : "") +
       (count.wait ? chip("purple", count.wait + " waiting") : "") + (list.length ? "" : chip("green", "Nothing at risk"));
     if (!list.length) { $("hhRisk").innerHTML = '<p class="hh-empty">Every open task has time.</p>'; return; }
-    $("hhRisk").innerHTML = '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">When</th><th scope="col">Task</th><th scope="col">Who</th></tr></thead><tbody>' +
+    $("hhRisk").innerHTML = '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">When</th><th scope="col">Task</th><th scope="col">Who</th>' + cuHead() + '</tr></thead><tbody>' +
       list.map(function (x) {
-        return '<tr><td>' + riskChip(x.r) + '</td><td>' + taskTitle(x.t) + '</td><td>' + esc(namesOf(x.t)) + '</td></tr>';
+        return '<tr><td>' + riskChip(x.r) + '</td><td>' + taskTitle(x.t) + '</td><td>' + esc(namesOf(x.t)) + '</td>' + cuCell(x.t) + '</tr>' + cuCommentRow(x.t, state.person === "sacha" ? 4 : 3);
       }).join("") + '</tbody></table></div>';
   }
 
@@ -1284,10 +1431,17 @@
       if (m.clickupUrl) links += linkTag(m.clickupUrl, m.clickupUrl.indexOf("box.com") !== -1 ? "Box" : "ClickUp");
       return '<li class="hh-msg' + (isNew ? " is-new" : "") + '">' +
         '<div class="hh-msg__meta">' + (isNew ? '<span class="hh-new">New</span>' : "") +
-        '<span><b>' + esc(m.from) + '</b>, ' + esc(m.time) + '</span><span class="hh-tag hh-tag--sm ' + (COL_CLASS[m.col] || "chip-shoot") + '">' + esc(m.col || "Update") + '</span></div>' +
+        '<span><b>' + esc(m.from) + '</b>, ' + esc(m.time) + '</span>' + chip("purple", m.project || m.col || "Holiday 2026") + srcChip(m.src || (String(m.id).indexOf("msg-custom") === 0 ? "hub" : "unknown")) + '</div>' +
         '<p class="hh-msg__text">' + esc(m.text) + '</p>' +
+        (m.via ? '<p class="hh-msg__via">' + esc(m.via) + '</p>' : "") +
         '<div class="hh-msg__actions">' + links + (isNew ? '<button type="button" class="hh-btn hh-btn--sm" data-read="' + esc(m.id) + '">Mark read</button>' : '<span class="hh-read">Read</span>') + '</div></li>';
     }).join("") : '<li class="hh-empty">No updates yet for ' + esc(p.name) + '.</li>';
+  }
+
+  var SRC = { clickup: ["blue", "From ClickUp"], call: ["green", "From a call"], agent: ["grey", "Written by an agent"], unknown: ["yellow", "Source not recorded"], hub: ["purple", "Posted on the Hub"] };
+  function srcChip(s) {
+    var v = SRC[s] || SRC.unknown;
+    return chip(v[0], v[1]);
   }
 
   function renderLinks() {
@@ -1378,7 +1532,14 @@
     return s && w ? "both" : (w ? "wss" : "sdc");
   }
 
+  function openTeamRows() {
+    var open = {};
+    document.querySelectorAll("#hhTeam details[open]").forEach(function (d) { open[d.id] = 1; });
+    return open;
+  }
+
   function renderTeam() {
+    var wasOpen = openTeamRows();
     var scope = viewerScope();
     var members = Object.keys(PEOPLE).filter(function (k) {
       if (k === "sacha") return false;
@@ -1405,21 +1566,180 @@
         var week = tasks.filter(function (t) { var d = t.due || t.launch; if (!d) return false; var n = daysFromToday(d); return n >= 0 && n <= 6; }).length;
         nums = chip("grey", tasks.length + (tasks.length === 1 ? " open task" : " open tasks")) + (late ? chip("pink", late + " late") : "") +
           (soon ? chip("orange", soon + " due soon") : "") + (week ? chip("yellow", week + " this week") : "");
-        body = tasks.length ? '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">Task</th><th scope="col">Project</th><th scope="col">When</th><th scope="col">Also</th></tr></thead><tbody>' +
+        body = tasks.length ? '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">Task</th><th scope="col">Project</th><th scope="col">When</th><th scope="col">Also</th>' + cuHead() + '</tr></thead><tbody>' +
           tasks.map(function (t) {
             var r = riskOf(t), also = "";
             if (t.figmaUrl) also += linkTag(t.figmaUrl, "Figma");
             if (t.previewUrl && t.clickupUrl) also += linkTag(t.previewUrl, "Preview");
             return '<tr><td>' + taskTitle(t) + '</td><td><span class="hh-tag hh-tag--sm ' + (COL_CLASS[t.col] || "chip-shoot") + '">' + esc(t.col) + '</span></td>' +
               '<td>' + (r && r.level !== "wait" ? riskChip(r) : '<span class="hh-team__when">' + esc(dueWord(t)) + '</span>') + '</td>' +
-              '<td><span class="hh-table-links">' + also + '</span></td></tr>';
+              '<td><span class="hh-table-links">' + also + '</span></td>' + cuCell(t) + '</tr>' + cuCommentRow(t, state.person === "sacha" ? 5 : 4);
           }).join("") + '</tbody></table></div>' : '<p class="hh-empty">No open tasks here.</p>';
       }
       if (h !== "both" || scope === "both") body += '<span class="hh-eyebrow">Latest note, ' + esc(p.updateTime) + '</span><ul class="nm-list">' + p.update.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + '</ul>';
       body += '<div class="hh-team__foot"><a class="hh-btn hh-btn--sm" href="?for=' + k + '#my-day">Open ' + esc(p.name) + "'s day</a>" +
         '<button type="button" class="hh-btn hh-btn--sm" data-copy-link="' + k + '">Copy ' + esc(p.name) + "'s link</button></div>";
-      return '<details class="hh-details hh-sec" id="person-' + k + '"><summary><span class="hh-team__name">' + esc(p.name) + '</span><span class="hh-team__nums">' + storeChip[h] + nums + '</span>' + CHEV_SVG + '</summary><div class="hh-details__body">' + body + '</div></details>';
+      return '<details class="hh-details hh-sec" id="person-' + k + '"' + (wasOpen["person-" + k] ? " open" : "") + '><summary><span class="hh-team__name">' + esc(p.name) + '</span><span class="hh-team__nums">' + storeChip[h] + nums + '</span>' + CHEV_SVG + '</summary><div class="hh-details__body">' + body + '</div></details>';
     }).join("");
+  }
+
+  var ASK_KEY = "hh-ask-sacha-answers-v1";
+  var ASK_MAC = "hh-ask-sacha-mac";
+  var ASK_HELPER = "http://127.0.0.1:8765/";
+  var ROUTE_TO = ["Jordan", "Tyler", "Colby", "Courtney", "Neil", "Brock", "Fable", "Argon", "Campaigns", "Components"];
+  var ask = { index: 0, picked: null, base: "", loading: false, failed: false, listOpen: false };
+
+  function askAnswers() {
+    try { return JSON.parse(localStorage.getItem(ASK_KEY) || "[]"); } catch (e) { return []; }
+  }
+
+  function askSaveLocal(item) {
+    var all = askAnswers().filter(function (a) { return a.id !== item.id; });
+    all.push(item);
+    try { localStorage.setItem(ASK_KEY, JSON.stringify(all)); } catch (e) {}
+  }
+
+  function askDeck() {
+    if (!window.ASK_SACHA) return [];
+    var done = {};
+    askAnswers().forEach(function (a) { done[a.id] = 1; });
+    return window.ASK_SACHA.cards.filter(function (c) { return !done[c.id]; });
+  }
+
+  function askLoad(src, base, onFail) {
+    ask.loading = true;
+    var s = document.createElement("script");
+    s.src = src + "?v=" + Date.now();
+    s.onload = function () {
+      ask.loading = false;
+      if (window.ASK_SACHA) {
+        ask.base = base;
+        if (base === ASK_HELPER) { try { localStorage.setItem(ASK_MAC, "1"); } catch (e) {} }
+        renderAsk();
+      } else if (onFail) onFail();
+    };
+    s.onerror = function () { ask.loading = false; s.remove(); if (onFail) onFail(); };
+    document.head.appendChild(s);
+  }
+
+  function askStart() {
+    if (state.person !== "sacha" || window.ASK_SACHA || ask.loading) return;
+    var fromHelper = function () { askLoad(ASK_HELPER + "ask-sacha-cards.js", ASK_HELPER, function () { ask.failed = true; renderAsk(); }); };
+    var remembered = false;
+    try { remembered = localStorage.getItem(ASK_MAC) === "1"; } catch (e) {}
+    if (location.protocol === "file:") askLoad("../../_HANDOFFS/ask-sacha-cards.js", "../../_HANDOFFS/", fromHelper);
+    else if (remembered) fromHelper();
+  }
+
+  function askDateWord(iso) {
+    return "Asked " + shortDate(iso);
+  }
+
+  function renderAsk() {
+    var box = $("sec-ask");
+    box.hidden = state.person !== "sacha";
+    if (box.hidden) return;
+    var body = $("hhAskBody"), nav = $("hhAskNav");
+    if (!window.ASK_SACHA) {
+      nav.innerHTML = "";
+      body.innerHTML = '<div class="hh-ask__empty"><p>Your questions are private, so they stay on your Mac and never go into this public page.</p>' +
+        (ask.failed ? '<p>Your Mac didn\'t answer. Ask Argon to start Ask Sacha, then press the button again.</p>' : '<p>Press the button to bring them in from your Mac.</p>') +
+        '<button type="button" class="hh-btn hh-btn--solid" data-ask-load>Load my questions</button></div>';
+      return;
+    }
+    var deck = askDeck();
+    if (ask.index >= deck.length) ask.index = Math.max(0, deck.length - 1);
+    var saved = askAnswers().length;
+    if (!deck.length) {
+      nav.innerHTML = "";
+      body.innerHTML = '<div class="hh-ask__empty"><p>Nothing is waiting on you. Every question is answered.</p></div>' + askFoot(saved);
+      return;
+    }
+    var c = deck[ask.index];
+    nav.innerHTML = '<span class="hh-ask__count">' + (ask.index + 1) + ' of ' + deck.length + '</span>' +
+      '<button type="button" class="hh-iconbtn" data-ask-step="-1" aria-label="Previous question"' + (ask.index === 0 ? " disabled" : "") + '><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5"/></svg></button>' +
+      '<button type="button" class="hh-iconbtn" data-ask-step="1" aria-label="Next question"' + (ask.index === deck.length - 1 ? " disabled" : "") + '><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5"/></svg></button>';
+    var links = (c.links || []).map(function (l) {
+      return '<a class="hh-btn hh-btn--sm" href="' + esc(l.url) + '" target="_blank" rel="noopener" data-new-window="1">' + (l.label === "Preview" ? "See the page" : "Open in " + esc(l.label)) + '<span class="hh-visually-hidden"> (opens in a new window)</span></a>';
+    }).join("");
+    if (ask.base && c.files && c.files.length) links += '<a class="hh-link" href="' + esc(ask.base + c.files[0]) + '" target="_blank" rel="noopener">Read the full note</a>';
+    var opts = (c.options || []).map(function (o) {
+      return '<button type="button" class="hh-ask__option" data-ask-pick="' + esc(o) + '" aria-pressed="' + (ask.picked === o) + '">' + esc(o) + '</button>';
+    }).join("");
+    body.innerHTML = '<article class="hh-ask__card">' +
+      '<div class="hh-ask__meta">' + chip("purple", c.project) + chip("grey", "From " + c.agent) + '<span class="hh-ask__date">' + esc(askDateWord(c.date)) + '</span></div>' +
+      '<h3 class="hh-ask__title">' + esc(c.title) + '</h3>' +
+      (c.context ? '<div class="hh-ask__block"><span class="hh-eyebrow">What happened</span><p>' + esc(c.context) + '</p></div>' : "") +
+      (links ? '<div class="hh-ask__links">' + links + '</div>' : "") +
+      '<div class="hh-ask__block"><span class="hh-eyebrow">The question for you</span><p class="hh-ask__question">' + esc(c.question) + '</p></div>' +
+      (opts ? '<div class="hh-ask__options" role="group" aria-label="Pick an answer">' + opts + '</div>' : "") +
+      '<div class="hh-ask__block"><label class="hh-eyebrow" for="hhAskNote">' + (opts ? "Add a note (optional)" : "Your answer") + '</label>' +
+      '<input type="text" class="hh-input" id="hhAskNote" placeholder="Type or dictate in plain words"></div>' +
+      '<div class="hh-ask__actions"><button type="button" class="hh-btn hh-btn--solid" data-ask-save>Save answer</button>' +
+      '<button type="button" class="hh-btn" data-ask-park>Not now</button><button type="button" class="hh-btn" data-ask-route-open aria-expanded="false" aria-controls="hhAskRoute">Not mine</button></div>' +
+      '<div class="hh-ask__route" id="hhAskRoute" hidden><label class="hh-visually-hidden" for="hhAskWho">Who owns this</label><select class="hh-input" id="hhAskWho">' +
+      ROUTE_TO.map(function (n) { return '<option>' + n + '</option>'; }).join("") + '</select><button type="button" class="hh-btn hh-btn--solid" data-ask-route>Send it to them</button></div>' +
+      '</article>' +
+      '<details class="hh-details hh-ask__list"' + (ask.listOpen ? " open" : "") + '><summary><span>See all ' + deck.length + ' questions</span>' + CHEV_SVG + '</summary><div class="hh-details__body"><ol>' +
+      deck.map(function (d, i) { return '<li><button type="button" data-ask-go="' + i + '">' + esc(d.title) + '</button> ' + chip("purple", d.project) + '</li>'; }).join("") +
+      '</ol></div></details>' + askFoot(saved);
+  }
+
+  function askFoot(saved) {
+    return '<div class="hh-ask__foot"><span>' + (saved ? saved + (saved === 1 ? " answer" : " answers") + " saved on this computer. " : "") + 'Updated ' + esc(window.ASK_SACHA ? window.ASK_SACHA.updated : "") + '.</span>' +
+      (saved ? '<span class="hh-ask__actions"><button type="button" class="hh-btn hh-btn--sm" data-ask-copy>Copy answers for Argon</button><button type="button" class="hh-btn hh-btn--sm" data-ask-download>Download answers</button></span>' : "") + '</div>';
+  }
+
+  function askSend(action, extra) {
+    var c = askDeck()[ask.index];
+    if (!c) return;
+    var item = { id: c.id, action: action, answer: "", routed_to: "", files: c.files, agent: c.agent, question: c.question, project: c.project, saved_at: new Date().toISOString() };
+    for (var k in extra) item[k] = extra[k];
+    askSaveLocal(item);
+    ask.picked = null;
+    var word = action === "park" ? "Parked until tomorrow" : action === "route" ? "Sent to " + item.routed_to : "Answer saved";
+    fetch(ASK_HELPER + "api/answer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) })
+      .then(function (r) { toast(word + (r.ok ? " and written to your Mac" : ". Copy or download it for Argon")); })
+      .catch(function () { toast(word + ". Copy or download it for Argon"); });
+    renderAsk();
+  }
+
+  function askClick(e) {
+    if (e.target.closest("[data-ask-load]")) { ask.failed = false; askLoad(ASK_HELPER + "ask-sacha-cards.js", ASK_HELPER, function () { ask.failed = true; renderAsk(); }); return true; }
+    var st = e.target.closest("[data-ask-step]");
+    if (st) { ask.index += +st.getAttribute("data-ask-step"); ask.picked = null; renderAsk(); return true; }
+    var go = e.target.closest("[data-ask-go]");
+    if (go) { ask.index = +go.getAttribute("data-ask-go"); ask.picked = null; ask.listOpen = false; renderAsk(); $("sec-ask").scrollIntoView({ behavior: "smooth", block: "start" }); return true; }
+    var pk = e.target.closest("[data-ask-pick]");
+    if (pk) {
+      ask.picked = ask.picked === pk.getAttribute("data-ask-pick") ? null : pk.getAttribute("data-ask-pick");
+      document.querySelectorAll("[data-ask-pick]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-ask-pick") === ask.picked)); });
+      return true;
+    }
+    if (e.target.closest("[data-ask-save]")) {
+      var note = $("hhAskNote").value.trim();
+      var answer = [ask.picked, note].filter(Boolean).join(". ");
+      if (!answer) { toast("Pick an answer or type one first"); $("hhAskNote").focus(); return true; }
+      askSend("answer", { answer: answer });
+      return true;
+    }
+    if (e.target.closest("[data-ask-park]")) { askSend("park", {}); return true; }
+    var ro = e.target.closest("[data-ask-route-open]");
+    if (ro) { var r = $("hhAskRoute"); r.hidden = !r.hidden; ro.setAttribute("aria-expanded", String(!r.hidden)); if (!r.hidden) $("hhAskWho").focus(); return true; }
+    if (e.target.closest("[data-ask-route]")) { askSend("route", { routed_to: $("hhAskWho").value }); return true; }
+    if (e.target.closest("[data-ask-copy]")) { copyText(JSON.stringify({ items: askAnswers() }, null, 2), "Copied your answers for Argon"); return true; }
+    if (e.target.closest("[data-ask-download]")) {
+      var blob = new Blob([JSON.stringify({ items: askAnswers() }, null, 2)], { type: "application/json" });
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "ask-sacha-answers.json";
+      document.body.appendChild(a); a.click(); a.remove();
+      toast("Saved to Downloads. Argon picks it up from there");
+      return true;
+    }
+    var sm = e.target.closest(".hh-ask__list > summary");
+    if (sm) { ask.listOpen = !sm.parentElement.open; }
+    return false;
   }
 
   function renderStore() {
@@ -1464,7 +1784,7 @@
 
   function renderDrawer() {
     var v = state.view;
-    var items = VIEWS[v].drawer || Object.keys(PEOPLE).filter(function (k) { return document.getElementById("person-" + k); })
+    var items = v === "my-day" && state.person === "sacha" ? [["sec-ask", "Waiting on you"]].concat(VIEWS[v].drawer) : VIEWS[v].drawer || Object.keys(PEOPLE).filter(function (k) { return document.getElementById("person-" + k); })
       .map(function (k) { return ["person-" + k, PEOPLE[k].name]; });
     $("hhDrawerTitle").textContent = VIEW_NAME[v];
     $("hhDrawerList").innerHTML = items.map(function (it) {
@@ -1496,6 +1816,8 @@
     renderCalendar();
     renderTeam();
     renderMyDay();
+    renderAsk();
+    askStart();
     renderBoard();
     renderUpdates();
     renderLinks();
@@ -1511,7 +1833,7 @@
   function postUpdate(task, note) {
     var name = me().name;
     state.customMsgs.unshift({
-      id: "msg-custom-" + Date.now(), from: name, time: "Just now", col: task ? task.col : "Update",
+      id: "msg-custom-" + Date.now(), src: "hub", via: "Posted on this Hub from this computer. Others don't see it here.", project: task ? task.col : "Holiday 2026", from: name, time: "Just now", col: task ? task.col : "Update",
       to: ["sacha", "jordan", "rickey"], text: (task ? task.text + ": " : "") + note,
       figmaUrl: task ? task.figmaUrl : "", clickupUrl: task ? task.clickupUrl : ""
     });
@@ -1539,6 +1861,7 @@
       openLinks(true);
       return;
     }
+    if (askClick(e) || cuClick(e)) return;
     var jp = e.target.closest("[data-jump]");
     if (jp) {
       e.preventDefault();
@@ -1623,6 +1946,7 @@
   window.addEventListener("hashchange", showView);
   render();
   showView();
+  cuFlush();
 })();
 </script>
 <script src="../nutmeg/nutmeg.js"></script>
