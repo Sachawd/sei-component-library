@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holiday Pop-Up Stores: where we are, 26 Oct</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f8f9fa;
+  --ink: #202124;
+  --muted: #5f6368;
+  --line: #dadce0;
+  --blue: #1967d2;
+  --blue-bg: #e8f0fe;
+  --green: #137333;
+  --green-bg: #e6f4ea;
+  --amber: #b06000;
+  --amber-bg: #fef7e0;
+  --red: #c5221f;
+  --red-bg: #fce8e6;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+}
+
+.topbar {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.breadcrumbs {
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbs strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meta-pill {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.doc-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 32px 88px;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 52px;
+  align-items: start;
+}
+
+.toc {
+  position: sticky;
+  top: 72px;
+  font-size: 13px;
+}
+
+.toc-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--line);
+}
+
+.toc a {
+  display: block;
+  padding: 6px 0 6px 14px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+}
+
+.toc a:hover {
+  color: var(--blue);
+  border-left-color: var(--blue);
+}
+
+main {
+  min-width: 0;
+}
+
+h1, h2, h3 {
+  color: var(--ink);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 29px;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+ul, ol {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+.lede {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.top-summary {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+
+.top-summary p {
+  margin: 0 0 10px;
+  font-size: 14.5px;
+}
+
+.top-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  margin-bottom: 20px;
+}
+
+.summary-cell {
+  padding: 16px 18px;
+  border-right: 1px solid var(--line);
+}
+
+.summary-cell:last-child {
+  border-right: none;
+}
+
+.summary-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+
+.summary-cell strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.summary-cell span {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.callout {
+  padding: 14px 18px;
+  border-left: 4px solid var(--blue);
+  background: var(--blue-bg);
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.callout.warn {
+  border-left-color: var(--amber);
+  background: var(--amber-bg);
+}
+
+.callout.caution {
+  border-left-color: var(--red);
+  background: var(--red-bg);
+}
+
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.badge.live {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.badge.review {
+  background: var(--blue-bg);
+  color: var(--blue);
+}
+
+.badge.pending {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.badge.unknown {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin: 12px 0 24px;
+}
+
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+td strong {
+  font-weight: 600;
+}
+
+footer {
+  margin-top: 56px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .doc-shell {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 18px 64px;
+  }
+  .toc {
+    position: static;
+  }
+  .summary-strip {
+    grid-template-columns: 1fr;
+  }
+  .summary-cell {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="breadcrumbs">
+    <span>Team Sales &amp; Creative Documentation</span>
+    <span>/</span>
+    <strong>Holiday Pop-Up Stores: where we are, 26 Oct</strong>
+  </div>
+  <div class="topbar-actions">
+    <span class="meta-pill">3 Pilot Stores · Airtable Links Table · Zeta Emails</span>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ul>
+      <li><a href="#pilot-stores">1. The Three Pilot Stores Today</a></li>
+      <li><a href="#links-table">2. The Airtable Links Table</a></li>
+      <li><a href="#emails">3. The Emails (Zeta)</a></li>
+      <li><a href="#next-steps">4. What Happens Next</a></li>
+      <li><a href="#questions">5. Open Questions for the Call</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Holiday Pop-Up Stores: where we are, 26 Oct</h1>
+    <p class="lede"><strong>Date:</strong> 26 Oct 2026 · <strong>For:</strong> Darren, Colby, Juliana, Gabby, Brock, and Sacha · <strong>Scope:</strong> Beach FC, HTX Soccer, and Phoenix Rising pilot stores, shared Airtable verification table, and Zeta test emails.</p>
+
+    <div class="summary-strip">
+      <div class="summary-cell">
+        <div class="summary-kicker">PILOT STORES TODAY</div>
+        <strong>HTX pasted · 2 pasting today</strong>
+        <span>63 plain product links + 2 club store links per page.</span>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-kicker">CRESTED LINKS</div>
+        <strong>Club store today · Exact link this week</strong>
+        <span>Needs per-club design code from the club fanwear feed.</span>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-kicker">AIRTABLE LINKS TABLE</div>
+        <strong>Ready today</strong>
+        <span>You verify and edit in Airtable. We rebuild the page from it, by hand this week, automatically after.</span>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-kicker">ZETA TEST EMAILS</div>
+        <strong>3 clubs built (22 Oct)</strong>
+        <span>17 KB HTML per club + lookup table ready for Brock's send test.</span>
+      </div>
+    </div>
+
+    <h2 id="pilot-stores">1. The three pilot stores today</h2>
+    <ul>
+      <li><strong>HTX Soccer</strong> has this morning's paste where products open their pages (<a href="https://www.soccer.com/htx-holiday-shop" target="_blank" rel="noopener"><code>soccer.com/htx-holiday-shop</code></a>).</li>
+      <li><strong>Beach FC</strong> (<a href="https://www.soccer.com/beach-fc-holiday-shop" target="_blank" rel="noopener"><code>soccer.com/beach-fc-holiday-shop</code></a>) and <strong>Phoenix Rising</strong> (<a href="https://www.soccer.com/phoenix-rising-holiday-shop" target="_blank" rel="noopener"><code>soccer.com/phoenix-rising-holiday-shop</code></a>) are being pasted today.</li>
+      <li><strong>Plain products (63 cards per store):</strong> open their exact Soccer.com product page today.</li>
+      <li><strong>Club-crested items (2 items per store):</strong> open the club fanwear store front today until the exact crested item links land this week.</li>
+    </ul>
+
+    <div class="callout warn">
+      <span class="callout-title">Why crested items open the club store today (one sentence)</span>
+      Each exact crested item link requires that club's per-club design template code from the live club fanwear feed in addition to the logo code on Gabby's contract sheet.
+    </div>
+
+    <h2 id="links-table">2. The Airtable links table</h2>
+
+    <div class="callout">
+      <span class="callout-title">How Airtable runs the stores (Hosted Images + Gabby's Product Links)</span>
+      <ul style="margin: 6px 0 0;">
+        <li><strong>Hosted images for fast page speed:</strong> All club lifestyle photos and crested garment renders are hosted on our fast image server so the store loads quickly and shows each club's crest cleanly.</li>
+        <li><strong>Actual product links from Gabby's contracts:</strong> Every product card on the page is wired to the exact article number (<code>Item #</code>), colour, and Soccer.com product URL from Gabby's contract spreadsheets.</li>
+        <li><strong>Airtable is the single source of truth:</strong> You verify and edit in Airtable. We rebuild the page from it, by hand this week, automatically after.</li>
+      </ul>
+    </div>
+
+    <h3>Direct links to Airtable (Team Sales Master Base)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30%;">Airtable Destination</th>
+          <th style="width: 36%;">What It Holds</th>
+          <th style="width: 34%;">Direct Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Team Sales Master Base</strong></td>
+          <td>Main Team Sales workspace holding Club Accounts, Pop-up Store Product, Holiday Render Shots, and the Holiday store links table.</td>
+          <td><a href="https://airtable.com/appFgilsxEHzeaxdx" target="_blank" rel="noopener"><code>airtable.com/appFgilsxEHzeaxdx</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Pop-up Store Product Table</strong></td>
+          <td>Per-club curated product picks linked to Darren's Club Accounts table (article number, slot, product link, running order, status).</td>
+          <td><a href="https://airtable.com/appFgilsxEHzeaxdx/tblNWQqlb5AMoyQoM" target="_blank" rel="noopener"><code>airtable.com/appFgilsxEHzeaxdx/tblNWQqlb5AMoyQoM</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Holiday Render Shots Table</strong></td>
+          <td>50 product category and colour render rows plus Darren's top 10 ranked items across club contracts.</td>
+          <td><a href="https://airtable.com/appFgilsxEHzeaxdx/tblQLT8L3vNZhpC43" target="_blank" rel="noopener"><code>airtable.com/appFgilsxEHzeaxdx/tblQLT8L3vNZhpC43</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Holiday Store Links Table</strong></td>
+          <td>One row per product per store (Beach FC, HTX Soccer, Phoenix Rising) with Team Sales verified checkbox and change-request column.</td>
+          <td><a href="https://airtable.com/appFgilsxEHzeaxdx" target="_blank" rel="noopener"><code>Open in Team Sales Master Base ↗</code></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <details style="margin: 16px 0 24px; border: 1px solid var(--line); background: var(--surface); border-radius: 4px; padding: 12px 16px;">
+      <summary style="cursor: pointer; font-weight: 600; color: var(--blue);">View all 48 contract products &amp; actual Soccer.com links from Gabby's sheets (Beach FC, HTX Soccer, Phoenix Rising)</summary>
+      <table style="margin-top: 14px; background: var(--bg);">
+        <thead>
+          <tr>
+            <th style="width: 15%;">Store</th>
+            <th style="width: 11%;">Item #</th>
+            <th style="width: 28%;">Contract Product &amp; Colour</th>
+            <th style="width: 14%;">Logo ID</th>
+            <th style="width: 32%;">Actual Soccer.com Product Link</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1109226</code></td>
+          <td>adidas Tiro 25 Competition Training Top (RED)</td>
+          <td><code>L1324755</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-tiro-25-competition-training-top_A1109226" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-tiro-25-competition-training-top_A1109226</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1109240</code></td>
+          <td>adidas Women&#x27;s Tiro 25 Competition Training Top (RED)</td>
+          <td><code>L1324755</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-tiro-25-competition-training-top_A1109240" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-tiro-25-competition-training-top_A1109240</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1120727</code></td>
+          <td>adidas Pregame T-Shirt (BLACK)</td>
+          <td><code>L0109824</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-pregame-t-shirt_A1120727" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-pregame-t-shirt_A1120727</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1120731</code></td>
+          <td>adidas Women&#x27;s Pregame T-Shirt (BLACK)</td>
+          <td><code>L0109824</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-pregame-t-shirt_A1120731" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-pregame-t-shirt_A1120731</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1120199</code></td>
+          <td>adidas Fleece Crew (BLACK)</td>
+          <td><code>L1348792</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fleece-crew_A1120199" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fleece-crew_A1120199</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1130339</code></td>
+          <td>adidas Fresh Long Sleeve T-Shirt 2.0 (WHITE)</td>
+          <td><code>L1382943</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fresh-long-sleeve-t-shirt-2-0_A1130339" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fresh-long-sleeve-t-shirt-2-0_A1130339</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1129090</code></td>
+          <td>adidas Women&#x27;s Fresh Long Sleeve T-Shirt 2.0 (WHITE)</td>
+          <td><code>L1382943</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-fresh-long-sleeve-t-shirt-2-0_A1129090" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-fresh-long-sleeve-t-shirt-2-0_A1129090</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1109206</code></td>
+          <td>adidas Tastigo 25 Short (RED)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-tastigo-25-short_A1109206" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-tastigo-25-short_A1109206</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1109212</code></td>
+          <td>adidas Women&#x27;s Tastigo 25 Short (RED)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-tastigo-25-short_A1109212" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-tastigo-25-short_A1109212</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1092314</code></td>
+          <td>adidas Copa Zone Cushion 5 OTC Socks (LIGHT GREY)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-copa-zone-cushion-5-otc-socks_A1092314" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-copa-zone-cushion-5-otc-socks_A1092314</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1110794</code></td>
+          <td>adidas Stadium 4 Backpack (LIGHT GREY)</td>
+          <td><code>L0204666</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-stadium-4-backpack_A1110794" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-stadium-4-backpack_A1110794</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1109174</code></td>
+          <td>adidas Squadra 25 Training Pant (BLACK/WHITE)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-squadra-25-training-pant_A1109174" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-squadra-25-training-pant_A1109174</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1109182</code></td>
+          <td>adidas Women&#x27;s Squadra 25 Training Pant (BLACK/WHITE)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-squadra-25-training-pant_A1109182" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-squadra-25-training-pant_A1109182</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1134350</code></td>
+          <td>adidas adiFlex Shin Guard (WHITE)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-adiflex-shin-guard-white_A1134350" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-adiflex-shin-guard-white_A1134350</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1119147</code></td>
+          <td>adidas FIFA World Cup 2026 Trionda League Soccer Ball (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fifa-world-cup-2026-trionda-league-soccer-ball-white-blue-red-green_A1119147" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fifa-world-cup-2026-trionda-league-soccer-ball-white-blue-red-green_A1119147</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1126454</code></td>
+          <td>Men&#x27;s Replica adidas Argentina Home Jersey 2026 (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/men-s-replica-adidas-argentina-home-jersey-2026_A1126454" target="_blank" rel="noopener"><code>soccer.com/shop/details/men-s-replica-adidas-argentina-home-jersey-2026_A1126454</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1133352</code></td>
+          <td>adidas F50 Hyperfast Pro FG Firm Ground Soccer Cleat (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-f50-hyperfast-pro-fg-firm-ground-soccer-cleat-pulse-mint-core-black-solar-lemon_A1133352" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-f50-hyperfast-pro-fg-firm-ground-soccer-cleat-pulse-mint-core-black-solar-lemon_A1133352</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1133371</code></td>
+          <td>adidas Predator Pro FT FG Firm Ground Soccer Cleat (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-predator-pro-ft-fg-firm-ground-soccer-cleat-core-black-silver-metallic-pulse-mint_A1133371" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-predator-pro-ft-fg-firm-ground-soccer-cleat-core-black-silver-metallic-pulse-mint_A1133371</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Beach FC</strong></td>
+          <td><code>A1133375</code></td>
+          <td>adidas Predator League FT IN Indoor Soccer Shoe (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-predator-league-ft-in-indoor-soccer-shoe-core-black-silver-metallic-pulse-mint_A1133375" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-predator-league-ft-in-indoor-soccer-shoe-core-black-silver-metallic-pulse-mint_A1133375</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1092314</code></td>
+          <td>adidas Copa Zone Cushion 5 OTC Socks (LIGHT GREY)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-copa-zone-cushion-5-otc-socks_A1092314" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-copa-zone-cushion-5-otc-socks_A1092314</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120199</code></td>
+          <td>adidas Fleece Crew (BLACK)</td>
+          <td><code>L1383632</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fleece-crew_A1120199" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fleece-crew_A1120199</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120251</code></td>
+          <td>adidas Fleece Hoodie (GREY)</td>
+          <td><code>L1383635</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fleece-hoodie_A1120251" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fleece-hoodie_A1120251</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120267</code></td>
+          <td>adidas Women&#x27;s Fleece Hoodie (GREY)</td>
+          <td><code>L1383635</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-fleece-hoodie_A1120267" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-fleece-hoodie_A1120267</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120727</code></td>
+          <td>adidas Pregame T-Shirt (WHITE)</td>
+          <td><code>L1382921</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-pregame-t-shirt_A1120727" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-pregame-t-shirt_A1120727</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120731</code></td>
+          <td>adidas Women&#x27;s Pregame T-Shirt (WHITE)</td>
+          <td><code>L1382921</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-pregame-t-shirt_A1120731" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-pregame-t-shirt_A1120731</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120265</code></td>
+          <td>adidas Fleece Pant (GREY)</td>
+          <td><code>L1349508</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fleece-pant_A1120265" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fleece-pant_A1120265</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1120269</code></td>
+          <td>adidas Women&#x27;s Fleece Pant (GREY)</td>
+          <td><code>L1349508</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-fleece-pant_A1120269" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-fleece-pant_A1120269</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1109192</code></td>
+          <td>adidas Squadra 25 Short (BLACK/WHITE)</td>
+          <td><code>L1349509</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-squadra-25-short_A1109192" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-squadra-25-short_A1109192</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1109200</code></td>
+          <td>adidas Women&#x27;s Squadra 25 Short (BLACK/WHITE)</td>
+          <td><code>L1349509</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-squadra-25-short_A1109200" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-squadra-25-short_A1109200</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1134349</code></td>
+          <td>adidas adiFlex Shin Guard (BLACK)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-adiflex-shin-guard-black_A1134349" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-adiflex-shin-guard-black_A1134349</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1119147</code></td>
+          <td>adidas FIFA World Cup 2026 Trionda League Soccer Ball (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fifa-world-cup-2026-trionda-league-soccer-ball-white-blue-red-green_A1119147" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fifa-world-cup-2026-trionda-league-soccer-ball-white-blue-red-green_A1119147</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1126454</code></td>
+          <td>Men&#x27;s Replica adidas Argentina Home Jersey 2026 (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/men-s-replica-adidas-argentina-home-jersey-2026_A1126454" target="_blank" rel="noopener"><code>soccer.com/shop/details/men-s-replica-adidas-argentina-home-jersey-2026_A1126454</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1133352</code></td>
+          <td>adidas F50 Hyperfast Pro FG Firm Ground Soccer Cleat (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-f50-hyperfast-pro-fg-firm-ground-soccer-cleat-pulse-mint-core-black-solar-lemon_A1133352" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-f50-hyperfast-pro-fg-firm-ground-soccer-cleat-pulse-mint-core-black-solar-lemon_A1133352</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1133371</code></td>
+          <td>adidas Predator Pro FT FG Firm Ground Soccer Cleat (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-predator-pro-ft-fg-firm-ground-soccer-cleat-core-black-silver-metallic-pulse-mint_A1133371" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-predator-pro-ft-fg-firm-ground-soccer-cleat-core-black-silver-metallic-pulse-mint_A1133371</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>HTX</strong></td>
+          <td><code>A1133375</code></td>
+          <td>adidas Predator League FT IN Indoor Soccer Shoe (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-predator-league-ft-in-indoor-soccer-shoe-core-black-silver-metallic-pulse-mint_A1133375" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-predator-league-ft-in-indoor-soccer-shoe-core-black-silver-metallic-pulse-mint_A1133375</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1107744</code></td>
+          <td>Adidas Crew Sock - 3 Pk (WHITE)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-crew-sock-3-pk_A1107744" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-crew-sock-3-pk_A1107744</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1134349</code></td>
+          <td>adidas adiFlex Shin Guard (BLACK)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-adiflex-shin-guard-black_A1134349" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-adiflex-shin-guard-black_A1134349</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1126343</code></td>
+          <td>adidas Women&#x27;s Tiro 26 Training Pant (BLACK/WHITE)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-tiro-26-training-pant_A1126343" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-tiro-26-training-pant_A1126343</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1126342</code></td>
+          <td>adidas Tiro 26 Training Pant (BLACK/WHITE)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-tiro-26-training-pant_A1126342" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-tiro-26-training-pant_A1126342</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1120155</code></td>
+          <td>adidas Game &amp; Go Full Zip Hoodie (GREY)</td>
+          <td><code>L1371127</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-game-&amp;-go-full-zip-hoodie_A1120155" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-game-&amp;-go-full-zip-hoodie_A1120155</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1120167</code></td>
+          <td>adidas Women&#x27;s Game &amp; Go Full Zip Hoodie (GREY)</td>
+          <td><code>L1371127</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-game-&amp;-go-full-zip-hoodie_A1120167" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-game-&amp;-go-full-zip-hoodie_A1120167</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1120731</code></td>
+          <td>adidas Women&#x27;s Pregame T-Shirt (WHITE)</td>
+          <td><code>L1386816</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-women-s-pregame-t-shirt_A1120731" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-women-s-pregame-t-shirt_A1120731</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1120727</code></td>
+          <td>adidas Pregame T-Shirt (WHITE)</td>
+          <td><code>L1386816</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-pregame-t-shirt_A1120727" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-pregame-t-shirt_A1120727</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1119147</code></td>
+          <td>adidas FIFA World Cup 2026 Trionda League Soccer Ball (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-fifa-world-cup-2026-trionda-league-soccer-ball-white-blue-red-green_A1119147" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-fifa-world-cup-2026-trionda-league-soccer-ball-white-blue-red-green_A1119147</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1126454</code></td>
+          <td>Men&#x27;s Replica adidas Argentina Home Jersey 2026 (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/men-s-replica-adidas-argentina-home-jersey-2026_A1126454" target="_blank" rel="noopener"><code>soccer.com/shop/details/men-s-replica-adidas-argentina-home-jersey-2026_A1126454</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1133352</code></td>
+          <td>adidas F50 Hyperfast Pro FG Firm Ground Soccer Cleat (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-f50-hyperfast-pro-fg-firm-ground-soccer-cleat-pulse-mint-core-black-solar-lemon_A1133352" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-f50-hyperfast-pro-fg-firm-ground-soccer-cleat-pulse-mint-core-black-solar-lemon_A1133352</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1133371</code></td>
+          <td>adidas Predator Pro FT FG Firm Ground Soccer Cleat (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-predator-pro-ft-fg-firm-ground-soccer-cleat-core-black-silver-metallic-pulse-mint_A1133371" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-predator-pro-ft-fg-firm-ground-soccer-cleat-core-black-silver-metallic-pulse-mint_A1133371</code></a></td>
+        </tr>
+        <tr>
+          <td><strong>Phoenix Rising</strong></td>
+          <td><code>A1133375</code></td>
+          <td>adidas Predator League FT IN Indoor Soccer Shoe (NO COLOR)</td>
+          <td><code>Plain (no crest)</code></td>
+          <td><a href="https://www.soccer.com/shop/details/adidas-predator-league-ft-in-indoor-soccer-shoe-core-black-silver-metallic-pulse-mint_A1133375" target="_blank" rel="noopener"><code>soccer.com/shop/details/adidas-predator-league-ft-in-indoor-soccer-shoe-core-black-silver-metallic-pulse-mint_A1133375</code></a></td>
+        </tr>
+        </tbody>
+      </table>
+    </details>
+
+    <ul>
+      <li><strong>Table name:</strong> <code>Holiday store links</code> inside the Team Sales Airtable base, with one row per product per store (63 product links plus 2 club store-front links per store).</li>
+      <li><strong>What each row shows:</strong> Store, Tile location on the page (carousel, gifts grid For Him / For Her / For Kids, footwear tab, custom apparel), Product name, Article number, Colour, Link, Link type (<code>plain product page</code>, <code>crested item page</code>, or <code>club store front</code>), and the page title seen when the link was opened.</li>
+      <li><strong>Team Sales controls:</strong> a <code>Team Sales verified</code> checkbox, a <code>Verified by</code> name field, a <code>Change requested</code> box, and a <code>Status</code> field (<code>on the page</code>, <code>swap requested</code>, <code>remove requested</code>, <code>new link ready</code>).</li>
+      <li><strong>Ownership:</strong> You verify and edit in Airtable. We rebuild the page from it, by hand this week, automatically after.</li>
+      <li><strong>Timing:</strong> Ready today, and the shared view links (one view per store plus an all-stores view) follow right after.</li>
+    </ul>
+
+    <h2 id="emails">3. The emails (three Zeta test emails and Brock's 22 Oct testing notes)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 24%;">Area</th>
+          <th style="width: 38%;">Tested &amp; Ready (22 Oct Package)</th>
+          <th style="width: 38%;">Not Yet Tested / Still Open</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>HTML Build &amp; Size</strong></td>
+          <td>Three 600px table-based HTML test emails for <strong>Beach FC</strong>, <strong>HTX Soccer</strong>, and <strong>Phoenix Rising</strong> (<code>17 KB</code> each, zero base64 strings, inline styles, Outlook background support).</td>
+          <td>Brock's live test send and inbox rendering check inside Zeta (<span class="badge unknown">Unknown</span>).</td>
+        </tr>
+        <tr>
+          <td><strong>Zeta Merge Options</strong></td>
+          <td>Two ways prepared in Brock's 22 Oct notes: <strong>Option A</strong> pastes each club's complete HTML directly into Zeta; <strong>Option B</strong> pairs the dynamic master template (<code>{{club_...}}</code>) with the 3-club lookup table.</td>
+          <td>Confirming with Brock whether Campaign 1 uses Option A (direct single-club HTML) or Option B (lookup table merge).</td>
+        </tr>
+        <tr>
+          <td><strong>Store Links &amp; Assets</strong></td>
+          <td>HTTPS-hosted club hero photos, club crests, adult club model card, unbranded youth model rule, and 4 product tiles per club; lookup table holds the live <code>soccer.com</code> store URLs.</td>
+          <td>Updating the store CTA button links inside the standalone test HTML files from the preview address to the live <code>soccer.com</code> holiday shop URLs.</td>
+        </tr>
+        <tr>
+          <td><strong>Offer &amp; Discount Text</strong></td>
+          <td>Offer card and code pill layout built and tested in the 600px preview frame.</td>
+          <td>Locking the final promo code spelling and discount tier across sends (the 22 Oct cover letter asks to confirm the exact code spelling, and the 22 Oct test header notes 10 percent off $100+ while the email body shows 25 percent off top gifts).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="next-steps">4. What happens next</h2>
+
+    <h3>What Team Sales does next (this week)</h3>
+    <ol>
+      <li>Verify each product link in the <code>Holiday store links</code> Airtable table and tick the <code>Team Sales verified</code> box.</li>
+      <li>Write any product swaps or removals directly into the <code>Change requested</code> box and set <code>Status</code> to <code>swap requested</code> or <code>remove requested</code>.</li>
+      <li>Confirm Gabby's contract items match the pages, including the 3 contract checks flagged on 22 Oct:
+        <ul>
+          <li>Cleat and indoor shoe sizing on all 3 contracts (<code>A1133352</code>, <code>A1133371</code>, <code>A1133375</code>) listed as ball sizes <code>4, 5</code>.</li>
+          <li>World Cup Trionda ball (<code>A1119147</code>) validity date ending <code>07/30/26</code> instead of <code>12/31/26</code>.</li>
+          <li>HTX Soccer uncustomized items pricing slightly above retail after the 20 percent rebate on top of the 15 percent discount.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3>What we do next (this week)</h3>
+    <ol>
+      <li>Provide the links to Airtable (<a href="https://airtable.com/appFgilsxEHzeaxdx" target="_blank" rel="noopener"><code>airtable.com/appFgilsxEHzeaxdx</code></a>).</li>
+      <li>Pull each club's design template codes from the club fanwear feed, cross-check logo codes against Gabby's contract sheet, and wire the exact crested item links this week.</li>
+      <li>Open and verify every link in the browser before pasting, then rebuild the pilot store pages from the Airtable table (by hand this week, automatically after).</li>
+      <li>Build the next club stores in order this week once the club sequence and contract sheets are confirmed.</li>
+    </ol>
+
+    <h2 id="questions">5. Open questions for the call</h2>
+    <ol>
+      <li>Which clubs are next in order after Beach FC, HTX Soccer, and Phoenix Rising?</li>
+      <li>Who on Team Sales owns ticking the <code>Team Sales verified</code> box in the Airtable links table?</li>
+      <li>Should club-crested tiles on the store page open the exact crested item page once wired this week, or the club fanwear store front?</li>
+      <li>Are the three contract checks from 22 Oct and the final email offer text and code spelling confirmed?</li>
+    </ol>
+
+    <footer>
+      <span>Holiday Pop-Up Stores · 26 Oct 2026</span>
+      <span>Sourced from the 22 Oct package and 26 Oct working notes</span>
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>

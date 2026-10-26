@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Tunnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap">
+<link rel="stylesheet" href="../nutmeg/nutmeg.css">
+<link rel="stylesheet" href="tunnel.css">
+</head>
+<body data-hub="tunnel">
+<a class="nm-skip" href="#tn-main">Skip to content</a>
+
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="#/" aria-label="The Tunnel home">
+      <svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg>
+    </a>
+    <div class="nm-search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search the Tunnel</span>
+        <input class="nm-search__input" id="tn-quick" type="search" placeholder="Search" autocomplete="off">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs">
+    <ul>
+      <li><a class="nm-hubs__link" href="#/" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel</a></li>
+      <li><span class="nm-hubs__link" aria-disabled="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Creative Marketing</span></li>
+      <li><span class="nm-hubs__link" aria-disabled="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Our Brands</span></li>
+      <li><a class="nm-hubs__link" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li>
+      <li><a class="nm-hubs__link" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li>
+      <li><a class="nm-hubs__link" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li>
+    </ul>
+  </nav>
+  <button class="nm-menu-btn" type="button" aria-expanded="false" aria-controls="tn-nav">
+    <span class="nm-visually-hidden">Menu</span>
+    <svg class="nm-menu-btn__open" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="1.5"/></svg>
+    <svg class="nm-menu-btn__close" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="1.5"/></svg>
+  </button>
+</header>
+<div class="nm-scrim" hidden></div>
+
+<div class="nm-shell">
+  <nav class="nm-nav tn-nav" id="tn-nav" aria-label="The Tunnel">
+    <ul class="nm-rail">
+      <li><a class="nm-rail__item" href="#/" data-view="home"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li>
+      <li><a class="nm-rail__item" href="#/vendor" data-view="vendor"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/><path d="M12 22C14.2091 22 16 17.5228 16 12C16 6.47715 14.2091 2 12 2C9.79086 2 8 6.47715 8 12C8 17.5228 9.79086 22 12 22Z"/><path d="M2 12H22"/><path d="M20 18C17.4703 16.937 14.743 16.4256 12 16.5C9.25702 16.4256 6.52971 16.937 4 18"/><path d="M4 6C6.52971 7.06302 9.25702 7.57439 12 7.5C14.743 7.57439 17.4703 7.06302 20 6"/></svg><span class="nm-rail__label">Vendor</span></a></li>
+      <li><a class="nm-rail__item" href="#/soccer-com" data-view="soccer-com"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><use href="#tn-heart"/></svg><span class="nm-rail__label">Soccer.com</span></a></li>
+      <li><a class="nm-rail__item" href="#/wss" data-view="wss"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><use href="#tn-heart"/></svg><span class="nm-rail__label">WSS</span></a></li>
+      <li><a class="nm-rail__item" href="#/431" data-view="431"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><use href="#tn-heart"/></svg><span class="nm-rail__label">431</span></a></li>
+      <li><a class="nm-rail__item" href="#/team-soccer" data-view="team-soccer"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><use href="#tn-heart"/></svg><span class="nm-rail__label">Team Soccer</span></a></li>
+      <li><a class="nm-rail__item" href="#/spg" data-view="spg"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><use href="#tn-heart"/></svg><span class="nm-rail__label">SPG</span></a></li>
+      <li><a class="nm-rail__item" href="#/soccer-master" data-view="soccer-master"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><use href="#tn-heart"/></svg><span class="nm-rail__label">Soccer Master</span></a></li>
+    </ul>
+    <div class="nm-drawer" id="tn-drawer" hidden>
+      <h2 class="nm-drawer__title" id="tn-drawer-title">WorldSoccerShop</h2>
+      <ul class="nm-drawer__list" id="tn-drawer-list"></ul>
+    </div>
+  </nav>
+
+  <main class="nm-main" id="tn-main" tabindex="-1">
+    <section class="tn-view tn-panel tn-home" id="tn-home" aria-labelledby="tn-home-title">
+      <div class="tn-hero">
+        <div class="tn-hero__text">
+          <h1 class="tn-hero__title" id="tn-home-title">The Tunnel</h1>
+          <form class="tn-search" role="search" data-search="all">
+            <label class="nm-visually-hidden" for="tn-home-search">Search the Tunnel</label>
+            <input class="tn-search__input" id="tn-home-search" type="search" placeholder="Search for something...." autocomplete="off">
+            <button class="tn-search__go" type="submit"><span class="nm-visually-hidden">Search</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16L16 12L12 8" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 12H7" stroke="currentColor" stroke-miterlimit="10"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor"/></svg></button>
+          </form>
+        </div>
+      </div>
+      <hr class="tn-rule">
+      <div class="tn-marquee" aria-label="Brands">
+        <div class="tn-marquee__track">
+          <ul class="tn-marquee__set">
+            <li><a class="tn-marquee__logo" href="#/soccer-com"><img src="../nutmeg/logos/Logos_sdc.png" width="177" height="44" alt="Soccer.com"></a></li>
+            <li><a class="tn-marquee__logo" href="#/wss"><img src="../nutmeg/logos/Logos_wss.png" width="177" height="47" alt="WorldSoccerShop"></a></li>
+            <li><a class="tn-marquee__logo" href="#/431"><img src="../nutmeg/logos/Logos_431.png" width="92" height="92" alt="431 Sports"></a></li>
+            <li><a class="tn-marquee__logo" href="#/soccer-master"><img src="../nutmeg/logos/Logos_soccermaster.png" width="143" height="61" alt="Soccer Master"></a></li>
+          </ul>
+          <ul class="tn-marquee__set" aria-hidden="true">
+            <li><a class="tn-marquee__logo" href="#/soccer-com" tabindex="-1"><img src="../nutmeg/logos/Logos_sdc.png" width="177" height="44" alt=""></a></li>
+            <li><a class="tn-marquee__logo" href="#/wss" tabindex="-1"><img src="../nutmeg/logos/Logos_wss.png" width="177" height="47" alt=""></a></li>
+            <li><a class="tn-marquee__logo" href="#/431" tabindex="-1"><img src="../nutmeg/logos/Logos_431.png" width="92" height="92" alt=""></a></li>
+            <li><a class="tn-marquee__logo" href="#/soccer-master" tabindex="-1"><img src="../nutmeg/logos/Logos_soccermaster.png" width="143" height="61" alt=""></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="tn-view tn-brand" id="tn-brand" aria-labelledby="tn-brand-name" hidden>
+      <div class="tn-brand__hero">
+        <h1 class="tn-brand__mark" id="tn-brand-name"></h1>
+        <form class="tn-search" role="search" data-search="brand">
+          <label class="nm-visually-hidden" for="tn-brand-search" id="tn-brand-search-label">Search</label>
+          <input class="tn-search__input" id="tn-brand-search" type="search" autocomplete="off">
+        </form>
+      </div>
+      <div class="tn-brand__body">
+        <div class="tn-brand__results" aria-live="polite">
+          <p class="tn-brand__where" id="tn-where"></p>
+          <p class="tn-brand__note" id="tn-note"></p>
+        </div>
+        <hr class="tn-rule">
+      </div>
+    </section>
+  </main>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="tn-heart" viewBox="0 0 24 24"><path d="M12 8.00001L10.7 6.80001C9.83043 5.99169 8.68719 5.54239 7.49998 5.54239C6.31276 5.54239 5.16952 5.99169 4.29998 6.80001C3.49166 7.66955 3.04236 8.81279 3.04236 10C3.04236 11.1872 3.49166 12.3305 4.29998 13.2L12 21L19.7 13.2C20.5083 12.3305 20.9576 11.1872 20.9576 10C20.9576 8.81279 20.5083 7.66955 19.7 6.80001C18.8304 5.99169 17.6872 5.54239 16.5 5.54239C15.3128 5.54239 14.1695 5.99169 13.3 6.80001L12 8.00001Z" fill="none" stroke="currentColor"/></symbol>
+</svg>
+<script src="tunnel.js"></script>
+</body>
+</html>
