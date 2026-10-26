@@ -69,7 +69,7 @@ RAILS = {
         ("components", "Components", "layout", "blocks.html"),
         ("pages", "Pages", "window", "pages.html"),
         ("email", "Email", "mail", "email.html"),
-        ("changelog", "Changelog", "bell", "index.html#whats-new"),
+        ("changelog", "Changelog", "bell", "changelog.html"),
         ("resources", "Resources", "book", "photo-sizer.html"),
     ],
 }
@@ -282,6 +282,7 @@ DRAWERS = {
 # Every page: (hub, rail section).
 PAGES = {
     "index.html": ("volley", "volley"),
+    "changelog.html": ("volley", "changelog"),
     "photo-sizer.html": ("volley", "resources"),
     "get-started.html": ("volley", "get-started"),
     "how-it-works.html": ("volley", "get-started"),

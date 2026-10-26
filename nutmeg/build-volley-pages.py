@@ -61,7 +61,7 @@ VOLLEY_HOME_BODY = f"""<div class="nm-whats-new-bar">
   <span class="nm-whats-new-bar__sep" aria-hidden="true">|</span>
   <span>New component &amp; library updates as of 26 October</span>
   <span class="nm-whats-new-bar__sep" aria-hidden="true">|</span>
-  <a class="nm-whats-new-bar__link" href="#whats-new">See all new releases</a>
+  <a class="nm-whats-new-bar__link" href="changelog.html">See all new releases</a>
 </div>
 
 <section class="nm-hero-banner" aria-label="Volley overview">
@@ -101,25 +101,6 @@ VOLLEY_HOME_BODY = f"""<div class="nm-whats-new-bar">
     <div class="nm-logo-marquee__track">{LOGO_SET}{LOGO_SET}</div>
     <div class="nm-logo-marquee__track" aria-hidden="true">{LOGO_SET}{LOGO_SET}</div>
   </div>
-</section>
-
-<section class="nm-section" id="tools">
-  <div class="nm-section__head"><h2 class="nm-h2">Daily tools</h2></div>
-  <div class="nm-cards nm-cards--3">
-    <article class="nm-card"><div><span class="nm-eyebrow">Photos</span><h3 class="nm-card__title">Photo Sizer</h3></div><p class="nm-card__text">Crop and size a photo for each block, at the right weight.</p><a class="nm-btn nm-card__link" href="photo-sizer.html"><span>Size a photo</span></a></article>
-    <article class="nm-card"><div><span class="nm-eyebrow">Photos</span><h3 class="nm-card__title">The Tunnel</h3></div><p class="nm-card__text">The photo library. Copy a checked photo link. Password needed.</p><a class="nm-btn nm-card__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span>Open the Tunnel</span></a></article>
-    <article class="nm-card"><div><span class="nm-eyebrow">Hand in</span><h3 class="nm-card__title">Code Share</h3></div><p class="nm-card__text">Turn your final code into one link for the ClickUp task.</p><a class="nm-btn nm-card__link" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener"><span>Share code</span></a></article>
-  </div>
-</section>
-
-<section class="nm-section" id="whats-new">
-  <div class="nm-section__head"><h2 class="nm-h2">What&#x27;s new</h2></div>
-  <ul class="nm-list">
-    <li>26 Oct 2026: Volley Home hero video, brand logo marquee, 6-step How It Works timeline, and 12 step-by-step onboarding cards.</li>
-    <li>26 Oct 2026: 39 components grouped by type, plus Email and Pages sections.</li>
-    <li>25 Oct 2026: 28 additional blocks added, marked In progress until reviewed.</li>
-    <li>24 Oct 2026: Showcase Slider and block detail pages launched.</li>
-  </ul>
 </section>"""
 
 (HERE / "index.html").write_text(
@@ -127,6 +108,41 @@ VOLLEY_HOME_BODY = f"""<div class="nm-whats-new-bar">
         "Volley Home",
         "Volley is Sports Endeavors design and marketing hub.",
         VOLLEY_HOME_BODY,
+    ),
+    encoding="utf-8",
+)
+
+# 1b. CHANGELOG PAGE (changelog.html)
+CHANGELOG_BODY = """<div class="nm-title">
+  <span class="nm-eyebrow" style="color:var(--nm-accent)">RELEASES &amp; LIBRARY STATUS</span>
+  <h1>Changelog</h1>
+  <p class="nm-lede">New component releases, library counts, and hub updates across Volley.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="at-a-glance">
+  <div class="nm-stats">
+    <div class="nm-stat"><span class="nm-stat__num">39</span><span class="nm-stat__cap">components in the library.</span></div>
+    <div class="nm-stat"><span class="nm-stat__num">1</span><span class="nm-stat__cap">live on the site.</span></div>
+    <div class="nm-stat"><span class="nm-stat__num">10</span><span class="nm-stat__cap">in progress: ready to study and build from.</span></div>
+    <div class="nm-stat"><span class="nm-stat__num">28</span><span class="nm-stat__cap">added from the canon folder on 25 Oct 2026 and queued for review.</span></div>
+  </div>
+</section>
+<section class="nm-section" id="whats-new">
+  <div class="nm-section__head"><h2 class="nm-h2">What&#x27;s new</h2></div>
+  <ul class="nm-list">
+    <li>26 Oct 2026: Volley Home hero video, brand logo marquee, 6-step How It Works timeline, 12 step-by-step onboarding cards, and Volley-styled Photo Sizer.</li>
+    <li>26 Oct 2026: 39 components grouped by type, plus Email and Pages sections.</li>
+    <li>25 Oct 2026: 28 additional blocks added from canon, marked In progress until reviewed.</li>
+    <li>24 Oct 2026: Showcase Slider and block detail pages launched.</li>
+    <li>24 Oct 2026: Five color pairs updated so every text pair passes contrast.</li>
+  </ul>
+</section>"""
+
+(HERE / "changelog.html").write_text(
+    page_template(
+        "Changelog",
+        "New component releases, library counts, and hub updates across Volley.",
+        CHANGELOG_BODY,
     ),
     encoding="utf-8",
 )
