@@ -70,7 +70,7 @@ RAILS = {
         ("pages", "Pages", "window", "pages.html"),
         ("email", "Email", "mail", "email.html"),
         ("changelog", "Changelog", "bell", "index.html#whats-new"),
-        ("resources", "Resources", "book", "step-tools.html"),
+        ("resources", "Resources", "book", "photo-sizer.html"),
     ],
 }
 
@@ -242,6 +242,12 @@ DRAWERS = {
     ("volley", "components"): ("Components", [("Overview", "blocks.html")] + TYPES),
     ("volley", "email"): ("Email", [("Overview", "email.html")] + EMAIL_TYPES),
     ("volley", "pages"): ("Pages", [("Overview", "pages.html")] + PAGE_TYPES),
+    ("volley", "resources"): ("Resources", [
+        ("Photo Sizer", "photo-sizer.html"),
+        ("All 12 Daily Tools", "step-tools.html"),
+        ("The Tunnel", "https://the-tunnel.netlify.app/"),
+        ("Code Share", "https://the-tunnel.netlify.app/code-share/"),
+    ]),
     ("nutmeg", "foundations"): ("Foundations", [
         ("Overview", "foundations.html"),
         ("Colour", "foundations.html#colour"),
@@ -276,6 +282,7 @@ DRAWERS = {
 # Every page: (hub, rail section).
 PAGES = {
     "index.html": ("volley", "volley"),
+    "photo-sizer.html": ("volley", "resources"),
     "get-started.html": ("volley", "get-started"),
     "how-it-works.html": ("volley", "get-started"),
     "step-tools.html": ("volley", "get-started"),

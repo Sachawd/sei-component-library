@@ -106,7 +106,7 @@ VOLLEY_HOME_BODY = f"""<div class="nm-whats-new-bar">
 <section class="nm-section" id="tools">
   <div class="nm-section__head"><h2 class="nm-h2">Daily tools</h2></div>
   <div class="nm-cards nm-cards--3">
-    <article class="nm-card"><div><span class="nm-eyebrow">Photos</span><h3 class="nm-card__title">Photo Sizer</h3></div><p class="nm-card__text">Crop and size a photo for each block, at the right weight.</p><a class="nm-btn nm-card__link" href="../photo-sizer/index.html"><span>Size a photo</span></a></article>
+    <article class="nm-card"><div><span class="nm-eyebrow">Photos</span><h3 class="nm-card__title">Photo Sizer</h3></div><p class="nm-card__text">Crop and size a photo for each block, at the right weight.</p><a class="nm-btn nm-card__link" href="photo-sizer.html"><span>Size a photo</span></a></article>
     <article class="nm-card"><div><span class="nm-eyebrow">Photos</span><h3 class="nm-card__title">The Tunnel</h3></div><p class="nm-card__text">The photo library. Copy a checked photo link. Password needed.</p><a class="nm-btn nm-card__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span>Open the Tunnel</span></a></article>
     <article class="nm-card"><div><span class="nm-eyebrow">Hand in</span><h3 class="nm-card__title">Code Share</h3></div><p class="nm-card__text">Turn your final code into one link for the ClickUp task.</p><a class="nm-btn nm-card__link" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener"><span>Share code</span></a></article>
   </div>
@@ -682,4 +682,164 @@ for filename, title, desc, sec_ids, prev_link, next_link in STEP_SPECS:
         encoding="utf-8",
     )
 
-print("Built index.html, get-started.html, how-it-works.html, and 8 step-*.html pages.")
+# 5. PHOTO SIZER IN VOLLEY SHELL (nutmeg/photo-sizer.html + photo-sizer/index.html)
+OLD_SIZER = (HERE.parent / "photo-sizer" / "index.html").read_text(encoding="utf-8")
+SIZER_JS_MATCH = re.search(r"(<script>\s*\(function \(\) \{.*?</script>)", OLD_SIZER, re.S)
+SIZER_JS = SIZER_JS_MATCH.group(1)
+# Remove the old skyvideo vimeo iframe loader and replace the em dash in the JS
+SIZER_JS = re.sub(
+    r"if \(!\(window\.matchMedia && window\.matchMedia\('\(prefers-reduced-motion: reduce\)'\)\.matches\)\) \{.*?\}\s*\}\)\(\);",
+    "})();",
+    SIZER_JS,
+    flags=re.S,
+)
+SIZER_JS = SIZER_JS.replace("Over limit — use a simpler crop", "Over limit: use a simpler crop")
+
+PHOTO_SIZER_STYLE = """<style>
+.ps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-bottom: 24px; }
+.ps-card { background: var(--nm-white); border: 1px solid #DADADA; border-radius: var(--nm-radius-lg); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+.ps-card__top { display: flex; flex-direction: column; gap: 14px; }
+.ps-card__head { display: flex; align-items: center; gap: 10px; }
+.ps-badge { width: 32px; height: 32px; border-radius: 50%; background: #2F4A25; color: #FFFFFF; font: 600 14px/1 var(--nm-sans); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.ps-pill { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: var(--nm-radius-pill); background: rgba(195, 232, 141, 0.35); color: #203417; font: 600 11px/1 var(--nm-sans); text-transform: uppercase; letter-spacing: 0.06em; }
+.ps-card h2 { margin: 0; font: 400 28px/32px var(--nm-serif); color: var(--nm-title); }
+.ps-card p { margin: 0; font: 400 15px/22px var(--nm-sans); color: var(--nm-text); }
+.field-label { display: block; font: 500 14px/20px var(--nm-sans); color: var(--nm-title); margin-bottom: 6px; }
+.select { width: 100%; appearance: none; background-color: #FFFFFF; background-image: linear-gradient(45deg, transparent 50%, #2F4A25 50%), linear-gradient(135deg, #2F4A25 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; border: 1px solid #C5C3BC; border-radius: var(--nm-radius-sm); padding: 11px 38px 11px 12px; font: 400 15px/20px var(--nm-sans); color: var(--nm-ink); }
+.custom-dims { display: none; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
+.custom-dims.is-open { display: grid; }
+.input { width: 100%; border: 1px solid #C5C3BC; border-radius: var(--nm-radius-sm); padding: 9px 10px; font: 400 14px/18px var(--nm-sans); }
+.mini-label { display: block; font: 400 12px/16px var(--nm-sans); color: var(--nm-muted); margin-bottom: 4px; }
+.spec-box { background: #F4F7F2; border: 1px solid #D5E0CE; border-radius: var(--nm-radius-sm); padding: 14px 16px; }
+.spec-table { width: 100%; border-collapse: collapse; font: 400 13.5px/18px var(--nm-sans); margin-top: 8px; }
+.spec-table th, .spec-table td { text-align: left; padding: 6px 8px 6px 0; border-top: 1px solid #D5E0CE; }
+.spec-table th { font-weight: 600; color: #203417; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-top: 0; }
+.dropzone { border: 2px dashed #8AA87B; border-radius: var(--nm-radius-md); background: #F4F7F2; padding: 28px 20px; text-align: center; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+.dropzone:hover, .dropzone.is-over { border-color: #2F4A25; background: #E9F0E5; }
+.dropzone__title { font: 500 16px/22px var(--nm-sans); color: #203417; margin: 0 0 4px; }
+.dropzone__sub { font: 400 14px/20px var(--nm-sans); color: var(--nm-muted); margin: 0 0 14px; }
+.dropzone__input { display: none; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 18px; border-radius: var(--nm-radius-pill); border: 1px solid #4C753B; background: #FFFFFF; color: #2F4A25; font: 500 14px/20px var(--nm-sans); text-decoration: none; cursor: pointer; transition: background .15s ease, color .15s ease; }
+.btn:hover:not(:disabled) { background: #F4F7F2; }
+.btn.solid { background: #4C753B; border-color: #4C753B; color: #FFFFFF; }
+.btn.solid:hover:not(:disabled) { background: #2F4A25; border-color: #2F4A25; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.results-card { background: var(--nm-white); border: 1px solid #DADADA; border-radius: var(--nm-radius-lg); padding: 24px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid #EBEBEB; }
+.toolbar__group { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.seg button { border: 1px solid #C5C3BC; border-radius: var(--nm-radius-pill); background: #F5F5F5; padding: 7px 14px; font: 500 13px/18px var(--nm-sans); color: var(--nm-title); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: #4C753B; border-color: #4C753B; color: #FFFFFF; }
+.results-empty { color: var(--nm-muted); font: 400 15px/22px var(--nm-sans); margin: 0; }
+.photo-block { border: 1px solid #DADADA; border-radius: var(--nm-radius-md); margin-bottom: 16px; overflow: hidden; background: #FFFFFF; }
+.photo-block__head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; padding: 12px 18px; background: #F4F7F2; border-bottom: 1px solid #D5E0CE; }
+.photo-block__name { font: 600 14px/20px var(--nm-sans); color: #203417; }
+.photo-block__orig { font: 400 13px/18px var(--nm-sans); color: var(--nm-muted); }
+.outputs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; padding: 18px; }
+.out-card { border: 1px solid #EBEBEB; border-radius: var(--nm-radius-sm); padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.out-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.out-card__label { font: 600 15px/20px var(--nm-sans); color: var(--nm-title); }
+.out-card__dims { font: 400 13px/18px var(--nm-mono); color: var(--nm-muted); }
+.stage { position: relative; width: 100%; background: #ECECE8; border: 1px solid #DADADA; border-radius: var(--nm-radius-sm); overflow: hidden; user-select: none; touch-action: none; }
+.stage--draggable { cursor: grab; }
+.stage--draggable:active { cursor: grabbing; }
+.stage canvas { display: block; width: 100%; height: auto; }
+.stage__hint { position: absolute; bottom: 6px; right: 8px; background: rgba(32, 52, 23, 0.88); color: #FFFFFF; font: 600 11px/16px var(--nm-sans); padding: 3px 10px; border-radius: var(--nm-radius-pill); pointer-events: none; }
+.meter { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; font: 400 13px/18px var(--nm-sans); padding: 8px 10px; border-radius: var(--nm-radius-xs); }
+.meter--ok { background: #ECF6EF; color: #1B6E38; }
+.meter--warn { background: #FDF4E7; color: #8F4F06; }
+.meter--err { background: #FBEAE9; color: #B8292B; }
+.meter__weight { font: 600 13px/18px var(--nm-mono); }
+.meter__msg { font-size: 12px; }
+.out-card__filename { font: 400 12px/16px var(--nm-mono); color: var(--nm-muted); word-break: break-all; }
+.out-card__actions { display: flex; gap: 8px; margin-top: auto; }
+</style>
+"""
+
+PHOTO_SIZER_BODY = """<div class="nm-title">
+  <span class="nm-eyebrow" style="color:var(--nm-accent)">RESOURCES &amp; TOOLS</span>
+  <h1>Photo Sizer</h1>
+  <p class="nm-lede">Pick your block, drop your photo in, and download the sized JPG ready for the S3 bucket (under 300 KB for desktop heroes, under 200 KB for everything else).</p>
+  <hr class="nm-divider">
+</div>
+
+<div class="ps-grid">
+  <article class="ps-card">
+    <div class="ps-card__top">
+      <div class="ps-card__head">
+        <span class="ps-badge">1</span>
+        <span class="ps-pill">Block Preset</span>
+      </div>
+      <h2>Pick the block</h2>
+      <div>
+        <label class="field-label" for="preset">Component and photo slot</label>
+        <select class="select" id="preset"></select>
+        <div class="custom-dims" id="customDims">
+          <div>
+            <label class="mini-label" for="cw">Width (px)</label>
+            <input class="input" id="cw" type="number" min="50" max="4000" value="1200">
+          </div>
+          <div>
+            <label class="mini-label" for="ch">Height (px)</label>
+            <input class="input" id="ch" type="number" min="50" max="4000" value="800">
+          </div>
+          <div>
+            <label class="mini-label" for="ckb">Max KB</label>
+            <input class="input" id="ckb" type="number" min="20" max="1000" value="200">
+          </div>
+        </div>
+      </div>
+      <div class="spec-box" id="specCard" aria-live="polite"></div>
+    </div>
+  </article>
+
+  <article class="ps-card">
+    <div class="ps-card__top">
+      <div class="ps-card__head">
+        <span class="ps-badge">2</span>
+        <span class="ps-pill">JPG Export</span>
+      </div>
+      <h2>Drop your photo</h2>
+      <p>Accepts JPG, PNG, or WebP and exports clean JPG files under the 300 KB hero or 200 KB card limit.</p>
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <p class="dropzone__title">Drop photos here or click to choose</p>
+        <p class="dropzone__sub">Exports both Desktop and Phone crops automatically.</p>
+        <span class="btn solid">Choose Photos</span>
+        <input class="dropzone__input" id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+      </label>
+    </div>
+  </article>
+</div>
+
+<div class="results-card">
+  <div class="toolbar">
+    <div class="toolbar__group">
+      <span class="field-label" style="margin:0">Crop mode:</span>
+      <div class="seg" role="group" aria-label="Crop mode">
+        <button type="button" data-fit="cover" aria-pressed="true">Fill &amp; Crop (Drag to re-center)</button>
+        <button type="button" data-fit="contain" aria-pressed="false">Fit with Bars</button>
+      </div>
+    </div>
+    <div class="toolbar__group">
+      <button type="button" class="btn solid" id="downloadAllBtn" disabled>Download All JPGs</button>
+      <button type="button" class="btn" id="clearBtn" disabled>Clear</button>
+    </div>
+  </div>
+  <div id="results">
+    <p class="results-empty">No photos loaded yet. Pick a block in Step 1 and drop a photo in Step 2.</p>
+  </div>
+</div>
+"""
+
+(HERE / "photo-sizer.html").write_text(
+    page_template(
+        "Photo Sizer",
+        "Pick the block, drop your photo in, and download the sized JPG ready for the S3 bucket.",
+        PHOTO_SIZER_BODY,
+        extra_head=PHOTO_SIZER_STYLE,
+        extra_scripts=SIZER_JS,
+    ),
+    encoding="utf-8",
+)
+
+print("Built index.html, get-started.html, how-it-works.html, photo-sizer.html, and 8 step-*.html pages.")

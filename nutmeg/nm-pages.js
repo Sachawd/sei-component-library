@@ -65,7 +65,7 @@ window.NM_PAGES = [
  },
  {
   "title": "Photo Sizer",
-  "url": "../photo-sizer/index.html"
+  "url": "photo-sizer.html"
  },
  {
   "title": "Code Share",
