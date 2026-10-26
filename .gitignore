@@ -1,2 +1,5 @@
 zz_*
+**/zz_*
+__pycache__/
+**/__pycache__/
 .DS_Store

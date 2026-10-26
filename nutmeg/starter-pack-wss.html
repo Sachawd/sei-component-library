@@ -9,6 +9,40 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="nutmeg.css">
+<style>
+.nm-start { max-width: 849px; margin: 0 0 var(--nm-space-6); padding: 24px; border-radius: var(--nm-radius-md); background: var(--nm-white); }
+.nm-start .nm-h2 { margin: 0 0 16px; }
+.nm-start__list { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; color: var(--nm-text); font: 400 16px/24px var(--nm-sans); }
+.nm-start__list > li { display: flex; gap: 12px; align-items: flex-start; }
+.nm-start__n { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--nm-pill); color: var(--nm-pill-ink); font: 600 14px/1 var(--nm-sans); }
+.nm-start__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; min-width: 0; width: 100%; }
+.nm-start__btn { min-height: 48px; padding: 12px 28px; font-size: 16px; }
+.nm-prompt { width: 100%; border: 1px solid var(--nm-line); border-radius: var(--nm-radius-sm); }
+.nm-prompt > summary { display: flex; flex-direction: column; gap: 4px; padding: 12px 16px; cursor: pointer; list-style: none; }
+.nm-prompt > summary::-webkit-details-marker { display: none; }
+.nm-prompt__first { overflow: hidden; color: var(--nm-ink); font: 400 13px/20px ui-monospace, Menlo, monospace; white-space: nowrap; text-overflow: ellipsis; }
+.nm-prompt__more { color: var(--nm-accent); font: 500 14px/20px var(--nm-sans); text-decoration: underline; }
+.nm-prompt[open] .nm-prompt__more { display: none; }
+.nm-prompt pre { max-height: 420px; overflow: auto; margin: 0; padding: 0 16px 16px; color: var(--nm-ink); font: 400 13px/20px ui-monospace, Menlo, monospace; white-space: pre-wrap; }
+.nm-rules__list { margin: 8px 0 0; padding-left: 20px; color: var(--nm-text); font: 400 16px/24px var(--nm-sans); }
+.nm-acc-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.nm-acc-list { display: flex; flex-direction: column; gap: 8px; max-width: 849px; }
+.nm-acc { border: 1px solid var(--nm-line); border-radius: var(--nm-radius-sm); background: var(--nm-white); }
+.nm-acc > summary { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 16px; cursor: pointer; list-style: none; color: var(--nm-title); font: 500 16px/24px var(--nm-sans); }
+.nm-acc > summary::-webkit-details-marker { display: none; }
+.nm-acc > summary::after { content: "+"; margin-left: auto; color: var(--nm-muted); font-size: 20px; }
+.nm-acc[open] > summary::after { content: "\2212"; }
+.nm-acc > summary:focus-visible, .nm-prompt > summary:focus-visible { outline: 2px solid var(--nm-accent); outline-offset: 2px; }
+.nm-acc__num { flex: none; min-width: 24px; color: var(--nm-muted); font: 600 13px/1 var(--nm-sans); letter-spacing: .5px; }
+.nm-acc__body { padding: 0 16px 16px 52px; color: var(--nm-text); font: 400 15px/22px var(--nm-sans); }
+.nm-acc__body p { margin: 0 0 8px; }
+.nm-acc__links { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.nm-acc__k { display: inline-block; min-width: 48px; color: var(--nm-muted); font: 600 11px/16px var(--nm-sans); letter-spacing: .88px; text-transform: uppercase; }
+#practice .nm-acc__body { padding-left: 16px; }
+.nm-hiccups { max-width: 849px; color: var(--nm-text); font: 400 15px/22px var(--nm-sans); }
+.nm-contrast { color: var(--nm-muted); font: 400 13px/20px var(--nm-sans); }
+@media (max-width: 560px) { .nm-start { padding: 16px; } .nm-acc__body { padding-left: 16px; } }
+</style>
 </head>
 <body data-hub="volley">
 <script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
@@ -37,65 +71,17 @@
 <div class="nm-title">
   <div class="nm-title__meta"><span class="nm-chip nm-chip--purple">Starter pack</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
   <h1>WorldSoccerShop starter pack</h1>
-  <p class="nm-lede">Everything from Friday morning's Fastr CMS &amp; AI coding workshop for Alex and Holly: first practice builds, edited Vimeo clips, all 12 daily tools, and the Master AI Reset Prompt.</p>
+  <p class="nm-lede">Everything Alex and Holly need for a first Fastr build, in order.</p>
   <hr class="nm-divider">
 </div>
 
-<div class="nm-callout"><strong>Three golden rules from the workshop</strong><p>1. Start from a verified block in the Code Library (change content only, never the layout engine). 2. Open the single FINAL HTML file in a code editor to copy cleanly (never copy from a chat window). 3. Paste into your own Fastr test page using the 3 reserved heights and the Reserves space tab (site authors publish live).</p></div>
-
-<section class="nm-section" id="pilots">
-<div class="nm-section__head"><h2 class="nm-h2">First two pilot builds<button type="button" class="nm-anchor" aria-label="Copy a link to First two pilot builds"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Practice the end-to-end loop from Figma to your Fastr test page on these two WorldSoccerShop blocks.</p></div>
-
-<div class="nm-cards">
-<a class="nm-card" href="shop-by-club-section.html"><div><span class="nm-eyebrow">Pilot Build 01 · Alex</span><h3 class="nm-card__title">WorldSoccerShop Shop by Club section</h3></div><p class="nm-card__desc">Lay out the Shop by Club section in Figma with Auto Layout and annotations, adapt the verified code block with Claude, and test on your Fastr test page.</p><span class="nm-card__foot">Open Shop by Club section<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></span></a>
-<a class="nm-card" href="shop-by-club-logo-rail-champions-league.html"><div><span class="nm-eyebrow">Pilot Build 02 · Holly</span><h3 class="nm-card__title">Premier League Shop by Club logo rail</h3></div><p class="nm-card__desc">Take the Champions League Shop by Club logo rail from the Code Library, swap in the Premier League clubs and Link Book URLs, and test on your Fastr test page.</p><span class="nm-card__foot">Open Shop by Club logo rail<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></span></a>
-<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">How we improve this together</span><h3 class="nm-card__title">Log any hiccups in a Markdown note</h3></div><p class="nm-card__desc">Tell your AI agent: "If anything in this process is unclear or breaks, write a short Markdown note for Sacha so she can fix the workflow." Or message Sacha anytime.</p></article>
-</div>
-</section>
-
-<section class="nm-section" id="videos">
-<div class="nm-section__head"><h2 class="nm-h2">1. Edited workshop videos<button type="button" class="nm-anchor" aria-label="Copy a link to 1. Edited workshop videos"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Friday's 73-minute recording trimmed down to the step-by-step demos. Watch embedded on <a href="videos.html">Workshop walkthrough</a> or open any clip directly on Vimeo below.</p></div>
-
-<div class="nm-table-wrap"><table class="nm-table">
-<thead><tr><th>Video</th><th>Duration</th><th>Topics covered</th><th>Link</th></tr></thead>
-<tbody>
-<tr><td><strong>00. Complete 5-Step Fastr Coding Walkthrough (Full Reel)</strong></td><td>23m 56s</td><td>Chapters: 00:00 Step 1 (Figma Auto Layout &amp; Annotations), 03:59 Step 2 (Code Library, Photo Sizer &amp; Tunnel), 09:12 Step 3 (AI Prompt &amp; Fastr Reserved Heights), 15:36 Step 4 (PageSpeed, Jam.dev &amp; ADA Contrast), 19:54 Step 5 (ClickUp Intake, Box &amp; Code Share).</td><td><a href="https://vimeo.com/1238938862/3d23afdc54" target="_blank" rel="noopener">Play on Vimeo</a></td></tr>
-<tr><td><strong>Clip 01 · Figma Auto Layout, Code Blocks &amp; Annotations</strong></td><td>3m 59s</td><td>Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations so your AI agent reads notes straight from your frame.</td><td><a href="https://vimeo.com/1238938857/a3c5285707" target="_blank" rel="noopener">Watch Clip 01</a></td></tr>
-<tr><td><strong>Clip 02 · Code Library, Photo Sizer &amp; Tunnel V2</strong></td><td>5m 13s</td><td>Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying verified CDN URLs from Tunnel V2.</td><td><a href="https://vimeo.com/1238938861/dfce103722" target="_blank" rel="noopener">Watch Clip 02</a></td></tr>
-<tr><td><strong>Clip 03 · AI Prompt, Code Editor &amp; Reserved Heights</strong></td><td>6m 24s</td><td>Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr's 3 Reserved Heights + Reserves space tab.</td><td><a href="https://vimeo.com/1238938860/b1ded6c0a0" target="_blank" rel="noopener">Watch Clip 03</a></td></tr>
-<tr><td><strong>Clip 04 · Testing: PageSpeed, Jam &amp; ADA Contrast</strong></td><td>4m 18s</td><td>Running before-and-after PageSpeed checks, recording mobile + desktop Jam videos, and catching ADA contrast and storefront font bugs.</td><td><a href="https://vimeo.com/1238938935/b3dfba5e0f" target="_blank" rel="noopener">Watch Clip 04</a></td></tr>
-<tr><td><strong>Clip 05 · ClickUp Intake, Box &amp; Code Share</strong></td><td>4m 02s</td><td>Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing clean HTML via Code Share.</td><td><a href="https://vimeo.com/1238939053/46d10487e0" target="_blank" rel="noopener">Watch Clip 05</a></td></tr>
-<tr><td><strong>Clip 06 (Bonus) · Chrome-to-Figma Auto Layout Capture</strong></td><td>2m 48s</td><td>Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for our "Let's Build It" page.</td><td><a href="https://vimeo.com/1238939112/64ba03df58" target="_blank" rel="noopener">Watch Clip 06</a></td></tr>
-</tbody>
-</table></div>
-</section>
-
-<section class="nm-section" id="toolkit">
-<div class="nm-section__head"><h2 class="nm-h2">2. Your daily toolkit (12 links)<button type="button" class="nm-anchor" aria-label="Copy a link to 2. Your daily toolkit (12 links)"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Bookmark these four groups of tools before starting your first practice build. Cabana 8 Figma Library is published so you can open Assets &gt; Code Blocks &gt; Builders directly in Figma.</p></div>
-
-<div class="nm-table-wrap"><table class="nm-table">
-<thead><tr><th>Group</th><th>Tool</th><th>What you use it for</th><th>Link</th></tr></thead>
-<tbody>
-<tr><td><strong>A · Code &amp; Guides</strong></td><td>Volley &amp; SE Code Library</td><td>Preview blocks at Desktop, Tablet, and Phone widths and copy starting HTML.</td><td><a href="blocks.html">Open Blocks</a></td></tr>
-<tr><td><strong>A · Code &amp; Guides</strong></td><td>Read-Only GitHub Repo</td><td>Clone or pull the latest verified blocks in GitHub Desktop (read-only; never push).</td><td><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Open GitHub Repo</a></td></tr>
-<tr><td><strong>A · Code &amp; Guides</strong></td><td>6-Step Designer Guide &amp; First Build</td><td>Complete 6-step handbook and 12-screen click-by-click walkthrough.</td><td><a href="designer-guide.html">Designer guide</a> · <a href="first-build.html">First build</a></td></tr>
-<tr><td><strong>B · Photos &amp; Assets</strong></td><td>The Tunnel V2</td><td>Select verified store photos, copy CDN URLs, or grab product picks.</td><td><a href="https://the-tunnel.netlify.app/v2/index.html" target="_blank" rel="noopener">Open Tunnel V2</a></td></tr>
-<tr><td><strong>B · Photos &amp; Assets</strong></td><td>Photo Sizer</td><td>Crop at 2x (300 KB hero / 200 KB rest) and export 480, 960, and full widths.</td><td><a href="photo-sizer.html?block=flipbook-hero-sale">Open Photo Sizer</a></td></tr>
-<tr><td><strong>B · Photos &amp; Assets</strong></td><td>Box UX Folder &amp; Claude Helper Plugin</td><td>Contains SITE-LINKS (the Link Book), universal AI rules, and the Claude helper plugin.</td><td><a href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Box Folder</a> · <a href="https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" target="_blank" rel="noopener">Claude Plugin</a></td></tr>
-<tr><td><strong>C · Build &amp; Test</strong></td><td>Fastr CMS Workspace</td><td>Paste into your test page, enter the 3 heights, and copy the Reserves space tab.</td><td><a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Open Fastr CMS</a></td></tr>
-<tr><td><strong>C · Build &amp; Test</strong></td><td>PageSpeed Insights</td><td>Run before and after speed checks on desktop and mobile.</td><td><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">Open PageSpeed</a></td></tr>
-<tr><td><strong>C · Build &amp; Test</strong></td><td>Jam.dev &amp; Responsively</td><td>Check all 5 widths (360 to 1440) and record desktop + phone walkthroughs.</td><td><a href="https://jam.dev/" target="_blank" rel="noopener">Jam.dev</a> · <a href="https://responsively.app/" target="_blank" rel="noopener">Responsively</a></td></tr>
-<tr><td><strong>D · Intake &amp; Hand-In</strong></td><td>Site Change Requests (ClickUp)</td><td>Every site change starts here (never in Teams, Slack, or email).</td><td><a href="https://app.clickup.com/9011460926/v/l/li/901115447365" target="_blank" rel="noopener">Open ClickUp List</a></td></tr>
-<tr><td><strong>D · Intake &amp; Hand-In</strong></td><td>Code Share (in The Tunnel)</td><td>Paste your FINAL HTML file to check contrast and generate 1 clean link for ClickUp.</td><td><a href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share</a></td></tr>
-<tr><td><strong>D · Intake &amp; Hand-In</strong></td><td>Chrome Figma Capture</td><td>Search "Figma" in the Chrome Web Store to capture live web inspiration into Auto Layout on our "Let's Build It" page.</td><td><a href="https://chromewebstore.google.com/" target="_blank" rel="noopener">Chrome Web Store</a></td></tr>
-</tbody>
-</table></div>
-</section>
-
-<section class="nm-section" id="prompt">
-<div class="nm-section__head"><h2 class="nm-h2">3. The "Forget Old Rules" AI prompt<button type="button" class="nm-anchor" aria-label="Copy a link to 3. The Forget Old Rules AI prompt"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Alex asked on the call: "Can I just give my agent the new rules and tell it to forget everything from before?" Yes. Paste this exact block at the start of your chat, along with your starting HTML file from the Code Library.</p></div>
-
-<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>Master Reset &amp; Build Prompt for WorldSoccerShop Designers</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>Forget all previous instructions and older Fastr or Composer rules. Follow only this updated WorldSoccerShop Fastr CMS workflow:
+<section class="nm-start" id="start-here" aria-labelledby="start-here-h">
+<h2 class="nm-h2" id="start-here-h">Start here</h2>
+<ol class="nm-start__list">
+<li><span class="nm-start__n">1</span><div>Open your starting HTML from the <a href="blocks.html">Code Library</a>.</div></li>
+<li><span class="nm-start__n">2</span><div class="nm-start__copy"><span>Copy this prompt.</span>
+<button type="button" class="nm-btn nm-start__btn" id="copy-prompt"><span>Copy the prompt</span></button>
+<details class="nm-prompt"><summary><span class="nm-prompt__first">Forget all previous instructions and older Fastr or Composer rules. Follow only this updated WorldSoccerShop Fastr CMS workflow:</span><span class="nm-prompt__more">Show the full prompt</span></summary><pre><code id="prompt-text">Forget all previous instructions and older Fastr or Composer rules. Follow only this updated WorldSoccerShop Fastr CMS workflow:
 
 1. STARTING CODE (NEVER START FROM SCRATCH):
 - Start strictly from the attached reference HTML file from the Sports Endeavors Marketing Code Library (https://sachawd.github.io/sei-component-library/).
@@ -127,34 +113,71 @@
 - Give me the 3 measured pixel heights in order at the top of the file: Mobile (390px wide), Tablet (640px and up), and Desktop (1024px and up) so I can enter them into Fastr's Reserved Height boxes and use the "Reserves space" embed tab.
 
 7. PILOT FEEDBACK LOG FOR SACHA:
-- If any instruction, asset, or step in this build is unclear or causes an issue, write a short Markdown summary titled "Process Feedback for Sacha" at the end of our session so I can send it to her.</code></pre></div>
+- If any instruction, asset, or step in this build is unclear or causes an issue, write a short Markdown summary titled "Process Feedback for Sacha" at the end of our session so I can send it to her.</code></pre></details>
+<span class="nm-visually-hidden" role="status" id="copy-status"></span></div></li>
+<li><span class="nm-start__n">3</span><div>Give your AI the file, the prompt, your Link Book and your Figma frame.</div></li>
+</ol>
+</section>
 
-<div class="nm-callout"><strong>Figma Annotations tip from Friday's call</strong><p>In Figma, use the <strong>Annotate</strong> tool (instead of regular comments) to tag frames with notes like "use placeholder date", "swap to Premier League clubs", or "link to /shop/clubs/arsenal". AI agents read Figma annotations directly from the frame.</p></div>
+<section class="nm-section nm-rules" id="rules" aria-labelledby="rules-h">
+<h2 class="nm-h3" id="rules-h">Three golden rules</h2>
+<ul class="nm-rules__list">
+<li>Start from a verified block. Change content only, never the layout.</li>
+<li>Copy from a code editor, never from a chat window.</li>
+<li>Paste into your own Fastr test page with the 3 reserved heights.</li>
+</ul>
 </section>
 
 <section class="nm-section" id="checklist">
-<div class="nm-section__head"><h2 class="nm-h2">4. Nine-point checklist for Pilot #1<button type="button" class="nm-anchor" aria-label="Copy a link to 4. Nine-point checklist for Pilot #1"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Use this cheat sheet while running your first practice build from Figma to ClickUp.</p></div>
-
-<ul class="nm-steps">
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">01 · Prep</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">ClickUp</span></span><span class="nm-step__text"><strong>Log in Site Change Requests:</strong> Confirm the task is in the ClickUp Site Change Requests list (never work from a raw Teams or Slack message).</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">02 · Prep</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Figma</span></span><span class="nm-step__text"><strong>Build with Auto Layout in Figma:</strong> Pull the component from Cabana 8 (Code Blocks &gt; Builders) into the WSS Site Updates Figma file, set Auto Layout, and add any Figma Annotations.</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">03 · Prep</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Photos</span></span><span class="nm-step__text"><strong>Prep photos in Tunnel &amp; Photo Sizer:</strong> Pick existing photos in Tunnel V2, or crop new JPGs in Photo Sizer (300 KB hero / 200 KB rest, plus 480 and 960 copies) for Sacha or Anthony to upload to S3.</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">04 · Code</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">AI build</span></span><span class="nm-step__text"><strong>Run the Master AI Prompt:</strong> Give Claude your starting HTML file from the Code Library, the Master Reset Prompt above, your Link Book URLs, and your Figma frame.</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">05 · Code</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Code editor</span></span><span class="nm-step__text"><strong>Browser check, then Code Editor copy:</strong> Open the HTML file in Safari or Chrome on your Mac first to confirm every photo shows. Then open it in VS Code, Cursor, Antigravity IDE, or Dreamweaver and press Command + A and Command + C.</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">06 · Paste</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Fastr CMS</span></span><span class="nm-step__text"><strong>Paste into Fastr &amp; Reserves space:</strong> Paste into your Fastr component (Brand: WorldSoccerShop), enter the 3 Reserved Heights (390 / 640+ / 1024+), click Save, and place the Reserves space embed on your test page.</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">07 · Test</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Cache check</span></span><span class="nm-step__text"><strong>Check a second browser if cached:</strong> If Fastr shows your old version after clicking Save, open the test page URL in a second browser (like Safari) before re-pasting.</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">08 · Test</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Speed &amp; Jam</span></span><span class="nm-step__text"><strong>Run PageSpeed &amp; record 1 Jam:</strong> Test the preview URL in PageSpeed Insights and record a quick desktop + mobile Jam video (checking that store fonts did not override your block).</span></li>
-<li class="nm-step"><span class="nm-step__meta"><span class="nm-step__time">09 · Hand in</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Code Share</span></span><span class="nm-step__text"><strong>Create 1 Code Share link for ClickUp:</strong> Paste your HTML into Code Share, copy the share link into the ClickUp task's HTML Code row, and send Sacha any process notes.</span></li>
-</ul>
-
-<div class="nm-callout"><strong>Need help or hit a wall?</strong><p>Do not spin your wheels. If a component is missing in Figma, a photo needs uploading to the S3 bucket, or an AI tier cuts off a file, message Sacha on Teams or text her right away.</p></div>
+<div class="nm-section__head nm-acc-head"><h2 class="nm-h2">Nine-point checklist</h2><button type="button" class="nm-btn nm-btn--outline nm-acc-toggle" id="acc-toggle" aria-controls="acc-list">Expand all</button></div>
+<div class="nm-acc-list" id="acc-list">
+<details class="nm-acc" id="step-01"><summary><span class="nm-acc__num">01</span><span class="nm-acc__title">Log the task in ClickUp</span></summary><div class="nm-acc__body"><p>Confirm the task is in the Site Change Requests list. Never work from a raw Teams or Slack message.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://app.clickup.com/9011460926/v/l/li/901115447365" target="_blank" rel="noopener">Site Change Requests<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-5">Clip 05: ClickUp Intake</a></li></ul></div></details>
+<details class="nm-acc" id="step-02"><summary><span class="nm-acc__num">02</span><span class="nm-acc__title">Build it in Figma</span></summary><div class="nm-acc__body"><p>Pull the component from Cabana 8 (Code Blocks, then Builders) into the WSS Site Updates file. Set Auto Layout and add notes with the Annotate tool, since AI agents read annotations straight from the frame.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://chromewebstore.google.com/" target="_blank" rel="noopener">Chrome Figma Capture<span class="nm-visually-hidden"> (opens in a new tab)</span></a> (search "Figma" in the Chrome Web Store)</li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-1">Clip 01: Figma Auto Layout</a></li></ul></div></details>
+<details class="nm-acc" id="step-03"><summary><span class="nm-acc__num">03</span><span class="nm-acc__title">Prep your photos</span></summary><div class="nm-acc__body"><p>Pick existing photos in Tunnel V2, or crop new JPGs in Photo Sizer (300 KB hero, 200 KB for the rest, plus 480 and 960 copies). Sacha or Anthony uploads them.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://the-tunnel.netlify.app/v2/index.html" target="_blank" rel="noopener">Tunnel V2<span class="nm-visually-hidden"> (opens in a new tab)</span></a> · <a href="photo-sizer.html?block=flipbook-hero-sale">Photo Sizer</a></li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-2">Clip 02: Photo Sizer and Tunnel V2</a></li></ul></div></details>
+<details class="nm-acc" id="step-04"><summary><span class="nm-acc__num">04</span><span class="nm-acc__title">Run the prompt</span></summary><div class="nm-acc__body"><p>Give your AI the four things from Start here: the starting HTML, the prompt, your Link Book and your Figma frame.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="blocks.html">Code Library</a> · <a href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Box folder with the Link Book<span class="nm-visually-hidden"> (opens in a new tab)</span></a> · <a href="https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" target="_blank" rel="noopener">Claude helper plugin<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-3">Clip 03: AI Prompt</a></li></ul></div></details>
+<details class="nm-acc" id="step-05"><summary><span class="nm-acc__num">05</span><span class="nm-acc__title">Check it, then copy from a code editor</span></summary><div class="nm-acc__body"><p>Open the HTML file in Safari or Chrome first and confirm every photo shows. Then open it in VS Code, Cursor, Antigravity IDE or Dreamweaver and press Command + A, then Command + C.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Read-only GitHub repo<span class="nm-visually-hidden"> (opens in a new tab)</span></a> (pull only, never push)</li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-3">Clip 03: Code Editor</a></li></ul></div></details>
+<details class="nm-acc" id="step-06"><summary><span class="nm-acc__num">06</span><span class="nm-acc__title">Paste into Fastr</span></summary><div class="nm-acc__body"><p>Paste into your Fastr component (Brand: WorldSoccerShop), enter the 3 Reserved Heights (390, 640 and up, 1024 and up), click Save, and place the Reserves space embed on your test page.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Fastr CMS<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-3">Clip 03: Reserved Heights</a></li></ul></div></details>
+<details class="nm-acc" id="step-07"><summary><span class="nm-acc__num">07</span><span class="nm-acc__title">Check a second browser</span></summary><div class="nm-acc__body"><p>If Fastr still shows your old version after Save, open the test page in a second browser such as Safari before you paste again.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-4">Clip 04: Testing</a></li></ul></div></details>
+<details class="nm-acc" id="step-08"><summary><span class="nm-acc__num">08</span><span class="nm-acc__title">Run PageSpeed and record a Jam</span></summary><div class="nm-acc__body"><p>Test the preview URL in PageSpeed Insights. Record a quick desktop and phone Jam, and check that store fonts did not override your block. Check all 5 widths, 360 to 1440.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights<span class="nm-visually-hidden"> (opens in a new tab)</span></a> · <a href="https://jam.dev/" target="_blank" rel="noopener">Jam.dev<span class="nm-visually-hidden"> (opens in a new tab)</span></a> · <a href="https://responsively.app/" target="_blank" rel="noopener">Responsively<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-4">Clip 04: PageSpeed, Jam and ADA Contrast</a></li></ul></div></details>
+<details class="nm-acc" id="step-09"><summary><span class="nm-acc__num">09</span><span class="nm-acc__title">Hand in with Code Share</span></summary><div class="nm-acc__body"><p>Paste your HTML into Code Share, copy the link into the ClickUp task's HTML Code row, and send Sacha any process notes.</p><ul class="nm-acc__links"><li><span class="nm-acc__k">Tool</span> <a href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><span class="nm-acc__k">Watch</span> <a href="videos.html#clip-5">Clip 05: Box and Code Share</a></li></ul></div></details>
+<details class="nm-acc" id="other-tools"><summary><span class="nm-acc__num">+</span><span class="nm-acc__title">Other tools</span></summary><div class="nm-acc__body"><ul class="nm-acc__links"><li><a href="designer-guide.html">Designer guide</a>: the full one-page handbook.</li><li><a href="first-build.html">First build</a>: the click-by-click walkthrough.</li><li><a href="videos.html#full-walkthrough">Full walkthrough, 24 min</a>: all five steps with chapters.</li><li><a href="videos.html#clip-6">Bonus clip 06</a>: Chrome-to-Figma capture, 2 min 48 s.</li></ul></div></details>
+</div>
 </section>
 
+<section class="nm-section" id="practice">
+<details class="nm-acc"><summary><span class="nm-acc__num">→</span><span class="nm-acc__title">Your first two practice builds</span></summary><div class="nm-acc__body">
+<div class="nm-cards">
+<a class="nm-card" href="shop-by-club-section.html"><div><span class="nm-eyebrow">Practice build 01 · Alex</span><h3 class="nm-card__title">WorldSoccerShop Shop by Club section</h3></div><p class="nm-card__desc">Lay out the Shop by Club section in Figma with Auto Layout and annotations, adapt the verified code block with Claude, and test on your Fastr test page.</p><span class="nm-card__foot">Open Shop by Club section</span></a>
+<a class="nm-card" href="shop-by-club-logo-rail-champions-league.html"><div><span class="nm-eyebrow">Practice build 02 · Holly</span><h3 class="nm-card__title">Premier League Shop by Club logo rail</h3></div><p class="nm-card__desc">Take the Champions League Shop by Club logo rail from the Code Library, swap in the Premier League clubs and Link Book URLs, and test on your Fastr test page.</p><span class="nm-card__foot">Open Shop by Club logo rail</span></a>
+</div></div></details>
+</section>
+
+<p class="nm-hiccups">Hit a hiccup? Ask your AI to write a short note for Sacha, or message her on Teams.</p>
+<p class="nm-contrast" id="contrast">Measured contrast on this page: body text 8.9:1, headings 13.6:1, Copy button 5.4:1, Expand all 4.9:1, small grey text 5.4:1. All pass the 4.5:1 minimum.</p>
 <footer class="nm-footer"><span>Volley · Sports Endeavors design &amp; marketing hub.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
 </div></div>
 </main>
 </div>
 <script src="nm-pages.js"></script>
 <script src="nutmeg.js"></script>
+<script>
+(function () {
+  var btn = document.getElementById("copy-prompt"), status = document.getElementById("copy-status");
+  btn.addEventListener("click", function () {
+    var text = document.getElementById("prompt-text").textContent;
+    var label = btn.querySelector("span");
+    var done = function () { label.textContent = "Copied"; status.textContent = "Prompt copied"; setTimeout(function () { label.textContent = "Copy the prompt"; }, 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  });
+  var toggle = document.getElementById("acc-toggle");
+  var items = Array.prototype.slice.call(document.querySelectorAll("#acc-list > details"));
+  function sync() { var all = items.every(function (d) { return d.open; }); toggle.textContent = all ? "Collapse all" : "Expand all"; toggle.setAttribute("aria-expanded", all ? "true" : "false"); }
+  toggle.addEventListener("click", function () { var open = !items.every(function (d) { return d.open; }); items.forEach(function (d) { d.open = open; }); sync(); });
+  items.forEach(function (d) { d.addEventListener("toggle", sync); });
+  /* Open the step a link points at, for example #step-04. */
+  function fromHash() { var el = location.hash && document.getElementById(location.hash.slice(1)); if (el && el.tagName === "DETAILS") { el.open = true; el.scrollIntoView(); } }
+  window.addEventListener("hashchange", fromHash); fromHash(); sync();
+})();
+</script>
 </body>
 </html>

@@ -237,6 +237,21 @@
 [data-player-control]:focus-visible { outline: 3px solid var(--nm-white); outline-offset: 3px; }
 @media (max-width: 560px) { .bunny-player { font-size: 13px; } .bunny-player__placeholder .nm-title-card__label { display: none; } }
 @media (prefers-reduced-motion: reduce) { .bunny-player__interface, [data-bunny-player-init] :is(.bunny-player__placeholder, .bunny-player__dark, .bunny-player__playpause, .bunny-player__loading) { transition: none; } }
+
+/* v2: six equal clip cards, each with its own player */
+.nm-clip-grid { align-items: start; }
+.nm-clip { cursor: default; }
+.nm-clip .bunny-player { overflow: hidden; border-radius: var(--nm-radius-sm); font-size: 12px; }
+.nm-clip .bunny-player__placeholder .nm-title-card__num { font-size: 40px; }
+.nm-clip .bunny-player__placeholder .nm-title-card__label { display: none; }
+.nm-clip .bunny-player[data-player-activated="false"] .bunny-player__interface { opacity: 0; visibility: hidden; }
+.nm-clip .bunny-player__big-btn { width: 4em; height: 4em; padding: 1.2em; }
+.nm-clip__text { display: flex; flex-direction: column; gap: 8px; }
+.nm-clip__chapters { margin: 0; padding: 0; list-style: none; }
+.nm-clip__chapters { display: flex; flex-direction: column; gap: 4px; }
+.nm-clip__chapters .nm-step { width: 100%; padding: 8px; border-radius: var(--nm-radius-sm); border-bottom: 0; }
+.nm-clip__chapters .nm-step__text { font-size: 14px; line-height: 1.3; }
+.nm-clip__chapters .nm-step[aria-current="true"] { background: var(--nm-line); }
 </style>
 </head>
 <body data-hub="volley">
@@ -264,18 +279,17 @@
 <main class="nm-main" id="nm-main">
 <div class="nm-panel"><div class="nm-content">
 <div class="nm-title">
-  
   <h1>Workshop walkthrough</h1>
-  <p class="nm-lede">The five-step build, from Figma to a live Fastr page. Watch it all or jump to the step you need.</p>
+  <p class="nm-lede">Five short clips, a bonus clip and the full walkthrough. Tap any card to play it right here.</p>
   <hr class="nm-divider">
 </div>
-<section class="nm-section" id="watch">
-<div class="nm-section__head"><h2 class="nm-h2">Watch<button type="button" class="nm-anchor" aria-label="Copy a link to Watch"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
-<div class="nm-video-feature">
-<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938862.m3u8?s=798c087d5e8c0c49580b05db9feb57769f49fa73&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="meta" id="reel">
+<section class="nm-section" id="clips">
+<div class="nm-cards nm-cards--3 nm-clip-grid" id="clip-grid">
+<article class="nm-video-card nm-clip" id="clip-1">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938857.m3u8?s=4c22ded32bf283bf1cd3b465bba58889d7502af3&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-clip-1">
       <div data-player-before="" class="bunny-player__before"></div>
-      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Complete 5-step Fastr coding walkthrough, full reel"></video>
-      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">00</span><span class="nm-title-card__label">Full walkthrough · 23 min 56 s</span></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Figma Auto Layout, Code Blocks and Annotations"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">01</span><span class="nm-title-card__label">Clip 01 · 3 min 59 s</span></div>
       <div class="bunny-player__dark"></div>
       <div data-player-control="playpause" class="bunny-player__playpause">
         <div class="bunny-player__big-btn">
@@ -319,19 +333,309 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
       </div>
     </div>
-<div class="nm-video-feature__text">
-  <span class="nm-chip nm-chip--sm" id="clip-chip">Full reel</span>
-  <span class="nm-video-feature__meta"><span id="clip-time">23:56</span><span aria-hidden="true">|</span><span>Workshop</span></span>
-  <h2 class="nm-video-feature__title" id="clip-title">Complete 5-step Fastr coding walkthrough</h2>
-  <p class="nm-card__text" id="clip-text" style="max-width:736px">All five steps in order. Watch from start to finish or jump to a chapter.</p>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Clip 01 · 3 min 59 s</span><h3 class="nm-video-card__title">Figma Auto Layout, Code Blocks and Annotations</h3><p class="nm-video-card__desc">Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations so your AI agent reads notes straight from your frame.</p></div>
+</article>
+<article class="nm-video-card nm-clip" id="clip-2">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938861.m3u8?s=5725e8e9f38c5dccc0e3155eb21df9ea871e4020&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-clip-2">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Code Library, Photo Sizer and Tunnel V2"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">02</span><span class="nm-title-card__label">Clip 02 · 5 min 13 s</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Clip 02 · 5 min 13 s</span><h3 class="nm-video-card__title">Code Library, Photo Sizer and Tunnel V2</h3><p class="nm-video-card__desc">Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying verified CDN URLs from Tunnel V2.</p></div>
+</article>
+<article class="nm-video-card nm-clip" id="clip-3">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938860.m3u8?s=e291f5a0a9978beba07a30d1c369f92d814021df&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-clip-3">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="AI Prompt, Code Editor and Reserved Heights"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">03</span><span class="nm-title-card__label">Clip 03 · 6 min 24 s</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Clip 03 · 6 min 24 s</span><h3 class="nm-video-card__title">AI Prompt, Code Editor and Reserved Heights</h3><p class="nm-video-card__desc">Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr&#x27;s 3 Reserved Heights and the Reserves space tab.</p></div>
+</article>
+<article class="nm-video-card nm-clip" id="clip-4">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938935.m3u8?s=de46acfabecab034955203b6059f7b08757796bd&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-clip-4">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Testing: PageSpeed, Jam and ADA Contrast"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">04</span><span class="nm-title-card__label">Clip 04 · 4 min 18 s</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Clip 04 · 4 min 18 s</span><h3 class="nm-video-card__title">Testing: PageSpeed, Jam and ADA Contrast</h3><p class="nm-video-card__desc">Running before-and-after PageSpeed checks, recording mobile and desktop Jam videos, and catching ADA contrast and storefront font bugs.</p></div>
+</article>
+<article class="nm-video-card nm-clip" id="clip-5">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238939053.m3u8?s=e75733b96e513dd09d385091fec74ffd30edcc75&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-clip-5">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="ClickUp Intake, Box and Code Share"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">05</span><span class="nm-title-card__label">Clip 05 · 4 min 02 s</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Clip 05 · 4 min 02 s</span><h3 class="nm-video-card__title">ClickUp Intake, Box and Code Share</h3><p class="nm-video-card__desc">Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing clean HTML via Code Share.</p></div>
+</article>
+<article class="nm-video-card nm-clip" id="clip-6">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238939112.m3u8?s=3a77d2af5607c20a7ae2ed471325c82d36c13dcb&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-clip-6">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Bonus: Chrome-to-Figma Auto Layout Capture"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">06</span><span class="nm-title-card__label">Clip 06 (bonus) · 2 min 48 s</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Clip 06 (bonus) · 2 min 48 s</span><h3 class="nm-video-card__title">Bonus: Chrome-to-Figma Auto Layout Capture</h3><p class="nm-video-card__desc">Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for our &quot;Let&#x27;s Build It&quot; page.</p></div>
+</article>
+<article class="nm-video-card nm-clip" id="full-walkthrough">
+<div data-player-muted="false" class="bunny-player" data-player-fullscreen="false" data-player-activated="false" data-player-autoplay="false" data-bunny-player-init="" data-player-hover="idle" data-player-src="https://player.vimeo.com/external/1238938862.m3u8?s=798c087d5e8c0c49580b05db9feb57769f49fa73&amp;logging=false" data-player-status="idle" data-player-update-size="false" data-player-lazy="true" id="player-full-walkthrough">
+      <div data-player-before="" class="bunny-player__before"></div>
+      <video preload="auto" width="1920" height="1080" playsinline="" class="bunny-player__video" aria-label="Full walkthrough, 24 min"></video>
+      <div class="bunny-player__placeholder nm-title-card" aria-hidden="true"><span class="nm-title-card__num">07</span><span class="nm-title-card__label">Full walkthrough, 24 min</span></div>
+      <div class="bunny-player__dark"></div>
+      <div data-player-control="playpause" class="bunny-player__playpause">
+        <div class="bunny-player__big-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+        </div>
+      </div>
+      <div class="bunny-player__interface">
+        <div class="bunny-player__interface-fade"></div>
+        <div class="bunny-player__interface-bottom">
+          <div data-player-control="playpause" class="bunny-player__toggle-playpause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__pause-svg"><path d="M16 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path><path d="M8 5V19" stroke="currentColor" stroke-width="3" stroke-miterlimit="10"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__play-svg"><path d="M6 12V5.01109C6 4.05131 7.03685 3.4496 7.87017 3.92579L14 7.42855L20.1007 10.9147C20.9405 11.3945 20.9405 12.6054 20.1007 13.0853L14 16.5714L7.87017 20.0742C7.03685 20.5503 6 19.9486 6 18.9889V12Z" fill="currentColor"></path></svg>
+          </div>
+          <div class="bunny-player__time">
+            <p data-player-time-progress="" class="bunny-player__text">00:00</p>
+            <p class="bunny-player__text is--transparent">/</p>
+            <p data-player-time-duration="" class="bunny-player__text is--transparent">00:00</p>
+          </div>
+          <div data-player-timeline="" class="bunny-player__timeline">
+            <div class="bunny-player__timeline-bar">
+              <div class="bunny-player__timeline-bg"></div>
+              <div data-player-buffered="" class="bunny-player__timeline-buffered"></div>
+              <div data-player-progress="" class="bunny-player__timeline-progress"></div>
+            </div>
+            <div data-player-timeline-handle="" class="bunny-player__timeline-handle"></div>
+          </div>
+          <div class="bunny-player__interface-btns">
+            <div data-player-control="mute" class="bunny-player__toggle-mute">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-up-svg"><path d="M3 8.99998V15H7L12 20V3.99998L7 8.99998H3ZM16.5 12C16.5 10.23 15.48 8.70998 14 7.96998V16.02C15.48 15.29 16.5 13.77 16.5 12ZM14 3.22998V5.28998C16.89 6.14998 19 8.82998 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.71998 18.01 4.13998 14 3.22998Z" fill="currentColor"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__volume-mute-svg"><path d="M16.5 12C16.5 10.23 15.48 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12ZM19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18.01 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12ZM4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.45 14 18.7V20.76C15.38 20.45 16.63 19.81 17.69 18.95L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z" fill="currentColor"></path></svg>
+            </div>
+            <div data-player-control="fullscreen" class="bunny-player__toggle-fullscreen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-scale-svg"><rect x="3" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="3" width="2" height="7" fill="currentColor"></rect><rect x="19" y="14" width="2" height="7" fill="currentColor"></rect><rect x="3" y="19" width="7" height="2" fill="currentColor"></rect><rect x="14" y="19" width="7" height="2" fill="currentColor"></rect><rect x="3" y="3" width="7" height="2" fill="currentColor"></rect><rect x="14" y="3" width="7" height="2" fill="currentColor"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="bunny-player__fullscreen-shrink-svg"><rect x="7" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="2" width="2" height="7" fill="currentColor"></rect><rect x="15" y="15" width="2" height="7" fill="currentColor"></rect><rect x="8" y="15" width="2" height="7" fill="currentColor"></rect><rect x="2" y="7" width="7" height="2" fill="currentColor"></rect><rect x="3" y="15" width="7" height="2" fill="currentColor"></rect><rect x="15" y="7" width="7" height="2" fill="currentColor"></rect><rect x="15" y="15" width="7" height="2" fill="currentColor"></rect></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bunny-player__loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" class="bunny-player__loading-svg" fill="none"><path fill="currentColor" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"></path><animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform></svg>
+      </div>
+    </div>
+<div class="nm-clip__text"><span class="nm-video-feature__meta">Workshop</span><h3 class="nm-video-card__title">Full walkthrough, 24 min</h3><p class="nm-video-card__desc">All five steps in order. Chapters appear here once it plays.</p></div><ol class="nm-steps nm-clip__chapters" id="chapters" aria-label="Chapters" hidden><li><button type="button" class="nm-step" data-chapter="0"><span class="nm-step__meta"><span class="nm-step__time">00:00</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 1</span></span><span class="nm-step__text">Figma Auto Layout and Annotations</span></button></li><li><button type="button" class="nm-step" data-chapter="239"><span class="nm-step__meta"><span class="nm-step__time">03:59</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 2</span></span><span class="nm-step__text">Code Library, Photo Sizer and Tunnel</span></button></li><li><button type="button" class="nm-step" data-chapter="552"><span class="nm-step__meta"><span class="nm-step__time">09:12</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 3</span></span><span class="nm-step__text">AI Prompt and Fastr Reserved Heights</span></button></li><li><button type="button" class="nm-step" data-chapter="936"><span class="nm-step__meta"><span class="nm-step__time">15:36</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 4</span></span><span class="nm-step__text">PageSpeed, Jam.dev and ADA Contrast</span></button></li><li><button type="button" class="nm-step" data-chapter="1194"><span class="nm-step__meta"><span class="nm-step__time">19:54</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 5</span></span><span class="nm-step__text">ClickUp Intake, Box and Code Share</span></button></li></ol>
+</article>
 </div>
-</div>
-</section><section class="nm-section" id="chapters">
-<div class="nm-section__head"><h2 class="nm-h2">Chapters<button type="button" class="nm-anchor" aria-label="Copy a link to Chapters"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Tap a chapter to jump to that step.</p></div>
-<ul class="nm-steps" id="chapters"><li><button type="button" class="nm-step" data-chapter="0"><span class="nm-step__meta"><span class="nm-step__time">00:00</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 1</span></span><span class="nm-step__text">Figma Auto Layout and Annotations</span></button></li><li><button type="button" class="nm-step" data-chapter="239"><span class="nm-step__meta"><span class="nm-step__time">03:59</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 2</span></span><span class="nm-step__text">Code Library, Photo Sizer and Tunnel</span></button></li><li><button type="button" class="nm-step" data-chapter="552"><span class="nm-step__meta"><span class="nm-step__time">09:12</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 3</span></span><span class="nm-step__text">AI Prompt and Fastr Reserved Heights</span></button></li><li><button type="button" class="nm-step" data-chapter="936"><span class="nm-step__meta"><span class="nm-step__time">15:36</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 4</span></span><span class="nm-step__text">PageSpeed, Jam.dev and ADA Contrast</span></button></li><li><button type="button" class="nm-step" data-chapter="1194"><span class="nm-step__meta"><span class="nm-step__time">19:54</span><span aria-hidden="true">|</span><span class="nm-step__eyebrow">Step 5</span></span><span class="nm-step__text">ClickUp Intake, Box and Code Share</span></button></li></ul>
-</section><section class="nm-section" id="clips">
-<div class="nm-section__head"><h2 class="nm-h2">Short clips<button type="button" class="nm-anchor" aria-label="Copy a link to Short clips"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Each step on its own.</p></div>
-<div class="nm-cards nm-cards--3" id="clip-grid"></div>
 </section>
 <footer class="nm-footer"><span>Volley · Sports Endeavors design &amp; marketing hub.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
 </div></div>
@@ -340,56 +644,15 @@
 <script src="nm-pages.js"></script>
 <script src="nutmeg.js"></script>
 <script>
-var CLIPS = [
-  { num: '01', kicker: 'Clip 01 · 3 min 59 s', title: '1. Figma Auto Layout, Code Blocks and Annotations',
-    text: 'Pulling pre-coded builders from Cabana 8, using Auto Layout, and adding Figma Annotations so your AI agent reads notes straight from your frame.',
-    src: 'https://player.vimeo.com/external/1238938857.m3u8?s=4c22ded32bf283bf1cd3b465bba58889d7502af3&logging=false' },
-  { num: '02', kicker: 'Clip 02 · 5 min 13 s', title: '2. Code Library, Photo Sizer and Tunnel V2',
-    text: 'Previewing blocks at 3 widths, cropping split-hero photos in Photo Sizer, and copying verified CDN URLs from Tunnel V2.',
-    src: 'https://player.vimeo.com/external/1238938861.m3u8?s=5725e8e9f38c5dccc0e3155eb21df9ea871e4020&logging=false' },
-  { num: '03', kicker: 'Clip 03 · 6 min 24 s', title: '3. AI Prompt, Code Editor and Reserved Heights',
-    text: "Running the Step Zero prompt, checking in Safari, copying from VS Code or Cursor, and setting Fastr's 3 Reserved Heights and the Reserves space tab.",
-    src: 'https://player.vimeo.com/external/1238938860.m3u8?s=e291f5a0a9978beba07a30d1c369f92d814021df&logging=false' },
-  { num: '04', kicker: 'Clip 04 · 4 min 18 s', title: '4. Testing: PageSpeed, Jam and ADA Contrast',
-    text: 'Running before-and-after PageSpeed checks, recording mobile and desktop Jam videos, and catching ADA contrast and storefront font bugs.',
-    src: 'https://player.vimeo.com/external/1238938935.m3u8?s=de46acfabecab034955203b6059f7b08757796bd&logging=false' },
-  { num: '05', kicker: 'Clip 05 · 4 min 02 s', title: '5. ClickUp Intake, Box and Code Share',
-    text: 'Why every request starts in ClickUp Site Change Requests (for GA baselines and removal dates) and sharing clean HTML via Code Share.',
-    src: 'https://player.vimeo.com/external/1238939053.m3u8?s=e75733b96e513dd09d385091fec74ffd30edcc75&logging=false' },
-  { num: '06', kicker: 'Clip 06 (bonus) · 2 min 48 s', title: '6. Bonus: Chrome-to-Figma Auto Layout Capture',
-    text: 'Capturing live web inspiration (Zara Miami Travel Guide) straight into Figma Auto Layout frames for our "Let\'s Build It" page.',
-    src: 'https://player.vimeo.com/external/1238939112.m3u8?s=3a77d2af5607c20a7ae2ed471325c82d36c13dcb&logging=false' }
-];
 (function () {
-  var reel = document.getElementById("reel");
-  var q = new URLSearchParams(location.search).get("clip");
-  var n = q ? parseInt(q, 10) : 0;
-  var clip = n >= 1 && n <= CLIPS.length ? CLIPS[n - 1] : null;
-  if (clip) {
-    reel.setAttribute("data-player-src", clip.src);
-    reel.querySelector(".nm-title-card__num").textContent = clip.num;
-    reel.querySelector(".nm-title-card__label").textContent = clip.kicker;
-    reel.querySelector("video").setAttribute("aria-label", clip.title);
-    document.getElementById("clip-chip").textContent = "Clip " + clip.num;
-    document.getElementById("clip-time").textContent = clip.kicker.split("· ")[1] || "";
-    document.getElementById("clip-title").textContent = clip.title.replace(/^\d+\.\s*/, "");
-    document.getElementById("clip-text").textContent = clip.text;
-    document.getElementById("chapters").closest("section").hidden = true;
+  /* Old links used videos.html?clip=N. Send them to the matching card anchor. No autoplay. */
+  var n = parseInt(new URLSearchParams(location.search).get("clip"), 10);
+  var ids = ["clip-1", "clip-2", "clip-3", "clip-4", "clip-5", "clip-6"];
+  if (n >= 1 && n <= 6 && !location.hash) {
+    history.replaceState(null, "", location.pathname + "#" + ids[n - 1]);
+    var el = document.getElementById(ids[n - 1]);
+    if (el) el.scrollIntoView();
   }
-  var grid = document.getElementById("clip-grid");
-  var cards = [{ num: "00", kicker: "Full reel · 23 min 56 s", title: "Complete 5-step walkthrough", text: "All five steps in order.", href: "videos.html" }].concat(CLIPS.map(function (c, i) { return { num: c.num, kicker: c.kicker, title: c.title.replace(/^\d+\.\s*/, ""), text: c.text, href: "videos.html?clip=" + (i + 1) }; }));
-  cards.forEach(function (c, i) {
-    var a = document.createElement("a");
-    a.className = "nm-video-card";
-    a.href = c.href;
-    if (i === n || (!clip && i === 0)) a.setAttribute("aria-current", "true");
-    a.innerHTML = '<span class="nm-video-card__media"><span class="nm-title-card"><span class="nm-title-card__num"></span><span class="nm-title-card__label"></span></span></span><span><span class="nm-video-card__title"></span><span class="nm-video-card__desc"></span></span>';
-    a.querySelector(".nm-title-card__num").textContent = c.num;
-    a.querySelector(".nm-title-card__label").textContent = c.kicker;
-    a.querySelector(".nm-video-card__title").textContent = c.title;
-    a.querySelector(".nm-video-card__desc").textContent = c.text;
-    grid.appendChild(a);
-  });
 })();
 </script>
 <script>
@@ -827,17 +1090,31 @@ document.addEventListener('DOMContentLoaded', function() {
     el.setAttribute("tabindex", el.classList.contains("bunny-player__toggle-playpause") ? "-1" : "0");
     el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); } });
   });
-  var reel = document.getElementById("reel");
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".nm-clip"));
+  var full = document.getElementById("full-walkthrough");
+  var chapters = document.getElementById("chapters");
+  /* One clip at a time: starting a card pauses the others and marks it current. */
+  cards.forEach(function (card) {
+    var v = card.querySelector("video");
+    v.addEventListener("play", function () {
+      cards.forEach(function (o) {
+        if (o === card) { o.setAttribute("aria-current", "true"); return; }
+        o.removeAttribute("aria-current");
+        var ov = o.querySelector("video");
+        if (!ov.paused) ov.pause();
+      });
+      chapters.hidden = card !== full;
+    });
+  });
+  /* Chapters live inside the full walkthrough card and jump to their timestamps. */
+  var reel = full.querySelector(".bunny-player");
   var video = reel.querySelector("video");
   var big = reel.querySelector(".bunny-player__playpause");
-  var buttons = Array.prototype.slice.call(document.querySelectorAll("[data-chapter]"));
+  var buttons = Array.prototype.slice.call(chapters.querySelectorAll("[data-chapter]"));
   function mark() {
     var t = video.currentTime, current = buttons[0];
     buttons.forEach(function (b) { if (t >= +b.getAttribute("data-chapter") - 0.5) current = b; });
-    buttons.forEach(function (b) {
-      var on = b === current && reel.getAttribute("data-player-activated") === "true";
-      if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
-    });
+    buttons.forEach(function (b) { if (b === current) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
   }
   video.addEventListener("timeupdate", mark);
   buttons.forEach(function (b) {
@@ -845,7 +1122,6 @@ document.addEventListener('DOMContentLoaded', function() {
       var t = +b.getAttribute("data-chapter");
       if (video.readyState >= 1) { video.currentTime = t; if (video.paused) big.click(); }
       else { video.addEventListener("loadedmetadata", function () { video.currentTime = t; }, { once: true }); big.click(); }
-      reel.scrollIntoView({ behavior: "smooth", block: "center" });
     });
   });
 })();
