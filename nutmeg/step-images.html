@@ -41,21 +41,13 @@
   <hr class="nm-divider">
 </div>
 <section class="nm-section" id="step-2">
-<div class="nm-section__head"><h2 class="nm-h2">Step 2: Design and prepare Box<button type="button" class="nm-anchor" aria-label="Copy a link to Step 2: Design and prepare Box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Lock your responsive frames in Figma, size new photos in Photo Sizer, and organize one Box folder before generating code.</p></div>
-
 <div class="nm-cards nm-cards--3">
-<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Top of Box folder</span><h3 class="nm-card__title">One HTML paste file</h3></div><p class="nm-card__text">Keep only the current HTML file at the top of the page folder. Move older drafts into <span class="nm-code">zz_old-versions</span> (Sacha, 15 Oct 2026).</p></article>
-<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Subfolder: images</span><h3 class="nm-card__title">300 KB hero / 200 KB rest</h3></div><p class="nm-card__text">Crop at 2x in Photo Sizer as JPG only (never WebP). Full-width desktop heroes up to 300 KB; all other photos under 200 KB (Sacha, 7 Aug and 20 Oct 2026).</p></article>
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Top of Box folder</span><h3 class="nm-card__title">One HTML paste file</h3></div><p class="nm-card__text">Keep only the current HTML file at the top of the page folder. Move older drafts into <span class="nm-code">zz_old-versions</span>.</p></article>
+<article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Subfolder: images</span><h3 class="nm-card__title">300 KB hero / 200 KB rest</h3></div><p class="nm-card__text">Crop at 2x in Photo Sizer as JPG only (never WebP). Full-width desktop heroes up to 300 KB; all other photos under 200 KB.</p></article>
 <article class="nm-card nm-card--open"><div><span class="nm-eyebrow">Subfolders</span><h3 class="nm-card__title">working images &amp; Info</h3></div><p class="nm-card__text">Keep layered source files in <span class="nm-code">working images</span> and campaign notes or custom fonts in <span class="nm-code">Info</span>.</p></article>
 </div>
 
-<h3 class="nm-h3">How slots work in Figma</h3>
-<div class="nm-prose">
-<p>A slot is an empty pocket inside a component. The outer frame stays the same while you drop different content into the pocket (Components, 17 Oct 2026).</p>
-<p>In the hero component, the Words slot can hold campaign lettering, an everyday headline with copy and a button, or stay empty for a photo-only hero. Set Brand on each piece separately: the hero, the text inside it, and the button inside that. Use a slot when changing the structure inside a container; use a regular text field or toggle when only changing words or hiding one element.</p>
-</div>
-
-<h3 class="nm-h3">Images and speed rules (ruled 20 Oct 2026)</h3>
+<h3 class="nm-h3">Images and speed rules</h3>
 <div class="nm-table-wrap"><table class="nm-table">
 <thead><tr><th>Rule</th><th>What to do</th></tr></thead>
 <tbody>
@@ -65,7 +57,7 @@
 <tr><td>4. No lazy loading</td><td>Every photo loads eagerly. Never use <span class="nm-code">loading="lazy"</span>.</td></tr>
 <tr><td>5. Flip-book hero framing</td><td>Each photo fills half the screen edge to edge, so phones show a tall narrow slice. Keep subjects inside the middle third and above the bottom 40 percent, keep faces away from the center headline, or supply a 1:3 phone crop. Use the <a href="photo-sizer.html?block=flipbook-hero-sale">Flip-book hero preset in Photo Sizer</a> to check all four frame shapes at once.</td></tr>
 <tr><td>6. PageSpeed before and after</td><td>Measure before and after on the component preview with <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a> and log both scores. Preview links carry an 0.8s CMS embed delay on phones, so judge mobile scores on the live template.</td></tr>
-<tr><td>7. Verified links only</td><td>Take every destination URL from the Link Book (<span class="nm-code">SITE-LINKS</span> in Box). Never guess a URL; if one is missing, tell Components so it goes into the Link Book the same day (Sacha, 3 Aug and 15 Oct 2026).</td></tr>
+<tr><td>7. Verified links only</td><td>Take every destination URL from the Link Book (<span class="nm-code">SITE-LINKS</span> in Box). Never guess a URL; if one is missing, tell Components so it goes into the Link Book the same day.</td></tr>
 </tbody>
 </table></div>
 </section>

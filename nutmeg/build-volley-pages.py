@@ -583,7 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
 GUIDE_TEXT = (HERE / "designer-guide.html").read_text(encoding="utf-8")
 
 
-def extract_section(sec_id):
+def extract_section(sec_id, strip_head=True):
     m = re.search(
         rf'(<section class="nm-section" id="{re.escape(sec_id)}">.*?</section>)',
         GUIDE_TEXT,
@@ -591,7 +591,24 @@ def extract_section(sec_id):
     )
     if not m:
         raise SystemExit(f"Missing section #{sec_id} in designer-guide.html")
-    return m.group(1)
+    sec = m.group(1)
+    if strip_head:
+        sec = re.sub(r'<div class="nm-section__head">.*?</div>\s*', "", sec, count=1, flags=re.S)
+    return sec
+
+
+FIGMA_SECTION_HTML = """<section class="nm-section" id="figma-library">
+<div class="nm-cards nm-cards--3">
+  <article class="nm-card nm-card--open"><div><span class="nm-eyebrow">1. Enable Library</span><h3 class="nm-card__title">Use the Assets panel</h3></div><p class="nm-card__text">In your own working Figma file, open the <strong>Assets</strong> tab (or press <span class="nm-code">Shift + I</span>), click the Library book icon, and turn on <strong>Cabana 8</strong>. Never open or edit the master Cabana 8 file directly.</p></article>
+  <article class="nm-card nm-card--open"><div><span class="nm-eyebrow">2. Pull a Block</span><h3 class="nm-card__title">Code Blocks Builders</h3></div><p class="nm-card__text">Drag the matching pre-coded block from Cabana 8 into your frame, set the <strong>Brand</strong> property on the outer block and inner pieces, and keep Auto Layout intact.</p></article>
+  <article class="nm-card nm-card--open"><div><span class="nm-eyebrow">3. Annotate</span><h3 class="nm-card__title">Figma Annotations</h3></div><p class="nm-card__text">Attach a short Figma Annotation to your frame noting the destination URLs from the Link Book, the Box photo filenames, and any MotionFX preset.</p></article>
+</div>
+<h3 class="nm-h3">How slots work in Figma</h3>
+<div class="nm-prose">
+<p>A slot is an empty pocket inside a component. The outer frame stays the same while you drop different content into the pocket.</p>
+<p>In the hero component, the Words slot can hold campaign lettering, an everyday headline with copy and a button, or stay empty for a photo-only hero. Set Brand on each piece separately: the hero, the text inside it, and the button inside that. Use a slot when changing the structure inside a container; use a regular text field or toggle when only changing words or hiding one element.</p>
+</div>
+</section>"""
 
 
 STEP_SPECS = [
@@ -662,7 +679,14 @@ STEP_SPECS = [
 ]
 
 for filename, title, desc, sec_ids, prev_link, next_link in STEP_SPECS:
-    sections_html = "\n".join(extract_section(sid) for sid in sec_ids)
+    if filename == "step-figma.html":
+        sections_html = FIGMA_SECTION_HTML
+    elif filename == "step-images.html":
+        sec = extract_section("step-2", strip_head=True)
+        sec = re.sub(r'<h3 class="nm-h3">How slots work in Figma</h3>.*?</div>\s*', "", sec, flags=re.S)
+        sections_html = sec
+    else:
+        sections_html = "\n".join(extract_section(sid, strip_head=(i == 0)) for i, sid in enumerate(sec_ids))
     prev_href, prev_label = prev_link
     next_href, next_label = next_link
     body = f"""<div class="nm-title">
