@@ -400,7 +400,7 @@
       var frameSrc = frame.getAttribute("src") || "";
       var baseHref = "";
       try {
-        baseHref = new URL(frameSrc, location.href).href.replace(/[^/]*$/, "");
+        baseHref = new URL(frameSrc, location.href).href.replace(/[^/]*$/, "").replace(/blocks\/$/, "");
       } catch (e) {
         baseHref = "";
       }
@@ -502,7 +502,8 @@
       };
       uniqueColors.forEach(function (c) { state.colors[c] = c; });
 
-      // Build the editor from Nutmeg parts: eyebrow, serif title, cards, pill buttons
+      // Build the editor from Nutmeg parts: eyebrow, serif title, cards, pill buttons.
+      // Edits wait in state until Brock presses Update preview.
       var el = function (tag, cls, text) {
         var n = document.createElement(tag);
         if (cls) n.className = cls;
@@ -523,16 +524,36 @@
         if (placeholder) i.placeholder = placeholder;
         return i;
       };
-      var makeGroup = function (eyebrow, title) {
-        var g = el("article", "nm-card nm-card--open nm-email-editor__group");
-        var head = el("div");
-        head.appendChild(el("span", "nm-eyebrow", eyebrow));
-        head.appendChild(el("h3", "nm-card__title", title));
+      var makeGroup = function (eyebrow, title, open) {
+        var g = el("details", "nm-card nm-card--open nm-email-editor__group");
+        if (open) g.open = true;
+        var head = el("summary", "nm-email-editor__summary");
+        var headText = el("div");
+        headText.appendChild(el("span", "nm-eyebrow", eyebrow));
+        headText.appendChild(el("span", "nm-card__title", title));
+        head.appendChild(headText);
+        head.insertAdjacentHTML("beforeend", '<svg class="nm-email-editor__chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg>');
         g.appendChild(head);
         var grid = el("div", "nm-email-editor__grid");
         g.appendChild(grid);
         return { card: g, grid: grid };
       };
+
+      var dirty = false;
+      var statusChip;
+      var markDirty = function () {
+        dirty = true;
+        statusChip.textContent = "Changes not in the preview yet";
+        statusChip.className = "nm-chip nm-chip--yellow nm-chip--sm";
+      };
+      var markClean = function () {
+        dirty = false;
+        statusChip.textContent = "Preview and code are up to date";
+        statusChip.className = "nm-chip nm-chip--green nm-chip--sm";
+      };
+
+      var barLabel = codeBlock.querySelector(".nm-codeblock__bar > span");
+      if (barLabel) barLabel.textContent = "HTML for a Zeta HTML block (updates when you press Update preview)";
 
       var editor = el("section", "nm-email-editor");
       editor.setAttribute("aria-label", "Change this block");
@@ -542,10 +563,20 @@
       titleWrap.appendChild(el("span", "nm-eyebrow", "Live editor"));
       var titleRow = el("div", "nm-email-editor__title-row");
       titleRow.appendChild(el("h3", "nm-card__title", "Change this block"));
-      titleRow.appendChild(el("span", "nm-chip nm-chip--green nm-chip--sm", "Preview and code update as you type"));
+      statusChip = el("span", "nm-chip nm-chip--green nm-chip--sm", "Preview and code are up to date");
+      titleRow.appendChild(statusChip);
       titleWrap.appendChild(titleRow);
+      titleWrap.appendChild(el("p", "nm-email-editor__lede", "Make your changes, then press Update preview. The code block below updates at the same time."));
 
-      var actions = el("div", "nm-email-editor__actions");
+      var makeActions = function () {
+        var actions = el("div", "nm-email-editor__actions");
+        var applyBtn = el("button", "nm-btn", "Update preview");
+        applyBtn.type = "button";
+        applyBtn.addEventListener("click", function () { sync(); markClean(); });
+        actions.appendChild(applyBtn);
+        return actions;
+      };
+      var actions = makeActions();
       var altBtn = el("button", "nm-btn nm-btn--outline", "Show it with images blocked");
       altBtn.type = "button";
       altBtn.setAttribute("aria-pressed", "false");
@@ -557,42 +588,96 @@
       bar.appendChild(actions);
       editor.appendChild(bar);
 
-      var body = el("div", "nm-cards nm-email-editor__body");
+      var body = el("div", "nm-email-editor__body");
       var allControls = [];
+      var watch = function (input, handler) {
+        input.addEventListener("input", function () { handler(); markDirty(); });
+      };
 
-      // 1. Tracking and image folder
-      var gTrack = makeGroup("1. Tracking", "Campaign name and image folder");
-      var inCamp = makeInput(state.campaign);
-      inCamp.addEventListener("input", function () { state.campaign = inCamp.value; sync(); });
-      gTrack.grid.appendChild(makeField("Campaign name", inCamp, "Added to every link so Google Analytics knows the send."));
-      var inCont = makeInput(state.contentTag);
-      inCont.addEventListener("input", function () { state.contentTag = inCont.value; sync(); });
-      gTrack.grid.appendChild(makeField("Block name", inCont, "Tells Analytics which block was clicked."));
-      var selS3 = el("select", "nm-select");
-      S3_HOSTS.forEach(function (h) {
-        var opt = el("option", "", h.label);
-        opt.value = h.base;
-        selS3.appendChild(opt);
-      });
-      selS3.addEventListener("change", function () { state.s3Base = selS3.value; sync(); });
-      gTrack.grid.appendChild(makeField("Where the images live", selS3, "Pick the bucket before you copy the code."));
-      body.appendChild(gTrack.card);
-
-      // 2. Words
+      // 1. Words
       if (textSpecs.length) {
-        var gText = makeGroup("2. Words", "Text and promo code");
+        var gText = makeGroup("1. Words", "Text and promo code", true);
         textSpecs.forEach(function (spec, idx) {
           var inp = makeInput(spec.initial);
-          inp.addEventListener("input", function () { state.texts[idx] = inp.value; sync(); });
+          watch(inp, function () { state.texts[idx] = inp.value; });
           allControls.push(function () { inp.value = spec.initial; });
           gText.grid.appendChild(makeField(spec.label, inp));
         });
         body.appendChild(gText.card);
       }
 
-      // 3. Colours
+      // 2. Images
+      var mainImgs = imgSpecs.filter(function (im) { return !im.isSlice; });
+      if (mainImgs.length) {
+        var gImg = makeGroup("2. Images", "Pictures and alt text", true);
+        mainImgs.forEach(function (im) {
+          var card = el("div", "nm-email-editor__img");
+          var head = el("span", "nm-eyebrow", im.shortName + (im.w ? ", " + im.w + " by " + im.h : ""));
+          var srcIn = makeInput(im.src, "Image address");
+          var altIn = makeInput(im.alt, "Say what the picture shows or what the offer is");
+          var skuRow = el("div", "nm-email-editor__inline");
+          var skuIn = makeInput("", "Article number, like A1142072");
+          var skuBtn = el("button", "nm-btn nm-btn--outline", "Load PDP image");
+          skuBtn.type = "button";
+          skuBtn.addEventListener("click", function () {
+            var rawSku = skuIn.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+            if (!rawSku) return;
+            var ihUrl = "https://www.imagehandler.net/preview/?istyle=0000&fmt=png&w=1200&h=1200&cmp=100&c=999&img=" + rawSku + "000&iset=0100&iindex=0088";
+            state.imgs[im.index].src = ihUrl;
+            srcIn.value = ihUrl;
+            markDirty();
+          });
+          skuRow.appendChild(skuIn);
+          skuRow.appendChild(skuBtn);
+          watch(srcIn, function () { state.imgs[im.index].src = srcIn.value; });
+          watch(altIn, function () { state.imgs[im.index].alt = altIn.value; });
+          allControls.push(function () {
+            srcIn.value = im.src;
+            altIn.value = im.alt;
+            skuIn.value = "";
+          });
+          card.appendChild(head);
+          card.appendChild(makeField("Image address", srcIn));
+          card.appendChild(makeField("Alt text", altIn, "Outlook shows this when images are blocked."));
+          card.appendChild(makeField("Or swap in a PDP image", skuRow, "Type the article number and the product photo from the product page replaces this image."));
+          gImg.grid.appendChild(card);
+        });
+        body.appendChild(gImg.card);
+      }
+
+      // 3. Links
+      if (linkSpecs.length) {
+        var gLink = makeGroup("3. Links", "Where each link goes", false);
+        linkSpecs.forEach(function (lk, idx) {
+          var row = el("div", "nm-email-editor__inline");
+          var urlIn = makeInput(lk.href);
+          var pick = el("select", "nm-select nm-select--narrow");
+          QUICK_LINKS.forEach(function (ql) {
+            var opt = el("option", "", ql.label);
+            opt.value = ql.url;
+            pick.appendChild(opt);
+          });
+          pick.addEventListener("change", function () {
+            if (!pick.value) return;
+            state.links[idx] = pick.value;
+            urlIn.value = pick.value;
+            markDirty();
+          });
+          watch(urlIn, function () { state.links[idx] = urlIn.value; });
+          allControls.push(function () {
+            urlIn.value = lk.href;
+            pick.selectedIndex = 0;
+          });
+          row.appendChild(urlIn);
+          row.appendChild(pick);
+          gLink.grid.appendChild(makeField("Link " + (idx + 1) + ": " + lk.label, row));
+        });
+        body.appendChild(gLink.card);
+      }
+
+      // 4. Colours
       if (uniqueColors.length) {
-        var gCol = makeGroup("3. Colours", "Colours in this block");
+        var gCol = makeGroup("4. Colours", "Colours in this block", false);
         uniqueColors.forEach(function (origHex) {
           var field = el("div", "nm-field");
           var sp = el("span", "nm-field__label", "Colour ");
@@ -618,22 +703,20 @@
               state.colors[origHex] = sw.hex;
               picker.value = sw.hex;
               hexIn.value = sw.hex;
-              sync();
+              markDirty();
             });
             swatchRow.appendChild(b);
           });
-          picker.addEventListener("input", function () {
+          watch(picker, function () {
             var v = picker.value.toUpperCase();
             state.colors[origHex] = v;
             hexIn.value = v;
-            sync();
           });
-          hexIn.addEventListener("input", function () {
+          watch(hexIn, function () {
             var v = hexIn.value.trim();
             if (/^#[0-9A-Fa-f]{6}$/.test(v)) {
               state.colors[origHex] = v.toUpperCase();
               picker.value = v.toUpperCase();
-              sync();
             }
           });
           allControls.push(function () {
@@ -650,77 +733,28 @@
         body.appendChild(gCol.card);
       }
 
-      // 4. Images
-      var mainImgs = imgSpecs.filter(function (im) { return !im.isSlice; });
-      if (mainImgs.length) {
-        var gImg = makeGroup("4. Images", "Pictures and alt text");
-                mainImgs.forEach(function (im) {
-          var card = el("div", "nm-email-editor__img");
-          var head = el("span", "nm-eyebrow", im.shortName + (im.w ? ", " + im.w + " by " + im.h : ""));
-          var srcIn = makeInput(im.src, "Image address");
-          var altIn = makeInput(im.alt, "Say what the picture shows or what the offer is");
-          var skuRow = el("div", "nm-email-editor__inline");
-          var skuIn = makeInput("", "Article number, like A1142072");
-          var skuBtn = el("button", "nm-btn nm-btn--outline", "Load product cutout");
-          skuBtn.type = "button";
-          skuBtn.addEventListener("click", function () {
-            var rawSku = skuIn.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
-            if (!rawSku) return;
-            var ihUrl = "https://www.imagehandler.net/preview/?istyle=0000&fmt=png&w=1200&h=1200&cmp=100&c=999&img=" + rawSku + "000&iset=0100&iindex=0088";
-            state.imgs[im.index].src = ihUrl;
-            srcIn.value = ihUrl;
-            sync();
-          });
-          skuRow.appendChild(skuIn);
-          skuRow.appendChild(skuBtn);
-          srcIn.addEventListener("input", function () { state.imgs[im.index].src = srcIn.value; sync(); });
-          altIn.addEventListener("input", function () { state.imgs[im.index].alt = altIn.value; sync(); });
-          allControls.push(function () {
-            srcIn.value = im.src;
-            altIn.value = im.alt;
-            skuIn.value = "";
-          });
-          card.appendChild(head);
-          card.appendChild(makeField("Image address", srcIn));
-          card.appendChild(makeField("Alt text", altIn, "Outlook shows this when images are blocked."));
-          card.appendChild(makeField("Or load a product cutout", skuRow));
-          gImg.grid.appendChild(card);
-        });
-        body.appendChild(gImg.card);
-      }
-
-      // 5. Links
-      if (linkSpecs.length) {
-        var gLink = makeGroup("5. Links", "Where each link goes");
-        gLink.card.classList.add("nm-email-editor__group--wide");
-        linkSpecs.forEach(function (lk, idx) {
-          var row = el("div", "nm-email-editor__inline");
-          var urlIn = makeInput(lk.href);
-          var pick = el("select", "nm-select nm-select--narrow");
-          QUICK_LINKS.forEach(function (ql) {
-            var opt = el("option", "", ql.label);
-            opt.value = ql.url;
-            pick.appendChild(opt);
-          });
-          pick.addEventListener("change", function () {
-            if (!pick.value) return;
-            state.links[idx] = pick.value;
-            urlIn.value = pick.value;
-            sync();
-          });
-          urlIn.addEventListener("input", function () { state.links[idx] = urlIn.value; sync(); });
-          allControls.push(function () {
-            urlIn.value = lk.href;
-            pick.selectedIndex = 0;
-          });
-          row.appendChild(urlIn);
-          row.appendChild(pick);
-          gLink.grid.appendChild(makeField("Link " + (idx + 1) + ": " + lk.label, row));
-        });
-        body.appendChild(gLink.card);
-      }
+      // 5. Tracking and image folder
+      var gTrack = makeGroup("5. Tracking", "Campaign name and image folder", false);
+      var inCamp = makeInput(state.campaign);
+      watch(inCamp, function () { state.campaign = inCamp.value; });
+      gTrack.grid.appendChild(makeField("Campaign name", inCamp, "Added to every link so Google Analytics knows the send."));
+      var inCont = makeInput(state.contentTag);
+      watch(inCont, function () { state.contentTag = inCont.value; });
+      gTrack.grid.appendChild(makeField("Block name", inCont, "Tells Analytics which block was clicked."));
+      var selS3 = el("select", "nm-select");
+      S3_HOSTS.forEach(function (h) {
+        var opt = el("option", "", h.label);
+        opt.value = h.base;
+        selS3.appendChild(opt);
+      });
+      selS3.addEventListener("change", function () { state.s3Base = selS3.value; markDirty(); });
+      gTrack.grid.appendChild(makeField("Where the images live", selS3, "Pick the bucket before you copy the code."));
+      body.appendChild(gTrack.card);
 
       editor.appendChild(body);
+      var foot = el("div", "nm-email-editor__foot");
+      foot.appendChild(makeActions());
+      editor.appendChild(foot);
       demo.parentNode.insertBefore(editor, demo.nextSibling);
 
       // Build updated HTML string from current state
@@ -827,6 +861,7 @@
         altBtn.setAttribute("aria-pressed", String(state.altTest));
         altBtn.textContent = state.altTest ? "Show the images again" : "Show it with images blocked";
         sync();
+        markClean();
       });
 
       resetBtn.addEventListener("click", function () {
@@ -847,6 +882,7 @@
         codeEl.textContent = origCode;
         frame.removeAttribute("srcdoc");
         frame.setAttribute("src", frameSrc);
+        markClean();
       });
     });
   }
