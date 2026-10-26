@@ -180,6 +180,44 @@
     grid-row-gap: 1.5em;
   }
 }
+
+/* ⚠️DEVIATION #7: Hover and focus link state on each timeline step so hovering reveals the direct link to that step page */
+.step-timeline__link {
+  color: inherit;
+  text-decoration: none;
+  padding: 16px 20px;
+  margin: -12px -20px;
+  border-radius: var(--nm-radius-md);
+  transition: opacity .25s ease, background-color .2s ease, transform .2s ease;
+}
+.step-timeline__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: #4C753B;
+  font: 600 13px/18px var(--nm-sans);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+[data-step-timeline-item]:hover .step-timeline__content,
+[data-step-timeline-item]:focus-within .step-timeline__content {
+  opacity: 1;
+  background-color: rgba(76, 117, 59, 0.08);
+}
+[data-step-timeline-item]:hover .step-timeline__cta,
+[data-step-timeline-item]:focus-within .step-timeline__cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+[data-step-timeline-item]:hover [data-step-timeline-marker],
+[data-step-timeline-item]:focus-within [data-step-timeline-marker] {
+  background: #2F4A25;
+  color: #FFFFFF;
+  border-color: #2F4A25;
+  box-shadow: 0 0 0 0.4em rgba(76, 117, 59, 0.18);
+}
 </style>
 </head>
 <body data-hub="volley">
@@ -218,46 +256,100 @@
     <div class="step-timeline__collection">
       <div class="step-timeline__list">
         <div data-step-timeline-item class="step-timeline__item">
-          <div data-step-timeline-marker class="step-timeline__marker"><span>1</span></div>
-          <div class="step-timeline__content">
-            <h2 class="step-timeline__content-h">Check the brief</h2>
-            <p class="step-timeline__p">Open the task in ClickUp Site Change Requests so you have the approved copy, launch date, and product picks before you start.</p>
-          </div>
+          <a href="get-started.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 1: How It Works"><span>1</span></a>
+          <a href="get-started.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">How It Works</h2>
+            <p class="step-timeline__p">Start with the 12-card overview so you can follow our website build process one step at a time.</p>
+            <span class="step-timeline__cta">Open step 01 &rarr;</span>
+          </a>
         </div>
         <div data-step-timeline-item class="step-timeline__item">
-          <div data-step-timeline-marker class="step-timeline__marker"><span>2</span></div>
-          <div class="step-timeline__content">
-            <h2 class="step-timeline__content-h">Design in Figma</h2>
-            <p class="step-timeline__p">Pull a pre-coded block from Cabana 8 into Figma, lay out your content with Auto Layout, and size your JPG photos in Photo Sizer.</p>
-          </div>
+          <a href="starter-pack-wss.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 2: Starter Kit"><span>2</span></a>
+          <a href="starter-pack-wss.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Starter Kit</h2>
+            <p class="step-timeline__p">Download the AI starter kit, copy the Step Zero prompt, and review the pilot examples before your first build.</p>
+            <span class="step-timeline__cta">Open step 02 &rarr;</span>
+          </a>
         </div>
         <div data-step-timeline-item class="step-timeline__item">
-          <div data-step-timeline-marker class="step-timeline__marker"><span>3</span></div>
-          <div class="step-timeline__content">
-            <h2 class="step-timeline__content-h">Adapt the code with AI</h2>
-            <p class="step-timeline__p">Give your AI the starting HTML file from Volley, the Step Zero prompt, and your Link Book URLs so it swaps in your words and photos.</p>
-          </div>
+          <a href="step-tools.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 3: Tools & Links"><span>3</span></a>
+          <a href="step-tools.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Tools & Links</h2>
+            <p class="step-timeline__p">Bookmark the 12 daily tools you need for every task, including Volley, Photo Sizer, The Tunnel, Fastr, and Code Share.</p>
+            <span class="step-timeline__cta">Open step 03 &rarr;</span>
+          </a>
         </div>
         <div data-step-timeline-item class="step-timeline__item">
-          <div data-step-timeline-marker class="step-timeline__marker"><span>4</span></div>
-          <div class="step-timeline__content">
-            <h2 class="step-timeline__content-h">Paste into your test page</h2>
-            <p class="step-timeline__p">Check your final HTML file in Safari, copy it from Visual Studio Code into Fastr with the three heights, and place the Reserves space embed on your test page.</p>
-          </div>
+          <a href="step-clickup.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 4: Site Updates List"><span>4</span></a>
+          <a href="step-clickup.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Site Updates List</h2>
+            <p class="step-timeline__p">Open your assigned task in ClickUp Site Change Requests so you have the approved copy, launch date, and product picks.</p>
+            <span class="step-timeline__cta">Open step 04 &rarr;</span>
+          </a>
         </div>
         <div data-step-timeline-item class="step-timeline__item">
-          <div data-step-timeline-marker class="step-timeline__marker"><span>5</span></div>
-          <div class="step-timeline__content">
-            <h2 class="step-timeline__content-h">Test on desktop and phone</h2>
-            <p class="step-timeline__p">Check your test page in a second browser and across five screen widths in Responsively, then record a quick Jam video.</p>
-          </div>
+          <a href="step-figma.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 5: Figma Library"><span>5</span></a>
+          <a href="step-figma.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Figma Library</h2>
+            <p class="step-timeline__p">Enable the Cabana 8 library in your Figma Assets panel, pull a pre-coded block into your frame, and add your Figma annotations.</p>
+            <span class="step-timeline__cta">Open step 05 &rarr;</span>
+          </a>
         </div>
         <div data-step-timeline-item class="step-timeline__item">
-          <div data-step-timeline-marker class="step-timeline__marker"><span>6</span></div>
-          <div class="step-timeline__content">
-            <h2 class="step-timeline__content-h">Hand in one link on ClickUp</h2>
-            <p class="step-timeline__p">Paste your code into Code Share to create one link for ClickUp and move the task to UX review so your site author can publish it live.</p>
-          </div>
+          <a href="step-images.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 6: Working With Images"><span>6</span></a>
+          <a href="step-images.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Working With Images</h2>
+            <p class="step-timeline__p">Size your JPG photos in Photo Sizer under 300 KB for desktop heroes and 200 KB for cards, then upload them to Box.</p>
+            <span class="step-timeline__cta">Open step 06 &rarr;</span>
+          </a>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <a href="step-links.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 7: Working With Links"><span>7</span></a>
+          <a href="step-links.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Working With Links</h2>
+            <p class="step-timeline__p">Take every destination URL from the Link Book and product picks from The Tunnel, then give your AI the Step Zero prompt.</p>
+            <span class="step-timeline__cta">Open step 07 &rarr;</span>
+          </a>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <a href="step-fastr.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 8: Fastr CMS"><span>8</span></a>
+          <a href="step-fastr.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Fastr CMS</h2>
+            <p class="step-timeline__p">Check your final HTML file in Safari, copy it from Visual Studio Code into Fastr with the three heights, and copy the Reserves space embed.</p>
+            <span class="step-timeline__cta">Open step 08 &rarr;</span>
+          </a>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <a href="step-testing.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 9: Testing"><span>9</span></a>
+          <a href="step-testing.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Testing</h2>
+            <p class="step-timeline__p">Check your test page in a second browser and across five screen widths in Responsively, then run PageSpeed and record a Jam.</p>
+            <span class="step-timeline__cta">Open step 09 &rarr;</span>
+          </a>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <a href="videos.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 10: Video Guides"><span>10</span></a>
+          <a href="videos.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Video Guides</h2>
+            <p class="step-timeline__p">Watch the 24-minute workshop walkthrough or jump straight to any of the six short step-by-step video clips.</p>
+            <span class="step-timeline__cta">Open step 10 &rarr;</span>
+          </a>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <a href="first-build.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 11: Your First Build"><span>11</span></a>
+          <a href="first-build.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Your First Build</h2>
+            <p class="step-timeline__p">Follow the click-by-click practice walkthrough on your own store test page from start to finish.</p>
+            <span class="step-timeline__cta">Open step 11 &rarr;</span>
+          </a>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <a href="step-handin.html" data-step-timeline-marker class="step-timeline__marker" style="text-decoration:none" aria-label="Step 12: Hand In & Code Share"><span>12</span></a>
+          <a href="step-handin.html" class="step-timeline__content step-timeline__link">
+            <h2 class="step-timeline__content-h">Hand In & Code Share</h2>
+            <p class="step-timeline__p">Paste your final HTML into Code Share to create one link for ClickUp, attach your seven handoff items, and move the task to UX review.</p>
+            <span class="step-timeline__cta">Open step 12 &rarr;</span>
+          </a>
         </div>
       </div>
     </div>
@@ -265,7 +357,7 @@
 </div>
 <div style="max-width:50em;margin:64px auto 0;display:flex;flex-wrap:wrap;gap:12px">
   <a class="nm-btn" href="starter-pack-wss.html"><span>Next: 02 · Starter Kit</span></a>
-  <a class="nm-btn nm-btn--outline" href="get-started.html"><span>All 12 steps</span></a>
+  <a class="nm-btn nm-btn--outline" href="get-started.html"><span>All 12 step cards</span></a>
 </div>
 
 <footer class="nm-footer"><span>Volley · Sports Endeavors design &amp; marketing hub.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
