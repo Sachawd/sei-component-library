@@ -1,27 +1,67 @@
 window.NM_PAGES = [
  {
-  "title": "Start here",
+  "title": "Volley Home",
   "url": "index.html"
+ },
+ {
+  "title": "Start Here (Get Started)",
+  "url": "get-started.html"
+ },
+ {
+  "title": "01 - How It Works",
+  "url": "how-it-works.html"
+ },
+ {
+  "title": "02 - Starter Kit",
+  "url": "starter-pack-wss.html"
+ },
+ {
+  "title": "03 - Tools & Links",
+  "url": "step-tools.html"
+ },
+ {
+  "title": "04 - Site Updates List",
+  "url": "step-clickup.html"
+ },
+ {
+  "title": "05 - Figma Library",
+  "url": "step-figma.html"
+ },
+ {
+  "title": "06 - Working With Images",
+  "url": "step-images.html"
+ },
+ {
+  "title": "07 - Working With Links",
+  "url": "step-links.html"
+ },
+ {
+  "title": "08 - Fastr CMS",
+  "url": "step-fastr.html"
+ },
+ {
+  "title": "09 - Testing",
+  "url": "step-testing.html"
+ },
+ {
+  "title": "10 - Video Guides",
+  "url": "videos.html"
+ },
+ {
+  "title": "11 - Your First Build",
+  "url": "first-build.html"
+ },
+ {
+  "title": "12 - Hand In & Code Share",
+  "url": "step-handin.html"
  },
  {
   "title": "All blocks",
   "url": "blocks.html"
  },
  {
-  "title": "Designer guide",
+  "title": "Designer guide (full one-page reference)",
   "url": "designer-guide.html"
- },
- {
-  "title": "Your first build",
-  "url": "first-build.html"
- },
- {
-  "title": "Workshop walkthrough",
-  "url": "videos.html"
- },
- {
-  "title": "WorldSoccerShop starter pack",
-  "url": "starter-pack-wss.html"
  },
  {
   "title": "Photo Sizer",
