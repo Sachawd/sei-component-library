@@ -80,11 +80,12 @@
   var $ = function (id) { return document.getElementById(id); };
   var home = $("tn-home"), brand = $("tn-brand"), drawer = $("tn-drawer");
   var list = $("tn-drawer-list"), where = $("tn-where"), note = $("tn-note");
-  var brandGrid = $("tn-brand-grid"), quickChips = $("tn-quick-chips"), brandIcons = $("tn-brand-icons");
+  var brandGrid = $("tn-brand-grid"), quickChips = $("tn-quick-chips");
   var homeGrid = $("tn-home-grid"), homeHeading = $("tn-home-heading"), homeCount = $("tn-home-count"), homeClear = $("tn-home-clear");
   var rail = document.querySelectorAll(".nm-rail__item");
 
   var currentKey = null;
+  var OPEN = {};
   var currentFilter = { type: "all", val: "", q: "" };
   var CACHE = {};
 
@@ -131,8 +132,22 @@
     });
   }
 
+  var CAMPAIGN = "Holiday 2026";
+  function inCampaign(r) { return (r.offers || []).indexOf(CAMPAIGN) >= 0; }
+  function campaignRows(rows, val) {
+    return rows.filter(function (r) { return val === "other" ? !inCampaign(r) : inCampaign(r); });
+  }
+
   function isVideoRow(r) {
     return Boolean(r.vid || ((r.av || []).indexOf("Video") >= 0 && (r.av || []).indexOf("Stills") < 0));
+  }
+
+  var STORE_CHIP = {
+    "Soccer.com": "sdc", "Soccer.com Campaign": "sdc", "WorldSoccerShop": "wss",
+    "431 Sports": "431", "Team Soccer": "team", "Vendor": "vendor"
+  };
+  function storeChip(storeTag) {
+    return '<span class="tn-card__store tn-card__store--' + (STORE_CHIP[storeTag] || "vendor") + '">' + esc(storeTag) + "</span>";
   }
 
   function renderShootCard(r, s3, folder, storeTag) {
@@ -156,7 +171,7 @@
       mediaInner += '<img src="' + esc(cover) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
     }
     if (storeTag) {
-      mediaInner += '<span class="tn-card__store">' + esc(storeTag) + "</span>";
+      mediaInner += storeChip(storeTag);
     }
 
     var primaryAction = hasBox
@@ -185,7 +200,7 @@
       mediaInner += '<img src="' + esc(r.th) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
     }
     if (storeTag) {
-      mediaInner += '<span class="tn-card__store">' + esc(storeTag) + "</span>";
+      mediaInner += storeChip(storeTag);
     }
     var btnLabel = isYT ? "Watch on YouTube &#8599;" : (isBlog ? "Read Article &#8599;" : "Open Post &#8599;");
     return '<article class="tn-card">' +
@@ -216,7 +231,9 @@
 
     var campItems = [];
     if (camp && camp.rows && camp.rows.length) {
-      campItems.push({ label: "Holiday 2026 Shoots", type: "campaign", val: "all", count: camp.rows.length });
+      var hol = campaignRows(camp.rows, "holiday").length, oth = camp.rows.length - hol;
+      if (hol) campItems.push({ label: CAMPAIGN + " Shoots", type: "campaign", val: "holiday", count: hol });
+      if (oth) campItems.push({ label: "Other campaign shoots", type: "campaign", val: "other", count: oth });
     }
     if (main && main.rows) {
       var offerCounts = {};
@@ -224,6 +241,7 @@
         (r.offers || []).forEach(function (of) { offerCounts[of] = (offerCounts[of] || 0) + 1; });
       });
       Object.keys(offerCounts).forEach(function (of) {
+        if (of === CAMPAIGN && campItems.length) return;
         campItems.push({ label: of, type: "offer", val: of, count: offerCounts[of] });
       });
     }
@@ -283,8 +301,9 @@
             return '<li><button class="nm-drawer__sublink" type="button" data-ftype="' + esc(it.type) + '" data-fval="' + esc(it.val) + '" data-flabel="' + esc(it.label) + '"' + (isCur ? ' aria-current="page"' : "") + '><span class="tn-dot" aria-hidden="true">&bull;</span><span>' + esc(it.label) + '</span>' + (it.count != null ? '<span class="tn-sub-count">' + num(it.count) + "</span>" : "") + "</button></li>";
           }).join("")
         : '<li><p class="tn-empty">Nothing filed here yet.</p></li>';
-      return '<li><button class="nm-drawer__toggle" type="button" aria-expanded="' + (s.open ? "true" : "false") + '" aria-controls="' + id + '">' + esc(s.label) + CHEV + "</button>" +
-        '<ul class="nm-drawer__sub" id="' + id + '"' + (s.open ? "" : " hidden") + ">" + sub + "</ul></li>";
+      var open = Boolean(OPEN[s.label]);
+      return '<li><button class="nm-drawer__toggle" type="button" data-section="' + esc(s.label) + '" aria-expanded="' + open + '" aria-controls="' + id + '">' + esc(s.label) + CHEV + "</button>" +
+        '<ul class="nm-drawer__sub" id="' + id + '"' + (open ? "" : " hidden") + ">" + sub + "</ul></li>";
     }).join("");
   }
 
@@ -297,7 +316,6 @@
     if (!main) {
       where.textContent = b.name;
       note.textContent = "No asset feed file is connected for " + b.name + " yet. Choose Vendor, Soccer.com, WSS, 431, or Team Soccer in the left rail.";
-      if (brandIcons) brandIcons.innerHTML = "";
       quickChips.innerHTML = "";
       brandGrid.innerHTML = "";
       return;
@@ -310,42 +328,16 @@
 
     var ytTotal = pubRows.filter(function (r) { return r.p === "YouTube"; }).length;
     var blogTotal = pubRows.filter(function (r) { return r.p === "Blog"; }).length;
-    var photoTotal = allRows.filter(function (r) { return !isVideoRow(r); }).length;
-    var videoTotal = allRows.filter(isVideoRow).length + ytTotal;
 
-    // Icon buttons directly underneath the Brand Search bar (All Shoots, Photos, Videos, Blog, YouTube, Holiday 2026)
-    var ICONS = {
-      all: '<svg viewBox="0 0 24 24" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
-      photo: '<svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg>',
-      video: '<svg viewBox="0 0 24 24" stroke-width="1.75"><rect x="2.5" y="5" width="14" height="14" rx="2"/><path d="M16.5 10l5-3v10l-5-3v-4Z"/></svg>',
-      blog: '<svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>',
-      youtube: '<svg viewBox="0 0 24 24" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5l5 2.5-5 2.5v-5Z" fill="currentColor" stroke="none"/></svg>',
-      campaign: '<svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M12 2.5l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.8l-5.6 2.9 1.1-6.2-4.5-4.4 6.2-.9L12 2.5Z"/></svg>'
-    };
-    var iconBtnDefs = [
-      { icon: ICONS.all, label: "All Shoots", count: allRows.length, type: "all", val: "" },
-      { icon: ICONS.photo, label: "Photos", count: photoTotal, type: "media", val: "Photo" },
-      { icon: ICONS.video, label: "Videos", count: videoTotal, type: "media", val: "Video" },
-      { icon: ICONS.blog, label: "Blog", count: blogTotal, type: "social", val: "Blog" }
-    ];
-    if (ytTotal) iconBtnDefs.push({ icon: ICONS.youtube, label: "YouTube", count: ytTotal, type: "social", val: "YouTube" });
-    if (campRows.length) iconBtnDefs.push({ icon: ICONS.campaign, label: "Holiday 2026", count: campRows.length, type: "campaign", val: "all" });
-
-    if (brandIcons) {
-      brandIcons.innerHTML = iconBtnDefs.map(function (ib) {
-        var on = currentFilter.type === ib.type && currentFilter.val === ib.val;
-        return '<button type="button" class="tn-icon-btn" data-ftype="' + esc(ib.type) + '" data-fval="' + esc(ib.val) + '" data-flabel="' + esc(ib.label) + '" aria-pressed="' + (on ? "true" : "false") + '">' +
-          ib.icon + '<span>' + esc(ib.label) + '</span><span class="tn-icon-btn__count">' + num(ib.count) + "</span></button>";
-      }).join("");
-    }
+    var holRows = campaignRows(campRows, "holiday");
 
     // Quick chips bar
     var chipDefs = [{ label: "All Shoots (" + num(allRows.length) + ")", type: "all", val: "" }];
     (main.cats || []).slice(0, 5).forEach(function (c) {
       chipDefs.push({ label: c.k + " (" + num(c.n) + ")", type: "cat", val: c.k });
     });
-    if (campRows.length) {
-      chipDefs.push({ label: "Holiday 2026 (" + num(campRows.length) + ")", type: "campaign", val: "all" });
+    if (holRows.length) {
+      chipDefs.push({ label: CAMPAIGN + " (" + num(holRows.length) + ")", type: "campaign", val: "holiday" });
     }
     if (ytTotal) chipDefs.push({ label: "YouTube (" + num(ytTotal) + ")", type: "social", val: "YouTube" });
     if (blogTotal) chipDefs.push({ label: "Blog (" + num(blogTotal) + ")", type: "social", val: "Blog" });
@@ -376,8 +368,9 @@
     }
 
     if (currentFilter.type === "campaign") {
-      var cHits = campRows.filter(matchQuery);
-      note.textContent = "Showing " + num(cHits.length) + " campaign shoot" + (cHits.length === 1 ? "" : "s") + " (" + num(camp.assets) + " total assets).";
+      var cHits = campaignRows(campRows, currentFilter.val).filter(matchQuery);
+      var cAssets = cHits.reduce(function (n, r) { return n + Number(r.c || 0); }, 0);
+      note.textContent = "Showing " + num(cHits.length) + (currentFilter.val === "other" ? " other campaign shoot" : " " + CAMPAIGN + " shoot") + (cHits.length === 1 ? "" : "s") + " (" + num(cAssets) + " assets).";
       brandGrid.innerHTML = cHits.map(function (r) { return renderShootCard(r, camp.s3, "campaign-soccer-com"); }).join("") || '<p class="tn-empty">No matching campaign shoots found.</p>';
       return;
     }
@@ -415,7 +408,9 @@
     var q = (query || "").trim().toLowerCase();
     var words = q.split(/\s+/).filter(Boolean);
     homeClear.hidden = !words.length;
-    var keys = ["wss", "soccer-com", "vendor", "431", "team-soccer"];
+    var scope = $("tn-home-scope") ? $("tn-home-scope").value : "all";
+    var keys = scope === "all" ? ["wss", "soccer-com", "vendor", "431", "team-soccer"] : [scope];
+    var where = scope === "all" ? "across all brands" : "in " + BRANDS[scope].name;
     Promise.all(keys.map(loadBrandBundle)).then(function (bundles) {
       var combined = [];
       var pubMatches = [];
@@ -453,17 +448,17 @@
           var hay = ((r.n || "") + " " + (r.q || "") + " " + (r.cats || []).join(" ") + " " + (r.teams || []).join(" ") + " " + (r.brands || []).join(" ") + " " + item.store).toLowerCase();
           return words.every(function (w) { return hay.indexOf(w) >= 0; });
         });
-        homeHeading.textContent = 'Search results for “' + query.trim() + '”';
+        homeHeading.textContent = 'Search results for “' + query.trim() + '”' + (scope === "all" ? "" : " in " + BRANDS[scope].name);
         homeCount.textContent = num(hits.length) + " matching shoot" + (hits.length === 1 ? "" : "s") +
-          (pubMatches.length ? " and " + num(pubMatches.length) + " published YouTube / Blog posts" : "") + " across all brands.";
+          (pubMatches.length ? " and " + num(pubMatches.length) + " published YouTube / Blog posts" : "") + " " + where + ".";
         homeGrid.innerHTML = hits.slice(0, 72).map(function (it) {
           return renderShootCard(it.row, it.s3, it.folder, it.store);
         }).join("") + pubMatches.slice(0, 24).map(function (it) {
           return renderPubCard(it.row, it.store);
         }).join("") || '<p class="tn-empty">No shoots or posts across any brand matched that search.</p>';
       } else {
-        homeHeading.textContent = "Recent shoots across all brands";
-        homeCount.textContent = "Showing the 36 newest shoots out of " + num(combined.length) + " total shoots (" + num(totalAssets) + " assets across WorldSoccerShop, Soccer.com, Vendor, 431 Sports, and Team Soccer).";
+        homeHeading.textContent = scope === "all" ? "Recent shoots across all brands" : "Recent " + BRANDS[scope].name + " shoots";
+        homeCount.textContent = "Showing the " + num(Math.min(36, combined.length)) + " newest shoots out of " + num(combined.length) + " total shoots (" + num(totalAssets) + " assets " + (scope === "all" ? "across WorldSoccerShop, Soccer.com, Vendor, 431 Sports, and Team Soccer" : "in " + BRANDS[scope].name) + ").";
         homeGrid.innerHTML = combined.slice(0, 36).map(function (it) {
           return renderShootCard(it.row, it.s3, it.folder, it.store);
         }).join("");
@@ -477,19 +472,92 @@
   // GitHub Pages has none, so Download goes straight to the open-in-a-tab route.
   var DOWNLOAD_ROUTE = "";
   var PAGE_SIZE = 60;
-  var PICK_KEY = "tn-selection";
+  var PICK_KEY = "tn-selection-v2";
 
   var SD = null;            // the shoot open in the dialog
   var ROWS = {};            // shoot records by folder/slug, so the viewer can read category and season
   var PICKS = loadPicks();
 
   function loadPicks() {
-    try { return new Set(JSON.parse(localStorage.getItem(PICK_KEY) || "[]")); }
-    catch (e) { return new Set(); }
+    try {
+      var arr = JSON.parse(localStorage.getItem(PICK_KEY) || "[]");
+      return new Map(arr.map(function (it) { return [it.id, it]; }));
+    } catch (e) { return new Map(); }
   }
   function savePicks() {
-    try { localStorage.setItem(PICK_KEY, JSON.stringify(Array.from(PICKS))); } catch (e) {}
+    try { localStorage.setItem(PICK_KEY, JSON.stringify(Array.from(PICKS.values()))); } catch (e) {}
   }
+  function pickItem(i) {
+    var f = SD.files[i], d = SD.data;
+    return {
+      id: photoId(i), title: photoTitle(f), shoot: d.n || SD.slug, brand: d.store || f.tr || "",
+      file: fileName(f), url: fileUrl(f, SD.base),
+      size: f.w ? f.w + " x " + f.h : "", ratio: f.r || "", season: f.se || "",
+      skus: Array.isArray(f.sk) ? f.sk.join(" ") : (f.sk || ""), box: f.u || f.boxUrl || d.boxUrl || ""
+    };
+  }
+
+  /* Selection bar: count, where the CSV goes, save and clear */
+  var CAN_PICK_FOLDER = typeof window.showSaveFilePicker === "function";
+  var SEL_NOTE = "";
+  function csvName() {
+    var t = new Date();
+    return "tunnel-selection-" + t.getFullYear() + "-" + String(t.getMonth() + 1).padStart(2, "0") + "-" + String(t.getDate()).padStart(2, "0") + ".csv";
+  }
+  function buildCSV() {
+    var cols = [["Photo", "title"], ["Shoot", "shoot"], ["Brand", "brand"], ["File name", "file"], ["CDN link", "url"], ["Size (px)", "size"], ["Ratio", "ratio"], ["Season", "season"], ["SKUs", "skus"], ["Box link", "box"]];
+    var cell = function (v) { v = String(v == null ? "" : v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+    var lines = [cols.map(function (c) { return c[0]; }).join(",")];
+    PICKS.forEach(function (it) { lines.push(cols.map(function (c) { return cell(it[c[1]]); }).join(",")); });
+    return "\ufeff" + lines.join("\r\n");
+  }
+  function selBarHTML() {
+    var n = PICKS.size;
+    var where = SEL_NOTE || ("Saves as " + csvName() + (CAN_PICK_FOLDER ? ". You choose the folder." : " to your Downloads folder."));
+    return '<div class="tn-selbar__text"><p class="tn-selbar__count">' + num(n) + " photo" + (n === 1 ? "" : "s") + " selected</p>" +
+      '<p class="tn-selbar__where">' + esc(where) + "</p></div>" +
+      '<div class="tn-selbar__acts"><button type="button" class="nm-btn nm-btn--white" data-sel-act="save">' + (CAN_PICK_FOLDER ? "Save CSV..." : "Download CSV") + "</button>" +
+      '<button type="button" class="nm-btn tn-v-btn" data-sel-act="clear">Clear</button></div>';
+  }
+  function renderSelBar() {
+    ["tn-selbar", "tn-sd-selbar"].forEach(function (id) {
+      var el = $(id);
+      if (!el) return;
+      el.hidden = PICKS.size === 0;
+      if (PICKS.size) el.innerHTML = selBarHTML();
+    });
+  }
+  function saveCSV() {
+    var name = csvName(), text = buildCSV();
+    var done = function (msg) { SEL_NOTE = msg; renderSelBar(); announce(msg); setTimeout(function () { SEL_NOTE = ""; renderSelBar(); }, 6000); };
+    if (CAN_PICK_FOLDER) {
+      window.showSaveFilePicker({ suggestedName: name, types: [{ description: "CSV file", accept: { "text/csv": [".csv"] } }] })
+        .then(function (h) {
+          return h.createWritable().then(function (w) { return w.write(text).then(function () { return w.close(); }); }).then(function () { return h.name; });
+        })
+        .then(function (saved) { done("Saved " + saved + " in the folder you chose."); })
+        .catch(function (e) { if (e && e.name !== "AbortError") done("Could not save. Try again, or use another browser."); });
+      return;
+    }
+    var url = URL.createObjectURL(new Blob([text], { type: "text/csv" }));
+    var a = document.createElement("a");
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 10000);
+    done("Saved " + name + " to your Downloads folder.");
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-sel-act]");
+    if (!b) return;
+    if (b.getAttribute("data-sel-act") === "save") saveCSV();
+    else {
+      PICKS.clear(); savePicks();
+      document.querySelectorAll("[data-v-pick]").forEach(function (x) { x.setAttribute("aria-pressed", "false"); });
+      if (V.open) paintPick();
+      renderSelBar();
+      announce("Selection cleared.");
+    }
+  });
 
   function isImageFile(f) { return Boolean(f && f.f && /\.(jpe?g|png|webp|gif)$/i.test(f.f)); }
   function onS3(f) { return isImageFile(f) && (!f.hs || /S3/.test(f.hs)); }
@@ -552,10 +620,7 @@
     while (SD && i >= SD.shown) renderMorePhotos();
     return document.querySelector('#tn-photos [data-photo="' + i + '"]');
   }
-  function updatePickedCount() {
-    var el = $("tn-sd-picked");
-    if (el) el.textContent = PICKS.size ? num(PICKS.size) + " selected" : "";
-  }
+  function updatePickedCount() { renderSelBar(); }
 
   function openShootDialog(folder, slug) {
     var dlg = $("tn-shoot-dialog");
@@ -598,7 +663,7 @@
 
   function togglePick(i) {
     var id = photoId(i);
-    if (PICKS.has(id)) PICKS.delete(id); else PICKS.add(id);
+    if (PICKS.has(id)) PICKS.delete(id); else PICKS.set(id, pickItem(i));
     savePicks();
     var on = PICKS.has(id);
     document.querySelectorAll('[data-v-pick="' + i + '"]').forEach(function (b) { b.setAttribute("aria-pressed", String(on)); });
@@ -1068,6 +1133,7 @@
 
     if (currentKey !== key) {
       currentKey = key;
+      OPEN = {};
       currentFilter = { type: "all", val: "", label: "All Shoots", q: "" };
       input.value = "";
     }
@@ -1085,6 +1151,7 @@
     if (t) {
       var open = t.getAttribute("aria-expanded") === "true";
       t.setAttribute("aria-expanded", open ? "false" : "true");
+      OPEN[t.getAttribute("data-section")] = !open;
       $(t.getAttribute("aria-controls")).hidden = open;
       return;
     }
@@ -1113,21 +1180,6 @@
       });
     }
   });
-
-  if (brandIcons) {
-    brandIcons.addEventListener("click", function (e) {
-      var b = e.target.closest(".tn-icon-btn");
-      if (b && currentKey) {
-        currentFilter.type = b.getAttribute("data-ftype") || "all";
-        currentFilter.val = b.getAttribute("data-fval") || "";
-        currentFilter.label = b.getAttribute("data-flabel") || "";
-        loadBrandBundle(currentKey).then(function (bundle) {
-          buildDrawerForBrand(currentKey, bundle);
-          renderBrandResults(currentKey, bundle);
-        });
-      }
-    });
-  }
 
   document.addEventListener("click", function (e) {
     var copyBtn = e.target.closest("[data-copy-url]");
@@ -1160,6 +1212,10 @@
     if (e.target === $("tn-shoot-dialog")) $("tn-sd-close").click();
   });
 
+  $("tn-home-scope").addEventListener("change", function () {
+    loadAllForHome($("tn-home-search").value);
+    $("tn-home-search").focus();
+  });
   $("tn-home-search").addEventListener("input", function (e) {
     loadAllForHome(e.target.value);
   });
@@ -1233,5 +1289,6 @@
 
   window.addEventListener("hashchange", render);
   render();
+  renderSelBar();
   openFromAddress();
 })();

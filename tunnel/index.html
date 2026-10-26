@@ -69,6 +69,18 @@
         <div class="tn-hero__text">
           <h1 class="tn-hero__title" id="tn-home-title">The Tunnel</h1>
           <form class="tn-search" role="search" data-search="all">
+            <label class="nm-visually-hidden" for="tn-home-scope">Brand to search</label>
+            <span class="tn-scope">
+              <select class="tn-scope__select" id="tn-home-scope">
+                <option value="all">All brands</option>
+                <option value="soccer-com">Soccer.com</option>
+                <option value="wss">WorldSoccerShop</option>
+                <option value="431">431 Sports</option>
+                <option value="team-soccer">Team Soccer</option>
+                <option value="vendor">Vendor</option>
+              </select>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
             <label class="nm-visually-hidden" for="tn-home-search">Search the Tunnel</label>
             <input class="tn-search__input" id="tn-home-search" type="search" placeholder="Search for something...." autocomplete="off">
             <button class="tn-search__go" type="submit"><span class="nm-visually-hidden">Search</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16L16 12L12 8" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 12H7" stroke="currentColor" stroke-miterlimit="10"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor"/></svg></button>
@@ -120,7 +132,6 @@
             <label class="nm-visually-hidden" for="tn-brand-search" id="tn-brand-search-label">Search</label>
             <input class="tn-search__input" id="tn-brand-search" type="search" autocomplete="off">
           </form>
-          <div class="tn-brand__icon-bar" id="tn-brand-icons" role="group" aria-label="Quick sections"></div>
         </div>
       </div>
       <div class="tn-brand__body">
@@ -145,12 +156,13 @@
       <p class="tn-dialog__sub" id="tn-sd-sub"></p>
     </div>
     <div class="tn-dialog__tools">
-      <p class="tn-dialog__picked" id="tn-sd-picked" aria-live="polite"></p>
       <button type="button" class="tn-btn tn-btn--outline" id="tn-sd-close">Close</button>
     </div>
   </div>
   <div class="tn-dialog__body" id="tn-sd-body"></div>
+  <div class="tn-selbar tn-selbar--dialog" id="tn-sd-selbar" role="region" aria-label="Your selection" hidden></div>
 </dialog>
+<div class="tn-selbar tn-selbar--page" id="tn-selbar" role="region" aria-label="Your selection" hidden></div>
 
 <dialog class="tn-viewer" id="tn-viewer" aria-labelledby="tn-v-title">
   <div class="tn-viewer__bg" id="tn-v-bg"></div>
