@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WorldSoccerShop Designer Workshop: Coding Fastr Experiences</title>
+<link rel="stylesheet" href="../house-deck-style.css">
 <style>
 :root {
   --ink: #151515;
@@ -548,8 +549,8 @@ h3 {
             Never style html, body, :root, or bare *, and never use 100vh. Keep the component's doubled root ID shield intact so storefront CSS cannot shrink fonts.
           </li>
           <li>
-            <strong>2. Eager image loading &amp; fixed dimensions</strong>
-            Every img tag keeps explicit width and height attributes. Never add loading="lazy". Only the first hero photo gets fetchpriority="high".
+            <strong>2. Image loading &amp; fixed dimensions</strong>
+            Every img tag keeps explicit width and height attributes. Images in the first screen load eagerly. On a page over 3,000 px tall, images below the first screen may use loading="lazy". The first hero is eager with fetchpriority="high".
           </li>
           <li>
             <strong>3. Complete, unbroken file output</strong>
@@ -569,8 +570,8 @@ h3 {
 2. Write a 5-line "Done means" list in plain words before coding (hero photo shows, buttons go to Link Book URLs, works at 390px phone width, no placeholders).
 3. Keep all CSS scoped to the component root (never target html, body, :root, bare *, or 100vh). Keep explicit px font sizes and the doubled root ID selector shield.
 4. Every link must come from SITE-LINKS (never invent a URL) and include target="_top". Use PROMO-CODE-HERE for any unreleased promo code.
-5. Every image must load eagerly (no loading="lazy") with explicit width and height, and use the uploaded --w480.jpg and --w960.jpg srcset copies for bucket photos.
-6. Output the complete, unbroken HTML file with zero working comments or Figma node numbers, and list the 3 measured heights (390px / 640px / 1024px) at the top.</pre>
+5. Images in the first screen load eagerly. On a page over 3,000 px tall, images below the first screen may use loading="lazy". The first hero is eager with fetchpriority="high". Every image carries explicit width and height, and uses the uploaded --w480.jpg and --w960.jpg srcset copies for bucket photos.
+6. Output the complete paste file, body only (one root div, no html, head or body tags), with zero working comments or Figma node numbers, and list the 3 measured heights (390px / 640px / 1024px) at the top. Fastr refuses any Reserved Height over 10000 px: say so and suggest 10000 or a split.</pre>
     </div>
   </div>
   <p class="note">Reminder: Turn off "Improve the model for everyone" in AI settings before uploading briefs or Figma frames, and never paste passwords or product feeds.</p>
@@ -799,7 +800,7 @@ h3 {
       <a class="action-link" href="https://vimeo.com/1238938862/3d23afdc54" target="_blank" rel="noopener">Watch 24-Min Workshop Reel (Vimeo) &nearr;</a>
       <a class="action-link secondary" href="https://sachawd.github.io/sei-component-library/wss-starter-pack/" target="_blank" rel="noopener">Open WSS Starter Package (All 6 Video Clips) &nearr;</a>
       <a class="action-link secondary" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share &nearr;</a>
-      <a class="action-link secondary" href="https://sachawd.github.io/sei-component-library/" target="_blank" rel="noopener">Open SE Code Library &nearr;</a>
+      <a class="action-link secondary" href="04-designer-guide--2026-10-17.html" target="_blank" rel="noopener">Open Full 6-Step Designer Guide &nearr;</a>
     </div>
 
     <div class="callout">

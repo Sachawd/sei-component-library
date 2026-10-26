@@ -776,11 +776,13 @@ h3 {
 - Every link must include target="_top" and carry no internal ?utm_ parameters.
 - Products come from the requester's CSV or Tunnel Product picks link. Never invent SKUs or prices.
 - Test pages are public: use PROMO-CODE-HERE for any unreleased promo code until the cart test passes.
+- Any in-page jump link (href="#section") must be handled in script (prevent the default, scroll to the target, update the hash). The storefront's base href reloads the whole page on a plain jump link when tracking parameters are in the URL.
+- Show the offer terms beside every offer. Keep the block ID and beacon. Never add other tracking or outside scripts.
 
-4. IMAGES &amp; SPEED (NO LAZY LOADING):
-- Every image loads eagerly (never use loading="lazy") and carries explicit width and height attributes.
-- Mark only the very first hero image fetchpriority="high" (one per block, never more).
+4. IMAGES &amp; SPEED:
+- Images in the first screen load eagerly. On a page over 3,000 px tall, images below the first screen may use loading="lazy". The first hero is eager with fetchpriority="high" (one per block, never more). Every image carries explicit width and height attributes and decoding="async".
 - Bucket photos on https://www.imagehandler.net/dxassets/?img=Photos/ ignore width parameters, so wire --w480.jpg and --w960.jpg responsive copies using srcset and sizes (with a self-disarming onerror fallback that strips srcset first). Upload JPG only (300 KB max for desktop heroes, under 200 KB for all other photos, never WebP, and encode + as %2B).
+- Add a preconnect link to https://www.imagehandler.net at the top of the paste file, beside the font preconnects.
 
 5. ADA ACCESSIBILITY &amp; SEO:
 - Check contrast before finishing: body text must be at least 4.5:1, large text and buttons at least 3:1. Tell me immediately if any color pair in my design fails ADA contrast.
@@ -788,11 +790,15 @@ h3 {
 
 6. OUTPUT &amp; RESERVED HEIGHTS (NO LAYOUT SHIFT):
 - Before coding, write a 5-line "Done means" checklist in plain words.
-- Output the complete, unbroken HTML file from the first line to the closing tag (never truncate with "rest of code" comments, and include zero Figma node numbers or working comments).
+- Output the complete paste file, body only: one root div, one font link, no html, head or body tags. Never truncate with "rest of code" comments. Zero Figma node numbers or working comments. Write every visible special character (dashes, curly quotes) as an HTML entity.
 - Give me the 3 measured pixel heights in order at the top of the file: Mobile (390px wide), Tablet (640px and up), and Desktop (1024px and up) so I can enter them into Fastr's Reserved Height boxes and use the "Reserves space" embed tab.
+- Fastr refuses any Reserved Height over 10000 px. If a height measures over 10000, tell me to enter 10000 in that box or split the page into two or three blocks.
 
 7. PILOT FEEDBACK LOG FOR SACHA:
-- If any instruction, asset, or step in this build is unclear or causes an issue, write a short Markdown summary titled "Process Feedback for Sacha" at the end of our session so I can send it to her.</pre>
+- If any instruction, asset, or step in this build is unclear or causes an issue, write a short Markdown summary titled "Process Feedback for Sacha" at the end of our session so I can send it to her.
+
+8. NEXT UP LIST (EVERY REPLY):
+- End every reply with a short "Next up" list in plain words, using only these marks: ✅ done, 👉 do this now, ⏳ waiting on someone (say who), ➖ not needed (say why). Cover the whole route to the final read (Fastr test page, cart test, Site Updates Hub, ClickUp), never stopping at the paste.</pre>
     </div>
 
     <div class="callout">
