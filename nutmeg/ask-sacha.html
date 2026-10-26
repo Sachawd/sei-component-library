@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Sacha · One Question at a Time</title>
+<style>
+  :root {
+    --paper: #f6f5f1;
+    --card: #ffffff;
+    --ink: #151515;
+    --muted: #52524e;
+    --line: #dcdad2;
+    --focus: #151515;
+    --surface-subtle: #efede7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .topbar h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .meta-line {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0;
+  }
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--card);
+  }
+  .card {
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: 0 6px 0 var(--ink);
+    margin-bottom: 28px;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .agent-tag {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .date-tag {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .question-text {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.38;
+    margin: 0 0 20px 0;
+  }
+  .why-box {
+    background: var(--surface-subtle);
+    border-left: 4px solid var(--ink);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .why-label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  label.field-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 110px;
+    padding: 16px;
+    font-size: 19px;
+    font-family: inherit;
+    line-height: 1.45;
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    resize: vertical;
+    margin-bottom: 20px;
+  }
+  textarea:focus, input:focus, button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  button {
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 14px 24px;
+    border-radius: 10px;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+  }
+  button:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: #ffffff;
+  }
+  .btn-secondary {
+    background: var(--card);
+    color: var(--ink);
+  }
+  .route-box {
+    display: none;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .route-box.open {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .route-box input {
+    flex: 1;
+    min-width: 220px;
+    padding: 12px 14px;
+    font-size: 18px;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+  }
+  .source-link {
+    display: inline-block;
+    margin-top: 22px;
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: underline;
+  }
+  .toast {
+    display: none;
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .toast.show {
+    display: block;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .empty-state h2 {
+    font-size: 28px;
+    margin: 0 0 12px 0;
+  }
+  .footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div>
+      <h1>Ask Sacha</h1>
+      <p class="meta-line">One place for every question waiting on you. Updated Monday 26 Oct 2026, 2:49 PM PT</p>
+    </div>
+    <span class="pill" id="counter-pill">Loading...</span>
+  </header>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main id="stage"></main>
+
+  <footer class="footer-bar">
+    <span id="saved-status">Answered so far: 0</span>
+    <div>
+      <button type="button" class="link-btn" id="export-btn" title="Downloads ask-sacha-answers.json if local server is offline">Save queued answers to file</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+const INITIAL_CARDS = [{"id": "bf412550a6ba", "agent": "Fable", "date": "2026-10-26", "question": "Confirm the live page still carries the pre-7:54am paste (you are the only one who can see Fastr).", "why": "Holding up Fable from publishing or updating the live page.", "files": ["2026-10-26__fable-to-components-and-argon__pilot-pop-up-stores--why-products-still-open-a-category--build-and-prove-every-link-before-paste.md"], "score": 40}, {"id": "9bb8aa6c6a69", "agent": "Fable", "date": "2026-10-26", "question": "Confirm rule 1 (every link opened before paste) as the standing rule for team stores.", "why": "Holding up Fable from publishing or updating the live page.", "files": ["2026-10-26__fable-to-components-and-argon__pilot-pop-up-stores--why-products-still-open-a-category--build-and-prove-every-link-before-paste.md"], "score": 40}, {"id": "5011361cb1f8", "agent": "Design System", "date": "2026-10-26", "question": "Who owns Neil's shared reset stylesheet for Fastr components? First asked 18 Sept.", "why": "A teammate is waiting on this call so they can keep moving.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 40}, {"id": "218cabcb82d0", "agent": "Design System", "date": "2026-10-26", "question": "Which brand does the Tampa Bay Super Cup page carry? Asked 13 Oct.", "why": "Unblocks Design System so they do not have to guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 25}, {"id": "ab69ea35f6db", "agent": "Design System", "date": "2026-10-26", "question": "Figma seat for Superside on SEI's account? First asked 2 Sept.", "why": "Settles a visual or design rule so Design System does not guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 25}, {"id": "424bb105879e", "agent": "Tunnel & Assets", "date": "2026-10-26", "question": "Mirrored patterns, or redrawn as true repeats.", "why": "Unblocks Tunnel & Assets so they do not have to guess.", "files": ["2026-10-26__tunnel-to-all-agents__holiday-2026-labels-fixed-and-what-is-still-open.md"], "score": 10}, {"id": "15305158d5c1", "agent": "Tunnel & Assets", "date": "2026-10-26", "question": "Whether the empty SDC Campaigns copy has been deleted.", "why": "Unblocks Tunnel & Assets so they do not have to guess.", "files": ["2026-10-26__tunnel-to-all-agents__holiday-2026-labels-fixed-and-what-is-still-open.md"], "score": 10}, {"id": "fae3fbe44b80", "agent": "Tunnel & Assets", "date": "2026-10-26", "question": "Spin01 to Spin03 and the Bellingham name and number question.", "why": "Unblocks Tunnel & Assets so they do not have to guess.", "files": ["2026-10-26__tunnel-to-all-agents__holiday-2026-labels-fixed-and-what-is-still-open.md"], "score": 10}, {"id": "80c7ff5259e3", "agent": "Fable", "date": "2026-10-26", "question": "Which extra components you mean, if any beyond the order above.", "why": "Unblocks Fable so they do not have to guess.", "files": ["2026-10-26__fable-to-fable-and-components__read-back-session--approve-library-blocks-for-the-designers-guide.md"], "score": 10}, {"id": "c25c03ec0682", "agent": "Fable", "date": "2026-10-26", "question": "Brand rules as a section inside the one download (Fable's default) or a separate second prompt. Fable has gone with the section unless you say otherwise.", "why": "Unblocks Fable so they do not have to guess.", "files": ["2026-10-26__fable-to-argon__volley-context-file-and-master-prompt--two-paths-on-start-here--plugin-check.md"], "score": 10}, {"id": "8a4f5f234bbe", "agent": "Fable", "date": "2026-10-26", "question": "The V2 tokens ClickUp task: yes or no, and which list.", "why": "Settles a visual or design rule so Fable does not guess.", "files": ["2026-10-26__fable-to-argon-and-components__monday-rulings--six-answers--pilot-paste-files-fail-four-rules.md"], "score": 10}, {"id": "65889abaac32", "agent": "Fable", "date": "2026-10-26", "question": "Grain: fine grain on photos and none on CGI, or no grain anywhere.", "why": "Settles a visual or design rule so Fable does not guess.", "files": ["2026-10-26__fable-to-argon-and-components__monday-rulings--six-answers--pilot-paste-files-fail-four-rules.md"], "score": 10}, {"id": "06f576b8d8f0", "agent": "Fable", "date": "2026-10-26", "question": "Did you say yes to Argon pushing to GitHub?", "why": "Unblocks Fable so they do not have to guess.", "files": ["2026-10-26__fable-to-argon-and-components__monday-rulings--six-answers--pilot-paste-files-fail-four-rules.md"], "score": 10}, {"id": "fd96754ffcda", "agent": "Design System", "date": "2026-10-26", "question": "Do you want this prep as a one-page HTML brief to keep open during the call? Asked 26 Oct.", "why": "Unblocks Design System so they do not have to guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 10}, {"id": "d0a632d331d5", "agent": "Design System", "date": "2026-10-26", "question": "Should Components bind the Soccer.com variants' base colours to Cabana variables now, instead of typed hex? Asked 17 Oct.", "why": "Settles a visual or design rule so Design System does not guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 10}, {"id": "45eb71f80dcd", "agent": "Design System", "date": "2026-10-26", "question": "Should Claude import the V2 lab colour roles into \"🔥 Cabana 8 - Marketing Components\" as Figma variables? Asked 15 Oct.", "why": "Settles a visual or design rule so Design System does not guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 10}, {"id": "c4932e25df4d", "agent": "Design System", "date": "2026-10-26", "question": "Are Cabana's existing tokens native Figma variables, or only in Tokens Studio? Asked 14 and 15 Oct.", "why": "Settles a visual or design rule so Design System does not guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 10}, {"id": "1a8909278a14", "agent": "Design System", "date": "2026-10-26", "question": "Draft the SEI colour-check skill for the Figma agent? First asked 28 Sept.", "why": "Settles a visual or design rule so Design System does not guess.", "files": ["2026-10-26__design-system-to-sacha-and-fable__roadmap-meeting-prep--vue-3-v2-tokens-neil-aligned--full-detail.md"], "score": 10}, {"id": "39616064e407", "agent": "Campaigns", "date": "2026-10-26", "question": "Does WorldSoccerShop run its own Free Name and Number? Until you say yes, keep it out of WorldSoccerShop material.", "why": "Unblocks Campaigns so they do not have to guess.", "files": ["2026-10-26__campaigns-to-argon__soccer-com-promo-schedule-and-holiday-hub-corrections.md"], "score": 10}];
+const STORAGE_KEY = "ask_sacha_local_queue_v1";
+
+function getQueue() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveQueue(q) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(q));
+}
+
+const queuedIds = new Set(getQueue().map(i => i.id));
+let deck = INITIAL_CARDS.filter(c => !queuedIds.has(c.id));
+let currentIndex = 0;
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3500);
+}
+
+async function persistItem(item) {
+  const q = getQueue();
+  q.push(item);
+  saveQueue(q);
+
+  // Try writing directly to the local Mac helper if running on localhost
+  try {
+    const res = await fetch("http://127.0.0.1:8765/api/answer", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item)
+    });
+    if (res.ok) {
+      return "written";
+    }
+  } catch (e) {
+    // Local helper not running; kept safely in localStorage and ready for 1-click file save or Argon sync
+  }
+  return "queued";
+}
+
+function render() {
+  const stage = document.getElementById("stage");
+  const pill = document.getElementById("counter-pill");
+  const remaining = deck.length - currentIndex;
+
+  if (remaining <= 0) {
+    pill.textContent = "0 waiting";
+    stage.innerHTML = `
+      <div class="card empty-state">
+        <h2>All caught up!</h2>
+        <p>Zero open questions waiting on you right now.</p>
+      </div>
+    `;
+    return;
+  }
+
+  pill.textContent = `Question 1 of ${remaining} waiting`;
+  const card = deck[currentIndex];
+  const fileHref = card.files && card.files.length ? card.files[0] : "#";
+
+  stage.innerHTML = `
+    <article class="card">
+      <div class="card-header">
+        <span class="agent-tag">${card.agent}</span>
+        <span class="date-tag">Asked ${card.date}</span>
+      </div>
+      <h2 class="question-text">${card.question}</h2>
+      <div class="why-box">
+        <span class="why-label">Why it matters</span>
+        ${card.why}
+      </div>
+      <label class="field-label" for="answer-input">Your answer</label>
+      <textarea id="answer-input" placeholder="Type or dictate your answer in plain words..."></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn-primary" id="btn-answer">Save answer</button>
+        <button type="button" class="btn-secondary" id="btn-park">Not now (park for tomorrow)</button>
+        <button type="button" class="btn-secondary" id="btn-route-toggle">Not mine (route to someone)</button>
+      </div>
+      <div class="route-box" id="route-box">
+        <input type="text" id="route-input" placeholder="Type who owns this (for example: Fable, Tyler, Colby, Components)...">
+        <button type="button" class="btn-primary" id="btn-route-confirm">Route it</button>
+      </div>
+      <a class="source-link" href="${fileHref}" target="_blank" rel="noopener">Open source note (${card.files.length} file${card.files.length > 1 ? "s" : ""})</a>
+    </article>
+  `;
+
+  document.getElementById("btn-answer").addEventListener("click", async () => {
+    const val = document.getElementById("answer-input").value.trim();
+    if (!val) {
+      document.getElementById("answer-input").focus();
+      return;
+    }
+    const status = await persistItem({
+      id: card.id,
+      action: "answer",
+      answer: val,
+      files: card.files,
+      agent: card.agent,
+      question: card.question
+    });
+    currentIndex++;
+    showToast(status === "written"
+      ? "Saved directly into the agent's handoff file and Running List!"
+      : "Answer saved! Next card ready.");
+    render();
+  });
+
+  document.getElementById("btn-park").addEventListener("click", async () => {
+    await persistItem({
+      id: card.id,
+      action: "park",
+      files: card.files,
+      agent: card.agent,
+      question: card.question
+    });
+    currentIndex++;
+    showToast("Parked until tomorrow.");
+    render();
+  });
+
+  document.getElementById("btn-route-toggle").addEventListener("click", () => {
+    const rb = document.getElementById("route-box");
+    rb.classList.toggle("open");
+    if (rb.classList.contains("open")) {
+      document.getElementById("route-input").focus();
+    }
+  });
+
+  document.getElementById("btn-route-confirm").addEventListener("click", async () => {
+    const who = document.getElementById("route-input").value.trim();
+    if (!who) {
+      document.getElementById("route-input").focus();
+      return;
+    }
+    await persistItem({
+      id: card.id,
+      action: "route",
+      routed_to: who,
+      files: card.files,
+      agent: card.agent,
+      question: card.question
+    });
+    currentIndex++;
+    showToast(`Routed to ${who}.`);
+    render();
+  });
+}
+
+document.getElementById("export-btn").addEventListener("click", () => {
+  const q = getQueue();
+  if (!q.length) {
+    showToast("No queued answers to export.");
+    return;
+  }
+  const blob = new Blob([JSON.stringify({ items: q }, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "ask-sacha-answers.json";
+  a.click();
+  showToast("Saved ask-sacha-answers.json to Downloads for Argon's harness.");
+});
+
+render();
+</script>
+</body>
+</html>

@@ -125,6 +125,7 @@
   .hh-ev--late { background: #FBE3E1; color: #8C1F18; }
   .hh-ev--done { background: var(--nm-chip-grey); color: var(--nm-chip-grey-ink); text-decoration: line-through; }
   .hh-ev--more { color: var(--nm-muted); padding-left: 2px; }
+  .hh-ev__store { display: inline-block; margin-right: 4px; padding: 0 5px; border-radius: var(--nm-radius-pill); background: #FFFFFF; color: #2E2E2B; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3); font: 700 9px/14px var(--nm-sans); letter-spacing: 0.4px; vertical-align: 1px; }
   .hh-cal__key { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 12px 0 0; padding: 0; list-style: none; color: var(--nm-text); font: 400 13px/18px var(--nm-sans); }
   .hh-cal__key li { display: inline-flex; align-items: center; gap: 6px; }
   .hh-cal__key i { width: 12px; height: 12px; border-radius: 3px; }
@@ -241,7 +242,7 @@
     .hh-cal__day { min-height: 48px; padding: 4px; }
     .hh-cal__head { padding: 2px; font-size: 10px; letter-spacing: 0.4px; }
     .hh-ev { display: block; width: 8px; height: 8px; padding: 0; border-radius: 50%; font-size: 0; }
-    .hh-ev--more { display: none; }
+    .hh-ev--more, .hh-ev__store { display: none; }
     .hh-cal__events { flex-direction: row; flex-wrap: wrap; }
     .hh-menu__panel { position: fixed; left: 16px; right: 16px; top: calc(var(--nm-header-h) + 16px); width: auto; grid-template-columns: minmax(0, 1fr); }
     .hh-kanban { grid-template-columns: minmax(0, 1fr); }
@@ -395,6 +396,9 @@
   var PHOTO_BOX = "https://app.box.com/s/pkq0q14uypuuek1z1ahdjmf3cp1er9w4";
   var CLICKUP_TEAM_VIEW = "https://app.clickup.com/9011460926/v/gr/8chzyty-52551";
   var CLICKUP_CONTEXT_DOC = "https://app.clickup.com/9011460926/v/dc/8chzyty-52571";
+  var WSS_READY_TO_SHIP = "https://www.worldsoccershop.com/shop/products/ready-to-ship";
+  var WSS_HOLIDAY_TASK = "https://app.clickup.com/t/868mcnzzr";
+  var APPROVED_JERSEYS = "Lionel Messi (Inter Miami and Argentina), Lamine Yamal (Barcelona and Spain), Christian Pulisic (AC Milan and USMNT), Kylian Mbappe (Real Madrid), Jude Bellingham (Real Madrid), Erling Haaland (Man City), Bukayo Saka (Arsenal), Cole Palmer (Chelsea), Son Heung-Min (Spurs), Florian Wirtz (Leverkusen), Trinity Rodman (USWNT)";
 
   var SDC = ["rickey", "jordan", "sacha", "courtney", "brock", "casey", "whitney", "matty", "michael", "darren", "danny"];
   var WSS = ["tyler", "alex", "holly", "sacha", "jordan", "courtney"];
@@ -636,6 +640,26 @@
       text: "Promotions: creative assets",
       detail: "In planning. Built from Whitney's Holiday Master file.",
       figmaUrl: FIGMA_HOLIDAY_MASTER, clickupUrl: "https://app.clickup.com/t/868mkcuj2" },
+    { id: "wss-holiday-launch", col: "Holiday & Promotions", urgency: 2, due: "2026-11-02",
+      people: ["tyler", "alex", "holly", "sacha", "jordan"],
+      text: "Launch the WorldSoccerShop Holiday 2026 campaign",
+      detail: "Kicks off Mon 2 Nov. Tyler added the premade plan on Mon 26 Oct: 86 ready-to-ship player jerseys in stock across 9 teams, 3,609 units. They sell on the Ready-to-Ship page.",
+      previewUrl: WSS_READY_TO_SHIP, clickupUrl: WSS_HOLIDAY_TASK },
+    { id: "wss-shoot-styling", col: "Holiday & Promotions", urgency: 3, due: "2026-11-03",
+      people: ["holly", "sacha", "tyler", "jordan"],
+      text: "WorldSoccerShop Holiday shoot: styling shopping list, looks and props",
+      detail: "The shopping list, looks and props for the WorldSoccerShop Holiday shoot.",
+      previewUrl: "https://wss-shoots.netlify.app/holiday-2026/looks.html", clickupUrl: "https://app.clickup.com/t/868mk8hy3" },
+    { id: "wss-shoot-models", col: "Holiday & Promotions", urgency: 4, status: "In progress",
+      people: ["holly", "alex", "tyler", "sacha"],
+      text: "WorldSoccerShop Holiday shoot: model picks",
+      detail: "Picking the models for the WorldSoccerShop Holiday shoot.",
+      clickupUrl: "https://app.clickup.com/t/868mk0z0z" },
+    { id: "wss-singles-day", col: "Holiday & Promotions", urgency: 5, launch: "2026-11-09", until: "2026-11-18", promo: "singles",
+      people: ["tyler", "alex", "holly", "sacha", "jordan"],
+      text: "Singles Day and Kitbag Deals",
+      detail: "Runs Mon 9 Nov to Wed 18 Nov on WorldSoccerShop.",
+      clickupUrl: WSS_HOLIDAY_TASK },
     { id: "tpl-tunnel-photos", col: "Holiday & Promotions", urgency: 5, status: "In Box and the Tunnel",
       people: ["danny", "sacha", "casey", "whitney", "matty", "michael", "rickey"],
       text: "Danny's 235 holiday photos and 15 OrbitView spins",
@@ -719,6 +743,21 @@
       text: "WorldSoccerShop End of Season Sale: hero and site strips",
       detail: "Check every link against the approved WorldSoccerShop link book before publishing.",
       clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { id: "wss-holiday-landing", col: "DX Pages & Enablement", urgency: 3, due: "2026-11-02",
+      people: ["alex", "sacha", "tyler", "jordan"],
+      text: "Build the WorldSoccerShop Holiday landing pages",
+      detail: "The Holiday landing pages for the WorldSoccerShop Holiday Kickoff on Mon 2 Nov.",
+      clickupUrl: "https://app.clickup.com/t/868mcp0vb" },
+    { id: "wss-pilot-alex", col: "DX Pages & Enablement", urgency: 4, status: "In progress",
+      people: ["alex", "sacha", "tyler"],
+      text: "Fastr pilot 1 (Alex): rebuild the WorldSoccerShop Shop by Club section",
+      detail: "Alex's first Fastr CMS build, from the WorldSoccerShop starter pack.",
+      previewUrl: "../nutmeg/starter-pack-wss.html" },
+    { id: "wss-pilot-holly", col: "DX Pages & Enablement", urgency: 5, status: "In progress",
+      people: ["holly", "sacha", "tyler"],
+      text: "Fastr pilot 2 (Holly): build the WorldSoccerShop Premier League Shop by Club logo rail",
+      detail: "Holly's first Fastr CMS build, from the WorldSoccerShop starter pack.",
+      previewUrl: "../nutmeg/starter-pack-wss.html" },
     { id: "cu-dx-club-mgmt", col: "DX Pages & Enablement", urgency: 3, status: "In progress", agents: true,
       people: ["rickey", "sacha"],
       text: "Club Management Tool 2026 page mock-up",
@@ -742,7 +781,7 @@
     { key: "sdc", label: "Soccer.com" },
     { key: "wss", label: "WorldSoccerShop" }
   ];
-  var TASK_STORE = { "wss-eoss-launch": "wss" };
+  var TASK_STORE = { "wss-eoss-launch": "wss", "wss-holiday-launch": "wss", "wss-holiday-landing": "wss", "wss-shoot-styling": "wss", "wss-shoot-models": "wss", "wss-pilot-alex": "wss", "wss-pilot-holly": "wss", "wss-singles-day": "wss" };
   TASKS.forEach(function (t) { t.store = TASK_STORE[t.id] || "sdc"; });
 
   var KEY_DATES = [
@@ -797,7 +836,9 @@
       { label: "Pop-up package hub", url: PREVIEW_POPUP_HUB, store: "sdc", people: TEAM },
       { label: "Holiday Pop-Up Stores: where we are, 26 Oct", url: "../holiday-popup-package/09-Holiday-Pop-Up-Stores-Where-We-Are--2026-10-26.html", store: "sdc", people: TEAM },
       { label: "3 pilot stores", url: "https://ncfc-holiday-demo.netlify.app/pilots/", store: "sdc", people: TEAM },
-      { label: "NCFC demo store", url: "https://ncfc-holiday-demo.netlify.app/", store: "sdc", people: TEAM }
+      { label: "NCFC demo store", url: "https://ncfc-holiday-demo.netlify.app/", store: "sdc", people: TEAM },
+      { label: "Ready-to-Ship player jerseys", url: WSS_READY_TO_SHIP, store: "wss", people: WSS },
+      { label: "WorldSoccerShop Holiday shoot looks", url: "https://wss-shoots.netlify.app/holiday-2026/looks.html", store: "wss", people: WSS }
     ] },
     { group: "Tools", items: [
       { label: "The Tunnel", url: "https://the-tunnel.netlify.app/v2" },
@@ -816,6 +857,9 @@
   ];
 
   var MESSAGES = [
+    { id: "msg-tyler-948am-ready-to-ship", from: "Tyler", time: "Mon 26 Oct, 9:48am", col: "Holiday & Promotions", to: WSS,
+      text: "Holiday premade plan added to the WorldSoccerShop Holiday task: 86 ready-to-ship player jerseys in stock across 9 teams, 3,609 units. They sell on the Ready-to-Ship page.",
+      previewUrl: WSS_READY_TO_SHIP, clickupUrl: WSS_HOLIDAY_TASK },
     { id: "msg-eod-630pm-superside", from: "Sacha", time: "Thu 22 Oct, 6:30pm", col: "Holiday & Promotions", to: SDC,
       text: "The Soccer.com Holiday Superside hub is live on Netlify: creative direction, 67 products, 31 sizes in static, GIF and video, and 235 photo selects. It's gone to Colby and Brian.",
       previewUrl: SUPERSIDE_HUB, figmaUrl: FIGMA_HOLIDAY_MASTER },
@@ -1085,18 +1129,18 @@
     var out = [];
     KEY_DATES.forEach(function (k) {
       if (!sees(k.people, state.person) || !inStore(k)) return;
-      out.push({ date: k.date, until: k.until, label: k.label, kind: "date" });
+      out.push({ date: k.date, until: k.until, label: k.label, kind: "date", store: k.store });
     });
     PROMOS.forEach(function (k) {
       if (!sees(k.people, state.person) || !inStore(k)) return;
-      out.push({ date: k.date, until: k.until, label: k.label, kind: "p-" + k.promo, promo: k.promo });
+      out.push({ date: k.date, until: k.until, label: k.label, kind: "p-" + k.promo, promo: k.promo, store: k.store });
     });
     myTasks().forEach(function (t) {
       if (t.promo) return;
-      if (t.launch) out.push({ date: t.launch, until: t.until, label: t.text, kind: "launch" });
+      if (t.launch) out.push({ date: t.launch, until: t.until, label: t.text, kind: "launch", store: t.store });
       else if (t.due) {
         var r = riskOf(t);
-        out.push({ date: t.due, label: t.text, kind: isDone(t) ? "done" : (r && r.level === "late" ? "late" : "due") });
+        out.push({ date: t.due, label: t.text, kind: isDone(t) ? "done" : (r && r.level === "late" ? "late" : "due"), store: t.store });
       }
     });
     return out;
@@ -1109,6 +1153,15 @@
 
   function renderCalendar() {
     var events = eventsFor();
+    var tagStores = CROSS_STORE.indexOf(state.person) !== -1 && state.store === "both";
+    var storeTag = function (e) {
+      if (!tagStores || (e.store !== "sdc" && e.store !== "wss")) return "";
+      return '<span class="hh-ev__store">' + (e.store === "sdc" ? "SDC" : "WSS") + '</span>';
+    };
+    var storeWord = function (e) {
+      if (!tagStores || (e.store !== "sdc" && e.store !== "wss")) return e.label;
+      return e.label + (e.store === "sdc" ? " (Soccer.com)" : " (WorldSoccerShop)");
+    };
     var m = state.month;
     $("hhMonth").textContent = MONTHS_LONG[m.getMonth()] + " " + m.getFullYear();
     var first = new Date(m.getFullYear(), m.getMonth(), 1);
@@ -1124,10 +1177,10 @@
       var iso = isoOf(d);
       var evs = events.filter(function (e) { return onDay(e, iso); });
       var cls = "hh-cal__day" + (d.getMonth() !== m.getMonth() ? " is-out" : "") + (iso === todayIso ? " is-today" : "") + (evs.length ? " has-events" : "");
-      var label = DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS_LONG[d.getMonth()] + (evs.length ? ": " + evs.map(function (e) { return e.label; }).join("; ") : "");
+      var label = DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS_LONG[d.getMonth()] + (evs.length ? ": " + evs.map(storeWord).join("; ") : "");
       cells.push('<div class="' + cls + '" role="listitem" aria-label="' + esc(label) + '"><span class="hh-cal__num" aria-hidden="true">' + d.getDate() + '</span>' +
         '<span class="hh-cal__events" aria-hidden="true">' + evs.slice(0, 3).map(function (e) {
-          return '<span class="hh-ev hh-ev--' + e.kind + '">' + esc(e.label) + '</span>';
+          return '<span class="hh-ev hh-ev--' + e.kind + '">' + storeTag(e) + esc(e.label) + '</span>';
         }).join("") + (evs.length > 3 ? '<span class="hh-ev hh-ev--more">' + (evs.length - 3) + ' more</span>' : "") + '</span></div>');
     }
     $("hhCalGrid").innerHTML = cells.join("");
@@ -1237,12 +1290,65 @@
     }).join("");
   }
 
+  function absUrl(url) {
+    try { return new URL(url, window.location.href).href; } catch (e) { return url; }
+  }
+
+  function rangeWord(k) {
+    return k.until ? shortDate(k.date) + " to " + shortDate(k.until) : shortDate(k.date);
+  }
+
+  function buildPrompt() {
+    var p = me(), scope = viewerScope(), out = [];
+    var storeName = { sdc: "Soccer.com", wss: "WorldSoccerShop" };
+    out.push(p.prompt, "");
+    out.push("Today is " + shortDate(isoOf(TODAY)) + " " + TODAY.getFullYear() + ".");
+    if (scope === "both") out.push("Store rule: Soccer.com and WorldSoccerShop never mix. Keep every piece of work to one store. Never use one store's photos, products, promos or copy for the other.");
+    else out.push("Store rule: you work on " + storeName[scope] + " only. Never use " + storeName[scope === "sdc" ? "wss" : "sdc"] + " photos, products, promos or copy.");
+    out.push("Promo codes are not shared here. Check the ClickUp task for the real code before you export anything.", "");
+
+    out.push("Latest update (" + p.updateTime + "):");
+    p.update.forEach(function (b) { out.push("- " + b); });
+    out.push("");
+
+    var open = myTasks().filter(function (t) { return !isDone(t); });
+    out.push("Open tasks:");
+    if (!open.length) out.push("- None right now.");
+    open.forEach(function (t) {
+      var bits = [t.text + (scope === "both" && storeName[t.store] ? " (" + storeName[t.store] + ")" : ""), dueWord(t)];
+      if (t.figmaUrl) bits.push("Figma: " + absUrl(t.figmaUrl));
+      if (t.previewUrl) bits.push("Preview: " + absUrl(t.previewUrl));
+      if (t.clickupUrl) bits.push((t.clickupUrl.indexOf("box.com") !== -1 ? "Box: " : "ClickUp: ") + absUrl(t.clickupUrl));
+      out.push("- " + bits.filter(Boolean).join(". "));
+    });
+    out.push("");
+
+    var dates = KEY_DATES.concat(PROMOS).filter(function (k) { return sees(k.people, state.person) && inStore(k); })
+      .sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    out.push("Promo calendar and key dates:");
+    if (!dates.length) out.push("- None on the calendar.");
+    dates.forEach(function (k) {
+      out.push("- " + rangeWord(k) + ": " + k.label + (scope === "both" && storeName[k.store] ? " (" + storeName[k.store] + ")" : ""));
+    });
+    out.push("");
+
+    out.push("Working links:");
+    LINKS.forEach(function (g) {
+      g.items.forEach(function (it) {
+        if (sees(it.people, state.person) && inStore(it)) out.push("- " + it.label + ": " + absUrl(it.url));
+      });
+    });
+    out.push("");
+    out.push("Approved holiday player jerseys, confirmed in stock: " + APPROVED_JERSEYS + ".");
+    return out.join("\n");
+  }
+
   function renderMyDay() {
     var p = me();
     $("hhUpdateTime").textContent = "Latest note, " + p.updateTime;
     $("hhUpdateList").innerHTML = p.update.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("");
     $("hhPromptTitle").textContent = "Starter prompt for " + p.name + "'s Claude";
-    $("hhPrompt").textContent = p.prompt;
+    $("hhPrompt").textContent = buildPrompt();
     $("hhCopyLink").textContent = "Copy " + p.name + "'s link";
     $("hhUpdateTask").innerHTML = myTasks().map(function (t) {
       return '<option value="' + t.id + '">' + esc(t.text) + '</option>';
@@ -1419,7 +1525,7 @@
     copyText(url, "Copied " + me().name + "'s link");
   });
   $("hhCopyPrompt").addEventListener("click", function () {
-    copyText(me().prompt, "Copied " + me().name + "'s starter prompt");
+    copyText(buildPrompt(), "Copied " + me().name + "'s working brief");
   });
   $("hhSendUpdate").addEventListener("click", function () {
     var task = TASKS.find(function (t) { return t.id === $("hhUpdateTask").value; });
