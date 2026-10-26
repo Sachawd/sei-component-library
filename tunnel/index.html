@@ -114,10 +114,13 @@
     <section class="tn-view tn-brand" id="tn-brand" aria-labelledby="tn-brand-name" hidden>
       <div class="tn-brand__hero">
         <h1 class="tn-brand__mark" id="tn-brand-name"></h1>
-        <form class="tn-search" role="search" data-search="brand">
-          <label class="nm-visually-hidden" for="tn-brand-search" id="tn-brand-search-label">Search</label>
-          <input class="tn-search__input" id="tn-brand-search" type="search" autocomplete="off">
-        </form>
+        <div class="tn-brand__search-stack">
+          <form class="tn-search" role="search" data-search="brand">
+            <label class="nm-visually-hidden" for="tn-brand-search" id="tn-brand-search-label">Search</label>
+            <input class="tn-search__input" id="tn-brand-search" type="search" autocomplete="off">
+          </form>
+          <div class="tn-brand__icon-bar" id="tn-brand-icons" role="group" aria-label="Quick sections"></div>
+        </div>
       </div>
       <div class="tn-brand__body">
         <div class="tn-toolbar">

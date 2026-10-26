@@ -1,0 +1,25 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-lyf50-v-mbappe-merc-superfly",
+  "n": "LYF50 v Mbappe Merc Superfly",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/MISC/2026/LYF50%20v%20Mbappe%20Merc%20Superfly",
+      "c": "Video",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "misc/2026"
+      ],
+      "f": "https://i.ytimg.com/vi/l-yEBw58GUc/hqdefault.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

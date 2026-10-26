@@ -1,0 +1,29 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "nike-breakout-pack",
+  "n": "Nike Breakout Pack",
+  "files": [
+    {
+      "f": "Nike_Breakout_Pack_9447.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/7q0d2l9vd81ocnw08lt5jzbsra2as5am",
+      "c": "Footwear",
+      "b": "Nike",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "ft": [
+        "Mercurial",
+        "Mercurial Superfly"
+      ],
+      "cr": "2026-05-25",
+      "wv": "WSS Social"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/1vm5exmz6b4wloj5y9yhhyqropzrnmsq"
+}

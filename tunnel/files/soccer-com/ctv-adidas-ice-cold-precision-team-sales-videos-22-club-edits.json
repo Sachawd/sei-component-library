@@ -1,0 +1,26 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-adidas-ice-cold-precision-team-sales-videos-22-club-edits",
+  "n": "Adidas Ice Cold Precision - Team Sales Videos (22 club edits)",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/MISC/2026/Adidas%20Ice%20Cold%20Precision%20-%20Team%20Sales%20Videos",
+      "c": "Video",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "misc/2026"
+      ],
+      "cr": "2026-05-04",
+      "f": "https://i.ytimg.com/vi/nkqcvHtsVqA/hqdefault.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

@@ -1,0 +1,27 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-road-to-glory",
+  "n": "Road To Glory",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20adidas/Products/Footwear/2026/RoadToGlory",
+      "c": "Video",
+      "b": "adidas",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "adidas",
+        "products (footwear 2026)"
+      ],
+      "f": "https://i.ytimg.com/vi/J_nINU6BEGM/hqdefault.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

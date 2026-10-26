@@ -1,0 +1,27 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "unboxing-afc-richmond",
+  "n": "Unboxing AFC Richmond",
+  "files": [
+    {
+      "f": "https://i.ytimg.com/vi/fLMnaAgjUTA/hqdefault.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/u5hh8lkgma1huxtoai9ks5xwgfnym4zo",
+      "c": "Other",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "tg": [
+        "NA"
+      ],
+      "cr": "2026-08-08",
+      "wv": "WSS Studio"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/u5hh8lkgma1huxtoai9ks5xwgfnym4zo"
+}

@@ -1,0 +1,26 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-ugc",
+  "n": "UGC",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/UGC",
+      "c": "Video",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "ugc"
+      ],
+      "cr": "2026-07-27",
+      "f": "sdc_environmentals__fields_01.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

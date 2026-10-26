@@ -1,0 +1,26 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-speed-cleat-lineup-july-20",
+  "n": "Speed Cleat Lineup - July 20",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/MISC/2026/Speed%20Cleat%20Lineup%20-%20July%2020",
+      "c": "Video",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "misc/2026"
+      ],
+      "cr": "2026-07-28",
+      "f": "SDC-WHSALE-Fall26_FW-Selection-Jul26_DPK_8985.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

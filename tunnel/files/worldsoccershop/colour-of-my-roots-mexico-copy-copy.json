@@ -1,0 +1,27 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "colour-of-my-roots-mexico-copy-copy",
+  "n": "Colour of my Roots - Mexico copy copy",
+  "files": [
+    {
+      "f": "comr_mexico_bio_image.jpg",
+      "k": "s",
+      "se": "2026",
+      "c": "National Team",
+      "tr": "WorldSoccerShop",
+      "sh": "Lifestyle",
+      "av": "Stills and video",
+      "tg": [
+        "still",
+        "video"
+      ],
+      "cr": "2026-05-22",
+      "wv": "WSS Lifestyle"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

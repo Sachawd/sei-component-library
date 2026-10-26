@@ -1,0 +1,31 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "unboxing-celtic-25-26-home-jersey-by-adidas",
+  "n": "UNBOXING: Celtic 25.26 Home Jersey by adidas",
+  "files": [
+    {
+      "f": "celtic-home__img.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/xfctgn99fz4ba7co81775l4yrp4txg5g",
+      "c": "Jerseys",
+      "b": "adidas",
+      "kit": "Home",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "av": "Video",
+      "ap": "Approved",
+      "tg": [
+        "video"
+      ],
+      "cr": "2025-10-27",
+      "wv": "WSS Social"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/xfctgn99fz4ba7co81775l4yrp4txg5g"
+}

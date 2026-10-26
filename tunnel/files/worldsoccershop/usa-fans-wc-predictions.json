@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "usa-fans-wc-predictions",
+  "n": "USA Fans WC Predictions",
+  "files": [
+    {
+      "f": "wssthumb__boost-atlanta-usmnt-blind-ranking-march-2026.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/70g421jpm13ljvngqhod37lsk11vqbs5",
+      "c": "National Team",
+      "tr": "WorldSoccerShop",
+      "sh": "Big Matches",
+      "av": "Video",
+      "tg": [
+        "video"
+      ],
+      "cr": "2026-05-08",
+      "wv": "WSS Social"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/70g421jpm13ljvngqhod37lsk11vqbs5"
+}

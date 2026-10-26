@@ -1,0 +1,31 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "adi-evo-f50-unbox",
+  "n": "adi EVO F50 unbox",
+  "files": [
+    {
+      "f": "https://i.ytimg.com/vi/26eu46y6KUc/hqdefault.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/4jobfb8r2msv7hji2qimfdnqrnj8fmw6",
+      "c": "Footwear",
+      "sk": [
+        "A1132823"
+      ],
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "av": "Video",
+      "tg": [
+        "video"
+      ],
+      "cr": "2026-04-29",
+      "wv": "WSS Studio"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/4jobfb8r2msv7hji2qimfdnqrnj8fmw6"
+}

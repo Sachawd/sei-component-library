@@ -80,7 +80,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var home = $("tn-home"), brand = $("tn-brand"), drawer = $("tn-drawer");
   var list = $("tn-drawer-list"), where = $("tn-where"), note = $("tn-note");
-  var brandGrid = $("tn-brand-grid"), quickChips = $("tn-quick-chips");
+  var brandGrid = $("tn-brand-grid"), quickChips = $("tn-quick-chips"), brandIcons = $("tn-brand-icons");
   var homeGrid = $("tn-home-grid"), homeHeading = $("tn-home-heading"), homeCount = $("tn-home-count"), homeClear = $("tn-home-clear");
   var rail = document.querySelectorAll(".nm-rail__item");
 
@@ -296,6 +296,7 @@
     if (!main) {
       where.textContent = b.name;
       note.textContent = "No asset feed file is connected for " + b.name + " yet. Choose Vendor, Soccer.com, WSS, 431, or Team Soccer in the left rail.";
+      if (brandIcons) brandIcons.innerHTML = "";
       quickChips.innerHTML = "";
       brandGrid.innerHTML = "";
       return;
@@ -306,6 +307,37 @@
     var pubRows = (pub && pub.rows ? pub.rows : []).slice();
     var words = (currentFilter.q || "").trim().toLowerCase().split(/\s+/).filter(Boolean);
 
+    var ytTotal = pubRows.filter(function (r) { return r.p === "YouTube"; }).length;
+    var blogTotal = pubRows.filter(function (r) { return r.p === "Blog"; }).length;
+    var photoTotal = allRows.filter(function (r) { return !isVideoRow(r); }).length;
+    var videoTotal = allRows.filter(isVideoRow).length + ytTotal;
+
+    // Icon buttons directly underneath the Brand Search bar (All Shoots, Photos, Videos, Blog, YouTube, Holiday 2026)
+    var ICONS = {
+      all: '<svg viewBox="0 0 24 24" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+      photo: '<svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+      video: '<svg viewBox="0 0 24 24" stroke-width="1.75"><rect x="2.5" y="5" width="14" height="14" rx="2"/><path d="M16.5 10l5-3v10l-5-3v-4Z"/></svg>',
+      blog: '<svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>',
+      youtube: '<svg viewBox="0 0 24 24" stroke-width="1.75"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5l5 2.5-5 2.5v-5Z" fill="currentColor" stroke="none"/></svg>',
+      campaign: '<svg viewBox="0 0 24 24" stroke-width="1.75"><path d="M12 2.5l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 16.8l-5.6 2.9 1.1-6.2-4.5-4.4 6.2-.9L12 2.5Z"/></svg>'
+    };
+    var iconBtnDefs = [
+      { icon: ICONS.all, label: "All Shoots", count: allRows.length, type: "all", val: "" },
+      { icon: ICONS.photo, label: "Photos", count: photoTotal, type: "media", val: "Photo" },
+      { icon: ICONS.video, label: "Videos", count: videoTotal, type: "media", val: "Video" },
+      { icon: ICONS.blog, label: "Blog", count: blogTotal, type: "social", val: "Blog" }
+    ];
+    if (ytTotal) iconBtnDefs.push({ icon: ICONS.youtube, label: "YouTube", count: ytTotal, type: "social", val: "YouTube" });
+    if (campRows.length) iconBtnDefs.push({ icon: ICONS.campaign, label: "Holiday 2026", count: campRows.length, type: "campaign", val: "all" });
+
+    if (brandIcons) {
+      brandIcons.innerHTML = iconBtnDefs.map(function (ib) {
+        var on = currentFilter.type === ib.type && currentFilter.val === ib.val;
+        return '<button type="button" class="tn-icon-btn" data-ftype="' + esc(ib.type) + '" data-fval="' + esc(ib.val) + '" data-flabel="' + esc(ib.label) + '" aria-pressed="' + (on ? "true" : "false") + '">' +
+          ib.icon + '<span>' + esc(ib.label) + '</span><span class="tn-icon-btn__count">' + num(ib.count) + "</span></button>";
+      }).join("");
+    }
+
     // Quick chips bar
     var chipDefs = [{ label: "All Shoots (" + num(allRows.length) + ")", type: "all", val: "" }];
     (main.cats || []).slice(0, 5).forEach(function (c) {
@@ -314,8 +346,6 @@
     if (campRows.length) {
       chipDefs.push({ label: "Holiday 2026 (" + num(campRows.length) + ")", type: "campaign", val: "all" });
     }
-    var ytTotal = pubRows.filter(function (r) { return r.p === "YouTube"; }).length;
-    var blogTotal = pubRows.filter(function (r) { return r.p === "Blog"; }).length;
     if (ytTotal) chipDefs.push({ label: "YouTube (" + num(ytTotal) + ")", type: "social", val: "YouTube" });
     if (blogTotal) chipDefs.push({ label: "Blog (" + num(blogTotal) + ")", type: "social", val: "Blog" });
 
@@ -452,8 +482,12 @@
     if (dlg.showModal) dlg.showModal();
     else dlg.setAttribute("open", "");
 
-    var url = REMOTE_FILES_BASE + folder + "/" + slug + ".json";
-    loadJSON(url).then(function (d) {
+    var localUrl = "files/" + folder + "/" + slug + ".json";
+    var remoteUrl = REMOTE_FILES_BASE + folder + "/" + slug + ".json";
+    loadJSON(localUrl).then(function (d) {
+      if (d && d.files) return d;
+      return loadJSON(remoteUrl);
+    }).then(function (d) {
       if (!d || !d.files) {
         title.textContent = slug;
         sub.textContent = "Individual file list lives on the Tunnel server.";
@@ -471,11 +505,24 @@
           ? '<img src="' + esc(fUrl) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
           : '<span class="tn-card__ini">' + esc(f.r || f.hs || "FILE") + "</span>";
         var dims = (f.w && f.h) ? (f.w + " × " + f.h + " px" + (f.r ? " (" + f.r + ")" : "")) : (f.r || f.av || "");
+        var skus = Array.isArray(f.sk) ? f.sk : (f.sk ? [f.sk] : []);
+        var skuPills = skus.length
+          ? '<div class="tn-file__skus">' + skus.map(function (s) { return '<span class="tn-file__sku">' + esc(s) + "</span>"; }).join("") + "</div>"
+          : "";
+        var vimeoBtn = f.vimeo
+          ? '<a class="tn-btn" style="width:100%;padding:6px 10px;font-size:12px" href="' + esc(f.vimeo) + '" target="_blank" rel="noopener">Watch 360 on Vimeo &#8599;</a>'
+          : "";
+        var copySkuBtn = skus.length
+          ? '<button type="button" class="tn-btn tn-btn--outline" style="width:100%;padding:6px 10px;font-size:12px" data-copy-url="' + esc(skus.join(", ")) + '">Copy SKUs</button>'
+          : "";
         return '<div class="tn-file">' +
           '<a class="tn-file__thumb" href="' + esc(fUrl || "#") + '" target="_blank" rel="noopener">' + thumb + "</a>" +
           '<div class="tn-file__info">' +
             '<p class="tn-file__name">' + esc(f.f || f.ds || "Asset") + "</p>" +
             (dims ? '<p class="tn-file__dim">' + esc(dims) + "</p>" : "") +
+            skuPills +
+            vimeoBtn +
+            copySkuBtn +
             (fUrl ? '<button type="button" class="tn-btn tn-btn--outline" style="width:100%;padding:6px 10px;font-size:12px" data-copy-url="' + esc(fUrl) + '">Copy CDN Link</button>' : "") +
           "</div>" +
         "</div>";
@@ -560,6 +607,21 @@
       });
     }
   });
+
+  if (brandIcons) {
+    brandIcons.addEventListener("click", function (e) {
+      var b = e.target.closest(".tn-icon-btn");
+      if (b && currentKey) {
+        currentFilter.type = b.getAttribute("data-ftype") || "all";
+        currentFilter.val = b.getAttribute("data-fval") || "";
+        currentFilter.label = b.getAttribute("data-flabel") || "";
+        loadBrandBundle(currentKey).then(function (bundle) {
+          buildDrawerForBrand(currentKey, bundle);
+          renderBrandResults(currentKey, bundle);
+        });
+      }
+    });
+  }
 
   document.addEventListener("click", function (e) {
     var copyBtn = e.target.closest("[data-copy-url]");

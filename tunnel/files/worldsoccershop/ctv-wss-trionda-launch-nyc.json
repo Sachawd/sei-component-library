@@ -1,0 +1,29 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "ctv-wss-trionda-launch-nyc",
+  "n": "Trionda Launch NYC (WorldSoccerShop cut)",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20adidas/Events/Trionda%20Launch%20NYC/WSS",
+      "c": "Other",
+      "b": "adidas",
+      "tr": "WorldSoccerShop",
+      "av": "Video",
+      "tg": [
+        "video",
+        "adidas",
+        "events",
+        "worldsoccershop"
+      ],
+      "cr": "2025-10-08",
+      "f": "adidas-2026-fifa-world-cup-final-ball__H24814-FW26_TRIONDA_FINAL~NGHAM_SHOT_01_16x9-1416988.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

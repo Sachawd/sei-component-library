@@ -1,0 +1,29 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "nike-mercurial-superfly-unboxing",
+  "n": "Nike Mercurial Superfly Unboxing",
+  "files": [
+    {
+      "f": "https://i.ytimg.com/vi/xqJ-mEM99SI/hqdefault.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/lf292fgzjfoc6m1ma1d1cewh80zumqq0",
+      "c": "Footwear",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "av": "Video",
+      "tg": [
+        "video",
+        "NA"
+      ],
+      "cr": "2026-07-23",
+      "wv": "WSS Studio"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/lf292fgzjfoc6m1ma1d1cewh80zumqq0"
+}

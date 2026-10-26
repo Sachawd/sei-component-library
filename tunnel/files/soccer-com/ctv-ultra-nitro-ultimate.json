@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-ultra-nitro-ultimate",
+  "n": "Ultra Nitro Ultimate",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20PUMA/Products/Footwear/2026/Ultra%20Nitro%20Ultimate",
+      "c": "Video",
+      "b": "PUMA",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "puma",
+        "products (footwear 2026)"
+      ],
+      "cr": "2026-06-11",
+      "f": "https://i.ytimg.com/vi/p7egJrKVVLg/hqdefault.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

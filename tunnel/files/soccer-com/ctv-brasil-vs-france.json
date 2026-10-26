@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-brasil-vs-france",
+  "n": "Brasil vs. France",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20Nike/Events/Brasil%20vs.%20France",
+      "c": "Video",
+      "b": "Nike",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "nike",
+        "events"
+      ],
+      "cr": "2026-03-31",
+      "f": "wssthumb__brazil-v-france-marvin-heilbronn-3-26-boston.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-afa-x-thrasher-montreal-argentina",
+  "n": "AFA x Thrasher Montreal (Argentina)",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20adidas/Events/AFA%20x%20Thrasher%20Montreal",
+      "c": "Video",
+      "b": "adidas",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "adidas",
+        "events"
+      ],
+      "cr": "2026-06-09",
+      "f": "argentina-x-thrasher__26Q3_ThrasherAFAMessiJersey_Studio_Detail_AFAChestEmbroidery.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

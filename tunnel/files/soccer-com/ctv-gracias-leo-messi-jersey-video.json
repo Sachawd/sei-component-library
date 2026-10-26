@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-gracias-leo-messi-jersey-video",
+  "n": "Gracias Leo Messi Jersey Video",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20adidas/Misc/Gracias%20Leo%20Messi%20Jersey%20Video",
+      "c": "Video",
+      "b": "adidas",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "adidas",
+        "misc"
+      ],
+      "cr": "2026-10-06",
+      "f": "adidas-afa-x-messi-collection-rid__FW26_MESSI_X_AFA_PLAYER_FULL_KIT_MESSI_01_16x9_RGB.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

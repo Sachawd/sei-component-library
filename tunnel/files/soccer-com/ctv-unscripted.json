@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-unscripted",
+  "n": "unscripted",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20PUMA/Products/Footwear/2026/unscripted",
+      "c": "Video",
+      "b": "PUMA",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "puma",
+        "products (footwear 2026)"
+      ],
+      "cr": "2026-10-01",
+      "f": "puma-unscripted-pack-rid__26AW_TS_Football_Q4-Unscripted-Pack_King_Uni_Detail-Shot_2850_RGB.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

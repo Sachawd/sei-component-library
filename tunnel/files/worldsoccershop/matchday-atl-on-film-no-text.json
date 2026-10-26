@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "matchday-atl-on-film-no-text",
+  "n": "Matchday ATL on film - NO TEXT",
+  "files": [
+    {
+      "f": "wssthumb__cover-images-atl-games.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/jgzejehalrzeuko1ccrli2kh1yl0uonk",
+      "c": "Other",
+      "tr": "WorldSoccerShop",
+      "sh": "Big Matches",
+      "av": "Video",
+      "tg": [
+        "video"
+      ],
+      "cr": "2026-05-08",
+      "wv": "WSS Social"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/jgzejehalrzeuko1ccrli2kh1yl0uonk"
+}

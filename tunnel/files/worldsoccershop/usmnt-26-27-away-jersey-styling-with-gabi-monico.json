@@ -1,0 +1,32 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "usmnt-26-27-away-jersey-styling-with-gabi-monico",
+  "n": "USMNT 26/27 Away Jersey styling with Gabi Monico",
+  "files": [
+    {
+      "f": "wssthumb__usmnt-2026-away-unboxing.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/dfccnuls56ymq3wd4jk2tmalmk9u29jc",
+      "c": "National Team",
+      "kit": "Away",
+      "sk": [
+        "A1128890"
+      ],
+      "tr": "WorldSoccerShop",
+      "sh": "Styling",
+      "av": "Video",
+      "tg": [
+        "video"
+      ],
+      "cr": "2026-04-20",
+      "wv": "WSS Social"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/dfccnuls56ymq3wd4jk2tmalmk9u29jc"
+}

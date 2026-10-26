@@ -1,0 +1,30 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "adidas-final-rush-pack",
+  "n": "adidas Final Rush Pack",
+  "files": [
+    {
+      "f": "https://i.ytimg.com/vi/OJ-dmi0RRME/hqdefault.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/x6gqxxeyc2u5cgic3ci1a66y113qptop",
+      "c": "Video",
+      "b": "adidas",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "av": "Video",
+      "nt": "Unboxing video, from the WorldSoccerShop base (Studio table). Internal embargo: none recorded.",
+      "tg": [
+        "video"
+      ],
+      "cr": "2026-10-02",
+      "wv": "WSS Unboxings"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/x6gqxxeyc2u5cgic3ci1a66y113qptop"
+}

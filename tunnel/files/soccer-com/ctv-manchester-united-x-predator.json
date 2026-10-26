@@ -1,0 +1,27 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-manchester-united-x-predator",
+  "n": "Manchester United x Predator",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20adidas/Events/2026/Manchester%20United%20x%20Predator",
+      "c": "Video",
+      "b": "adidas",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "adidas",
+        "events"
+      ],
+      "f": "adidas-manchester-united-26-27-away-jersey__H24754-FW26_MUFC_Toolkit_Away_Adidas_CULTURE_WEAR_GRP_1_RT_02_RGB_16x9-1417814.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

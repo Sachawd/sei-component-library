@@ -1,0 +1,25 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-reusch-adi-golden-glove-studio",
+  "n": "Reusch + adi Golden Glove Studio",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/MISC/2026/Reusch%20+%20adi%20Golden%20Glove%20Studio",
+      "c": "Video",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "misc/2026"
+      ],
+      "f": "wssthumb__hollywood-goalkeepers-range-photos-from-toma-in-miami.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

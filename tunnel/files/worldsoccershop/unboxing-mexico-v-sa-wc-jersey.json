@@ -1,0 +1,29 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "unboxing-mexico-v-sa-wc-jersey",
+  "n": "Unboxing Mexico v SA WC Jersey",
+  "files": [
+    {
+      "f": "wssthumb__world-cup-mashup-mexico-v-south-africa-s-ad96-hentic-home-jersey-by-adidas.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/ywchnlb4ykjaroe0sf1iwi1wlri9tazz",
+      "c": "National Team",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "av": "Video",
+      "tg": [
+        "video",
+        "NA"
+      ],
+      "cr": "2026-05-05",
+      "wv": "WSS Studio"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/ywchnlb4ykjaroe0sf1iwi1wlri9tazz"
+}

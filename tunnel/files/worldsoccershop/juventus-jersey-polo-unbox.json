@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "juventus-jersey-polo-unbox",
+  "n": "Juventus Jersey Polo Unbox",
+  "files": [
+    {
+      "f": "wssthumb__unboxing-juventus-26-27-authentic-away-jersey-by-adidas.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/qci9q1pxg9alfrbalrcpi7sb9tskczw4",
+      "c": "Jerseys",
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "tg": [
+        "N",
+        "A"
+      ],
+      "cr": "2026-04-08",
+      "wv": "WSS Studio"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/qci9q1pxg9alfrbalrcpi7sb9tskczw4"
+}

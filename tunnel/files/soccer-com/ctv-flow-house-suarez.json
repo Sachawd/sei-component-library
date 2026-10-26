@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-flow-house-suarez",
+  "n": "Flow House Suarez",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20PUMA/Events/Flow%20House%20Suarez",
+      "c": "Video",
+      "b": "PUMA",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "puma",
+        "events"
+      ],
+      "cr": "2025-12-11",
+      "f": "sdc_fw_pack_26__puma_playmaker_future_01.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

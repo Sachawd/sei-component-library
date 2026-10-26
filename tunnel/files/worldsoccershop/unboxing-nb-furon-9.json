@@ -1,0 +1,31 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "unboxing-nb-furon-9",
+  "n": "Unboxing NB Furon 9",
+  "files": [
+    {
+      "f": "https://i.ytimg.com/vi/I5fjZjtHbjg/hqdefault.jpg",
+      "k": "s",
+      "hs": "Box",
+      "u": "https://app.box.com/s/v061ue1gzmjmkknch7mfiqq003kx6mb0",
+      "c": "Footwear",
+      "sk": [
+        "A1136249"
+      ],
+      "tr": "WorldSoccerShop",
+      "sh": "Unboxing",
+      "av": "Video",
+      "tg": [
+        "video"
+      ],
+      "cr": "2026-07-02",
+      "wv": "WSS Studio"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does.",
+  "boxUrl": "https://app.box.com/s/v061ue1gzmjmkknch7mfiqq003kx6mb0"
+}

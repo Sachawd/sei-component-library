@@ -1,0 +1,30 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "WorldSoccerShop",
+  "folder": "worldsoccershop",
+  "sl": "how-to-make-a-crop-top-style-an-inter-miami-2025-jersey",
+  "n": "How to make a crop top/style an Inter Miami 2025 jersey",
+  "files": [
+    {
+      "f": "wssthumb__nn-maya-wss-crop-jersey-video-v1-565911.jpg",
+      "k": "s",
+      "c": "Jerseys",
+      "kit": "Away",
+      "sk": [
+        "A1108783"
+      ],
+      "tr": "WorldSoccerShop",
+      "sh": "Styling",
+      "av": "Video",
+      "ap": "Approved",
+      "tg": [
+        "video"
+      ],
+      "cr": "2025-10-27",
+      "wv": "WSS Social"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}

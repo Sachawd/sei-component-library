@@ -1,0 +1,28 @@
+{
+  "built": "6 October 2026",
+  "s3": "https://www.imagehandler.net/dxassets/?img=Photos/",
+  "store": "Soccer.com",
+  "folder": "soccer-com",
+  "sl": "ctv-wilson-castellanos-ho25",
+  "n": "Wilson-Castellanos - HO25",
+  "files": [
+    {
+      "k": "s",
+      "hs": "SharePoint",
+      "u": "https://sportsendeavors.sharepoint.com/sites/ContentMarketing/Shared%20Documents/Content-Community/!%20Nike/Athletes/Wilson-Castellanos%20-%20HO25",
+      "c": "Video",
+      "b": "Nike",
+      "tr": "Soccer.com",
+      "av": "Video",
+      "tg": [
+        "video",
+        "nike",
+        "athletes"
+      ],
+      "cr": "2025-10-27",
+      "f": "https://i.ytimg.com/vi/84wJkU5KKIw/hqdefault.jpg"
+    }
+  ],
+  "src": "gallery-v3.html, every field v1's panel shows, by build-v2-files.py",
+  "note": "Empty fields are left out. The panel prints an en dash for anything missing, as v1 does."
+}
