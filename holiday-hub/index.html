@@ -108,7 +108,19 @@
   .hh-cal__events { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
   .hh-ev { display: -webkit-box; overflow: hidden; padding: 2px 6px; border-radius: 4px; font: 500 11px/14px var(--nm-sans); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
   .hh-ev--launch { background: var(--nm-purple-text); color: var(--nm-white); }
-  .hh-ev--date { background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); }
+  .hh-ev--date { background: var(--nm-white); color: var(--nm-title); box-shadow: inset 0 0 0 1px #8A8A87; }
+  .hh-ev--p-eoss { background: #FFD9C7; color: #7A2E0E; }
+  .hh-ev--p-cleats { background: #D5F17A; color: #465905; }
+  .hh-ev--p-nn { background: #D7E6FD; color: #1D347C; }
+  .hh-ev--p-early { background: #6425F9; color: #FFFFFF; }
+  .hh-ev--p-puma { background: #FCE1EE; color: #7A1E4B; }
+  .hh-ev--p-earlybf { background: #CDEFEA; color: #0F5249; }
+  .hh-ev--p-bf { background: #111010; color: #FFFFFF; }
+  .hh-ev--p-cyber { background: #1D347C; color: #FFFFFF; }
+  .hh-ev--p-cyberweek { background: #0F5249; color: #FFFFFF; }
+  .hh-ev--p-lastcall { background: #3E143F; color: #FFFFFF; }
+  .hh-ev--p-giftcard { background: #E8DFCC; color: #4A3B1F; }
+  .hh-ev--p-singles { background: #EAE6FD; color: #402287; }
   .hh-ev--due { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
   .hh-ev--late { background: #FBE3E1; color: #8C1F18; }
   .hh-ev--done { background: var(--nm-chip-grey); color: var(--nm-chip-grey-ink); text-decoration: line-through; }
@@ -116,6 +128,32 @@
   .hh-cal__key { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 12px 0 0; padding: 0; list-style: none; color: var(--nm-text); font: 400 13px/18px var(--nm-sans); }
   .hh-cal__key li { display: inline-flex; align-items: center; gap: 6px; }
   .hh-cal__key i { width: 12px; height: 12px; border-radius: 3px; }
+  .hh-cal__note { margin: 8px 0 0; color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
+
+  .hh-fold { margin-top: var(--nm-space-6); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+  .hh-fold .hh-details + .hh-details { margin-top: 0; }
+  .hh-fold .hh-details > summary { font: 400 22px/28px var(--nm-serif); color: var(--nm-ink); }
+  .hh-fold .hh-details > summary small { color: var(--nm-muted); font: 400 15px/20px var(--nm-sans); }
+  .hh-fold .hh-details > summary svg { margin-left: auto; }
+  .hh-stats--below { margin-top: 24px; }
+
+  .hh-team { display: flex; flex-direction: column; gap: 12px; }
+  .hh-team .hh-details + .hh-details { margin-top: 0; }
+  .hh-team .hh-details > summary { flex-wrap: wrap; gap: 8px 16px; }
+  .hh-team__name { min-width: 110px; color: var(--nm-ink); font: 400 22px/28px var(--nm-serif); }
+  .hh-team__nums { display: flex; flex-wrap: wrap; gap: 6px 8px; flex: 1 1 auto; }
+  .hh-team__nums .hh-badge { font-size: 12px; }
+  .hh-team__nums .hh-badge--risk { background: #FBE3E1; color: #8C1F18; }
+  .hh-team__nums .hh-badge--soon { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
+  .hh-team__nums .hh-badge--sdc { background: var(--nm-chip-blue); color: var(--nm-chip-blue-ink); }
+  .hh-team__nums .hh-badge--wss { background: var(--nm-chip-green); color: var(--nm-chip-green-ink); }
+  .hh-team__list { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+  .hh-team__list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid #EBEBEB; font: 400 15px/21px var(--nm-sans); }
+  .hh-team__list li:last-child { border-bottom: 0; }
+  .hh-team__task { flex: 1 1 320px; color: var(--nm-title); }
+  .hh-team__when { color: var(--nm-muted); font-size: 13px; }
+  .hh-team__when.is-late { color: #A3271F; font-weight: 500; }
+  .hh-team__foot { display: flex; flex-wrap: wrap; gap: 12px; }
   .hh-soon { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
   .hh-soon li { display: flex; flex-direction: column; gap: 2px; padding: 12px 0; border-bottom: 1px solid #EBEBEB; font: 400 15px/21px var(--nm-sans); }
   .hh-soon li:last-child { border-bottom: 0; }
@@ -192,7 +230,7 @@
     .hh-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 1100px) {
-    .hh-dash { grid-template-columns: minmax(0, 1fr); }
+    .hh-dash, .hh-fold { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 700px) {
     .hh-stats { gap: 16px; }
@@ -228,7 +266,7 @@
 </header>
 <div class="nm-shell">
 <div class="nm-scrim" hidden></div>
-<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#top" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li><a class="nm-rail__item" href="#my-day"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4"/><path d="M12 20V22.5"/><path d="M4.6 4.6L6.4 6.4"/><path d="M17.6 17.6L19.4 19.4"/><path d="M1.5 12H4"/><path d="M20 12H22.5"/><path d="M4.6 19.4L6.4 17.6"/><path d="M17.6 6.4L19.4 4.6"/></svg><span class="nm-rail__label">My Day</span></a></li><li><a class="nm-rail__item" href="#calendar"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M21.5 4.5H2.5V21.5H21.5V4.5Z"/><path d="M2.5 9.5H21.5"/><path d="M7 2V7"/><path d="M17 2V7"/></svg><span class="nm-rail__label">Calendar</span></a></li><li><a class="nm-rail__item" href="#links"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 14L14 10"/><path d="M8.5 11L5.5 14A3.5 3.5 0 0 0 10.5 19L13.5 16"/><path d="M15.5 13L18.5 10A3.5 3.5 0 0 0 13.5 5L10.5 8"/></svg><span class="nm-rail__label">Links</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Holiday 2026</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="#top" aria-current="page">Overview</a></li><li><a class="nm-drawer__link" href="#at-risk">What&#x27;s at risk</a></li><li><a class="nm-drawer__link" href="#calendar">Calendar</a></li><li><a class="nm-drawer__link" href="#my-day">My day</a></li><li><a class="nm-drawer__link" href="#board">Board</a></li><li><a class="nm-drawer__link" href="#tools">Prompt and update</a></li><li><a class="nm-drawer__link" href="#reference">Reference</a></li><li><a class="nm-drawer__link" href="#contrast">Contrast</a></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#top" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li><a class="nm-rail__item" href="#my-day"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4"/><path d="M12 20V22.5"/><path d="M4.6 4.6L6.4 6.4"/><path d="M17.6 17.6L19.4 19.4"/><path d="M1.5 12H4"/><path d="M20 12H22.5"/><path d="M4.6 19.4L6.4 17.6"/><path d="M17.6 6.4L19.4 4.6"/></svg><span class="nm-rail__label">My Day</span></a></li><li><a class="nm-rail__item" href="#calendar"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M21.5 4.5H2.5V21.5H21.5V4.5Z"/><path d="M2.5 9.5H21.5"/><path d="M7 2V7"/><path d="M17 2V7"/></svg><span class="nm-rail__label">Calendar</span></a></li><li><a class="nm-rail__item" href="#team"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20C2.5 16.4 5.4 13.5 9 13.5C12.6 13.5 15.5 16.4 15.5 20"/><circle cx="17" cy="9" r="2.5"/><path d="M16 13.6C19.2 13.4 21.5 15.9 21.5 19"/></svg><span class="nm-rail__label">Team</span></a></li><li><a class="nm-rail__item" href="#links"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 14L14 10"/><path d="M8.5 11L5.5 14A3.5 3.5 0 0 0 10.5 19L13.5 16"/><path d="M15.5 13L18.5 10A3.5 3.5 0 0 0 13.5 5L10.5 8"/></svg><span class="nm-rail__label">Links</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Holiday 2026</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="#top" aria-current="page">Overview</a></li><li><a class="nm-drawer__link" href="#at-risk">What&#x27;s at risk</a></li><li><a class="nm-drawer__link" href="#calendar">Calendar</a></li><li><a class="nm-drawer__link" href="#team">Team</a></li><li><a class="nm-drawer__link" href="#my-day">My day</a></li><li><a class="nm-drawer__link" href="#board">Board</a></li><li><a class="nm-drawer__link" href="#tools">Prompt and update</a></li><li><a class="nm-drawer__link" href="#reference">Reference</a></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
 <main class="nm-main" id="nm-main">
 <div class="nm-panel"><div class="nm-content">
 
@@ -262,16 +300,9 @@
 </section>
 
 <section class="nm-section hh-glance" aria-label="At a glance">
-  <div class="hh-stats" id="hhStats"></div>
-  <div class="hh-dash">
-    <section class="hh-panel hh-anchor" id="at-risk" aria-labelledby="riskTitle">
-      <div class="hh-panel__head"><h2 class="hh-panel__title" id="riskTitle">What's at risk <small id="hhRiskCount"></small></h2></div>
-      <div id="hhRisk"></div>
-    </section>
-    <section class="hh-panel" aria-labelledby="soonTitle">
-      <div class="hh-panel__head"><h2 class="hh-panel__title" id="soonTitle">Next 2 weeks</h2></div>
-      <ul class="hh-soon" id="hhSoon"></ul>
-    </section>
+  <div class="hh-fold">
+    <details class="hh-details hh-anchor" id="at-risk"><summary><span>What's at risk</span><small id="hhRiskCount"></small><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body" id="hhRisk"></div></details>
+    <details class="hh-details"><summary><span>Next 2 weeks</span><small id="hhSoonCount"></small><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body"><ul class="hh-soon" id="hhSoon"></ul></div></details>
   </div>
   <section class="hh-panel hh-anchor hh-cal" id="calendar" aria-labelledby="calTitle">
     <div class="hh-panel__head">
@@ -283,10 +314,15 @@
       </div>
     </div>
     <div class="hh-cal__grid" id="hhCalGrid" role="list"></div>
-    <ul class="hh-cal__key" aria-label="Calendar key">
-      <li><i class="hh-ev--launch"></i>Launch</li><li><i class="hh-ev--date"></i>Key date</li><li><i class="hh-ev--due"></i>Due</li><li><i class="hh-ev--late"></i>Late</li>
-    </ul>
+    <ul class="hh-cal__key" id="hhCalKey" aria-label="Calendar key"></ul>
+    <p class="hh-cal__note">Every promo colour passes contrast with its text (lowest 6.2:1, needs 4.5:1).</p>
   </section>
+  <div class="hh-stats hh-stats--below" id="hhStats"></div>
+</section>
+
+<section class="nm-section hh-anchor" id="team" aria-labelledby="teamTitle">
+  <div class="nm-section__head"><h2 class="nm-h2" id="teamTitle">Team</h2><p class="nm-section__desc">What everyone has on their plate. Open a name to see their tasks.</p></div>
+  <div class="hh-team" id="hhTeam"></div>
 </section>
 
 <section class="nm-section hh-anchor" id="my-day" aria-labelledby="myDayTitle">
@@ -338,11 +374,6 @@
       <p><b>Promo codes:</b> this page is public, so codes show as XXXXX. Check the ClickUp task before you export paid or email slices.</p>
     </div>
   </details>
-</section>
-
-<section class="nm-section hh-anchor" id="contrast" aria-labelledby="contrastTitle">
-  <div class="nm-section__head"><h2 class="nm-h2" id="contrastTitle">Contrast</h2><p class="nm-section__desc">Every colour pair on this page, measured. Text needs 4.5:1. Edges and controls need 3:1.</p></div>
-  <div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">Pair</th><th scope="col">Measured</th><th scope="col">Needs</th><th scope="col">Result</th></tr></thead><tbody><tr><td>Body text on white</td><td>8.9:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Headings on the grey panel</td><td>12.1:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Captions and dates on white</td><td>5.9:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Purple links on white</td><td>6.6:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>White numbers on the plum cards</td><td>17.6:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>White on the chosen name and launch dates</td><td>6.6:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Late, red on white</td><td>7.3:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Due soon, amber on white</td><td>6.8:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Late tasks in the calendar</td><td>7.4:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Due dates in the calendar</td><td>8.9:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Grey tags, lowest pair</td><td>4.6:1</td><td>4.5:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Purple button edge on white</td><td>6.6:1</td><td>3.0:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr></tbody></table></div>
 </section>
 
 <footer class="nm-footer"><span>Holiday 2026 Hub. Styled in Nutmeg.</span><a href="../nutmeg/foundations.html">About Nutmeg</a></footer>
@@ -398,7 +429,7 @@
       ],
       prompt: [
         "You're helping Jordan, creative traffic lead, with Holiday 2026 across Soccer.com, WorldSoccerShop and Team Sales.",
-        "Key dates: Fri 23 Oct, Tampa Bay Super Cup and the End of Season Sale. Sun 25 Oct, Early Access 15% off. Mon 26 Oct, first 3 team pop-up stores in QA. Tue 27 Oct, club email slices due. Thu 29 Oct, Free Name and Number.",
+        "Soccer.com key dates: Thu 22 to Tue 27 Oct, Big End of Season Sale. Mon 26 Oct, first 3 team pop-up stores in QA. Tue 27 Oct, club email slices due. Wed 28 to Thu 29 Oct, 4x On Cleats. Fri 30 Oct to Mon 9 Nov, the Early Holiday Promo and Free Player Name and Number.",
         "Keep replies under 120 words, written as ClickUp status updates."
       ].join("\n")
     },
@@ -440,7 +471,7 @@
       ],
       prompt: [
         "You're helping Brock, email lead, with Holiday 2026 Zeta campaigns.",
-        "Team pop-up Email 1 sends Mon 2 Nov. Its slices are due Tue 27 Oct. Early Access 15% off starts Sun 25 Oct.",
+        "Team pop-up Email 1 sends Mon 2 Nov. Its slices are due Tue 27 Oct. The Early Holiday Promo and Free Player Name and Number run Fri 30 Oct to Mon 9 Nov.",
         "Keep replies under 120 words."
       ].join("\n")
     },
@@ -468,7 +499,7 @@
       ],
       prompt: [
         "You're helping Whitney, Soccer.com designer, with the Holiday 2026 Master File.",
-        "Keep component lockups intact with Swap Variables, add the Doorbuster Deals section, and roll out Early Access (25 Oct) and Free Name and Number (29 Oct).",
+        "Keep component lockups intact with Swap Variables, add the Doorbuster Deals section, and roll out 4x On Cleats (28 Oct), then the Early Holiday Promo and Free Player Name and Number (30 Oct).",
         "Keep replies under 120 words."
       ].join("\n")
     },
@@ -478,7 +509,7 @@
       update: [
         "Danny's 235 holiday photos and 15 OrbitView spins are in Box and the Tunnel, matched to products.",
         "Use Whitney's Holiday Master File. Swap Variables let you edit text without detaching anything.",
-        "Next: the End of Season Sale (Fri 23 Oct) and Early Access 15% off (Sun 25 Oct)."
+        "Next: 4x On Cleats (Wed 28 Oct), then the Early Holiday Promo (Fri 30 Oct)."
       ],
       prompt: [
         "You're helping Matty, Soccer.com designer, with Holiday 2026.",
@@ -492,7 +523,7 @@
       update: [
         "Danny's 235 holiday photos and 15 OrbitView spins are in Box and the Tunnel, matched to products.",
         "Use Whitney's Holiday Master File. Swap Variables let you edit text without detaching anything.",
-        "Next: Free Name and Number (Thu 29 Oct) and the November waves."
+        "Next: Free Player Name and Number (Fri 30 Oct) and the November promos."
       ],
       prompt: [
         "You're helping Michael, Soccer.com designer, with Holiday 2026.",
@@ -534,11 +565,11 @@
       update: [
         "Fri 23 Oct: the WorldSoccerShop End of Season Sale goes live.",
         "Nike Chivas 26/27 Third: the Box card with all 14 article numbers is in the Tunnel, held until launch.",
-        "Sun 25 Oct: Goal Club Early Access 15% off. Thu 29 Oct: Free Name and Number."
+        "9 to 18 Nov: Singles Day and Kitbag Deals."
       ],
       prompt: [
         "You're helping Tyler with WorldSoccerShop Holiday 2026.",
-        "Coming up: the End of Season Sale (23 Oct), Early Access 15% off (25 Oct) and Free Name and Number (29 Oct).",
+        "Coming up: the WorldSoccerShop Holiday Kickoff (2 Nov), then Singles Day and Kitbag Deals (9 to 18 Nov).",
         "Keep replies under 120 words."
       ].join("\n")
     },
@@ -548,11 +579,11 @@
       update: [
         "Fri 23 Oct: the WorldSoccerShop End of Season Sale goes live.",
         "Nike Chivas 26/27 Third: the Box card with all 14 article numbers is in the Tunnel, held until launch.",
-        "Thu 29 Oct: Free Name and Number. Only use player jerseys from the approved list."
+        "9 to 18 Nov: Singles Day and Kitbag Deals. Only use player jerseys from the approved list."
       ],
       prompt: [
         "You're helping Alex with WorldSoccerShop Holiday 2026 creative.",
-        "Focus: the End of Season Sale (23 Oct), Early Access (25 Oct) and Free Name and Number (29 Oct).",
+        "Focus: the WorldSoccerShop Holiday Kickoff (2 Nov), then Singles Day and Kitbag Deals (9 to 18 Nov).",
         "Keep replies under 120 words."
       ].join("\n")
     },
@@ -561,7 +592,7 @@
       updateTime: "Thu 22 Oct, 6:30pm",
       update: [
         "Fri 23 Oct: the WorldSoccerShop End of Season Sale goes live.",
-        "Sun 25 Oct: Goal Club Early Access 15% off starts.",
+        "Mon 2 Nov: the WorldSoccerShop Holiday Kickoff.",
         "9 to 18 Nov: Singles Day and Kitbag Deals."
       ],
       prompt: [
@@ -610,15 +641,10 @@
       text: "Danny's 235 holiday photos and 15 OrbitView spins",
       detail: "All 250 files are compressed under 500 KB, renamed by shot and group, matched to 56 products, and in Box and the Tunnel.",
       previewUrl: PHOTO_SELECTS, clickupUrl: PHOTO_BOX },
-    { id: "wave-early-access", col: "Holiday & Promotions", urgency: 6, launch: "2026-10-25", until: "2026-10-27",
-      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "tyler", "alex", "holly"],
-      text: "Goal Club Early Access 15% off",
-      detail: "Runs 25 to 27 Oct on site, email and paid social. The copy drops into the locked Holiday Master template.",
-      figmaUrl: FIGMA_HOLIDAY_MASTER, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
-    { id: "wave-free-nn", col: "Holiday & Promotions", urgency: 7, launch: "2026-10-29", until: "2026-11-02",
-      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "tyler", "alex", "holly"],
-      text: "Free Name and Number",
-      detail: "Runs 29 Oct to 2 Nov. Only use player jerseys confirmed in stock.",
+    { id: "wave-free-nn", col: "Holiday & Promotions", urgency: 6, launch: "2026-10-30", until: "2026-11-09", promo: "nn",
+      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock"],
+      text: "Free Player Name and Number",
+      detail: "Runs Fri 30 Oct to Mon 9 Nov on 700+ jerseys. Only use player jerseys confirmed in stock.",
       figmaUrl: FIGMA_HOLIDAY_MASTER, clickupUrl: "https://app.clickup.com/t/868mdkw1a" },
 
     { id: "cu-vb-lookbook-2027", col: "431 & Catalogs", urgency: 1, due: "2026-10-30", status: "Built, Rickey to test",
@@ -688,7 +714,7 @@
       text: "CAYSA (sales enablement)",
       detail: "To do.",
       clickupUrl: "https://app.clickup.com/t/868mkvqbw" },
-    { id: "wss-eoss-launch", col: "DX Pages & Enablement", urgency: 2, launch: "2026-10-23",
+    { id: "wss-eoss-launch", col: "DX Pages & Enablement", urgency: 2, launch: "2026-10-23", promo: "eoss",
       people: ["tyler", "alex", "holly", "sacha", "jordan"],
       text: "WorldSoccerShop End of Season Sale: hero and site strips",
       detail: "Check every link against the approved WorldSoccerShop link book before publishing.",
@@ -716,19 +742,41 @@
     { key: "sdc", label: "Soccer.com" },
     { key: "wss", label: "WorldSoccerShop" }
   ];
-  var TASK_STORE = { "wave-early-access": "both", "wave-free-nn": "both", "wss-eoss-launch": "wss" };
+  var TASK_STORE = { "wss-eoss-launch": "wss" };
   TASKS.forEach(function (t) { t.store = TASK_STORE[t.id] || "sdc"; });
 
   var KEY_DATES = [
     { date: "2026-10-23", label: "Tampa Bay Super Cup page goes live", store: "sdc", people: SDC },
-    { date: "2026-10-23", label: "Soccer.com End of Season Sale", store: "sdc", people: SDC },
     { date: "2026-10-26", label: "First 3 team pop-up stores in QA", store: "sdc", people: TEAM },
-    { date: "2026-10-30", label: "Soccer.com Holiday Kickoff (to be confirmed)", store: "sdc", people: SDC, big: true },
     { date: "2026-11-02", label: "WorldSoccerShop Holiday Kickoff", store: "wss", people: WSS, big: true },
     { date: "2026-11-02", label: "All 47 team pop-up stores and Email 1 go live", store: "sdc", people: TEAM, big: true },
     { date: "2026-11-05", label: "Match Day flier", people: ["rickey"] },
     { date: "2026-11-06", label: "Invite creative", people: ["rickey"] },
-    { date: "2026-11-09", until: "2026-11-18", label: "Singles Day and Kitbag Deals", store: "wss", people: WSS, big: true }
+    { date: "2026-12-16", label: "Last day for ground shipping", store: "sdc", people: SDC },
+    { date: "2026-12-21", label: "Last day for 2-day shipping", store: "sdc", people: SDC }
+  ];
+
+  var PROMOS = [
+    { promo: "eoss", date: "2026-10-22", until: "2026-10-27", label: "Big End of Season Sale (non-MAP items)", store: "sdc", people: SDC },
+    { promo: "cleats", date: "2026-10-28", until: "2026-10-29", label: "4x On Cleats", store: "sdc", people: SDC },
+    { promo: "early", date: "2026-10-30", until: "2026-11-09", label: "Early Holiday Promo: 25% to 50% sitewide, 40% Fan Wear", store: "sdc", people: SDC, big: true },
+    { promo: "nn", date: "2026-10-30", until: "2026-11-09", label: "Free Player Name and Number (700+ jerseys)", store: "sdc", people: SDC },
+    { promo: "puma", date: "2026-11-10", until: "2026-11-16", label: "PUMA Ball GWP and Pre-Game Holiday Sale", store: "sdc", people: SDC },
+    { promo: "earlybf", date: "2026-11-17", until: "2026-11-23", label: "Early Black Friday Deals", store: "sdc", people: SDC },
+    { promo: "bf", date: "2026-11-24", label: "Black Friday starts: 25% to 60% off, adidas Cleat Bag GWP, adidas Free Name and Number", store: "sdc", people: SDC, big: true },
+    { promo: "cyber", date: "2026-11-30", until: "2026-12-01", label: "Cyber Monday: 30% sitewide", store: "sdc", people: SDC, big: true },
+    { promo: "cyberweek", date: "2026-12-02", until: "2026-12-08", label: "Cyber Week", store: "sdc", people: SDC },
+    { promo: "lastcall", date: "2026-12-09", until: "2026-12-21", label: "25% to 60% off and a free gift over $250", store: "sdc", people: SDC },
+    { promo: "giftcard", date: "2026-12-22", until: "2027-01-04", label: "Gift Card Promo and 27% off orders of $100+", store: "sdc", people: SDC },
+    { promo: "eoss", date: "2026-10-23", label: "WorldSoccerShop End of Season Sale", store: "wss", people: WSS },
+    { promo: "singles", date: "2026-11-09", until: "2026-11-18", label: "Singles Day and Kitbag Deals", store: "wss", people: WSS, big: true }
+  ];
+  var PROMO_NAMES = { eoss: "End of Season Sale", cleats: "4x On Cleats", early: "Early Holiday Promo", nn: "Free Player Name and Number", puma: "PUMA Ball GWP and Pre-Game", earlybf: "Early Black Friday", bf: "Black Friday", cyber: "Cyber Monday", cyberweek: "Cyber Week", lastcall: "25% to 60% off and free gift", giftcard: "Gift Card Promo", singles: "Singles Day and Kitbag" };
+
+  var QA = [
+    { ticket: "WEB-16706", store: "sdc", status: "Fixed", text: "Tampa Bay Super Cup V2: all 8 of Courtney's QA items fixed by Sacha and checked live on desktop and iPhone Safari." },
+    { ticket: "WEB-16778", store: "sdc", status: "In progress", text: "iPad menu swipe hint: the Tampa menu already wraps on iPad. The pop-up store menu now has arrows and fades, and the 3 pilot stores get it on their next rebuild." },
+    { ticket: "Sprint 151", store: "sdc", status: "Ready for QA", text: "3 pilot team holiday pop-up stores staged, with clickable product links and the 48-store Airtable table." }
   ];
 
   var LINKS = [
@@ -999,7 +1047,7 @@
       return n >= 0 && n <= 6;
     });
     var risky = open.filter(function (t) { return riskOf(t); });
-    var next = KEY_DATES.filter(function (k) { return k.big && sees(k.people, state.person) && inStore(k) && daysFromToday(k.date) >= 0; })
+    var next = KEY_DATES.concat(PROMOS).filter(function (k) { return k.big && sees(k.people, state.person) && inStore(k) && daysFromToday(k.date) >= 0; })
       .sort(function (a, b) { return a.date < b.date ? -1 : 1; })[0];
     var tiles = [
       [open.length, open.length === 1 ? "open task for " + me().name + "." : "open tasks for " + me().name + "."],
@@ -1037,9 +1085,14 @@
     var out = [];
     KEY_DATES.forEach(function (k) {
       if (!sees(k.people, state.person) || !inStore(k)) return;
-      out.push({ date: k.date, until: k.until, label: k.label, kind: k.big ? "launch" : "date" });
+      out.push({ date: k.date, until: k.until, label: k.label, kind: "date" });
+    });
+    PROMOS.forEach(function (k) {
+      if (!sees(k.people, state.person) || !inStore(k)) return;
+      out.push({ date: k.date, until: k.until, label: k.label, kind: "p-" + k.promo, promo: k.promo });
     });
     myTasks().forEach(function (t) {
+      if (t.promo) return;
       if (t.launch) out.push({ date: t.launch, until: t.until, label: t.text, kind: "launch" });
       else if (t.due) {
         var r = riskOf(t);
@@ -1079,10 +1132,23 @@
     }
     $("hhCalGrid").innerHTML = cells.join("");
 
+    var mStart = isoOf(start), mEnd = isoOf(new Date(start.getFullYear(), start.getMonth(), start.getDate() + 41));
+    var inView = events.filter(function (e) { return e.date <= mEnd && (e.until || e.date) >= mStart; });
+    var seenPromo = {}, key = [];
+    inView.forEach(function (e) {
+      if (e.promo && !seenPromo[e.promo]) { seenPromo[e.promo] = 1; key.push('<li><i class="hh-ev--p-' + e.promo + '"></i>' + esc(PROMO_NAMES[e.promo]) + '</li>'); }
+    });
+    var kinds = {};
+    inView.forEach(function (e) { kinds[e.kind] = 1; });
+    if (kinds.launch) key.push('<li><i class="hh-ev--launch"></i>Launch</li>');
+    key.push('<li><i class="hh-ev--date"></i>Key date</li><li><i class="hh-ev--due"></i>Due</li><li><i class="hh-ev--late"></i>Late</li>');
+    $("hhCalKey").innerHTML = key.join("");
+
     var soon = events.filter(function (e) {
       var n = daysFromToday(e.date), end = e.until ? daysFromToday(e.until) : n;
       return end >= 0 && n <= 14 && e.kind !== "done";
     }).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+    $("hhSoonCount").textContent = soon.length;
     var extra = soon.length - 8;
     $("hhSoon").innerHTML = soon.length ? soon.slice(0, 8).map(function (e) {
       var running = e.until && daysFromToday(e.date) < 0;
@@ -1183,6 +1249,55 @@
     }).join("");
   }
 
+  function viewerScope() {
+    if (CROSS_STORE.indexOf(state.person) !== -1) return state.store;
+    return WSS.indexOf(state.person) !== -1 && SDC.indexOf(state.person) === -1 ? "wss" : "sdc";
+  }
+
+  function homeStore(k) {
+    var s = SDC.indexOf(k) !== -1, w = WSS.indexOf(k) !== -1;
+    return s && w ? "both" : (w ? "wss" : "sdc");
+  }
+
+  function renderTeam() {
+    var scope = viewerScope();
+    var fits = function (store) { return scope === "both" || !store || store === "both" || store === scope; };
+    var members = Object.keys(PEOPLE).filter(function (k) {
+      if (k === "sacha") return false;
+      var h = homeStore(k);
+      return scope === "both" || h === "both" || h === scope;
+    });
+    var badge = { sdc: '<span class="hh-badge hh-badge--sdc">Soccer.com</span>', wss: '<span class="hh-badge hh-badge--wss">WorldSoccerShop</span>', both: '<span class="hh-badge">Both stores</span>' };
+    $("hhTeam").innerHTML = members.map(function (k) {
+      var p = PEOPLE[k], h = homeStore(k);
+      var showNote = h !== "both" || scope === "both";
+      var body = "", nums = "";
+      if (k === "courtney") {
+        var qa = QA.filter(function (q) { return fits(q.store); });
+        var fixed = qa.filter(function (q) { return q.status === "Fixed"; }).length;
+        nums = '<span class="hh-badge">' + qa.length + ' QA items</span>' + (fixed ? '<span class="hh-badge hh-badge--sdc">' + fixed + ' fixed</span>' : "");
+        body = '<span class="hh-eyebrow">Jira QA status</span>' + (qa.length ? '<ul class="hh-team__list">' + qa.map(function (q) {
+          return '<li><span class="hh-team__task">' + esc(q.text) + '</span><span class="hh-team__when">' + esc(q.ticket) + ', ' + esc(q.status) + '</span></li>';
+        }).join("") + '</ul>' : '<p class="hh-empty">No QA items for this store right now.</p>');
+      } else {
+        var tasks = TASKS.filter(function (t) { return t.people.indexOf(k) !== -1 && fits(t.store) && !isDone(t); });
+        var risky = tasks.filter(function (t) { var r = riskOf(t); return r && r.level !== "wait"; });
+        var week = tasks.filter(function (t) { var d = t.due || t.launch; if (!d) return false; var n = daysFromToday(d); return n >= 0 && n <= 6; });
+        nums = '<span class="hh-badge">' + tasks.length + (tasks.length === 1 ? " open task" : " open tasks") + '</span>' +
+          (risky.length ? '<span class="hh-badge hh-badge--risk">' + risky.length + ' at risk</span>' : "") +
+          (week.length ? '<span class="hh-badge hh-badge--soon">' + week.length + ' this week</span>' : "");
+        body = tasks.length ? '<ul class="hh-team__list">' + tasks.map(function (t) {
+          var r = riskOf(t);
+          return '<li><span class="hh-team__task">' + esc(t.text) + '</span><span class="hh-team__when' + (r && r.level === "late" ? " is-late" : "") + '">' + esc(dueWord(t)) + '</span></li>';
+        }).join("") + '</ul>' : '<p class="hh-empty">No open tasks here.</p>';
+      }
+      if (showNote) body += '<span class="hh-eyebrow">Latest note, ' + esc(p.updateTime) + '</span><ul class="nm-list">' + p.update.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + '</ul>';
+      body += '<div class="hh-team__foot"><a class="hh-link" href="?for=' + k + '">Open ' + esc(p.name) + "'s tracker</a></div>";
+      return '<details class="hh-details"><summary><span class="hh-team__name">' + esc(p.name) + '</span><span class="hh-team__nums">' + badge[h === "both" ? "both" : h] + nums + '</span>' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body">' + body + '</div></details>';
+    }).join("");
+  }
+
   function renderStore() {
     var box = $("hhStore");
     var show = CROSS_STORE.indexOf(state.person) !== -1;
@@ -1202,6 +1317,7 @@
     renderStats();
     renderRisk();
     renderCalendar();
+    renderTeam();
     renderMyDay();
     renderBoard();
     renderUpdates();
@@ -1239,6 +1355,7 @@
       if (!win) window.open(nw.href, "_blank", "noopener,noreferrer");
       return;
     }
+    if (e.target.closest('a[href="#at-risk"]')) $("at-risk").open = true;
     if (e.target.closest('a[href="#links"]')) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1314,6 +1431,7 @@
 
   if (singleMode) $("hhViewing").hidden = true;
   if (location.hash === "#links") openLinks(true);
+  if (location.hash === "#at-risk") $("at-risk").open = true;
   render();
 })();
 </script>
