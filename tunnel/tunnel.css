@@ -5,7 +5,7 @@ body[data-hub="tunnel"] {
   --nm-pill-ink: #066ABD;
   --nm-violet-tint: rgba(88, 172, 242, 0.12);
   --tn-blue: #066ABD;
-  --tn-sky-shade: rgba(0, 0, 0, 0.2);
+  --tn-sky-shade: rgba(0, 0, 0, 0.32);
   --tn-pill-line: #97A4AE;
   --tn-rule: #E4E4E4;
 }
@@ -31,7 +31,7 @@ body[data-hub="tunnel"] .nm-search__field svg { color: var(--tn-blue); }
 .tn-panel { min-height: calc(100vh - var(--nm-header-h) - var(--nm-space-9)); padding: 64px 96px 120px; border-top-left-radius: var(--nm-radius-panel); background: var(--nm-surface); }
 .tn-home { display: flex; flex-direction: column; gap: 24px; }
 
-.tn-hero { position: relative; display: flex; align-items: center; height: clamp(440px, 56vw, 809px); padding: 8px 8px 72px; overflow: hidden; border-radius: 12px; background: #4A88C7 url("../sky.jpg") center / cover no-repeat; }
+.tn-hero { position: relative; display: flex; align-items: center; height: clamp(440px, 56vw, 809px); padding: 8px 8px 72px; overflow: hidden; border-radius: 12px; background: #4A88C7 url("../nutmeg/patterns/tunnel-bg.jpg") center / cover no-repeat; }
 .tn-hero::before { content: ""; position: absolute; inset: 0; background: var(--tn-sky-shade); }
 .tn-hero__text { position: relative; display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 1277px; padding: 0 90px; }
 .tn-hero__title { margin: 0; color: #F4F4F4; font: 400 var(--nm-display)/var(--nm-display-lh) var(--nm-serif); text-wrap: balance; }
@@ -48,9 +48,9 @@ body[data-hub="tunnel"] .nm-search__field svg { color: var(--tn-blue); }
 .tn-rule { width: 100%; height: 1px; margin: 8px 0; border: 0; background: var(--tn-rule); }
 
 .tn-marquee { width: 100%; overflow: hidden; padding: 36px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-.tn-marquee__track { display: flex; gap: 36px; width: max-content; animation: tn-marquee 32s linear infinite; }
+.tn-marquee__track { display: flex; gap: 96px; width: max-content; animation: tn-marquee 32s linear infinite; }
 .tn-marquee:hover .tn-marquee__track, .tn-marquee:focus-within .tn-marquee__track { animation-play-state: paused; }
-.tn-marquee__set { margin: 0; padding: 0; list-style: none; display: flex; flex: none; align-items: center; gap: 36px; padding-right: 36px; }
+.tn-marquee__set { margin: 0; padding: 0; list-style: none; display: flex; flex: none; align-items: center; gap: 96px; padding-right: 96px; }
 .tn-marquee__set:first-child { padding-right: 0; }
 .tn-marquee__logo { display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 8px; transition: background-color .2s ease; }
 .tn-marquee__logo:hover { background: rgba(0, 0, 0, 0.04); }
@@ -58,8 +58,8 @@ body[data-hub="tunnel"] .nm-search__field svg { color: var(--tn-blue); }
 @keyframes tn-marquee { to { transform: translateX(-50%); } }
 
 .tn-brand { display: flex; flex-direction: column; min-height: calc(100vh - var(--nm-header-h) - var(--nm-space-9)); }
-.tn-brand__hero { position: relative; display: flex; align-items: center; gap: 8px; padding: 54px; overflow: hidden; border-radius: 64px 12px 12px 12px; background: #4A88C7 url("../sky.jpg") center 30% / cover no-repeat; }
-.tn-brand__hero::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.1); }
+.tn-brand__hero { position: relative; display: flex; align-items: center; gap: 8px; padding: 54px; overflow: hidden; border-radius: 64px 12px 12px 12px; background: #4A88C7 url("../nutmeg/patterns/tunnel-bg.jpg") center 30% / cover no-repeat; }
+.tn-brand__hero::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.28); }
 .tn-brand__mark { position: relative; display: flex; flex: none; align-items: center; justify-content: center; min-width: 177px; }
 .tn-brand__mark img { display: block; filter: brightness(0) invert(1); }
 .tn-brand__word { color: #FFFFFF; font: 400 32px/1 var(--nm-serif); white-space: nowrap; }
