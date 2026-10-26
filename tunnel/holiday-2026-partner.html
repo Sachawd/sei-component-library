@@ -21,6 +21,17 @@
   .tp-sku:hover { background: var(--tn-blue); color: #FFFFFF; border-color: var(--tn-blue); }
   .tp-card__desc { margin: 0; color: var(--nm-text); font: 400 13px/18px var(--nm-sans); }
   .tp-card__file { margin: 0; color: var(--nm-muted); font: 400 11px/15px var(--nm-mono); word-break: break-all; }
+  .tp-gate { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 24px; background: #142238 url("../nutmeg/patterns/tunnel-bg.jpg") center / cover no-repeat; }
+  .tp-gate::before { content: ""; position: absolute; inset: 0; background: rgba(11, 20, 36, 0.58); backdrop-filter: blur(8px); }
+  .tp-gate[hidden] { display: none; }
+  .tp-gate__card { position: relative; z-index: 1; width: min(440px, 100%); padding: 36px 32px; border-radius: 20px; background: #FFFFFF; color: var(--nm-ink); box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35); display: flex; flex-direction: column; gap: 16px; }
+  .tp-gate__title { margin: 0; font: 400 28px/34px var(--nm-serif); color: var(--nm-title); }
+  .tp-gate__sub { margin: 0; font: 400 14px/20px var(--nm-sans); color: var(--nm-muted); }
+  .tp-gate__input { width: 100%; height: 48px; padding: 0 16px; border: 1.5px solid var(--nm-line); border-radius: 10px; font: 400 16px/20px var(--nm-sans); color: var(--nm-ink); }
+  .tp-gate__input:focus { outline: 2px solid var(--tn-blue); border-color: var(--tn-blue); }
+  .tp-gate__btn { height: 48px; border: 0; border-radius: 10px; background: var(--tn-blue); color: #FFFFFF; font: 600 15px/20px var(--nm-sans); cursor: pointer; }
+  .tp-gate__btn:hover { opacity: 0.92; }
+  .tp-gate__err { margin: 0; color: #A3271F; font: 600 13px/18px var(--nm-sans); }
   @media (max-width: 768px) {
     .tp-shell { padding: 16px 16px 64px; }
     .tp-header { padding: 0 16px; }
@@ -30,6 +41,21 @@
 <body data-hub="tunnel">
 <a class="nm-skip" href="#tp-main">Skip to content</a>
 
+<div class="tp-gate" id="tp-gate" role="dialog" aria-modal="true" aria-labelledby="tp-gate-title">
+  <form class="tp-gate__card" id="tp-gate-form">
+    <div style="display:flex;align-items:center;gap:12px">
+      <svg width="34" height="34" viewBox="0 0 39 39" fill="none" aria-hidden="true"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg>
+      <span style="font:600 13px/16px var(--nm-sans);letter-spacing:0.06em;text-transform:uppercase;color:var(--nm-muted)">The Tunnel · Partner Access</span>
+    </div>
+    <h1 class="tp-gate__title" id="tp-gate-title">Soccer.com Holiday 2026</h1>
+    <p class="tp-gate__sub">Enter the partner password to view and download the 235 studio photos, 15 spin videos, and SKU contact sheet.</p>
+    <label class="nm-visually-hidden" for="tp-gate-pass">Password</label>
+    <input class="tp-gate__input" id="tp-gate-pass" type="password" placeholder="Enter password" autocomplete="current-password" required>
+    <p class="tp-gate__err" id="tp-gate-err" hidden>Incorrect password. Please check your password and try again.</p>
+    <button class="tp-gate__btn" type="submit">Unlock Asset Library</button>
+  </form>
+</div>
+
 <header class="tp-header">
   <div class="tp-header__brand">
     <svg width="34" height="34" viewBox="0 0 39 39" fill="none" aria-hidden="true"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg>
@@ -38,7 +64,7 @@
   <span class="tp-header__badge">235 Studio Photos · 15 Spin Videos · Verified SKUs</span>
 </header>
 
-<main class="tp-shell" id="tp-main">
+<main class="tp-shell" id="tp-main" hidden>
   <section class="tn-brand" aria-labelledby="tp-title">
     <div class="tn-brand__hero">
       <h1 class="tn-brand__mark" id="tp-title">
@@ -57,7 +83,7 @@
       <div class="tn-toolbar">
         <div>
           <h2 class="tn-section-h" id="tp-heading">All Holiday 2026 Studio &amp; 360 Assets</h2>
-          <p class="tn-meta-count" id="tp-count">Loading 250 verified assets with SKU mappings...</p>
+          <p class="tn-meta-count" id="tp-count">Locked</p>
         </div>
         <div class="tn-chips" id="tp-chips"></div>
       </div>
@@ -80,13 +106,16 @@
 <script>
 (function () {
   var S3_BASE = "https://www.imagehandler.net/dxassets/?img=Photos/";
+  var SESSION_KEY = "tn_partner_holiday_pw_v1";
   var $ = function (id) { return document.getElementById(id); };
   var grid = $("tp-grid"), heading = $("tp-heading"), countEl = $("tp-count");
   var iconsEl = $("tp-icons"), chipsEl = $("tp-chips"), searchInput = $("tp-search");
+  var gate = $("tp-gate"), gateForm = $("tp-gate-form"), gatePass = $("tp-gate-pass"), gateErr = $("tp-gate-err"), mainEl = $("tp-main");
 
   var state = { mode: "all", chip: "", q: "" };
   var MANIFEST = [];
   var VENDOR = null;
+  var ENC_BUNDLE = null;
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
@@ -96,6 +125,38 @@
   function num(n) { return Number(n || 0).toLocaleString("en-US"); }
   function enc(f) {
     return String(f || "").replace(/\+/g, "%2B").replace(/#/g, "%23").replace(/&/g, "%26").replace(/ /g, "%20");
+  }
+  function b64ToBytes(b64) {
+    var bin = atob(b64);
+    var arr = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return arr;
+  }
+
+  function decryptBundle(password) {
+    var loadP = ENC_BUNDLE
+      ? Promise.resolve(ENC_BUNDLE)
+      : fetch("data/partner-holiday-2026.enc.json").then(function (r) { return r.json(); }).then(function (d) { ENC_BUNDLE = d; return d; });
+
+    return loadP.then(function (encData) {
+      var salt = b64ToBytes(encData.s);
+      var iv = b64ToBytes(encData.iv);
+      var ct = b64ToBytes(encData.ct);
+      var te = new TextEncoder();
+      return crypto.subtle.importKey("raw", te.encode(password.trim()), "PBKDF2", false, ["deriveKey"]).then(function (km) {
+        return crypto.subtle.deriveKey(
+          { name: "PBKDF2", salt: salt, iterations: 100000, hash: "SHA-256" },
+          km,
+          { name: "AES-GCM", length: 256 },
+          false,
+          ["decrypt"]
+        );
+      }).then(function (key) {
+        return crypto.subtle.decrypt({ name: "AES-GCM", iv: iv }, key, ct);
+      }).then(function (ptBuf) {
+        return JSON.parse(new TextDecoder().decode(ptBuf));
+      });
+    });
   }
 
   var ICONS = {
@@ -112,7 +173,7 @@
     var spinsCount = MANIFEST.filter(function (r) { return r.type === "OrbitView 360 Still"; }).length;
     var modelCount = MANIFEST.filter(function (r) { return r.type === "On model"; }).length;
     var prodCount = MANIFEST.filter(function (r) { return r.type === "Product"; }).length;
-    var vendorRows = (VENDOR && VENDOR.rows ? VENDOR.rows : []).filter(function (r) { return !r.boxUrl && r.home !== "Box"; });
+    var vendorRows = (VENDOR && VENDOR.rows ? VENDOR.rows : []);
 
     var iconDefs = [
       { id: "all", icon: ICONS.all, label: "All Holiday Assets", count: MANIFEST.length },
@@ -221,7 +282,6 @@
 
     if (state.mode === "vendor") {
       var vRows = ((VENDOR && VENDOR.rows) || []).filter(function (r) {
-        if (r.boxUrl || r.home === "Box") return false;
         if (!words.length) return true;
         var hay = ((r.n || "") + " " + (r.q || "") + " " + (r.brands || []).join(" ") + " " + (r.teams || []).join(" ")).toLowerCase();
         return words.every(function (w) { return hay.indexOf(w) >= 0; });
@@ -346,14 +406,34 @@
     if (e.target === $("tn-shoot-dialog")) $("tn-sd-close").click();
   });
 
-  Promise.all([
-    fetch("data/sdc-holiday-2026-sku-manifest.json").then(function (r) { return r.json(); }),
-    fetch("data/data-vendor.json").then(function (r) { return r.json(); }).catch(function () { return null; })
-  ]).then(function (res) {
-    MANIFEST = res[0] || [];
-    VENDOR = res[1] || null;
-    render();
+  function unlockWithPassword(pw) {
+    return decryptBundle(pw).then(function (decrypted) {
+      MANIFEST = decrypted.manifest || [];
+      VENDOR = decrypted.vendor || null;
+      try { sessionStorage.setItem(SESSION_KEY, pw.trim()); } catch (e) {}
+      gate.hidden = true;
+      mainEl.hidden = false;
+      render();
+    });
+  }
+
+  gateForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    gateErr.hidden = true;
+    unlockWithPassword(gatePass.value).catch(function () {
+      gateErr.hidden = false;
+      gatePass.select();
+    });
   });
+
+  try {
+    var saved = sessionStorage.getItem(SESSION_KEY);
+    if (saved) {
+      unlockWithPassword(saved).catch(function () {
+        sessionStorage.removeItem(SESSION_KEY);
+      });
+    }
+  } catch (e) {}
 })();
 </script>
 </body>
