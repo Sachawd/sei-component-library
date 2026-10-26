@@ -28,13 +28,14 @@
       </label>
     </div>
   </div>
-  <nav class="nm-hubs" aria-label="Hubs">
+  <nav class="nm-hubs" aria-label="The Tunnel tools">
     <ul>
-      <li><a class="nm-hubs__link" href="#/" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel</a></li>
+      <li><a class="nm-hubs__link" href="#/" data-hub-link="home"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel</a></li>
+      <li><a class="nm-hubs__link" href="#/tools/sizes" data-hub-link="sizes"><span class="nm-hubs__dot" aria-hidden="true"></span>Image sizes</a></li>
+      <li><a class="nm-hubs__link" href="#/tools/graphics" data-hub-link="graphics"><span class="nm-hubs__dot" aria-hidden="true"></span>Graphics</a></li>
+      <li><a class="nm-hubs__link" href="#/tools/find" data-hub-link="find"><span class="nm-hubs__dot" aria-hidden="true"></span>Find</a></li>
+      <li><a class="nm-hubs__link" href="#/tools/help" data-hub-link="help"><span class="nm-hubs__dot" aria-hidden="true"></span>Help</a></li>
       <li><a class="nm-hubs__link" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li>
-      <li><a class="nm-hubs__link" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li>
-      <li><a class="nm-hubs__link" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li>
-      <li><a class="nm-hubs__link" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li>
     </ul>
   </nav>
   <button class="nm-menu-btn" type="button" aria-expanded="false" aria-controls="tn-nav">
@@ -121,6 +122,28 @@
           <button type="button" class="tn-btn tn-btn--outline" id="tn-home-clear" hidden>Clear search</button>
         </div>
         <div class="tn-grid" id="tn-home-grid"></div>
+      </div>
+    </section>
+
+    <section class="tn-view tn-panel tn-tools" id="tn-tools" aria-labelledby="tn-tools-title" hidden>
+      <div class="nm-title">
+        <h1 id="tn-tools-title">Tools</h1>
+        <p class="nm-lede">Resizers, graphics builders and lookups for the Tunnel's photos.</p>
+      </div>
+      <div class="nm-tabs" role="tablist" aria-label="Kinds of tool" id="tn-tools-tabs">
+        <button class="nm-tab" type="button" role="tab" id="tn-tab-all" data-tab="all" aria-controls="tn-tools-panel">All tools</button>
+        <button class="nm-tab" type="button" role="tab" id="tn-tab-sizes" data-tab="sizes" aria-controls="tn-tools-panel">Image sizes</button>
+        <button class="nm-tab" type="button" role="tab" id="tn-tab-graphics" data-tab="graphics" aria-controls="tn-tools-panel">Graphics</button>
+        <button class="nm-tab" type="button" role="tab" id="tn-tab-find" data-tab="find" aria-controls="tn-tools-panel">Find</button>
+        <button class="nm-tab" type="button" role="tab" id="tn-tab-help" data-tab="help" aria-controls="tn-tools-panel">Help</button>
+      </div>
+      <div class="nm-tabpanel" role="tabpanel" id="tn-tools-panel" tabindex="0">
+        <div class="nm-table-wrap">
+          <table class="nm-table tn-tools-table">
+            <thead><tr><th>Tool</th><th>What it does</th><th>Kind</th><th><span class="nm-visually-hidden">Open</span></th></tr></thead>
+            <tbody id="tn-tools-rows"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 

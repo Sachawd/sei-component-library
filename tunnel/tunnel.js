@@ -76,9 +76,23 @@
   var CHEV = '<svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg>';
   var S3_DEFAULT = "https://www.imagehandler.net/dxassets/?img=Photos/";
   var REMOTE_FILES_BASE = "https://the-tunnel.netlify.app/v2/files/";
+  var TOOLS_SITE = "https://the-tunnel.netlify.app/";
+  var CHIP = { sizes: "Image sizes", graphics: "Graphics", find: "Find", help: "Help" };
+  var TOOLS = [
+    { tab: "sizes", name: "DX & Social Resizer", what: "Makes the 16:9, 4:5, 9:16 and 1:1 sizes from one picture.", url: TOOLS_SITE + "dx-resizer.html" },
+    { tab: "sizes", name: "Blog Image Sizer", what: "Makes the blog hero, preview and SEO sizes.", url: TOOLS_SITE + "blog-resizer.html" },
+    { tab: "sizes", name: "Photo Sizer", what: "Sizes one photo for a site block.", url: "../photo-sizer/index.html" },
+    { tab: "graphics", name: "Soccer.com graphics", what: "Builds Soccer.com matchup banners.", url: TOOLS_SITE + "soccer-com-graphics.html" },
+    { tab: "graphics", name: "WorldSoccerShop graphics", what: "Builds WorldSoccerShop matchup cards.", url: TOOLS_SITE + "worldsoccershop-graphics.html" },
+    { tab: "find", name: "Find by SKU list", what: "Paste article numbers and see every shoot that has them.", url: TOOLS_SITE + "index.html#skus" },
+    { tab: "find", name: "Logo search", what: "Club, federation and brand logos.", url: TOOLS_SITE + "logos.html" },
+    { tab: "help", name: "Team guide", what: "How each team uses the Tunnel, step by step.", url: TOOLS_SITE + "v2/team-guide.html" },
+    { tab: "help", name: "Aspect ratios and image specs", what: "The size rules, in Box.", url: "https://sportsendeavors.app.box.com/folder/326752475361" },
+    { tab: "help", name: "Send feedback", what: "Ask for something to be added or fixed.", url: "https://airtable.com/apppFkTaDMtYW1Zvi/pagFKvi39wdUH9d6V/form" }
+  ];
 
   var $ = function (id) { return document.getElementById(id); };
-  var home = $("tn-home"), brand = $("tn-brand"), drawer = $("tn-drawer");
+  var home = $("tn-home"), brand = $("tn-brand"), drawer = $("tn-drawer"), tools = $("tn-tools");
   var list = $("tn-drawer-list"), where = $("tn-where"), note = $("tn-note");
   var brandGrid = $("tn-brand-grid"), quickChips = $("tn-quick-chips");
   var homeGrid = $("tn-home-grid"), homeHeading = $("tn-home-heading"), homeCount = $("tn-home-count"), homeClear = $("tn-home-clear");
@@ -470,7 +484,7 @@
 
   // Set this to the Tunnel's download proxy (for example "/dl/") on a host that runs one.
   // GitHub Pages has none, so Download goes straight to the open-in-a-tab route.
-  var DOWNLOAD_ROUTE = "";
+  var DOWNLOAD_ROUTE = /(^|\.)the-tunnel\.netlify\.app$/.test(location.hostname) ? "/dl/" : "";
   var PAGE_SIZE = 60;
   var PICK_KEY = "tn-selection-v2";
 
@@ -516,8 +530,14 @@
     var where = SEL_NOTE || ("Saves as " + csvName() + (CAN_PICK_FOLDER ? ". You choose the folder." : " to your Downloads folder."));
     return '<div class="tn-selbar__text"><p class="tn-selbar__count">' + num(n) + " photo" + (n === 1 ? "" : "s") + " selected</p>" +
       '<p class="tn-selbar__where">' + esc(where) + "</p></div>" +
-      '<div class="tn-selbar__acts"><button type="button" class="nm-btn nm-btn--white" data-sel-act="save">' + (CAN_PICK_FOLDER ? "Save CSV..." : "Download CSV") + "</button>" +
+      '<div class="tn-selbar__acts"><a class="nm-btn tn-v-btn" href="' + esc(resizeSelectedUrl()) + '" target="_blank" rel="noopener">Resize selected</a>' +
+      '<button type="button" class="nm-btn nm-btn--white" data-sel-act="save">' + (CAN_PICK_FOLDER ? "Save CSV..." : "Download CSV") + "</button>" +
       '<button type="button" class="nm-btn tn-v-btn" data-sel-act="clear">Clear</button></div>';
+  }
+  function resizeSelectedUrl() {
+    var q = Array.from(PICKS.values()).filter(function (it) { return /\.(jpe?g|png)$/i.test(it.file); })
+      .map(function (it) { return "img=" + encodeURIComponent(it.file); }).join("&");
+    return TOOLS_SITE + "dx-resizer.html" + (q ? "?" + q : "");
   }
   function renderSelBar() {
     ["tn-selbar", "tn-sd-selbar"].forEach(function (id) {
@@ -824,7 +844,7 @@
     host.hidden = onS3(f) || !f.u;
     if (!host.hidden) { host.href = f.u; host.textContent = "Open in " + (f.hs || "host") + " ↗"; }
     rs.hidden = !img;
-    rs.href = "../photo-sizer/index.html?img=" + encodeURIComponent(url);
+    rs.href = TOOLS_SITE + "dx-resizer.html?img=" + encodeURIComponent(fileName(f));
     paintPick();
   }
 
@@ -1101,13 +1121,48 @@
     else openShootDialog(folder, slug).then(go);
   }
 
+  function renderTools(tab) {
+    if (!CHIP[tab]) tab = "all";
+    document.querySelectorAll("#tn-tools-tabs .nm-tab").forEach(function (t) {
+      var on = t.getAttribute("data-tab") === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on) $("tn-tools-panel").setAttribute("aria-labelledby", t.id);
+    });
+    $("tn-tools-rows").innerHTML = TOOLS.filter(function (t) { return tab === "all" || t.tab === tab; }).map(function (t) {
+      var ext = /^https?:/.test(t.url);
+      return "<tr><td class=\"tn-tools-table__name\">" + esc(t.name) + "</td><td>" + esc(t.what) + "</td>" +
+        '<td><span class="tn-kind tn-kind--' + t.tab + '">' + esc(CHIP[t.tab]) + "</span></td>" +
+        '<td class="tn-tools-table__go"><a class="tn-btn tn-btn--outline" href="' + esc(t.url) + '" target="_blank" rel="noopener" aria-label="Open ' + esc(t.name) + (ext ? ", opens in a new tab" : "") + '">Open &#8599;</a></td></tr>';
+    }).join("");
+  }
+  function markHub(which) {
+    document.querySelectorAll("[data-hub-link]").forEach(function (a) {
+      if (a.getAttribute("data-hub-link") === which) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
   function render() {
-    var key = (location.hash.replace(/^#\/?/, "") || "home").toLowerCase();
+    var route = (location.hash.replace(/^#\/?/, "") || "home").toLowerCase();
+    if (route.indexOf("tools") === 0) {
+      var tab = route.split("/")[1] || "all";
+      home.hidden = true; brand.hidden = true; drawer.hidden = true; tools.hidden = false;
+      rail.forEach(function (a) { a.removeAttribute("aria-current"); });
+      document.title = "Tools | The Tunnel";
+      currentKey = null;
+      renderTools(tab);
+      markHub(CHIP[tab] ? tab : "");
+      return;
+    }
+    tools.hidden = true;
+    var key = route;
     if (key !== "home" && !BRANDS[key]) key = "home";
     rail.forEach(function (a) {
       if (a.getAttribute("data-view") === key) a.setAttribute("aria-current", "true");
       else a.removeAttribute("aria-current");
     });
+    markHub(key === "home" ? "home" : "");
     if (key === "home") {
       home.hidden = false;
       brand.hidden = true;
@@ -1210,6 +1265,19 @@
   });
   $("tn-shoot-dialog").addEventListener("click", function (e) {
     if (e.target === $("tn-shoot-dialog")) $("tn-sd-close").click();
+  });
+
+  $("tn-tools-tabs").addEventListener("click", function (e) {
+    var t = e.target.closest(".nm-tab");
+    if (t) location.hash = "#/tools/" + (t.getAttribute("data-tab") === "all" ? "" : t.getAttribute("data-tab"));
+  });
+  $("tn-tools-tabs").addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var tabs = Array.prototype.slice.call(this.querySelectorAll(".nm-tab"));
+    var i = tabs.indexOf(document.activeElement);
+    var next = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+    next.click();
+    setTimeout(function () { $(next.id).focus(); }, 0);
   });
 
   $("tn-home-scope").addEventListener("change", function () {
