@@ -1,5 +1,7 @@
 (function () {
-  var PAGES = window.NM_PAGES || [
+  var NUTMEG_ONLY = /^(foundations|v2-tokens|icons|components)\.html/;
+  var inVolley = document.body.getAttribute("data-hub") === "volley";
+  var PAGES = (window.NM_PAGES || [
     { title: "About Nutmeg", url: "index.html" },
     { title: "Foundations: colour", url: "foundations.html#colour" },
     { title: "Foundations: type", url: "foundations.html#type" },
@@ -23,7 +25,7 @@
     { title: "Icons: payment", url: "icons.html#payment" },
     { title: "Showcase Slider", url: "showcase-slider.html" },
     { title: "Workshop videos", url: "videos.html" }
-  ];
+  ]).filter(function (p) { return !inVolley || !NUTMEG_ONLY.test(p.url); });
 
   document.querySelectorAll(".nm-drawer__toggle").forEach(function (btn) {
     var sub = document.getElementById(btn.getAttribute("aria-controls"));
@@ -127,6 +129,7 @@
       });
       if (focus) tab.focus();
       if (tab.dataset.hash) history.replaceState(null, "", "#" + tab.dataset.hash);
+      else if (list.querySelector("[data-hash]") && location.hash) history.replaceState(null, "", location.pathname + location.search);
       list.dispatchEvent(new CustomEvent("nm-tab", { detail: tab }));
     };
     tabs.forEach(function (t, i) {
@@ -172,7 +175,7 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   var riseTargets = function () {
-    var cards = Array.prototype.slice.call(document.querySelectorAll("#block-grid > .nm-card"));
+    var cards = Array.prototype.slice.call(document.querySelectorAll("#block-grid .nm-card"));
     if (cards.length) return cards;
     if (document.body.getAttribute("data-page") !== "block") return [];
     var secs = Array.prototype.slice.call(document.querySelectorAll(".nm-content > .nm-section"));
@@ -303,6 +306,21 @@
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "hidden") videos.forEach(function (v) { if (!v.paused) stop(v, false); });
   });
+
+  var filter = document.getElementById("block-filter");
+  if (filter) {
+    filter.addEventListener("nm-tab", function (e) {
+      var f = e.detail.getAttribute("data-filter");
+      var shown = [];
+      document.querySelectorAll("#block-grid .nm-type").forEach(function (sec) {
+        sec.hidden = f !== "all" && sec.getAttribute("data-type") !== f;
+        if (!sec.hidden) shown = shown.concat(Array.prototype.slice.call(sec.querySelectorAll(".nm-card")));
+      });
+      window.NM.replay(shown);
+    });
+    var picked = filter.querySelector('[aria-selected="true"]');
+    if (picked && picked.getAttribute("data-filter") !== "all") filter.dispatchEvent(new CustomEvent("nm-tab", { detail: picked }));
+  }
 
   window.NM_READY = true;
 })();

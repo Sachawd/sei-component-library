@@ -40,9 +40,9 @@ HUBS = [
     ("The Tunnel", "https://the-tunnel.netlify.app/", None),
     ("Volley", "index.html", "volley"),
     ("Our Brands", None, None),
-    ("Tools", "index.html#tools", None),
+    ("Tools", "step-tools.html", None),
     ("Design System", "foundations.html", "nutmeg"),
-    ("Guides", "designer-guide.html", None),
+    ("Guides", "get-started.html", None),
 ]
 
 HUB_NAMES = {"nutmeg": "Nutmeg", "volley": "Volley"}
@@ -62,15 +62,15 @@ RAILS = {
     ],
     "volley": [
         ("home", "Home", "home", "index.html"),
-        ("volley", "Volley", "tray", None),
-        ("how", "How it Works", "command", None),
-        ("get-started", "Get Started", "flag", "designer-guide.html"),
+        ("volley", "Volley", "tray", "index.html"),
+        ("how", "How it Works", "command", "how-it-works.html"),
+        ("get-started", "Get Started", "flag", "get-started.html"),
         "split",
         ("components", "Components", "layout", "blocks.html"),
-        ("pages", "Pages", "window", None),
-        ("email", "Email", "mail", None),
-        ("changelog", "Changelog", "bell", None),
-        ("resources", "Resources", "book", "index.html#tools"),
+        ("pages", "Pages", "window", "pages.html"),
+        ("email", "Email", "mail", "email.html"),
+        ("changelog", "Changelog", "bell", "index.html#whats-new"),
+        ("resources", "Resources", "book", "step-tools.html"),
     ],
 }
 
@@ -119,6 +119,101 @@ CANON_PAGES = [
     ('Shop by Club rail', "shop-by-club-rail.html"),
 ]
 
+# Components by type, in drawer order (Sacha and Argon, 26 Oct 2026).
+TYPES = [
+    ("Carousels", [
+        ("Showcase Slider", "showcase-slider.html"),
+        ("Launch Carousel, jerseys", "launch-carousel-jerseys.html"),
+        ("Launch Carousel, New Arrivals", "launch-carousel-new-arrivals.html"),
+        ("Spotlight Rail, Spezial", "spotlight-rail-spezial.html"),
+        ("Kit Rail, home page", "kit-rail-home.html"),
+        ("Quick Links Rail, new products", "quick-links-rail-new.html"),
+        ("Sale quick links strip", "sale-quick-links.html"),
+        ("Shop by Player, Trending Players", "shop-by-player-trending-players.html"),
+        ("Shop-by Rail, players", "shop-by-rail-players.html"),
+        ("Shop-by Rail, leagues", "shop-by-rail-leagues.html"),
+        ("Shop by Club rail", "shop-by-club-rail.html"),
+        ("Shop by Club logo rail, Champions League", "shop-by-club-logo-rail-champions-league.html"),
+        ("Matchup Rail", "matchup-rail.html"),
+    ]),
+    ("Heroes", [
+        ("Sale hero", "sale-hero.html"),
+        ("Hero, parallax image layers", "hero-parallax-layers.html"),
+        ("Hero, falling objects", "hero-falling-objects.html"),
+    ]),
+    ("Galleries", [
+        ("Product Tile Gallery", "product-tile-gallery.html"),
+        ("Wall, New Arrivals", "wall-new-arrivals.html"),
+        ("Wall, July launches", "wall-july-launches.html"),
+        ("Marquee and Wall", "marquee-and-wall.html"),
+    ]),
+    ("Sections", [
+        ("Shop by Nation accordion", "shop-by-nation-accordion.html"),
+        ("Selection Section, home page", "selection-section-home-page.html"),
+        ("Selection Section, cleat deals", "selection-section-cleat-deals.html"),
+        ("Selection Section, Jersey Shop", "selection-section-jersey-shop.html"),
+        ("Selection Section, Fall Sale", "selection-section-fall-sale.html"),
+        ("Section Breaker", "section-breaker.html"),
+        ("Shop the Look, clubs", "shop-the-look-clubs.html"),
+        ("Spatial Cards Slider", "spatial-cards-slider.html"),
+    ]),
+    ("Lightboxes", [
+        ("Promo Lightbox, clubs", "promo-lightbox-clubs.html"),
+        ("Promo Lightbox, nations", "promo-lightbox-nations.html"),
+        ("Shop Lightbox, nations", "shop-lightbox-nations.html"),
+    ]),
+    ("Products", [
+        ("Sale category tiles", "sale-category-tiles.html"),
+    ]),
+    ("Headers", [
+        ("Shop by Club section", "shop-by-club-section.html"),
+        ("Intent Selector, small", "intent-selector-small.html"),
+        ("Intent Selector Chips, promo eligible", "intent-chips-promo.html"),
+        ("Intent Selector Chips, sale", "intent-chips-sale.html"),
+    ]),
+    ("Promo", [
+        ("Marquee, Back to Season", "marquee-back-to-season.html"),
+        ("Team Logo Marquee, promo eligible", "team-logo-marquee-promo.html"),
+        ("Team Logo Marquee, sale", "team-logo-marquee-sale.html"),
+    ]),
+]
+
+EMAIL_TYPES = [
+    ("Campaign emails", [
+        ("Chivas 2027 Third, rotating hero", "email-chivas-third-rotating.html"),
+        ("Chivas 2027 Third, still hero", "email-chivas-third-still.html"),
+    ]),
+    ("Team sales emails", [
+        ("Team Holiday Pop-Up Store", "email-team-holiday-pop-up.html"),
+    ]),
+]
+
+PAGE_TYPES = [
+    ("Landing pages", [
+        ("WorldSoccerShop Sale page", "page-wss-sale.html"),
+    ]),
+    ("Project hubs", [
+        ("Holiday 2026 Hub", "page-holiday-hub.html"),
+        ("Team Sales Holiday Pop-Up package", "page-holiday-pop-up-package.html"),
+    ]),
+]
+
+# Card details for the Email and Pages grids: brand, status, picture (or None).
+EXTRA_CARDS = {
+    "email-chivas-third-rotating.html": ("Soccer.com", "In progress", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-chivas-third-still.html": ("Soccer.com", "In progress", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-team-holiday-pop-up.html": ("Soccer.com", "In progress", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
+    "page-wss-sale.html": ("WorldSoccerShop", "In progress", None, 0, 0),
+    "page-holiday-hub.html": ("All brands", "In progress", None, 0, 0),
+    "page-holiday-pop-up-package.html": ("Soccer.com", "In progress", None, 0, 0),
+}
+
+COLLECTIONS = {
+    "blocks.html": TYPES,
+    "email.html": EMAIL_TYPES,
+    "pages.html": PAGE_TYPES,
+}
+
 # Drawer per (hub, section): title and items. An item is (label, href) or
 # (label, [(label, href), ...]) for a group that opens and closes.
 DRAWERS = {
@@ -129,16 +224,24 @@ DRAWERS = {
         ("At a glance", "index.html#at-a-glance"),
     ]),
     ("volley", "get-started"): ("Get Started", [
-        ("Designer guide", "designer-guide.html"),
-        ("Your first build", "first-build.html"),
-        ("WorldSoccerShop starter pack", "starter-pack-wss.html"),
-        ("Workshop walkthrough", "videos.html"),
+        ("Start Here", "get-started.html"),
+        ("01 - How It Works", "how-it-works.html"),
+        ("02 - Starter Kit", "starter-pack-wss.html"),
+        ("03 - Tools & Links", "step-tools.html"),
+        ("04 - Site Updates List", "step-clickup.html"),
+        ("05 - Figma Library", "step-figma.html"),
+        ("06 - Working With Images", "step-images.html"),
+        ("07 - Working With Links", "step-links.html"),
+        ("08 - Fastr CMS", "step-fastr.html"),
+        ("09 - Testing", "step-testing.html"),
+        ("10 - Video Guides", "videos.html"),
+        ("11 - Your First Build", "first-build.html"),
+        ("12 - Hand In & Code Share", "step-handin.html"),
+        ("Full one-page guide", "designer-guide.html"),
     ]),
-    ("volley", "components"): ("Components", [
-        ("All blocks", "blocks.html"),
-        ("Blocks", BLOCK_PAGES),
-        ("Canon blocks, needs review", CANON_PAGES),
-    ]),
+    ("volley", "components"): ("Components", [("Overview", "blocks.html")] + TYPES),
+    ("volley", "email"): ("Email", [("Overview", "email.html")] + EMAIL_TYPES),
+    ("volley", "pages"): ("Pages", [("Overview", "pages.html")] + PAGE_TYPES),
     ("nutmeg", "foundations"): ("Foundations", [
         ("Overview", "foundations.html"),
         ("Colour", "foundations.html#colour"),
@@ -172,7 +275,17 @@ DRAWERS = {
 
 # Every page: (hub, rail section).
 PAGES = {
-    "index.html": ("volley", "home"),
+    "index.html": ("volley", "volley"),
+    "get-started.html": ("volley", "get-started"),
+    "how-it-works.html": ("volley", "get-started"),
+    "step-tools.html": ("volley", "get-started"),
+    "step-clickup.html": ("volley", "get-started"),
+    "step-figma.html": ("volley", "get-started"),
+    "step-images.html": ("volley", "get-started"),
+    "step-links.html": ("volley", "get-started"),
+    "step-fastr.html": ("volley", "get-started"),
+    "step-testing.html": ("volley", "get-started"),
+    "step-handin.html": ("volley", "get-started"),
     "designer-guide.html": ("volley", "get-started"),
     "first-build.html": ("volley", "get-started"),
     "starter-pack-wss.html": ("volley", "get-started"),
@@ -183,9 +296,14 @@ PAGES = {
     "icons.html": ("nutmeg", "styles"),
     "components.html": ("nutmeg", "components"),
 }
-for _label, _href in BLOCK_PAGES + CANON_PAGES:
-    PAGES[_href] = ("volley", "components")
-BLOCK_HREFS = {h for _l, h in BLOCK_PAGES + CANON_PAGES}
+PAGES["email.html"] = ("volley", "email")
+PAGES["pages.html"] = ("volley", "pages")
+for _section, _groups in (("components", TYPES), ("email", EMAIL_TYPES), ("pages", PAGE_TYPES)):
+    for _type, _items in _groups:
+        for _label, _href in _items:
+            PAGES[_href] = ("volley", _section)
+BLOCK_HREFS = {h for _g in (TYPES, EMAIL_TYPES, PAGE_TYPES) for _t, _items in _g for _l, h in _items}
+assert {h for _l, h in BLOCK_PAGES + CANON_PAGES} == {h for _t, _items in TYPES for _l, h in _items}
 
 
 def esc(s):
@@ -214,7 +332,7 @@ def header(hub):
     items = []
     for label, href, key in HUBS:
         dot = '<span class="nm-hubs__dot" aria-hidden="true"></span>'
-        if href is None:
+        if href is None or (hub == "volley" and key == "nutmeg"):
             continue
         cur = ' aria-current="true"' if key == hub else ""
         tail = OUT if ext(href) else ""
@@ -228,7 +346,7 @@ def header(hub):
     <div class="nm-search" role="search">
       <label class="nm-search__field">
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
-        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
+        <span class="nm-visually-hidden">Search {HUB_NAMES[hub]}</span>
         <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
         <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
       </label>
@@ -266,7 +384,7 @@ def drawer(hub, section, page):
             n += 1
             sid = "nm-sub-%s-%d" % (section, n)
             open_ = any(h == page for _l, h in target)
-            subs = "".join('<li><a class="nm-drawer__sublink"%s>%s%s</a></li>' % (link_attrs(h, h == page), esc(l), OUT if ext(h) else "") for l, h in target)
+            subs = "".join('<li><a class="nm-drawer__sublink"%s><span class="nm-bullet" aria-hidden="true">&#8226;</span>%s%s</a></li>' % (link_attrs(h, h == page), esc(l), OUT if ext(h) else "") for l, h in target)
             rows.append('<li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="%s" aria-controls="%s"><span>%s</span>%s</button><ul class="nm-drawer__sub" id="%s"%s>%s</ul></li>'
                         % ("true" if open_ else "false", sid, esc(label), CHEV, sid, "" if open_ else " hidden", subs))
         else:
@@ -274,10 +392,10 @@ def drawer(hub, section, page):
     return ('<div class="nm-drawer"><p class="nm-drawer__title">%s</p><ul class="nm-drawer__list">%s</ul></div>' % (esc(title), "".join(rows)))
 
 
-def extras():
+def extras(hub):
     out = []
-    for label, href, _key in HUBS:
-        if href is None:
+    for label, href, key in HUBS:
+        if href is None or (hub == "volley" and key == "nutmeg"):
             continue
         attrs = ' href="%s"' % esc(href) + (' target="_blank" rel="noopener"' if ext(href) else "")
         out.append('<a class="nm-nav__extra"%s><span class="nm-hubs__dot" aria-hidden="true"></span>%s%s</a>' % (attrs, esc(label), OUT if ext(href) else ""))
@@ -288,8 +406,11 @@ def shell(page):
     hub, section = PAGES[page]
     return (header(hub) + '\n<div class="nm-shell">\n<div class="nm-scrim" hidden></div>\n'
             + '<nav class="nm-nav" id="nm-nav" aria-label="%s">' % HUB_NAMES[hub]
-            + rail(hub, section) + drawer(hub, section, page) + extras() + "</nav>\n")
+            + rail(hub, section) + drawer(hub, section, page) + extras(hub) + "</nav>\n")
 
+
+NUTMEG_FOOTER = "<span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span>"
+VOLLEY_FOOTER = "<span>Volley · Sports Endeavors design &amp; marketing hub.</span>"
 
 BLOCK = re.compile(r'<a class="nm-skip".*?</nav>\n(?=<main)', re.S)
 BODY = re.compile(r'<body[^>]*>(?:\n?<script>[^<]*nm-js[^<]*</script>)?')
@@ -308,45 +429,98 @@ def main():
             raise SystemExit("Could not find the navigation block in " + page)
         kind = ' data-page="block"' if page in BLOCK_HREFS else ""
         new = BODY.sub(lambda m: '<body data-hub="%s"%s>\n%s' % (hub, kind, JS_FLAG), new, count=1)
+        if hub == "volley":
+            new = re.sub(r"(<title>[^<]*?) · Nutmeg</title>", r"\1 · Volley</title>", new, count=1)
+            new = new.replace(NUTMEG_FOOTER, VOLLEY_FOOTER)
         if new != text:
             path.write_text(new, encoding="utf-8")
         done.append(page)
     missing = sorted(p.name for p in HERE.glob("*.html") if p.name not in PAGES and not p.name.startswith("zz_"))
     print("Shell written to %d pages." % len(done))
-    print("Card previews checked on %d block cards." % write_card_media())
+    print("Cards written by type: %d." % write_collections())
     if missing:
         print("Not in the page list, left alone: " + ", ".join(missing))
 
 
 PLAY = '<svg class="nm-icon-play" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5v11l9-5.5z" fill="currentColor"/></svg>'
 PAUSE = '<svg class="nm-icon-pause" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor"/></svg>'
-CARD = re.compile(r'(<article class="nm-card"[^>]*>)(<div class="nm-card__media[^"]*"[^>]*>.*?</div>)?(.*?</article>)', re.S)
+ARTICLE = re.compile(r'<article class="nm-card[^"]*"[^>]*>.*?</article>', re.S)
+REGION = re.compile(r'<div class="nm-tabs" role="tablist" aria-label="(?:Brand|Type)" id="block-filter">.*?(?=<p class="nm-contrast-note">)', re.S)
 
 
-def card_media(match):
-    head, _old, rest = match.group(1), match.group(2), match.group(3)
-    link = re.search(r'class="nm-btn nm-card__link" href="([^"]+)\.html"', rest)
-    if not link:
-        return match.group(0)
-    slug = link.group(1)
+def slugify(text):
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def old_card_meta(text):
+    meta = {}
+    for art in ARTICLE.findall(text):
+        href = re.search(r'class="[^"]*nm-card__link" href="([^"]+)"', art)
+        if not href:
+            continue
+        brand = re.search(r'data-brand="([^"]*)"', art)
+        status = re.search(r'<span class="nm-chip nm-chip--sm nm-chip--(\w+)">([^<]+)</span>', art)
+        meta[href.group(1)] = (html.unescape(brand.group(1)) if brand else "",
+                               (status.group(1), status.group(2)) if status else ("yellow", "In progress"))
+    return meta
+
+
+def media_for(href):
+    if href in EXTRA_CARDS:
+        _b, _s, img, w, h = EXTRA_CARDS[href]
+        if img:
+            return '<div class="nm-card__media"><img src="%s" width="%d" height="%d" alt=""></div>' % (img, w, h)
+        return '<div class="nm-card__media"><img class="nm-card__pattern" src="patterns/Volley%20Pattern%20Muted.png" width="1920" height="1080" alt=""></div>'
+    slug = href[:-5]
     folder = HERE.parent / "blocks" / slug
     if (folder / "preview.mp4").exists() and (folder / "preview--poster.jpg").exists():
-        media = ('<div class="nm-card__media"><video class="nm-card__video" muted loop playsinline preload="none" '
-                 'width="1440" height="900" poster="../blocks/%s/preview--poster.jpg" data-src="../blocks/%s/preview.mp4" '
-                 'aria-hidden="true" tabindex="-1"></video><button type="button" class="nm-card__video-btn" '
-                 'aria-label="Play preview video" data-playing="false">%s%s</button></div>' % (slug, slug, PLAY, PAUSE))
-    else:
-        media = '<div class="nm-card__media nm-card__media--empty"><span class="nm-card__plate-label">Preview video not recorded yet</span></div>'
-    return head + media + rest
+        return ('<div class="nm-card__media"><video class="nm-card__video" muted loop playsinline preload="none" '
+                'width="1440" height="900" poster="../blocks/%s/preview--poster.jpg" data-src="../blocks/%s/preview.mp4" '
+                'aria-hidden="true" tabindex="-1"></video><button type="button" class="nm-card__video-btn" '
+                'aria-label="Play preview video" data-playing="false">%s%s</button></div>' % (slug, slug, PLAY, PAUSE))
+    return '<div class="nm-card__media"><img class="nm-card__pattern" src="patterns/Volley%20Pattern%20Muted.png" width="1920" height="1080" alt=""></div>'
 
 
-def write_card_media():
-    path = HERE / "blocks.html"
-    text = path.read_text(encoding="utf-8")
-    new = CARD.sub(card_media, text)
-    if new != text:
-        path.write_text(new, encoding="utf-8")
-    return len(CARD.findall(new))
+def card(type_name, label, href, brand, status):
+    colour, word = status
+    return ('<article class="nm-card nm-card--thumb" data-type="%s" data-brand="%s">%s<div class="nm-card__body">'
+            '<h3 class="nm-card__title"><a class="nm-card__link" href="%s">%s</a></h3>'
+            '<p class="nm-card__meta"><span>%s</span><span class="nm-chip nm-chip--sm nm-chip--%s">%s</span></p></div></article>'
+            % (esc(type_name), esc(brand), media_for(href), esc(href), esc(label), esc(brand), colour, esc(word)))
+
+
+def write_collections():
+    count = 0
+    for name, groups in COLLECTIONS.items():
+        path = HERE / name
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        meta = old_card_meta(text)
+        tabs = ['<button type="button" class="nm-tab" role="tab" aria-controls="block-grid" data-filter="all" aria-selected="true" tabindex="0">All</button>']
+        sections = []
+        for type_name, items in groups:
+            tid = slugify(type_name)
+            tabs.append('<button type="button" class="nm-tab" role="tab" aria-controls="block-grid" data-filter="%s" data-hash="%s" aria-selected="false" tabindex="-1">%s</button>' % (esc(type_name), tid, esc(type_name)))
+            cards = []
+            for label, href in items:
+                if href in EXTRA_CARDS:
+                    brand, word = EXTRA_CARDS[href][0], EXTRA_CARDS[href][1]
+                    status = ("green" if word == "Live" else "yellow", word)
+                else:
+                    brand, status = meta.get(href, ("", ("yellow", "In progress")))
+                cards.append(card(type_name, label, href, brand, status))
+                count += 1
+            sections.append('<section class="nm-type" id="type-%s" data-type="%s"><h3 class="nm-type__title">%s <span class="nm-type__count">%d</span></h3><div class="nm-cards nm-cards--3 nm-type-grid">%s</div></section>'
+                            % (tid, esc(type_name), esc(type_name), len(items), "".join(cards)))
+        region = ('<div class="nm-tabs" role="tablist" aria-label="Type" id="block-filter">%s</div><div id="block-grid" class="nm-collection">%s</div>\n'
+                  % ("".join(tabs), "".join(sections)))
+        new, n = REGION.subn(lambda m: region, text, count=1)
+        if n != 1:
+            raise SystemExit("Could not find the card grid in " + name)
+        if new != text:
+            path.write_text(new, encoding="utf-8")
+    return count
 
 
 if __name__ == "__main__":

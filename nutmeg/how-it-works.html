@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 - How It Works · Volley</title>
+<meta name="description" content="Six simple steps from a ClickUp brief to a verified Fastr handoff.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<style>
+.step-timeline {
+  width: 100%;
+  max-width: 50em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step-timeline__header {
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 6em;
+  display: flex;
+}
+
+.step-timeline__h2 {
+  letter-spacing: -.05em;
+  margin-top: 0;
+  margin-bottom: 0;
+  /* ⚠️DEVIATION #1: Use Volley serif font token instead of Haffer XH */
+  font-family: var(--nm-serif);
+  font-size: 4em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.step-timeline__p {
+  margin-bottom: 0;
+  font-size: 1.125em;
+  line-height: 1.4;
+}
+
+.step-timeline__eyebrow {
+  /* ⚠️DEVIATION #2: Use Volley forest green eyebrow and sans font token */
+  color: #4C753B;
+  text-transform: uppercase;
+  font-family: var(--nm-sans);
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.step-timeline__wrapper {
+  position: relative;
+}
+
+.step-timeline__list {
+  grid-column-gap: 8em;
+  grid-row-gap: 8em;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  display: flex;
+}
+
+.step-timeline__item {
+  grid-column-gap: 3em;
+  grid-row-gap: 3em;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+}
+
+.step-timeline__line {
+  pointer-events: none;
+  background-color: #22201c24;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.5em;
+}
+
+.step-timeline__fill {
+  transform-origin: 50% 0;
+  /* ⚠️DEVIATION #3: Use Volley green progress fill */
+  background-color: #4C753B;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0%;
+}
+
+.step-timeline__marker {
+  /* ⚠️DEVIATION #4: Use Volley soft lime green for upcoming step circles (never blue) */
+  color: #1E3316;
+  background-color: #D9EFC0;
+  border: 1px solid #B7DBA0;
+  border-radius: 100em;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
+  transition: all .4s cubic-bezier(.645, .045, .355, 1);
+  display: flex;
+  position: relative;
+}
+
+/* Marker inside 'active' step item */
+[data-step-timeline-item][data-status="active"] [data-step-timeline-marker] {
+  /* ⚠️DEVIATION #5: Use Volley dark forest green on active step circles */
+  background: #2F4A25;
+  color: #FFFFFF;
+  border-color: #2F4A25;
+}
+
+/* Marker inside 'current' step item */
+[data-step-timeline-item][data-current] [data-step-timeline-marker] {
+  box-shadow: 0 0 0 0.5em rgba(76, 117, 59, 0.20);
+}
+
+.step-timeline__content {
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 28em;
+  padding-top: .4em;
+  transition: opacity .25s;
+  display: flex;
+}
+
+/* Inactive state of the content wrapper */
+[data-step-timeline-item] .step-timeline__content {
+  opacity: 0.25;
+}
+
+/* Make content full opacity in current step */
+[data-step-timeline-item][data-status="active"] .step-timeline__content {
+  opacity: 0.5;
+}
+
+/* Make content full opacity in current step */
+[data-step-timeline-item][data-current] .step-timeline__content {
+  opacity: 1;
+}
+
+.step-timeline__content-h {
+  letter-spacing: -.04em;
+  margin-top: 0;
+  margin-bottom: 0;
+  /* ⚠️DEVIATION #6: Use Volley serif font token */
+  font-family: var(--nm-serif);
+  font-size: 2em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .step-timeline {
+    max-width: none;
+  }
+
+  .step-timeline__list {
+    grid-column-gap: 6em;
+    grid-row-gap: 6em;
+  }
+
+  .step-timeline__item {
+    grid-column-gap: 1.5em;
+    grid-row-gap: 1.5em;
+  }
+}
+</style>
+</head>
+<body data-hub="volley">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Volley</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div data-step-timeline-init data-step-timeline-activation="0.5" class="step-timeline">
+  <div class="step-timeline__header">
+    <span class="step-timeline__eyebrow">our process</span>
+    <h1 class="step-timeline__h2">How It Works</h1>
+  </div>
+  <div class="step-timeline__wrapper">
+    <div data-step-timeline-line class="step-timeline__line">
+      <div data-step-timeline-fill class="step-timeline__fill"></div>
+    </div>
+    <div class="step-timeline__collection">
+      <div class="step-timeline__list">
+        <div data-step-timeline-item class="step-timeline__item">
+          <div data-step-timeline-marker class="step-timeline__marker"><span>1</span></div>
+          <div class="step-timeline__content">
+            <h2 class="step-timeline__content-h">Check the brief</h2>
+            <p class="step-timeline__p">Open the task in ClickUp Site Change Requests so you have the approved copy, launch date, and product picks before you start.</p>
+          </div>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <div data-step-timeline-marker class="step-timeline__marker"><span>2</span></div>
+          <div class="step-timeline__content">
+            <h2 class="step-timeline__content-h">Design in Figma</h2>
+            <p class="step-timeline__p">Pull a pre-coded block from Cabana 8 into Figma, lay out your content with Auto Layout, and size your JPG photos in Photo Sizer.</p>
+          </div>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <div data-step-timeline-marker class="step-timeline__marker"><span>3</span></div>
+          <div class="step-timeline__content">
+            <h2 class="step-timeline__content-h">Adapt the code with AI</h2>
+            <p class="step-timeline__p">Give your AI the starting HTML file from Volley, the Step Zero prompt, and your Link Book URLs so it swaps in your words and photos.</p>
+          </div>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <div data-step-timeline-marker class="step-timeline__marker"><span>4</span></div>
+          <div class="step-timeline__content">
+            <h2 class="step-timeline__content-h">Paste into your test page</h2>
+            <p class="step-timeline__p">Check your final HTML file in Safari, copy it from Visual Studio Code into Fastr with the three heights, and place the Reserves space embed on your test page.</p>
+          </div>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <div data-step-timeline-marker class="step-timeline__marker"><span>5</span></div>
+          <div class="step-timeline__content">
+            <h2 class="step-timeline__content-h">Test on desktop and phone</h2>
+            <p class="step-timeline__p">Check your test page in a second browser and across five screen widths in Responsively, then record a quick Jam video.</p>
+          </div>
+        </div>
+        <div data-step-timeline-item class="step-timeline__item">
+          <div data-step-timeline-marker class="step-timeline__marker"><span>6</span></div>
+          <div class="step-timeline__content">
+            <h2 class="step-timeline__content-h">Hand in one link on ClickUp</h2>
+            <p class="step-timeline__p">Paste your code into Code Share to create one link for ClickUp and move the task to UX review so your site author can publish it live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="max-width:50em;margin:64px auto 0;display:flex;flex-wrap:wrap;gap:12px">
+  <a class="nm-btn" href="starter-pack-wss.html"><span>Next: 02 · Starter Kit</span></a>
+  <a class="nm-btn nm-btn--outline" href="get-started.html"><span>All 12 steps</span></a>
+</div>
+
+<footer class="nm-footer"><span>Volley · Sports Endeavors design &amp; marketing hub.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+function initStepByStepTimeline() {
+  const root = document.querySelector("[data-step-timeline-init]");
+  if (!root) return;
+
+  const line = root.querySelector("[data-step-timeline-line]");
+  const fill = root.querySelector("[data-step-timeline-fill]");
+  const items = Array.from(root.querySelectorAll("[data-step-timeline-item]"));
+  if (!line || !fill || !items.length) return;
+
+  const anchors = items.map(
+    (item) => item.querySelector("[data-step-timeline-marker]") || item
+  );
+
+  const activationInput = parseFloat(root.dataset.stepTimelineActivation);
+  const activation = Number.isNaN(activationInput)
+    ? 0.5
+    : Math.min(Math.max(activationInput, 0), 1);
+  const activationPercent = activation * 100;
+  const lastIndex = items.length - 1;
+
+  let anchorFractions = [0];
+
+  function measureLine() {
+    if (items.length < 2) {
+      line.style.height = "0px";
+      anchorFractions = [0];
+      return;
+    }
+    const base = line.parentElement.getBoundingClientRect().top;
+    const centers = anchors.map((anchor) => {
+      const box = anchor.getBoundingClientRect();
+      return box.top + box.height / 2 - base;
+    });
+    const firstCenter = centers[0];
+    const span = centers[lastIndex] - firstCenter;
+    line.style.top = firstCenter + "px";
+    line.style.height = span + "px";
+    anchorFractions = centers.map((center) =>
+      span > 0 ? (center - firstCenter) / span : 0
+    );
+  }
+
+  let currentIndex = -2;
+
+  function setCurrentIndex(index) {
+    if (index === currentIndex) return;
+    currentIndex = index;
+    items.forEach((item, i) => {
+      const status = index >= 0 && i <= index ? "active" : "inactive";
+      if (item.getAttribute("data-status") !== status) {
+        item.setAttribute("data-status", status);
+      }
+      item.toggleAttribute("data-current", i === index);
+      item.toggleAttribute("data-previous", i === index - 1);
+      item.toggleAttribute("data-next", i === index + 1);
+    });
+  }
+
+  function indexForProgress(reached, progress) {
+    if (!reached) return -1;
+    let index = 0;
+    for (let i = 0; i < anchorFractions.length; i++) {
+      if (progress + 0.0001 >= anchorFractions[i]) index = i;
+    }
+    return index;
+  }
+
+  function updateFromScroll(self) {
+    const reached = self.isActive || self.progress >= 1;
+    setCurrentIndex(indexForProgress(reached, self.progress));
+  }
+
+  setCurrentIndex(-1);
+  gsap.set(fill, { transformOrigin: "top", scaleY: 0 });
+
+  if (root._stepTimelineMedia) root._stepTimelineMedia.revert();
+  const mediaQueries = gsap.matchMedia();
+  root._stepTimelineMedia = mediaQueries;
+
+  mediaQueries.add("(prefers-reduced-motion: no-preference)", () => {
+    measureLine();
+    ScrollTrigger.addEventListener("refreshInit", measureLine);
+
+    if (items.length > 1) {
+      gsap.fromTo(
+        fill,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: line,
+            start: "top " + activationPercent + "%",
+            end: "bottom " + activationPercent + "%",
+            scrub: true,
+            onUpdate: updateFromScroll,
+            onToggle: updateFromScroll,
+            onRefresh: updateFromScroll,
+          },
+        }
+      );
+    } else {
+      setCurrentIndex(0);
+    }
+
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      window.removeEventListener("load", refresh);
+      ScrollTrigger.removeEventListener("refreshInit", measureLine);
+    };
+  });
+
+  mediaQueries.add("(prefers-reduced-motion: reduce)", () => {
+    measureLine();
+    gsap.set(fill, { scaleY: 1 });
+    setCurrentIndex(lastIndex);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initStepByStepTimeline();
+});
+</script>
+</body>
+</html>
