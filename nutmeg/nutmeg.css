@@ -483,3 +483,43 @@ body[data-hub="volley"] .nm-title-card__label { color: #D9EFC0; }
   .nm-logo-marquee__inner { animation: none; flex-wrap: wrap; width: 100%; justify-content: center; }
   .nm-logo-marquee__track + .nm-logo-marquee__track { display: none; }
 }
+
+/* Form fields, shared */
+.nm-field { display: flex; flex-direction: column; gap: var(--nm-space-2); width: 100%; min-width: 0; }
+.nm-field__label { color: var(--nm-title); font: 500 var(--nm-body-sm)/var(--nm-body-sm-lh) var(--nm-sans); }
+.nm-field__hint { color: var(--nm-muted); font: 400 var(--nm-label)/var(--nm-label-lh) var(--nm-sans); }
+.nm-input, .nm-select { width: 100%; min-width: 0; height: 44px; padding: 0 var(--nm-space-3); border: 1px solid var(--nm-line); border-radius: var(--nm-radius-sm); background: var(--nm-white); color: var(--nm-ink); font: 400 var(--nm-body-sm)/var(--nm-body-sm-lh) var(--nm-sans); }
+.nm-input::placeholder { color: var(--nm-muted); opacity: 1; }
+.nm-input:hover, .nm-select:hover { border-color: var(--nm-rule); }
+.nm-input:focus-visible, .nm-select:focus-visible { outline: 2px solid var(--nm-accent, var(--nm-purple)); outline-offset: 0; border-color: var(--nm-accent, var(--nm-purple)); }
+.nm-input--mono { font-family: var(--nm-mono); font-size: 13px; }
+.nm-select { appearance: none; -webkit-appearance: none; padding-right: 40px; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none'><path d='M5 9L12 16L19 9' stroke='%234B4A48' stroke-width='1.5'/></svg>"); background-repeat: no-repeat; background-position: right 12px center; cursor: pointer; }
+.nm-select--narrow { flex: 0 1 240px; }
+.nm-color { width: 44px; height: 44px; padding: 4px; border: 1px solid var(--nm-line); border-radius: var(--nm-radius-sm); background: var(--nm-white); cursor: pointer; flex: none; }
+.nm-color::-webkit-color-swatch-wrapper { padding: 0; }
+.nm-color::-webkit-color-swatch { border: 0; border-radius: var(--nm-radius-xs); }
+
+/* Live email block editor (Volley Email) */
+.nm-email-editor { display: flex; flex-direction: column; gap: var(--nm-space-5); margin-top: var(--nm-space-6); }
+.nm-email-editor + .nm-codeblock { margin-top: var(--nm-space-5); }
+.nm-email-editor__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--nm-space-4); padding-bottom: var(--nm-space-4); border-bottom: 1px solid var(--nm-line); }
+.nm-email-editor__title { display: flex; flex-direction: column; gap: var(--nm-space-1); }
+.nm-email-editor__title-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nm-space-3); }
+.nm-email-editor__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nm-space-2); }
+.nm-email-editor__body { align-items: start; }
+.nm-email-editor__group { gap: var(--nm-space-4); }
+.nm-email-editor__group--wide { grid-column: 1 / -1; }
+.nm-email-editor__group .nm-card__title { font-size: var(--nm-h6); line-height: var(--nm-h6-lh); }
+.nm-email-editor__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--nm-space-4); width: 100%; }
+.nm-email-editor__inline { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nm-space-2); width: 100%; }
+.nm-email-editor__inline .nm-input { flex: 1 1 200px; }
+.nm-email-editor__inline .nm-btn { flex: none; }
+.nm-email-editor__color-row { display: flex; align-items: center; gap: var(--nm-space-2); }
+.nm-email-editor__swatches { display: flex; flex-wrap: wrap; gap: var(--nm-space-2); }
+.nm-email-editor__swatch { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 6px; border: 1px solid var(--nm-line); border-radius: var(--nm-radius-pill); background: var(--nm-white); color: var(--nm-text); font: 400 var(--nm-label)/var(--nm-label-lh) var(--nm-sans); cursor: pointer; transition: border-color .15s ease, background-color .15s ease; }
+.nm-email-editor__swatch:hover { border-color: var(--nm-accent, var(--nm-purple)); background: var(--nm-surface); }
+.nm-email-editor__swatch-dot { width: 14px; height: 14px; border: 1px solid rgba(17, 16, 16, 0.18); border-radius: 50%; flex: none; }
+.nm-email-editor__img { display: flex; flex-direction: column; gap: var(--nm-space-3); width: 100%; padding: var(--nm-space-4); border-radius: var(--nm-radius-sm); background: var(--nm-card-ground); }
+@media (max-width: 900px) {
+  .nm-email-editor__head { align-items: flex-start; }
+}

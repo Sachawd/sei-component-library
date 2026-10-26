@@ -342,5 +342,85 @@ window.NM_PAGES = [
  {
   "title": "Goal Club Days, Phoenix Rising",
   "url": "page-goal-club-days-phoenix-rising.html"
+ },
+ {
+  "title": "Email Block: Holiday Photo Hero",
+  "url": "email-block-hero.html"
+ },
+ {
+  "title": "Email Block: Gift Box Hero",
+  "url": "email-block-gift-box.html"
+ },
+ {
+  "title": "Email Block: Chivas Rotating GIF Hero",
+  "url": "email-block-chivas-hero-gif.html"
+ },
+ {
+  "title": "Email Block: Chivas Still Hero",
+  "url": "email-block-chivas-hero-still.html"
+ },
+ {
+  "title": "Email Block: Offer Card, 30% Off GIF",
+  "url": "email-block-offer.html"
+ },
+ {
+  "title": "Email Block: Offer Card with Gift Tag",
+  "url": "email-block-offer-gift-tag.html"
+ },
+ {
+  "title": "Email Block: Category Circles, 2-up",
+  "url": "email-block-circles-2up.html"
+ },
+ {
+  "title": "Email Block: Category Circles, 3-up",
+  "url": "email-block-circles-3up.html"
+ },
+ {
+  "title": "Email Block: Photo Squares, 2-up",
+  "url": "email-block-squares-2up.html"
+ },
+ {
+  "title": "Email Block: Ornament Circles, 2-up",
+  "url": "email-block-circles-ornament.html"
+ },
+ {
+  "title": "Email Block: Scrolling Offer Marquee",
+  "url": "email-block-marquee.html"
+ },
+ {
+  "title": "Email Block: Everything Soccer Ribbon",
+  "url": "email-block-ribbon-strip.html"
+ },
+ {
+  "title": "Email Block: Everything Soccer Ribbon, Moving",
+  "url": "email-block-ribbon-marquee.html"
+ },
+ {
+  "title": "Email Block: Section Heading",
+  "url": "email-block-heading.html"
+ },
+ {
+  "title": "Email Block: Jersey 4-Point Story Breakdown",
+  "url": "email-block-chivas-details.html"
+ },
+ {
+  "title": "Email Block: Story Closing & CTA Button",
+  "url": "email-block-chivas-cta.html"
+ },
+ {
+  "title": "Email Template: Soccer.com Holiday Email",
+  "url": "email-sdc-holiday.html"
+ },
+ {
+  "title": "Email Template: Chivas 2027 Third, rotating hero",
+  "url": "email-chivas-third-rotating.html"
+ },
+ {
+  "title": "Email Template: Chivas 2027 Third, still hero",
+  "url": "email-chivas-third-still.html"
+ },
+ {
+  "title": "Email Template: Team Holiday Pop-Up Store",
+  "url": "email-team-holiday-pop-up.html"
  }
 ];

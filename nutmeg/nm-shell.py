@@ -179,12 +179,36 @@ TYPES = [
 ]
 
 EMAIL_TYPES = [
-    ("Campaign emails", [
+    ("Heroes", [
+        ("Holiday Photo Hero", "email-block-hero.html"),
+        ("Gift Box Hero", "email-block-gift-box.html"),
+        ("Chivas Rotating GIF Hero", "email-block-chivas-hero-gif.html"),
+        ("Chivas Still Hero", "email-block-chivas-hero-still.html"),
+    ]),
+    ("Offers & promo cards", [
+        ("Offer Card, 30% Off GIF", "email-block-offer.html"),
+        ("Offer Card with Gift Tag", "email-block-offer-gift-tag.html"),
+    ]),
+    ("Category & product grids", [
+        ("Category Circles, 2-up", "email-block-circles-2up.html"),
+        ("Category Circles, 3-up", "email-block-circles-3up.html"),
+        ("Photo Squares, 2-up", "email-block-squares-2up.html"),
+        ("Ornament Circles, 2-up", "email-block-circles-ornament.html"),
+    ]),
+    ("Marquees & dividers", [
+        ("Scrolling Offer Marquee", "email-block-marquee.html"),
+        ("Everything Soccer Ribbon", "email-block-ribbon-strip.html"),
+        ("Everything Soccer Ribbon, Moving", "email-block-ribbon-marquee.html"),
+    ]),
+    ("Headings & story details", [
+        ("Section Heading", "email-block-heading.html"),
+        ("Jersey 4-Point Story Breakdown", "email-block-chivas-details.html"),
+        ("Story Closing & CTA Button", "email-block-chivas-cta.html"),
+    ]),
+    ("Full email templates", [
+        ("Soccer.com Holiday Email", "email-sdc-holiday.html"),
         ("Chivas 2027 Third, rotating hero", "email-chivas-third-rotating.html"),
         ("Chivas 2027 Third, still hero", "email-chivas-third-still.html"),
-        ("Soccer.com Holiday Email", "email-sdc-holiday.html"),
-    ]),
-    ("Team sales emails", [
         ("Team Holiday Pop-Up Store", "email-team-holiday-pop-up.html"),
     ]),
 ]
@@ -211,8 +235,24 @@ PAGE_TYPES = [
 
 # Card details for the Email and Pages grids: brand, status, picture (or None).
 EXTRA_CARDS = {
-    "email-chivas-third-rotating.html": ("Soccer.com", "In progress", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
-    "email-chivas-third-still.html": ("Soccer.com", "In progress", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-block-hero.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/hero.jpg", 640, 859),
+    "email-block-gift-box.html": ("Soccer.com", "On hold", "../sdc-holiday-email/assets/gift-box-hero.jpg", 1280, 1400),
+    "email-block-chivas-hero-gif.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-block-chivas-hero-still.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-block-offer.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/offer.gif", 586, 245),
+    "email-block-offer-gift-tag.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/offer.gif", 586, 245),
+    "email-block-circles-2up.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/circle-jerseys.png", 320, 299),
+    "email-block-circles-3up.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/circle3-jerseys.png", 213, 197),
+    "email-block-squares-2up.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/square-a.jpg", 289, 330),
+    "email-block-circles-ornament.html": ("Soccer.com", "On hold", "../sdc-holiday-email/assets/circle-jerseys-ornament.png", 320, 319),
+    "email-block-marquee.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/marquee.gif", 640, 32),
+    "email-block-ribbon-strip.html": ("Soccer.com", "On hold", "../sdc-holiday-email/assets/ribbon-strip.png", 640, 48),
+    "email-block-ribbon-marquee.html": ("Soccer.com", "On hold", "../sdc-holiday-email/assets/ribbon-marquee.gif", 640, 32),
+    "email-block-heading.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/heading-shop-top-categories.png", 640, 60),
+    "email-block-chivas-details.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-details.jpg", 333, 630),
+    "email-block-chivas-cta.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-chivas-third-rotating.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
+    "email-chivas-third-still.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
     "email-team-holiday-pop-up.html": ("Soccer.com", "In progress", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
     "email-sdc-holiday.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/gift-box-hero.jpg", 1280, 1400),
     "page-wss-sale.html": ("WorldSoccerShop", "In progress", None, 0, 0),
@@ -534,7 +574,7 @@ def write_collections():
             for label, href in items:
                 if href in EXTRA_CARDS:
                     brand, word = EXTRA_CARDS[href][0], EXTRA_CARDS[href][1]
-                    status = ("green" if word == "Live" else "yellow", word)
+                    status = ("green" if word in ("Live", "Ready") else ("grey" if word == "On hold" else "yellow"), word)
                 else:
                     brand, status = meta.get(href, ("", ("yellow", "In progress")))
                 cards.append(card(type_name, label, href, brand, status))

@@ -322,5 +322,534 @@
     if (picked && picked.getAttribute("data-filter") !== "all") filter.dispatchEvent(new CustomEvent("nm-tab", { detail: picked }));
   }
 
+  // Live Email Block Editor for Brock (Volley Email components & templates)
+  var isEmailPage = /^email-/.test(location.pathname.split("/").pop() || "") || document.querySelector(".nm-demo[data-email-block]");
+  if (isEmailPage) {
+    var BRAND_SWATCHES = [
+      { hex: "#000000", name: "Black" },
+      { hex: "#2162E4", name: "Soccer Blue" },
+      { hex: "#EEFF4F", name: "Neon Yellow" },
+      { hex: "#0D1A12", name: "Evergreen" },
+      { hex: "#0E0E0E", name: "Chivas Obsidian" },
+      { hex: "#FFE014", name: "Chivas Gold" },
+      { hex: "#F4EDE1", name: "Cream" },
+      { hex: "#FFFFFF", name: "White" }
+    ];
+    var QUICK_LINKS = [
+      { label: "Pick a checked link", url: "" },
+      { label: "Soccer.com Home", url: "https://www.soccer.com/" },
+      { label: "Soccer.com Sale", url: "https://www.soccer.com/shop/sale" },
+      { label: "Soccer.com Footwear", url: "https://www.soccer.com/shop/footwear" },
+      { label: "Soccer.com Jerseys", url: "https://www.soccer.com/shop/jerseys" },
+      { label: "WSS Home", url: "https://www.worldsoccershop.com/" },
+      { label: "WSS Ready to Ship", url: "https://www.worldsoccershop.com/shop/products/ready-to-ship" },
+      { label: "WSS Chivas Shop", url: "https://www.worldsoccershop.com/shop/clubs/chivas" }
+    ];
+    var S3_HOSTS = [
+      { label: "Preview files (not for sending)", base: "" },
+      { label: "Soccer.com image bucket", base: "https://sei-clubs.s3.amazonaws.com/sasSOCsoccer/images/emails/holiday26/" },
+      { label: "WorldSoccerShop image bucket", base: "https://sei-wss-web.s3.us-east-1.amazonaws.com/sasWSSworldsoccershop/images/emails/" }
+    ];
+
+    var normalizeHex = function (h) {
+      var s = (h || "").trim().toUpperCase();
+      if (/^#[0-9A-F]{3}$/.test(s)) {
+        return "#" + s[1] + s[1] + s[2] + s[2] + s[3] + s[3];
+      }
+      return /^#[0-9A-F]{6}$/.test(s) ? s : "#000000";
+    };
+
+    var buildUtmUrl = function (rawUrl, campaign, contentTag) {
+      if (!rawUrl || rawUrl.indexOf("http") !== 0) return rawUrl;
+      var camp = (campaign || "").trim();
+      var cont = (contentTag || "").trim();
+      if (!camp && !cont) return rawUrl;
+      try {
+        var u = new URL(rawUrl);
+        u.searchParams.set("utm_source", "zeta");
+        u.searchParams.set("utm_medium", "email");
+        if (camp) u.searchParams.set("utm_campaign", camp);
+        if (cont) u.searchParams.set("utm_content", cont);
+        return u.toString();
+      } catch (e) {
+        return rawUrl;
+      }
+    };
+
+    var findCodeForDemo = function (demo) {
+      var next = demo.nextElementSibling;
+      if (next && next.classList.contains("nm-codeblock")) return next;
+      var sec = demo.closest(".nm-section");
+      if (sec) {
+        var cbs = sec.querySelectorAll(".nm-codeblock");
+        if (cbs.length === 1) return cbs[0];
+      }
+      var allCbs = document.querySelectorAll(".nm-codeblock");
+      return allCbs.length === 1 ? allCbs[0] : null;
+    };
+
+    var demos = Array.prototype.slice.call(document.querySelectorAll(".nm-demo"));
+    demos.forEach(function (demo, demoIdx) {
+      var codeBlock = findCodeForDemo(demo);
+      var frame = demo.querySelector("iframe.nm-demo__frame");
+      if (!codeBlock || !frame) return;
+      var codeEl = codeBlock.querySelector("pre code");
+      if (!codeEl) return;
+
+      var origCode = codeEl.textContent;
+      var frameSrc = frame.getAttribute("src") || "";
+      var baseHref = "";
+      try {
+        baseHref = new URL(frameSrc, location.href).href.replace(/[^/]*$/, "");
+      } catch (e) {
+        baseHref = "";
+      }
+
+      var blockId = demo.getAttribute("data-email-block") || (frame.id || ("block-" + (demoIdx + 1))).replace(/^frame-/, "");
+      var isChivas = /chivas/i.test(blockId) || /chivas/i.test(location.pathname);
+      var defaultCampaign = isChivas ? "WSS_10302026_Chivas_Third" : "SDC_10302026_Holiday_Kickoff";
+      var defaultContent = blockId.replace(/^email-block-/, "").replace(/-/g, "_");
+
+      // Parse initial snippet to discover editable text, colors, images, and links
+      var probe = document.createElement("div");
+      probe.innerHTML = origCode;
+
+      // 1. Discover editable text nodes
+      var textSpecs = [];
+      var walkText = function (node) {
+        if (node.nodeType === 1) {
+          var tag = node.tagName.toUpperCase();
+          if (tag === "STYLE" || tag === "SCRIPT" || tag === "NOSCRIPT") return;
+          var styleAttr = node.getAttribute("style") || "";
+          var isPreheader = /display\s*:\s*none/i.test(styleAttr) && node.textContent.trim().length > 0;
+          if (isPreheader) {
+            var cleanPre = node.textContent.replace(/[\u2007\uFEFF\u034F\s]+$/g, "").trim();
+            if (cleanPre) {
+              textSpecs.push({ label: "Hidden preview text (inbox line)", initial: cleanPre, isPreheader: true });
+            }
+            return;
+          }
+        }
+        var children = node.childNodes;
+        for (var i = 0; i < children.length; i++) {
+          var ch = children[i];
+          if (ch.nodeType === 3) {
+            var val = ch.nodeValue.replace(/\u00a0/g, " ").trim();
+            if (val.length > 0) {
+              var parentTag = (node.tagName || "").toUpperCase();
+              var lbl = "Text " + (textSpecs.length + 1);
+              if (/code:/i.test(val)) lbl = "Promo code";
+              else if (parentTag === "A" || (node.closest && node.closest("a"))) lbl = "Button text: " + val.slice(0, 22);
+              else lbl = "Text: " + val.slice(0, 24) + (val.length > 24 ? "..." : "");
+              textSpecs.push({ label: lbl, initial: val, isPreheader: false });
+            }
+          } else if (ch.nodeType === 1) {
+            walkText(ch);
+          }
+        }
+      };
+      walkText(probe);
+
+      // 2. Discover distinct hex colors
+      var colorMatches = origCode.match(/#[0-9A-Fa-f]{6}\b/g) || [];
+      var uniqueColors = [];
+      colorMatches.forEach(function (c) {
+        var up = c.toUpperCase();
+        if (uniqueColors.indexOf(up) === -1) uniqueColors.push(up);
+      });
+
+      // 3. Discover images (separate main content images from tiny 27px decorative border slices)
+      var imgEls = Array.prototype.slice.call(probe.querySelectorAll("img"));
+      var imgSpecs = [];
+      imgEls.forEach(function (img, idx) {
+        var w = Number(img.getAttribute("width") || 0);
+        var src = img.getAttribute("src") || "";
+        var alt = img.getAttribute("alt") || "";
+        var isSlice = (w > 0 && w <= 36) && alt === "";
+        var shortName = src.split("/").pop().split("?")[0] || ("Image " + (idx + 1));
+        imgSpecs.push({
+          index: idx,
+          shortName: shortName,
+          w: w,
+          h: Number(img.getAttribute("height") || 0),
+          src: src,
+          alt: alt,
+          isSlice: isSlice
+        });
+      });
+
+      // 4. Discover unique links
+      var aEls = Array.prototype.slice.call(probe.querySelectorAll("a[href]"));
+      var linkSpecs = [];
+      aEls.forEach(function (a, idx) {
+        var href = a.getAttribute("href") || "";
+        var txt = a.textContent.trim();
+        var imgInA = a.querySelector("img");
+        var desc = txt || (imgInA ? (imgInA.getAttribute("alt") || imgInA.getAttribute("src") || "Image link") : ("Link " + (idx + 1)));
+        linkSpecs.push({ index: idx, label: desc.slice(0, 32), href: href });
+      });
+
+      // State object
+      var state = {
+        campaign: defaultCampaign,
+        contentTag: defaultContent,
+        s3Base: "",
+        altTest: false,
+        texts: textSpecs.map(function (t) { return t.initial; }),
+        colors: {},
+        imgs: imgSpecs.map(function (im) { return { src: im.src, alt: im.alt }; }),
+        links: linkSpecs.map(function (lk) { return lk.href; })
+      };
+      uniqueColors.forEach(function (c) { state.colors[c] = c; });
+
+      // Build the editor from Nutmeg parts: eyebrow, serif title, cards, pill buttons
+      var el = function (tag, cls, text) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text !== undefined) n.textContent = text;
+        return n;
+      };
+      var makeField = function (labelText, control, hintText) {
+        var f = el("label", "nm-field");
+        f.appendChild(el("span", "nm-field__label", labelText));
+        f.appendChild(control);
+        if (hintText) f.appendChild(el("span", "nm-field__hint", hintText));
+        return f;
+      };
+      var makeInput = function (value, placeholder) {
+        var i = el("input", "nm-input");
+        i.type = "text";
+        i.value = value || "";
+        if (placeholder) i.placeholder = placeholder;
+        return i;
+      };
+      var makeGroup = function (eyebrow, title) {
+        var g = el("article", "nm-card nm-card--open nm-email-editor__group");
+        var head = el("div");
+        head.appendChild(el("span", "nm-eyebrow", eyebrow));
+        head.appendChild(el("h3", "nm-card__title", title));
+        g.appendChild(head);
+        var grid = el("div", "nm-email-editor__grid");
+        g.appendChild(grid);
+        return { card: g, grid: grid };
+      };
+
+      var editor = el("section", "nm-email-editor");
+      editor.setAttribute("aria-label", "Change this block");
+
+      var bar = el("div", "nm-email-editor__head");
+      var titleWrap = el("div", "nm-email-editor__title");
+      titleWrap.appendChild(el("span", "nm-eyebrow", "Live editor"));
+      var titleRow = el("div", "nm-email-editor__title-row");
+      titleRow.appendChild(el("h3", "nm-card__title", "Change this block"));
+      titleRow.appendChild(el("span", "nm-chip nm-chip--green nm-chip--sm", "Preview and code update as you type"));
+      titleWrap.appendChild(titleRow);
+
+      var actions = el("div", "nm-email-editor__actions");
+      var altBtn = el("button", "nm-btn nm-btn--outline", "Show it with images blocked");
+      altBtn.type = "button";
+      altBtn.setAttribute("aria-pressed", "false");
+      var resetBtn = el("button", "nm-btn nm-btn--text", "Start again");
+      resetBtn.type = "button";
+      actions.appendChild(altBtn);
+      actions.appendChild(resetBtn);
+      bar.appendChild(titleWrap);
+      bar.appendChild(actions);
+      editor.appendChild(bar);
+
+      var body = el("div", "nm-cards nm-email-editor__body");
+      var allControls = [];
+
+      // 1. Tracking and image folder
+      var gTrack = makeGroup("1. Tracking", "Campaign name and image folder");
+      var inCamp = makeInput(state.campaign);
+      inCamp.addEventListener("input", function () { state.campaign = inCamp.value; sync(); });
+      gTrack.grid.appendChild(makeField("Campaign name", inCamp, "Added to every link so Google Analytics knows the send."));
+      var inCont = makeInput(state.contentTag);
+      inCont.addEventListener("input", function () { state.contentTag = inCont.value; sync(); });
+      gTrack.grid.appendChild(makeField("Block name", inCont, "Tells Analytics which block was clicked."));
+      var selS3 = el("select", "nm-select");
+      S3_HOSTS.forEach(function (h) {
+        var opt = el("option", "", h.label);
+        opt.value = h.base;
+        selS3.appendChild(opt);
+      });
+      selS3.addEventListener("change", function () { state.s3Base = selS3.value; sync(); });
+      gTrack.grid.appendChild(makeField("Where the images live", selS3, "Pick the bucket before you copy the code."));
+      body.appendChild(gTrack.card);
+
+      // 2. Words
+      if (textSpecs.length) {
+        var gText = makeGroup("2. Words", "Text and promo code");
+        textSpecs.forEach(function (spec, idx) {
+          var inp = makeInput(spec.initial);
+          inp.addEventListener("input", function () { state.texts[idx] = inp.value; sync(); });
+          allControls.push(function () { inp.value = spec.initial; });
+          gText.grid.appendChild(makeField(spec.label, inp));
+        });
+        body.appendChild(gText.card);
+      }
+
+      // 3. Colours
+      if (uniqueColors.length) {
+        var gCol = makeGroup("3. Colours", "Colours in this block");
+        uniqueColors.forEach(function (origHex) {
+          var field = el("div", "nm-field");
+          var sp = el("span", "nm-field__label", "Colour ");
+          sp.appendChild(el("span", "nm-code", origHex));
+          var row = el("div", "nm-email-editor__color-row");
+          var picker = el("input", "nm-color");
+          picker.type = "color";
+          picker.value = normalizeHex(origHex);
+          picker.setAttribute("aria-label", "Pick a colour to replace " + origHex);
+          var hexIn = makeInput(origHex);
+          hexIn.classList.add("nm-input--mono");
+          hexIn.setAttribute("aria-label", "Colour code to replace " + origHex);
+          var swatchRow = el("div", "nm-email-editor__swatches");
+          BRAND_SWATCHES.forEach(function (sw) {
+            var b = el("button", "nm-email-editor__swatch");
+            b.type = "button";
+            var dot = el("span", "nm-email-editor__swatch-dot");
+            dot.style.backgroundColor = sw.hex;
+            b.appendChild(dot);
+            b.appendChild(el("span", "", sw.name));
+            b.setAttribute("aria-label", "Use " + sw.name + " " + sw.hex);
+            b.addEventListener("click", function () {
+              state.colors[origHex] = sw.hex;
+              picker.value = sw.hex;
+              hexIn.value = sw.hex;
+              sync();
+            });
+            swatchRow.appendChild(b);
+          });
+          picker.addEventListener("input", function () {
+            var v = picker.value.toUpperCase();
+            state.colors[origHex] = v;
+            hexIn.value = v;
+            sync();
+          });
+          hexIn.addEventListener("input", function () {
+            var v = hexIn.value.trim();
+            if (/^#[0-9A-Fa-f]{6}$/.test(v)) {
+              state.colors[origHex] = v.toUpperCase();
+              picker.value = v.toUpperCase();
+              sync();
+            }
+          });
+          allControls.push(function () {
+            picker.value = normalizeHex(origHex);
+            hexIn.value = origHex;
+          });
+          row.appendChild(picker);
+          row.appendChild(hexIn);
+          field.appendChild(sp);
+          field.appendChild(row);
+          field.appendChild(swatchRow);
+          gCol.grid.appendChild(field);
+        });
+        body.appendChild(gCol.card);
+      }
+
+      // 4. Images
+      var mainImgs = imgSpecs.filter(function (im) { return !im.isSlice; });
+      if (mainImgs.length) {
+        var gImg = makeGroup("4. Images", "Pictures and alt text");
+                mainImgs.forEach(function (im) {
+          var card = el("div", "nm-email-editor__img");
+          var head = el("span", "nm-eyebrow", im.shortName + (im.w ? ", " + im.w + " by " + im.h : ""));
+          var srcIn = makeInput(im.src, "Image address");
+          var altIn = makeInput(im.alt, "Say what the picture shows or what the offer is");
+          var skuRow = el("div", "nm-email-editor__inline");
+          var skuIn = makeInput("", "Article number, like A1142072");
+          var skuBtn = el("button", "nm-btn nm-btn--outline", "Load product cutout");
+          skuBtn.type = "button";
+          skuBtn.addEventListener("click", function () {
+            var rawSku = skuIn.value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+            if (!rawSku) return;
+            var ihUrl = "https://www.imagehandler.net/preview/?istyle=0000&fmt=png&w=1200&h=1200&cmp=100&c=999&img=" + rawSku + "000&iset=0100&iindex=0088";
+            state.imgs[im.index].src = ihUrl;
+            srcIn.value = ihUrl;
+            sync();
+          });
+          skuRow.appendChild(skuIn);
+          skuRow.appendChild(skuBtn);
+          srcIn.addEventListener("input", function () { state.imgs[im.index].src = srcIn.value; sync(); });
+          altIn.addEventListener("input", function () { state.imgs[im.index].alt = altIn.value; sync(); });
+          allControls.push(function () {
+            srcIn.value = im.src;
+            altIn.value = im.alt;
+            skuIn.value = "";
+          });
+          card.appendChild(head);
+          card.appendChild(makeField("Image address", srcIn));
+          card.appendChild(makeField("Alt text", altIn, "Outlook shows this when images are blocked."));
+          card.appendChild(makeField("Or load a product cutout", skuRow));
+          gImg.grid.appendChild(card);
+        });
+        body.appendChild(gImg.card);
+      }
+
+      // 5. Links
+      if (linkSpecs.length) {
+        var gLink = makeGroup("5. Links", "Where each link goes");
+        gLink.card.classList.add("nm-email-editor__group--wide");
+        linkSpecs.forEach(function (lk, idx) {
+          var row = el("div", "nm-email-editor__inline");
+          var urlIn = makeInput(lk.href);
+          var pick = el("select", "nm-select nm-select--narrow");
+          QUICK_LINKS.forEach(function (ql) {
+            var opt = el("option", "", ql.label);
+            opt.value = ql.url;
+            pick.appendChild(opt);
+          });
+          pick.addEventListener("change", function () {
+            if (!pick.value) return;
+            state.links[idx] = pick.value;
+            urlIn.value = pick.value;
+            sync();
+          });
+          urlIn.addEventListener("input", function () { state.links[idx] = urlIn.value; sync(); });
+          allControls.push(function () {
+            urlIn.value = lk.href;
+            pick.selectedIndex = 0;
+          });
+          row.appendChild(urlIn);
+          row.appendChild(pick);
+          gLink.grid.appendChild(makeField("Link " + (idx + 1) + ": " + lk.label, row));
+        });
+        body.appendChild(gLink.card);
+      }
+
+      editor.appendChild(body);
+      demo.parentNode.insertBefore(editor, demo.nextSibling);
+
+      // Build updated HTML string from current state
+      var generateHtml = function (forPreview) {
+        var box = document.createElement("div");
+        box.innerHTML = origCode;
+
+        // Apply text changes
+        var tCursor = 0;
+        var applyText = function (node) {
+          if (node.nodeType === 1) {
+            var tag = node.tagName.toUpperCase();
+            if (tag === "STYLE" || tag === "SCRIPT" || tag === "NOSCRIPT") return;
+            var styleAttr = node.getAttribute("style") || "";
+            var isPreheader = /display\s*:\s*none/i.test(styleAttr) && node.textContent.trim().length > 0;
+            if (isPreheader) {
+              var cleanPre = node.textContent.replace(/[\u2007\uFEFF\u034F\s]+$/g, "").trim();
+              if (cleanPre) {
+                var newPre = state.texts[tCursor] !== undefined ? state.texts[tCursor] : cleanPre;
+                tCursor++;
+                node.innerHTML = newPre + "&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;";
+              }
+              return;
+            }
+          }
+          var children = node.childNodes;
+          for (var i = 0; i < children.length; i++) {
+            var ch = children[i];
+            if (ch.nodeType === 3) {
+              var val = ch.nodeValue.replace(/\u00a0/g, " ").trim();
+              if (val.length > 0) {
+                var updated = state.texts[tCursor];
+                tCursor++;
+                if (updated !== undefined) {
+                  ch.nodeValue = updated;
+                }
+              }
+            } else if (ch.nodeType === 1) {
+              applyText(ch);
+            }
+          }
+        };
+        applyText(box);
+
+        // Apply image changes
+        var curImgs = box.querySelectorAll("img");
+        for (var i = 0; i < curImgs.length; i++) {
+          if (state.imgs[i]) {
+            var rawSrc = state.imgs[i].src;
+            if (!forPreview && state.s3Base && /^assets\//.test(rawSrc)) {
+              rawSrc = state.s3Base + rawSrc.replace(/^assets\//, "");
+            }
+            curImgs[i].setAttribute("src", rawSrc);
+            curImgs[i].setAttribute("alt", state.imgs[i].alt);
+          }
+        }
+
+        // Apply link & UTM changes
+        var curLinks = box.querySelectorAll("a[href]");
+        for (var j = 0; j < curLinks.length; j++) {
+          if (state.links[j] !== undefined) {
+            var tagged = buildUtmUrl(state.links[j], state.campaign, state.contentTag);
+            curLinks[j].setAttribute("href", tagged);
+          }
+        }
+
+        var out = box.innerHTML;
+
+        // Apply hex color replacements safely via placeholders
+        var keys = Object.keys(state.colors);
+        keys.forEach(function (origHex, kIdx) {
+          var re = new RegExp(origHex, "gi");
+          out = out.replace(re, "__NM_HEX_" + kIdx + "__");
+        });
+        keys.forEach(function (origHex, kIdx) {
+          var targetHex = state.colors[origHex] || origHex;
+          out = out.replace(new RegExp("__NM_HEX_" + kIdx + "__", "g"), targetHex);
+        });
+
+        return out;
+      };
+
+      var sync = function () {
+        var finalCode = generateHtml(false);
+        codeEl.textContent = finalCode;
+
+        var previewInner = generateHtml(true);
+        var altStyle = state.altTest
+          ? "img { display:none !important; } a, td { color:#EEFF4F; }"
+          : "";
+        var altScript = state.altTest
+          ? "<script>document.querySelectorAll('img').forEach(function(im){var d=document.createElement('div');d.style.cssText='padding:18px 12px;border:1px dashed #EEFF4F;background:#151515;color:#FFFFFF;font-family:monospace;font-size:13px;text-align:center;';d.textContent='[IMG BLOCKED] Alt: '+(im.getAttribute('alt')||'(empty decorative alt)');im.parentNode.insertBefore(d,im);});<\/script>"
+          : "";
+
+        var docHtml = '<!DOCTYPE html><html><head><meta charset="utf-8">' +
+          (baseHref ? '<base href="' + baseHref + '">' : '') +
+          '<style>html,body{margin:0;padding:0;background:#141414;}' + altStyle + '</style></head><body>' +
+          previewInner + altScript + '</body></html>';
+        frame.srcdoc = docHtml;
+      };
+
+      altBtn.addEventListener("click", function () {
+        state.altTest = !state.altTest;
+        altBtn.setAttribute("aria-pressed", String(state.altTest));
+        altBtn.textContent = state.altTest ? "Show the images again" : "Show it with images blocked";
+        sync();
+      });
+
+      resetBtn.addEventListener("click", function () {
+        state.campaign = defaultCampaign;
+        state.contentTag = defaultContent;
+        state.s3Base = "";
+        state.altTest = false;
+        inCamp.value = defaultCampaign;
+        inCont.value = defaultContent;
+        selS3.selectedIndex = 0;
+        altBtn.setAttribute("aria-pressed", "false");
+        altBtn.textContent = "Show it with images blocked";
+        textSpecs.forEach(function (t, i) { state.texts[i] = t.initial; });
+        uniqueColors.forEach(function (c) { state.colors[c] = c; });
+        imgSpecs.forEach(function (im, i) { state.imgs[i] = { src: im.src, alt: im.alt }; });
+        linkSpecs.forEach(function (lk, i) { state.links[i] = lk.href; });
+        allControls.forEach(function (fn) { fn(); });
+        codeEl.textContent = origCode;
+        frame.removeAttribute("srcdoc");
+        frame.setAttribute("src", frameSrc);
+      });
+    });
+  }
+
   window.NM_READY = true;
 })();
