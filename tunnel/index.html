@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap">
 <link rel="stylesheet" href="../nutmeg/nutmeg.css">
 <link rel="stylesheet" href="tunnel.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
 </head>
 <body data-hub="tunnel">
 <a class="nm-skip" href="#tn-main">Skip to content</a>
@@ -143,9 +144,52 @@
       <h2 class="tn-dialog__title" id="tn-sd-title">Shoot files</h2>
       <p class="tn-dialog__sub" id="tn-sd-sub"></p>
     </div>
-    <button type="button" class="tn-btn tn-btn--outline" id="tn-sd-close">Close</button>
+    <div class="tn-dialog__tools">
+      <p class="tn-dialog__picked" id="tn-sd-picked" aria-live="polite"></p>
+      <button type="button" class="tn-btn tn-btn--outline" id="tn-sd-close">Close</button>
+    </div>
   </div>
   <div class="tn-dialog__body" id="tn-sd-body"></div>
+</dialog>
+
+<dialog class="tn-viewer" id="tn-viewer" aria-labelledby="tn-v-title">
+  <div class="tn-viewer__bg" id="tn-v-bg"></div>
+  <div class="tn-viewer__bar" id="tn-v-bar">
+    <nav class="tn-viewer__crumbs" aria-label="Where this photo is filed"><ol id="tn-v-crumbs"></ol></nav>
+    <div class="tn-viewer__controls">
+      <p class="tn-viewer__count"><span id="tn-v-cur">1</span> / <span id="tn-v-total">1</span></p>
+      <button type="button" class="tn-viewer__icon" id="tn-v-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <button type="button" class="tn-viewer__icon" id="tn-v-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <button type="button" class="tn-viewer__close" id="tn-v-close"><span>Close</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    </div>
+  </div>
+  <div class="tn-viewer__stage" id="tn-v-stage"></div>
+  <aside class="tn-viewer__panel" id="tn-v-panel" aria-label="Photo details">
+    <div class="tn-viewer__panel-body" id="tn-v-body">
+      <h2 class="tn-viewer__title" id="tn-v-title" tabindex="-1"></h2>
+      <p class="tn-viewer__source" id="tn-v-source"></p>
+      <section class="tn-v-sec">
+        <h3 class="tn-v-sec__h"><button type="button" class="tn-v-sec__btn" aria-expanded="true" aria-controls="tn-v-file">File info<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button></h3>
+        <dl class="tn-v-dl" id="tn-v-file"></dl>
+      </section>
+      <section class="tn-v-sec">
+        <h3 class="tn-v-sec__h"><button type="button" class="tn-v-sec__btn" aria-expanded="false" aria-controls="tn-v-meta">Metadata<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button></h3>
+        <dl class="tn-v-dl" id="tn-v-meta" hidden></dl>
+      </section>
+      <section class="tn-v-sec">
+        <h3 class="tn-v-sec__h"><button type="button" class="tn-v-sec__btn" aria-expanded="false" aria-controls="tn-v-adv">Advanced<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button></h3>
+        <dl class="tn-v-dl" id="tn-v-adv" hidden></dl>
+      </section>
+    </div>
+    <div class="tn-viewer__acts">
+      <button type="button" class="nm-btn nm-btn--white tn-v-btn--primary" id="tn-v-copy">Copy CDN link</button>
+      <button type="button" class="nm-btn tn-v-btn" id="tn-v-dl">Download</button>
+      <a class="nm-btn tn-v-btn" id="tn-v-open-host" target="_blank" rel="noopener" hidden></a>
+      <a class="nm-btn tn-v-btn" id="tn-v-resize" target="_blank" rel="noopener">Resize this photo</a>
+      <button type="button" class="nm-btn tn-v-btn" id="tn-v-pick" aria-pressed="false">Add to selection</button>
+    </div>
+  </aside>
+  <p class="nm-visually-hidden" id="tn-v-live" aria-live="polite"></p>
 </dialog>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
