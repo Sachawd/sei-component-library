@@ -56,8 +56,20 @@ window.NM_PAGES = [
   "url": "step-handin.html"
  },
  {
-  "title": "All blocks",
+  "title": "Components",
   "url": "blocks.html"
+ },
+ {
+  "title": "Pages",
+  "url": "pages.html"
+ },
+ {
+  "title": "Email",
+  "url": "email.html"
+ },
+ {
+  "title": "Changelog",
+  "url": "changelog.html"
  },
  {
   "title": "Designer guide (full one-page reference)",
@@ -294,5 +306,41 @@ window.NM_PAGES = [
  {
   "title": "Shop by Club rail",
   "url": "shop-by-club-rail.html"
+ },
+ {
+  "title": "WorldSoccerShop Sale page",
+  "url": "page-wss-sale.html"
+ },
+ {
+  "title": "Tampa Bay Super Cup",
+  "url": "page-tampa-bay-super-cup.html"
+ },
+ {
+  "title": "NCFC Holiday Store",
+  "url": "page-ncfc-holiday-store.html"
+ },
+ {
+  "title": "Beach FC Holiday Store",
+  "url": "page-beach-fc-holiday-store.html"
+ },
+ {
+  "title": "HTX Soccer Holiday Store",
+  "url": "page-htx-holiday-store.html"
+ },
+ {
+  "title": "Phoenix Rising Holiday Store",
+  "url": "page-phoenix-rising-holiday-store.html"
+ },
+ {
+  "title": "Goal Club Days, Beach FC",
+  "url": "page-goal-club-days-beach-fc.html"
+ },
+ {
+  "title": "Goal Club Days, HTX Soccer",
+  "url": "page-goal-club-days-htx.html"
+ },
+ {
+  "title": "Goal Club Days, Phoenix Rising",
+  "url": "page-goal-club-days-phoenix-rising.html"
  }
 ];

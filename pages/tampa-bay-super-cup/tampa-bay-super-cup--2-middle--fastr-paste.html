@@ -1,0 +1,171 @@
+<!--
+  Partner: Tampa Super Cup 2026, Middle (marquee between the two DX carousels)
+  Tampa Bay Super Cup Official Store, Soccer.com. Fastr CMS component, no iframe. Paste the whole file into one Fastr HTML component.
+  Page order on soccer.com/tampa-bay-super-cup: Top, DX jerseys widget, Middle, DX cleats carousel, Bottom.
+  Reserved heights, Chromium, 21 Oct 2026, local stand-in fonts: Mobile 56 · 640+ 70 · 1024+ 70
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<style>
+
+#tbsc-mid#tbsc-mid{
+  --theme-ink:var(--theme-color-text-primary,#171717);
+  --theme-surface:var(--theme-color-surface,#ffffff);
+  --theme-body:var(--theme-font-family-body,Figtree,system-ui,sans-serif);
+  /* Campaign layer: Tampa Bay Super Cup. Only this block changes for the next event.
+     Contrast (WCAG 2.1, measured): white on navy 17.7 pass · cream on navy 15.7 pass · cream-2 on navy 14.7 pass ·
+     mist on navy 11.1 pass · teal on navy 9.7 pass · teal-light on navy 11.4 pass · muted on navy 5.4 pass ·
+     white on deep 15.9 pass · teal on deep 8.7 pass · teal-light on deep 10.2 pass ·
+     white on navy-2 14.8 pass · teal-light on navy-2 9.5 pass · steel on navy-2 7.8 pass · teal on navy-2 8.1 pass ·
+     navy on teal 9.7 pass · navy on cream 15.7 pass · navy-2 on cream 13.1 pass · deep on cream 14.1 pass ·
+     forest on cream 13.2 pass · navy-2 on white 14.8 pass · slate on white 6.0 pass ·
+     white on sdc-red 4.8 pass (event store pin, Soccer.com logo) · teal on cream 1.6 FAIL, never set teal text on a light ground · muted on white 3.3, borders only. */
+  --campaign-navy:#0a1929;
+  --campaign-deep:#102432;
+  --campaign-navy-2:#112942;
+  --campaign-supercup:#1b2b48;
+  --campaign-teal:#4ad4c2;
+  --campaign-teal-light:#7ce0d3;
+  --campaign-teal-pale:#bdfff6;
+  --campaign-cream:#f5f1e8;
+  --campaign-cream-2:#edeada;
+  --campaign-cream-3:#e0d8cc;
+  --campaign-sand:#d9d3b9;
+  --campaign-fade:#eaeaea;
+  --campaign-muted:#7c8fa6;
+  --campaign-mist:#c3cedc;
+  --campaign-steel:#b4bdc9;
+  --campaign-slate:#50657d;
+  --campaign-forest:#192b1f;
+  --campaign-white:#ffffff;
+  --campaign-black:#000000;
+  --campaign-map-edge:#f4f0e8;
+  --campaign-map-control:#eef2ff;
+  --campaign-white-warm:#fffffc;
+  --campaign-shadow:46 37 31;
+  --campaign-display:"Anton","Arial Narrow",Impact,sans-serif;
+  --campaign-serif:"Fraunces",Georgia,serif;
+  --campaign-mono:"Aeonik Mono",ui-monospace,monospace;
+  --campaign-sdc-red:#e0144a;
+  --campaign-body:"Inter",var(--theme-body);
+  position:relative;display:block;width:100%;max-width:none;margin:0;padding:0;border:0;overflow:hidden;background:var(--campaign-navy);color:var(--campaign-white);
+  font-family:var(--campaign-body);font-size:16px;font-weight:400;font-style:normal;line-height:1.4;letter-spacing:normal;text-transform:none;font-optical-sizing:none;-webkit-font-smoothing:antialiased;text-align:left;box-sizing:border-box
+}
+#tbsc-mid#tbsc-mid,#tbsc-mid#tbsc-mid *,#tbsc-mid#tbsc-mid *::before,#tbsc-mid#tbsc-mid *::after{box-sizing:border-box}
+#tbsc-mid#tbsc-mid :where(header,nav,section,footer,form,fieldset,legend,label,h1,h2,h3,h4,h5,h6,p,ul,ol,li,hr){margin:0;padding:0;border:0;background:none;box-shadow:none;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;line-height:inherit;letter-spacing:normal;text-transform:none;color:inherit}
+#tbsc-mid#tbsc-mid :where(ul,ol,li){list-style:none}
+#tbsc-mid#tbsc-mid :where(ul,ol,li)::before,#tbsc-mid#tbsc-mid :where(ul,ol,li)::after{content:none}
+#tbsc-mid#tbsc-mid :where(img,video,svg){display:block;max-width:none;margin:0;padding:0;border:0}
+#tbsc-mid#tbsc-mid :where(a,a:hover,a:focus,a:active,a:visited){color:inherit;text-decoration:none;background:none;font-family:inherit}
+#tbsc-mid#tbsc-mid :where(button,button:hover,button:focus,button:active){-webkit-appearance:none;appearance:none;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;color:inherit;letter-spacing:inherit;text-transform:none;cursor:pointer}
+#tbsc-mid#tbsc-mid :where(b,strong){font-weight:700}
+#tbsc-mid#tbsc-mid :where(i,em){font-style:italic}
+#tbsc-mid#tbsc-mid :focus-visible{outline:3px solid var(--campaign-teal);outline-offset:3px}
+#tbsc-mid#tbsc-mid,#tbsc-mid#tbsc-mid [id]{scroll-margin-top:146px}
+/* Offer marquee: Osmo CSS Marquee, CSS verbatim from marquee-canon.css except numbered deviations */
+/* ⚠️DEVIATION M1: scoped to the page wrapper (#tbsc-mid#tbsc-mid so it outranks host #body rules without !important); the :root and html,body rules of the canon file are dropped (Fastr). */
+#tbsc-mid#tbsc-mid .marquee-css{color:var(--mq-ink);background-color:var(--mq-ground);width:100%;display:flex;position:relative;overflow:hidden}
+#tbsc-mid#tbsc-mid .marquee-css__list{flex:none;align-items:center;display:flex;position:relative}
+#tbsc-mid#tbsc-mid .marquee-css__item{grid-column-gap:1em;grid-row-gap:1em;flex:0;align-items:center;padding-top:1em;padding-bottom:1em;padding-right:1em;display:flex}
+#tbsc-mid#tbsc-mid .marquee-css__item-p{white-space:nowrap;margin-bottom:0;font-size:1.5em;line-height:1}
+@keyframes translateX{to{transform:translateX(-100%)}}
+#tbsc-mid#tbsc-mid [data-css-marquee-list]{animation:translateX 30s linear;animation-iteration-count:infinite;animation-play-state:paused}
+#tbsc-mid#tbsc-mid .marquee-css__item-p{margin-top:0;line-height:1;display:flex;align-items:center}
+/* ⚠️DEVIATION M2: Super Cup values: 70px band, 64px between items and dividers, three-part Inter 18 item, 26px rule as the separator. */
+#tbsc-mid#tbsc-mid .nh-marquee{height:70px;display:flex;align-items:center;overflow:hidden;background:var(--mq-ground)}
+#tbsc-mid#tbsc-mid .nh-marquee--dark{--mq-ground:var(--campaign-navy);--mq-ink:var(--campaign-white);--mq-accent:var(--campaign-teal);--mq-rule:var(--campaign-cream)}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item{gap:64px;padding:0 64px 0 0;font-size:18px}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p{gap:8px;margin:0;padding:0;font-family:var(--campaign-body);font-weight:400;font-size:18px;line-height:1;color:var(--mq-ink)}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p b{font-weight:800;color:var(--mq-accent)}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p span{text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){
+#tbsc-mid#tbsc-mid [data-css-marquee-list]{animation:none;transform:none}
+#tbsc-mid#tbsc-mid [data-css-marquee-list]:not(:first-child){display:none}
+#tbsc-mid#tbsc-mid .marquee-css{justify-content:center}
+}
+@media (max-width:767px){
+#tbsc-mid#tbsc-mid,#tbsc-mid#tbsc-mid [id]{scroll-margin-top:64px}
+#tbsc-mid#tbsc-mid .nh-marquee{height:56px}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item{gap:40px;padding-right:40px}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p{font-size:16px}
+}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item{gap:64px;padding:0 64px 0 0}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p{gap:12px}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p .nh-mq__list{text-transform:none;font-weight:400}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p .nh-mq__list i{font-style:normal;padding:0 10px;color:var(--campaign-muted)}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p .nh-mq__rule{width:.75px;height:26px;margin:0 4px;background:repeating-linear-gradient(180deg,var(--mq-rule) 0 2px,transparent 2px 4px)}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p .nh-mq__code{text-transform:none;color:var(--campaign-mist)}
+#tbsc-mid#tbsc-mid .nh-marquee .marquee-css__item-p .nh-mq__code span{color:var(--mq-ink);text-transform:uppercase}
+#tbsc-mid#tbsc-mid .nh-mq-adidas{width:27px;height:16px;flex:none;color:var(--mq-ink)}
+#tbsc-mid#tbsc-mid.nh.tbsc [hidden]{display:none}
+
+</style>
+<div class="nh tbsc tbsc-mid" id="tbsc-mid">
+  <div class="nh-marquee nh-marquee--dark">
+    <div data-css-marquee class="marquee-css" role="marquee" aria-label="20% off adidas cleats, F50, Predator and Sparkfusion, with code SUPERCUP">
+      <div data-css-marquee-list class="marquee-css__list"><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div></div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById('tbsc-mid');
+  if (!root) return;
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function safe(fn) { try { fn(); } catch (e) { if (window.console) console.warn('Super Cup store:', e); } }
+  /* Osmo Supply · CSS Marquee · JavaScript verbatim from marquee-init.js except numbered deviations */
+  function initCSSMarquee() {
+    const pixelsPerSecond = 75;
+    /* ⚠️DEVIATION M3: queries run from the page wrapper, not document. */
+    const marquees = root.querySelectorAll('[data-css-marquee]');
+
+    marquees.forEach(marquee => {
+      marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
+        const duplicate = list.cloneNode(true);
+        marquee.appendChild(duplicate);
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.querySelectorAll('[data-css-marquee-list]').forEach(list =>
+          list.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
+        );
+      });
+    }, { threshold: 0 });
+
+    /* ⚠️DEVIATION M4: re-measure duration after fonts/window load and via ResizeObserver so iOS Safari never locks a pre-layout width; scale speed to 35px/s below 768px. */
+    function measureAll() {
+      const speed = window.innerWidth < 768 ? 35 : pixelsPerSecond;
+      marquees.forEach(marquee => {
+        marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
+          const w = Math.max(list.scrollWidth || 0, list.offsetWidth || 0);
+          if (w > 0) {
+            list.style.animationDuration = Math.max(12, w / speed) + 's';
+          }
+        });
+      });
+    }
+
+    const ro = 'ResizeObserver' in window ? new ResizeObserver(() => measureAll()) : null;
+
+    marquees.forEach(marquee => {
+      marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
+        list.style.animationDuration = (list.offsetWidth / pixelsPerSecond) + 's';
+        list.style.animationPlayState = 'paused';
+        if (ro) ro.observe(list);
+      });
+      observer.observe(marquee);
+    });
+
+    measureAll();
+    window.addEventListener('load', measureAll, { once: true });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureAll).catch(function () {});
+    }
+  }
+  if (!reducedMotion && 'IntersectionObserver' in window) safe(initCSSMarquee);
+})();
+</script>

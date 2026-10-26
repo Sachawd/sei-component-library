@@ -192,9 +192,19 @@ PAGE_TYPES = [
     ("Landing pages", [
         ("WorldSoccerShop Sale page", "page-wss-sale.html"),
     ]),
-    ("Project hubs", [
-        ("Holiday 2026 Hub", "page-holiday-hub.html"),
-        ("Team Sales Holiday Pop-Up package", "page-holiday-pop-up-package.html"),
+    ("Tournament & event pages", [
+        ("Tampa Bay Super Cup", "page-tampa-bay-super-cup.html"),
+    ]),
+    ("Team store holiday pages", [
+        ("NCFC Holiday Store", "page-ncfc-holiday-store.html"),
+        ("Beach FC Holiday Store", "page-beach-fc-holiday-store.html"),
+        ("HTX Soccer Holiday Store", "page-htx-holiday-store.html"),
+        ("Phoenix Rising Holiday Store", "page-phoenix-rising-holiday-store.html"),
+    ]),
+    ("Team store event pages", [
+        ("Goal Club Days, Beach FC", "page-goal-club-days-beach-fc.html"),
+        ("Goal Club Days, HTX Soccer", "page-goal-club-days-htx.html"),
+        ("Goal Club Days, Phoenix Rising", "page-goal-club-days-phoenix-rising.html"),
     ]),
 ]
 
@@ -204,8 +214,14 @@ EXTRA_CARDS = {
     "email-chivas-third-still.html": ("Soccer.com", "In progress", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
     "email-team-holiday-pop-up.html": ("Soccer.com", "In progress", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
     "page-wss-sale.html": ("WorldSoccerShop", "In progress", None, 0, 0),
-    "page-holiday-hub.html": ("All brands", "In progress", None, 0, 0),
-    "page-holiday-pop-up-package.html": ("Soccer.com", "In progress", None, 0, 0),
+    "page-tampa-bay-super-cup.html": ("Soccer.com", "Live", "../pages/tampa-bay-super-cup/images/tbsc26-hero-1.jpg", 1200, 800),
+    "page-ncfc-holiday-store.html": ("Soccer.com", "Ready", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
+    "page-beach-fc-holiday-store.html": ("Soccer.com", "Ready", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
+    "page-htx-holiday-store.html": ("Soccer.com", "Ready", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
+    "page-phoenix-rising-holiday-store.html": ("Soccer.com", "Ready", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
+    "page-goal-club-days-beach-fc.html": ("Soccer.com", "Live", None, 0, 0),
+    "page-goal-club-days-htx.html": ("Soccer.com", "Live", None, 0, 0),
+    "page-goal-club-days-phoenix-rising.html": ("Soccer.com", "Live", None, 0, 0),
 }
 
 COLLECTIONS = {

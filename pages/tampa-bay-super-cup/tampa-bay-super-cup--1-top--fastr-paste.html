@@ -1,0 +1,440 @@
+<!--
+  Partner: Tampa Super Cup 2026, Top (header, nav, hero, marquee, 20% off pop-up)
+  Tampa Bay Super Cup Official Store, Soccer.com. Fastr CMS component, no iframe. Paste the whole file into one Fastr HTML component.
+  Page order on soccer.com/tampa-bay-super-cup: Top, DX jerseys widget, Middle, DX cleats carousel, Bottom.
+  Reserved heights, Chromium, 21 Oct 2026, local stand-in fonts: Mobile 828 (at 390) · 640+ 1006 (at 768) · 1024+ 1200 (at 1440)
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<style>
+
+#tbsc-top#tbsc-top{
+  --theme-ink:var(--theme-color-text-primary,#171717);
+  --theme-surface:var(--theme-color-surface,#ffffff);
+  --theme-body:var(--theme-font-family-body,Figtree,system-ui,sans-serif);
+  /* Campaign layer: Tampa Bay Super Cup. Only this block changes for the next event.
+     Contrast (WCAG 2.1, measured): white on navy 17.7 pass · cream on navy 15.7 pass · cream-2 on navy 14.7 pass ·
+     mist on navy 11.1 pass · teal on navy 9.7 pass · teal-light on navy 11.4 pass · muted on navy 5.4 pass ·
+     white on deep 15.9 pass · teal on deep 8.7 pass · teal-light on deep 10.2 pass ·
+     white on navy-2 14.8 pass · teal-light on navy-2 9.5 pass · steel on navy-2 7.8 pass · teal on navy-2 8.1 pass ·
+     navy on teal 9.7 pass · navy on cream 15.7 pass · navy-2 on cream 13.1 pass · deep on cream 14.1 pass ·
+     forest on cream 13.2 pass · navy-2 on white 14.8 pass · slate on white 6.0 pass ·
+     white on sdc-red 4.8 pass (event store pin, Soccer.com logo) · teal on cream 1.6 FAIL, never set teal text on a light ground · muted on white 3.3, borders only. */
+  --campaign-navy:#0a1929;
+  --campaign-deep:#102432;
+  --campaign-navy-2:#112942;
+  --campaign-supercup:#1b2b48;
+  --campaign-teal:#4ad4c2;
+  --campaign-teal-light:#7ce0d3;
+  --campaign-teal-pale:#bdfff6;
+  --campaign-cream:#f5f1e8;
+  --campaign-cream-2:#edeada;
+  --campaign-cream-3:#e0d8cc;
+  --campaign-sand:#d9d3b9;
+  --campaign-fade:#eaeaea;
+  --campaign-muted:#7c8fa6;
+  --campaign-mist:#c3cedc;
+  --campaign-steel:#b4bdc9;
+  --campaign-slate:#50657d;
+  --campaign-forest:#192b1f;
+  --campaign-white:#ffffff;
+  --campaign-black:#000000;
+  --campaign-map-edge:#f4f0e8;
+  --campaign-map-control:#eef2ff;
+  --campaign-white-warm:#fffffc;
+  --campaign-shadow:46 37 31;
+  --campaign-display:"Anton","Arial Narrow",Impact,sans-serif;
+  --campaign-serif:"Fraunces",Georgia,serif;
+  --campaign-mono:"Aeonik Mono",ui-monospace,monospace;
+  --campaign-sdc-red:#e0144a;
+  --campaign-body:"Inter",var(--theme-body);
+  position:relative;display:block;width:100%;max-width:none;margin:0;padding:0;border:0;overflow:hidden;background:var(--campaign-navy);color:var(--campaign-white);
+  font-family:var(--campaign-body);font-size:16px;font-weight:400;font-style:normal;line-height:1.4;letter-spacing:normal;text-transform:none;font-optical-sizing:none;-webkit-font-smoothing:antialiased;text-align:left;box-sizing:border-box
+}
+#tbsc-top#tbsc-top,#tbsc-top#tbsc-top *,#tbsc-top#tbsc-top *::before,#tbsc-top#tbsc-top *::after{box-sizing:border-box}
+#tbsc-top#tbsc-top :where(header,nav,section,footer,form,fieldset,legend,label,h1,h2,h3,h4,h5,h6,p,ul,ol,li){margin:0;padding:0;border:0;background:none;box-shadow:none;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:normal;line-height:inherit;letter-spacing:normal;text-transform:none;color:inherit}
+#tbsc-top#tbsc-top :where(ul,ol,li){list-style:none}
+#tbsc-top#tbsc-top :where(ul,ol,li)::before,#tbsc-top#tbsc-top :where(ul,ol,li)::after{content:none}
+#tbsc-top#tbsc-top :where(img,video,svg){display:block;max-width:none;margin:0;padding:0;border:0}
+#tbsc-top#tbsc-top :where(a,a:hover,a:focus,a:active,a:visited){color:inherit;text-decoration:none;background:none;font-family:inherit}
+#tbsc-top#tbsc-top :where(button,button:hover,button:focus,button:active){-webkit-appearance:none;appearance:none;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font:inherit;color:inherit;letter-spacing:inherit;text-transform:none;cursor:pointer}
+#tbsc-top#tbsc-top :where(b,strong){font-weight:700}
+#tbsc-top#tbsc-top :where(i,em){font-style:italic}
+#tbsc-top#tbsc-top .nh-trim{text-box:trim-both cap alphabetic}
+#tbsc-top#tbsc-top :focus-visible{outline:3px solid var(--campaign-teal);outline-offset:3px}
+#tbsc-top#tbsc-top [id],#tbsc-top#tbsc-top .nh-anchor{scroll-margin-top:146px}
+#tbsc-top#tbsc-top .nh-pill,#tbsc-top#tbsc-top .nh-pill:visited{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;margin:0;padding:8px 20px;border:1px solid transparent;border-radius:999px;background:var(--campaign-white);color:var(--campaign-navy);font:700 14px/24px var(--campaign-body);letter-spacing:normal;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+#tbsc-top#tbsc-top .nh-pill:hover,#tbsc-top#tbsc-top .nh-pill:focus-visible{background:var(--campaign-white);color:var(--campaign-navy);text-decoration:none}
+#tbsc-top#tbsc-top .nh-pill svg{width:20px;height:20px;flex:none}
+#tbsc-top#tbsc-top .nh-header{display:block;margin:0;padding:0;border:0;background:var(--campaign-navy)}
+#tbsc-top#tbsc-top .nh-header__top{display:flex;align-items:center;gap:8px;height:166px;padding:13px 24px}
+#tbsc-top#tbsc-top .nh-brand,#tbsc-top#tbsc-top .nh-brand:hover,#tbsc-top#tbsc-top .nh-brand:focus,#tbsc-top#tbsc-top .nh-brand:visited{flex:1;display:flex;align-items:center;gap:8px;min-width:0;color:var(--campaign-white);text-decoration:none}
+#tbsc-top#tbsc-top .nh-brand__roundel{display:flex;padding:0 12px}
+#tbsc-top#tbsc-top .nh-brand__roundel img{width:79px;height:79px;object-fit:contain}
+#tbsc-top#tbsc-top .nh-brand__rule{width:2px;height:80px;flex:none;background:var(--campaign-teal)}
+#tbsc-top#tbsc-top .nh-brand__partner{width:202px;height:58px;object-fit:contain}
+#tbsc-top#tbsc-top .nh-nav{display:block;margin:0;padding:0;border:0;background:var(--campaign-navy)}
+#tbsc-top#tbsc-top .nh-nav__list{display:flex;align-items:center;justify-content:center;gap:8px;height:64px;margin:0;padding:12px 0;list-style:none}
+#tbsc-top#tbsc-top .nh-nav__list li{display:flex;align-items:center;margin:0;padding:0;list-style:none}
+#tbsc-top#tbsc-top .nh-nav__divider{width:.75px;height:26px;background:repeating-linear-gradient(180deg,color-mix(in srgb,var(--campaign-sand) 40%,transparent) 0 2px,transparent 2px 4px)}
+#tbsc-top#tbsc-top .nh-nav__link,#tbsc-top#tbsc-top .nh-nav__link:visited{display:inline-flex;align-items:center;gap:8px;width:auto;height:40px;min-height:0;margin:0;padding:8px 24px;border:0;border-radius:999px;box-shadow:none;background:none;color:var(--campaign-white-warm);font:700 16px/24px var(--campaign-body);letter-spacing:normal;text-transform:uppercase;text-decoration:none;white-space:nowrap;cursor:pointer}
+#tbsc-top#tbsc-top .nh-nav__link svg{width:20px;height:20px;flex:none}
+#tbsc-top#tbsc-top .nh-nav__link--accent,#tbsc-top#tbsc-top .nh-nav__link--accent:visited{color:var(--campaign-teal)}
+#tbsc-top#tbsc-top .nh-nav__link--home,#tbsc-top#tbsc-top .nh-nav__link--home:visited{font-weight:400;font-size:14px;color:var(--campaign-mist);text-transform:capitalize}
+#tbsc-top#tbsc-top .nh-nav__link:hover{text-decoration:underline;text-underline-offset:6px}
+#tbsc-top#tbsc-top .nh-hero{position:relative;display:flex;height:900px;margin:0;padding:0;overflow:hidden;background:var(--campaign-black)}
+#tbsc-top#tbsc-top .nh-hero__side{position:relative;flex:1 1 50%;min-width:0;overflow:hidden;background:var(--campaign-black)}
+#tbsc-top#tbsc-top .nh-hero__side--left::after,#tbsc-top#tbsc-top .nh-hero__side--right::after{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--campaign-black) 30%,transparent);pointer-events:none}
+#tbsc-top#tbsc-top .nh-hero__strip{display:flex;width:300%;height:100%;animation:nh-meet-left 8s infinite}
+#tbsc-top#tbsc-top .nh-hero__side--right .nh-hero__strip{animation-name:nh-meet-right}
+#tbsc-top#tbsc-top .nh-hero__frame{flex:none;width:33.3334%;height:100%}
+#tbsc-top#tbsc-top .nh-hero__frame img{width:100%;height:100%;object-fit:cover}
+@keyframes nh-meet-left{
+  0%,43.75%{translate:-66.6667% 0;animation-timing-function:cubic-bezier(.65,0,.35,1)}
+  53.75%{translate:-33.3333% 0}
+  90%{translate:-33.3333% 0;animation-timing-function:cubic-bezier(.65,0,.35,1)}
+  100%{translate:0 0}
+}
+@keyframes nh-meet-right{
+  0%,43.75%{translate:0 0;animation-timing-function:cubic-bezier(.65,0,.35,1)}
+  53.75%{translate:-33.3333% 0}
+  90%{translate:-33.3333% 0;animation-timing-function:cubic-bezier(.65,0,.35,1)}
+  100%{translate:-66.6667% 0}
+}
+#tbsc-top#tbsc-top .nh-hero__text{position:absolute;z-index:2;left:0;top:14px;width:100%;height:900px;display:flex;justify-content:center;background:linear-gradient(180deg,color-mix(in srgb,var(--campaign-black) 0%,transparent) 75.7%,var(--campaign-black) 94.6%);pointer-events:none}
+#tbsc-top#tbsc-top .nh-hero__stack{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:654px;height:899px;margin-top:1px;text-align:center}
+#tbsc-top#tbsc-top .nh-hero__name{display:flex;flex-direction:column;margin:0;padding:0;font-family:var(--campaign-display);font-weight:400;line-height:1;letter-spacing:normal;color:var(--campaign-cream);text-transform:uppercase}
+#tbsc-top#tbsc-top .nh-hero__l1,#tbsc-top#tbsc-top .nh-hero__l2{font:400 130px/1 var(--campaign-display);letter-spacing:normal;text-transform:uppercase}
+#tbsc-top#tbsc-top .nh-hero__l1{color:var(--campaign-cream)}
+#tbsc-top#tbsc-top .nh-hero__l2{color:color-mix(in srgb,var(--campaign-supercup) 20%,transparent);-webkit-text-stroke:2px var(--campaign-cream)}
+#tbsc-top#tbsc-top .nh-hero__l3{margin:0;padding:6px 18px;border-radius:999px;background:color-mix(in srgb,var(--campaign-navy) 78%,transparent);font-family:var(--campaign-body);font-weight:800;font-size:46px;line-height:1.1;letter-spacing:normal;color:var(--campaign-teal-light);text-transform:uppercase}
+#tbsc-top#tbsc-top .nh-hero__cta{pointer-events:auto}
+#tbsc-top#tbsc-top .nh-hero__cta .nh-pill{width:200px}
+@keyframes nh-in-down{from{opacity:0;translate:0 -24px}}
+@keyframes nh-in-up{from{opacity:0;translate:0 24px}}
+@keyframes nh-fade{from{opacity:0}}
+
+@keyframes nh-rise-10{from{translate:0 10px}}
+
+@keyframes nh-pop{from{scale:.85}}
+
+@media (prefers-reduced-motion:no-preference){
+#tbsc-top#tbsc-top .nh-hero.is-in .nh-hero__l1{animation:nh-fade .27s ease-out both,nh-in-down .45s ease-out both}
+#tbsc-top#tbsc-top .nh-hero.is-in .nh-hero__l2{animation:nh-fade .27s ease-out both,nh-in-up .45s ease-out both}
+#tbsc-top#tbsc-top .nh-hero.is-in .nh-hero__l3{animation:nh-fade .3s .45s ease-out both,nh-rise-10 .3s .45s ease-out both}
+#tbsc-top#tbsc-top .nh-hero.is-in .nh-hero__cta{animation:nh-fade .15s .75s ease-out both,nh-pop .3s .75s ease-out both}
+}
+@media (prefers-reduced-motion:reduce){
+#tbsc-top#tbsc-top .nh-hero__strip{animation:none}
+}
+/* Offer marquee: Osmo CSS Marquee, CSS verbatim from marquee-canon.css except numbered deviations */
+/* ⚠️DEVIATION M1: scoped to the page wrapper (#tbsc-top#tbsc-top so it outranks host #body rules without !important); the :root and html,body rules of the canon file are dropped (Fastr). */
+#tbsc-top#tbsc-top .marquee-css{color:var(--mq-ink);background-color:var(--mq-ground);width:100%;display:flex;position:relative;overflow:hidden}
+#tbsc-top#tbsc-top .marquee-css__list{flex:none;align-items:center;display:flex;position:relative}
+#tbsc-top#tbsc-top .marquee-css__item{grid-column-gap:1em;grid-row-gap:1em;flex:0;align-items:center;padding-top:1em;padding-bottom:1em;padding-right:1em;display:flex}
+#tbsc-top#tbsc-top .marquee-css__item-p{white-space:nowrap;margin-bottom:0;font-size:1.5em;line-height:1}
+@keyframes translateX{to{transform:translateX(-100%)}}
+#tbsc-top#tbsc-top [data-css-marquee-list]{animation:translateX 30s linear;animation-iteration-count:infinite;animation-play-state:paused}
+#tbsc-top#tbsc-top .marquee-css__item-p{margin-top:0;line-height:1;display:flex;align-items:center}
+/* ⚠️DEVIATION M2: Super Cup values: 70px band, 64px between items and dividers, three-part Inter 18 item, 26px rule as the separator. */
+#tbsc-top#tbsc-top .nh-marquee{height:70px;display:flex;align-items:center;overflow:hidden;background:var(--mq-ground)}
+#tbsc-top#tbsc-top .nh-marquee--dark{--mq-ground:var(--campaign-navy);--mq-ink:var(--campaign-white);--mq-accent:var(--campaign-teal);--mq-rule:var(--campaign-cream)}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item{gap:64px;padding:0 64px 0 0;font-size:18px}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p{gap:8px;margin:0;padding:0;font-family:var(--campaign-body);font-weight:400;font-size:18px;line-height:1;color:var(--mq-ink)}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p b{font-weight:800;color:var(--mq-accent)}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p span{text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){
+#tbsc-top#tbsc-top [data-css-marquee-list]{animation:none;transform:none}
+#tbsc-top#tbsc-top [data-css-marquee-list]:not(:first-child){display:none}
+#tbsc-top#tbsc-top .marquee-css{justify-content:center}
+}
+@media (max-width:1279px){
+#tbsc-top#tbsc-top .nh-header__top{height:auto;padding:20px 24px}
+#tbsc-top#tbsc-top .nh-nav__list{height:auto;flex-wrap:wrap;justify-content:center;gap:6px 10px;padding:12px 16px;overflow-x:visible}
+#tbsc-top#tbsc-top .nh-nav__link,#tbsc-top#tbsc-top .nh-nav__link:visited{padding:8px 14px;font-size:14px}
+#tbsc-top#tbsc-top .nh-hero__l1,#tbsc-top#tbsc-top .nh-hero__l2{font-size:104px}
+}
+@media (max-width:1023px){
+#tbsc-top#tbsc-top .nh-hero{height:760px}
+#tbsc-top#tbsc-top .nh-hero__text{height:760px}
+#tbsc-top#tbsc-top .nh-hero__stack{height:760px;padding:0 16px;width:100%}
+}
+@media (max-width:767px){
+#tbsc-top#tbsc-top [id],#tbsc-top#tbsc-top .nh-anchor{scroll-margin-top:64px}
+#tbsc-top#tbsc-top .nh-header__top{flex-wrap:wrap;justify-content:center;gap:12px;padding:18px 16px 14px}
+#tbsc-top#tbsc-top .nh-brand,#tbsc-top#tbsc-top .nh-brand:hover,#tbsc-top#tbsc-top .nh-brand:focus,#tbsc-top#tbsc-top .nh-brand:visited{flex:1 1 100%;justify-content:center}
+#tbsc-top#tbsc-top .nh-brand__roundel{padding:0 8px}
+#tbsc-top#tbsc-top .nh-brand__roundel img{width:56px;height:56px}
+#tbsc-top#tbsc-top .nh-brand__rule{height:56px}
+#tbsc-top#tbsc-top .nh-brand__partner{width:140px;height:40px}
+#tbsc-top#tbsc-top .nh-nav__list{height:auto;flex-wrap:wrap;justify-content:center;gap:4px 6px;padding:8px;overflow-x:visible}
+#tbsc-top#tbsc-top .nh-nav__link,#tbsc-top#tbsc-top .nh-nav__link:visited{height:32px;padding:4px 8px;gap:5px;font-size:12px;line-height:20px}
+#tbsc-top#tbsc-top .nh-nav__link--home,#tbsc-top#tbsc-top .nh-nav__link--home:visited{font-size:12px}
+#tbsc-top#tbsc-top .nh-nav__link svg{width:16px;height:16px}
+#tbsc-top#tbsc-top .nh-hero{height:620px}
+#tbsc-top#tbsc-top .nh-hero__text{height:620px}
+#tbsc-top#tbsc-top .nh-hero__stack{height:620px;padding:0 16px calc(44px + env(safe-area-inset-bottom,0px))}
+#tbsc-top#tbsc-top .nh-hero__l1,#tbsc-top#tbsc-top .nh-hero__l2{font-size:clamp(56px,16.5vw,72px)}
+#tbsc-top#tbsc-top .nh-hero__l2{-webkit-text-stroke-width:1.5px}
+#tbsc-top#tbsc-top .nh-hero__l3{font-size:28px;padding:4px 14px}
+#tbsc-top#tbsc-top .nh-marquee{height:56px}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item{gap:40px;padding-right:40px}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){
+#tbsc-top#tbsc-top .nh-pill{transition:none}
+}
+#tbsc-top#tbsc-top .nh-nav__list{gap:8px}
+#tbsc-top#tbsc-top .nh-anchor{display:block;height:0}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item{gap:64px;padding:0 64px 0 0}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p{gap:12px}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p .nh-mq__list{text-transform:none;font-weight:400}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p .nh-mq__list i{font-style:normal;padding:0 10px;color:var(--campaign-muted)}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p .nh-mq__rule{width:.75px;height:26px;margin:0 4px;background:repeating-linear-gradient(180deg,var(--mq-rule) 0 2px,transparent 2px 4px)}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p .nh-mq__code{text-transform:none;color:var(--campaign-mist)}
+#tbsc-top#tbsc-top .nh-marquee .marquee-css__item-p .nh-mq__code span{color:var(--mq-ink);text-transform:uppercase}
+#tbsc-top#tbsc-top .nh-mq-adidas{width:27px;height:16px;flex:none;color:var(--mq-ink)}
+#tbsc-top#tbsc-top .nh-pop{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px}
+#tbsc-top#tbsc-top .nh-pop__backdrop{position:absolute;inset:0;background:color-mix(in srgb,var(--campaign-black) 55%,transparent);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#tbsc-top#tbsc-top .nh-pop__panel{position:relative;display:flex;flex-direction:column;align-items:center;width:1121px;max-width:100%;height:862px;max-height:100%;overflow:auto;overscroll-behavior:contain;padding:46px;background:var(--campaign-deep);color:var(--campaign-white);text-align:center}
+#tbsc-top#tbsc-top .nh-pop__panel:focus{outline:none}
+#tbsc-top#tbsc-top .nh-pop__x{position:absolute;top:16px;right:16px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:999px;box-shadow:none;background:none;color:var(--campaign-white);cursor:pointer}
+#tbsc-top#tbsc-top .nh-pop__x:hover{background:color-mix(in srgb,var(--campaign-white) 10%,transparent)}
+#tbsc-top#tbsc-top .nh-pop__body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;width:100%}
+#tbsc-top#tbsc-top .nh-pop__mark{padding:24px 0 0}
+#tbsc-top#tbsc-top .nh-adidas{width:72px;height:43px;color:var(--campaign-white)}
+#tbsc-top#tbsc-top .nh-pop__h{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0;padding:0;color:var(--campaign-white)}
+#tbsc-top#tbsc-top .nh-pop__big{font:400 120px/1 var(--campaign-display);color:var(--campaign-white);text-transform:uppercase}
+#tbsc-top#tbsc-top .nh-pop__serif{font:300 italic 64px/1 var(--campaign-serif);letter-spacing:-.02em;color:var(--campaign-white);text-transform:none}
+#tbsc-top#tbsc-top .nh-pop__code{margin:0;padding:20px 24px;border:1px dashed color-mix(in srgb,var(--campaign-teal-light) 70%,transparent);font-family:var(--campaign-body);font-weight:300;font-size:18px;line-height:1.2;color:var(--campaign-teal)}
+#tbsc-top#tbsc-top .nh-pop__code b{font-weight:700;color:var(--campaign-teal)}
+#tbsc-top#tbsc-top .nh-pop__terms{margin:0;padding:0;font-family:var(--campaign-body);font-weight:300;font-size:18px;line-height:1.4;color:var(--campaign-teal);text-transform:uppercase;letter-spacing:.02em}
+@media (max-width:1023px){
+#tbsc-top#tbsc-top .nh-pop__panel{height:auto}
+#tbsc-top#tbsc-top .nh-pop__big{font-size:88px}
+#tbsc-top#tbsc-top .nh-pop__serif{font-size:48px}
+}
+@media (max-width:767px){
+#tbsc-top#tbsc-top .nh-nav__divider{display:none}
+#tbsc-top#tbsc-top .nh-pop__panel{padding:56px 20px 28px}
+#tbsc-top#tbsc-top .nh-pop__body{gap:18px}
+#tbsc-top#tbsc-top .nh-pop__big{font-size:64px}
+#tbsc-top#tbsc-top .nh-pop__serif{font-size:38px}
+#tbsc-top#tbsc-top .nh-pop__terms{margin-top:20px}
+}
+#tbsc-top#tbsc-top.nh.tbsc [hidden]{display:none}
+
+</style>
+<div class="nh tbsc tbsc-top" id="tbsc-top">
+
+  <header class="nh-header">
+    <div class="nh-header__top">
+      <a class="nh-brand" href="#tbsc-top" aria-label="Tampa Bay Super Cup official store, back to top">
+        <span class="nh-brand__roundel"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-logo.png" width="79" height="79" alt=""></span>
+        <span class="nh-brand__rule" aria-hidden="true"></span>
+        <img class="nh-brand__partner" src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-orlando-health.png" width="202" height="58" alt="Presented by Orlando Health">
+      </a>
+    </div>
+    <nav class="nh-nav" aria-label="Super Cup store">
+      <ul class="nh-nav__list">
+        <li data-apparel-nav hidden><a class="nh-nav__link" href="#tbsc-apparel">Tournament apparel</a></li>
+        <li class="nh-nav__divider" data-apparel-nav aria-hidden="true" hidden></li>
+        <li><a class="nh-nav__link" href="#tbsc-mid">adidas footwear</a></li>
+        <li class="nh-nav__divider" aria-hidden="true"></li>
+        <li><a class="nh-nav__link nh-nav__link--accent" href="#nh-map">Tournament map <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.69708 3.8638C7.626 0.934984 12.3746 0.934948 15.3035 3.8638C18.2322 6.7927 18.2323 11.5413 15.3035 14.4702L11.7674 18.0064C10.7913 18.9814 9.20955 18.9816 8.23321 18.0064L4.6961 14.4702C1.76741 11.5413 1.7682 6.79263 4.69708 3.8638ZM14.1248 5.04251C11.8468 2.7645 8.15286 2.7645 5.87481 5.04251C3.59721 7.32053 3.59714 11.0137 5.87481 13.2915L9.41192 16.8267C9.73719 17.1516 10.2636 17.1521 10.5887 16.8277L14.1248 13.2915C16.4027 11.0135 16.4026 7.32054 14.1248 5.04251ZM9.99981 5.83353C11.8406 5.83361 13.3336 7.32579 13.3338 9.16654C13.3337 11.0073 11.8406 12.5004 9.99981 12.5005C8.15908 12.5003 6.66691 11.0073 6.6668 9.16654C6.66698 7.32585 8.15912 5.8337 9.99981 5.83353ZM9.99981 7.50052C9.0796 7.5007 8.33397 8.24632 8.3338 9.16654C8.33391 10.0868 9.07956 10.8334 9.99981 10.8335C10.9201 10.8334 11.6667 10.0869 11.6668 9.16654C11.6666 8.24626 10.9201 7.50061 9.99981 7.50052Z" fill="currentColor"/></svg></a></li>
+        <li class="nh-nav__divider" aria-hidden="true"></li>
+        <li><button type="button" class="nh-nav__link nh-nav__link--accent" data-cleats-open aria-haspopup="dialog" aria-controls="tbsc-cleats-pop">20% Off adidas cleats <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.99989 1.66667C10.7054 1.67818 11.3807 1.95525 11.8915 2.44206L12.4833 3.03386C12.6666 3.2231 12.92 3.32803 13.1835 3.32487H14.0165C15.4839 3.33859 16.6667 4.53222 16.6669 5.99968V6.83366C16.6638 7.0971 16.7696 7.3506 16.9589 7.53386L17.5419 8.11687C18.5811 9.1606 18.5812 10.8486 17.5419 11.8923L16.9501 12.4831C16.7608 12.6663 16.655 12.9198 16.6581 13.1833V14.0173C16.6533 15.4878 15.4626 16.6785 13.9921 16.6833H13.1581C12.8926 16.6818 12.6375 16.7872 12.4501 16.9753L11.8749 17.5583C11.3744 18.0505 10.7019 18.3289 9.99989 18.3337C9.29441 18.3346 8.61755 18.0555 8.11708 17.5583L7.49989 16.9753C7.32754 16.7881 7.08805 16.6769 6.83387 16.6667H5.99989C4.53573 16.6621 3.34781 15.4813 3.33387 14.0173V13.1833C3.32883 12.9264 3.22394 12.681 3.04188 12.4997L2.49989 11.9001C1.46069 10.8563 1.46061 9.16837 2.49989 8.12468L3.04188 7.49968C3.22275 7.32452 3.32803 7.08538 3.33387 6.83366V5.99968C3.33868 4.52908 4.52926 3.33834 5.99989 3.33366H6.83387C7.08561 3.32776 7.32476 3.22263 7.49989 3.04167L8.08387 2.45866C8.58919 1.94631 9.2803 1.66026 9.99989 1.66667ZM9.99989 3.33366C9.73332 3.33527 9.4785 3.4431 9.29188 3.63347L8.70887 4.21648C8.21186 4.71471 7.53759 4.99614 6.83387 4.99968H5.99989C5.44784 4.99978 5.00012 5.44766 4.99989 5.99968V6.83366C5.00083 7.539 4.72253 8.21604 4.22547 8.71648L3.64149 9.30046C3.44714 9.48136 3.33615 9.73418 3.33387 9.99968C3.33354 10.2667 3.44164 10.5231 3.63368 10.7087L4.21669 11.2917C4.71906 11.7928 5.00084 12.4737 4.99989 13.1833V14.0173C5.00923 14.5627 5.45429 14.9997 5.99989 14.9997H6.83387C7.53927 14.9988 8.21627 15.2779 8.71668 15.7751L9.29969 16.3581C9.48733 16.5464 9.74286 16.653 10.0087 16.653C10.2744 16.6529 10.5291 16.5463 10.7167 16.3581L11.2997 15.7673C11.8016 15.273 12.4791 14.9965 13.1835 14.9997H14.0165C14.5688 14.9997 15.0165 14.552 15.0165 13.9997V13.1667C15.0309 12.4609 15.3253 11.79 15.8339 11.3005L16.4169 10.7165C16.605 10.5289 16.7108 10.2742 16.7108 10.0085C16.7108 9.74276 16.605 9.48807 16.4169 9.30046L15.8251 8.71648C15.3095 8.22428 15.0121 7.54633 14.9999 6.83366V5.99968C14.9997 5.45403 14.5621 5.00877 14.0165 4.99968H13.1835C12.4779 5.00068 11.8002 4.72258 11.2997 4.22526L10.7167 3.64226C10.5294 3.44669 10.2707 3.33517 9.99989 3.33366ZM11.9081 6.90886C12.2349 6.58209 12.7649 6.58209 13.0917 6.90886C13.4182 7.2356 13.4183 7.76476 13.0917 8.09148L8.09168 13.0915C7.93442 13.2475 7.72139 13.3349 7.49989 13.3337C7.27845 13.3349 7.06531 13.2474 6.90809 13.0915C6.75053 12.935 6.662 12.7217 6.662 12.4997C6.66211 12.2778 6.75066 12.0652 6.90809 11.9089L11.9081 6.90886ZM12.0839 10.8337C12.774 10.8339 13.3339 11.3935 13.3339 12.0837C13.3338 12.7738 12.7739 13.3334 12.0839 13.3337C11.3936 13.3337 10.834 12.7739 10.8339 12.0837C10.8339 11.3933 11.3935 10.8337 12.0839 10.8337ZM7.91688 6.66667C8.60714 6.66674 9.16682 7.22641 9.16688 7.91667C9.16688 8.60698 8.60717 9.1666 7.91688 9.16667C7.22652 9.16667 6.66688 8.60703 6.66688 7.91667C6.66694 7.22636 7.22656 6.66667 7.91688 6.66667Z" fill="currentColor"/></svg></button></li>
+        <li class="nh-nav__divider" aria-hidden="true"></li>
+        <li><a class="nh-nav__link nh-nav__link--home" href="https://www.soccer.com/" target="_top">Back to homepage <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14893 3.14376C9.20419 2.32282 10.664 2.28692 11.7544 3.03634L11.9009 3.14376L16.3442 6.59981C17.0393 7.13984 17.4653 7.95182 17.519 8.82442L17.5249 9.0129V15.0129C17.5247 16.3441 16.4836 17.432 15.1714 17.508L15.0249 17.5129H5.0249C3.6935 17.5129 2.60485 16.4717 2.52881 15.1594L2.5249 15.0129V9.0129C2.52449 8.1327 2.90326 7.29795 3.55908 6.71993L3.70459 6.60079L8.14893 3.14376ZM10.8774 4.45919C10.4095 4.09519 9.76626 4.07135 9.2749 4.38692L9.17236 4.45919L4.72705 7.91622C4.42661 8.14994 4.23708 8.49543 4.19873 8.87032L4.19189 9.0129V15.0129C4.19209 15.4399 4.51316 15.7917 4.92725 15.84L5.0249 15.8459H15.0249C15.4523 15.8459 15.8049 15.524 15.853 15.1096L15.8579 15.0129V9.0129C15.8579 8.63185 15.7016 8.26935 15.4292 8.00899L15.3218 7.91622L10.8774 4.45919ZM5.95361 12.0695C6.19145 11.6756 6.7032 11.5486 7.09717 11.7863C8.67235 12.7373 11.3259 12.7375 12.9028 11.7863C13.2968 11.5487 13.8086 11.6756 14.0464 12.0695C14.2841 12.4636 14.1573 12.9764 13.7632 13.2141C11.6567 14.4843 8.34048 14.4837 6.23584 13.2131C5.84197 12.9752 5.71578 12.4635 5.95361 12.0695Z" fill="#7C8FA6"/></svg></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="nh-hero" aria-labelledby="nh-hero-title" data-hero>
+    <div class="nh-hero__side nh-hero__side--left" data-meet>
+      <div class="nh-hero__strip"><div class="nh-hero__frame" aria-hidden="true"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-hero-1.jpg" width="750" height="938" loading="eager" alt=""></div><div class="nh-hero__frame"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-hero-2.jpg" width="750" height="938" loading="eager" fetchpriority="high" alt="Youth soccer players in action at the Tampa Bay Super Cup"></div><div class="nh-hero__frame"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-hero-1.jpg" width="750" height="938" loading="eager" fetchpriority="high" alt="Players competing on the pitch at the Tampa Bay Super Cup"></div></div>
+    </div>
+    <div class="nh-hero__side nh-hero__side--right" data-meet>
+      <div class="nh-hero__strip"><div class="nh-hero__frame"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-hero-3.jpg" width="750" height="938" loading="eager" fetchpriority="high" alt="Tampa Bay Super Cup match play on the tournament fields"></div><div class="nh-hero__frame"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-hero-4.jpg" width="750" height="938" loading="eager" alt="Athletes warming up at the Tampa Bay Super Cup"></div><div class="nh-hero__frame" aria-hidden="true"><img src="https://www.imagehandler.net/dxassets/?img=Photos/tbsc26-hero-3.jpg" width="750" height="938" loading="eager" alt=""></div></div>
+    </div>
+    <div class="nh-hero__text">
+      <div class="nh-hero__stack">
+        <h1 class="nh-hero__name" id="nh-hero-title"><span class="nh-hero__l1 nh-trim">Tampa Bay</span><span class="nh-hero__l2 nh-trim">Supercup</span></h1>
+        <p class="nh-hero__l3">Official store</p>
+        <div class="nh-hero__cta"><a class="nh-pill" href="#nh-map">Find us at the event</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nh-marquee nh-marquee--dark">
+    <div data-css-marquee class="marquee-css" role="marquee" aria-label="20% off adidas cleats, F50, Predator and Sparkfusion, with code SUPERCUP">
+      <div data-css-marquee-list class="marquee-css__list"><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div><div class="marquee-css__item"><p class="marquee-css__item-p"><b>20% Off adidas cleats*</b><span class="nh-mq__list">F50 <i aria-hidden="true">&bull;</i> Predator <i aria-hidden="true">&bull;</i> Sparkfusion</span><span class="nh-mq__rule" aria-hidden="true"></span><span class="nh-mq__code">Use code: <span>SUPERCUP</span></span></p><svg class="nh-mq-adidas" aria-hidden="true" width="27" height="16" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div></div>
+    </div>
+  </div>
+
+  <div class="nh-pop" id="tbsc-cleats-pop" role="dialog" aria-modal="true" aria-labelledby="tbsc-pop-title" hidden>
+    <div class="nh-pop__backdrop" data-pop-close></div>
+    <div class="nh-pop__panel" tabindex="-1">
+      <button type="button" class="nh-pop__x" data-pop-close aria-label="Close"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <div class="nh-pop__body">
+        <div class="nh-pop__mark"><svg class="nh-adidas" role="img" aria-label="adidas" width="72" height="43" viewBox="0 0 72 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.7539 42.7168H2.68652L2.6748 42.6729L0 37.9199L14.1523 29.71L21.7539 42.7168ZM46.9463 42.6719L46.9678 42.7158H27.9404L16.7002 23.3672L30.8945 14.9316L46.9463 42.6719ZM71.9717 42.6729L72 42.7158H52.7373L33.0088 8.19141L47.2051 0L71.9717 42.6729Z" fill="currentColor"/></svg></div>
+        <h2 class="nh-pop__h" id="tbsc-pop-title"><span class="nh-pop__big">20% Off</span><span class="nh-pop__serif">adidas cleats</span></h2>
+        <p class="nh-pop__code">With code: <b>SUPERCUP</b></p>
+      </div>
+      <p class="nh-pop__terms">*Select products only. Exclusions apply</p>
+    </div>
+  </div>
+
+  <span class="nh-anchor" id="tbsc-apparel" aria-hidden="true"></span>
+</div>
+<script>
+(function () {
+  var root = document.getElementById('tbsc-top');
+  if (!root) return;
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function safe(fn) { try { fn(); } catch (e) { if (window.console) console.warn('Super Cup store:', e); } }
+  // Hero words animate in once on load. The two photo panels slide toward the centre together and pause while the hero is off screen.
+  function initHero() {
+    var hero = root.querySelector('[data-hero]');
+    if (!hero) return;
+    hero.classList.add('is-in');
+    if (!('IntersectionObserver' in window)) return;
+    var strips = [].slice.call(hero.querySelectorAll('.nh-hero__strip'));
+    new IntersectionObserver(function (es) {
+      strips.forEach(function (el) { el.style.animationPlayState = es[0].isIntersecting ? 'running' : 'paused'; });
+    }, { threshold: 0 }).observe(hero);
+  }
+
+  /* Osmo Supply · CSS Marquee · JavaScript verbatim from marquee-init.js except numbered deviations */
+  function initCSSMarquee() {
+    const pixelsPerSecond = 75;
+    /* ⚠️DEVIATION M3: queries run from the page wrapper, not document. */
+    const marquees = root.querySelectorAll('[data-css-marquee]');
+
+    marquees.forEach(marquee => {
+      marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
+        const duplicate = list.cloneNode(true);
+        marquee.appendChild(duplicate);
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.querySelectorAll('[data-css-marquee-list]').forEach(list =>
+          list.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
+        );
+      });
+    }, { threshold: 0 });
+
+    /* ⚠️DEVIATION M4: re-measure duration after fonts/window load and via ResizeObserver so iOS Safari never locks a pre-layout width; scale speed to 35px/s below 768px. */
+    function measureAll() {
+      const speed = window.innerWidth < 768 ? 35 : pixelsPerSecond;
+      marquees.forEach(marquee => {
+        marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
+          const w = Math.max(list.scrollWidth || 0, list.offsetWidth || 0);
+          if (w > 0) {
+            list.style.animationDuration = Math.max(12, w / speed) + 's';
+          }
+        });
+      });
+    }
+
+    const ro = 'ResizeObserver' in window ? new ResizeObserver(() => measureAll()) : null;
+
+    marquees.forEach(marquee => {
+      marquee.querySelectorAll('[data-css-marquee-list]').forEach(list => {
+        list.style.animationDuration = (list.offsetWidth / pixelsPerSecond) + 's';
+        list.style.animationPlayState = 'paused';
+        if (ro) ro.observe(list);
+      });
+      observer.observe(marquee);
+    });
+
+    measureAll();
+    window.addEventListener('load', measureAll, { once: true });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureAll).catch(function () {});
+    }
+  }
+
+
+  // 20% off adidas cleats pop-up: opened from the nav and the customiser offer box (the box sits in another component on the live page).
+  function initPop() {
+    var pop = root.querySelector('#tbsc-cleats-pop');
+    if (!pop) return;
+    var panel = pop.querySelector('.nh-pop__panel');
+    var last = null;
+    function open(from) {
+      last = from || document.activeElement;
+      pop.hidden = false;
+      panel.focus();
+      document.addEventListener('keydown', onKey);
+    }
+    function close(restore) {
+      pop.hidden = true;
+      document.removeEventListener('keydown', onKey);
+      if (restore !== false && last && last.focus) last.focus({ preventScroll: true });
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      var f = [].slice.call(panel.querySelectorAll('a[href],button'));
+      if (!f.length) return;
+      var first = f[0], end = f[f.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === panel)) { e.preventDefault(); end.focus(); }
+      else if (!e.shiftKey && document.activeElement === end) { e.preventDefault(); first.focus(); }
+    }
+    [].forEach.call(pop.querySelectorAll('[data-pop-close]'), function (b) { b.addEventListener('click', function () { close(b.tagName !== 'A'); }); });
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('[data-cleats-open]');
+      if (!t) return;
+      e.preventDefault();
+      open(t);
+    });
+  }
+  function initNavFallback() {
+    function offsetPx() { return window.innerWidth < 768 ? '64px' : '146px'; }
+    function syncTargets() {
+      var carousels = document.querySelectorAll('.playerpass-carousel__outer-wrapper');
+      if (carousels.length >= 2) {
+        [].forEach.call(root.querySelectorAll('[data-apparel-nav]'), function (el) { el.hidden = false; });
+      }
+      if (!document.getElementById('tbsc-mid') && carousels.length > 0) {
+        var cleatsCarousel = carousels[carousels.length - 1];
+        if (!cleatsCarousel.id) cleatsCarousel.id = 'tbsc-mid';
+      }
+      var mid = document.getElementById('tbsc-mid');
+      if (mid) mid.style.scrollMarginTop = offsetPx();
+    }
+    syncTargets();
+    window.addEventListener('load', syncTargets, { once: true });
+    window.addEventListener('resize', syncTargets, { passive: true });
+    root.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var hash = a.getAttribute('href');
+      if (!hash || hash.length < 2) return;
+      syncTargets();
+      var id = hash.slice(1);
+      var target = document.getElementById(id);
+      if (!target && id === 'tbsc-mid') {
+        target = document.querySelector('.playerpass-carousel__outer-wrapper') || document.getElementById('nh-shoe') || document.getElementById('tbsc-bottom');
+      }
+      if (target) {
+        target.style.scrollMarginTop = offsetPx();
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+        if (window.history && history.replaceState) {
+          try { history.replaceState(null, '', location.pathname + location.search + hash); } catch (err) {}
+        }
+      }
+    });
+  }
+  safe(initHero);
+  if (!reducedMotion && 'IntersectionObserver' in window) safe(initCSSMarquee);
+  safe(initPop);
+  safe(initNavFallback);
+})();
+</script>
