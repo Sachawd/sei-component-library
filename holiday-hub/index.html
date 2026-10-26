@@ -41,17 +41,25 @@
   .hh-menu__group .hh-link { display: block; padding: 6px 0; color: var(--nm-title); font-weight: 400; text-decoration: none; }
   .hh-menu__group .hh-link:hover { color: var(--nm-purple-text); text-decoration: underline; }
 
-  .hh-viewing { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 16px 32px; margin: var(--nm-space-6) 0 0; padding: 20px 24px; border-radius: var(--nm-radius-md); background: var(--nm-white); }
-  .hh-viewing[hidden] { display: none; }
-  .hh-people { display: flex; flex: 1 1 600px; flex-wrap: wrap; gap: 16px 32px; }
-  .hh-people__group { display: flex; flex-direction: column; gap: 8px; }
-  .hh-people__pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .hh-person { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 14px; border: 0; border-radius: var(--nm-radius-pill); background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); font: 500 14px/20px var(--nm-sans); cursor: pointer; transition: background-color .2s ease; }
-  .hh-person:hover { background: #DCD3FC; }
-  .hh-person[aria-pressed="true"] { background: var(--nm-purple-text); color: var(--nm-white); }
-  .hh-person[aria-pressed="true"] .hh-count { background: var(--nm-white); color: var(--nm-purple-text); }
-
-  .hh-glance { margin-top: var(--nm-space-6); }
+  .hh-view { margin-top: var(--nm-space-6); }
+  .hh-view[hidden] { display: none; }
+  .hh-view > * + * { margin-top: 24px; }
+  .hh-sec { scroll-margin-top: calc(var(--nm-header-h) + 24px); }
+  .hh-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+  .hh-chip { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 20px; border-radius: 999px; font: 500 12px/1 var(--nm-sans); letter-spacing: 0.48px; white-space: nowrap; }
+  .hh-chip--sm { padding: 6px 14px; }
+  .hh-chip--purple { background: #EAE6FD; color: #402287; }
+  .hh-chip--blue { background: #D7E6FD; color: #1D347C; }
+  .hh-chip--orange { background: rgba(255, 154, 107, 0.4); color: #6A3215; }
+  .hh-chip--green { background: rgba(195, 232, 141, 0.4); color: #4C753B; }
+  .hh-chip--grey { background: #CECFC9; color: #575757; }
+  .hh-chip--pink { background: rgba(255, 107, 196, 0.4); color: #6A3215; }
+  .hh-chip--yellow { background: rgba(255, 245, 107, 0.52); color: #6A3215; }
+  .hh-tasklink { color: var(--nm-title); font-weight: 500; text-decoration: underline; text-decoration-color: #CFC2FD; text-underline-offset: 3px; }
+  .hh-tasklink:hover { color: var(--nm-purple-text); text-decoration-color: currentColor; }
+  .hh-panel .nm-table-wrap, .hh-details__body .nm-table-wrap { margin: 0 -8px; }
+  .hh-table-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hh-table-links .hh-link { font-size: 13px; }
   .hh-updates { margin-top: var(--nm-space-6); padding: 24px; border-top: 4px solid var(--nm-purple); border-radius: var(--nm-radius-md); background: var(--nm-white); box-shadow: var(--nm-shadow-raised); }
   .hh-updates[hidden] { display: none; }
   .hh-updates__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--nm-grey); }
@@ -131,28 +139,18 @@
   .hh-cal__key i { width: 12px; height: 12px; border-radius: 3px; }
   .hh-cal__note { margin: 8px 0 0; color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
 
-  .hh-fold { margin-top: var(--nm-space-6); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+  .hh-fold { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
   .hh-fold .hh-details + .hh-details { margin-top: 0; }
   .hh-fold .hh-details > summary { font: 400 22px/28px var(--nm-serif); color: var(--nm-ink); }
   .hh-fold .hh-details > summary small { color: var(--nm-muted); font: 400 15px/20px var(--nm-sans); }
   .hh-fold .hh-details > summary svg { margin-left: auto; }
-  .hh-stats--below { margin-top: 24px; }
 
   .hh-team { display: flex; flex-direction: column; gap: 12px; }
   .hh-team .hh-details + .hh-details { margin-top: 0; }
   .hh-team .hh-details > summary { flex-wrap: wrap; gap: 8px 16px; }
   .hh-team__name { min-width: 110px; color: var(--nm-ink); font: 400 22px/28px var(--nm-serif); }
   .hh-team__nums { display: flex; flex-wrap: wrap; gap: 6px 8px; flex: 1 1 auto; }
-  .hh-team__nums .hh-badge { font-size: 12px; }
-  .hh-team__nums .hh-badge--risk { background: #FBE3E1; color: #8C1F18; }
-  .hh-team__nums .hh-badge--soon { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
-  .hh-team__nums .hh-badge--sdc { background: var(--nm-chip-blue); color: var(--nm-chip-blue-ink); }
-  .hh-team__nums .hh-badge--wss { background: var(--nm-chip-green); color: var(--nm-chip-green-ink); }
-  .hh-team__list { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
-  .hh-team__list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid #EBEBEB; font: 400 15px/21px var(--nm-sans); }
-  .hh-team__list li:last-child { border-bottom: 0; }
-  .hh-team__task { flex: 1 1 320px; color: var(--nm-title); }
-  .hh-team__when { color: var(--nm-muted); font-size: 13px; }
+  .hh-team__when { color: var(--nm-muted); font-size: 13px; white-space: nowrap; }
   .hh-team__when.is-late { color: #A3271F; font-weight: 500; }
   .hh-team__foot { display: flex; flex-wrap: wrap; gap: 12px; }
   .hh-soon { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
@@ -168,10 +166,11 @@
   .hh-note-card .hh-eyebrow { margin-bottom: 12px; }
 
   .hh-boardbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
-  .hh-toggle { display: inline-flex; flex-wrap: wrap; padding: 6px; border-radius: 24px; background: var(--nm-tabs-track); }
-  .hh-toggle button { min-height: 40px; padding: 10px 20px; border: 0; border-radius: var(--nm-radius-pill); background: transparent; color: var(--nm-purple-text); font: 400 16px/20px var(--nm-sans); cursor: pointer; }
-  .hh-toggle button:hover:not([aria-pressed="true"]) { background: rgba(129, 77, 250, 0.12); }
-  .hh-toggle button[aria-pressed="true"] { background: var(--nm-purple-text); color: var(--nm-white); }
+  .hh-toggle { display: inline-flex; flex-wrap: wrap; padding: 6px; border: 0.5px solid rgba(129, 77, 250, 0.1); border-radius: 24px; background: rgba(129, 77, 250, 0.1); }
+  .hh-toggle button { min-height: 40px; padding: 10.4px 20px; border: 0; border-radius: var(--nm-radius-pill); background: transparent; color: var(--nm-purple-text); font: 400 16px/20px var(--nm-sans); cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+  .hh-toggle button:hover:not([aria-pressed="true"]) { background: rgba(129, 77, 250, 0.06); }
+  .hh-toggle button[aria-pressed="true"] { background: rgba(129, 77, 250, 0.2); color: #402287; font-weight: 500; }
+  .hh-toggle button:focus-visible { outline: 2px solid var(--nm-purple-text); outline-offset: 2px; }
   .hh-toggle[hidden] { display: none; }
   .hh-toggle--sm { padding: 4px; }
   .hh-toggle--sm button { min-height: 36px; padding: 8px 14px; font-size: 14px; }
@@ -182,10 +181,10 @@
   .hh-listview { display: flex; flex-direction: column; gap: 12px; }
   .hh-tag { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: var(--nm-radius-pill); font: 500 12px/1.2 var(--nm-sans); letter-spacing: 0.48px; white-space: nowrap; }
   .hh-tag--sm { padding: 3px 10px; font-size: 11px; }
-  .chip-shoot { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
-  .chip-comp { background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); }
-  .chip-fastr { background: var(--nm-chip-blue); color: var(--nm-chip-blue-ink); }
-  .chip-site { background: var(--nm-chip-green); color: var(--nm-chip-green-ink); }
+  .chip-shoot { background: rgba(255, 245, 107, 0.52); color: #6A3215; }
+  .chip-comp { background: #EAE6FD; color: #402287; }
+  .chip-fastr { background: #D7E6FD; color: #1D347C; }
+  .chip-site { background: rgba(195, 232, 141, 0.4); color: #4C753B; }
 
   .hh-card { border: 1px solid #EBEBEB; border-radius: var(--nm-radius-md); background: var(--nm-surface); transition: border-color .2s ease, box-shadow .25s ease; }
   .hh-card:hover { border-color: #CFC2FD; }
@@ -194,9 +193,9 @@
   .hh-tick { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--nm-purple-text); cursor: pointer; }
   .hh-card__main { display: flex; flex: 1; flex-direction: column; gap: 8px; min-width: 0; }
   .hh-card__top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
-  .hh-badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: var(--nm-radius-pill); background: var(--nm-chip-grey); color: var(--nm-chip-grey-ink); font: 500 11px/16px var(--nm-sans); letter-spacing: 0.44px; }
-  .hh-badge--top { background: var(--nm-plum); color: var(--nm-white); }
-  .hh-badge--agent { background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); }
+  .hh-badge { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 999px; background: #CECFC9; color: #575757; font: 500 12px/1 var(--nm-sans); letter-spacing: 0.48px; }
+  .hh-badge--top { background: #EAE6FD; color: #402287; }
+  .hh-badge--agent { background: #D7E6FD; color: #1D347C; }
   .hh-when { margin-left: auto; color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
   .hh-when--late { color: #A3271F; font-weight: 500; }
   .hh-card__title { padding: 0; border: 0; background: none; color: var(--nm-title); font: 400 16px/22px var(--nm-sans); text-align: left; cursor: pointer; }
@@ -231,14 +230,14 @@
     .hh-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 1100px) {
-    .hh-dash, .hh-fold { grid-template-columns: minmax(0, 1fr); }
+    .hh-dash { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 700px) {
     .hh-stats { gap: 16px; }
     .hh-stat__card { min-height: 112px; padding: 16px; }
     .hh-stat__num { font-size: 44px; }
     .hh-stat__cap { font-size: 15px; line-height: 21px; }
-    .hh-panel, .hh-viewing, .hh-updates, .hh-note-card { padding: 20px 16px; }
+    .hh-panel, .hh-updates, .hh-note-card { padding: 20px 16px; }
     .hh-cal__day { min-height: 48px; padding: 4px; }
     .hh-cal__head { padding: 2px; font-size: 10px; letter-spacing: 0.4px; }
     .hh-ev { display: block; width: 8px; height: 8px; padding: 0; border-radius: 50%; font-size: 0; }
@@ -252,7 +251,7 @@
     .hh-toast { right: 16px; left: 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hh-menu > summary .hh-chev, .hh-details > summary svg { transition: none; }
+    .hh-menu > summary .hh-chev, .hh-details > summary svg, .hh-toggle button { transition: none; }
   }
 </style>
 </head>
@@ -267,14 +266,14 @@
 </header>
 <div class="nm-shell">
 <div class="nm-scrim" hidden></div>
-<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#top" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li><a class="nm-rail__item" href="#my-day"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4"/><path d="M12 20V22.5"/><path d="M4.6 4.6L6.4 6.4"/><path d="M17.6 17.6L19.4 19.4"/><path d="M1.5 12H4"/><path d="M20 12H22.5"/><path d="M4.6 19.4L6.4 17.6"/><path d="M17.6 6.4L19.4 4.6"/></svg><span class="nm-rail__label">My Day</span></a></li><li><a class="nm-rail__item" href="#calendar"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M21.5 4.5H2.5V21.5H21.5V4.5Z"/><path d="M2.5 9.5H21.5"/><path d="M7 2V7"/><path d="M17 2V7"/></svg><span class="nm-rail__label">Calendar</span></a></li><li><a class="nm-rail__item" href="#team"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20C2.5 16.4 5.4 13.5 9 13.5C12.6 13.5 15.5 16.4 15.5 20"/><circle cx="17" cy="9" r="2.5"/><path d="M16 13.6C19.2 13.4 21.5 15.9 21.5 19"/></svg><span class="nm-rail__label">Team</span></a></li><li><a class="nm-rail__item" href="#links"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 14L14 10"/><path d="M8.5 11L5.5 14A3.5 3.5 0 0 0 10.5 19L13.5 16"/><path d="M15.5 13L18.5 10A3.5 3.5 0 0 0 13.5 5L10.5 8"/></svg><span class="nm-rail__label">Links</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Holiday 2026</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="#top" aria-current="page">Overview</a></li><li><a class="nm-drawer__link" href="#at-risk">What&#x27;s at risk</a></li><li><a class="nm-drawer__link" href="#calendar">Calendar</a></li><li><a class="nm-drawer__link" href="#team">Team</a></li><li><a class="nm-drawer__link" href="#my-day">My day</a></li><li><a class="nm-drawer__link" href="#board">Board</a></li><li><a class="nm-drawer__link" href="#tools">Prompt and update</a></li><li><a class="nm-drawer__link" href="#reference">Reference</a></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#overview"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li><a class="nm-rail__item" href="#my-day"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4"/><path d="M12 20V22.5"/><path d="M4.6 4.6L6.4 6.4"/><path d="M17.6 17.6L19.4 19.4"/><path d="M1.5 12H4"/><path d="M20 12H22.5"/><path d="M4.6 19.4L6.4 17.6"/><path d="M17.6 6.4L19.4 4.6"/></svg><span class="nm-rail__label">My Day</span></a></li><li><a class="nm-rail__item" href="#calendar"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M21.5 4.5H2.5V21.5H21.5V4.5Z"/><path d="M2.5 9.5H21.5"/><path d="M7 2V7"/><path d="M17 2V7"/></svg><span class="nm-rail__label">Calendar</span></a></li><li><a class="nm-rail__item" href="#team"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20C2.5 16.4 5.4 13.5 9 13.5C12.6 13.5 15.5 16.4 15.5 20"/><circle cx="17" cy="9" r="2.5"/><path d="M16 13.6C19.2 13.4 21.5 15.9 21.5 19"/></svg><span class="nm-rail__label">Team</span></a></li><li><a class="nm-rail__item" href="#links"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 14L14 10"/><path d="M8.5 11L5.5 14A3.5 3.5 0 0 0 10.5 19L13.5 16"/><path d="M15.5 13L18.5 10A3.5 3.5 0 0 0 13.5 5L10.5 8"/></svg><span class="nm-rail__label">Links</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title" id="hhDrawerTitle">Holiday 2026</p><ul class="nm-drawer__list" id="hhDrawerList"></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
 <main class="nm-main" id="nm-main">
 <div class="nm-panel"><div class="nm-content">
 
-<div class="hh-title hh-anchor" id="top">
+<div class="hh-title">
   <div class="nm-title">
-    <h1>Holiday 2026 Hub</h1>
-    <p class="nm-lede" id="hhRole">Viewing as Sacha.</p>
+    <h1 id="hhViewTitle">Holiday 2026 Hub</h1>
+    <p class="nm-lede" id="hhViewLede">Hello, Sacha.</p>
   </div>
   <div class="hh-actions">
     <div class="hh-toggle hh-toggle--sm" id="hhStore" role="group" aria-label="Show work for" hidden></div>
@@ -287,11 +286,6 @@
 </div>
 <hr class="nm-divider">
 
-<section class="hh-viewing" id="hhViewing" aria-label="Whose tracker you're viewing">
-  <div class="hh-people" id="hhPeople"></div>
-  <button type="button" class="hh-btn hh-btn--sm" id="hhCopyLink">Copy Sacha's link</button>
-</section>
-
 <section class="hh-updates" id="hhUpdates" aria-labelledby="hhUpdatesTitle" hidden>
   <div class="hh-updates__head">
     <h2 id="hhUpdatesTitle">Sacha's updates</h2>
@@ -300,40 +294,20 @@
   <ul class="hh-updates__list" id="hhUpdatesList"></ul>
 </section>
 
-<section class="nm-section hh-glance" aria-label="At a glance">
+<div class="hh-view" id="view-overview" data-view="overview">
   <div class="hh-fold">
-    <details class="hh-details hh-anchor" id="at-risk"><summary><span>What's at risk</span><small id="hhRiskCount"></small><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body" id="hhRisk"></div></details>
-    <details class="hh-details"><summary><span>Next 2 weeks</span><small id="hhSoonCount"></small><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body"><ul class="hh-soon" id="hhSoon"></ul></div></details>
+    <details class="hh-details hh-sec" id="sec-risk"><summary><span>What's at risk</span><span class="hh-chips" id="hhRiskChips"></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body" id="hhRisk"></div></details>
+    <details class="hh-details hh-sec" id="sec-soon"><summary><span>Next 2 weeks</span><span class="hh-chips" id="hhSoonChips"></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body" id="hhSoon"></div></details>
   </div>
-  <section class="hh-panel hh-anchor hh-cal" id="calendar" aria-labelledby="calTitle">
-    <div class="hh-panel__head">
-      <h2 class="hh-panel__title" id="calTitle">Calendar</h2>
-      <div class="hh-cal__bar">
-        <button type="button" class="hh-iconbtn" data-month="-1" aria-label="Previous month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <p class="hh-cal__month" id="hhMonth" aria-live="polite"></p>
-        <button type="button" class="hh-iconbtn" data-month="1" aria-label="Next month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
-    </div>
-    <div class="hh-cal__grid" id="hhCalGrid" role="list"></div>
-    <ul class="hh-cal__key" id="hhCalKey" aria-label="Calendar key"></ul>
-    <p class="hh-cal__note">Every promo colour passes contrast with its text (lowest 6.2:1, needs 4.5:1).</p>
-  </section>
-  <div class="hh-stats hh-stats--below" id="hhStats"></div>
-</section>
+  <div class="hh-stats hh-sec" id="sec-numbers"></div>
+</div>
 
-<section class="nm-section hh-anchor" id="team" aria-labelledby="teamTitle">
-  <div class="nm-section__head"><h2 class="nm-h2" id="teamTitle">Team</h2><p class="nm-section__desc">What everyone has on their plate. Open a name to see their tasks.</p></div>
-  <div class="hh-team" id="hhTeam"></div>
-</section>
-
-<section class="nm-section hh-anchor" id="my-day" aria-labelledby="myDayTitle">
-  <div class="nm-section__head"><h2 class="nm-h2" id="myDayTitle">My day</h2><p class="nm-section__desc">The latest note for <span class="hh-for-name">Sacha</span>, then every task, grouped by project.</p></div>
-  <div class="hh-note-card"><span class="hh-eyebrow" id="hhUpdateTime"></span><ul class="nm-list" id="hhUpdateList"></ul></div>
-</section>
-
-<section class="nm-section hh-anchor" id="board" aria-labelledby="boardTitle">
+<div class="hh-view" id="view-my-day" data-view="my-day" hidden>
+  <div class="hh-chips" id="hhMyChips"></div>
+  <div class="hh-note-card hh-sec" id="sec-note"><span class="hh-eyebrow" id="hhUpdateTime"></span><ul class="nm-list" id="hhUpdateList"></ul></div>
+  <section class="hh-sec" id="sec-tasks" aria-labelledby="boardTitle">
   <div class="hh-boardbar">
-    <h2 class="hh-panel__title" id="boardTitle">Board</h2>
+    <h2 class="hh-panel__title" id="boardTitle">Your tasks</h2>
     <div class="hh-actions">
       <div class="hh-toggle" role="group" aria-label="Show tasks"><button type="button" data-filter="todo" aria-pressed="true">To do</button><button type="button" data-filter="done" aria-pressed="false">Done</button><button type="button" data-filter="all" aria-pressed="false">All</button></div>
       <div class="hh-toggle" role="group" aria-label="Board layout"><button type="button" data-layout="kanban" aria-pressed="true">Columns</button><button type="button" data-layout="list" aria-pressed="false">List</button></div>
@@ -341,10 +315,7 @@
   </div>
   <div id="hhBoard"></div>
 </section>
-
-<section class="nm-section hh-anchor" id="tools" aria-labelledby="toolsTitle">
-  <div class="nm-section__head"><h2 class="nm-h2" id="toolsTitle">Prompt and update</h2></div>
-  <details class="hh-details">
+  <details class="hh-details hh-sec" id="sec-prompt">
     <summary><span id="hhPromptTitle">Starter prompt for Sacha's Claude</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary>
     <div class="hh-details__body">
       <p>Paste this once into a new chat on claude.ai. Your Claude then knows your Holiday projects, dates and links.</p>
@@ -352,7 +323,7 @@
       <pre class="hh-prompt" id="hhPrompt"></pre>
     </div>
   </details>
-  <details class="hh-details">
+  <details class="hh-details hh-sec" id="sec-update">
     <summary><span>Send an update to ClickUp or Teams</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary>
     <div class="hh-details__body">
       <p>Pick a task and add a note or a Figma link. The update goes to the Updates list here and is copied, ready to paste into ClickUp or Teams.</p>
@@ -365,17 +336,34 @@
       </div>
     </div>
   </details>
-</section>
-
-<section class="nm-section hh-anchor" id="reference" aria-labelledby="refTitle">
-  <details class="hh-details">
+  <details class="hh-details hh-sec" id="sec-reference">
     <summary><span id="refTitle">Reference: approved jerseys and promo codes</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary>
     <div class="hh-details__body">
       <p><b>Approved holiday player jerseys, confirmed in stock:</b> Lionel Messi (Inter Miami and Argentina), Lamine Yamal (Barcelona and Spain), Christian Pulisic (AC Milan and USMNT), Kylian Mbappe (Real Madrid), Jude Bellingham (Real Madrid), Erling Haaland (Man City), Bukayo Saka (Arsenal), Cole Palmer (Chelsea), Son Heung-Min (Spurs), Florian Wirtz (Leverkusen), Trinity Rodman (USWNT).</p>
       <p><b>Promo codes:</b> this page is public, so codes show as XXXXX. Check the ClickUp task before you export paid or email slices.</p>
     </div>
   </details>
-</section>
+</div>
+
+<div class="hh-view" id="view-calendar" data-view="calendar" hidden>
+  <section class="hh-panel hh-cal hh-sec" id="sec-month" aria-labelledby="calTitle">
+    <div class="hh-panel__head">
+      <h2 class="hh-panel__title" id="calTitle">Month view</h2>
+      <div class="hh-cal__bar">
+        <button type="button" class="hh-iconbtn" data-month="-1" aria-label="Previous month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <p class="hh-cal__month" id="hhMonth" aria-live="polite"></p>
+        <button type="button" class="hh-iconbtn" data-month="1" aria-label="Next month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+    </div>
+    <div class="hh-cal__grid" id="hhCalGrid" role="list"></div>
+    <ul class="hh-cal__key hh-sec" id="hhCalKey" aria-label="Calendar key"></ul>
+    <p class="hh-cal__note">Every promo colour passes contrast with its text (lowest 6.2:1, needs 4.5:1).</p>
+  </section>
+</div>
+
+<div class="hh-view" id="view-team" data-view="team" hidden>
+  <div class="hh-team" id="hhTeam"></div>
+</div>
 
 <footer class="nm-footer"><span>Holiday 2026 Hub. Styled in Nutmeg.</span><a href="../nutmeg/foundations.html">About Nutmeg</a></footer>
 </div></div>
@@ -897,6 +885,7 @@
       previewUrl: PREVIEW_POPUP_HUB }
   ];
 
+  var CHEV_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg>';
   var STORAGE_KEY = "sei_holiday_hub_kanban_v2";
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -993,6 +982,34 @@
 
   function isDone(t) { return !!state.doneMap[t.id]; }
 
+  function fitsScope(store) {
+    var scope = viewerScope();
+    return scope === "both" || !store || store === "both" || store === scope;
+  }
+
+  function teamTasks() {
+    return TASKS.filter(function (t) { return fitsScope(t.store); });
+  }
+
+  function chip(colour, text) {
+    return '<span class="hh-chip hh-chip--sm hh-chip--' + colour + '">' + esc(text) + '</span>';
+  }
+
+  function riskChip(r) {
+    if (!r) return "";
+    return chip(r.level === "late" ? "pink" : r.level === "soon" ? "orange" : "purple", r.text);
+  }
+
+  function taskTitle(t) {
+    var url = t.clickupUrl && t.clickupUrl.indexOf("box.com") === -1 ? t.clickupUrl : (t.previewUrl || t.clickupUrl);
+    if (!url) return '<span class="hh-tasklink">' + esc(t.text) + '</span>';
+    return '<a class="hh-tasklink" href="' + esc(url) + '" target="_blank" rel="noopener" data-new-window="1">' + esc(t.text) + '<span class="hh-visually-hidden"> (opens in a new window)</span></a>';
+  }
+
+  function namesOf(t) {
+    return t.people.filter(function (k) { return k !== "sacha" && PEOPLE[k]; }).map(function (k) { return PEOPLE[k].name; }).join(", ");
+  }
+
   function riskOf(t) {
     if (isDone(t) || !t.due) {
       if (!isDone(t) && t.waiting) return { level: "wait", text: "Waiting on " + t.waiting };
@@ -1070,62 +1087,48 @@
     return out;
   }
 
-  function renderPeople() {
-    $("hhPeople").innerHTML = GROUPS.filter(inStore).map(function (g) {
-      return '<div class="hh-people__group"><span class="hh-eyebrow">' + esc(g.label) + '</span><div class="hh-people__pills">' +
-        g.people.filter(function (k) { return storeNow() !== "wss" || WSS.indexOf(k) !== -1; }).map(function (k) {
-          var u = unreadFor(k);
-          return '<button type="button" class="hh-person" data-person="' + k + '" aria-pressed="' + (k === state.person) + '">' +
-            esc(PEOPLE[k].name) + (u ? '<span class="hh-count" aria-label="' + u + ' unread updates">' + u + '</span>' : "") + '</button>';
-        }).join("") + '</div></div>';
-    }).join("");
-  }
-
   function renderStats() {
-    var tasks = myTasks();
-    var open = tasks.filter(function (t) { return !isDone(t); });
+    var open = teamTasks().filter(function (t) { return !isDone(t); });
     var week = open.filter(function (t) {
       var d = t.due || t.launch;
       if (!d) return false;
       var n = daysFromToday(d);
       return n >= 0 && n <= 6;
     });
-    var risky = open.filter(function (t) { return riskOf(t); });
+    var risky = open.filter(function (t) { var r = riskOf(t); return r && r.level !== "wait"; });
     var next = KEY_DATES.concat(PROMOS).filter(function (k) { return k.big && sees(k.people, state.person) && inStore(k) && daysFromToday(k.date) >= 0; })
       .sort(function (a, b) { return a.date < b.date ? -1 : 1; })[0];
     var tiles = [
-      [open.length, open.length === 1 ? "open task for " + me().name + "." : "open tasks for " + me().name + "."],
+      [open.length, "open tasks across the design team."],
       [week.length, "due or starting in the next 7 days."],
-      [risky.length, "at risk: late, due within 2 days, or waiting on someone."],
+      [risky.length, "late or due within 2 days."],
       next ? [daysFromToday(next.date) === 0 ? "Today" : daysFromToday(next.date), (daysFromToday(next.date) === 0 ? "" : (daysFromToday(next.date) === 1 ? "day to " : "days to ")) + next.label + ", " + shortDate(next.date) + "."] : ["0", "big launches left on the calendar."]
     ];
-    $("hhStats").innerHTML = tiles.map(function (t, i) {
+    $("sec-numbers").innerHTML = tiles.map(function (t, i) {
       return '<div class="hh-stat"><div class="hh-stat__card">' + STAT_ICONS[i] + '<span class="hh-stat__num">' + esc(t[0]) + '</span></div><p class="hh-stat__cap">' + esc(t[1]) + '</p></div>';
     }).join("");
   }
 
   function renderRisk() {
-    var list = myTasks().map(function (t) { return { t: t, r: riskOf(t) }; })
+    var list = teamTasks().map(function (t) { return { t: t, r: riskOf(t) }; })
       .filter(function (x) { return x.r; })
       .sort(function (a, b) {
         var rank = { late: 0, soon: 1, wait: 2 };
         if (rank[a.r.level] !== rank[b.r.level]) return rank[a.r.level] - rank[b.r.level];
         return (a.r.n || 0) - (b.r.n || 0);
       });
-    $("hhRiskCount").textContent = list.length;
-    if (!list.length) {
-      $("hhRisk").innerHTML = '<p class="hh-empty">Nothing at risk for ' + esc(me().name) + '. Every open task has time.</p>';
-      return;
-    }
-    var shown = state.riskAll ? list : list.slice(0, 6);
-    $("hhRisk").innerHTML = '<ul class="hh-risk">' + shown.map(function (x) {
-      return '<li class="hh-risk__row"><span class="hh-flag hh-flag--' + x.r.level + '">' + esc(x.r.text) + '</span>' +
-        '<span class="hh-risk__text">' + esc(x.t.text) + '</span>' +
-        '<span class="hh-risk__links">' + taskLinks(x.t) + '</span></li>';
-    }).join("") + '</ul>' + (list.length > 6 ? '<button type="button" class="hh-btn hh-btn--sm hh-showall" data-risk-all>' + (state.riskAll ? "Show fewer" : "Show all " + list.length) + '</button>' : "");
+    var count = { late: 0, soon: 0, wait: 0 };
+    list.forEach(function (x) { count[x.r.level]++; });
+    $("hhRiskChips").innerHTML = (count.late ? chip("pink", count.late + " late") : "") + (count.soon ? chip("orange", count.soon + " due soon") : "") +
+      (count.wait ? chip("purple", count.wait + " waiting") : "") + (list.length ? "" : chip("green", "Nothing at risk"));
+    if (!list.length) { $("hhRisk").innerHTML = '<p class="hh-empty">Every open task has time.</p>'; return; }
+    $("hhRisk").innerHTML = '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">When</th><th scope="col">Task</th><th scope="col">Who</th></tr></thead><tbody>' +
+      list.map(function (x) {
+        return '<tr><td>' + riskChip(x.r) + '</td><td>' + taskTitle(x.t) + '</td><td>' + esc(namesOf(x.t)) + '</td></tr>';
+      }).join("") + '</tbody></table></div>';
   }
 
-  function eventsFor() {
+  function eventsFor(tasks) {
     var out = [];
     KEY_DATES.forEach(function (k) {
       if (!sees(k.people, state.person) || !inStore(k)) return;
@@ -1135,7 +1138,7 @@
       if (!sees(k.people, state.person) || !inStore(k)) return;
       out.push({ date: k.date, until: k.until, label: k.label, kind: "p-" + k.promo, promo: k.promo, store: k.store });
     });
-    myTasks().forEach(function (t) {
+    tasks.forEach(function (t) {
       if (t.promo) return;
       if (t.launch) out.push({ date: t.launch, until: t.until, label: t.text, kind: "launch", store: t.store });
       else if (t.due) {
@@ -1152,7 +1155,7 @@
   }
 
   function renderCalendar() {
-    var events = eventsFor();
+    var events = eventsFor(myTasks());
     var tagStores = CROSS_STORE.indexOf(state.person) !== -1 && state.store === "both";
     var storeTag = function (e) {
       if (!tagStores || (e.store !== "sdc" && e.store !== "wss")) return "";
@@ -1197,17 +1200,24 @@
     key.push('<li><i class="hh-ev--date"></i>Key date</li><li><i class="hh-ev--due"></i>Due</li><li><i class="hh-ev--late"></i>Late</li>');
     $("hhCalKey").innerHTML = key.join("");
 
-    var soon = events.filter(function (e) {
+  }
+
+  function renderSoon() {
+    var storeName = { sdc: "Soccer.com", wss: "WorldSoccerShop" };
+    var both = viewerScope() === "both";
+    var soon = eventsFor(teamTasks()).filter(function (e) {
       var n = daysFromToday(e.date), end = e.until ? daysFromToday(e.until) : n;
       return end >= 0 && n <= 14 && e.kind !== "done";
     }).sort(function (a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
-    $("hhSoonCount").textContent = soon.length;
-    var extra = soon.length - 8;
-    $("hhSoon").innerHTML = soon.length ? soon.slice(0, 8).map(function (e) {
-      var running = e.until && daysFromToday(e.date) < 0;
-      return '<li><span class="hh-soon__date">' + (running ? "Running until " + shortDate(e.until) : shortDate(e.date)) + '</span>' +
-        '<span class="hh-soon__text">' + esc(e.label) + '</span></li>';
-    }).join("") + (extra > 0 ? '<li><a class="hh-link" href="#calendar">' + extra + ' more in the calendar</a></li>' : "") : '<li><span class="hh-soon__text">Nothing in the next 2 weeks.</span></li>';
+    $("hhSoonChips").innerHTML = chip("grey", soon.length + (soon.length === 1 ? " item" : " items"));
+    if (!soon.length) { $("hhSoon").innerHTML = '<p class="hh-empty">Nothing in the next 2 weeks.</p>'; return; }
+    $("hhSoon").innerHTML = '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">When</th><th scope="col">What</th>' + (both ? '<th scope="col">Store</th>' : "") + '</tr></thead><tbody>' +
+      soon.map(function (e) {
+        var running = e.until && daysFromToday(e.date) < 0;
+        var when = running ? "Until " + shortDate(e.until) : shortDate(e.date);
+        return '<tr><td><span class="hh-team__when">' + esc(when) + '</span></td><td>' + esc(e.label) + '</td>' +
+          (both ? '<td>' + (e.store === "sdc" ? chip("blue", "Soccer.com") : e.store === "wss" ? chip("green", "WorldSoccerShop") : "") + '</td>' : "") + '</tr>';
+      }).join("") + '</tbody></table></div>';
   }
 
   function cardHtml(t, n) {
@@ -1345,11 +1355,14 @@
 
   function renderMyDay() {
     var p = me();
-    $("hhUpdateTime").textContent = "Latest note, " + p.updateTime;
+    var mine = myTasks().filter(function (t) { return !isDone(t); });
+    var mLate = mine.filter(function (t) { var r = riskOf(t); return r && r.level === "late"; }).length;
+    var mSoon = mine.filter(function (t) { var r = riskOf(t); return r && r.level === "soon"; }).length;
+    $("hhMyChips").innerHTML = chip("grey", mine.length + (mine.length === 1 ? " open task" : " open tasks")) + (mLate ? chip("pink", mLate + " late") : "") + (mSoon ? chip("orange", mSoon + " due soon") : "");
+    $("hhUpdateTime").textContent = "Your latest note, " + p.updateTime;
     $("hhUpdateList").innerHTML = p.update.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("");
     $("hhPromptTitle").textContent = "Starter prompt for " + p.name + "'s Claude";
     $("hhPrompt").textContent = buildPrompt();
-    $("hhCopyLink").textContent = "Copy " + p.name + "'s link";
     $("hhUpdateTask").innerHTML = myTasks().map(function (t) {
       return '<option value="' + t.id + '">' + esc(t.text) + '</option>';
     }).join("");
@@ -1367,40 +1380,45 @@
 
   function renderTeam() {
     var scope = viewerScope();
-    var fits = function (store) { return scope === "both" || !store || store === "both" || store === scope; };
     var members = Object.keys(PEOPLE).filter(function (k) {
       if (k === "sacha") return false;
       var h = homeStore(k);
       return scope === "both" || h === "both" || h === scope;
     });
-    var badge = { sdc: '<span class="hh-badge hh-badge--sdc">Soccer.com</span>', wss: '<span class="hh-badge hh-badge--wss">WorldSoccerShop</span>', both: '<span class="hh-badge">Both stores</span>' };
+    var storeChip = { sdc: chip("blue", "Soccer.com"), wss: chip("green", "WorldSoccerShop"), both: chip("purple", "Both stores") };
+    var QA_COLOUR = { "Fixed": "green", "In progress": "orange", "Ready for QA": "blue" };
     $("hhTeam").innerHTML = members.map(function (k) {
       var p = PEOPLE[k], h = homeStore(k);
-      var showNote = h !== "both" || scope === "both";
-      var body = "", nums = "";
+      var nums = "", body = "";
       if (k === "courtney") {
-        var qa = QA.filter(function (q) { return fits(q.store); });
+        var qa = QA.filter(function (q) { return fitsScope(q.store); });
         var fixed = qa.filter(function (q) { return q.status === "Fixed"; }).length;
-        nums = '<span class="hh-badge">' + qa.length + ' QA items</span>' + (fixed ? '<span class="hh-badge hh-badge--sdc">' + fixed + ' fixed</span>' : "");
-        body = '<span class="hh-eyebrow">Jira QA status</span>' + (qa.length ? '<ul class="hh-team__list">' + qa.map(function (q) {
-          return '<li><span class="hh-team__task">' + esc(q.text) + '</span><span class="hh-team__when">' + esc(q.ticket) + ', ' + esc(q.status) + '</span></li>';
-        }).join("") + '</ul>' : '<p class="hh-empty">No QA items for this store right now.</p>');
+        nums = chip("grey", qa.length + " QA items") + (fixed ? chip("green", fixed + " fixed") : "");
+        body = qa.length ? '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">QA item</th><th scope="col">Jira</th><th scope="col">Status</th></tr></thead><tbody>' +
+          qa.map(function (q) {
+            return '<tr><td>' + esc(q.text) + '</td><td>' + esc(q.ticket) + '</td><td>' + chip(QA_COLOUR[q.status] || "grey", q.status) + '</td></tr>';
+          }).join("") + '</tbody></table></div>' : '<p class="hh-empty">No QA items for this store right now.</p>';
       } else {
-        var tasks = TASKS.filter(function (t) { return t.people.indexOf(k) !== -1 && fits(t.store) && !isDone(t); });
-        var risky = tasks.filter(function (t) { var r = riskOf(t); return r && r.level !== "wait"; });
-        var week = tasks.filter(function (t) { var d = t.due || t.launch; if (!d) return false; var n = daysFromToday(d); return n >= 0 && n <= 6; });
-        nums = '<span class="hh-badge">' + tasks.length + (tasks.length === 1 ? " open task" : " open tasks") + '</span>' +
-          (risky.length ? '<span class="hh-badge hh-badge--risk">' + risky.length + ' at risk</span>' : "") +
-          (week.length ? '<span class="hh-badge hh-badge--soon">' + week.length + ' this week</span>' : "");
-        body = tasks.length ? '<ul class="hh-team__list">' + tasks.map(function (t) {
-          var r = riskOf(t);
-          return '<li><span class="hh-team__task">' + esc(t.text) + '</span><span class="hh-team__when' + (r && r.level === "late" ? " is-late" : "") + '">' + esc(dueWord(t)) + '</span></li>';
-        }).join("") + '</ul>' : '<p class="hh-empty">No open tasks here.</p>';
+        var tasks = TASKS.filter(function (t) { return t.people.indexOf(k) !== -1 && fitsScope(t.store) && !isDone(t); });
+        var late = tasks.filter(function (t) { var r = riskOf(t); return r && r.level === "late"; }).length;
+        var soon = tasks.filter(function (t) { var r = riskOf(t); return r && r.level === "soon"; }).length;
+        var week = tasks.filter(function (t) { var d = t.due || t.launch; if (!d) return false; var n = daysFromToday(d); return n >= 0 && n <= 6; }).length;
+        nums = chip("grey", tasks.length + (tasks.length === 1 ? " open task" : " open tasks")) + (late ? chip("pink", late + " late") : "") +
+          (soon ? chip("orange", soon + " due soon") : "") + (week ? chip("yellow", week + " this week") : "");
+        body = tasks.length ? '<div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">Task</th><th scope="col">Project</th><th scope="col">When</th><th scope="col">Also</th></tr></thead><tbody>' +
+          tasks.map(function (t) {
+            var r = riskOf(t), also = "";
+            if (t.figmaUrl) also += linkTag(t.figmaUrl, "Figma");
+            if (t.previewUrl && t.clickupUrl) also += linkTag(t.previewUrl, "Preview");
+            return '<tr><td>' + taskTitle(t) + '</td><td><span class="hh-tag hh-tag--sm ' + (COL_CLASS[t.col] || "chip-shoot") + '">' + esc(t.col) + '</span></td>' +
+              '<td>' + (r && r.level !== "wait" ? riskChip(r) : '<span class="hh-team__when">' + esc(dueWord(t)) + '</span>') + '</td>' +
+              '<td><span class="hh-table-links">' + also + '</span></td></tr>';
+          }).join("") + '</tbody></table></div>' : '<p class="hh-empty">No open tasks here.</p>';
       }
-      if (showNote) body += '<span class="hh-eyebrow">Latest note, ' + esc(p.updateTime) + '</span><ul class="nm-list">' + p.update.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + '</ul>';
-      body += '<div class="hh-team__foot"><a class="hh-link" href="?for=' + k + '">Open ' + esc(p.name) + "'s tracker</a></div>";
-      return '<details class="hh-details"><summary><span class="hh-team__name">' + esc(p.name) + '</span><span class="hh-team__nums">' + badge[h === "both" ? "both" : h] + nums + '</span>' +
-        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body">' + body + '</div></details>';
+      if (h !== "both" || scope === "both") body += '<span class="hh-eyebrow">Latest note, ' + esc(p.updateTime) + '</span><ul class="nm-list">' + p.update.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + '</ul>';
+      body += '<div class="hh-team__foot"><a class="hh-btn hh-btn--sm" href="?for=' + k + '#my-day">Open ' + esc(p.name) + "'s day</a>" +
+        '<button type="button" class="hh-btn hh-btn--sm" data-copy-link="' + k + '">Copy ' + esc(p.name) + "'s link</button></div>";
+      return '<details class="hh-details hh-sec" id="person-' + k + '"><summary><span class="hh-team__name">' + esc(p.name) + '</span><span class="hh-team__nums">' + storeChip[h] + nums + '</span>' + CHEV_SVG + '</summary><div class="hh-details__body">' + body + '</div></details>';
     }).join("");
   }
 
@@ -1414,20 +1432,74 @@
     }).join("");
   }
 
+  var VIEWS = {
+    overview: { drawer: [["sec-risk", "What's at risk"], ["sec-soon", "Next 2 weeks"], ["sec-numbers", "Team numbers"]] },
+    "my-day": { drawer: [["sec-note", "Your latest note"], ["sec-tasks", "Your tasks"], ["sec-prompt", "Starter prompt"], ["sec-update", "Send an update"], ["sec-reference", "Jerseys and codes"]] },
+    calendar: { drawer: [["sec-month", "Month view"], ["hhCalKey", "Colour key"]] },
+    team: { drawer: null }
+  };
+  var VIEW_NAME = { overview: "Holiday 2026", "my-day": "My Day", calendar: "Calendar", team: "Team" };
+
+  function currentView() {
+    var h = location.hash.slice(1);
+    if (VIEWS[h]) return h;
+    var el = h && document.getElementById(h);
+    var v = el && el.closest("[data-view]");
+    if (v) return v.getAttribute("data-view");
+    return state.view || (singleMode ? "my-day" : "overview");
+  }
+
+  function renderHead() {
+    var p = me(), v = state.view;
+    var head = {
+      overview: ["Holiday 2026 Hub", "Hello, " + p.name + ". Here's where the whole design team stands today."],
+      "my-day": ["Hello, " + p.name + ".", "Everything that's yours: your tasks, your latest note and your starter prompt."],
+      calendar: ["Calendar", "Promos, key dates and your due dates, month by month."],
+      team: ["Team", "What everyone has on their plate. Open a name to see their tasks."]
+    }[v];
+    $("hhViewTitle").textContent = head[0];
+    $("hhViewLede").textContent = head[1];
+    document.title = (v === "overview" ? "Holiday 2026 Hub" : VIEW_NAME[v] + " · Holiday 2026 Hub");
+  }
+
+  function renderDrawer() {
+    var v = state.view;
+    var items = VIEWS[v].drawer || Object.keys(PEOPLE).filter(function (k) { return document.getElementById("person-" + k); })
+      .map(function (k) { return ["person-" + k, PEOPLE[k].name]; });
+    $("hhDrawerTitle").textContent = VIEW_NAME[v];
+    $("hhDrawerList").innerHTML = items.map(function (it) {
+      return '<li><a class="nm-drawer__link" href="#' + it[0] + '" data-jump="' + it[0] + '">' + esc(it[1]) + '</a></li>';
+    }).join("");
+    document.querySelectorAll(".nm-rail__item").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+  }
+
+  function showView() {
+    var before = state.view;
+    state.view = currentView();
+    document.querySelectorAll("[data-view]").forEach(function (el) { el.hidden = el.getAttribute("data-view") !== state.view; });
+    renderHead();
+    renderDrawer();
+    var h = location.hash.slice(1), el = h && !VIEWS[h] && document.getElementById(h);
+    if (el) { if (el.tagName === "DETAILS") el.open = true; el.scrollIntoView({ block: "start" }); }
+    else if (before !== state.view) window.scrollTo(0, 0);
+  }
+
   function render() {
     var p = me();
     renderStore();
-    $("hhRole").textContent = "Viewing as " + p.name + ".";
-    document.querySelectorAll(".hh-for-name").forEach(function (el) { el.textContent = p.name; });
-    renderPeople();
+   
     renderStats();
     renderRisk();
+    renderSoon();
     renderCalendar();
     renderTeam();
     renderMyDay();
     renderBoard();
     renderUpdates();
     renderLinks();
+    if (state.view) { renderHead(); renderDrawer(); }
     document.querySelectorAll("[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === state.filter)); });
     document.querySelectorAll("[data-layout]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-layout") === state.layout)); });
   }
@@ -1461,11 +1533,27 @@
       if (!win) window.open(nw.href, "_blank", "noopener,noreferrer");
       return;
     }
-    if (e.target.closest('a[href="#at-risk"]')) $("at-risk").open = true;
     if (e.target.closest('a[href="#links"]')) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
       openLinks(true);
+      return;
+    }
+    var jp = e.target.closest("[data-jump]");
+    if (jp) {
+      e.preventDefault();
+      var target = $(jp.getAttribute("data-jump"));
+      if (target) {
+        if (target.tagName === "DETAILS") target.open = true;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      document.querySelectorAll(".nm-drawer__link").forEach(function (a) { if (a === jp) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+      return;
+    }
+    var cl = e.target.closest("[data-copy-link]");
+    if (cl) {
+      var who = cl.getAttribute("data-copy-link");
+      copyText(window.location.origin + window.location.pathname + "?for=" + who, "Copied " + PEOPLE[who].name + "'s link");
       return;
     }
     var menu = $("links");
@@ -1475,10 +1563,10 @@
     if (e.target.closest("#hhUpdatesClose")) { state.updatesOpen = false; renderUpdates(); $("hhUpdatesBtn").focus(); return; }
     if (e.target.closest("#hhReadAll")) {
       messagesFor(state.person).forEach(function (m) { state.readMsgMap[m.id + "__" + state.person] = true; });
-      saveState(); renderUpdates(); renderPeople(); return;
+      saveState(); renderUpdates(); return;
     }
     var rd = e.target.closest("[data-read]");
-    if (rd) { state.readMsgMap[rd.getAttribute("data-read") + "__" + state.person] = true; saveState(); renderUpdates(); renderPeople(); return; }
+    if (rd) { state.readMsgMap[rd.getAttribute("data-read") + "__" + state.person] = true; saveState(); renderUpdates(); return; }
 
     var pb = e.target.closest("[data-person]");
     if (pb) { state.person = pb.getAttribute("data-person"); state.openCardId = null; render(); return; }
@@ -1511,7 +1599,7 @@
       var note = (input && input.value.trim()) || "Done, ready for review.";
       state.noteMap[cid] = input ? input.value.trim() : "";
       postUpdate(task, note);
-      renderUpdates(); renderPeople();
+      renderUpdates();
       return;
     }
   });
@@ -1520,10 +1608,6 @@
     if (e.key === "Escape" && $("links").open) { $("links").open = false; $("links").querySelector("summary").focus(); }
   });
 
-  $("hhCopyLink").addEventListener("click", function () {
-    var url = window.location.origin + window.location.pathname + "?for=" + state.person;
-    copyText(url, "Copied " + me().name + "'s link");
-  });
   $("hhCopyPrompt").addEventListener("click", function () {
     copyText(buildPrompt(), "Copied " + me().name + "'s working brief");
   });
@@ -1532,13 +1616,13 @@
     var note = $("hhUpdateNote").value.trim() || "Ready for review.";
     postUpdate(task, note);
     $("hhUpdateNote").value = "";
-    renderUpdates(); renderPeople();
+    renderUpdates();
   });
 
-  if (singleMode) $("hhViewing").hidden = true;
   if (location.hash === "#links") openLinks(true);
-  if (location.hash === "#at-risk") $("at-risk").open = true;
+  window.addEventListener("hashchange", showView);
   render();
+  showView();
 })();
 </script>
 <script src="../nutmeg/nutmeg.js"></script>
