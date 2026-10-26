@@ -1,0 +1,2087 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Holiday 2026 Hub · Project Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #111827;
+    --ink-soft: #374151;
+    --ink-muted: #4b5563;
+    --link: #1d4e89;
+    --border: #d1d5db;
+    --border-soft: #e5e7eb;
+    --surface: #ffffff;
+    --bg: #f8f7f4;
+    --surface-open: #f3f1ec;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.5;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .top-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 28px;
+  }
+
+  .top-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    max-width: 1480px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .brand-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .brand-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-sub {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  .header-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 120ms ease, border-color 120ms ease;
+  }
+
+  .btn:hover {
+    background: var(--surface-open);
+    border-color: var(--ink-soft);
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #ffffff;
+  }
+
+  .btn-dark:hover {
+    background: #374151;
+    border-color: #374151;
+  }
+
+  .today-page {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 22px 28px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* Person Selector Bar */
+  .person-selector-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .person-groups-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .person-groups-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .person-group {
+    background: var(--bg);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .person-group-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+
+  .person-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .person-btn {
+    min-height: 36px;
+    padding: 5px 12px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 120ms ease;
+  }
+
+  .person-btn:hover {
+    background: var(--surface-open);
+  }
+
+  .person-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #ffffff;
+  }
+
+  /* Today's Calendar / Live Sync Box */
+  .today-calendar-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .today-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .today-calendar-header h2 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .today-calendar-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .today-calendar-links a {
+    font-size: 14.5px;
+    color: var(--link);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  /* Tight line-height inside bullets, generous spacing between bullets */
+  .clean-list {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    font-size: 15.5px;
+    color: var(--ink);
+  }
+
+  .clean-list li {
+    line-height: 1.32;
+  }
+
+  /* Compact Accordions for Agent Prompts & Updates */
+  .accordions-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    align-items: start;
+  }
+
+  @media (max-width: 920px) {
+    .accordions-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  details.tool-accordion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  details.tool-accordion summary {
+    padding: 12px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    user-select: none;
+  }
+
+  details.tool-accordion summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details.tool-accordion summary:hover {
+    background: var(--surface-open);
+  }
+
+  .accordion-badge {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--link);
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 2px 9px;
+    border-radius: 999px;
+  }
+
+  .accordion-body {
+    padding: 14px 18px 18px;
+    border-top: 1px solid var(--border-soft);
+    background: var(--surface-open);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .accordion-help {
+    font-size: 14.5px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+
+  .prompt-pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--ink);
+    white-space: pre-wrap;
+    max-height: 210px;
+    overflow-y: auto;
+  }
+
+  .update-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .update-select,
+  .update-input {
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  /* Filter & Layout Controls Bar */
+  .today-controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .today-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .today-filter-btn {
+    min-height: 40px;
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-soft);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .today-filter-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #ffffff;
+  }
+
+  /* Kanban Board */
+  .kanban-board {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+
+  @media (max-width: 1240px) {
+    .kanban-board {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .kanban-board {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .kanban-col {
+    background: #f1efe9;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .kanban-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kanban-count {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .kanban-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 11px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+  }
+
+  .chip-shoot {
+    background: #fef3c7;
+    color: #78350f;
+    border: 1px solid #f59e0b;
+  }
+
+  .chip-fastr {
+    background: #dbeafe;
+    color: #1e3a8a;
+    border: 1px solid #3b82f6;
+  }
+
+  .chip-comp {
+    background: #ede9fe;
+    color: #4c1d95;
+    border: 1px solid #8b5cf6;
+  }
+
+  .chip-site {
+    background: #d1fae5;
+    color: #064e3b;
+    border: 1px solid #10b981;
+  }
+
+  .chip-email {
+    background: #e0e7ff;
+    color: #312e81;
+    border: 1px solid #6366f1;
+  }
+
+  .chip-tunnel {
+    background: #ffe4e6;
+    color: #881337;
+    border: 1px solid #f43f5e;
+  }
+
+  /* Task Cards */
+  .today-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    overflow: hidden;
+  }
+
+  .today-row {
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    background: var(--surface);
+    transition: background-color 120ms ease;
+  }
+
+  .today-row:hover {
+    background: var(--surface-open);
+  }
+
+  .today-item.open .today-row {
+    background: var(--surface-open);
+  }
+
+  .today-tick {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--ink);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .today-row-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .kanban-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .kanban-prio-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .kanban-prio-badge.prio-1 {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #ffffff;
+  }
+
+  .card-links-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .today-open-link {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--link);
+    text-decoration: underline;
+    flex-shrink: 0;
+  }
+
+  .today-status-word {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+
+  /* Tight line-height inside card sentences so multi-line words stay cohesive */
+  .today-row-text {
+    font-size: 15.5px;
+    font-weight: 500;
+    line-height: 1.33;
+    color: var(--ink);
+  }
+
+  .today-item.done .today-row-text {
+    text-decoration: line-through;
+    color: var(--ink-soft);
+  }
+
+  /* Expandable Drawer inside a card */
+  .today-open-panel {
+    display: none;
+    padding: 12px 16px 14px 44px;
+    background: var(--surface-open);
+    border-top: 1px solid var(--border-soft);
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .today-item.open .today-open-panel {
+    display: flex;
+  }
+
+  .today-full-ask {
+    font-size: 14px;
+    line-height: 1.38;
+    color: var(--ink-soft);
+  }
+
+  .card-quick-note {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-quick-input {
+    flex: 1;
+    min-width: 160px;
+    min-height: 36px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+
+  /* List View Fallback */
+  .today-section-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .toast-banner {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background: var(--ink);
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    display: none;
+    z-index: 999;
+  }
+
+  /* Notification Bell & Inbox Drawer */
+  .inbox-toggle-btn {
+    position: relative;
+    gap: 8px;
+  }
+
+  .inbox-toggle-btn.has-unread {
+    border-color: #dc2626;
+    background: #fef2f2;
+    color: #991b1b;
+  }
+
+  .unread-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    line-height: 1;
+  }
+
+  .person-unread-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    margin-left: 6px;
+    line-height: 1;
+  }
+
+  .person-btn.active .person-unread-dot {
+    background: #ef4444;
+    color: #ffffff;
+  }
+
+  .inbox-drawer {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+  }
+
+  .inbox-drawer.open {
+    display: flex;
+  }
+
+  .inbox-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .inbox-drawer-title {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .inbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inbox-msg {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .inbox-msg.unread {
+    background: #fffbeb;
+    border-color: #f59e0b;
+  }
+
+  .inbox-msg-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .inbox-msg-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .inbox-new-tag {
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .inbox-msg-text {
+    font-size: 15px;
+    line-height: 1.33;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .inbox-msg-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .inbox-mini-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .inbox-mini-btn:hover {
+    background: var(--surface-open);
+  }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="top-header-row">
+    <div class="brand-area">
+      <span class="brand-title">Holiday 2026 Hub</span>
+      <span class="brand-sub" id="activeRoleSubtitle">Rickey · Design Systems, Holiday Emails &amp; Team Sales</span>
+    </div>
+    <div class="header-links">
+      <button type="button" class="btn inbox-toggle-btn has-unread" id="inboxToggleBtn" aria-expanded="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span id="inboxBtnLabel">Inbox</span>
+        <span class="unread-pill" id="inboxUnreadCount">2</span>
+      </button>
+      <a class="btn" href="https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516" target="_blank" rel="noopener" data-new-window="1">Open Holiday Figma ↗</a>
+      <a class="btn" href="https://www.figma.com/design/9RL3RjhkNi37wkOGXCtiVR/SE-Marketing---Partner-Creative?node-id=146-1167" target="_blank" rel="noopener" data-new-window="1">Open Team Pop-Up Figma ↗</a>
+      <a class="btn" href="https://www.figma.com/design/h8pZSXaiWrSdY6qkS3efzD/?node-id=10376-44689" target="_blank" rel="noopener" data-new-window="1">Cabana 8 Figma ↗</a>
+      <a class="btn" href="https://app.clickup.com/9011460926/v/dc/8chzyty-52571" target="_blank" rel="noopener" data-new-window="1">Designer Context Doc ↗</a>
+      <a class="btn" href="https://app.clickup.com/9011460926/v/gr/8chzyty-52551" target="_blank" rel="noopener" data-new-window="1">Live Team ClickUp View ↗</a>
+    </div>
+  </div>
+</header>
+
+<main class="today-page">
+
+  <!-- Team Inbox Drawer (Opens when you click the Bell button in the header) -->
+  <section class="inbox-drawer" id="inboxDrawer" aria-label="Team Inbox">
+    <div class="inbox-drawer-header">
+      <div class="inbox-drawer-title">
+        <span id="inboxDrawerTitle">Rickey's Inbox</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="btn" id="markAllReadBtn">Mark all read</button>
+        <button type="button" class="btn" id="closeInboxBtn">Close</button>
+      </div>
+    </div>
+    <p class="accordion-help">When someone sends an update in ClickUp or Teams, Sacha's bots post it here and light up your Inbox badge. Click any message to jump to the file or mark it read.</p>
+    <div class="inbox-list" id="inboxList"></div>
+  </section>
+
+  <!-- Click Your Name Bar (Visible on Sacha/Jordan master link; hidden when ?for=name is used) -->
+  <section class="person-selector-box" id="personSelectorBox" aria-label="Choose your workspace">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <span style="font-size:13.5px;font-weight:600;color:var(--ink-soft);">Master Team Switcher (send anyone their personal ?for=name link to hide this bar)</span>
+      <button type="button" class="btn" id="copyPersonLinkBtn" style="min-height:34px;padding:4px 12px;font-size:13px;">Copy Rickey's Direct Link</button>
+    </div>
+    <div class="person-groups-row">
+      <div class="person-group">
+        <span class="person-group-label">1 · Pilot &amp; Full Overview</span>
+        <div class="person-pills">
+          <button type="button" class="person-btn active" data-person="rickey">Rickey (Pilot #1)</button>
+          <button type="button" class="person-btn" data-person="jordan">Jordan (Pilot #2)</button>
+          <button type="button" class="person-btn" data-person="sacha">Sacha</button>
+          <button type="button" class="person-btn" data-person="brock">Brock (Email)</button>
+        </div>
+      </div>
+      <div class="person-group">
+        <span class="person-group-label">2 · Soccer.com &amp; Team Sales</span>
+        <div class="person-pills">
+          <button type="button" class="person-btn" data-person="casey">Casey</button>
+          <button type="button" class="person-btn" data-person="whitney">Whitney</button>
+          <button type="button" class="person-btn" data-person="matty">Matty</button>
+          <button type="button" class="person-btn" data-person="michael">Michael</button>
+          <button type="button" class="person-btn" data-person="darren">Darren</button>
+          <button type="button" class="person-btn" data-person="danny">Danny</button>
+        </div>
+      </div>
+      <div class="person-group">
+        <span class="person-group-label">3 · WorldSoccerShop Only</span>
+        <div class="person-pills">
+          <button type="button" class="person-btn" data-person="tyler">Tyler</button>
+          <button type="button" class="person-btn" data-person="alex">Alex</button>
+          <button type="button" class="person-btn" data-person="holly">Holly</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Today's Calendar / Live Sync Box + All Hub Links -->
+  <section class="today-calendar-box" id="syncBox">
+    <div class="today-calendar-header">
+      <h2 id="syncHeading">Today's Live Sync (Rickey &amp; Sacha)</h2>
+      <div class="today-calendar-links">
+        <a href="https://sdc-shoots.netlify.app/holiday-2026/superside/" target="_blank" rel="noopener" data-new-window="1">Superside Holiday Hub ↗</a>
+        <a href="https://sdc-shoots.netlify.app/holiday-2026/selects.html" target="_blank" rel="noopener" data-new-window="1">235 Holiday Photo Selects ↗</a>
+        <a href="https://app.box.com/s/pkq0q14uypuuek1z1ahdjmf3cp1er9w4" target="_blank" rel="noopener" data-new-window="1">Holiday Photos Box ↗</a>
+        <a href="https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516" target="_blank" rel="noopener" data-new-window="1">Whitney's Holiday Figma ↗</a>
+        <a href="https://www.figma.com/design/9RL3RjhkNi37wkOGXCtiVR/SE-Marketing---Partner-Creative?node-id=146-1167" target="_blank" rel="noopener" data-new-window="1">Team Pop-Up Emails Figma ↗</a>
+        <a href="https://www.figma.com/design/h8pZSXaiWrSdY6qkS3efzD/?node-id=10376-44689" target="_blank" rel="noopener" data-new-window="1">Cabana 8 Figma ↗</a>
+        <a href="../holiday-popup-package/00-Cover-Letter-and-Package-Hub.html" target="_blank" rel="noopener" data-new-window="1">Pop-Up Package Hub (Pages 00-03) ↗</a>
+        <a href="https://ncfc-holiday-demo.netlify.app/pilots/" target="_blank" rel="noopener" data-new-window="1">3 Pilot Stores (Beach FC, HTX, Phoenix) ↗</a>
+        <a href="https://ncfc-holiday-demo.netlify.app/" target="_blank" rel="noopener" data-new-window="1">NCFC Demo Store ↗</a>
+        <a href="https://app.clickup.com/9011460926/v/gr/8chzyty-52551" target="_blank" rel="noopener" data-new-window="1">Live Team ClickUp View ↗</a>
+        <a href="https://app.clickup.com/9011460926/v/dc/8chzyty-52571" target="_blank" rel="noopener" data-new-window="1">Designer Context Doc ↗</a>
+        <a href="https://sharing.clickup.com/9011460926/l/h/8chzyty-52231/8a5e335fbd0dc45" target="_blank" rel="noopener" data-new-window="1">Courtney QA View ↗</a>
+        <a href="https://the-tunnel.netlify.app/v2" target="_blank" rel="noopener" data-new-window="1">The Tunnel v2 ↗</a>
+        <a href="../index.html" target="_blank" rel="noopener" data-new-window="1">Code Library ↗</a>
+        <a href="../photo-sizer/index.html" target="_blank" rel="noopener" data-new-window="1">Photo Sizer ↗</a>
+        <a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener" data-new-window="1">Fastr Workspace ↗</a>
+      </div>
+    </div>
+    <!-- Sacha Private Dashboards Row (Visible when Sacha is selected) -->
+    <div id="sachaPrivateLinksBar" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;">
+      <strong style="font-size:13.5px;color:#92400e;">Sacha's Private Dashboards:</strong>
+      <a class="btn" href="http://localhost:8790/agent-inbox.html?v=6" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Open Agent Inbox (4-Col Kanban) ↗</a>
+      <a class="btn" href="http://localhost:8790/my-load.html" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Open My Load Tracker (5am-6pm) ↗</a>
+      <a class="btn" href="https://claude.ai/code/artifact/d9679458-4e2c-4283-afea-facbe8ec9121" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Open Sacha HQ ↗</a>
+      <a class="btn" href="https://app.clickup.com/t/868mdkw02" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">SDC Holiday ClickUp ↗</a>
+      <a class="btn" href="https://app.clickup.com/t/868mcnzzr" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">WSS Holiday ClickUp ↗</a>
+      <a class="btn" href="https://app.clickup.com/t/868mce1ah" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Team Pop-Ups ClickUp ↗</a>
+    </div>
+    <ul class="clean-list" id="syncList"></ul>
+  </section>
+
+  <!-- Accordions for Agent Starter Prompt & Quick Update -->
+  <section class="accordions-row">
+    <details class="tool-accordion">
+      <summary>
+        <span id="starterAccordionTitle">Agent Prompt: Copy Rickey's Free-Claude Starter</span>
+        <span class="accordion-badge">150 words · Free Claude safe</span>
+      </summary>
+      <div class="accordion-body">
+        <p class="accordion-help">Paste this once into a new chat on claude.ai so your free Claude knows your Holiday projects, dates, and Figma links without eating up your daily messages.</p>
+        <div>
+          <button type="button" class="btn btn-dark" id="copyStarterBtn">Copy Free-Claude Starter</button>
+        </div>
+        <pre class="prompt-pre" id="starterPromptText"></pre>
+      </div>
+    </details>
+
+    <details class="tool-accordion">
+      <summary>
+        <span>Send an Update Back (ClickUp or Teams)</span>
+        <span class="accordion-badge">Syncs with Sacha's bots</span>
+      </summary>
+      <div class="accordion-body">
+        <p class="accordion-help">Pick a task, type a quick note or paste a Figma link, and click Copy. Drop it into ClickUp or Teams so Sacha's bots update the board automatically.</p>
+        <div class="update-form-row">
+          <select class="update-select" id="updateTaskSelect" aria-label="Select task"></select>
+          <input type="text" class="update-input" id="updateNoteInput" placeholder="e.g. Added Doorbuster module to Whitney's file; ready for 2pm review.">
+          <div>
+            <button type="button" class="btn btn-dark" id="copyUpdateBtn">Copy Update for ClickUp / Teams</button>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- Controls Bar: To do / Done / All | Project Columns / List View -->
+  <div class="today-controls-bar">
+    <div class="today-filter-row" role="group" aria-label="Board filters">
+      <button type="button" class="today-filter-btn active" data-filter="todo">To do</button>
+      <button type="button" class="today-filter-btn" data-filter="done">Done</button>
+      <button type="button" class="today-filter-btn" data-filter="all">All</button>
+      <span style="width:1px;height:26px;background:var(--border);margin:0 4px;"></span>
+      <button type="button" class="today-filter-btn active" data-layout="kanban">Project Columns</button>
+      <button type="button" class="today-filter-btn" data-layout="list">List View</button>
+    </div>
+  </div>
+
+  <!-- Main Kanban Board Container -->
+  <div id="boardContainer"></div>
+
+  <!-- Optional Reference Accordion at Bottom -->
+  <details class="tool-accordion">
+    <summary>
+      <span>Reference: Approved Player Jerseys &amp; Sacha Admin Prompts</span>
+      <span class="accordion-badge">Optional reference</span>
+    </summary>
+    <div class="accordion-body">
+      <p class="accordion-help"><strong>Approved Holiday Jerseys (verified in stock):</strong> Lionel Messi (Inter Miami &amp; Argentina), Lamine Yamal (Barcelona &amp; Spain), Christian Pulisic (AC Milan &amp; USMNT), Kylian Mbappe (Real Madrid), Jude Bellingham (Real Madrid), Erling Haaland (Man City), Bukayo Saka (Arsenal), Cole Palmer (Chelsea), Son Heung-Min (Spurs), Florian Wirtz (Leverkusen), Trinity Rodman (USWNT).</p>
+      <p class="accordion-help"><strong>Promo Code Note:</strong> Public GitHub Pages masks live promo codes as XXXXX. Check the ClickUp task description before exporting paid or email slices.</p>
+    </div>
+  </details>
+
+</main>
+
+<div class="toast-banner" id="toastBanner" role="status" aria-live="polite"></div>
+
+<script>
+(function() {
+  var FIGMA_HOLIDAY_MASTER = "https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516";
+  var FIGMA_TEAM_POPUP = "https://www.figma.com/design/9RL3RjhkNi37wkOGXCtiVR/SE-Marketing---Partner-Creative?node-id=146-1167";
+  var FIGMA_431_LOOKBOOK = "https://www.figma.com/design/RzKs6FADtuzQmecNP6WQCN/431-Sports---Master-File?node-id=1010-6004";
+  var PREVIEW_POPUP_HUB = "../holiday-popup-package/00-Cover-Letter-and-Package-Hub.html";
+  var PREVIEW_TUNNEL = "../photo-sizer/index.html";
+
+  var PEOPLE = {
+    rickey: {
+      name: "Rickey",
+      subtitle: "Rickey · Design Systems, Holiday Emails & Team Sales (Pilot #1)",
+      syncHeading: "Friday Morning Update (7:10am PT) & Ready for Rickey to Test",
+      syncBullets: [
+        "431 Volleyball Lookbook 2027 (Due Fri 30 Oct): Sacha's Components agent pre-built all 16 US Letter pages (LB 01 to LB 16) + Lookbook Master Components right beside your catalog pages in the 431 Master File without touching your 78 original pages. Ready for you to test.",
+        "Soccer.com Holiday 2026 Superside Hub is live on Netlify (creative direction, 67 products, 31 sizes across Static/GIF/MP4, and 235 studio photo selects) and all 250 Danny/OrbitView files are SKU-mapped in Box and Tunnel V2.",
+        "Tampa Bay Super Cup (3 Fastr paste files passed 9/9 checks) launches today, and the 3 pilot Team Holiday Pop-Up stores + Zeta emails are staged for Sprint 151 QA."
+      ],
+      starterPrompt: [
+        "You are assisting Rickey (Senior Designer, Sports Endeavors) on Holiday 2026.",
+        "Active tracks:",
+        "1. 431 Sports Volleyball Lookbook 2027 (due Fri 30 Oct): Sacha's Components agent pre-built all 16 pages (LB 01 to LB 16) + Master Components in Figma (431 Sports Master File, node 1010-6004) with 27 feed-synced SKUs (8 DNA SKUs flagged). Ready for Rickey to test and art-direct.",
+        "2. Whitney's Holiday Master File: using Swap Variables collections per campaign page so designers edit text lockups without detaching components, plus adding a Doorbuster Deals module.",
+        "3. Superside Holiday Hub (live at sdc-shoots.netlify.app/holiday-2026/superside/): 31 sizes across Static, GIF, and MP4/MOV.",
+        "4. Team Sales 47-Club Pop-Up Emails: 2 dynamic 2x JPG slices per club due Tue 27 Oct.",
+        "Keep every reply under 120 words with short bullets."
+      ].join("\n")
+    },
+    jordan: {
+      name: "Jordan",
+      subtitle: "Jordan · Creative Operations & Traffic Lead (Pilot #2)",
+      syncHeading: "End-of-Day Wrap (6:30pm PT) & Friday Priorities (Jordan & Sacha)",
+      syncBullets: [
+        "Superside Holiday 2026 Hub is live on Netlify (creative direction, 67 products, 31 sizes, and 235 studio selects) and sent to Colby and Brian.",
+        "All 235 Danny holiday photos + 15 OrbitView 360 spins are SKU-mapped, uploaded to Box, and live in Tunnel V2.",
+        "Tampa Bay Super Cup (3 Fastr blocks passed 9/9 checks) and End of Season Sale launch tomorrow (Fri 23 Oct); 3 pilot Team Pop-Up stores are ready for Sprint 151 QA."
+      ],
+      starterPrompt: [
+        "You are assisting Jordan (Creative Traffic Lead) on Holiday 2026 across Soccer.com, WorldSoccerShop, and Team Sales.",
+        "Key dates: Fri 23 Oct (Tampa Bay Super Cup + End of Season Sale live), Sun 25 Oct (Early Access 15% Off), Mon 26 Oct (First 3 Team Pop-Up stores in QA), Tue 27 Oct (47-Club Email 1 slices due), Thu 29 Oct (Free Name & Number).",
+        "Keep every reply under 120 words and format status updates for ClickUp."
+      ].join("\n")
+    },
+    sacha: {
+      name: "Sacha",
+      subtitle: "Sacha · Creative Director & Automation Lead (Full Overview)",
+      syncHeading: "End-of-Day Wrap (Thu 22 Oct · 6:30pm PT) & Friday Launch Queue",
+      syncBullets: [
+        "Shipped tonight (6:30pm PT): Soccer.com Holiday 2026 Superside Hub live on Netlify (direction, 67 products, 31 sizes, 235 selects) + executive update sent to Colby & Brian.",
+        "Shipped tonight (Tunnel V2 & Box): All 235 Danny holiday photos + 15 OrbitView 360 spins compressed, SKU-mapped, in Box, and injected into Tunnel V2 alongside the Chivas 26/27 Third Box card.",
+        "Ready for Fri 23 Oct: Tampa Bay Super Cup (3 Fastr files 9/9 clean), End of Season Sale, and 3 Pilot Team Holiday Pop-Up Stores + 188 Zeta emails staged for QA."
+      ],
+      starterPrompt: [
+        "You are assisting Sacha on Holiday 2026 across Soccer.com, WorldSoccerShop, 431 Sports, and Team Sales.",
+        "Wrapped Thu 22 Oct: Superside Holiday Hub live on Netlify, 250 Danny/OrbitView assets in Box + Tunnel V2, Chivas Third Box card in Tunnel, Tampa Bay Super Cup 9/9 Fastr checks passed, 3 Pilot Pop-Up stores staged.",
+        "Keep replies under 120 words, bottom line first."
+      ].join("\n")
+    },
+    courtney: {
+      name: "Courtney",
+      subtitle: "Courtney · QA & Pre-Publish Verification",
+      syncHeading: "End-of-Day QA Wrap (6:30pm PT)",
+      syncBullets: [
+        "Tampa Bay Super Cup: All 3 Fastr paste files passed 9/9 mechanical checks with 0 errors for tomorrow's launch.",
+        "Team Holiday Pop-Up Stores: 3 pilot stores (Beach FC, HTX Soccer, Phoenix Rising) rebuilt as NCFC clones and staged for Sprint 151 QA.",
+        "Fri 23 Oct launches: Tampa Bay Super Cup landing page and End of Season Sale (Soccer.com + WSS)."
+      ],
+      starterPrompt: [
+        "You are assisting Courtney (QA Lead) on Holiday 2026 across Soccer.com, WorldSoccerShop, and Team Sales.",
+        "Verify all links against the approved site link book, check promo banner lockups, confirm mobile/desktop embed heights, and flag any 404 or clipping issues.",
+        "Keep replies under 120 words in a pass/fail checklist."
+      ].join("\n")
+    },
+    brock: {
+      name: "Brock",
+      subtitle: "Brock · Email Marketing & Zeta Global",
+      syncHeading: "End-of-Day Email Sync (6:30pm PT · Brock, Rickey & Sacha)",
+      syncBullets: [
+        "Team Sales 47-Club Pop-Up Emails: 3 Zeta HTML email files exported and 188 club/template combinations mapped; only 2 dynamic 2x JPG slices per club due Tue 27 Oct.",
+        "Chivas 26/27 Third: Box asset card wired in Tunnel V2 (held until launch) alongside Chivas email prep.",
+        "Consumer Holiday Emails: Superside Holiday Hub is live with all 31 placement sizes (Static, GIF, MP4)."
+      ],
+      starterPrompt: [
+        "You are assisting Brock (Email Lead) on Holiday 2026 Zeta Global campaigns.",
+        "Team Pop-Up Email 1 sends Mon 2 Nov (slices due Tue 27 Oct). Consumer Early Access 15% Off launches Sun 25 Oct.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    casey: {
+      name: "Casey",
+      subtitle: "Casey · Soccer.com Art Direction & Holiday Templates",
+      syncHeading: "End-of-Day Soccer.com Wrap (6:30pm PT · Casey)",
+      syncBullets: [
+        "Soccer.com Holiday 2026 Superside Hub is live on Netlify (creative direction, 67 products, 31 sizes, and all 235 studio photo selects).",
+        "All 235 of Danny's no-grain holiday photos + 15 OrbitView 360 spins are now SKU-mapped in Box and live in Tunnel V2.",
+        "Rickey is adding your Doorbuster Deals module request into Whitney's Holiday Master file with Swap Variables."
+      ],
+      starterPrompt: [
+        "You are assisting Casey (Soccer.com Designer) on Holiday 2026.",
+        "All Soccer.com Holiday campaigns use Whitney's Holiday Master File with Swap Variables and the new Doorbuster Deals module.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    whitney: {
+      name: "Whitney",
+      subtitle: "Whitney · Soccer.com Holiday Master File Lead",
+      syncHeading: "End-of-Day Soccer.com Wrap (6:30pm PT · Whitney)",
+      syncBullets: [
+        "Soccer.com Holiday 2026 Superside Hub is live on Netlify with the 31 placement sizes, 67 focus products, and 235 studio photo selects.",
+        "All 235 of Danny's holiday photos + 15 OrbitView 360 spins are now SKU-mapped in Box and live in Tunnel V2.",
+        "Rickey set up Swap Variables collections per campaign page on your Holiday Master file and is adding the Doorbuster Deals module."
+      ],
+      starterPrompt: [
+        "You are assisting Whitney (Soccer.com Designer) on the Holiday 2026 Master File.",
+        "Focus: keeping component lockups intact via Swap Variables, adding the Doorbuster Deals section, and rolling out Early Access (Oct 25) and Free Name & Number (Oct 29).",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    matty: {
+      name: "Matty",
+      subtitle: "Matty · Soccer.com Campaign Designer",
+      syncHeading: "End-of-Day Soccer.com Wrap (6:30pm PT · Matty)",
+      syncBullets: [
+        "All 235 of Danny's holiday studio photos + 15 OrbitView 360 spins are now SKU-mapped in Box and live in Tunnel V2.",
+        "Use Whitney's Holiday Master File with Swap Variables so text lockups edit cleanly without detaching.",
+        "Next up: End of Season Sale (Fri 23 Oct) and Early Access 15% Off (Sun 25 Oct)."
+      ],
+      starterPrompt: [
+        "You are assisting Matty (Soccer.com Designer) on Holiday 2026.",
+        "Use Whitney's Holiday Master File without detaching components, and pull approved player jerseys from the safe list.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    michael: {
+      name: "Michael",
+      subtitle: "Michael · Soccer.com Campaign Designer",
+      syncHeading: "End-of-Day Soccer.com Wrap (6:30pm PT · Michael)",
+      syncBullets: [
+        "All 235 of Danny's holiday studio photos + 15 OrbitView 360 spins are now SKU-mapped in Box and live in Tunnel V2.",
+        "Use Whitney's Holiday Master File with Swap Variables so text lockups edit cleanly without detaching.",
+        "Next up: Free Name & Number (Thu 29 Oct) and Peak November Waves."
+      ],
+      starterPrompt: [
+        "You are assisting Michael (Soccer.com Designer) on Holiday 2026.",
+        "Use Whitney's Holiday Master File without detaching components, and pull approved player jerseys from the safe list.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    darren: {
+      name: "Darren",
+      subtitle: "Darren · Team Sales & 431 Sports Lead",
+      syncHeading: "Friday Morning Update (7:10am PT · Darren)",
+      syncBullets: [
+        "431 Volleyball Lookbook 2027 (Due Fri 30 Oct): All 16 pages (LB 01 to LB 16) + Master Components are now pre-built in Figma with 27 feed-synced SKUs (8 DNA SKUs flagged) and ready for Rickey to test.",
+        "First 3 pilot Team Holiday Pop-Up stores (Beach FC, HTX Soccer, Phoenix Rising) are live as NCFC clones on Netlify and staged for Sprint 151 QA.",
+        "All 47 club store feeds (47 of 48 product photos verified from Reflektion feed) and 3 Zeta email HTML templates are staged."
+      ],
+      starterPrompt: [
+        "You are assisting Darren on Team Sales Holiday Pop-Up Shops (47 clubs) and the 431 Sports Printed Lookbook.",
+        "431 Lookbook 16-page build is staged in Figma for Rickey to test; pilot stores are staged for Sprint 151 QA; all 47 stores + Email 1 launch Mon 2 Nov.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    danny: {
+      name: "Danny",
+      subtitle: "Danny · Studio Photography & Holiday Shoot",
+      syncHeading: "End-of-Day Studio Shoot Wrap (6:30pm PT · Danny)",
+      syncBullets: [
+        "All 235 of your no-grain Holiday 2026 studio photos + 15 OrbitView 360 spins are now compressed under 500 KB, renamed by Shot & group, and mapped to 56 SKUs/RVs.",
+        "Uploaded to Box (SDC Holiday 2026) and injected into Tunnel V2 (35 shot cards live under Holiday 2026).",
+        "Live selects gallery is also up at sdc-shoots.netlify.app/holiday-2026/selects.html."
+      ],
+      starterPrompt: [
+        "You are assisting Danny (Studio Photographer) on Holiday 2026.",
+        "All 235 Holiday photos + 15 OrbitView spins are now SKU-mapped in Box and Tunnel V2.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    tyler: {
+      name: "Tyler",
+      subtitle: "Tyler · WorldSoccerShop Site & Merchandising",
+      syncHeading: "End-of-Day WorldSoccerShop Wrap (6:30pm PT · Tyler)",
+      syncBullets: [
+        "Tomorrow (Fri 23 Oct): WSS End of Season Sale goes live.",
+        "Nike Chivas 26/27 Third: Box link card with all 14 article numbers is wired in Tunnel V2 (held until launch).",
+        "Sun 25 Oct: WSS Goal Club Early Access 15% Off launches, followed by Free Name & Number on Thu 29 Oct."
+      ],
+      starterPrompt: [
+        "You are assisting Tyler on WorldSoccerShop Holiday 2026 campaigns.",
+        "Upcoming WSS launches: End of Season Sale (Oct 23), Early Access 15% Off (Oct 25), Free Name & Number (Oct 29).",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    alex: {
+      name: "Alex",
+      subtitle: "Alex · WorldSoccerShop Creative & Campaigns",
+      syncHeading: "End-of-Day WorldSoccerShop Wrap (6:30pm PT · Alex)",
+      syncBullets: [
+        "Tomorrow (Fri 23 Oct): WSS End of Season Sale launches.",
+        "Nike Chivas 26/27 Third: Box link card with all 14 article numbers is wired in Tunnel V2 (held until launch).",
+        "Thu 29 Oct: WSS Free Name & Number uses approved player jerseys from the safe list."
+      ],
+      starterPrompt: [
+        "You are assisting Alex on WorldSoccerShop Holiday 2026 creative.",
+        "Focus on WSS End of Season Sale (Oct 23), Early Access (Oct 25), and Free Name & Number (Oct 29).",
+        "Keep replies under 120 words."
+      ].join("\n")
+    },
+    holly: {
+      name: "Holly",
+      subtitle: "Holly · WorldSoccerShop Campaigns",
+      syncHeading: "End-of-Day WorldSoccerShop Wrap (6:30pm PT · Holly)",
+      syncBullets: [
+        "Tomorrow (Fri 23 Oct): WSS End of Season Sale goes live.",
+        "Sun 25 Oct: WSS Goal Club Early Access 15% Off launches.",
+        "Nov 9 to Nov 18: WSS Singles Day and Kitbag Deals."
+      ],
+      starterPrompt: [
+        "You are assisting Holly on WorldSoccerShop Holiday 2026 campaigns.",
+        "Keep replies under 120 words."
+      ].join("\n")
+    }
+  };
+
+  /* Clean, low-density Kanban tasks: 1 short sentence per card, direct Figma/ClickUp links, zero node numbers */
+  var TASKS = [
+    /* Column 1: Holiday & Promotions */
+    {
+      id: "tpl-swap-vars",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 1,
+      statusWord: "Superside Live",
+      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha", "brock"],
+      text: "Holiday Master Templates & Superside Hub: Swap Variables on Whitney's file + 31 placement sizes live.",
+      detail: "Soccer.com Holiday 2026 Superside Hub is live on Netlify (creative direction, 67 products, 31 sizes across Static/GIF/MP4, and 235 studio selects).",
+      figmaUrl: FIGMA_HOLIDAY_MASTER,
+      previewUrl: "https://sdc-shoots.netlify.app/holiday-2026/superside/",
+      clickupUrl: "https://app.clickup.com/t/868mdkw02"
+    },
+    {
+      id: "cu-team-holiday-popups",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 2,
+      statusWord: "Oct 27",
+      people: ["rickey", "brock", "darren", "sacha", "jordan"],
+      text: "Team Soccer: Holiday Pop Ups (47 clubs): export 2 dynamic 2x JPG email slices per club.",
+      detail: "Site Change Requests (Requested, due Tue 27 Oct). Sacha's bots built the 47 store pages and locked the 600px Zeta wrapper.",
+      figmaUrl: FIGMA_TEAM_POPUP,
+      previewUrl: PREVIEW_POPUP_HUB,
+      clickupUrl: "https://app.clickup.com/t/868mjpbrg"
+    },
+    {
+      id: "cu-tampa-bay-social",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 3,
+      statusWord: "Due Today",
+      people: ["rickey", "sacha", "jordan", "casey"],
+      text: "Tampa Bay Super Cup Social Assets (adidas Club Partner Engagement, due Thu 22 Oct).",
+      detail: "Status: To do. Companion social assets for the Tampa Bay Super Cup landing page launching tomorrow.",
+      clickupUrl: "https://app.clickup.com/t/868mkqvyt"
+    },
+    {
+      id: "cu-promo-creative-assets",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 4,
+      statusWord: "Oct 27",
+      people: ["rickey", "whitney", "casey", "matty", "michael", "jordan", "sacha"],
+      text: "Promotions: Creative Assets (status: Planning, due Tue 27 Oct).",
+      detail: "Uses Whitney's Holiday Master file with Swap Variables.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER,
+      clickupUrl: "https://app.clickup.com/t/868mkcuj2"
+    },
+    {
+      id: "tpl-tunnel-photos",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 5,
+      statusWord: "In Tunnel & Box",
+      people: ["danny", "sacha", "casey", "whitney", "matty", "michael", "rickey"],
+      text: "Danny's 235 Holiday studio photos + 15 OrbitView 360 spins: SKU-mapped in Box and live in Tunnel V2.",
+      detail: "All 250 files compressed under 500 KB, renamed by Shot & group, mapped to 56 SKUs/RVs, uploaded to Box, and injected into Tunnel V2.",
+      previewUrl: "https://sdc-shoots.netlify.app/holiday-2026/selects.html",
+      clickupUrl: "https://app.box.com/s/pkq0q14uypuuek1z1ahdjmf3cp1er9w4"
+    },
+    {
+      id: "wave-early-access",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 6,
+      statusWord: "Oct 25",
+      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "tyler", "alex", "holly"],
+      text: "Sun 25 Oct: Goal Club Early Access 15% Off (plug copy into the locked Holiday Master template).",
+      detail: "Runs Oct 25 to Oct 27 across Site, Email, and Paid Social.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER,
+      clickupUrl: "https://app.clickup.com/t/868mdkw02"
+    },
+    {
+      id: "wave-free-nn",
+      col: "Holiday & Promotions",
+      colClass: "chip-shoot",
+      urgency: 7,
+      statusWord: "Oct 29",
+      people: ["whitney", "casey", "matty", "michael", "jordan", "sacha", "brock", "tyler", "alex", "holly"],
+      text: "Thu 29 Oct: Free Name & Number Jersey Promo (use approved player jerseys from the safe list).",
+      detail: "Runs Oct 29 to Nov 2. Only feature verified in-stock player jerseys.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER,
+      clickupUrl: "https://app.clickup.com/t/868mdkw1a"
+    },
+
+    /* Column 2: 431 & Catalogs */
+    {
+      id: "cu-vb-lookbook-2027",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 1,
+      statusWord: "Built · Rickey to Test",
+      people: ["rickey", "sacha", "darren", "jordan"],
+      text: "VB Lookbook 2027 (Printed 431 Lookbook for Darren, due Fri 30 Oct): 16 pages + Master Components built in Figma; Rickey to test.",
+      detail: "16 US Letter pages (LB 01 to LB 16) + Lookbook Master Components built beside Rickey's catalog with 27 feed-synced SKUs (8 DNA SKUs and 10 product photos flagged).",
+      figmaUrl: FIGMA_431_LOOKBOOK,
+      clickupUrl: "https://app.clickup.com/t/868mkp550"
+    },
+    {
+      id: "cu-nike-laser-shorts",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 2,
+      statusWord: "Due Fri Oct 23",
+      people: ["rickey", "darren", "sacha"],
+      text: "Nike Laser VI Shorts Update (Club Partner Catalogs, due tomorrow Fri 23 Oct).",
+      detail: "Status: To do. Quick catalog product update.",
+      clickupUrl: "https://app.clickup.com/t/868mkvjcv"
+    },
+    {
+      id: "cu-alumagoal-guide",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 3,
+      statusWord: "Offload · Oct 29",
+      people: ["rickey", "sacha", "darren"],
+      text: "Alumagoal Club Field Equipment Guide (Add-On Sales Collateral, due Thu 29 Oct).",
+      detail: "Status: To do. Great candidate for Sacha's agents to format and lay out so Rickey can focus on Holiday.",
+      clickupUrl: "https://app.clickup.com/t/868mkdm0v"
+    },
+    {
+      id: "cu-volleyball-2027",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 4,
+      statusWord: "Feedback · Oct 30",
+      people: ["rickey", "darren"],
+      text: "Volleyball 2027 Catalog (Club Partner Catalogs, due Fri 30 Oct · Waiting for feedback).",
+      detail: "Currently in Waiting for feedback status.",
+      clickupUrl: "https://app.clickup.com/t/868kuupj2"
+    },
+    {
+      id: "cu-team-catalog-2027",
+      col: "431 & Catalogs",
+      colClass: "chip-comp",
+      urgency: 5,
+      statusWord: "Waiting copy",
+      people: ["rickey", "darren"],
+      text: "Team Catalog 2027 (Club Partner Catalogs, due Fri 30 Oct · Waiting for copy).",
+      detail: "Blocked waiting on copy.",
+      clickupUrl: "https://app.clickup.com/t/868kcpw5h"
+    },
+
+    /* Column 3: Club Emails & Events */
+    {
+      id: "cu-cpl-email-styling",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 1,
+      statusWord: "Offload · Oct 23",
+      people: ["rickey", "sacha", "brock"],
+      text: "CPL update email template styling to ES styling (due tomorrow Fri 23 Oct · Sacha's bots can code).",
+      detail: "Club Partner Communications / MISC (Status: To do). Sacha's email agents can restyle this template today.",
+      clickupUrl: "https://app.clickup.com/t/868mkx5x9"
+    },
+    {
+      id: "cu-epsc-showcase",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 2,
+      statusWord: "Due Fri Oct 23",
+      people: ["rickey", "darren"],
+      text: "EPSC College Showcase (Club Partner Communications, due tomorrow Fri 23 Oct).",
+      detail: "Status: To do.",
+      clickupUrl: "https://app.clickup.com/t/868mfc1nd"
+    },
+    {
+      id: "cu-ros-events",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 3,
+      statusWord: "In progress · Oct 23",
+      people: ["rickey"],
+      text: "ROS (Active Events, due tomorrow Fri 23 Oct · In progress).",
+      detail: "Active Events deliverable currently in progress.",
+      clickupUrl: "https://app.clickup.com/t/868kzgdr7"
+    },
+    {
+      id: "cu-playerpass-email",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 4,
+      statusWord: "Oct 27",
+      people: ["rickey", "brock"],
+      text: "PlayerPASS Emails: Email Assets (due Tue 27 Oct) & Social Assets.",
+      detail: "Email Assets (868mkwv95, due Tue 27 Oct) and companion Social Assets (868mkwv87).",
+      clickupUrl: "https://app.clickup.com/t/868mkwv95"
+    },
+    {
+      id: "cu-oct-feedback",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 5,
+      statusWord: "Feedback",
+      people: ["rickey"],
+      text: "Oct deliverable (due Today Thu 22 Oct · Waiting for feedback).",
+      detail: "Status: Waiting for feedback.",
+      clickupUrl: "https://app.clickup.com/t/868mh92yq"
+    },
+    {
+      id: "cu-waiting-copy-events",
+      col: "Club Emails & Events",
+      colClass: "chip-fastr",
+      urgency: 6,
+      statusWord: "Waiting copy",
+      people: ["rickey"],
+      text: "Active Events waiting on copy: Match Day Flier (Nov 5), Invite Creative (Nov 6), Enter To Win Pop Up.",
+      detail: "All 3 tasks are currently in Waiting for copy status (868k0exnj, 868k0exhy, 868m62z5w).",
+      clickupUrl: "https://app.clickup.com/t/868k0exnj"
+    },
+
+    /* Column 4: DX Pages & Enablement */
+    {
+      id: "cu-rfq-page",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 1,
+      statusWord: "Offload · Oct 28",
+      people: ["rickey", "sacha", "jordan"],
+      text: "RFQ Submission Page (Sales Enablement, due Wed 28 Oct): Sacha's agents can build this page.",
+      detail: "Status: To do. Sacha's Components agent can code or mock up the RFQ Submission Page so Rickey doesn't have to.",
+      clickupUrl: "https://app.clickup.com/t/868mh72bj"
+    },
+    {
+      id: "cu-caysa",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 2,
+      statusWord: "Oct 28",
+      people: ["rickey", "darren"],
+      text: "CAYSA (Sales Enablement / MISC, due Wed 28 Oct · To do).",
+      detail: "Sales Enablement deliverable due next Wednesday.",
+      clickupUrl: "https://app.clickup.com/t/868mkvqbw"
+    },
+    {
+      id: "cu-dx-club-mgmt",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 3,
+      statusWord: "Offload · In progress",
+      people: ["rickey", "sacha"],
+      text: "DX Page Mock: Club Management Tool 2026 Update (In progress): Sacha's bots can prototype.",
+      detail: "Club Management Tool DX page mock. Sacha's agents can build interactive HTML or Fastr blocks for this.",
+      clickupUrl: "https://app.clickup.com/t/868hjh0pt"
+    },
+    {
+      id: "cu-custom-uniforms-mock",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 4,
+      statusWord: "Offload · To do",
+      people: ["rickey", "sacha", "darren"],
+      text: "Custom Uniforms Mock Up v1 (Team Sales Pages · To do): Sacha's bots can help mock up.",
+      detail: "Team Sales Pages mockup.",
+      clickupUrl: "https://app.clickup.com/t/868hhxtfr"
+    },
+    {
+      id: "cu-convention-headshots",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 5,
+      statusWord: "Reviewing · Oct 30",
+      people: ["rickey"],
+      text: "Headshots for Conventions (One-off event asks, due Fri 30 Oct · Reviewing).",
+      detail: "Currently in Reviewing status. Tunnel V2 can batch-crop any extra headshots if needed.",
+      clickupUrl: "https://app.clickup.com/t/868kxk5tv"
+    },
+    {
+      id: "wss-eoss-launch",
+      col: "DX Pages & Enablement",
+      colClass: "chip-site",
+      urgency: 2,
+      statusWord: "Fri Oct 23",
+      people: ["tyler", "alex", "holly", "sacha", "jordan"],
+      text: "Fri 23 Oct: Launch WorldSoccerShop End of Season Sale hero and site strips.",
+      detail: "Verify all links against the approved WSS site link book before publishing.",
+      clickupUrl: "https://app.clickup.com/t/868mdkw02"
+    }
+  ];
+
+  var INBOX_MESSAGES = [
+    {
+      id: "msg-eod-630pm-superside",
+      from: "Sacha (6:30pm Day-Close Wrap)",
+      to: ["all", "rickey", "jordan", "sacha", "brock", "casey", "whitney", "matty", "michael", "darren", "danny", "tyler", "alex", "holly"],
+      time: "Thu 22 Oct · 6:30pm",
+      chip: "Holiday & Promotions",
+      chipClass: "chip-shoot",
+      text: "Soccer.com Holiday 2026 Superside Hub is live on Netlify (creative direction, 67 focus products, 31 placement sizes across Static/GIF/MP4, and all 235 studio photo selects) and sent to Colby and Brian.",
+      previewUrl: "https://sdc-shoots.netlify.app/holiday-2026/superside/",
+      figmaUrl: FIGMA_HOLIDAY_MASTER
+    },
+    {
+      id: "msg-eod-630pm-tunnel-box",
+      from: "Sacha (6:30pm Day-Close Wrap)",
+      to: ["all", "rickey", "jordan", "sacha", "casey", "whitney", "matty", "michael", "danny", "tyler", "alex", "holly", "brock"],
+      time: "Thu 22 Oct · 6:30pm",
+      chip: "Holiday & Promotions",
+      chipClass: "chip-shoot",
+      text: "All 235 of Danny's no-grain Holiday photos + 15 OrbitView 360 spins are compressed under 500 KB, renamed by Shot & group, mapped to 56 SKUs/RVs, uploaded to Box, and injected into Tunnel V2 alongside the Nike Chivas 26/27 Third Box card.",
+      previewUrl: "https://sdc-shoots.netlify.app/holiday-2026/selects.html",
+      clickupUrl: "https://app.box.com/s/pkq0q14uypuuek1z1ahdjmf3cp1er9w4"
+    },
+    {
+      id: "msg-eod-630pm-tampa-popups",
+      from: "Sacha (6:30pm Day-Close Wrap)",
+      to: ["all", "rickey", "jordan", "sacha", "darren", "brock", "casey"],
+      time: "Thu 22 Oct · 6:30pm",
+      chip: "431 & Site Launches",
+      chipClass: "chip-comp",
+      text: "Tampa Bay Super Cup (3 Fastr paste files passed 9/9 checks with 0 errors) is staged for tomorrow's launch, and the 3 pilot Team Holiday Pop-Up stores (Beach FC, HTX, Phoenix Rising) + 3 Zeta HTML email templates are staged for Sprint 151 QA.",
+      previewUrl: "https://ncfc-holiday-demo.netlify.app/pilots/",
+      clickupUrl: "https://app.clickup.com/t/868mjpbrg"
+    },
+    {
+      id: "msg-sacha-236pm",
+      from: "Sacha",
+      to: ["rickey", "whitney", "casey", "jordan", "brock"],
+      time: "Thu 22 Oct · 2:36pm",
+      chip: "Holiday & Promotions",
+      chipClass: "chip-shoot",
+      text: "Working on the Tampa Bay Super Cup launch, the 47-Club Holiday Pop-Ups & emails, and the Chivas HTML email file for Brock and Eric right now, so I haven't had a chance to look at the Holiday Design System file yet.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER
+    },
+    {
+      id: "msg-sf-live-team-view",
+      from: "Sacha Fierce (ClickUp AI)",
+      to: ["sacha", "rickey", "jordan", "whitney", "casey", "matty", "michael", "darren", "danny", "tyler", "alex", "holly", "brock"],
+      time: "Thu 22 Oct · 12:30pm",
+      chip: "Holiday & Promotions",
+      chipClass: "chip-shoot",
+      text: "Added Danny and Tyler alongside all 9 designers, Jordan, Darren, and Brock to the public Design Team Current Work view in ClickUp (grouped by assignee, filtered to open work).",
+      clickupUrl: "https://app.clickup.com/9011460926/v/gr/8chzyty-52551"
+    },
+    {
+      id: "msg-sf-context-doc",
+      from: "Sacha Fierce (ClickUp AI)",
+      to: ["sacha", "rickey", "jordan", "whitney", "casey", "matty", "michael", "alex", "holly"],
+      time: "Thu 22 Oct · 12:08pm",
+      chip: "431 & Site Launches",
+      chipClass: "chip-comp",
+      text: "Created the shared Designer Context Doc in ClickUp covering all 9 designers, and found 22 active tasks across multiple lists for Rickey.",
+      clickupUrl: "https://app.clickup.com/9011460926/v/dc/8chzyty-52571"
+    },
+    {
+      id: "msg-rickey-templates",
+      from: "Rickey",
+      to: ["sacha", "jordan", "whitney", "casey"],
+      time: "Thu 22 Oct · 11:15am",
+      chip: "Holiday Templates",
+      chipClass: "chip-shoot",
+      text: "Set up Swap Variables collections per campaign page on Whitney's Holiday Master file so nobody has to detach components. Jordan, Casey, and Whitney also asked to add a Doorbuster Deals module.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER
+    },
+    {
+      id: "msg-rickey-431",
+      from: "Rickey",
+      to: ["sacha", "darren", "jordan"],
+      time: "Thu 22 Oct · 11:20am",
+      chip: "431 & Site Launches",
+      chipClass: "chip-comp",
+      text: "Assigned the 431 Sports Printed Lookbook yesterday for next Friday (30 Oct). Would love help offloading layout prep where we can.",
+      clickupUrl: "https://app.clickup.com/t/868mce1ah"
+    },
+    {
+      id: "msg-sacha-to-rickey-1",
+      from: "Sacha",
+      to: ["rickey", "whitney", "casey"],
+      time: "Thu 22 Oct · 11:35am",
+      chip: "Holiday Templates",
+      chipClass: "chip-shoot",
+      text: "Finishing Courtney's QA handoff first, then joining you after 2pm to adapt the 600px One Mother email pattern for Site, Email, and Motion.",
+      figmaUrl: FIGMA_HOLIDAY_MASTER
+    },
+    {
+      id: "msg-sacha-to-rickey-2",
+      from: "Sacha (Bot)",
+      to: ["rickey", "darren"],
+      time: "Fri 23 Oct · 7:10am",
+      chip: "431 & Site Launches",
+      chipClass: "chip-comp",
+      text: "Built all 16 US Letter pages (LB 01 to LB 16) + Lookbook Master Components right beside your catalog in the 431 Master File with 27 feed-synced SKUs. Ready for Rickey to test.",
+      figmaUrl: FIGMA_431_LOOKBOOK,
+      clickupUrl: "https://app.clickup.com/t/868mkp550"
+    },
+    {
+      id: "msg-bot-qa",
+      from: "Argon (Bot)",
+      to: ["sacha", "courtney", "jordan"],
+      time: "Thu 22 Oct · 11:45am",
+      chip: "Team Pop-Up Emails",
+      chipClass: "chip-fastr",
+      text: "First 3 pilot Team Holiday Pop-Up stores (Beach FC, HTX, Phoenix Rising) are staged for Mon 26 Oct QA check.",
+      previewUrl: PREVIEW_POPUP_HUB
+    }
+  ];
+
+  var STORAGE_KEY = "sei_holiday_hub_kanban_v2";
+  var urlParams = new URLSearchParams(window.location.search);
+  var lockedPersonParam = (urlParams.get("for") || "").toLowerCase().trim();
+  var isSinglePersonMode = !!(lockedPersonParam && PEOPLE[lockedPersonParam]);
+
+  var state = {
+    person: isSinglePersonMode ? lockedPersonParam : "rickey",
+    filter: "todo",
+    layout: "kanban",
+    openCardId: null,
+    inboxOpen: false,
+    doneMap: {},
+    noteMap: {},
+    readMsgMap: {},
+    customMsgs: []
+  };
+
+  if (isSinglePersonMode) {
+    var selBox = document.getElementById("personSelectorBox");
+    if (selBox) selBox.style.display = "none";
+  }
+
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    if (saved.doneMap) state.doneMap = saved.doneMap;
+    if (saved.noteMap) state.noteMap = saved.noteMap;
+    if (saved.readMsgMap) state.readMsgMap = saved.readMsgMap;
+    if (Array.isArray(saved.customMsgs)) state.customMsgs = saved.customMsgs;
+  } catch (e) {}
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        doneMap: state.doneMap,
+        noteMap: state.noteMap,
+        readMsgMap: state.readMsgMap,
+        customMsgs: state.customMsgs
+      }));
+    } catch (e) {}
+  }
+
+  function getAllMessages() {
+    return state.customMsgs.concat(INBOX_MESSAGES);
+  }
+
+  function getMessagesForPerson(personKey) {
+    return getAllMessages().filter(function(m) {
+      if (personKey === "sacha" || personKey === "jordan") return true;
+      return m.to.indexOf(personKey) !== -1 || m.to.indexOf("all") !== -1;
+    });
+  }
+
+  function getUnreadCountForPerson(personKey) {
+    return getMessagesForPerson(personKey).filter(function(m) {
+      return !state.readMsgMap[m.id + "__" + personKey];
+    }).length;
+  }
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById("toastBanner");
+    t.textContent = msg;
+    t.style.display = "block";
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(function() {
+      t.style.display = "none";
+    }, 2600);
+  }
+
+  function copyText(text, label) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showToast(label || "Copied to clipboard");
+      });
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      showToast(label || "Copied to clipboard");
+    }
+  }
+
+  function getTasksForPerson(personKey) {
+    return TASKS.filter(function(t) {
+      return t.people.indexOf(personKey) !== -1;
+    });
+  }
+
+  function renderCardHtml(task, prioNum) {
+    var isDone = !!state.doneMap[task.id];
+    var isOpen = state.openCardId === task.id;
+    var noteVal = state.noteMap[task.id] || "";
+
+    var linksHtml = "";
+    if (task.figmaUrl) {
+      linksHtml += '<a class="today-open-link" href="' + escapeHtml(task.figmaUrl) + '" target="_blank" rel="noopener" data-stop="1" data-new-window="1">Figma ↗</a>';
+    }
+    if (task.previewUrl) {
+      linksHtml += '<a class="today-open-link" href="' + escapeHtml(task.previewUrl) + '" target="_blank" rel="noopener" data-stop="1" data-new-window="1">Preview ↗</a>';
+    }
+    if (task.clickupUrl) {
+      linksHtml += '<a class="today-open-link" href="' + escapeHtml(task.clickupUrl) + '" target="_blank" rel="noopener" data-stop="1" data-new-window="1">ClickUp ↗</a>';
+    }
+
+    var prioBadge = !isDone
+      ? '<span class="kanban-prio-badge ' + (prioNum === 1 ? "prio-1" : "") + '">Priority ' + prioNum + '</span>'
+      : '<span class="kanban-prio-badge">Done</span>';
+
+    return (
+      '<div class="today-item ' + (isOpen ? "open " : "") + (isDone ? "done" : "") + '" data-card-id="' + escapeHtml(task.id) + '">' +
+        '<div class="today-row" data-toggle-card="' + escapeHtml(task.id) + '">' +
+          '<input type="checkbox" class="today-tick" data-tick-card="' + escapeHtml(task.id) + '" ' + (isDone ? "checked" : "") + ' aria-label="Mark task done">' +
+          '<div class="today-row-main">' +
+            '<div class="kanban-card-top">' +
+              '<div>' + prioBadge + '</div>' +
+              '<div class="card-links-group">' +
+                linksHtml +
+                '<span class="today-status-word">' + escapeHtml(task.statusWord) + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<span class="today-row-text">' + escapeHtml(task.text) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="today-open-panel">' +
+          '<p class="today-full-ask">' + escapeHtml(task.detail) + '</p>' +
+          '<div class="card-quick-note">' +
+            '<input type="text" class="card-quick-input" data-note-input="' + escapeHtml(task.id) + '" value="' + escapeHtml(noteVal) + '" placeholder="Add a quick note or paste a link...">' +
+            '<button type="button" class="btn btn-dark" data-copy-card-note="' + escapeHtml(task.id) + '">Copy Update</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderInbox() {
+    var p = PEOPLE[state.person] || PEOPLE.rickey;
+    var msgs = getMessagesForPerson(state.person);
+    var unreadCount = getUnreadCountForPerson(state.person);
+
+    /* Update unread dots on every person pill */
+    document.querySelectorAll("[data-person]").forEach(function(btn) {
+      var pk = btn.getAttribute("data-person");
+      if (!btn.getAttribute("data-base-label")) {
+        btn.setAttribute("data-base-label", btn.textContent.trim());
+      }
+      var baseLabel = btn.getAttribute("data-base-label");
+      var uCount = getUnreadCountForPerson(pk);
+      if (uCount > 0) {
+        btn.innerHTML = escapeHtml(baseLabel) + ' <span class="person-unread-dot">' + uCount + '</span>';
+      } else {
+        btn.textContent = baseLabel;
+      }
+    });
+
+    /* Update header Bell button */
+    var toggleBtn = document.getElementById("inboxToggleBtn");
+    var countEl = document.getElementById("inboxUnreadCount");
+    var labelEl = document.getElementById("inboxBtnLabel");
+    labelEl.textContent = p.name + "'s Updates";
+    if (unreadCount > 0) {
+      toggleBtn.classList.add("has-unread");
+      countEl.style.display = "inline-flex";
+      countEl.textContent = unreadCount + " new";
+    } else {
+      toggleBtn.classList.remove("has-unread");
+      countEl.style.display = "none";
+    }
+
+    var drawer = document.getElementById("inboxDrawer");
+    drawer.classList.toggle("open", !!state.inboxOpen);
+    toggleBtn.setAttribute("aria-expanded", state.inboxOpen ? "true" : "false");
+    document.getElementById("inboxDrawerTitle").textContent = p.name + "'s Updates Feed (" + unreadCount + " unread)";
+
+    var listEl = document.getElementById("inboxList");
+    if (msgs.length === 0) {
+      listEl.innerHTML = '<p class="accordion-help">No updates yet for ' + escapeHtml(p.name) + '.</p>';
+      return;
+    }
+
+    listEl.innerHTML = msgs.map(function(m) {
+      var readKey = m.id + "__" + state.person;
+      var isUnread = !state.readMsgMap[readKey];
+      var links = "";
+      if (m.figmaUrl) {
+        links += '<a class="today-open-link" href="' + escapeHtml(m.figmaUrl) + '" target="_blank" rel="noopener" data-new-window="1">Open Figma ↗</a>';
+      }
+      if (m.previewUrl) {
+        links += '<a class="today-open-link" href="' + escapeHtml(m.previewUrl) + '" target="_blank" rel="noopener" data-new-window="1">Open Preview ↗</a>';
+      }
+      if (m.clickupUrl) {
+        links += '<a class="today-open-link" href="' + escapeHtml(m.clickupUrl) + '" target="_blank" rel="noopener" data-new-window="1">Open ClickUp ↗</a>';
+      }
+      var readBtn = isUnread
+        ? '<button type="button" class="inbox-mini-btn" data-mark-read="' + escapeHtml(m.id) + '">Mark read</button>'
+        : '<span style="font-size:12.5px;color:var(--ink-soft);">Read</span>';
+
+      return (
+        '<div class="inbox-msg ' + (isUnread ? "unread" : "") + '">' +
+          '<div class="inbox-msg-top">' +
+            '<div class="inbox-msg-meta">' +
+              (isUnread ? '<span class="inbox-new-tag">New</span>' : '') +
+              '<span>From <strong>' + escapeHtml(m.from) + '</strong> &middot; ' + escapeHtml(m.time) + '</span>' +
+              '<span class="project-chip ' + escapeHtml(m.chipClass || "chip-shoot") + '" style="font-size:12px;padding:1px 8px;">' + escapeHtml(m.chip || "Update") + '</span>' +
+            '</div>' +
+            '<div class="inbox-msg-actions">' +
+              links +
+              readBtn +
+            '</div>' +
+          '</div>' +
+          '<p class="inbox-msg-text">' + escapeHtml(m.text) + '</p>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  function render() {
+    var p = PEOPLE[state.person] || PEOPLE.rickey;
+
+    document.querySelectorAll("[data-person]").forEach(function(b) {
+      b.classList.toggle("active", b.getAttribute("data-person") === state.person);
+    });
+
+    var sachaBar = document.getElementById("sachaPrivateLinksBar");
+    if (sachaBar) {
+      sachaBar.style.display = (state.person === "sacha") ? "flex" : "none";
+    }
+
+    document.getElementById("activeRoleSubtitle").textContent = p.subtitle;
+    document.getElementById("syncHeading").textContent = p.syncHeading;
+    document.getElementById("syncList").innerHTML = p.syncBullets.map(function(b) {
+      return "<li>" + escapeHtml(b) + "</li>";
+    }).join("");
+
+    document.getElementById("starterAccordionTitle").textContent = "Agent Prompt: Copy " + p.name + "'s Free-Claude Starter";
+    document.getElementById("starterPromptText").textContent = p.starterPrompt;
+    var copyLinkBtn = document.getElementById("copyPersonLinkBtn");
+    if (copyLinkBtn) {
+      copyLinkBtn.textContent = "Copy " + p.name + "'s Direct Link";
+    }
+
+    renderInbox();
+
+    var personTasks = getTasksForPerson(state.person);
+
+    /* Populate the Send Update dropdown */
+    var selectEl = document.getElementById("updateTaskSelect");
+    selectEl.innerHTML = personTasks.map(function(t) {
+      return '<option value="' + escapeHtml(t.id) + '">' + escapeHtml(t.col + " · " + t.text.slice(0, 62)) + '</option>';
+    }).join("");
+
+    /* Filter tasks */
+    var filtered = personTasks.filter(function(t) {
+      var done = !!state.doneMap[t.id];
+      if (state.filter === "todo") return !done;
+      if (state.filter === "done") return done;
+      return true;
+    });
+
+    var container = document.getElementById("boardContainer");
+
+    if (state.layout === "list") {
+      container.innerHTML = (
+        '<div class="today-section-list">' +
+          filtered.map(function(t, idx) { return renderCardHtml(t, idx + 1); }).join("") +
+        '</div>'
+      );
+      return;
+    }
+
+    /* Group into Kanban columns */
+    var colOrder = ["Holiday & Promotions", "431 & Catalogs", "Club Emails & Events", "DX Pages & Enablement"];
+    var colMap = {};
+    filtered.forEach(function(t) {
+      if (!colMap[t.col]) {
+        colMap[t.col] = { label: t.col, cls: t.colClass, items: [] };
+      }
+      colMap[t.col].items.push(t);
+    });
+
+    var colsHtml = colOrder
+      .filter(function(cName) { return colMap[cName] && colMap[cName].items.length > 0; })
+      .map(function(cName) {
+        var col = colMap[cName];
+        return (
+          '<section class="kanban-col">' +
+            '<div class="kanban-col-header">' +
+              '<span class="project-chip ' + escapeHtml(col.cls) + '">' + escapeHtml(col.label) + '</span>' +
+              '<span class="kanban-count">' + col.items.length + '</span>' +
+            '</div>' +
+            '<div class="kanban-cards">' +
+              col.items.map(function(it, idx) { return renderCardHtml(it, idx + 1); }).join("") +
+            '</div>' +
+          '</section>'
+        );
+      }).join("");
+
+    container.innerHTML = '<div class="kanban-board">' + colsHtml + '</div>';
+  }
+
+  function pushNewInboxMessage(fromName, taskObj, noteText) {
+    var newMsg = {
+      id: "msg-custom-" + Date.now(),
+      from: fromName,
+      to: ["sacha", "jordan", "rickey"],
+      time: "Just now",
+      chip: taskObj ? taskObj.col : "Update",
+      chipClass: taskObj ? taskObj.colClass : "chip-shoot",
+      text: (taskObj ? taskObj.text + " -> " : "") + noteText,
+      figmaUrl: taskObj ? taskObj.figmaUrl : "",
+      clickupUrl: taskObj ? taskObj.clickupUrl : ""
+    };
+    state.customMsgs.unshift(newMsg);
+    state.inboxOpen = true;
+    saveState();
+    render();
+  }
+
+  /* Event Delegation */
+  document.addEventListener("click", function(e) {
+    var nwLink = e.target.closest("[data-new-window]");
+    if (nwLink && nwLink.href) {
+      e.preventDefault();
+      e.stopPropagation();
+      var win = window.open(nwLink.href, "_blank", "popup=yes,width=1440,height=920,left=80,top=60,resizable=yes,scrollbars=yes");
+      if (!win) {
+        window.open(nwLink.href, "_blank", "noopener,noreferrer");
+      }
+      return;
+    }
+
+    if (e.target.closest("#inboxToggleBtn")) {
+      state.inboxOpen = !state.inboxOpen;
+      renderInbox();
+      return;
+    }
+
+    if (e.target.closest("#closeInboxBtn")) {
+      state.inboxOpen = false;
+      renderInbox();
+      return;
+    }
+
+    if (e.target.closest("#markAllReadBtn")) {
+      var msgs = getMessagesForPerson(state.person);
+      msgs.forEach(function(m) {
+        state.readMsgMap[m.id + "__" + state.person] = true;
+      });
+      saveState();
+      renderInbox();
+      return;
+    }
+
+    var markReadBtn = e.target.closest("[data-mark-read]");
+    if (markReadBtn) {
+      var mid = markReadBtn.getAttribute("data-mark-read");
+      state.readMsgMap[mid + "__" + state.person] = true;
+      saveState();
+      renderInbox();
+      return;
+    }
+
+    var personBtn = e.target.closest("[data-person]");
+    if (personBtn) {
+      state.person = personBtn.getAttribute("data-person");
+      state.openCardId = null;
+      document.querySelectorAll("[data-person]").forEach(function(b) {
+        b.classList.toggle("active", b === personBtn);
+      });
+      render();
+      return;
+    }
+
+    var filterBtn = e.target.closest("[data-filter]");
+    if (filterBtn) {
+      state.filter = filterBtn.getAttribute("data-filter");
+      document.querySelectorAll("[data-filter]").forEach(function(b) {
+        b.classList.toggle("active", b === filterBtn);
+      });
+      render();
+      return;
+    }
+
+    var layoutBtn = e.target.closest("[data-layout]");
+    if (layoutBtn) {
+      state.layout = layoutBtn.getAttribute("data-layout");
+      document.querySelectorAll("[data-layout]").forEach(function(b) {
+        b.classList.toggle("active", b === layoutBtn);
+      });
+      render();
+      return;
+    }
+
+    if (e.target.closest("[data-stop]")) {
+      return;
+    }
+
+    var tickEl = e.target.closest("[data-tick-card]");
+    if (tickEl) {
+      var cid = tickEl.getAttribute("data-tick-card");
+      state.doneMap[cid] = tickEl.checked;
+      saveState();
+      render();
+      return;
+    }
+
+    var copyCardBtn = e.target.closest("[data-copy-card-note]");
+    if (copyCardBtn) {
+      var cardId = copyCardBtn.getAttribute("data-copy-card-note");
+      var taskObj = TASKS.find(function(t) { return t.id === cardId; });
+      var inputEl = document.querySelector('[data-note-input="' + cardId + '"]');
+      var noteText = inputEl ? inputEl.value.trim() : "";
+      state.noteMap[cardId] = noteText;
+      var pName = (PEOPLE[state.person] || PEOPLE.rickey).name;
+      var finalNote = noteText || "Marked complete / ready for review.";
+      pushNewInboxMessage(pName, taskObj, finalNote);
+      var snippet = "[HOLIDAY HUB · " + pName + " · 22 Oct]\nTask: " + (taskObj ? taskObj.text : cardId) + "\nUpdate: " + finalNote;
+      copyText(snippet, "Posted to Inbox & copied for ClickUp / Teams");
+      return;
+    }
+
+    var toggleRow = e.target.closest("[data-toggle-card]");
+    if (toggleRow && !e.target.closest("input") && !e.target.closest("a")) {
+      var id = toggleRow.getAttribute("data-toggle-card");
+      state.openCardId = (state.openCardId === id) ? null : id;
+      render();
+      return;
+    }
+  });
+
+  var copyLinkBtnEl = document.getElementById("copyPersonLinkBtn");
+  if (copyLinkBtnEl) {
+    copyLinkBtnEl.addEventListener("click", function() {
+      var p = PEOPLE[state.person] || PEOPLE.rickey;
+      var baseUrl = window.location.origin + window.location.pathname;
+      var directUrl = baseUrl + "?for=" + state.person;
+      copyText(directUrl, "Copied " + p.name + "'s direct link (" + directUrl + ")");
+    });
+  }
+
+  document.getElementById("copyStarterBtn").addEventListener("click", function() {
+    var p = PEOPLE[state.person] || PEOPLE.rickey;
+    copyText(p.starterPrompt, "Copied " + p.name + "'s Free-Claude Starter");
+  });
+
+  document.getElementById("copyUpdateBtn").addEventListener("click", function() {
+    var p = PEOPLE[state.person] || PEOPLE.rickey;
+    var selId = document.getElementById("updateTaskSelect").value;
+    var taskObj = TASKS.find(function(t) { return t.id === selId; });
+    var note = document.getElementById("updateNoteInput").value.trim() || "Ready for review.";
+    pushNewInboxMessage(p.name, taskObj, note);
+    var snippet = "[HOLIDAY HUB · " + p.name + " · 22 Oct]\nTask: " + (taskObj ? taskObj.text : selId) + "\nUpdate: " + note;
+    copyText(snippet, "Posted to Updates Feed & copied for ClickUp / Teams");
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

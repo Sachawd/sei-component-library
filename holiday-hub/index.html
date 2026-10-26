@@ -4,846 +4,190 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Holiday 2026 Hub · Project Tracker</title>
+<meta name="description" content="The Holiday 2026 project tracker: each person's tasks, links, starter prompt and update box.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../nutmeg/nutmeg.css">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --ink: #111827;
-    --ink-soft: #374151;
-    --ink-muted: #4b5563;
-    --link: #1d4e89;
-    --border: #d1d5db;
-    --border-soft: #e5e7eb;
-    --surface: #ffffff;
-    --bg: #f8f7f4;
-    --surface-open: #f3f1ec;
-    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  body {
-    font-family: var(--font-sans);
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.5;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .top-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 28px;
-  }
-
-  .top-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    max-width: 1480px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .brand-area {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .brand-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-
-  .brand-sub {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-soft);
-  }
-
-  .header-links {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 40px;
-    padding: 7px 15px;
-    border-radius: 8px;
-    font-family: var(--font-sans);
-    font-size: 14.5px;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--ink);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 120ms ease, border-color 120ms ease;
-  }
-
-  .btn:hover {
-    background: var(--surface-open);
-    border-color: var(--ink-soft);
-  }
-
-  .btn-dark {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #ffffff;
-  }
-
-  .btn-dark:hover {
-    background: #374151;
-    border-color: #374151;
-  }
-
-  .today-page {
-    max-width: 1480px;
-    margin: 0 auto;
-    padding: 22px 28px 96px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  /* Person Selector Bar */
-  .person-selector-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .person-groups-row {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  @media (max-width: 1024px) {
-    .person-groups-row {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .person-group {
-    background: var(--bg);
-    border: 1px solid var(--border-soft);
-    border-radius: 8px;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .person-group-label {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--ink-soft);
-  }
-
-  .person-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .person-btn {
-    min-height: 36px;
-    padding: 5px 12px;
-    border-radius: 7px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 120ms ease;
-  }
-
-  .person-btn:hover {
-    background: var(--surface-open);
-  }
-
-  .person-btn.active {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #ffffff;
-  }
-
-  /* Today's Calendar / Live Sync Box */
-  .today-calendar-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .today-calendar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .today-calendar-header h2 {
-    font-size: 16.5px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .today-calendar-links {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .today-calendar-links a {
-    font-size: 14.5px;
-    color: var(--link);
-    font-weight: 600;
-    text-decoration: underline;
-  }
-
-  /* Tight line-height inside bullets, generous spacing between bullets */
-  .clean-list {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-    font-size: 15.5px;
-    color: var(--ink);
-  }
-
-  .clean-list li {
-    line-height: 1.32;
-  }
-
-  /* Compact Accordions for Agent Prompts & Updates */
-  .accordions-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    align-items: start;
-  }
-
-  @media (max-width: 920px) {
-    .accordions-row {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  details.tool-accordion {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  details.tool-accordion summary {
-    padding: 12px 18px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    user-select: none;
-  }
-
-  details.tool-accordion summary::-webkit-details-marker {
-    display: none;
-  }
-
-  details.tool-accordion summary:hover {
-    background: var(--surface-open);
-  }
-
-  .accordion-badge {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--link);
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    padding: 2px 9px;
-    border-radius: 999px;
-  }
-
-  .accordion-body {
-    padding: 14px 18px 18px;
-    border-top: 1px solid var(--border-soft);
-    background: var(--surface-open);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .accordion-help {
-    font-size: 14.5px;
-    line-height: 1.35;
-    color: var(--ink-soft);
-  }
-
-  .prompt-pre {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 13px;
-    line-height: 1.4;
-    color: var(--ink);
-    white-space: pre-wrap;
-    max-height: 210px;
-    overflow-y: auto;
-  }
-
-  .update-form-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .update-select,
-  .update-input {
-    width: 100%;
-    min-height: 40px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    font-family: var(--font-sans);
-    font-size: 14.5px;
-    color: var(--ink);
-  }
-
-  /* Filter & Layout Controls Bar */
-  .today-controls-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .today-filter-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .today-filter-btn {
-    min-height: 40px;
-    padding: 6px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--ink-soft);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .today-filter-btn.active {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #ffffff;
-  }
-
-  /* Kanban Board */
-  .kanban-board {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    align-items: start;
-  }
-
-  @media (max-width: 1240px) {
-    .kanban-board {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 760px) {
-    .kanban-board {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .kanban-col {
-    background: #f1efe9;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .kanban-col-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .kanban-count {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 2px 10px;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .kanban-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .project-chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 11px;
-    border-radius: 6px;
-    font-size: 13.5px;
-    font-weight: 700;
-    line-height: 1.35;
-    letter-spacing: 0.01em;
-  }
-
-  .chip-shoot {
-    background: #fef3c7;
-    color: #78350f;
-    border: 1px solid #f59e0b;
-  }
-
-  .chip-fastr {
-    background: #dbeafe;
-    color: #1e3a8a;
-    border: 1px solid #3b82f6;
-  }
-
-  .chip-comp {
-    background: #ede9fe;
-    color: #4c1d95;
-    border: 1px solid #8b5cf6;
-  }
-
-  .chip-site {
-    background: #d1fae5;
-    color: #064e3b;
-    border: 1px solid #10b981;
-  }
-
-  .chip-email {
-    background: #e0e7ff;
-    color: #312e81;
-    border: 1px solid #6366f1;
-  }
-
-  .chip-tunnel {
-    background: #ffe4e6;
-    color: #881337;
-    border: 1px solid #f43f5e;
-  }
-
-  /* Task Cards */
-  .today-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 11px;
-    overflow: hidden;
-  }
-
-  .today-row {
-    padding: 14px 16px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    cursor: pointer;
-    background: var(--surface);
-    transition: background-color 120ms ease;
-  }
-
-  .today-row:hover {
-    background: var(--surface-open);
-  }
-
-  .today-item.open .today-row {
-    background: var(--surface-open);
-  }
-
-  .today-tick {
-    width: 18px;
-    height: 18px;
-    margin-top: 2px;
-    accent-color: var(--ink);
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-
-  .today-row-main {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .kanban-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .kanban-prio-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    border-radius: 6px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .kanban-prio-badge.prio-1 {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #ffffff;
-  }
-
-  .card-links-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .today-open-link {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--link);
-    text-decoration: underline;
-    flex-shrink: 0;
-  }
-
-  .today-status-word {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    flex-shrink: 0;
-  }
-
-  /* Tight line-height inside card sentences so multi-line words stay cohesive */
-  .today-row-text {
-    font-size: 15.5px;
-    font-weight: 500;
-    line-height: 1.33;
-    color: var(--ink);
-  }
-
-  .today-item.done .today-row-text {
-    text-decoration: line-through;
-    color: var(--ink-soft);
-  }
-
-  /* Expandable Drawer inside a card */
-  .today-open-panel {
-    display: none;
-    padding: 12px 16px 14px 44px;
-    background: var(--surface-open);
-    border-top: 1px solid var(--border-soft);
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .today-item.open .today-open-panel {
-    display: flex;
-  }
-
-  .today-full-ask {
-    font-size: 14px;
-    line-height: 1.38;
-    color: var(--ink-soft);
-  }
-
-  .card-quick-note {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .card-quick-input {
-    flex: 1;
-    min-width: 160px;
-    min-height: 36px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    font-family: var(--font-sans);
-    font-size: 13.5px;
-    color: var(--ink);
-  }
-
-  /* List View Fallback */
-  .today-section-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .toast-banner {
-    position: fixed;
-    bottom: 22px;
-    right: 22px;
-    background: var(--ink);
-    color: #ffffff;
-    padding: 12px 18px;
-    border-radius: 8px;
-    font-size: 14.5px;
-    font-weight: 600;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    display: none;
-    z-index: 999;
-  }
-
-  /* Notification Bell & Inbox Drawer */
-  .inbox-toggle-btn {
-    position: relative;
-    gap: 8px;
-  }
-
-  .inbox-toggle-btn.has-unread {
-    border-color: #dc2626;
-    background: #fef2f2;
-    color: #991b1b;
-  }
-
-  .unread-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #dc2626;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
-    border-radius: 999px;
-    line-height: 1;
-  }
-
-  .person-unread-dot {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #dc2626;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-    border-radius: 999px;
-    margin-left: 6px;
-    line-height: 1;
-  }
-
-  .person-btn.active .person-unread-dot {
-    background: #ef4444;
-    color: #ffffff;
-  }
-
-  .inbox-drawer {
-    display: none;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 22px;
-    flex-direction: column;
-    gap: 14px;
-    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
-  }
-
-  .inbox-drawer.open {
-    display: flex;
-  }
-
-  .inbox-drawer-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border-soft);
-  }
-
-  .inbox-drawer-title {
-    font-size: 16.5px;
-    font-weight: 700;
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .inbox-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .inbox-msg {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 13px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .inbox-msg.unread {
-    background: #fffbeb;
-    border-color: #f59e0b;
-  }
-
-  .inbox-msg-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .inbox-msg-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--ink-soft);
-  }
-
-  .inbox-new-tag {
-    background: #dc2626;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-
-  .inbox-msg-text {
-    font-size: 15px;
-    line-height: 1.33;
-    color: var(--ink);
-    font-weight: 500;
-  }
-
-  .inbox-msg-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .inbox-mini-btn {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 3px 10px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--ink);
-    cursor: pointer;
-  }
-
-  .inbox-mini-btn:hover {
-    background: var(--surface-open);
+  .hh { --ink: var(--nm-title); --ink-soft: var(--nm-text); --ink-muted: var(--nm-muted); --link: var(--nm-purple-text); --border: #DADADA; --border-soft: #EBEBEB; --surface: var(--nm-white); --bg: var(--nm-surface); --surface-open: #F0EBFF; --font-sans: var(--nm-sans); }
+  .hh-title { margin-bottom: var(--nm-space-7); }
+  .brand-sub { color: var(--nm-ink); }
+  .header-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; padding: 8px 20px; border: 1px solid var(--nm-purple-text); border-radius: var(--nm-radius-pill); background: var(--nm-white); color: var(--nm-purple-text); font: 500 14px/20px var(--nm-sans); letter-spacing: 0.28px; text-decoration: none; cursor: pointer; transition: background-color .2s ease, color .2s ease, border-color .2s ease; }
+  .btn:hover { background: var(--nm-purple); border-color: var(--nm-purple); color: var(--nm-white); }
+  .btn-dark { background: var(--nm-purple); border-color: var(--nm-purple); color: var(--nm-white); }
+  .btn-dark:hover { background: var(--nm-plum); border-color: var(--nm-plum); }
+  .btn--sm { min-height: 36px; padding: 6px 14px; font-size: 13px; }
+
+  .today-page { display: flex; flex-direction: column; gap: 24px; container-type: inline-size; }
+  .hh-block { padding: 24px; border-radius: var(--nm-radius-md); background: var(--nm-white); }
+  .hh-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  .hh-h2 { margin: 0; color: var(--nm-ink); font: 400 var(--nm-h5)/var(--nm-h5-lh) var(--nm-serif); }
+  .hh-note { margin: 0; color: var(--nm-text); font: 400 14px/20px var(--nm-sans); }
+
+  .person-selector-box { display: flex; flex-direction: column; gap: 16px; }
+  .person-groups-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  @container (max-width: 860px) { .person-groups-row { grid-template-columns: minmax(0, 1fr); } }
+  .person-group { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: var(--nm-radius-md); background: var(--nm-surface); }
+  .person-group-label { color: var(--nm-eyebrow); font: 700 11px/16px var(--nm-sans); letter-spacing: 0.88px; text-transform: uppercase; }
+  .person-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .person-btn { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border: 0; border-radius: var(--nm-radius-pill); background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); font: 500 14px/20px var(--nm-sans); cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+  .person-btn:hover { background: #DCD3FC; }
+  .person-btn.active { background: var(--nm-purple-text); color: var(--nm-white); }
+
+  .today-calendar-box { display: flex; flex-direction: column; gap: 16px; }
+  .today-calendar-header { display: flex; flex-direction: column; gap: 16px; }
+  .today-calendar-header h2 { margin: 0; color: var(--nm-ink); font: 400 var(--nm-h5)/var(--nm-h5-lh) var(--nm-serif); }
+  .today-calendar-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .today-calendar-links a { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: var(--nm-radius-pill); background: var(--nm-surface); color: var(--nm-title); font: 400 14px/20px var(--nm-sans); text-decoration: none; transition: background-color .2s ease, color .2s ease; }
+  .today-calendar-links a:hover { background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); }
+  .hh-private { align-items: center; flex-wrap: wrap; gap: 8px; padding: 16px; border-left: 3px solid var(--nm-purple); border-radius: 0 var(--nm-radius-md) var(--nm-radius-md) 0; background: var(--nm-surface); }
+  .hh-private strong { margin-right: 4px; color: var(--nm-title); font: 500 14px/20px var(--nm-sans); }
+
+  .clean-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
+  .clean-list li { display: flex; align-items: flex-start; gap: 16px; padding-left: 10px; color: var(--nm-text); font: 400 17px/26px var(--nm-sans); }
+  .clean-list li::before { content: "\00B7"; flex: none; width: 7px; color: var(--nm-purple); font: 700 24px/26px var(--nm-sans); }
+
+  .accordions-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  @container (max-width: 860px) { .accordions-row { grid-template-columns: minmax(0, 1fr); } }
+  details.tool-accordion { overflow: hidden; border-top: 4px solid transparent; border-radius: var(--nm-radius-md); background: var(--nm-white); transition: border-color .25s ease, box-shadow .25s ease; }
+  details.tool-accordion[open] { border-top-color: var(--nm-purple); box-shadow: var(--nm-shadow-raised); }
+  details.tool-accordion summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; color: var(--nm-title); font: 400 20px/26px var(--nm-serif); list-style: none; cursor: pointer; user-select: none; }
+  details.tool-accordion summary::-webkit-details-marker { display: none; }
+  details.tool-accordion summary::after { content: ""; flex: none; width: 10px; height: 10px; margin-left: 4px; border-right: 1.5px solid var(--nm-purple); border-bottom: 1.5px solid var(--nm-purple); transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s ease; }
+  details.tool-accordion[open] summary::after { transform: rotate(225deg) translate(-2px, -2px); }
+  details.tool-accordion summary:hover { background: var(--nm-surface); }
+  details.tool-accordion summary > span:first-child { flex: 1; min-width: 0; }
+  .accordion-badge { flex: none; padding: 5px 12px; border-radius: var(--nm-radius-pill); background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); font: 500 11px/1.2 var(--nm-sans); letter-spacing: 0.44px; white-space: nowrap; }
+  .accordion-body { display: flex; flex-direction: column; gap: 16px; padding: 4px 24px 24px; }
+  .accordion-help { margin: 0; color: var(--nm-text); font: 400 15px/22px var(--nm-sans); }
+  .accordion-help strong { color: var(--nm-title); font-weight: 500; }
+  .prompt-pre { max-height: 240px; margin: 0; overflow-y: auto; padding: 20px; border-radius: var(--nm-radius-md); background: var(--nm-black); color: #F1EFE2; font: 400 13px/20px var(--nm-mono); white-space: pre-wrap; }
+  .update-form-row { display: flex; flex-direction: column; gap: 12px; }
+  .update-select, .update-input, .card-quick-input { width: 100%; min-height: 44px; padding: 10px 14px; border: 1px solid #BDBDBD; border-radius: var(--nm-radius-sm); background: var(--nm-white); color: var(--nm-title); font: 400 15px/20px var(--nm-sans); }
+  .update-select:focus, .update-input:focus, .card-quick-input:focus { outline: 2px solid var(--nm-purple); outline-offset: 1px; border-color: var(--nm-purple); }
+
+  .today-controls-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .today-filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .hh-tabs { display: inline-flex; flex-wrap: wrap; padding: 6px; border-radius: 24px; background: var(--nm-tabs-track); }
+  .today-filter-btn { min-height: 40px; padding: 10px 20px; border: 0; border-radius: var(--nm-radius-pill); background: transparent; color: var(--nm-purple-text); font: 400 16px/20px var(--nm-sans); cursor: pointer; }
+  .today-filter-btn:hover:not(.active) { background: rgba(129, 77, 250, 0.12); }
+  .today-filter-btn.active { background: var(--nm-purple-text); color: var(--nm-white); }
+
+  .kanban-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: start; }
+  @container (max-width: 1180px) { .kanban-board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @container (max-width: 640px) { .kanban-board { grid-template-columns: minmax(0, 1fr); } }
+  .kanban-col { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: var(--nm-radius-lg); background: var(--nm-white); }
+  .kanban-col-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 12px; border-bottom: 2px solid var(--nm-purple); }
+  .kanban-count { color: var(--nm-ink); font: 400 24px/1 var(--nm-serif); }
+  .kanban-cards, .today-section-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .project-chip { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: var(--nm-radius-pill); font: 500 12px/1.2 var(--nm-sans); letter-spacing: 0.48px; }
+  .chip-shoot { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
+  .chip-fastr { background: var(--nm-chip-blue); color: var(--nm-chip-blue-ink); }
+  .chip-comp { background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); }
+  .chip-site { background: var(--nm-chip-green); color: var(--nm-chip-green-ink); }
+  .chip-email { background: var(--nm-chip-grey); color: var(--nm-chip-grey-ink); }
+  .chip-tunnel { background: var(--nm-white); color: var(--nm-plum); box-shadow: inset 0 0 0 1px var(--nm-plum); }
+
+  .today-item { overflow: hidden; border: 1px solid var(--border-soft); border-radius: var(--nm-radius-md); background: var(--nm-surface); transition: box-shadow .25s ease, border-color .25s ease; }
+  .today-item:hover { border-color: #CFC2FD; }
+  .today-item.open { border-color: var(--nm-purple); box-shadow: var(--nm-shadow-raised); }
+  .today-row { display: flex; align-items: flex-start; gap: 12px; padding: 16px; cursor: pointer; }
+  .today-item.open .today-row { background: var(--surface-open); }
+  .today-tick { flex-shrink: 0; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--nm-purple-text); cursor: pointer; }
+  .today-row-main { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+  .kanban-card-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
+  .kanban-prio-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--nm-radius-pill); background: var(--nm-chip-grey); color: var(--nm-chip-grey-ink); font: 500 11px/1.2 var(--nm-sans); letter-spacing: 0.44px; }
+  .kanban-prio-badge.prio-1 { background: var(--nm-plum); color: var(--nm-white); }
+  .card-links-group { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .today-open-link { flex-shrink: 0; color: var(--nm-purple-text); font: 500 13px/18px var(--nm-sans); text-decoration: underline; text-underline-offset: 3px; }
+  .today-status-word { flex-shrink: 0; color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
+  .today-row-text { color: var(--nm-title); font: 400 16px/22px var(--nm-sans); }
+  .today-item.done .today-row-text { color: var(--nm-muted); text-decoration: line-through; }
+  .today-open-panel { display: none; flex-direction: column; gap: 12px; padding: 4px 16px 16px 48px; background: var(--surface-open); }
+  .today-item.open .today-open-panel { display: flex; }
+  .today-full-ask { margin: 0; color: var(--nm-text); font: 400 15px/22px var(--nm-sans); }
+  .card-quick-note { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card-quick-input { flex: 1; min-width: 160px; }
+
+  .inbox-toggle-btn { position: relative; }
+  .inbox-toggle-btn svg { width: 16px; height: 16px; }
+  .inbox-toggle-btn.has-unread { background: var(--nm-chip-purple); border-color: var(--nm-purple-text); color: var(--nm-chip-purple-ink); }
+  .inbox-toggle-btn.has-unread:hover { background: var(--nm-purple); color: var(--nm-white); }
+  .unread-pill, .person-unread-dot { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: var(--nm-radius-pill); background: var(--nm-purple-text); color: var(--nm-white); font: 700 11px/1 var(--nm-sans); }
+  .person-unread-dot { margin-left: 8px; }
+  .person-btn.active .person-unread-dot { background: var(--nm-white); color: var(--nm-purple-text); }
+  .inbox-drawer { display: none; flex-direction: column; gap: 16px; padding: 24px; border-top: 4px solid var(--nm-purple); border-radius: var(--nm-radius-md); background: var(--nm-white); box-shadow: var(--nm-shadow-raised); }
+  .inbox-drawer.open { display: flex; }
+  .inbox-drawer-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--nm-grey); }
+  .inbox-drawer-title { color: var(--nm-ink); font: 400 var(--nm-h5)/var(--nm-h5-lh) var(--nm-serif); }
+  .inbox-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .inbox-list { display: flex; flex-direction: column; gap: 12px; }
+  .inbox-msg { display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: var(--nm-radius-md); background: var(--nm-surface); }
+  .inbox-msg.unread { border-left: 3px solid var(--nm-purple); border-radius: 0 var(--nm-radius-md) var(--nm-radius-md) 0; background: var(--surface-open); }
+  .inbox-msg-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .inbox-msg-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--nm-muted); font: 400 13px/18px var(--nm-sans); }
+  .inbox-new-tag { padding: 3px 8px; border-radius: var(--nm-radius-pill); background: var(--nm-purple-text); color: var(--nm-white); font: 700 10px/1.2 var(--nm-sans); letter-spacing: 0.6px; text-transform: uppercase; }
+  .inbox-msg-text { margin: 0; color: var(--nm-title); font: 400 15px/22px var(--nm-sans); }
+  .inbox-msg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .inbox-mini-btn { padding: 4px 12px; border: 1px solid var(--nm-purple-text); border-radius: var(--nm-radius-pill); background: var(--nm-white); color: var(--nm-purple-text); font: 500 12px/16px var(--nm-sans); cursor: pointer; }
+  .inbox-mini-btn:hover { background: var(--nm-purple); color: var(--nm-white); }
+
+  .toast-banner { position: fixed; right: 24px; bottom: 24px; z-index: 999; display: none; padding: 12px 20px; border-radius: var(--nm-radius-pill); background: var(--nm-black); color: var(--nm-white); font: 500 14px/20px var(--nm-sans); box-shadow: var(--nm-shadow-raised); }
+  .hh-anchor { scroll-margin-top: calc(var(--nm-header-h) + 24px); }
+
+  @media (max-width: 900px) {
+    .hh-block, .inbox-drawer { padding: 20px 16px; }
+    details.tool-accordion summary { flex-wrap: wrap; padding: 16px; }
+    .accordion-body { padding: 4px 16px 16px; }
+    .today-open-panel { padding-left: 16px; }
+    .toast-banner { right: 16px; left: 16px; }
   }
 </style>
 </head>
-<body>
-
-<header class="top-header">
-  <div class="top-header-row">
-    <div class="brand-area">
-      <span class="brand-title">Holiday 2026 Hub</span>
-      <span class="brand-sub" id="activeRoleSubtitle">Rickey · Design Systems, Holiday Emails &amp; Team Sales</span>
-    </div>
-    <div class="header-links">
-      <button type="button" class="btn inbox-toggle-btn has-unread" id="inboxToggleBtn" aria-expanded="false">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-        <span id="inboxBtnLabel">Inbox</span>
-        <span class="unread-pill" id="inboxUnreadCount">2</span>
-      </button>
-      <a class="btn" href="https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516" target="_blank" rel="noopener" data-new-window="1">Open Holiday Figma ↗</a>
-      <a class="btn" href="https://www.figma.com/design/9RL3RjhkNi37wkOGXCtiVR/SE-Marketing---Partner-Creative?node-id=146-1167" target="_blank" rel="noopener" data-new-window="1">Open Team Pop-Up Figma ↗</a>
-      <a class="btn" href="https://www.figma.com/design/h8pZSXaiWrSdY6qkS3efzD/?node-id=10376-44689" target="_blank" rel="noopener" data-new-window="1">Cabana 8 Figma ↗</a>
-      <a class="btn" href="https://app.clickup.com/9011460926/v/dc/8chzyty-52571" target="_blank" rel="noopener" data-new-window="1">Designer Context Doc ↗</a>
-      <a class="btn" href="https://app.clickup.com/9011460926/v/gr/8chzyty-52551" target="_blank" rel="noopener" data-new-window="1">Live Team ClickUp View ↗</a>
-    </div>
+<body data-hub="nutmeg">
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="../nutmeg/foundations.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Nutmeg home</span></a>
   </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
 </header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#top" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="../nutmeg/foundations.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M23 11L12 22L1 11L6 3H18L23 11Z"/><path d="M1 11H23"/><path d="M10 3L8 11"/><path d="M14 3L16 11"/><path d="M12 22L16 11"/><path d="M8 11L12 22"/></svg><span class="nm-rail__label">Foundations</span></a></li><li><a class="nm-rail__item" href="../nutmeg/v2-tokens.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M7 20H20V13H15.34"/><path d="M10 18.7L19.5 8.56L15 4L11 7.5"/><path d="M3 3H11V16C11 17.0609 10.5786 18.0783 9.82843 18.8284C9.07828 19.5786 8.06087 20 7 20C5.93913 20 4.92172 19.5786 4.17157 18.8284C3.42143 18.0783 3 17.0609 3 16V3Z"/><path d="M7.5 16C7.5 15.7239 7.27614 15.5 7 15.5C6.72386 15.5 6.5 15.7239 6.5 16C6.5 16.2761 6.72386 16.5 7 16.5C7.27614 16.5 7.5 16.2761 7.5 16Z"/></svg><span class="nm-rail__label">Styles</span></a></li><li><a class="nm-rail__item" href="../nutmeg/components.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Holiday 2026</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="#top" aria-current="page">Overview</a></li><li><a class="nm-drawer__link" href="#personSelectorBox">Pick your name</a></li><li><a class="nm-drawer__link" href="#syncBox">Today</a></li><li><a class="nm-drawer__link" href="#tools">Prompt and update</a></li><li><a class="nm-drawer__link" href="#board">Board</a></li><li><a class="nm-drawer__link" href="#reference">Reference</a></li><li><a class="nm-drawer__link" href="#contrast">Contrast</a></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content hh">
+<div class="nm-title hh-title hh-anchor" id="top">
+  <span class="nm-eyebrow">Project tracker</span>
+  <h1>Holiday 2026 Hub</h1>
+  <p class="nm-lede brand-sub" id="activeRoleSubtitle">Rickey · Design Systems, Holiday Emails &amp; Team Sales</p>
+  <div class="header-links">
+  <button type="button" class="btn inbox-toggle-btn has-unread" id="inboxToggleBtn" aria-expanded="false">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+  <span id="inboxBtnLabel">Inbox</span>
+  <span class="unread-pill" id="inboxUnreadCount">2</span>
+  </button>
+  <a class="btn" href="https://www.figma.com/design/dhxCwFDa0WgsczrkIlrhuH/HOLIDAY-2026-Master-File?node-id=498-1516" target="_blank" rel="noopener" data-new-window="1">Open Holiday Figma ↗</a>
+  <a class="btn" href="https://www.figma.com/design/9RL3RjhkNi37wkOGXCtiVR/SE-Marketing---Partner-Creative?node-id=146-1167" target="_blank" rel="noopener" data-new-window="1">Open Team Pop-Up Figma ↗</a>
+  <a class="btn" href="https://www.figma.com/design/h8pZSXaiWrSdY6qkS3efzD/?node-id=10376-44689" target="_blank" rel="noopener" data-new-window="1">Cabana 8 Figma ↗</a>
+  <a class="btn" href="https://app.clickup.com/9011460926/v/dc/8chzyty-52571" target="_blank" rel="noopener" data-new-window="1">Designer Context Doc ↗</a>
+  <a class="btn" href="https://app.clickup.com/9011460926/v/gr/8chzyty-52551" target="_blank" rel="noopener" data-new-window="1">Live Team ClickUp View ↗</a>
+  </div>
+  <hr class="nm-divider">
+</div>
+<div class="today-page">
 
-<main class="today-page">
-
-  <!-- Team Inbox Drawer (Opens when you click the Bell button in the header) -->
   <section class="inbox-drawer" id="inboxDrawer" aria-label="Team Inbox">
     <div class="inbox-drawer-header">
       <div class="inbox-drawer-title">
         <span id="inboxDrawerTitle">Rickey's Inbox</span>
       </div>
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <div class="inbox-actions">
         <button type="button" class="btn" id="markAllReadBtn">Mark all read</button>
         <button type="button" class="btn" id="closeInboxBtn">Close</button>
       </div>
@@ -852,11 +196,10 @@
     <div class="inbox-list" id="inboxList"></div>
   </section>
 
-  <!-- Click Your Name Bar (Visible on Sacha/Jordan master link; hidden when ?for=name is used) -->
-  <section class="person-selector-box" id="personSelectorBox" aria-label="Choose your workspace">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <span style="font-size:13.5px;font-weight:600;color:var(--ink-soft);">Master Team Switcher (send anyone their personal ?for=name link to hide this bar)</span>
-      <button type="button" class="btn" id="copyPersonLinkBtn" style="min-height:34px;padding:4px 12px;font-size:13px;">Copy Rickey's Direct Link</button>
+  <section class="person-selector-box hh-block hh-anchor" id="personSelectorBox" aria-label="Choose your workspace">
+    <div class="hh-head">
+      <span class="hh-note">Master Team Switcher (send anyone their personal ?for=name link to hide this bar)</span>
+      <button type="button" class="btn btn--sm" id="copyPersonLinkBtn">Copy Rickey's Direct Link</button>
     </div>
     <div class="person-groups-row">
       <div class="person-group">
@@ -890,8 +233,7 @@
     </div>
   </section>
 
-  <!-- Today's Calendar / Live Sync Box + All Hub Links -->
-  <section class="today-calendar-box" id="syncBox">
+  <section class="today-calendar-box hh-block hh-anchor" id="syncBox">
     <div class="today-calendar-header">
       <h2 id="syncHeading">Today's Live Sync (Rickey &amp; Sacha)</h2>
       <div class="today-calendar-links">
@@ -913,21 +255,19 @@
         <a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener" data-new-window="1">Fastr Workspace ↗</a>
       </div>
     </div>
-    <!-- Sacha Private Dashboards Row (Visible when Sacha is selected) -->
-    <div id="sachaPrivateLinksBar" style="display:none;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;">
-      <strong style="font-size:13.5px;color:#92400e;">Sacha's Private Dashboards:</strong>
-      <a class="btn" href="http://localhost:8790/agent-inbox.html?v=6" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Open Agent Inbox (4-Col Kanban) ↗</a>
-      <a class="btn" href="http://localhost:8790/my-load.html" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Open My Load Tracker (5am-6pm) ↗</a>
-      <a class="btn" href="https://claude.ai/code/artifact/d9679458-4e2c-4283-afea-facbe8ec9121" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Open Sacha HQ ↗</a>
-      <a class="btn" href="https://app.clickup.com/t/868mdkw02" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">SDC Holiday ClickUp ↗</a>
-      <a class="btn" href="https://app.clickup.com/t/868mcnzzr" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">WSS Holiday ClickUp ↗</a>
-      <a class="btn" href="https://app.clickup.com/t/868mce1ah" target="_blank" rel="noopener" data-new-window="1" style="min-height:32px;padding:4px 12px;font-size:13px;">Team Pop-Ups ClickUp ↗</a>
+    <div id="sachaPrivateLinksBar" class="hh-private" style="display:none">
+      <strong>Sacha's Private Dashboards:</strong>
+      <a class="btn btn--sm" href="http://localhost:8790/agent-inbox.html?v=6" target="_blank" rel="noopener" data-new-window="1">Open Agent Inbox (4-Col Kanban) ↗</a>
+      <a class="btn btn--sm" href="http://localhost:8790/my-load.html" target="_blank" rel="noopener" data-new-window="1">Open My Load Tracker (5am-6pm) ↗</a>
+      <a class="btn btn--sm" href="https://claude.ai/code/artifact/d9679458-4e2c-4283-afea-facbe8ec9121" target="_blank" rel="noopener" data-new-window="1">Open Sacha HQ ↗</a>
+      <a class="btn btn--sm" href="https://app.clickup.com/t/868mdkw02" target="_blank" rel="noopener" data-new-window="1">SDC Holiday ClickUp ↗</a>
+      <a class="btn btn--sm" href="https://app.clickup.com/t/868mcnzzr" target="_blank" rel="noopener" data-new-window="1">WSS Holiday ClickUp ↗</a>
+      <a class="btn btn--sm" href="https://app.clickup.com/t/868mce1ah" target="_blank" rel="noopener" data-new-window="1">Team Pop-Ups ClickUp ↗</a>
     </div>
     <ul class="clean-list" id="syncList"></ul>
   </section>
 
-  <!-- Accordions for Agent Starter Prompt & Quick Update -->
-  <section class="accordions-row">
+  <section class="accordions-row hh-anchor" id="tools" aria-label="Starter prompt and update box">
     <details class="tool-accordion">
       <summary>
         <span id="starterAccordionTitle">Agent Prompt: Copy Rickey's Free-Claude Starter</span>
@@ -960,23 +300,16 @@
     </details>
   </section>
 
-  <!-- Controls Bar: To do / Done / All | Project Columns / List View -->
-  <div class="today-controls-bar">
-    <div class="today-filter-row" role="group" aria-label="Board filters">
-      <button type="button" class="today-filter-btn active" data-filter="todo">To do</button>
-      <button type="button" class="today-filter-btn" data-filter="done">Done</button>
-      <button type="button" class="today-filter-btn" data-filter="all">All</button>
-      <span style="width:1px;height:26px;background:var(--border);margin:0 4px;"></span>
-      <button type="button" class="today-filter-btn active" data-layout="kanban">Project Columns</button>
-      <button type="button" class="today-filter-btn" data-layout="list">List View</button>
+  <div class="today-controls-bar hh-anchor" id="board">
+    <div class="today-filter-row">
+      <div class="hh-tabs" role="group" aria-label="Show tasks"><button type="button" class="today-filter-btn active" data-filter="todo">To do</button><button type="button" class="today-filter-btn" data-filter="done">Done</button><button type="button" class="today-filter-btn" data-filter="all">All</button></div>
+      <div class="hh-tabs" role="group" aria-label="Board layout"><button type="button" class="today-filter-btn active" data-layout="kanban">Project Columns</button><button type="button" class="today-filter-btn" data-layout="list">List View</button></div>
     </div>
   </div>
 
-  <!-- Main Kanban Board Container -->
   <div id="boardContainer"></div>
 
-  <!-- Optional Reference Accordion at Bottom -->
-  <details class="tool-accordion">
+  <details class="tool-accordion hh-anchor" id="reference">
     <summary>
       <span>Reference: Approved Player Jerseys &amp; Sacha Admin Prompts</span>
       <span class="accordion-badge">Optional reference</span>
@@ -987,7 +320,12 @@
     </div>
   </details>
 
+</div>
+<section class="nm-section hh-anchor" id="contrast" style="margin-top:var(--nm-space-8)"><div class="nm-section__head"><h2 class="nm-h2">Contrast</h2><p class="nm-section__desc">Every colour pair on this page, measured. Text needs 4.5:1. Edges and controls need 3:1.</p></div><div class="nm-table-wrap"><table class="nm-table"><thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Result</th></tr></thead><tbody><tr><td>Body text on white</td><td>8.9:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Headings on the grey panel</td><td>12.1:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Quiet text on white</td><td>5.9:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Purple links on white</td><td>6.6:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>White on purple buttons</td><td>4.8:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Chosen name, white on deep purple</td><td>6.6:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Priority 1, white on plum</td><td>15.3:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Project chips, lowest pair (grey)</td><td>4.6:1</td><td><span class="nm-result nm-result--pass">Pass</span></td></tr><tr><td>Purple button edge on white</td><td>4.8:1</td><td><span class="nm-result nm-result--pass">Pass, needs 3:1</span></td></tr></tbody></table></div></section>
+<footer class="nm-footer"><span>Holiday 2026 Hub. Styled in Nutmeg, 26 Oct 2026.</span><a href="../nutmeg/foundations.html">About Nutmeg</a></footer>
+</div></div>
 </main>
+</div>
 
 <div class="toast-banner" id="toastBanner" role="status" aria-live="polite"></div>
 
@@ -2083,5 +1421,6 @@
   render();
 })();
 </script>
+<script src="../nutmeg/nutmeg.js"></script>
 </body>
 </html>
