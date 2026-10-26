@@ -22,7 +22,7 @@
       <label class="nm-search__field">
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
         <span class="nm-visually-hidden">Search the Tunnel</span>
-        <input class="nm-search__input" id="tn-quick" type="search" placeholder="Search" autocomplete="off">
+        <input class="nm-search__input" id="tn-quick" type="search" placeholder="Search all brands" autocomplete="off">
         <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
       </label>
     </div>
@@ -99,6 +99,16 @@
           </ul>
         </div>
       </div>
+      <div class="tn-home-results" id="tn-home-results" aria-live="polite">
+        <div class="tn-toolbar">
+          <div>
+            <h2 class="tn-section-h" id="tn-home-heading">Recent shoots across all brands</h2>
+            <p class="tn-meta-count" id="tn-home-count">Loading shoots from Vendor, Soccer.com, WorldSoccerShop, 431 Sports, and Team Soccer...</p>
+          </div>
+          <button type="button" class="tn-btn tn-btn--outline" id="tn-home-clear" hidden>Clear search</button>
+        </div>
+        <div class="tn-grid" id="tn-home-grid"></div>
+      </div>
     </section>
 
     <section class="tn-view tn-brand" id="tn-brand" aria-labelledby="tn-brand-name" hidden>
@@ -110,15 +120,30 @@
         </form>
       </div>
       <div class="tn-brand__body">
-        <div class="tn-brand__results" aria-live="polite">
-          <p class="tn-brand__where" id="tn-where"></p>
-          <p class="tn-brand__note" id="tn-note"></p>
+        <div class="tn-toolbar">
+          <div>
+            <h2 class="tn-section-h" id="tn-where"></h2>
+            <p class="tn-meta-count" id="tn-note"></p>
+          </div>
+          <div class="tn-chips" id="tn-quick-chips"></div>
         </div>
+        <div class="tn-grid" id="tn-brand-grid" aria-live="polite"></div>
         <hr class="tn-rule">
       </div>
     </section>
   </main>
 </div>
+
+<dialog class="tn-dialog" id="tn-shoot-dialog" aria-labelledby="tn-sd-title">
+  <div class="tn-dialog__head">
+    <div>
+      <h2 class="tn-dialog__title" id="tn-sd-title">Shoot files</h2>
+      <p class="tn-dialog__sub" id="tn-sd-sub"></p>
+    </div>
+    <button type="button" class="tn-btn tn-btn--outline" id="tn-sd-close">Close</button>
+  </div>
+  <div class="tn-dialog__body" id="tn-sd-body"></div>
+</dialog>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="tn-heart" viewBox="0 0 24 24"><path d="M12 8.00001L10.7 6.80001C9.83043 5.99169 8.68719 5.54239 7.49998 5.54239C6.31276 5.54239 5.16952 5.99169 4.29998 6.80001C3.49166 7.66955 3.04236 8.81279 3.04236 10C3.04236 11.1872 3.49166 12.3305 4.29998 13.2L12 21L19.7 13.2C20.5083 12.3305 20.9576 11.1872 20.9576 10C20.9576 8.81279 20.5083 7.66955 19.7 6.80001C18.8304 5.99169 17.6872 5.54239 16.5 5.54239C15.3128 5.54239 14.1695 5.99169 13.3 6.80001L12 8.00001Z" fill="none" stroke="currentColor"/></symbol>
