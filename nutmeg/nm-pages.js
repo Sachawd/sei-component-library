@@ -9,11 +9,11 @@ window.NM_PAGES = [
  },
  {
   "title": "Designer guide",
-  "url": "../wss-starter-pack/designer-guide.html"
+  "url": "designer-guide.html"
  },
  {
   "title": "Your first build",
-  "url": "../wss-starter-pack/first-build-walkthrough.html"
+  "url": "first-build.html"
  },
  {
   "title": "Workshop walkthrough",
@@ -21,7 +21,7 @@ window.NM_PAGES = [
  },
  {
   "title": "WorldSoccerShop starter pack",
-  "url": "../wss-starter-pack/index.html"
+  "url": "starter-pack-wss.html"
  },
  {
   "title": "Photo Sizer",
@@ -142,5 +142,117 @@ window.NM_PAGES = [
  {
   "title": "Block: Showcase Slider",
   "url": "showcase-slider.html"
+ },
+ {
+  "title": "Marquee, Back to Season",
+  "url": "marquee-back-to-season.html"
+ },
+ {
+  "title": "Wall, New Arrivals",
+  "url": "wall-new-arrivals.html"
+ },
+ {
+  "title": "Wall, July launches",
+  "url": "wall-july-launches.html"
+ },
+ {
+  "title": "Marquee and Wall",
+  "url": "marquee-and-wall.html"
+ },
+ {
+  "title": "Launch Carousel, jerseys",
+  "url": "launch-carousel-jerseys.html"
+ },
+ {
+  "title": "Launch Carousel, New Arrivals",
+  "url": "launch-carousel-new-arrivals.html"
+ },
+ {
+  "title": "Intent Selector, small",
+  "url": "intent-selector-small.html"
+ },
+ {
+  "title": "Spotlight Rail, Spezial",
+  "url": "spotlight-rail-spezial.html"
+ },
+ {
+  "title": "Quick Links Rail, new products",
+  "url": "quick-links-rail-new.html"
+ },
+ {
+  "title": "Kit Rail, home page",
+  "url": "kit-rail-home.html"
+ },
+ {
+  "title": "Selection Section, Jersey Shop",
+  "url": "selection-section-jersey-shop.html"
+ },
+ {
+  "title": "Selection Section, Fall Sale",
+  "url": "selection-section-fall-sale.html"
+ },
+ {
+  "title": "Shop-by Rail, leagues",
+  "url": "shop-by-rail-leagues.html"
+ },
+ {
+  "title": "Shop-by Rail, players",
+  "url": "shop-by-rail-players.html"
+ },
+ {
+  "title": "Intent Selector Chips, promo eligible",
+  "url": "intent-chips-promo.html"
+ },
+ {
+  "title": "Intent Selector Chips, sale",
+  "url": "intent-chips-sale.html"
+ },
+ {
+  "title": "Team Logo Marquee, promo eligible",
+  "url": "team-logo-marquee-promo.html"
+ },
+ {
+  "title": "Team Logo Marquee, sale",
+  "url": "team-logo-marquee-sale.html"
+ },
+ {
+  "title": "Promo Lightbox, clubs",
+  "url": "promo-lightbox-clubs.html"
+ },
+ {
+  "title": "Promo Lightbox, nations",
+  "url": "promo-lightbox-nations.html"
+ },
+ {
+  "title": "Shop Lightbox, nations",
+  "url": "shop-lightbox-nations.html"
+ },
+ {
+  "title": "Matchup Rail",
+  "url": "matchup-rail.html"
+ },
+ {
+  "title": "Hero, parallax image layers",
+  "url": "hero-parallax-layers.html"
+ },
+ {
+  "title": "Hero, falling objects",
+  "url": "hero-falling-objects.html"
+ },
+ {
+  "title": "Spatial Cards Slider",
+  "url": "spatial-cards-slider.html"
+ },
+ {
+  "title": "Shop the Look, clubs",
+  "url": "shop-the-look-clubs.html"
+ },
+ {
+  "title": "Shop by Nation accordion",
+  "url": "shop-by-nation-accordion.html"
+ },
+ {
+  "title": "Shop by Club rail",
+  "url": "shop-by-club-rail.html"
  }
 ];

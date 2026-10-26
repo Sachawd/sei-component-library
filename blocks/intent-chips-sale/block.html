@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intent Selector Chips: Sale</title>
+<!--
+  intent-selector-chips--sale-v1.html : canon v2 proposal
+  Built by Fable 2026-08-27. Twin of the Labor Day skin, same engine,
+  different skin variables and link list only.
+
+  CHASSIS NOTE: chip rail family ("intent-selector-chips", 36px outline chips),
+  NOT intent-selector-small--v1 (THE CTA chassis).
+  No serial, no registry row, not deployed.
+
+  HEIGHT BUDGET, measured headless in Chromium (9 chips + label):
+    mobile 72 . tablet 72 (row scrolls) . desktop 116
+  Desktop wraps to two rows from 1024 to about 1250, one row above;
+  the 116 container leaves white-on-white slack on wide screens, invisible.
+  Fastr containers: 72 / 72 / 116.
+  EMBED SNIPPET (once deployed):
+    <style>.wss-isc{width:100%;height:116px;border:0;display:block}</style>
+    <iframe class="wss-isc" loading="lazy" scrolling="no"
+      src="https://benevolent-madeleine-5217c1.netlify.app/blocks/intent-selector-chips--sale-v1.html"
+      title="Sale categories"></iframe>
+  Page needs Responsive Override Breakpoints 640 / 1024 + the revive script.
+
+  EDITABLE SKIN VIA EMBED URL: append params to the iframe src.
+    ?title=Winter%20Sale        overrides the label text (60-char cap)
+    &key=1D4ED8                 overrides the key colour (hex, no #)
+  Example: ...--sale-v1.html?title=Flash%20Sale&key=F42451
+  Defaults below stand when params are absent or JS fails.
+  ⚠️ A much longer title moves the desktop wrap point: re-measure the
+  height before re-setting the Fastr container for that instance.
+
+  SKIN DEFAULTS: key #fc471d (the orange on the live 50%-Off rail),
+  label "Sale by Category". Both also editable in :root / the nav below.
+
+  LINKS: base is `products-sale` from the link book
+  (site-links.csv, WSS Site Map app8ia59raQmVdp8b/tblyCI515wmVZR0xo).
+  Category filters verified in a live browser 2026-08-27 with counts:
+  All 3,989 . Jerseys 1,986 . T-Shirts 317 . Jackets 120 . Shorts 71 .
+  Lifestyle Shoes 16 . Firm Ground Shoes 738 . Indoor Shoes 108 . Balls 59
+  (the last three added 08-27 per Sacha, grouped at the end).
+  Fan Accessories chip LEFT OFF: returned 0 results on 08-27. Re-check
+  before adding it back; a chip to an empty grid is worse than no chip.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ---- skin variables: edit these per campaign ---- */
+    --key: #fc471d;            /* sale key colour: label + hover */
+    --chip-bg: #ffffff;        /* chip fill */
+    --chip-ink: #27272a;       /* chip text */
+    --chip-line: #111111;      /* chip outline */
+    --chip-line-hover: var(--key);
+    --rail-bg: #ffffff;        /* section background */
+    --rail-font: 'Chakra Petch', Arial, sans-serif;  /* WSS face */
+  }
+  html, body { margin: 0; padding: 0; background: var(--rail-bg); }
+  .promo-chip-section, .promo-chip-section * { box-sizing: border-box; }
+  .promo-chip-section {
+    width: 100%;
+    background: var(--rail-bg);
+    padding: 14px 0;
+    font-family: var(--rail-font);
+  }
+  .promo-chip-track {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 16px;
+    scroll-behavior: smooth;
+  }
+  .promo-chip-track::-webkit-scrollbar { display: none; }
+  .promo-chip-label {
+    flex-shrink: 0;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--key);
+    white-space: nowrap;
+    margin-right: 4px;
+  }
+  .promo-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 36px;
+    padding: 8px 14px;
+    border: 1px solid var(--chip-line);
+    border-radius: 2px;
+    background: var(--chip-bg);
+    color: var(--chip-ink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.22s ease, background-color 0.22s ease;
+  }
+  .promo-chip:hover,
+  .promo-chip:focus-visible {
+    border-color: var(--chip-line-hover);
+    background: var(--chip-bg);
+    color: var(--chip-ink);
+    outline: none;
+  }
+  /* 1024, not 768: matches the Fastr page override breakpoints (640/1024).
+     Desktop WRAPS instead of scrolling (live-rail precedent): a scrolling
+     rail on desktop would need canon arrows, and a centered flex track that
+     overflows clips its left edge unreachably. Wrap sidesteps both. */
+  @media (min-width: 1024px) {
+    .promo-chip-track {
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow: visible;
+      padding: 4px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="promo-chip-section">
+  <nav aria-label="Sale categories">
+    <div class="promo-chip-track">
+      <span class="promo-chip-label">Sale by Category</span>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale"
+        target="_top">All</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jerseys"
+        target="_top">All Jerseys</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__T-Shirts"
+        target="_top">T-Shirts</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jackets"
+        target="_top">Jackets</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Shorts"
+        target="_top">Shorts</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Lifestyle+Shoes"
+        target="_top">Lifestyle Footwear</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Firm+Ground+Shoes"
+        target="_top">Firm Ground Shoes</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Indoor+Shoes"
+        target="_top">Indoor Shoes</a>
+      <a class="promo-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Balls"
+        target="_top">Balls</a>
+      <!-- Fan Accessories chip off: 0 sale results on 2026-08-27, see header -->
+    </div>
+  </nav>
+</section>
+<script>
+/* EDITABLE SKIN: ?title= and &key= on the embed URL override the defaults.
+   textContent only (no HTML injection), hex validated, 60-char cap.
+   No params or no JS: the baked-in defaults above stand. */
+(function () {
+  try {
+    var q = new URLSearchParams(location.search);
+    var t = q.get('title');
+    if (t) {
+      t = t.slice(0, 60);
+      document.querySelector('.promo-chip-label').textContent = t;
+      var nav = document.querySelector('nav');
+      if (nav) nav.setAttribute('aria-label', t + ' categories');
+      document.title = 'Intent Selector Chips: ' + t;
+    }
+    var k = q.get('key');
+    if (k) {
+      k = k.replace(/^#/, '');
+      if (/^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(k)) {
+        document.documentElement.style.setProperty('--key', '#' + k);
+      }
+    }
+  } catch (e) { /* defaults stand */ }
+})();
+</script>
+<!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_intent_selector_chips_sale_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

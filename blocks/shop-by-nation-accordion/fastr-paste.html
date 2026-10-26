@@ -1,0 +1,585 @@
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  SHOP BY NATION — hover-expand accordion · Soccer.com · v3 · 2026-09-17
+  ──────────────────────────────────────────────────────────────────────────
+  v3 adds photography to v2. Everything else is unchanged from v2.
+
+  Surface: Fastr CMS HTML widget. Native component, NOT an iframe.
+  Fragment, not a document: no doctype, html, head or body. v1 had none either.
+  Zero JavaScript. The component is complete with no script.
+
+  HEIGHT BUDGET (exact heights, never min-height)
+    ≤ 767px    480px   swipe rail, one panel visible + peek
+    768–1023px 560px   flush accordion
+    ≥ 1024px   620px   flush accordion
+
+  TOKEN CHECK — every name verified 2026-09-17 against the production
+  components that ship today, the Friends & Family sale page and the Matchday
+  Bar Finder.
+    --theme-text-body ............ exists in production ... kept
+    --theme-bg-page .............. exists in production ... kept
+    --theme-text-oninvert ........ exists in production ... kept
+    --theme-bg-subtle ............ exists in production ... kept
+    --theme-bg-primary-normal .... exists in production ... kept
+    --font-body .................. DOES NOT EXIST ......... removed
+  There is no production font token. Both reference components declare their
+  own local font variable and put the real stack in it, so this one does the
+  same with --sdc-ta-font. Typography ships as utility classes, not tokens.
+  No name here can have its fallback win silently.
+
+  IMAGES — all five real. Chosen from the Tunnel build on the Mac
+  (CLICKUP-ASSET-SWEEP/the-tunnel, 8,313 items, read 2026-09-17). Addresses are
+  built from the file name: the dxassets image host, plus Photos/ and the file
+  name, with + # & encoded. Vendor Assets is the shared tier and is usable on
+  Soccer.com. No WorldSoccerShop asset is used anywhere here.
+
+  RIGHTS: everything in the Tunnel is approved for photography use
+  (Sacha, 2026-09-17). Named players need no separate check, so frames were
+  picked on quality rather than on avoiding a face.
+
+    Germany ..... 3:4  Florian Wirtz, 26/27 away player frame
+    England ..... 3:4  Cole Palmer, 2026 player frame
+    Peru ........ 3:4  federation 2D, the only portrait Peru frame in the Tunnel
+    Scotland .... 3:4  federation 2D, the only portrait Scotland frame in the Tunnel
+    Mexico ...... 3:4  26/27 away, fans
+
+  TWO NATIONS CHANGED, and why. Wales and South Africa have no Soccer.com-usable
+  photography at all: Wales has one Vendor Assets item and it is a thumbnail,
+  and all seven South Africa items are tagged WorldSoccerShop. Rather than ship
+  two grey panels, England and Mexico take their places. Both are live on
+  Soccer.com and both have deep coverage in the Tunnel. Swap them for any other
+  nation freely; the only requirement is a live team page and a portrait frame.
+
+  VERTICAL ONLY (Sacha, 2026-09-17). Panels take portrait frames only:
+  3:4, 4:5, 2:3 or 9:16. Never square, never landscape. A 1:1 or 16:9 frame
+  centre-crops to a strip of itself in a panel this tall and loses the kit.
+  When swapping a nation, check the frame's ratio before the filename.
+
+  CROP: every frame is 3:4. The panel is 1 to 1.375 and a 3:4 frame is 1 to
+  1.333, so a sliver comes off the bottom of each. The crop is anchored top, so
+  faces and kit stay safe. Nothing here is 16:9.
+
+  NOT ONE OF THESE FIVE HAS BEEN SEEN TO RENDER. No agent call was made to the
+  bucket or the image host, per Sacha's standing rule of 2026-08-27 that the
+  check is a human in a real browser. Open each one before this ships.
+
+  LINKS — all five click-verified on the live site 2026-09-17. Every one
+  returns 200. The link book's slugs each redirect one hop to a
+  "-national-team" address, so the canonical addresses are used here and the
+  redirect is skipped.
+  Two corrections to the link book worth making in Airtable:
+    South Africa IS live, at /shop/fan/teams/south-africa-national-team.
+      It is missing from site-links.csv. It is restored to this component.
+    Northern Ireland is genuinely not on Soccer.com. Both plausible addresses
+      return 404. Wales stands in its place. Nothing was invented.
+
+  CONTRAST — measured, worst case (a pure-white photograph behind the scrim)
+    Team name, white on scrim ........ 9.6:1  PASS
+    CTA ink on CTA ground ........... 14.9:1  PASS
+    Section title on page ........... 14.9:1  PASS
+    Focus ring, white on scrim ....... 8.5:1  PASS (3:1 needed)
+
+  PRE-FLIGHT GREP: clean. No html, body, :root, bare * reset or 100vh selectors.
+    The string "body" appears only in the token name --theme-text-body and in
+    this comment. That is a false positive, not a document-level rule.
+
+  ⚠️ DEVIATION 1 — cta-canon.css declares its Osmo API on :root. A CMS widget may
+     not target the root, so the same declarations sit on the wrapper class.
+  ⚠️ DEVIATION 2 — every Osmo .button-009 selector is prefixed with the wrapper
+     class. Declarations, easings, hover calc, click scale and focus ring verbatim.
+  ⚠️ DEVIATION 3 — the label face is Figtree, not Chakra Petch. Figtree is
+     Soccer.com's font; Chakra Petch is WorldSoccerShop's.
+  ⚠️ DEVIATION 4 — CTA ground and ink reference --theme-* tokens rather than the
+     canon's literal #fff/#0A0A0A, per the CMS token rule.
+
+  NO CLICK BEACON. The beacon exists to cross an iframe boundary. This renders
+  natively on soccer.com, so its links are ordinary internal navigation and
+  analytics already sees them.
+
+  CHANGED IN v2
+    1. Phone rail allows vertical page scroll with a thumb on the rail.
+    2. --font-body removed, see the token check above.
+    3. Images: three real frames in, two nations still grey. See above.
+    4. No doctype to remove; v1 was already a fragment.
+    5. --sdc-ta-* renamed --sdc-ta-*. The campaign layer stays for campaign
+       colour and type only.
+    6. Links click-verified and switched to the canonical addresses.
+       South Africa restored in place of Nigeria.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+
+<style>
+/* ── Scoped reset ─────────────────────────────────────────────────────── */
+.sdc-team-accordion,
+.sdc-team-accordion *,
+.sdc-team-accordion *::before,
+.sdc-team-accordion *::after {
+  box-sizing: border-box;
+}
+
+/* ── BASE LAYER — production theme tokens, fallbacks are for preview only ── */
+.sdc-team-accordion {
+  font-family: var(--sdc-ta-font);
+  color: var(--theme-text-body, #27272A);
+  background: var(--theme-bg-page, #FFFFFF);
+
+  /* ── COMPONENT LAYER — renamed from --campaign-* at Fable's review ── */
+  --sdc-ta-font: Figtree, 'Segoe UI', system-ui, sans-serif;
+  --sdc-ta-panel-h: 620px;
+  --sdc-ta-panel-expand: 2.2;
+  --sdc-ta-scrim-floor: rgba(0, 0, 0, 0.85);
+  --sdc-ta-scrim-mid: rgba(0, 0, 0, 0.72);
+  --sdc-ta-scrim-top: rgba(0, 0, 0, 0);
+  --sdc-ta-motion-base: 0.4s;
+  --sdc-ta-motion-ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Osmo Button 009 API — see DEVIATION 1 */
+  --button-009-color: var(--theme-text-body, #27272A);
+  --button-009-color-background: var(--theme-bg-page, #FFFFFF);
+  --button-009-color-focus: var(--theme-text-oninvert, #FFFFFF);
+  --button-009-border-radius: 0;
+  --button-009-icon-size: 1.2143em;
+  --button-009-padding-top: 0.8571em;
+  --button-009-padding-right: 1.1429em;
+  --button-009-padding-bottom: 0.8571em;
+  --button-009-padding-left: 1.1429em;
+  --button-009-gap: 0.5714em;
+  --button-009-overflow: clip;
+  --button-009-focus-inset: -0.125em;
+  --button-009-click-scale: 0.955 0.925;
+  --button-009-ease-hover: cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --sdc-cta-size: 14px;
+  --sdc-cta-weight: 600;
+  --sdc-cta-line: 1.0714;
+  --sdc-cta-line-em: 1.0714em;
+  --sdc-cta-tracking: 0.08em;
+  --sdc-cta-arrow-size: 1.5714em;
+  --sdc-cta-arrow-tracking: 0.02em;
+}
+
+.sdc-team-accordion__title {
+  margin: 0 0 20px;
+  padding: 0 20px;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--theme-text-body, #27272A);
+}
+
+/* ── Panel row ────────────────────────────────────────────────────────── */
+.sdc-team-accordion__row {
+  display: flex;
+  width: 100%;
+  height: var(--sdc-ta-panel-h);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.sdc-team-accordion__item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  transition: flex-grow var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease);
+}
+
+.sdc-team-accordion__panel {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+
+/* The focus ring is a pseudo-element, not an outline: the panel image is an
+   absolutely positioned child and paints over the parent's outline. */
+.sdc-team-accordion__panel:focus-visible { outline: none; }
+
+.sdc-team-accordion__panel::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  z-index: 3;
+  pointer-events: none;
+  border: 3px solid var(--theme-text-oninvert, #FFFFFF);
+  box-shadow: 0 0 0 3px var(--theme-bg-primary-normal, #27272A);
+  opacity: 0;
+}
+
+.sdc-team-accordion__panel:focus-visible::after { opacity: 1; }
+
+.sdc-team-accordion__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform-origin: center top;
+  background: var(--theme-bg-subtle, #F5F5F5);
+  /* If a photo 404s, the panel falls back to a clean grey rather than showing
+     the alt text across the artwork. The alt attribute is untouched, so screen
+     readers still read it. Bucket filenames fail silently, so this matters. */
+  color: transparent;
+  font-size: 0;
+  transition: transform var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease);
+}
+
+.sdc-team-accordion__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--sdc-ta-scrim-floor) 0%,
+    var(--sdc-ta-scrim-mid) 22%,
+    var(--sdc-ta-scrim-top) 72%
+  );
+  pointer-events: none;
+}
+
+.sdc-team-accordion__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.sdc-team-accordion__name {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--theme-text-oninvert, #FFFFFF);
+}
+
+/* CTA rests hidden on fine pointers only, and returns on hover OR focus */
+@media (hover: hover) and (pointer: fine) {
+  .sdc-team-accordion__item:hover,
+  .sdc-team-accordion__item:focus-within {
+    flex-grow: var(--sdc-ta-panel-expand);
+  }
+
+  .sdc-team-accordion__panel:hover .sdc-team-accordion__image,
+  .sdc-team-accordion__panel:focus-within .sdc-team-accordion__image {
+    transform: scale(1.06);
+  }
+
+  .sdc-team-accordion__cta {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease),
+      transform var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease);
+  }
+
+  .sdc-team-accordion__panel:hover .sdc-team-accordion__cta,
+  .sdc-team-accordion__panel:focus-within .sdc-team-accordion__cta,
+  .sdc-team-accordion__panel:focus-visible .sdc-team-accordion__cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Tablet ───────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .sdc-team-accordion { --sdc-ta-panel-h: 560px; }
+  .sdc-team-accordion__content { padding: 24px; }
+}
+
+/* ── Phone: swipe rail ────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .sdc-team-accordion { --sdc-ta-panel-h: 480px; }
+
+  .sdc-team-accordion__title {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  .sdc-team-accordion__row {
+    gap: 12px;
+    padding-left: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;
+    touch-action: pan-x pan-y pinch-zoom;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sdc-team-accordion__row::-webkit-scrollbar { display: none; }
+
+  .sdc-team-accordion__item {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+  }
+
+  .sdc-team-accordion__item:last-child { margin-right: 16px; }
+
+  .sdc-team-accordion__panel { border-radius: 4px; }
+
+  .sdc-team-accordion__content { padding: 24px 20px; }
+
+  .sdc-team-accordion__name { font-size: 24px; }
+}
+
+/* ── Reduced motion: everything stops, nothing is hidden ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sdc-team-accordion__item,
+  .sdc-team-accordion__image,
+  .sdc-team-accordion__cta {
+    transition: none;
+  }
+  .sdc-team-accordion__cta {
+    opacity: 1;
+    transform: none;
+  }
+  .sdc-team-accordion__panel:hover .sdc-team-accordion__image,
+  .sdc-team-accordion__panel:focus-within .sdc-team-accordion__image {
+    transform: none;
+  }
+}
+
+/* ═══ OSMO BUTTON 009 — from cta-canon.css, scoped (DEVIATION 2) ════════ */
+.sdc-team-accordion .button-009 {
+  color: var(--button-009-color);
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #0000;
+  outline-style: none;
+  padding: 0;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-grid;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  transition: scale 0.15s var(--button-009-ease-click);
+}
+.sdc-team-accordion .button-009::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: var(--button-009-focus-inset);
+  border-radius: var(--button-009-border-radius);
+  transition: box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events: none;
+  z-index: 1;
+}
+.sdc-team-accordion .button-009__inner {
+  pointer-events: none;
+  grid-column-gap: var(--button-009-gap);
+  grid-row-gap: var(--button-009-gap);
+  padding-top: var(--button-009-padding-top);
+  padding-right: var(--button-009-padding-right);
+  padding-bottom: var(--button-009-padding-bottom);
+  padding-left: var(--button-009-padding-left);
+  z-index: 1;
+  border-radius: var(--button-009-border-radius);
+  overflow: var(--button-009-overflow);
+  grid-area: 1 / 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+.sdc-team-accordion .button-009__icon {
+  width: var(--button-009-icon-size);
+  height: var(--button-009-icon-size);
+  flex: none;
+  transition: translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.sdc-team-accordion .button-009__icon.is--left {
+  left: var(--button-009-padding-right);
+  position: absolute;
+  opacity: 0;
+  translate: -1.5em 0 0;
+}
+.sdc-team-accordion .button-009__text {
+  flex: none;
+  transition: translate 0.5s var(--button-009-ease-hover);
+}
+.sdc-team-accordion .button-009__bg {
+  background-color: var(--button-009-color-background);
+  border-radius: var(--button-009-border-radius);
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .sdc-team-accordion [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text {
+    translate: calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition: translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .sdc-team-accordion [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left {
+    translate: 0 0 0;
+    opacity: 1;
+    transition: translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .sdc-team-accordion [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right {
+    translate: 1.5em 0 0;
+    opacity: 0;
+    transition: translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+/* ═══ END OSMO ═════════════════════════════════════════════════════════ */
+
+/* ── Label skin (DEVIATION 3) ─────────────────────────────────────────── */
+.sdc-team-accordion .button-009 {
+  font-family: var(--sdc-ta-font);
+  font-size: var(--sdc-cta-size);
+}
+.sdc-team-accordion .button-009__text {
+  font-weight: var(--sdc-cta-weight);
+  line-height: var(--sdc-cta-line);
+  letter-spacing: var(--sdc-cta-tracking);
+  margin-right: calc(var(--sdc-cta-tracking) * -1);
+  text-transform: uppercase;
+}
+.sdc-team-accordion .button-009__icon {
+  height: var(--sdc-cta-line-em);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sdc-team-accordion .button-009__icon > i {
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--sdc-cta-arrow-size);
+  letter-spacing: var(--sdc-cta-arrow-tracking);
+  line-height: 1;
+  display: block;
+}
+</style>
+
+<section class="sdc-team-accordion" aria-labelledby="sdc-team-accordion-title">
+  <h2 class="sdc-team-accordion__title" id="sdc-team-accordion-title">Shop by Nation</h2>
+
+  <ul class="sdc-team-accordion__row">
+
+    <li class="sdc-team-accordion__item">
+      <a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/germany-national-team" target="_top">
+        <img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/germany_2026_away_player_florian_wirtz_21_3x4.jpg"
+             alt="Germany national team kit" loading="eager" decoding="async" />
+        <span class="sdc-team-accordion__scrim"></span>
+        <span class="sdc-team-accordion__content">
+          <span class="sdc-team-accordion__name">Germany</span>
+          <span class="sdc-team-accordion__cta">
+            <span class="button-009">
+              <span class="button-009__inner">
+                <span class="button-009__icon is--left" aria-hidden="true"><i>&#8594;</i></span>
+                <span class="button-009__text">Shop Now</span>
+                <span class="button-009__icon is--right" aria-hidden="true"><i>&#8594;</i></span>
+              </span>
+              <span class="button-009__bg"></span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </li>
+
+    <li class="sdc-team-accordion__item">
+      <a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/england-national-team" target="_top">
+        <img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/england_2026_player_cole_palmer_01_3x4.jpg"
+             alt="England national team kit" loading="eager" decoding="async" />
+        <span class="sdc-team-accordion__scrim"></span>
+        <span class="sdc-team-accordion__content">
+          <span class="sdc-team-accordion__name">England</span>
+          <span class="sdc-team-accordion__cta">
+            <span class="button-009">
+              <span class="button-009__inner">
+                <span class="button-009__icon is--left" aria-hidden="true"><i>&#8594;</i></span>
+                <span class="button-009__text">Shop Now</span>
+                <span class="button-009__icon is--right" aria-hidden="true"><i>&#8594;</i></span>
+              </span>
+              <span class="button-009__bg"></span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </li>
+
+    <li class="sdc-team-accordion__item">
+      <a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/peru-national-team" target="_top">
+        <img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/Peru_2026_FPF_2D_3x4_RGB-1385594.jpg"
+             alt="Peru national team kit" loading="eager" decoding="async" />
+        <span class="sdc-team-accordion__scrim"></span>
+        <span class="sdc-team-accordion__content">
+          <span class="sdc-team-accordion__name">Peru</span>
+          <span class="sdc-team-accordion__cta">
+            <span class="button-009">
+              <span class="button-009__inner">
+                <span class="button-009__icon is--left" aria-hidden="true"><i>&#8594;</i></span>
+                <span class="button-009__text">Shop Now</span>
+                <span class="button-009__icon is--right" aria-hidden="true"><i>&#8594;</i></span>
+              </span>
+              <span class="button-009__bg"></span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </li>
+
+    <li class="sdc-team-accordion__item">
+      <a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/scotland-national-team" target="_top">
+        <img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/Scotland__2026__Away___SFA_2D_3x4_RGB-1385754.jpg"
+             alt="Scotland national team kit" loading="eager" decoding="async" />
+        <span class="sdc-team-accordion__scrim"></span>
+        <span class="sdc-team-accordion__content">
+          <span class="sdc-team-accordion__name">Scotland</span>
+          <span class="sdc-team-accordion__cta">
+            <span class="button-009">
+              <span class="button-009__inner">
+                <span class="button-009__icon is--left" aria-hidden="true"><i>&#8594;</i></span>
+                <span class="button-009__text">Shop Now</span>
+                <span class="button-009__icon is--right" aria-hidden="true"><i>&#8594;</i></span>
+              </span>
+              <span class="button-009__bg"></span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </li>
+
+    <li class="sdc-team-accordion__item">
+      <a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/mexico-national-team" target="_top">
+        <img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/Mexico_2026_Away__Fans_3x4_RGB-1384305.jpg"
+             alt="Mexico national team kit" loading="eager" decoding="async" />
+        <span class="sdc-team-accordion__scrim"></span>
+        <span class="sdc-team-accordion__content">
+          <span class="sdc-team-accordion__name">Mexico</span>
+          <span class="sdc-team-accordion__cta">
+            <span class="button-009">
+              <span class="button-009__inner">
+                <span class="button-009__icon is--left" aria-hidden="true"><i>&#8594;</i></span>
+                <span class="button-009__text">Shop Now</span>
+                <span class="button-009__icon is--right" aria-hidden="true"><i>&#8594;</i></span>
+              </span>
+              <span class="button-009__bg"></span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </li>
+
+  </ul>
+</section>

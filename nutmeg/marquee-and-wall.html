@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marquee and Wall · Nutmeg</title>
+<meta name="description" content="The marquee sitting flush on the wall as one block, the marquee acting as the header.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body data-hub="volley" data-page="block">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley"><ul class="nm-rail"><li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li><li><a class="nm-rail__item" href="designer-guide.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="blocks.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li><li><a class="nm-rail__item" href="index.html#tools"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M19 21.5H6.5L5 20V4L6.5 2.5H19V21.5Z" stroke-miterlimit="10"/><path d="M5 19L6.5 17.5H19" stroke-miterlimit="10"/><path d="M15 7.5H9" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Resources</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Components</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="blocks.html">All blocks</a></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="false" aria-controls="nm-sub-components-1"><span>Blocks</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-1" hidden><li><a class="nm-drawer__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li><li><a class="nm-drawer__sublink" href="sale-category-tiles.html">Sale category tiles</a></li><li><a class="nm-drawer__sublink" href="sale-hero.html">Sale hero</a></li><li><a class="nm-drawer__sublink" href="sale-quick-links.html">Sale quick links strip</a></li><li><a class="nm-drawer__sublink" href="section-breaker.html">Section Breaker</a></li><li><a class="nm-drawer__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li><li><a class="nm-drawer__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-section.html">Shop by Club section</a></li><li><a class="nm-drawer__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li><li><a class="nm-drawer__sublink" href="showcase-slider.html">Showcase Slider</a></li></ul></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="true" aria-controls="nm-sub-components-2"><span>Canon blocks, needs review</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-2"><li><a class="nm-drawer__sublink" href="marquee-back-to-season.html">Marquee, Back to Season</a></li><li><a class="nm-drawer__sublink" href="wall-new-arrivals.html">Wall, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="wall-july-launches.html">Wall, July launches</a></li><li><a class="nm-drawer__sublink" href="marquee-and-wall.html" aria-current="page">Marquee and Wall</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-jerseys.html">Launch Carousel, jerseys</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-new-arrivals.html">Launch Carousel, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="intent-selector-small.html">Intent Selector, small</a></li><li><a class="nm-drawer__sublink" href="spotlight-rail-spezial.html">Spotlight Rail, Spezial</a></li><li><a class="nm-drawer__sublink" href="quick-links-rail-new.html">Quick Links Rail, new products</a></li><li><a class="nm-drawer__sublink" href="kit-rail-home.html">Kit Rail, home page</a></li><li><a class="nm-drawer__sublink" href="selection-section-jersey-shop.html">Selection Section, Jersey Shop</a></li><li><a class="nm-drawer__sublink" href="selection-section-fall-sale.html">Selection Section, Fall Sale</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-leagues.html">Shop-by Rail, leagues</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-players.html">Shop-by Rail, players</a></li><li><a class="nm-drawer__sublink" href="intent-chips-promo.html">Intent Selector Chips, promo eligible</a></li><li><a class="nm-drawer__sublink" href="intent-chips-sale.html">Intent Selector Chips, sale</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-promo.html">Team Logo Marquee, promo eligible</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-sale.html">Team Logo Marquee, sale</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-clubs.html">Promo Lightbox, clubs</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-nations.html">Promo Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="shop-lightbox-nations.html">Shop Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="matchup-rail.html">Matchup Rail</a></li><li><a class="nm-drawer__sublink" href="hero-parallax-layers.html">Hero, parallax image layers</a></li><li><a class="nm-drawer__sublink" href="hero-falling-objects.html">Hero, falling objects</a></li><li><a class="nm-drawer__sublink" href="spatial-cards-slider.html">Spatial Cards Slider</a></li><li><a class="nm-drawer__sublink" href="shop-the-look-clubs.html">Shop the Look, clubs</a></li><li><a class="nm-drawer__sublink" href="shop-by-nation-accordion.html">Shop by Nation accordion</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-rail.html">Shop by Club rail</a></li></ul></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
+  <h1>Marquee and Wall</h1>
+  <p class="nm-lede">The marquee sitting flush on the wall as one block, the marquee acting as the header.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-marquee-and-wall"><button type="button" class="nm-tab" role="tab" aria-controls="frame-marquee-and-wall" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-marquee-and-wall" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-marquee-and-wall" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/marquee-and-wall/block.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-marquee-and-wall" src="../blocks/marquee-and-wall/block.html" height="1037" title="Marquee and Wall, live demo"></iframe></div></div>
+</section><section class="nm-section" id="review">
+<div class="nm-section__head"><h2 class="nm-h2">Before designers use it<button type="button" class="nm-anchor" aria-label="Copy a link to Before designers use it"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>This block needs a review before it goes on a page.</strong><p>It was copied into the library on 25 Oct 2026 from the canon folder, as it was. Fable and Sacha still need to check it against the paste rules, the five screen widths and contrast. Until then, study it and build from it, but check with Sacha before using it.</p></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">This is the build file from the canon folder. It is not a Fastr paste file yet, so it carries its own page around the block.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>block.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Fresh Kits — New Arrivals Wall&lt;/title&gt;
+&lt;!--
+  ═══════════════════════════════════════════════════════════════════════════
+  c13-marquee-wall--july-v1.html — ONE PUBLISHABLE UNIT (Fastr test build)
+  Assembled by Fable 2026-08-03 from canon v2 sources (which stay the truth):
+    _CANON_V2/SHELL-marquee-v2.html + css/marquee-canon.css  (Osmo CSS Marquee)
+    _CANON_V2/C13-wall--july-v1.html + css/wall-canon.css    (Osmo Infinite Grid)
+  Design: Figma WorldSoccerShop---Site-Updates node 35:911 (marquee 35:886 flush
+  on top of wall canvas 35:704, ZERO gap, wall's own header band REMOVED — the
+  marquee IS the header, per Sacha 08-03).
+  Both stylesheets are INLINED so this file is fully self-contained for deploy.
+  Content: 21 July tiles from Sacha's selects, served from S3 Photos/ via
+  imagehandler. Duplicate picks spread apart. Launch-date gate: all ≤ 07-31.
+
+  HEIGHT BUDGET (A4) — marquee 110/160/220 + canvas 520/620/760:
+    &lt;640px 630 · ≥640px 780 · ≥1024px 980
+
+  FASTR EMBED SNIPPET (own copy per block):
+    &lt;style&gt;
+      .wc-embed-c13-unit{width:100%;height:674px;border:0;overflow:hidden;display:block}
+      @media (min-width:640px){.wc-embed-c13-unit{height:830px}}
+      @media (min-width:1024px){.wc-embed-c13-unit{height:1037px}}
+      /* ⚠️ 08-04: +44/+50/+57 vs the original 630/780/980 — the Drag-to-Explore
+         row adds height. UPDATE THE FASTR EMBED CSS when this ships or the
+         bottom of the wall gets clipped. */
+    &lt;/style&gt;
+    &lt;iframe class="wc-embed-c13-unit" src="https://benevolent-madeleine-5217c1.netlify.app/blocks/c13-marquee-wall--july-v1.html"
+      title="Fresh kits — new arrivals wall" loading="lazy" scrolling="no"&gt;&lt;/iframe&gt;
+
+  ⚠️ Marquee background: --marquee-bg points at WSS/marquee_back_to_season_fw26_bg_2912w.jpg
+  (the file the 08-02 handoff says Sacha is uploading). If it isn't in the bucket
+  yet the CSS placeholder texture shows instead — upload it and hard-refresh.
+  ═══════════════════════════════════════════════════════════════════════════
+--&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&amp;family=Figtree:wght@400;600&amp;display=swap" rel="stylesheet"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Observer.min.js"&gt;&lt;/script&gt;
+&lt;style&gt;
+/* ▼▼ css/marquee-canon.css — inlined verbatim ▼▼ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   marquee-canon.css — the MARQUEE chassis (canon v2)
+   ─────────────────────────────────────────────────────────────────────────
+   Engine: Osmo Supply "CSS Marquee". Every class name, both data- attributes
+   and the keyframe are VERBATIM. Osmo's optional JS is used as shipped.
+
+   ⚠️ PROPOSED as the one marquee chassis, NOT yet locked by Sacha.
+   Nothing is logged to RUNNING-LIST until he says yes. See README.
+
+   TWO ROLES, ONE CHASSIS  (the 07-27 "variants, not new components" pattern)
+   ─────────────────────────────────────────────────────────────────────────
+   data-marquee="editorial"  campaign banner. Image ground + scrim, big type,
+                             220px tall. Figma 35:886. Sits above the C-13 wall.
+   data-marquee="utility"    functional bar. The job 00_promo_marquee.html does
+                             today (free shipping, promo codes). 36px tall,
+                             no image, no gutter.
+
+   They are NOT the same component wearing one skin: a 36px shipping bar and a
+   220px image-backed campaign banner have different jobs. They ARE the same
+   ENGINE and the same canon values, which is the part worth sharing.
+
+   ⚠️ v1 `00_promo_marquee.html` IS NOT TOUCHED and must not be deleted. If the
+   utility variant is approved, migrating the shipping bar is a separate, later
+   step behind the same demo.html gate as everything else in _CANON_V2.
+
+   MEASURED FROM FIGMA 35:886 (desktop)
+   ─────────────────────────────────────────────────────────────────────────
+     frame            1456 × 220, 32px side gutter
+     ground           black, then the photo (object-cover), then rgba(0,0,0,.4)
+     band             black, padding 32px 48px, gap 32px  →  100px tall
+     "FRESH KITS"     Chakra Petch Bold 700 · 36px · tracking 17.28px (0.48em)
+     "back to season" Chakra Petch Light 300 · 36px · no tracking
+     flame            🔥 at 36px
+     ink              #f4f4f4  (same neutral wall-canon.css already uses)
+
+   HEIGHT BUDGET (canon A4 — embed snippet carries all three)
+   ─────────────────────────────────────────────────────────────────────────
+     editorial   &lt;640: type 18 · band 54 · TOTAL 110
+                 ≥640: type 26 · band 74 · TOTAL 160
+                ≥1024: type 36 · band 100 · TOTAL 220
+     utility     all breakpoints: type 14 · TOTAL 36
+
+   CHANGES FROM THE OSMO SOURCE, all deliberate
+   ─────────────────────────────────────────────────────────────────────────
+   1. `max-width: 42em` removed from `.marquee-css`. That is Osmo's demo width;
+      this block is full-bleed inside a Fastr iframe.
+   2. `.marquee-css__item-svg` carries the 🔥 GLYPH instead of Osmo's green star
+      vector, per Figma. Class kept so the SVG path still works if the flame is
+      ever swapped for artwork (see the emoji note below).
+   3. `prefers-reduced-motion` support ADDED. Osmo's marquee does not honour it,
+      and an infinite scroller is the textbook case for it. Canon requires it.
+      Animation stops, duplicate lists hide, content centres.
+   Everything else — the keyframe, the translateX(-100%) technique, the item
+   flex/gap model, the JS — is Osmo's.
+
+   ⚠️ EMOJI RENDERS DIFFERENTLY PER PLATFORM. Figma shows Apple's flame; Windows
+   Chrome draws Segoe's, Android draws Noto's. For a brand banner that may matter.
+   To pin it, drop an &lt;img&gt;/&lt;svg&gt; flame into `.marquee-css__item-svg` instead of
+   the glyph — the class already sizes it. Sacha's call, not changed here.
+
+   ⚠️ THE BACKGROUND IMAGE IS NOT BAKED IN. It is `--marquee-bg`, set per
+   instance, so the generator fills it from data (rule D4) rather than the URL
+   being hard-coded in markup. See README for the S3 filename + imagehandler URL.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --mq-ink:#f4f4f4;                       /* neutrals/neutral-200, shared with wall-canon */
+  --mq-ground:#000;
+  --mq-scrim:rgba(0,0,0,.4);
+  --mq-font:'Chakra Petch',Figtree,sans-serif;
+  --mq-bold:700;
+  --mq-light:300;
+  --mq-tracking:0.48em;                   /* 17.28px at 36px */
+  --mq-speed:75;                          /* px per second, consumed by the JS */
+  --marquee-bg:none;                      /* set per instance: url(...) */
+}
+
+html,body{background:var(--mq-ground);overflow:hidden;margin:0}
+/* B4: never overscroll-behavior:none on html/body */
+
+/* ── outer band: ground + photo + scrim ──────────────────────────────────── */
+.mq-wrap{
+  position:relative;
+  width:100%;
+  height:110px;                            /* mobile budget */
+  display:flex;align-items:center;justify-content:center;
+  padding:0 32px;
+  background:var(--mq-ground);
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.mq-wrap__bg{
+  position:absolute;inset:0;
+  background-image:var(--marquee-bg);
+  background-size:cover;background-position:center;
+  pointer-events:none;
+}
+.mq-wrap__scrim{position:absolute;inset:0;background:var(--mq-scrim);pointer-events:none}
+
+/* ═══ OSMO CSS MARQUEE — verbatim except the marked lines ═══════════════════ */
+.marquee-css{
+  color:var(--mq-ink);
+  background-color:var(--mq-ground);
+  width:100%;
+  /* max-width:42em;  ← REMOVED (Osmo demo width; this block is full-bleed) */
+  display:flex;
+  position:relative;
+  overflow:hidden;
+}
+.marquee-css__list{
+  flex:none;
+  align-items:center;
+  display:flex;
+  position:relative;
+}
+.marquee-css__item{
+  grid-column-gap:1em;
+  grid-row-gap:1em;
+  flex:0;
+  align-items:center;
+  padding-top:1em;
+  padding-bottom:1em;
+  padding-right:1em;
+  display:flex;
+}
+.marquee-css__item-p{
+  white-space:nowrap;
+  margin-bottom:0;
+  font-size:1.5em;
+  line-height:1;
+}
+.marquee-css__item-svg{ width:1em; }
+
+/* CSS Keyframe Animation */
+@keyframes translateX{
+  to{ transform:translateX(-100%); }
+}
+[data-css-marquee-list]{
+  animation:translateX 30s linear;
+  animation-iteration-count:infinite;
+  animation-play-state:paused;
+}
+/* ═══ END OSMO CSS ═════════════════════════════════════════════════════════ */
+
+
+/* ── chassis fix, applies to both variants ───────────────────────────────
+   Osmo zeroes only `margin-bottom` on `.marquee-css__item-p` because Webflow
+   ships a global reset that already killed margin-top. Standalone, the UA's
+   1em top margin survives and inflates the band by a whole font-size
+   (measured: 136px instead of 100px on desktop). Zero it here rather than
+   editing Osmo's block above.                                              */
+.marquee-css__item-p{ margin-top:0; }
+
+/* ── editorial variant (Figma 35:886) ───────────────────────────────────── */
+[data-marquee='editorial'] .marquee-css{
+  position:relative;z-index:1;
+  width:auto;max-width:100%;
+  font-family:var(--mq-font);
+  font-size:18px;                          /* mobile; the em model scales off this */
+}
+[data-marquee='editorial'] .marquee-css__item{
+  grid-column-gap:.889em;grid-row-gap:.889em;   /* 32px at 36px */
+  padding:1em 0;                                /* 18px v at 18px → band 54px */
+  padding-right:.889em;
+}
+/* FIX 08-03 (Sacha caught the drift): the :first-child padding-left made list 1 wider than its clone → translateX(-100%) desync → text pile-up, 48px worse per loop. Spacing belongs on the items, never one list. */
+[data-marquee='editorial'] .marquee-css__item-p{
+  font-size:1em;line-height:1;color:var(--mq-ink);
+}
+[data-marquee='editorial'] .marquee-css__item-p.is--kits{
+  font-weight:var(--mq-bold);
+  letter-spacing:var(--mq-tracking);
+  text-transform:uppercase;
+}
+[data-marquee='editorial'] .marquee-css__item-p.is--sub{
+  font-weight:var(--mq-light);
+  letter-spacing:0;
+}
+[data-marquee='editorial'] .marquee-css__item-svg{
+  width:auto;font-size:1em;line-height:1;
+  flex:none;display:block;
+}
+
+/* ── utility variant (the job 00_promo_marquee.html does today) ─────────── */
+[data-marquee='utility']{ height:36px;padding:0; }
+[data-marquee='utility'] .mq-wrap__bg,
+[data-marquee='utility'] .mq-wrap__scrim{ display:none; }
+[data-marquee='utility'] .marquee-css{
+  font-family:var(--mq-font);font-size:14px;width:100%;
+}
+[data-marquee='utility'] .marquee-css__item{
+  grid-column-gap:1.143em;grid-row-gap:1.143em;
+  padding:.786em 0;padding-right:1.143em;
+}
+[data-marquee='utility'] .marquee-css__item-p{
+  font-size:1em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+}
+[data-marquee='utility'] .marquee-css__item-svg{ width:auto;font-size:.8em;opacity:.6 }
+
+/* ── breakpoints ────────────────────────────────────────────────────────── */
+@media (min-width:640px){
+  .mq-wrap{height:160px}
+  [data-marquee='editorial'] .marquee-css{font-size:26px}
+  [data-marquee='editorial'] .marquee-css__item{padding:.923em 0;padding-right:.889em}  /* 24px → band 74 */
+  [data-marquee='utility']{height:36px}
+}
+@media (min-width:1024px){
+  .mq-wrap{height:220px}
+  [data-marquee='editorial'] .marquee-css{font-size:36px}
+  [data-marquee='editorial'] .marquee-css__item{padding:.889em 0;padding-right:.889em}  /* 32px → band 100 */
+  /* first-child padding removed — see drift fix above */
+  [data-marquee='utility']{height:36px}
+}
+
+/* ── canon: reduced motion. ADDED — Osmo does not ship this. ─────────────── */
+@media (prefers-reduced-motion:reduce){
+  [data-css-marquee-list]{
+    animation:none !important;
+    transform:none !important;
+  }
+  /* JS also skips init, so no duplicate exists; this covers the CSS-only path */
+  [data-css-marquee-list]:not(:first-child){ display:none; }
+  .marquee-css{ justify-content:center; }
+  [data-marquee='editorial'] .marquee-css__list:first-child{ padding-left:0; }
+}
+
+/* ▲▲ end marquee-canon.css ▲▲ */
+
+/* ▼▼ css/wall-canon.css — inlined verbatim ▼▼ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   wall-canon.css — the WALL chassis (canon v2) · C-13 New Arrivals Wall
+   ─────────────────────────────────────────────────────────────────────────
+   SIBLING stylesheet to carousel-canon.css (Fable's call, per the C-13 brief:
+   the wall's interaction model — GSAP drag engine, dark ground, no arrows —
+   shares nothing with the rail chassis, so folding it in would couple two
+   unrelated components). Shared VALUES still come from the same canon:
+   · --tile-zoom: 1.04            (locked 07-27)
+   · hover states behind @media (hover:hover) and (pointer:fine)
+   · prefers-reduced-motion honored (engine never starts; static grid)
+   · semantic type roles mapped below (tokens-july12 · worldsoccer theme)
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+   ─────────────────────────────────────────────────────────────────────────
+   HEIGHT BUDGET (canon rules A4 — embed snippet carries all three):
+     &lt;640px    header 122 + canvas 520 = 642     horizontal-only drag
+     ≥640px    header 134 + canvas 620 = 754     horizontal-only drag
+     ≥1024px   header 142 + canvas 760 = 902     full 2D drag (Osmo stock)
+   Tile fixed px per breakpoint (A2 — no fluid aspect-ratio):
+     &lt;640: card 150×239 in item 190×263 · ≥640: 180×286 in 228×310
+     ≥1024: 220×350 in item 340×382  (22:35 held at every step)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ground + ink (locked 07-31: dark ground #0A0A0A) */
+  --wall-ink:#0A0A0A;
+  --wall-paper:#F4F4F4;          /* Figma neutrals/neutral-200 */
+  --wall-muted:#8d8078;
+  --wall-accent:#E8734A;
+
+  /* canon (07-27) */
+  --tile-zoom:1.04;
+
+  /* semantic type roles — names match the dev scale (tokens-july12, worldsoccer).
+     The wall consumes ROLES; values below are the worldsoccer resolutions. */
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-label-12-size:12px;  --ws-label-12-weight:500;
+  --ws-label-14-size:14px;  --ws-label-14-weight:500;
+  --ws-body-14-size:14px;   --ws-body-14-weight:400;
+  --ws-display-34-size:34px;--ws-display-34-weight:600; /* section heading, Chakra SemiBold 34 caps (Figma 35:538 pattern) */
+}
+
+html,body{background:var(--wall-ink);overflow:hidden;margin:0}
+/* B4: never overscroll-behavior:none on html/body */
+
+.wall-wrap{font-family:var(--ws-font-label);color:var(--wall-paper);-webkit-font-smoothing:antialiased;
+  /* Figma 67:4144 (08-04): side padding so the wall is NOT full-bleed — gives
+     mouse users a safe lane at the page edges where the wheel scrolls the PAGE,
+     not the wall. Padding ground = same black, so it reads as breathing room. */
+  padding:0 16px;background:var(--wall-ink)}
+
+/* ── drag-to-explore row (Figma 67:4143, 08-04). Fixed heights (A3). ────── */
+.wall-drag{display:flex;align-items:center;gap:9px;height:44px;box-sizing:border-box;padding:8px 20px 12px;background:var(--wall-ink)}
+.wall-drag__icon{width:24px;height:24px;display:block}
+.wall-drag__label{font-family:var(--ws-font-label);color:#fff;font-size:14px;font-weight:500;letter-spacing:.005em;text-transform:uppercase;line-height:1;white-space:pre}
+
+/* ── header (fixed-height band, exact px per breakpoint — A3) ─────────── */
+.wall-head{height:122px;box-sizing:border-box;padding:22px 20px 0;overflow:hidden}
+.wall-eyebrow{font-size:var(--ws-label-12-size);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--wall-muted);margin:0 0 6px}
+.wall-title{font-size:26px;font-weight:var(--ws-display-34-weight);letter-spacing:.02em;text-transform:uppercase;line-height:1;margin:0;color:var(--wall-paper)}
+.wall-sub{font-size:var(--ws-body-14-size);font-weight:var(--ws-body-14-weight);color:#b9b2ac;margin:7px 0 0;line-height:1.35}
+.wall-hint{font-size:var(--ws-label-12-size);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--wall-accent);margin:8px 0 0}
+
+/* ═══ OSMO ENGINE CSS — verbatim except the 4 marked lines ═══════════════ */
+.infinite-grid{
+  touch-action:pan-y;              /* DEVIATION 2a (was: none) — browser keeps vertical, parent page scrolls */
+  width:100%;
+  height:520px;                    /* was 100svh — fixed iframe budget (A4) */
+  position:relative;
+  overflow:clip;
+  cursor:grab;
+  transition:opacity .5s ease;
+  opacity:1;
+  background:var(--wall-ink);      /* dark ground (locked) */
+}
+.infinite-grid[data-infinite-grid-status="loading"]{opacity:0}
+.infinite-grid[data-infinite-grid-status="dragging"]{cursor:grabbing}
+.infinite-grid__collection{will-change:transform;width:100%;height:100%;position:absolute}
+.infinite-grid__list{width:100%;height:100%;position:absolute;top:0;left:0}
+.infinite-grid__item{
+  /* DEVIATION 1 (restated per canon A2): fixed px BOTH dimensions instead of
+     the prototype's aspect-ratio — same 22:35 card, zero height ambiguity. */
+  width:190px;height:263px;
+  padding:12px 20px;box-sizing:border-box;
+  will-change:transform;backface-visibility:hidden;
+  justify-content:center;align-items:center;
+  display:flex;position:absolute;top:0;left:0;
+}
+.infinite-grid__card{
+  -webkit-user-select:none;user-select:none;
+  will-change:transform;backface-visibility:hidden;
+  border-radius:4px;               /* Figma 35:399 (3.6 → 4) */
+  width:100%;height:100%;position:relative;
+}
+.infinite-grid__card-img{pointer-events:none;object-fit:cover;border-radius:inherit;width:100%;height:100%;position:absolute}
+/* ═══ end Osmo CSS ═══════════════════════════════════════════════════════ */
+
+/* ── tile internals (ours, sits inside the Osmo card) ─────────────────── */
+.wall-link{position:absolute;inset:0;z-index:2;display:block;border-radius:inherit;color:inherit;text-decoration:none}
+.wall-link:focus-visible{outline:2px solid var(--wall-accent);outline-offset:3px}
+.tk{position:absolute;inset:0;border-radius:inherit;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .35s ease;pointer-events:none}
+.tk img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.tk svg{width:52%;height:auto;opacity:.9}        /* placeholder jersey only — dies when real images land */
+/* label — per Figma 35:384 (Sacha's 08-01 revision, supersedes both the brief's
+   black bar AND the earlier white pill): full-width gradient SCRIM, white text.
+   The bar sits flush to the card's bottom; its 16px bottom padding floats the
+   text 16px off the card edge (Sacha's "16px from the bottom"). */
+.wall-label{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:8px 8px 16px;
+  background:linear-gradient(179deg, rgba(0,0,0,0) 25%, rgba(0,0,0,.5) 107%);
+  border-radius:0 0 4px 4px;
+  color:#fff;
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-label-12-size);font-weight:var(--ws-label-12-weight);
+  letter-spacing:.06px;text-transform:capitalize;
+  line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* canon: hover only where hover exists */
+@media (hover:hover) and (pointer:fine){
+  .infinite-grid__card:hover .tk{transform:scale(var(--tile-zoom))}
+  .wall-static-card:hover .tk{transform:scale(var(--tile-zoom))}
+}
+
+/* ── ≥640px ───────────────────────────────────────────────────────────── */
+@media (min-width:640px){
+  .wall-wrap{padding:0 24px}
+  .wall-drag{height:50px;padding:8px 24px 14px}
+  .wall-drag__icon{width:28px;height:28px}
+  .wall-drag__label{font-size:16px}
+  .wall-head{height:134px;padding:26px 24px 0}
+  .wall-title{font-size:30px}
+  .infinite-grid{height:620px}
+  .infinite-grid__item{width:228px;height:310px;padding:12px 24px}
+}
+
+/* ── ≥1024px — full 2D drag, exactly as Osmo ships it ─────────────────── */
+@media (min-width:1024px){
+  .wall-wrap{padding:0 42px}                     /* Figma container px-42 */
+  .wall-drag{height:57px;padding:8px 24px 16px 78px}   /* Figma: pl-78 */
+  .wall-drag__icon{width:33px;height:33px}
+  .wall-drag__label{font-size:18px;letter-spacing:.09px}
+  .wall-head{height:142px;padding:28px 28px 0}
+  .wall-title{font-size:var(--ws-display-34-size)}
+  .infinite-grid{height:760px;touch-action:none}   /* Osmo stock on desktop */
+  .infinite-grid__item{width:340px;height:382px;padding:16px 60px}
+}
+
+/* ── reduced motion: engine never initialises (JS guard); this renders ── */
+@media (prefers-reduced-motion:reduce){
+  .infinite-grid{display:none}
+  .wall-static{display:flex !important;flex-wrap:wrap;gap:14px;justify-content:center;align-content:flex-start;height:520px;overflow:hidden;padding:6px}
+  .wall-static .wall-static-card{position:relative;width:150px;height:239px;border-radius:4px}
+  .wall-static .tk{transition:none}
+}
+@media (prefers-reduced-motion:reduce) and (min-width:640px){ .wall-static{height:620px} .wall-static .wall-static-card{width:180px;height:286px} }
+@media (prefers-reduced-motion:reduce) and (min-width:1024px){ .wall-static{height:760px} .wall-static .wall-static-card{width:220px;height:350px} }
+.wall-static{display:none}
+
+/* screen-reader link list (populated from the ITEMS at runtime) */
+.sr-links{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ▲▲ end wall-canon.css ▲▲ */
+
+/* ── unit layer (this file only) ────────────────────────────────────────── */
+html,body{margin:0;background:#0A0A0A;overflow:hidden}
+/* zero gap: marquee band sits flush on the wall canvas */
+.mq-wrap,.infinite-grid{margin:0}
+/* marquee bg: real photo first, speckle placeholder behind (graceful if the
+   S3 file isn't uploaded yet) */
+.mq-wrap__bg.is--placeholder{
+  background-image:
+    var(--marquee-bg),
+    radial-gradient(1px 1px at 12% 28%, rgba(255,255,255,.55), transparent 100%),
+    radial-gradient(1px 1px at 31% 71%, rgba(255,255,255,.40), transparent 100%),
+    radial-gradient(1.5px 1.5px at 47% 19%, rgba(255,255,255,.60), transparent 100%),
+    radial-gradient(1px 1px at 63% 58%, rgba(255,255,255,.35), transparent 100%),
+    radial-gradient(1px 1px at 78% 33%, rgba(255,255,255,.50), transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 77%, rgba(255,255,255,.45), transparent 100%),
+    linear-gradient(107deg, #1b1b1b 0%, #0d0d0d 42%, #1f1f1f 68%, #0a0a0a 100%);
+  background-size:cover,auto,auto,auto,auto,auto,auto,cover;
+  background-position:center;
+  background-color:#131313;
+}
+&lt;/style&gt;
+&lt;script&gt;
+/* BFCACHE GUARD (08-04, Sacha's field test: tap a card -&gt; Back -&gt; empty frame).
+   iOS restores the parent page from the back-forward cache and this iframe can
+   come back as a dead shell (engine stopped / paint lost). A persisted pageshow
+   means exactly that case -&gt; reload this block fresh. One reload, no loops. */
+window.addEventListener('pageshow', function (e) { if (e.persisted) location.reload(); });
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- ══ 1 · MARQUEE (the header) — Osmo CSS Marquee, editorial variant ══════ --&gt;
+&lt;div class="mq-wrap" data-marquee="editorial"
+     style="--marquee-bg:url('https://www.imagehandler.net/dxassets/?img=WSS/marquee_back_to_season_fw26_bg_2912w.jpg&amp;amp;w=1456')"&gt;
+  &lt;div class="mq-wrap__bg is--placeholder" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="mq-wrap__scrim" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div data-css-marquee class="marquee-css" role="marquee" aria-label="Back to season. Fresh kits."&gt;
+    &lt;div data-css-marquee-list class="marquee-css__list"&gt;
+      &lt;div class="marquee-css__item"&gt;
+        &lt;p class="marquee-css__item-p is--kits"&gt;Fresh Kits&lt;/p&gt;
+        &lt;span class="marquee-css__item-svg" role="img" aria-label="fire"&gt;&amp;#128293;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="marquee-css__item"&gt;
+        &lt;p class="marquee-css__item-p is--sub"&gt;back to season&lt;/p&gt;
+        &lt;span class="marquee-css__item-svg" role="img" aria-label="fire"&gt;&amp;#128293;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="marquee-css__item"&gt;
+        &lt;p class="marquee-css__item-p is--kits"&gt;Fresh Kits&lt;/p&gt;
+        &lt;span class="marquee-css__item-svg" role="img" aria-label="fire"&gt;&amp;#128293;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="marquee-css__item"&gt;
+        &lt;p class="marquee-css__item-p is--sub"&gt;back to season&lt;/p&gt;
+        &lt;span class="marquee-css__item-svg" role="img" aria-label="fire"&gt;&amp;#128293;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- ══ 1b · DRAG TO EXPLORE (Figma 67:4143, Sacha 08-04) ═══════════════════
+     Icon INLINED as a data URL (08-04 pm): the bucket's image handler doesn't
+     process SVGs and the original export was black-on-black. This is Sacha's
+     white PNG, trimmed + downscaled to 2x, baked in — zero network, can't 404. --&gt;
+&lt;div class="wall-drag"&gt;
+  &lt;img class="wall-drag__icon" alt="" decoding="async"
+       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABACAYAAACunKHjAAAIyUlEQVR42uWbf4xcVRXHz52Z7VYL/SmWUCrQtKu0trW/bGtopSWI1YgUA2IDIRE2QLDFqKHxJ/UHrjFqiiDQKIoYFY0JCNRWKtCANFgLMRbERioCQpVWLdSWlu7Mxz96bvL17nszs7vzowsvmczb9+7ce8/3nPO955x716zJFxCADuBuYB9wrj/vsNfLBQT/PgZ4iSPXAeCD/rz0egGiAAwDSsB5QMXB6AWWv6bBcOFL0RqSd2cBex2QXnGTQrvnHRoIQNHMCCFU5NlEM5tpZtPNrMvMjjWzJWY2xpv0mtmyEMJ9QDGEUG4XEKVGWICZWRQCeJuZLTezZQ7CyJyfHjKzTjOba2b3NVIpLSdCt4L491LgDmA/fa99wBPAI0AZeNWf3w2McHcKQ5IH5H62C6RXGfg98FVgGTARGOntDgsIHbq6DDUQipHtgS8BrwgA/wZuAuZn/E7Bustji3A0EOVAQCj598nAgyLYIeAG4OSkfQdQdGt42dve+VoBYSHwgoCwFVigFpO4TgyqTgNWikUNaRCWAv8VEG4AhomrFOol2qHMCQuSFWFl1upRrZ+8QGvIrA7AW4B/CggfFSsIOZFlaUiaf16c4AI9kmEJHXlLakY/haEMRHSJa5UTaoEAzAUuBD4CTK8F1FBxiZkeAFWAx2Q5DBlt3wn8VjJMPILcAHQNSTBEuHtFoNlqKTWItJJEmv8AJjfbTcSVS6nCBuMSS0SQG9PagQsVgE7gSQmsvgLMAOYA3/FwG2BzCmQ/+aqUfEI6l2ryDMYa1rtmXwImpNoUwN4rgH02o78b5f35/Z1ctbYZwds84ErgauBDwJgBuaSA0AUc9MnfnDUhCbI+7YC9DByfYZ6j3TXKwF/7k23KfI4FVgDfANYC3cDxWvcQxen1PNDdb8sQ4T4nJbU5WUFT0jZazng1U2nTLZNbk+FmBQEuAhkz02UOYHq9CFzkQO9MCHpv0vaqfoEhAmzxDh7L8z8R8gMy4BXJuyDCbXPA9nnSFhyAaqa/yJWhGn4mEfIJuf8uMNVd+cPePtY/plQla5lQNMMTJZ/o8ffDcn4XgDcCT7mQu4CxavrCJe+WCf/Mn8U8ZTKwxgs7dwFfA+YDj3r7/cBlwCh3reXAbiHiMnBPDpCxzZ11WYVMSjX8vmqJkgh5vvxmbZVl9nZpt8SffcytJOvqdYC/kDH2cm8T6yHnSdU8iDw/lP7ekwuGa3SS+OpnZIDx3vHkOpbbB3zSh4BpyivRQtwl9nm7ze7jGntsdbc8JJrG+4suFoQ/fi2/vzBxy4J/JjhnlIHtHhT2JWvngYPAJ/3v73vH24E3ebR4EFiRs3pEYWdJGW5jFau4RrQdhd0NnJksg88JEKclwEZAprn/l4FNGeF+BGW1ALYqcz8lqS9cBvxCgNgq7z6VtyEjE7xZ2p+dvItcNAL4m08+ar5bstk4+XPEUn5QBdgeb/erDCDimMOBHT7mHuDNyoux8XxfihBiSq9b0uAlI/Uu+AB7fMAdPoEs4oycEi2oS/sXMDZJxDozA9j4WQyMyuIyaX+2yJMZG8VK9J4kT4gl91tqhbHJgKtkwNVVNLlZ2p2emr5/z3Cweh2U4kByFelvoyhg1v/NTdCf476KmOz3lOzqyAcKTkbb3Sr2puF5BqdUxKyzAFvrc9kFDM/Teg0lRbJ+u8j2QJ/wW8CY7eEwwLp6BslB/izR9q1VhFxXg1OCu9fHgXcNJpWXfq+TMftuREvDScD763GHGgP+UlaFBcm7apwSaEJdU8Yc62XHWGPp625ZZfgBDhiSxG1LxhZhBOUq0dDVOel+Q+qfGbkUwBnVBCkOYrAAdPr9GhnwogzTLzqnbNM0vllnJkRJ44H/uFX8qCkFX7kf7oS42wd8zne8dDmN3+OdV5peyhNF/MTB/zswuuEgAG9wS9jhwdorwtQ9GcTZ0n2OWN3y7LRPTtWI0n/Bs8OHcxKoww7KlIxqVxiMOw6w+HSSn+cCuLbR5nabCL7FM8srgYfkeX3pcAtcBPiTz+meRiLc5RFg2ctmhaTdHQLGme0EQ+a8wefzeCM3iC+WuGGuP+uUusAJXs4rA3/MTYdbu6l9a6x8NZKlR5oZZnbYzHa7gIdDCK8CpRDCC2bWY2YFO3K47HI/eNZOFzng38MbAQT+/bQdORDWaWaLQwi40GZmZTfHtWb2FzOrmNk1wHFmVmnjDlhIZBj0ihE8RnjeY4anvPKVlYKfI1xxUzu4Qlzjxz6PZxu9alwuQn6+SrJ1b2463FqyvN/nsa3RcUTRE5lYtj8pJwWf7vWOCnB/KzeIxUI7gae1qt5oq9A9059WsYpvSyHoglZZhShlmlTIVjcrjv+5CLkoJwUfJ4Wg25uZbOWE2FeIey5sVnZ3iucZFT94WtACj2jlDK+Hntoq95CxN/n8nozZcrOs4oviIpe2O9lKFHWqJILfbBoZ+YDHSNl+FzAmjSRl87dVRJluO/QCM1ox4AViFd9qFQ/UsIa3Sta5vukkLWA8KFuB72hXsiVB1EYh8nmtBGKWbOb+wdfvYis5QvZKV+oRgpYpRcD4skzgNl3GWgjCEgninhXOKrQCiFigLUg4C/B1jSlaAMJc/xeKSJCLWu6iQlLHeR0zXten/tvgMaM1LgX+JeNe0jbSliDmlOS803pgQmI9YZAA6J7IStlbAfhEO1eulC8myj5GLKdfnBEGF/ux31pKisHT/AiSHjC7tO0gZIAxIjnSgy+z56bntZLD8fopZvQ/Fbg+OYq0Ezj9qAEhdRO/XyGpcLwe94Pwi2ttvDhAU4BL/H/GDiTnr9YB4+oBIbQJjGBmhRBCGRhrZqvMrNvMTkia7jKznWb2jJm96DXGkpmNNrMTzWySfzRpqpjZBjPrCSE8HAFr5z/X1u0qfj/OK1y/yTgwWusqA3/2sxTzEoupS9nhKAAjmFkxhNArz7rMbJGZLTSzqWY2wcxGueYrZrbfLWSnmT1qZg+Z2e9CCAfE/UJ/rOB/PdbAEGGG5VcAAAAASUVORK5CYII="&gt;
+  &lt;span class="wall-drag__label"&gt;Drag&amp;nbsp; to Explore&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- ══ 2 · WALL — flush below (the marquee is the header) ══ --&gt;
+&lt;div class="wall-wrap"&gt;
+  &lt;section data-infinite-grid-status="loading" data-infinite-grid-init class="infinite-grid" aria-hidden="true"&gt;
+    &lt;div data-infinite-grid-collection class="infinite-grid__collection"&gt;
+      &lt;div data-infinite-grid-list class="infinite-grid__list"&gt;
+      &lt;!-- ITEMS:START — C-13 JULY V1 · 21 tiles · 16 launches · all due ≤ 07-31 ·
+           ORDER = spacing-optimized 08-03: simulated the Osmo placement algorithm over all
+           3 breakpoints; min same-club distance 2, Liverpool pair ≥4 (was: adjacent). --&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/ac-milan" target="_top" aria-label="AC Milan Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-ac-milan-26-27-away-jerseys-rid__26AW_PR_TS_Football_AC-Milan_Away_Matchwear_Pavlovic_7274_16x9_1920x1080px.jpg" alt=""&gt;&lt;span class="wall-label"&gt;AC Milan / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/borussia-dortmund" target="_top" aria-label="Borussia Dortmund Third jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-borussia-dortmund-26-27-third-jersey-rid__26AW_TS_Football_BVB_Third_Ryerson_2750_RGB.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Borussia Dortmund / Third&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/miami-cf" target="_top" aria-label="Inter Miami Third jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/mls-inter-miami-2026-third-jersey__FW26_IMCF_THIRD_2D_MESSI_JERSEY_SHORTS_9.16.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Inter Miami / Third&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/liverpool" target="_top" aria-label="Liverpool Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-liverpool-26-27-away-jersey__H24803-FW26_LIVERPOOL_AWAY_PLAYER_KA6859_ISAK_02_3X4-1423083.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Liverpool / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/manchester-united" target="_top" aria-label="Manchester United Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-manchester-united-26-27-away-jersey__H24754-FW26_MUFC_Toolkit_Away_adidas_LenyYoro_0156_RT_01_RGB_3x4-1418158.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Manchester United / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/real-madrid" target="_top" aria-label="Real Madrid Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-real-madrid-26-27-away-jersey__H24833-REAL_MADRID_FW26_AWAY_JZ27205_JUDE_BELLINGHAM_108_3x4-1423282.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Real Madrid / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/borussia-dortmund" target="_top" aria-label="Borussia Dortmund Third jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-borussia-dortmund-26-27-third-jersey-rid__26AW_TS_Football_BVB_Third_Guirassy_2493_RGB.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Borussia Dortmund / Third&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/manchester-city" target="_top" aria-label="Manchester City Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-manchester-city-26-27-away-jerseys-rid__26AW_TS_Football_Man-City_Away_Matchwear_Haaland_020_RGB" alt=""&gt;&lt;span class="wall-label"&gt;Manchester City / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/bayern-munich" target="_top" aria-label="Bayern Munich Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-bayern-munich-26-27-away-jersey__H24753_FW26_FB_FCB_AWAY_URBIG_02_3x4.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Bayern Munich / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/juventus" target="_top" aria-label="Juventus Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-juventus-26-27-away-jersey__verde-2192.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Juventus / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/liverpool" target="_top" aria-label="Liverpool Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-liverpool-26-27-away-jersey__H24803-FW26_LIVERPOOL_AWAY_PLAYER_KB8308_VAN_DIJK_02_NON_ADIDAS_3X4-1423081.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Liverpool / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chivas" target="_top" aria-label="Chivas Home jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chivas-26-27-home-and-away-jerseys-rid__FA26_FTBL_CK_CHIVAS_HOME_ATLETA_PORTRAIT_2.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chivas / Home&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chivas" target="_top" aria-label="Chivas Home jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chivas-26-27-home-and-away-jerseys-rid__FA26_FTBL_CK_CHIVAS_HOME_PRODUCT_HERO.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chivas / Home&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/arsenal" target="_top" aria-label="Arsenal Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-arsenal-26-27-away-jersey.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Arsenal / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chelsea" target="_top" aria-label="Chelsea Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chelsea-26-27-away-jersey-rid__260429_CFC_x_NIKE_AWAY_SHOT_09_Estevao_165.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chelsea / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/newcastle-united" target="_top" aria-label="Newcastle United Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-newcastle-united-26-27-away-jersey__5.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Newcastle United / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chelsea" target="_top" aria-label="Chelsea Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chelsea-26-27-away-jersey-rid__260429_CFC_x_NIKE_AWAY_SHOT_08_Cole-Palmer_120.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chelsea / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/manchester-city" target="_top" aria-label="Manchester City Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-manchester-city-26-27-away-jerseys-rid__26AW_TS_Football_Man-City_Away_Matchwear_Haaland_008_RGB.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Manchester City / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/details/_A1135202" target="_top" aria-label="Frankfurt Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-frankfurt-26-27-away-jersey__Frankfurt_Away.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Frankfurt / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chivas" target="_top" aria-label="Chivas Away jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chivas-26-27-home-and-away-jerseys-rid__FA26_FTBL_CK_CHIVAS_AWAY_ROMO_HERO_1.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chivas / Away&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div data-infinite-grid-item class="infinite-grid__item"&gt;
+        &lt;div data-infinite-grid-card class="infinite-grid__card"&gt;
+          &lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/details/_A1132472" target="_top" aria-label="River Plate Home jersey"&gt;
+            &lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-river-plate-26-27-home-jersey__River_Plate_Home.jpg" alt=""&gt;&lt;span class="wall-label"&gt;River Plate / Home&lt;/span&gt;&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- ITEMS:END --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- reduced-motion fallback: engine never initialises, this static grid shows instead --&gt;
+  &lt;div class="wall-static" aria-hidden="false"&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/manchester-united" target="_top" aria-label="Manchester United Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-manchester-united-26-27-away-jersey__H24754-FW26_MUFC_Toolkit_Away_adidas_LenyYoro_0156_RT_01_RGB_3x4-1418158.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Manchester United / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/liverpool" target="_top" aria-label="Liverpool Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-liverpool-26-27-away-jersey__H24803-FW26_LIVERPOOL_AWAY_PLAYER_KA6859_ISAK_02_3X4-1423083.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Liverpool / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chivas" target="_top" aria-label="Chivas Home jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chivas-26-27-home-and-away-jerseys-rid__FA26_FTBL_CK_CHIVAS_HOME_PRODUCT_HERO.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chivas / Home&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/bayern-munich" target="_top" aria-label="Bayern Munich Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-bayern-munich-26-27-away-jersey__H24753_FW26_FB_FCB_AWAY_URBIG_02_3x4.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Bayern Munich / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chelsea" target="_top" aria-label="Chelsea Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chelsea-26-27-away-jersey-rid__260429_CFC_x_NIKE_AWAY_SHOT_09_Estevao_165.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chelsea / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/borussia-dortmund" target="_top" aria-label="Borussia Dortmund Third jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-borussia-dortmund-26-27-third-jersey-rid__26AW_TS_Football_BVB_Third_Ryerson_2750_RGB.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Borussia Dortmund / Third&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/real-madrid" target="_top" aria-label="Real Madrid Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-real-madrid-26-27-away-jersey__H24833-REAL_MADRID_FW26_AWAY_JZ27205_JUDE_BELLINGHAM_108_3x4-1423282.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Real Madrid / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/manchester-city" target="_top" aria-label="Manchester City Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/puma-manchester-city-26-27-away-jerseys-rid__26AW_TS_Football_Man-City_Away_Matchwear_Haaland_020_RGB" alt=""&gt;&lt;span class="wall-label"&gt;Manchester City / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/miami-cf" target="_top" aria-label="Inter Miami Third jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/mls-inter-miami-2026-third-jersey__FW26_IMCF_THIRD_2D_MESSI_JERSEY_SHORTS_9.16.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Inter Miami / Third&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/arsenal" target="_top" aria-label="Arsenal Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-arsenal-26-27-away-jersey.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Arsenal / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/chivas" target="_top" aria-label="Chivas Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/nike-chivas-26-27-home-and-away-jerseys-rid__FA26_FTBL_CK_CHIVAS_AWAY_ROMO_HERO_1.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Chivas / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="wall-static-card"&gt;&lt;a class="wall-link" href="https://www.worldsoccershop.com/shop/clubs/juventus" target="_top" aria-label="Juventus Away jersey"&gt;&lt;span class="tk"&gt;&lt;img loading="eager" decoding="async" onerror="this.onerror=null;this.src=this.src.endsWith('.jpg')?this.src.slice(0,-4):this.src+'.jpg'" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-juventus-26-27-away-jersey__verde-2192.jpg" alt=""&gt;&lt;span class="wall-label"&gt;Juventus / Away&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- keyboard / screen-reader access: populated at runtime from the ITEMS --&gt;
+  &lt;nav class="sr-links" aria-label="New arrivals — all products"&gt;&lt;ul id="srList"&gt;&lt;/ul&gt;&lt;/nav&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+/* WALL ENGINE BLOCK — requires GSAP. Isolated so a CDN failure here can never kill the marquee (separate block below). */
+if (typeof gsap === 'undefined') { console.error('GSAP failed to load — wall engine disabled'); } else {
+/* ═══ OSMO ENGINE — verbatim except the TWO marked lines ═════════════════ */
+gsap.registerPlugin(Observer);
+function initInfiniteCardsGrid() {
+  const wrappers = document.querySelectorAll('[data-infinite-grid-init]');
+  const wheelSpeed = 0.6; // wheel/trackpad speed
+  const dragSpeed = 1.2; // drag speed
+  const gridOverscan = 1; // extra rows and columns generated outside the viewport
+  const startOffsetY = 0.33; // vertical offset between columns
+  const positionLerp = 0.05; // movement smoothing amount
+  const xToYInfluence = 0.2; // horizontal movement influence on vertical movement
+  const columnSpeedPattern = [1, 1, 0.9]; // column parallax speed pattern
+  const minCardScale = 0.5; // minimum card scale while moving
+  const scaleLerp = 0.02; // scale animation smoothing amount
+  wrappers.forEach((wrapper) =&gt; {
+    const collection = wrapper.querySelector('[data-infinite-grid-collection]');
+    const sourceList = wrapper.querySelector('[data-infinite-grid-list]');
+    const originalItems = Array.from(sourceList.querySelectorAll('[data-infinite-grid-item]')).map((item) =&gt; item.cloneNode(true));
+    if (!collection || !sourceList || !originalItems.length) return;
+    let observer;
+    let cards = [];
+    let cardElements = [];
+    const timers = {};
+    const size = {};
+    const pos = {};
+    const scale = {current: 1, target: 1};
+    function setStatus(status) {
+      wrapper.setAttribute('data-infinite-grid-status', status);
+    }
+    function wrapValue(value, size) {
+      return ((value % size) + size) % size;
+    }
+    function createColumnSpeeds(columns) {
+      return Array.from({length: columns}, (_, i) =&gt; columnSpeedPattern[i % columnSpeedPattern.length]);
+    }
+    function createItemIndexes(columns, rows) {
+      const total = originalItems.length;
+      const indexes = Array.from({length: rows}, () =&gt; []);
+      const used = Array(total).fill(0);
+      const centerColumn = Math.floor(columns / 2);
+      const centerRow = Math.floor(rows / 2);
+      const cells = [];
+      for (let row = 0; row &lt; rows; row++) {
+        for (let column = 0; column &lt; columns; column++) {
+          cells.push({
+            row,
+            column,
+            distance: Math.abs(row - centerRow) + Math.abs(column - centerColumn)
+          });
+        }
+      }
+      cells.sort((a, b) =&gt; a.distance - b.distance);
+      cells.forEach(({row, column}) =&gt; {
+        const blocked = [
+          indexes[row][column - 1],
+          indexes[row][column + 1],
+          row &gt; 0 ? indexes[row - 1][column] : undefined,
+          row &lt; rows - 1 ? indexes[row + 1][column] : undefined,
+          row &gt; 0 ? indexes[row - 1][column - 1] : undefined,
+          row &gt; 0 ? indexes[row - 1][column + 1] : undefined,
+          row &lt; rows - 1 ? indexes[row + 1][column - 1] : undefined,
+          row &lt; rows - 1 ? indexes[row + 1][column + 1] : undefined
+        ];
+        const seed = (row * 17 + column * 31) % total;
+        let bestIndex = 0;
+        let bestScore = Infinity;
+        for (let i = 0; i &lt; total; i++) {
+          const itemIndex = (i + seed) % total;
+          let score = used[itemIndex] * 10 + Math.abs(itemIndex - seed) * 0.01;
+          if (total &gt; 1 &amp;&amp; blocked.includes(itemIndex)) score += 1000;
+          if (score &lt; bestScore) {
+            bestScore = score;
+            bestIndex = itemIndex;
+          }
+        }
+        indexes[row][column] = bestIndex;
+        used[bestIndex]++;
+      });
+      return indexes;
+    }
+    function buildGrid() {
+      if (observer) observer.kill();
+      clearTimeout(timers.resize);
+      clearTimeout(timers.scroll);
+      clearTimeout(timers.scale);
+      gsap.ticker.remove(updateGrid);
+      setStatus('loading');
+      sourceList.innerHTML = '';
+      const measureItem = originalItems[0].cloneNode(true);
+      measureItem.style.position = 'absolute';
+      measureItem.style.visibility = 'hidden';
+      measureItem.style.pointerEvents = 'none';
+      wrapper.appendChild(measureItem);
+      const rect = measureItem.getBoundingClientRect();
+      size.itemW = rect.width;
+      size.itemH = rect.height;
+      measureItem.remove();
+      if (!size.itemW || !size.itemH) return;
+      const columns = Math.max(1, Math.ceil(wrapper.clientWidth / size.itemW) + gridOverscan * 2);
+      const rows = Math.max(Math.ceil(wrapper.clientHeight / size.itemH) + gridOverscan * 2, Math.ceil(originalItems.length / columns));
+      const itemIndexes = createItemIndexes(columns, rows);
+      const columnSpeeds = createColumnSpeeds(columns);
+      const fragment = document.createDocumentFragment();
+      const centerColumn = Math.floor(columns / 2);
+      const centerRow = Math.floor(rows / 2);
+      size.totalW = columns * size.itemW;
+      size.totalH = rows * size.itemH;
+      cards = [];
+      cardElements = [];
+      gsap.set(collection, {x: 0, y: 0, force3D: true});
+      collection.style.width = `${size.totalW}px`;
+      collection.style.height = `${size.totalH}px`;
+      for (let row = 0; row &lt; rows; row++) {
+        for (let column = 0; column &lt; columns; column++) {
+          const item = originalItems[itemIndexes[row][column]].cloneNode(true);
+          const card = item.querySelector('[data-infinite-grid-card]');
+          cards.push({
+            baseX: column * size.itemW,
+            baseY: row * size.itemH,
+            startY: (column - centerColumn) * size.itemH * startOffsetY,
+            ySpeed: columnSpeeds[column],
+            xSetter: gsap.quickSetter(item, 'x', 'px'),
+            ySetter: gsap.quickSetter(item, 'y', 'px')
+          });
+          if (card) cardElements.push(card);
+          if (cards.length &gt; originalItems.length) item.setAttribute('aria-hidden', 'true');
+          fragment.appendChild(item);
+        }
+      }
+      sourceList.appendChild(fragment);
+      gsap.set(cardElements, {
+        force3D: true
+      });
+      pos.startX = wrapper.clientWidth * 0.5 - centerColumn * size.itemW - size.itemW * 0.5;
+      pos.startY = wrapper.clientHeight * 0.5 - centerRow * size.itemH - size.itemH * 0.5;
+      pos.x = pos.startX;
+      pos.y = pos.startY;
+      pos.targetX = pos.x;
+      pos.targetY = pos.y;
+      scale.current = 1;
+      scale.target = 1;
+      updateGrid();
+      gsap.ticker.add(updateGrid);
+      requestAnimationFrame(() =&gt; {
+        setStatus('idle');
+      });
+      observer = Observer.create({
+        target: wrapper,
+        type: 'wheel,touch,pointer',
+        preventDefault: !window.matchMedia('(max-width:1023px)').matches, /* ⚠️DEVIATION-3 (08-04, Sacha's colleague's iPhone) — was: true.
+           preventDefault:true swallows every touchmove, so touch-action:pan-y never
+           got to act and vertical swipes did NOTHING (wall Y is zeroed by DEVIATION-2,
+           page scroll blocked) — the "stuck / only scrolls diagonally" bug. On touch
+           widths we now let the browser keep the vertical axis natively (pan-y): up/down
+           scrolls the page, sideways still feeds the engine. Desktop (≥1024) unchanged.
+           Re-evaluated each buildGrid(), which resize already triggers. */
+        dragMinimum: 3,
+        onPress() { setStatus('dragging'); },
+        onRelease() { setStatus('idle'); },
+        onStop() { setStatus('idle'); },
+        onChange: handleMovement
+      });
+    }
+    function updateGrid() {
+      pos.x += (pos.targetX - pos.x) * positionLerp;
+      pos.y += (pos.targetY - pos.y) * positionLerp;
+      scale.current += (scale.target - scale.current) * scaleLerp;
+      const offsetX = size.itemW * gridOverscan;
+      const offsetY = size.itemH * gridOverscan;
+      const scrollY = pos.y - pos.startY;
+      cards.forEach(({baseX, baseY, startY, ySpeed, xSetter, ySetter}) =&gt; {
+        xSetter(wrapValue(baseX + pos.x + offsetX, size.totalW) - offsetX);
+        ySetter(wrapValue(baseY + pos.startY + startY + scrollY * ySpeed + offsetY, size.totalH) - offsetY);
+      });
+      gsap.set(cardElements, {scale: scale.current});
+    }
+    function handleMovement(self) {
+      const isWheel = self.event.type === 'wheel';
+      const speed = isWheel ? wheelSpeed : dragSpeed;
+      const deltaX = gsap.utils.clamp(-80, 80, self.deltaX * speed);
+      const deltaY = gsap.utils.clamp(-80, 80, self.deltaY * speed);
+      const moveX = isWheel ? -deltaX : deltaX;
+      const moveY = (HORIZ_ONLY &amp;&amp; !isWheel) ? 0 : (isWheel ? -deltaY : deltaY); /* ⚠️DEVIATION-2 — was: const moveY = isWheel ? -deltaY : deltaY;  On touch widths the Y axis belongs to the parent page (Issue-1 bug class, rules B4). */
+      const strength = gsap.utils.clamp(0, 1, Math.max(Math.abs(deltaX), Math.abs(deltaY)) / 80);
+      if (isWheel) {
+        setStatus('scrolling');
+        clearTimeout(timers.scroll);
+        timers.scroll = setTimeout(() =&gt; {
+          setStatus('idle');
+        }, 200);
+      }
+      scale.target = gsap.utils.interpolate(1, minCardScale, strength);
+      clearTimeout(timers.scale);
+      timers.scale = setTimeout(() =&gt; {
+        scale.target = 1;
+      }, 120);
+      pos.targetX += moveX;
+      pos.targetY += moveY + moveX * xToYInfluence;
+    }
+    function handleMouseLeave() {
+      setStatus('idle');
+      scale.target = 1;
+      if (observer) {
+        observer.disable();
+        observer.enable();
+      }
+    }
+    window.addEventListener('resize', () =&gt; {
+      clearTimeout(timers.resize);
+      timers.resize = setTimeout(buildGrid, 200);
+    });
+    document.documentElement.addEventListener('mouseleave', handleMouseLeave);
+    buildGrid();
+  });
+}
+/* ═══ end Osmo engine ════════════════════════════════════════════════════ */
+
+/* ── ours, wrapped AROUND the engine (never inside it) ─────────────────── */
+
+/* HORIZ_ONLY: touch widths get the X axis only; desktop gets Osmo stock.
+   Recomputed on resize (the engine already rebuilds on resize). */
+let HORIZ_ONLY = window.matchMedia('(max-width:1023px)').matches;
+window.addEventListener('resize', () =&gt; {
+  HORIZ_ONLY = window.matchMedia('(max-width:1023px)').matches;
+});
+
+/* Click gate. Desktop (preventDefault:true): Observer kills native clicks, so a
+   still, quick tap synthesizes one (wss-block-click beacon catches it unchanged).
+   Touch widths (DEVIATION-3, preventDefault:false): native clicks are ALIVE again —
+   no synthetic click (it would double-fire), and a capture-phase guard stops a
+   horizontal drag that ends on a card from navigating. */
+(function clickGate(){
+  const wrapper = document.querySelector('[data-infinite-grid-init]');
+  if (!wrapper) return;
+  let downX = 0, downY = 0, downT = 0, downLink = null, lastTravel = 0;
+  wrapper.addEventListener('pointerdown', (e) =&gt; {
+    downX = e.clientX; downY = e.clientY; downT = performance.now();
+    downLink = e.target.closest('[data-infinite-grid-card]')?.querySelector('.wall-link') || null;
+  });
+  wrapper.addEventListener('pointerup', (e) =&gt; {
+    if (!downLink) return;
+    const travel = Math.hypot(e.clientX - downX, e.clientY - downY);
+    const elapsed = performance.now() - downT;
+    lastTravel = travel;
+    if (travel &lt; 6 &amp;&amp; elapsed &lt; 350 &amp;&amp; !HORIZ_ONLY) downLink.click();
+    downLink = null;
+  });
+  wrapper.addEventListener('click', (e) =&gt; {
+    if (HORIZ_ONLY &amp;&amp; lastTravel &gt;= 6) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+})();
+
+/* SR/keyboard list: derive from the ITEMS so there is ONE source of truth. */
+(function buildSrList(){
+  const srList = document.getElementById('srList');
+  if (!srList) return;
+  document.querySelectorAll('[data-infinite-grid-list] .wall-link').forEach((a) =&gt; {
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = a.getAttribute('href');
+    link.target = '_top';
+    link.textContent = a.getAttribute('aria-label') || a.href;
+    li.appendChild(link);
+    srList.appendChild(li);
+  });
+})();
+
+/* Init — canon: prefers-reduced-motion means the engine NEVER starts. */
+document.addEventListener('DOMContentLoaded', () =&gt; {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; /* static grid renders instead */
+  initInfiniteCardsGrid();
+});
+}
+&lt;/script&gt;
+
+&lt;script&gt;
+/* MARQUEE BLOCK — zero dependencies, runs even if GSAP is down. */
+/* ── marquee engine (Osmo, verbatim) ─────────────────────────────────────── */
+/* ═══ OSMO CSS MARQUEE JS — VERBATIM ═══════════════════════════════════════
+   Duplicates the list, derives the duration from its width so speed stays
+   constant whatever the copy says, and pauses when out of view.
+   NOTE for this repo: the IntersectionObserver root is the IFRAME's own
+   viewport, so inside a Fastr embed the list is effectively always
+   intersecting and the pause-when-offscreen behaviour is inert. Harmless,
+   kept verbatim, but do not expect it to save anything.
+   Touches nothing outside the iframe (rule B2).                            */
+function initCSSMarquee() {
+  const pixelsPerSecond = 75; // Set the marquee speed (pixels per second)
+  const marquees = document.querySelectorAll('[data-css-marquee]');
+
+  // Duplicate each [data-css-marquee-list] element inside its container
+  marquees.forEach(marquee =&gt; {
+    marquee.querySelectorAll('[data-css-marquee-list]').forEach(list =&gt; {
+      const duplicate = list.cloneNode(true);
+      marquee.appendChild(duplicate);
+    });
+  });
+
+  // Create an IntersectionObserver to check if the marquee container is in view
+  const observer = new IntersectionObserver(entries =&gt; {
+    entries.forEach(entry =&gt; {
+      entry.target.querySelectorAll('[data-css-marquee-list]').forEach(list =&gt;
+        list.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'
+      );
+    });
+  }, { threshold: 0 });
+
+  // Calculate the width and set the animation duration accordingly
+  marquees.forEach(marquee =&gt; {
+    marquee.querySelectorAll('[data-css-marquee-list]').forEach(list =&gt; {
+      list.style.animationDuration = (list.offsetWidth / pixelsPerSecond) + 's';
+      list.style.animationPlayState = 'paused';
+    });
+    observer.observe(marquee);
+  });
+}
+/* ═══ END OSMO JS ═════════════════════════════════════════════════════════ */
+
+/* ADDED (canon, not Osmo): never start the engine under reduced motion.
+   No duplicate list is created and nothing animates. The CSS in
+   marquee-canon.css covers the same case for the CSS-only path. */
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  initCSSMarquee();
+});
+
+
+&lt;/script&gt;
+&lt;!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. --&gt;
+&lt;script&gt;
+(function () {
+  var BLOCK = "fastr_blocks_c13_marquee_wall_july_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target &amp;&amp; e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/marquee-and-wall/block.html" download="marquee-and-wall--block.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>

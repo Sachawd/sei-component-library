@@ -25,7 +25,7 @@
     { title: "Workshop videos", url: "videos.html" }
   ];
 
-  document.querySelectorAll(".nm-nav__toggle").forEach(function (btn) {
+  document.querySelectorAll(".nm-drawer__toggle").forEach(function (btn) {
     var sub = document.getElementById(btn.getAttribute("aria-controls"));
     btn.addEventListener("click", function () {
       var open = btn.getAttribute("aria-expanded") === "true";
@@ -54,7 +54,7 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && nav.getAttribute("data-open") === "true") { setMenu(false); menu.focus(); }
     });
-    window.matchMedia("(min-width: 901px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
+    window.matchMedia("(min-width: 1025px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
   }
 
   var input = document.querySelector(".nm-search__input");
@@ -169,4 +169,140 @@
       frame.style.width = w === "full" ? "100%" : w + "px";
     });
   });
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  var riseTargets = function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll("#block-grid > .nm-card"));
+    if (cards.length) return cards;
+    if (document.body.getAttribute("data-page") !== "block") return [];
+    var secs = Array.prototype.slice.call(document.querySelectorAll(".nm-content > .nm-section"));
+    var rank = function (el) { return el.querySelector(".nm-demo") ? 0 : el.id === "heights" ? 1 : 2; };
+    return secs.map(function (el, i) { return { el: el, r: rank(el), i: i }; })
+      .sort(function (a, b) { return a.r - b.r || a.i - b.i; })
+      .map(function (o) { return o.el; });
+  };
+
+  var order = riseTargets();
+  var start = performance.now();
+
+  var settle = function (el) {
+    el.classList.remove("nm-rising");
+    el.style.transitionDelay = "";
+  };
+
+  var rise = function (els, base) {
+    els.forEach(function (el, i) {
+      el.classList.add("nm-rising");
+      el.style.transitionDelay = (base + i * 35) + "ms";
+      var done = function (e) {
+        if (e.target !== el) return;
+        el.removeEventListener("transitionend", done);
+        settle(el);
+      };
+      el.addEventListener("transitionend", done);
+      setTimeout(function () { settle(el); }, base + i * 35 + 900);
+    });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { els.forEach(function (el) { el.classList.add("nm-risen"); }); });
+    });
+  };
+
+  var queue = [];
+  var flush = function () {
+    var batch = queue.splice(0).filter(function (el) { return !el.classList.contains("nm-risen"); });
+    batch.sort(function (a, b) { return order.indexOf(a) - order.indexOf(b); });
+    rise(batch, Math.max(0, 250 - (performance.now() - start)));
+  };
+
+  var riseIO = null;
+  if (order.length) {
+    if ("IntersectionObserver" in window) {
+      riseIO = new IntersectionObserver(function (entries) {
+        var fresh = !queue.length;
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { queue.push(en.target); riseIO.unobserve(en.target); }
+        });
+        if (fresh && queue.length) requestAnimationFrame(flush);
+      }, { rootMargin: "0px 0px -40px 0px" });
+      order.forEach(function (el) { riseIO.observe(el); });
+    } else {
+      order.forEach(function (el) { el.classList.add("nm-risen"); });
+    }
+  }
+
+  window.NM = window.NM || {};
+  window.NM.replay = function (els) {
+    els.forEach(function (el) { settle(el); el.classList.remove("nm-risen"); });
+    void document.body.offsetHeight;
+    var now = [];
+    els.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) now.push(el);
+      else if (riseIO) riseIO.observe(el);
+      else el.classList.add("nm-risen");
+    });
+    rise(now, 0);
+  };
+
+  var hoverable = window.matchMedia("(hover: hover) and (pointer: fine)");
+  var videos = Array.prototype.slice.call(document.querySelectorAll(".nm-card__video"));
+  var btnOf = function (v) { return v.parentNode.querySelector(".nm-card__video-btn"); };
+  var mark = function (v, playing) {
+    var b = btnOf(v);
+    if (!b) return;
+    b.setAttribute("data-playing", String(playing));
+    b.setAttribute("aria-label", playing ? "Pause preview video" : "Play preview video");
+  };
+  var load = function (v) {
+    if (!v.getAttribute("src") && v.dataset.src) { v.src = v.dataset.src; v.load(); }
+  };
+  var play = function (v) {
+    load(v);
+    var p = v.play();
+    if (p && p.catch) p.catch(function () { mark(v, false); });
+    mark(v, true);
+  };
+  var stop = function (v, rewind) {
+    v.pause();
+    if (rewind) { try { v.currentTime = 0; } catch (e) {} }
+    mark(v, false);
+  };
+  var auto = function (v) { return !reduce.matches && v.dataset.userPaused !== "true"; };
+
+  videos.forEach(function (v) {
+    var card = v.closest(".nm-card");
+    var b = btnOf(v);
+    mark(v, false);
+    if (b) b.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!v.paused) { v.dataset.userPaused = "true"; stop(v, false); }
+      else { v.dataset.userPaused = "false"; play(v); }
+    });
+    if (!card) return;
+    card.addEventListener("mouseenter", function () { if (hoverable.matches && auto(v)) play(v); });
+    card.addEventListener("mouseleave", function () { if (hoverable.matches && !card.contains(document.activeElement)) stop(v, true); });
+    card.addEventListener("focusin", function () { if (auto(v)) play(v); });
+    card.addEventListener("focusout", function (e) { if (!card.contains(e.relatedTarget)) stop(v, true); });
+  });
+
+  if (videos.length && "IntersectionObserver" in window) {
+    var nearIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { load(en.target); nearIO.unobserve(en.target); } });
+    }, { rootMargin: "240px 0px" });
+    var viewIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (!en.isIntersecting || en.intersectionRatio < 0.6) { if (!v.paused) stop(v, false); return; }
+        if (!hoverable.matches && auto(v)) play(v);
+      });
+    }, { threshold: [0, 0.6] });
+    videos.forEach(function (v) { nearIO.observe(v); viewIO.observe(v); });
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") videos.forEach(function (v) { if (!v.paused) stop(v, false); });
+  });
+
+  window.NM_READY = true;
 })();

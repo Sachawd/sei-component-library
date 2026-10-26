@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>C-20 · Shop-by Rail — Leagues v1</title>
+<!--
+  c20-shopby-rail--leagues-v1.html
+  C-20 · SHOP-BY RAIL, instance #1: LEAGUES. Jersey Shop Landing page
+  (Figma 180:4115). Chassis + instance by Fable 2026-08-21. Serial C-20
+  minted 2026-08-21 (Sacha delegated the number to Fable; C-21 is reserved
+  for the Quick Links Rail). block_id: c20-shopby-rail--leagues-v1, permanent.
+  Cut from SHELL-shopby-rail-v1.html. HAND-BUILT, NOT GENERATOR-MANAGED:
+  do not run sync/generate against this block. Master = this file; it reaches
+  the publish folder via its NAMED cp line in deploy.sh (which is also what
+  gets it a click beacon).
+
+  WHAT IT IS
+  A rail of tall photo tiles with one label chip each. The canon v2 answer to
+  the v1 "Shop by Player" face wall (Shop-by-Player.html, carousel-base.css,
+  round black arrows, dots), which is UNTOUCHABLE and was never on the
+  generator. Same tile idea, canon engine: native overflow-x scroll, hairline
+  chip arrows on desktop only, no dots, THE type set.
+
+  One chassis, many instances: leagues today, players / clubs / nations
+  tomorrow. Each instance = this file + a new block ID + its own tile data.
+
+  ⚠️ NO IMAGE IN THIS FILE HAS BEEN SEEN TO RENDER BY AN AGENT. First deploy
+  is the first look. Ligue 1's filename (three underscores) is the one to
+  check first if a tile is dark.
+
+  DOCTYPE IS THE FIRST BYTE ON PURPOSE (rules B3).
+
+  ── SOURCE ───────────────────────────────────────────────────────────────
+  Figma "WorldSoccerShop - Site Updates" giimbB3Q80HKID09mX85RJ, node
+  180:4115 "Shop by League": 1392 wide, 5 tiles of 279 x 450, gap 8, left
+  pad 12, bottom pad 12 → frame 462 tall. Tile = photo (cover) + 10% black
+  scrim + white label chip bottom-left, 8px pad, Chakra Petch SemiBold,
+  uppercase, #27272a ink.
+
+  IMAGES, all from Sacha's annotations on the Figma tiles (data-image-url
+  annotations, read 2026-08-21) plus her chat note for Ligue 1. All in the
+  bucket under Photos/, .jpg added per her instruction:
+    Premier League  wss_season_26__manchester_city_home_02.jpg
+    La Liga         wss_season_26__barcelona_home_03.jpg
+    Liga MX         wss_season_26__cruz_azul_home_02.jpg
+    Bundesliga      wss_season_26__borussia_dortmund_home_02.jpg
+    Serie A         wss_season_26__ac_milan_home_03.jpg
+    Ligue 1         wss_season_26___paris_saint_germain_home_02.jpg
+                    ⚠️ THREE underscores before "paris", exactly as Sacha typed
+                    it (08-21). Not corrected: a filename is a query parameter
+                    and only the bucket knows. If the tile is blank, that is
+                    the first thing to check.
+  Nothing verified in a browser by an agent: the handler returns 400 to bots.
+
+  LINKS, all six from the link book (site-links.csv, group site-page, rows
+  leagues-*). None invented. Order = Figma order, Ligue 1 appended 6th.
+
+  ── HEIGHT BUDGET (A4) ───────────────────────────────────────────────────
+  Fixed px both dimensions (canon A2). Measured in Chromium 2026-08-21 under
+  a system fallback font (Google Fonts blocked in the sandbox), so the
+  numbers are font-independent by construction: the chip is an exact box.
+    <640px    TOTAL 367   tile 220 x 355 + pad 12      ⚠️ PROPOSED, no Figma
+    >=640px   TOTAL 412   tile 248 x 400 + pad 12      ⚠️ PROPOSED, no Figma
+    >=1024px  TOTAL 462   tile 279 x 450 + pad 12      Figma
+  Tile ratio held at 0.62 (279:450) at every width. Sacha to bless the two
+  smaller sizes; one variable each to change.
+
+  ── EMBED SNIPPET ────────────────────────────────────────────────────────
+  <style>
+    .wss-sb{width:100%;border:0;display:block;height:367px}
+    @media (min-width:640px){.wss-sb{height:412px}}
+    @media (min-width:1024px){.wss-sb{height:462px}}
+  </style>
+  <iframe class="wss-sb" loading="lazy" src="https://benevolent-madeleine-5217c1.netlify.app/blocks/c20-shopby-rail--leagues-v1.html" title="Shop by league" scrolling="no"></iframe>
+  Fastr checklist: breakpoints 640/1024 · container height set at EVERY
+  breakpoint · revive script once per page.
+
+  ── DEPARTURES FROM THE FIGMA NODE ───────────────────────────────────────
+  1. Label chip text is 14px / 0.08em tracking (canon Label 14, same as the
+     Selection Section tabs). Figma's instance reads 14.77px / 0.0738px
+     because the component is scaled; not a spec. Revert: --sb-label-size.
+  2. Below 1024px the block adds its own side gutter (16 / 24) so tiles do
+     not touch the screen edge; at >=1024 the Fastr container supplies the
+     page margin and the Figma 12px left pad is kept as --sb-gutter:12px.
+  3. Every tile carries ONE self-disarming onerror (rule D-images) that
+     fades the broken image and leaves the chip readable on the dark ground.
+
+  ── NO JS NEEDED TO SHOP ─────────────────────────────────────────────────
+  The rail is native scroll. The script only adds desktop arrows when the
+  rail actually overflows. No dots (a free-scroll rail cannot report a page).
+  touch-action:pan-y on html/body, no overscroll-behavior:none, no drag
+  engine, no synthesised clicks.
+
+  ── CLICK BEACON ─────────────────────────────────────────────────────────
+  Not inlined. Injected at deploy via the instance's NAMED cp line in
+  deploy.sh (exactly one space between the quoted paths). Never the glob.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Mohave:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ═══ INLINED VERBATIM FROM css/cta-canon.css · THE CTA, consumed by the head's Shop all ═══ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   cta-canon.css — THE CTA (canon v2) · one button spec, every chassis
+   ─────────────────────────────────────────────────────────────────────────
+   Fills the "one CTA spec" slot from the 07-27 decision
+   ("Type & CTA: dev semantic names — Body 12-20, Label 12-16, one CTA spec").
+   Locked by Sacha 2026-08-02: this IS the canonical CTA.
+
+   THIRD SIBLING stylesheet, alongside wall-canon.css and (when it lands)
+   carousel-canon.css. It is NOT folded into either, because both consume it:
+   the wall, the rails, the hero rails and the feature pills all need the same
+   button, and duplicating it into two chassis is exactly how the old set
+   drifted into 3 arrow styles and 2 zoom scales.
+
+   Load order:  cta-canon.css  →  wall-canon.css / carousel-canon.css
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+
+   SOURCE
+   ─────────────────────────────────────────────────────────────────────────
+   Engine : Osmo Supply "Button 009". Zero JS. Every Osmo class name, the
+            data-button-009 attribute, all easings, the hover calc, the click
+            scale and the focus ring are VERBATIM below.
+   Design : Figma WorldSoccerShop - Site Updates, node 35:539.
+
+   MEASURED FROM FIGMA (verified in Chromium, not eyeballed)
+   ─────────────────────────────────────────────────────────────────────────
+     padding       12px 16px      (symmetric; Osmo stock is asymmetric)
+     gap           8px
+     label         Chakra Petch 600, 14px, tracking 1.12px, UPPERCASE
+     arrow         Chakra Petch 400, 22px, tracking 0.44px, glyph U+2192
+     arrow advance 17px
+     line box      15px      →  12 + 15 + 12 = 39px tall  ✓ matches Figma
+     radius        0         (square; Osmo stock is a 2.5em pill)
+     primary       #000 ground / #fff ink
+     secondary     #fff ground / #000 ink / 0.75px #797474 hairline
+
+   TWO CHANGES FROM THE OSMO SOURCE, both deliberate
+   ─────────────────────────────────────────────────────────────────────────
+   1. The icon <svg> elements become <span> carrying "→". Sacha's design
+      specifies the Unicode arrow set in Chakra Petch, not Osmo's chevron
+      vector. get_design_context returns it as TEXT, not an exported asset,
+      so it is typed rather than drawn. Classes and positions unchanged.
+   2. Each icon span wraps its glyph in an <i>. LOAD-BEARING, not cosmetic:
+      .button-009__icon must stay at the button's 14px font-size or every em
+      in Osmo's hover calc — and in `.is--left { left: var(--…-padding-right) }`
+      — would resolve against 22px and the animation would break. The <i>
+      carries the 22px; the span keeps the maths. Nothing removed or renamed.
+
+   THE HOVER
+   ─────────────────────────────────────────────────────────────────────────
+   Rest: JERSEYS →. On hover the trailing arrow slides right and fades, the
+   label slides right by (icon + gap + padding-right - padding-left) = 25px,
+   and a leading arrow fades in from the left. The label lands exactly on the
+   right padding edge (16 + 25 + 67 = 108 = 124 - 16), so nothing clips inside
+   the overflow:clip inner. Osmo's maths, fed WSS numbers.
+
+   CANON COMPLIANCE (07-27 locked set)
+   ─────────────────────────────────────────────────────────────────────────
+   · Hover is behind @media (hover:hover) and (pointer:fine) AND
+     (prefers-reduced-motion: no-preference). Osmo ships it that way; no
+     wrapper needed.
+   · :focus-visible ring built in. See the on-dark theme below.
+   · target="_top" belongs on every instance in markup (rule B1).
+   · Chakra Petch must be loaded with display=swap + preconnect (rule C3).
+
+   ⚠️ TYPE-ROLE MISMATCH, flagged not silently resolved:
+      wall-canon.css sets --ws-label-14-weight: 500. Figma 35:539 specifies
+      SemiBold 600 for the CTA label. Rather than mutate the shared role, the
+      CTA declares its own --ws-cta-weight: 600. If the token audit decides
+      Label 14 should carry a 600 variant, delete this and point at the role.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Osmo 009 API, re-pointed at WSS values ── */
+  --button-009-color:#fff;
+  --button-009-color-background:#000;
+  --button-009-color-focus:#000;
+  --button-009-border-radius:0;
+  --button-009-icon-size:1.2143em;      /* 17px — the → advance width */
+  --button-009-padding-top:0.8571em;    /* 12px */
+  --button-009-padding-right:1.1429em;  /* 16px */
+  --button-009-padding-bottom:0.8571em; /* 12px */
+  --button-009-padding-left:1.1429em;   /* 16px */
+  --button-009-gap:0.5714em;            /* 8px  */
+  --button-009-overflow:clip;
+  --button-009-focus-inset:-0.125em;
+  --button-009-click-scale:0.955 0.925;
+  --button-009-ease-hover:cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click:cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus:cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ── WSS layer. --ws-font-label is shared with wall-canon.css ── */
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-cta-size:14px;                   /* Label 14 role */
+  --ws-cta-weight:600;                  /* see TYPE-ROLE MISMATCH above */
+  --ws-cta-line:1.0714;                 /* 15px line box → 39px button */
+  --ws-cta-line-em:1.0714em;            /* SAME 15px as a LENGTH. height: needs a length,
+                                           --ws-cta-line is unitless and is invalid there. */
+  --ws-cta-tracking:0.08em;             /* 1.12px */
+  --ws-cta-arrow-size:1.5714em;         /* 22px */
+  --ws-cta-arrow-tracking:0.02em;       /* 0.44px */
+  --ws-cta-hairline:0.75px solid #797474;
+}
+
+/* ═══ OSMO BUTTON 009 — VERBATIM ═════════════════════════════════════════ */
+.button-009{
+  color:var(--button-009-color);
+  -webkit-user-select:none;user-select:none;
+  background-color:#0000;
+  outline-style:none;
+  padding:0;
+  line-height:1;
+  text-decoration:none;
+  display:inline-grid;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  transition:scale 0.15s var(--button-009-ease-click);
+}
+.button-009::after{
+  content:'';display:block;position:absolute;
+  inset:var(--button-009-focus-inset);
+  border-radius:var(--button-009-border-radius);
+  transition:box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events:none;z-index:1;
+}
+.button-009:is(:focus-visible)::after{ box-shadow:0 0 0 0.125em var(--button-009-color-focus); }
+.button-009:active{ scale:var(--button-009-click-scale); }
+.button-009__inner{
+  pointer-events:none;
+  grid-column-gap:var(--button-009-gap);
+  grid-row-gap:var(--button-009-gap);
+  padding-top:var(--button-009-padding-top);
+  padding-right:var(--button-009-padding-right);
+  padding-bottom:var(--button-009-padding-bottom);
+  padding-left:var(--button-009-padding-left);
+  z-index:1;
+  border-radius:var(--button-009-border-radius);
+  overflow:var(--button-009-overflow);
+  grid-area:1 / 1;
+  justify-content:center;align-items:center;
+  display:flex;position:relative;
+}
+.button-009__icon{
+  width:var(--button-009-icon-size);
+  height:var(--button-009-icon-size);
+  flex:none;
+  transition:translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.button-009__icon.is--left{
+  left:var(--button-009-padding-right);
+  position:absolute;
+  opacity:0;
+  translate:-1.5em 0 0;
+}
+.button-009__text{ flex:none; transition:translate 0.5s var(--button-009-ease-hover); }
+.button-009__bg{
+  background-color:var(--button-009-color-background);
+  border-radius:var(--button-009-border-radius);
+  grid-area:1 / 1;width:100%;height:100%;padding:0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){
+  .button-009:is(:hover, :focus-visible) .button-009__text,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text{
+    translate:calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--left,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left{
+    translate:0 0 0;opacity:1;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--right,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right{
+    translate:1.5em 0 0;opacity:0;
+    transition:translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+/* ═══ END OSMO ════════════════════════════════════════════════════════════ */
+
+
+/* ── WSS skin, additive only ─────────────────────────────────────────────── */
+.button-009{
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-cta-size);
+}
+.button-009__text{
+  font-weight:var(--ws-cta-weight);
+  line-height:var(--ws-cta-line);                        /* 15px → 39px button */
+  letter-spacing:var(--ws-cta-tracking);
+  margin-right:calc(var(--ws-cta-tracking) * -1);        /* kill the trailing letter-space; Figma does not render it */
+  text-transform:uppercase;
+}
+.button-009__icon{
+  height:var(--ws-cta-line-em);                          /* 15px. MUST be the -em variant */
+  display:flex;align-items:center;justify-content:center;
+}
+.button-009__icon > i{                                   /* carries the 22px so the span stays at 14px */
+  font-style:normal;
+  font-weight:400;
+  font-size:var(--ws-cta-arrow-size);
+  letter-spacing:var(--ws-cta-arrow-tracking);
+  line-height:1;
+  display:block;
+}
+
+/* ── THEMES (Osmo's documented data-theme pattern) ───────────────────────── */
+
+/* secondary — outlined, for light grounds */
+.button-009[data-theme='secondary']{
+  --button-009-color:#000;
+  --button-009-color-background:#fff;
+}
+.button-009[data-theme='secondary'] .button-009__bg{ border:var(--ws-cta-hairline); }
+
+/* on-dark — for the C-13 wall (#0A0A0A) and any dark surface.
+   REASON THIS EXISTS: the default focus ring is #000 and disappears completely
+   against the wall's ground, so keyboard users lose the focus indicator. White
+   ground reads on dark and the ring flips to white. Osmo's accessibility note
+   calls this out: --button-009-color-focus must contrast with the SURROUNDING
+   background, not the button.
+   ⚠️ Theme name picked by Claude 2026-08-02, not by Sacha. Rename freely. */
+.button-009[data-theme='on-dark']{
+  --button-009-color:#0A0A0A;
+  --button-009-color-background:#fff;
+  --button-009-color-focus:#fff;
+}
+</style>
+<style>
+/* ═══ SHOP-BY RAIL · canon v2 chassis ══════════════════════════════════════
+   css/shopby-rail-canon.css, inlined verbatim. Sixth sibling after
+   cta / wall / marquee / kit-rail / selection-section.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  /* ── skin, per instance ── */
+  --sb-ground:#FFFFFF;                 /* chassis default WHITE. Instances override in their INSTANCE SKIN block (e.g. #F0EBE6 on the Jersey Shop page) */
+  --sb-tile-ground:#2A2622;            /* behind the photo while it loads / if it fails */
+  --sb-scrim:rgba(0,0,0,.10);          /* Figma: 10% black over the photo */
+  --sb-chip-ground:#FFFFFF;
+  --sb-chip-ink:#27272A;               /* Figma theme/text/body */
+  --sb-label-font:'Chakra Petch',Figtree,system-ui,sans-serif;
+  --sb-label-size:14px;
+  --sb-label-track:0.08em;
+  --sb-chip-pad:8px;
+  --sb-focus:#C4623F;
+
+  /* ── motion (canon 07-27, rails) ── */
+  --tile-zoom:1.04;
+  --sb-ease:cubic-bezier(.25,1,.5,1);
+  --sb-dur:.4s;
+
+  /* ── arrows: the canon hairline chip ── */
+  --sb-arrow-size:34px;
+  --sb-arrow-ground:#FFFFFF;
+  --sb-arrow-ink:#131313;
+  --sb-arrow-line:#797474;
+  --sb-arrow-ground-hover:#131313;
+  --sb-arrow-ink-hover:#FFFFFF;
+
+  /* ── geometry, mobile first. Fixed px both dimensions (canon A2). ── */
+  --sb-gutter:16px;
+  --sb-gap:8px;
+  --sb-tile-w:220px;                   /* ⚠️ PROPOSED. Figma has no mobile frame. */
+  --sb-tile-h:355px;
+  --sb-tile-pad:12px;                  /* chip inset, bottom-left */
+  --sb-pad-bottom:12px;
+}
+@media (min-width:640px){
+  :root{ --sb-gutter:24px; --sb-tile-w:248px; --sb-tile-h:400px; --sb-tile-pad:13px; }
+}
+@media (min-width:1024px){
+  :root{ --sb-gutter:12px; --sb-tile-w:279px; --sb-tile-h:450px; --sb-tile-pad:13px; }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;
+  background:var(--sb-ground);
+  overflow-x:hidden;overflow-y:hidden;   /* the iframe is an exact height */
+  touch-action:pan-y;                    /* B4: the page keeps the vertical axis */
+}
+html.is-standalone,html.is-standalone body{overflow-y:auto}   /* direct-open preview only */
+
+.sb{
+  position:relative;
+  width:100%;
+  padding-bottom:var(--sb-pad-bottom);
+  background:var(--sb-ground);
+  font-family:var(--sb-label-font);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ═══ RAIL ═══ */
+.sb-rail{
+  display:flex;
+  gap:var(--sb-gap);
+  padding:0 var(--sb-gutter);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  scroll-padding-inline-start:var(--sb-gutter);
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  touch-action:pan-x pan-y;
+}
+.sb-rail::-webkit-scrollbar{display:none}
+
+/* ═══ TILE ═══ */
+.sb-tile{
+  position:relative;
+  flex:0 0 auto;
+  width:var(--sb-tile-w);
+  height:var(--sb-tile-h);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  padding:0 0 var(--sb-tile-pad) var(--sb-tile-pad);
+  background:var(--sb-tile-ground);
+  overflow:hidden;
+  scroll-snap-align:start;
+  text-decoration:none;
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+.sb-tile:focus-visible{outline:2px solid var(--sb-focus);outline-offset:3px}
+
+.sb-tile__img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;border:0;
+  transition:transform var(--sb-dur) var(--sb-ease);
+}
+.sb-tile__scrim{
+  position:absolute;inset:0;
+  background:var(--sb-scrim);
+  pointer-events:none;
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .sb-tile:hover .sb-tile__img{transform:scale(var(--tile-zoom))}
+}
+
+.sb-tile__chip{
+  position:relative;z-index:2;
+  display:inline-flex;align-items:center;
+  height:calc(var(--sb-label-size) + (var(--sb-chip-pad) * 2));   /* exact box */
+  padding:0 var(--sb-chip-pad);
+  background:var(--sb-chip-ground);
+  color:var(--sb-chip-ink);
+  font-weight:600;
+  font-size:var(--sb-label-size);
+  line-height:1;
+  letter-spacing:var(--sb-label-track);
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+/* ═══ HEAD (optional) · label + the arrows, C-16 pattern ═══════════════════
+   Present only in instances that carry the .sb-head markup. Adds
+   --sb-head-h + --sb-head-gap to the budget (39 + 20 = 59px at every width).
+   When the head is present the overlay arrows are NOT used: the same two
+   buttons live in the head instead (one set of arrows per block). */
+:root{
+  --sb-head-h:39px;                    /* = THE CTA height, one baseline */
+  --sb-head-gap:20px;
+  --sb-title-size:24px;                /* left-aligned head */
+  --sb-title-ink:#131313;
+  /* TITLE FONT. Default = Chakra Petch, the system face. Campaign instances
+     may switch to the display face (Mohave, the Selection Section's hero /
+     head face) in their INSTANCE SKIN block:  --sb-title-font:'Mohave',...
+     Sacha 08-21: "default Chakra Petch and/or a campaign font like Mohave".
+     Both are loaded by the font link above, so the switch is one line. */
+  --sb-title-font:'Chakra Petch',Figtree,system-ui,sans-serif;
+  /* CENTRED-head title size: a step above the Selection Section's head
+     (28 / 32 / 36 Mohave) so the title outranks the 14px button (Sacha 08-21,
+     "visual hierarchy"). Sits in the fixed 39px line box, so the budget
+     does not move. */
+  --sb-center-title:26px;          /* 26 / 34 / 38: mobile held at 26 so "TRENDING PLAYERS" clears 364px in Chakra */
+}
+@media (max-width:639px){ :root{ --sb-title-size:16px; } }
+.sb-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  height:var(--sb-head-h);
+  padding:0 var(--sb-gutter);
+  margin-bottom:var(--sb-head-gap);
+}
+.sb-head__title{
+  flex:1 1 auto;min-width:0;margin:0;
+  font-family:var(--sb-title-font);
+  font-size:var(--sb-title-size);font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;line-height:1.1;
+  color:var(--sb-title-ink);
+  /* two lines max inside the 39px head box; never an ellipsis (Sacha, 08-21:
+     "SHOP B…" at 364px was the bug) */
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+}
+.sb-head__actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.sb-head__arrows{display:none;gap:8px;flex:0 0 auto}
+/* Head arrows: desktop mouse only AND >=1024px. Below that the rail is a
+   thumb rail and the head is too narrow to carry them (Sacha, 08-21). The
+   Fastr editor is a desktop browser, so without the width clause the arrows
+   showed up in its 364px preview. */
+@media (hover:hover) and (pointer:fine) and (min-width:1024px){
+  .sb.is-ready.has-overflow .sb-head__arrows{display:flex}
+}
+
+/* ═══ HEAD · CENTRED variant (the Selection Section pattern) ═══════════════
+   <div class="sb-head sb-head--center">: title centred on its own line, the
+   Shop all centred under it, no arrows in the head (overlay arrows on the
+   rail take over on desktop mouse). Head = 39 title + 8 + 39 CTA = 86px, so
+   the budget is +47 on the left-aligned head: 473 / 518 / 568. */
+.sb-head--center{
+  flex-direction:column;justify-content:center;gap:8px;
+  height:calc(var(--sb-head-h) * 2 + 8px);
+  text-align:center;
+}
+.sb-head--center .sb-head__title{
+  flex:0 0 auto;width:100%;-webkit-line-clamp:1;
+  font-family:var(--sb-title-font);
+  font-size:var(--sb-center-title);font-weight:var(--sb-title-weight,700);letter-spacing:.02em;
+  line-height:var(--sb-head-h);        /* exact 39px box whatever face loads */
+}
+@media (min-width:640px){ :root{ --sb-center-title:34px; } }
+@media (min-width:1024px){ :root{ --sb-center-title:38px; } }
+.sb-head--center .sb-head__actions{justify-content:center}
+.sb-head--center .sb-head__arrows{display:none !important}
+.sb-head .sb-arrow{position:static;display:flex;top:auto;left:auto;right:auto}
+/* Shop all = THE CTA (button-009, secondary theme), 39px = --sb-head-h, so the
+   title, arrows and button share one baseline. Sacha 08-21: "like the old
+   widget had". Present only when the instance carries the markup. */
+.sb-head__cta{flex:none}
+
+/* ═══ ARROWS · canon hairline chip, desktop mouse only ═══ */
+.sb-arrow{
+  display:none;
+  position:absolute;
+  top:calc(var(--sb-rail-top, 0px) + (var(--sb-tile-h) / 2) - (var(--sb-arrow-size) / 2)); /* 2026-09-25: + rail offset so arrows sit mid-photo under a title row */
+  width:var(--sb-arrow-size);height:var(--sb-arrow-size);
+  align-items:center;justify-content:center;
+  background:var(--sb-arrow-ground);color:var(--sb-arrow-ink);
+  border:0.75px solid var(--sb-arrow-line);border-radius:0;
+  padding:0;cursor:pointer;z-index:3;line-height:1;
+  transition:background var(--sb-dur) var(--sb-ease),color var(--sb-dur) var(--sb-ease),transform .15s cubic-bezier(.4,0,.2,1);
+  -webkit-tap-highlight-color:transparent;
+}
+.sb-arrow svg{width:16px;height:16px;display:block}
+.sb-arrow--prev{left:var(--sb-gutter)}
+.sb-arrow--prev svg{transform:rotate(180deg)}
+.sb-arrow--next{right:var(--sb-gutter)}
+@media (hover:hover) and (pointer:fine) and (min-width:1024px){
+  .sb.is-ready.has-overflow .sb-arrow{display:flex}
+  .sb-arrow:hover{background:var(--sb-arrow-ground-hover);color:var(--sb-arrow-ink-hover)}
+}
+.sb-arrow:active{transform:scale(.94)}
+.sb-arrow:focus-visible{outline:2px solid var(--sb-focus);outline-offset:2px}
+.sb-arrow[disabled]{opacity:.35;pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  .sb-rail{scroll-behavior:auto}
+  .sb-tile__img,.sb-arrow{transition:none}
+}
+/* ⚠️DEVIATION-1 (C-20, 2026-09-25, Sacha via Fable): no press squash with Reduce motion on.
+   The canon button-009 :active line above stays verbatim; this later rule overrides it. */
+@media (prefers-reduced-motion:reduce){
+  .sb-arrow:active{transform:none}
+  .sb-head__cta:active{scale:none}
+  .sb-head__cta{transition:none}
+}
+</style>
+<style>
+/* ═══ INSTANCE SKIN · c20-shopby-rail--leagues-v1 ═══
+   Per-instance values only. The chassis default is white; this instance sits
+   on the Jersey Shop Landing page ground (Sacha, 08-21). Change here, never
+   in the chassis block above. */
+:root{ --sb-ground:#F0EBE6; }
+</style>
+</head>
+<body>
+
+<div class="sb" id="sb" data-block-id="c20-shopby-rail--leagues-v1">
+
+  <button class="sb-arrow sb-arrow--prev" type="button" data-sb="prev" aria-label="Previous leagues">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg>
+  </button>
+  <button class="sb-arrow sb-arrow--next" type="button" data-sb="next" aria-label="More leagues">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg>
+  </button>
+
+  <!-- ── TILES · Figma order, Ligue 1 appended (Sacha, 08-21) ──
+       href: site-links.csv rows leagues-*  ·  img: Sacha's Figma annotations -->
+  <div class="sb-rail" role="list" aria-label="Shop by league">
+
+    <a class="sb-tile" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/products/jerseys?filter=league__English+Premier+League&amp;page=1&amp;order=0&amp;page_size=96" aria-label="Shop Premier League">
+      <img class="sb-tile__img" alt="" loading="eager" decoding="async" fetchpriority="high"
+           src="https://www.imagehandler.net/dxassets/?img=Photos/wss_season_26__manchester_city_home_02.jpg"
+           onerror="this.onerror=null;this.style.opacity='.15'">
+      <span class="sb-tile__scrim" aria-hidden="true"></span>
+      <span class="sb-tile__chip">Premier League</span>
+    </a>
+
+    <a class="sb-tile" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/products/jerseys?page=1&amp;order=0&amp;page_size=96&amp;filter=league__Spanish+La+Liga" aria-label="Shop La Liga">
+      <img class="sb-tile__img" alt="" loading="eager" decoding="async" fetchpriority="high"
+           src="https://www.imagehandler.net/dxassets/?img=Photos/wss_season_26__barcelona_home_03.jpg"
+           onerror="this.onerror=null;this.style.opacity='.15'">
+      <span class="sb-tile__scrim" aria-hidden="true"></span>
+      <span class="sb-tile__chip">La Liga</span>
+    </a>
+
+    <a class="sb-tile" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/products/jerseys?page=1&amp;order=0&amp;page_size=96&amp;filter=league__Liga+MX" aria-label="Shop Liga MX">
+      <img class="sb-tile__img" alt="" loading="eager" decoding="async" fetchpriority="high"
+           src="https://www.imagehandler.net/dxassets/?img=Photos/wss_season_26__cruz_azul_home_02.jpg"
+           onerror="this.onerror=null;this.style.opacity='.15'">
+      <span class="sb-tile__scrim" aria-hidden="true"></span>
+      <span class="sb-tile__chip">Liga MX</span>
+    </a>
+
+    <a class="sb-tile" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/products/jerseys?page=1&amp;order=0&amp;page_size=96&amp;filter=league__German+Bundesliga" aria-label="Shop Bundesliga">
+      <img class="sb-tile__img" alt="" loading="eager" decoding="async"
+           src="https://www.imagehandler.net/dxassets/?img=Photos/wss_season_26__borussia_dortmund_home_02.jpg"
+           onerror="this.onerror=null;this.style.opacity='.15'">
+      <span class="sb-tile__scrim" aria-hidden="true"></span>
+      <span class="sb-tile__chip">Bundesliga</span>
+    </a>
+
+    <a class="sb-tile" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/products/jerseys?page=1&amp;order=0&amp;page_size=96&amp;filter=league__Italian+Serie+A" aria-label="Shop Serie A">
+      <img class="sb-tile__img" alt="" loading="eager" decoding="async"
+           src="https://www.imagehandler.net/dxassets/?img=Photos/wss_season_26__ac_milan_home_03.jpg"
+           onerror="this.onerror=null;this.style.opacity='.15'">
+      <span class="sb-tile__scrim" aria-hidden="true"></span>
+      <span class="sb-tile__chip">Serie A</span>
+    </a>
+
+    <!-- Ligue 1: filename exactly as Sacha typed it 2026-08-21, three underscores. -->
+    <a class="sb-tile" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/products/jerseys?page=1&amp;order=0&amp;page_size=96&amp;filter=league__French+Ligue+1" aria-label="Shop Ligue 1">
+      <img class="sb-tile__img" alt="" loading="eager" decoding="async"
+           src="https://www.imagehandler.net/dxassets/?img=Photos/wss_season_26___paris_saint_germain_home_02.jpg"
+           onerror="this.onerror=null;this.style.opacity='.15'">
+      <span class="sb-tile__scrim" aria-hidden="true"></span>
+      <span class="sb-tile__chip">Ligue 1</span>
+    </a>
+
+  </div>
+</div>
+
+<script>
+/* SHOP-BY RAIL · desktop arrows only. Inline, no CDN, never touches the parent. */
+(function(){
+  try{ if(window.self===window.top) document.documentElement.classList.add('is-standalone'); }catch(e){}
+  var root=document.getElementById('sb'); if(!root) return;
+  var rail=root.querySelector('.sb-rail'); if(!rail) return;
+  var prev=root.querySelector('[data-sb="prev"]'), next=root.querySelector('[data-sb="next"]');
+  function sync(){
+    root.style.setProperty('--sb-rail-top',rail.offsetTop+'px'); /* 2026-09-25 arrows mid-photo */
+    var over=rail.scrollWidth-rail.clientWidth>2;
+    root.classList.toggle('has-overflow',over);
+    if(!over) return;
+    var x=rail.scrollLeft;
+    if(prev) prev.disabled=x<=2;
+    if(next) next.disabled=x>=(rail.scrollWidth-rail.clientWidth-2);
+  }
+  function step(d){
+    var t=rail.querySelector('.sb-tile');
+    var by=t?(t.getBoundingClientRect().width+8):Math.round(rail.clientWidth*0.8);
+    rail.scrollBy({left:d*by,behavior:'smooth'});
+  }
+  if(prev) prev.addEventListener('click',function(){step(-1)});
+  if(next) next.addEventListener('click',function(){step(1)});
+  rail.addEventListener('scroll',sync,{passive:true});
+  var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(sync,120)},{passive:true});
+  root.classList.add('is-ready'); sync();
+  if(document.fonts&&document.fonts.ready&&typeof document.fonts.ready.then==='function'){document.fonts.ready.then(sync);}
+})();
+</script>
+<!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_c20_shopby_rail_leagues_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

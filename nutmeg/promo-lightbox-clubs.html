@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promo Lightbox, clubs · Nutmeg</title>
+<meta name="description" content="The pop-up behind a Shop Deals by Club button, with clubs grouped by league.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body data-hub="volley" data-page="block">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley"><ul class="nm-rail"><li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li><li><a class="nm-rail__item" href="designer-guide.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="blocks.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li><li><a class="nm-rail__item" href="index.html#tools"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M19 21.5H6.5L5 20V4L6.5 2.5H19V21.5Z" stroke-miterlimit="10"/><path d="M5 19L6.5 17.5H19" stroke-miterlimit="10"/><path d="M15 7.5H9" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Resources</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Components</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="blocks.html">All blocks</a></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="false" aria-controls="nm-sub-components-1"><span>Blocks</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-1" hidden><li><a class="nm-drawer__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li><li><a class="nm-drawer__sublink" href="sale-category-tiles.html">Sale category tiles</a></li><li><a class="nm-drawer__sublink" href="sale-hero.html">Sale hero</a></li><li><a class="nm-drawer__sublink" href="sale-quick-links.html">Sale quick links strip</a></li><li><a class="nm-drawer__sublink" href="section-breaker.html">Section Breaker</a></li><li><a class="nm-drawer__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li><li><a class="nm-drawer__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-section.html">Shop by Club section</a></li><li><a class="nm-drawer__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li><li><a class="nm-drawer__sublink" href="showcase-slider.html">Showcase Slider</a></li></ul></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="true" aria-controls="nm-sub-components-2"><span>Canon blocks, needs review</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-2"><li><a class="nm-drawer__sublink" href="marquee-back-to-season.html">Marquee, Back to Season</a></li><li><a class="nm-drawer__sublink" href="wall-new-arrivals.html">Wall, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="wall-july-launches.html">Wall, July launches</a></li><li><a class="nm-drawer__sublink" href="marquee-and-wall.html">Marquee and Wall</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-jerseys.html">Launch Carousel, jerseys</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-new-arrivals.html">Launch Carousel, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="intent-selector-small.html">Intent Selector, small</a></li><li><a class="nm-drawer__sublink" href="spotlight-rail-spezial.html">Spotlight Rail, Spezial</a></li><li><a class="nm-drawer__sublink" href="quick-links-rail-new.html">Quick Links Rail, new products</a></li><li><a class="nm-drawer__sublink" href="kit-rail-home.html">Kit Rail, home page</a></li><li><a class="nm-drawer__sublink" href="selection-section-jersey-shop.html">Selection Section, Jersey Shop</a></li><li><a class="nm-drawer__sublink" href="selection-section-fall-sale.html">Selection Section, Fall Sale</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-leagues.html">Shop-by Rail, leagues</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-players.html">Shop-by Rail, players</a></li><li><a class="nm-drawer__sublink" href="intent-chips-promo.html">Intent Selector Chips, promo eligible</a></li><li><a class="nm-drawer__sublink" href="intent-chips-sale.html">Intent Selector Chips, sale</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-promo.html">Team Logo Marquee, promo eligible</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-sale.html">Team Logo Marquee, sale</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-clubs.html" aria-current="page">Promo Lightbox, clubs</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-nations.html">Promo Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="shop-lightbox-nations.html">Shop Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="matchup-rail.html">Matchup Rail</a></li><li><a class="nm-drawer__sublink" href="hero-parallax-layers.html">Hero, parallax image layers</a></li><li><a class="nm-drawer__sublink" href="hero-falling-objects.html">Hero, falling objects</a></li><li><a class="nm-drawer__sublink" href="spatial-cards-slider.html">Spatial Cards Slider</a></li><li><a class="nm-drawer__sublink" href="shop-the-look-clubs.html">Shop the Look, clubs</a></li><li><a class="nm-drawer__sublink" href="shop-by-nation-accordion.html">Shop by Nation accordion</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-rail.html">Shop by Club rail</a></li></ul></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
+  <h1>Promo Lightbox, clubs</h1>
+  <p class="nm-lede">The pop-up behind a Shop Deals by Club button, with clubs grouped by league.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-promo-lightbox-clubs"><button type="button" class="nm-tab" role="tab" aria-controls="frame-promo-lightbox-clubs" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-promo-lightbox-clubs" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-promo-lightbox-clubs" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/promo-lightbox-clubs/block.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-promo-lightbox-clubs" src="../blocks/promo-lightbox-clubs/block.html" height="1600" title="Promo Lightbox, clubs, live demo"></iframe></div></div>
+</section><section class="nm-section" id="review">
+<div class="nm-section__head"><h2 class="nm-h2">Before designers use it<button type="button" class="nm-anchor" aria-label="Copy a link to Before designers use it"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>This block needs a review before it goes on a page.</strong><p>It was copied into the library on 25 Oct 2026 from the canon folder, as it was. Fable and Sacha still need to check it against the paste rules, the five screen widths and contrast. Until then, study it and build from it, but check with Sacha before using it.</p></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">This is the build file from the canon folder. It is not a Fastr paste file yet, so it carries its own page around the block.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>block.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en" data-brand="wss"&gt;
+&lt;head&gt;
+&lt;!--
+  promo-lightbox--clubs-v1.html : canon v2 (restyled 2026-08-27, second pass)
+  CLUBS picker rebuilt on the NATIONS chassis per Sacha: the newer design
+  (gold eyebrow, big title, gold rule, gunmetal hover rows) is the keeper
+  for both lightboxes. Same 78 clubs and links as the first pass, all
+  verified in a live browser 2026-08-27 (Barcelona crest fixed, Brighton
+  %26 fixed, every crest load-checked). NOT an iframe: this document is
+  the SOURCE of a Fastr Custom Action lightbox (Shop Deals By Club).
+  Fastr: width 720 desktop, 360 mobile, SAME source in both variants.
+  Sister file: promo-lightbox--nations-v1.html (the chassis origin, see
+  its header for the chassis fix history).
+--&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Promo Lightbox: Clubs&lt;/title&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+  &lt;style&gt;
+    /* ── WSS Design Tokens ──────────────────────────────────── */
+    :root {
+      --wss-gold-50:  #f7f5ee;
+      --wss-gold-100: #cfc39a;
+      --wss-gold-300: #ad9851;
+      --wss-gold-400: #796a39;
+      --wss-gold-500: #6a5d31;
+
+      --wss-bg:      #ffffff;
+      --wss-surface: #f5f5f5;
+      --wss-muted:   #e5e5e5;
+
+      --wss-text:         #27272a;
+      --wss-text-muted:   #525252;
+      --wss-text-subtle:  #737373;
+      --wss-text-on-dark: #ffffff;
+
+      --wss-border-subtle: #e5e5e5;
+      --wss-border-strong: #171717;
+
+      --wss-gunmetal: #1c1d24;
+      --wss-charcoal: #2e2f3a;
+
+      --wss-sale-bg:   #ef4444;
+      --wss-sale-text: #ffffff;
+
+      --wss-ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --wss-spring: cubic-bezier(0.25, 1, 0.5, 1);
+      --wss-fast:   0.22s;
+      --wss-base:   0.35s;
+
+      --wss-font: 'Chakra Petch', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--wss-font);
+      background: transparent;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Lightbox wrapper ───────────────────────────────── */
+    .wss-lb {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--wss-bg);
+      padding: 40px 40px 48px;
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .wss-lb__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .wss-lb__eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--wss-gold-300);
+      margin-bottom: 6px;
+    }
+
+    .wss-lb__title {
+      font-size: 32px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--wss-text);
+      line-height: 1.1;
+      margin: 0 0 6px;
+    }
+
+    .wss-lb__subtitle {
+      display: block;
+      font-family: var(--wss-font);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--wss-text-subtle);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .wss-lb__badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: var(--wss-sale-bg);
+      color: var(--wss-sale-text);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── Divider ─────────────────────────────────────────── */
+    .wss-lb__rule {
+      height: 2px;
+      background: linear-gradient(90deg, var(--wss-gold-400) 0%, var(--wss-gold-100) 60%, var(--wss-muted) 100%);
+      margin-bottom: 28px;
+      border: none;
+    }
+
+    /* ── Team list ─────────────────────────────────────── */
+    .promo-team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .promo-team-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 14px;
+      background: var(--wss-bg);
+      border: 1.5px solid var(--wss-border-subtle);
+      text-decoration: none;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      transition:
+        background var(--wss-fast) var(--wss-ease),
+        border-color var(--wss-fast) var(--wss-ease),
+        transform var(--wss-fast) var(--wss-spring),
+        box-shadow var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover {
+      background: var(--wss-gunmetal);
+      border-color: var(--wss-gunmetal);
+      transform: translateX(3px);
+      box-shadow: 0 6px 18px rgba(28, 29, 36, 0.18);
+    }
+
+    .promo-team-row:active {
+      transform: scale(0.99);
+    }
+
+    .team-logo-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--wss-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      transition: transform var(--wss-fast) var(--wss-spring), background var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover .team-logo-wrap {
+      transform: scale(1.08);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .team-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .promo-team-row__divider {
+      width: 1px;
+      height: 20px;
+      background: var(--wss-border-subtle);
+      flex-shrink: 0;
+      transition: background var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover .promo-team-row__divider {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .promo-team-row__name {
+      font-family: var(--wss-font);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--wss-text);
+      text-align: left;
+      transition: color var(--wss-fast) var(--wss-ease), font-weight var(--wss-fast);
+    }
+
+    .promo-team-row:hover .promo-team-row__name {
+      color: var(--wss-text-on-dark);
+      font-weight: 600;
+    }
+
+    /* ── Mobile ─────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .wss-lb {
+        padding: 28px 20px 36px;
+      }
+      .wss-lb__title {
+        font-size: 24px;
+      }
+      .wss-lb__header {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .promo-team-row__name {
+        font-size: 13px;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class="wss-lb"&gt;
+
+    &lt;div class="wss-lb__header"&gt;
+      &lt;div&gt;
+        &lt;span class="wss-lb__eyebrow"&gt;WorldSoccerShop&lt;/span&gt;
+        &lt;h1 class="wss-lb__title"&gt;Snag a Deal by Club&lt;/h1&gt;
+        &lt;span class="wss-lb__subtitle"&gt;Shop your club's deals&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;hr class="wss-lb__rule"&gt;
+
+    &lt;div class="promo-team-list"&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__AC+Milan&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/25/ee/df1f9b004653b52d448a2902b509.png" alt="AC Milan logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;AC Milan&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__AFC+Bournemouth&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/61/53/bf47f84548289f08e1e0b5000b85.png" alt="AFC Bournemouth logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;AFC Bournemouth&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Ajax+Amsterdam&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/86/e0/80bb0509404b93544c0f4c9c1c20.png" alt="Ajax Amsterdam logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Ajax Amsterdam&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Arsenal&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/59/13/621afd11463d95d4ec0860121ab9.png" alt="Arsenal logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Arsenal&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__AS+Roma&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/56/66/8ba23c79423bbb337a1e1ad8ab40.png" alt="AS Roma logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;AS Roma&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Aston+Villa&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f1/60/72dc836e41d5bf16d22a1e66b84b.png" alt="Aston Villa logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Aston Villa&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Atalanta+BC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/de/b0/2eb356054b568275969a65697a00.png" alt="Atalanta BC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Atalanta BC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Athletic+Bilbao&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/3c/05/656346f9413d882967322e3e8f9c.png" alt="Athletic Bilbao logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Athletic Bilbao&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Atlanta+United&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/97/a7/0096b0654c4abe151fce20c44b2b.png" alt="Atlanta United logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Atlanta United&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Atletico+Madrid&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/86/be/ad9617bb49e38daf1fd7a1e0f58a.png" alt="Atletico Madrid logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Atletico Madrid&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Austin&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d2/81/e02a7a79478b85dafd2fd53b1f2a.png" alt="Austin FC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Austin FC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Barcelona&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/c3/4b/ae6184594058b8fae9a0a4322080.png" alt="Barcelona logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Barcelona&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Bayern+Munich&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f8/ef/ee56a6fd46fa9ff2eee705ce8b2d.png" alt="Bayern Munich logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Bayern Munich&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Bologna&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/c5/de/6c80abe24deb90f61281715d1472.png" alt="Bologna logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Bologna&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Borussia+Dortmund&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/aa/3e/e58b0b594ba98a7fadb339c60601.png" alt="Borussia Dortmund logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Borussia Dortmund&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Brighton+%26+Hove+Albion&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cb/c3/3ad6e9ec4bcf9543e16f7d8c2456.png" alt="Brighton &amp; Hove Albion logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Brighton &amp; Hove Albion&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Cagliari&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/36/20/491525ba479eb6e79bfc0b7ba43b.png" alt="Cagliari logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Cagliari&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Charlotte&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e4/a3/67a6c2d540839a5b5c72d78f520e.png" alt="Charlotte FC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Charlotte FC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Chelsea&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/c2/4f/b5c713484133b5362bec7d8dabae.png" alt="Chelsea logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Chelsea&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Chicago+Fire&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/78/a8/2e0c5cd04d879f9933029366a8a6.png" alt="Chicago Fire logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Chicago Fire&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Chivas&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f0/46/8cf4e23f460cbeadc894c6d9d0e1.png" alt="Chivas logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Chivas&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Club+America&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/4f/06/a0fd1c73413aaf9d97fbae57f932.png" alt="Club America logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Club America&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Colorado+Rapids&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/43/f1/c3a5092149419f495892f0b3525c.png" alt="Colorado Rapids logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Colorado Rapids&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Columbus+Crew&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2b/4f/d0b364704a639ca1cf8b9a71b526.png" alt="Columbus Crew logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Columbus Crew&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Cruz+Azul&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/15/06/f3edb36d4146b308291850ce942b.png" alt="Cruz Azul logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Cruz Azul&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Crystal+Palace&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2f/3c/8cbd3bd5497692f970ef4d530993.png" alt="Crystal Palace logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Crystal Palace&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__DC+United&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/bd/48/cf42fe934af3896950d39c045880.png" alt="DC United logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;DC United&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Everton&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/37/df/7d54777a40deb96b2b54ffa192b1.png" alt="Everton logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Everton&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__FC+Cincinnati&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/30/a9/00b3307c4274a6e2df29b17e6a29.png" alt="FC Cincinnati logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;FC Cincinnati&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__FC+Dallas&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/7c/bb/b54ca76240aab686808b4b4ab1be.png" alt="FC Dallas logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;FC Dallas&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Fulham&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ef/fe/2ea23f3346e8a2a5a303a27e2cc2.png" alt="Fulham FC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Fulham FC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Getafe&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/80/f6/e236606441ce9f7d9c7433ac946d.png" alt="Getafe logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Getafe&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Houston+Dynamo&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/69/88/ce1c98c447cab674a27df39fed69.png" alt="Houston Dynamo logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Houston Dynamo&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Inter+Miami+CF&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/33/bb/9a7ddd034621b64f1802bf8e6cd7.png" alt="Inter Miami CF logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Inter Miami CF&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Inter+Milan&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/69/d0/cc383e2b4f34af66b1faefa277f8.png" alt="Inter Milan logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Inter Milan&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Juventus&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a3/5f/3cc06a5e4440a3420d856756bbdf.png" alt="Juventus logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Juventus&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__LA+Galaxy&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/9e/e0/e9769b3f47e4a56fabb45592f2a8.png" alt="LA Galaxy logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;LA Galaxy&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__LAFC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/69/48/55916e3d45d09cdb2313339c980c.png" alt="LAFC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;LAFC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Lazio&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e0/2b/6e04c1c04ea28f535e05e0eeb5a1.png" alt="Lazio logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Lazio&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Leicester+City&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/42/10/83f7ef4d4fc99914f9c723e52d6e.png" alt="Leicester City logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Leicester City&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Lille+OSC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d8/84/d8142e3d4f16b079ab2106755d37.png" alt="Lille OSC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Lille OSC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Liverpool&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/4f/c6/1672ee624c5ebe0d78cda317758c.png" alt="Liverpool FC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Liverpool FC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Manchester+City&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b4/58/c8bb3c5a418e8b502c2b65d4fb4b.png" alt="Manchester City logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Manchester City&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Manchester+United&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e6/9b/56cf0a404aceb9ade9c541a61ea5.webp" alt="Manchester United logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Manchester United&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Minnesota+United&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ea/e4/bfa1fec44ce19164bede870512ba.png" alt="Minnesota United logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Minnesota United&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Monterrey&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0f/aa/6ae33f054b41b9fbc2f25255fd15.png" alt="Monterrey logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Monterrey&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Montreal+Impact&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ec/71/006441fd4008af8e5523af71b169.png" alt="Montreal Impact logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Montreal Impact&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Napoli&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a5/74/89b4a06344c187b86241886a9575.png" alt="Napoli logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Napoli&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Nashville+SC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0a/3b/19b246e34ff0adf518147369358f.png" alt="Nashville SC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Nashville SC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__New+England+Revolution&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f1/34/586cbaab4337adcc8c02139c1726.png" alt="New England Revolution logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;New England Revolution&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__New+York+Red+Bulls&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/59/85/bac7901843a1bec9b1dcf7d6e628.png" alt="New York Red Bulls logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;New York Red Bulls&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Newcastle+United&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/9d/42/5e1ee4c941e98fc5fc62d88bd232.png" alt="Newcastle United logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Newcastle United&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__NYCFC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/06/70/c38f67884012b6398a1b987909c3.png" alt="NYCFC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;NYCFC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Olympique+Lyonnais&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a0/97/389ee3bd4db8955ca0b2cf875bce.png" alt="Olympique Lyonnais logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Olympique Lyonnais&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Orlando+City&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/70/8f/38f629e949c4a5ca0b82df75929e.png" alt="Orlando City logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Orlando City&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Paris+Saint-Germain&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/33/6f/e7dc91dd40e6b694dbf3ada11982.png" alt="Paris Saint-Germain logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Paris Saint-Germain&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Philadelphia+Union&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/99/11/973744f949ecba2c7dbd367f41d4.png" alt="Philadelphia Union logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Philadelphia Union&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Portland+Timbers&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1d/b2/a0547ccf449b95fd65ed215cb625.png" alt="Portland Timbers logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Portland Timbers&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Pumas+UNAM&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cb/70/a983aca046b183c2d1c2d7059752.png" alt="Pumas UNAM logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Pumas UNAM&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Real+Madrid&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/3c/21/ae416f344b9baf9504cff0ae4ffa.png" alt="Real Madrid logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Real Madrid&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Real+Salt+Lake&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/72/6b/f790a0214567b68585ac13c9e839.png" alt="Real Salt Lake logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Real Salt Lake&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__San+Diego&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d0/0a/fbe34c2f4207a485dfb3a0c44726.png" alt="San Diego FC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;San Diego FC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__San+Jose+Earthquakes&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a3/af/de97c86840cf89273b3919a0ab79.png" alt="San Jose Earthquakes logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;San Jose Earthquakes&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Seattle+Sounders&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/43/cd/5ffa4a4d444bb52db06542914958.png" alt="Seattle Sounders logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Seattle Sounders&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Sevilla&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/58/c7/7f34d91749589db2203d42a9fb14.png" alt="Sevilla logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Sevilla&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Southampton&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/eb/33/5bd2dd15457d8e965e63277f5690.png" alt="Southampton logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Southampton&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Sporting+KC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/bc/f9/5ac8073043c28d0fbe32c1b5234c.png" alt="Sporting KC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Sporting KC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__St.+Louis+City+SC&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/04/f9/5a2864f5483d89b64c36bcc6c0a2.png" alt="St. Louis City SC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;St. Louis City SC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Tigres+UANL&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/22/d5/c25d048e4d77aa55abbb4d58c1be.png" alt="Tigres UANL logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Tigres UANL&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Torino&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/8c/3f/85c9dc0349818ff6cc7b94ad268c.png" alt="Torino logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Torino&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Toronto&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/48/b4/484f7473404e898eeba454b11d8c.png" alt="Toronto FC logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Toronto FC&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Tottenham&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fd/a4/77e50bf44d8d9a6a594db7c6865d.png" alt="Tottenham logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Tottenham&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Udinese&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cf/39/31f68d7a47f092fa6f58551a8d7c.png" alt="Udinese logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Udinese&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Valencia&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2e/46/5fdbcfb64bc0988b03a61b95d22b.png" alt="Valencia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Valencia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Vancouver+Whitecaps&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/41/ba/c396a9f147fcb5bd05f69d948fa5.png" alt="Vancouver Whitecaps logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Vancouver Whitecaps&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Villarreal+CF&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/69/90/9277d7394fa6b0df4a61ab6b1539.png" alt="Villarreal CF logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Villarreal CF&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__West+Ham+United&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/34/fd/d77029b9453c90521d1049c5971b.png" alt="West Ham United logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;West Ham United&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?filter=club__Wolverhampton+Wanderers&amp;page=1" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/28/7f/75b1d92248448a490954215ba287.png" alt="Wolverhampton Wanderers logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Wolverhampton Wanderers&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. --&gt;
+&lt;script&gt;
+(function () {
+  var BLOCK = "fastr_blocks_promo_lightbox_clubs_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target &amp;&amp; e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/promo-lightbox-clubs/block.html" download="promo-lightbox-clubs--block.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>

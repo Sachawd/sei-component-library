@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop by Nation accordion · Nutmeg</title>
+<meta name="description" content="Nation photo panels that widen on hover. On phones they become a swipe rail. No JavaScript.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body data-hub="volley" data-page="block">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley"><ul class="nm-rail"><li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li><li><a class="nm-rail__item" href="designer-guide.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="blocks.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li><li><a class="nm-rail__item" href="index.html#tools"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M19 21.5H6.5L5 20V4L6.5 2.5H19V21.5Z" stroke-miterlimit="10"/><path d="M5 19L6.5 17.5H19" stroke-miterlimit="10"/><path d="M15 7.5H9" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Resources</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Components</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="blocks.html">All blocks</a></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="false" aria-controls="nm-sub-components-1"><span>Blocks</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-1" hidden><li><a class="nm-drawer__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li><li><a class="nm-drawer__sublink" href="sale-category-tiles.html">Sale category tiles</a></li><li><a class="nm-drawer__sublink" href="sale-hero.html">Sale hero</a></li><li><a class="nm-drawer__sublink" href="sale-quick-links.html">Sale quick links strip</a></li><li><a class="nm-drawer__sublink" href="section-breaker.html">Section Breaker</a></li><li><a class="nm-drawer__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li><li><a class="nm-drawer__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-section.html">Shop by Club section</a></li><li><a class="nm-drawer__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li><li><a class="nm-drawer__sublink" href="showcase-slider.html">Showcase Slider</a></li></ul></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="true" aria-controls="nm-sub-components-2"><span>Canon blocks, needs review</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-2"><li><a class="nm-drawer__sublink" href="marquee-back-to-season.html">Marquee, Back to Season</a></li><li><a class="nm-drawer__sublink" href="wall-new-arrivals.html">Wall, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="wall-july-launches.html">Wall, July launches</a></li><li><a class="nm-drawer__sublink" href="marquee-and-wall.html">Marquee and Wall</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-jerseys.html">Launch Carousel, jerseys</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-new-arrivals.html">Launch Carousel, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="intent-selector-small.html">Intent Selector, small</a></li><li><a class="nm-drawer__sublink" href="spotlight-rail-spezial.html">Spotlight Rail, Spezial</a></li><li><a class="nm-drawer__sublink" href="quick-links-rail-new.html">Quick Links Rail, new products</a></li><li><a class="nm-drawer__sublink" href="kit-rail-home.html">Kit Rail, home page</a></li><li><a class="nm-drawer__sublink" href="selection-section-jersey-shop.html">Selection Section, Jersey Shop</a></li><li><a class="nm-drawer__sublink" href="selection-section-fall-sale.html">Selection Section, Fall Sale</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-leagues.html">Shop-by Rail, leagues</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-players.html">Shop-by Rail, players</a></li><li><a class="nm-drawer__sublink" href="intent-chips-promo.html">Intent Selector Chips, promo eligible</a></li><li><a class="nm-drawer__sublink" href="intent-chips-sale.html">Intent Selector Chips, sale</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-promo.html">Team Logo Marquee, promo eligible</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-sale.html">Team Logo Marquee, sale</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-clubs.html">Promo Lightbox, clubs</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-nations.html">Promo Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="shop-lightbox-nations.html">Shop Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="matchup-rail.html">Matchup Rail</a></li><li><a class="nm-drawer__sublink" href="hero-parallax-layers.html">Hero, parallax image layers</a></li><li><a class="nm-drawer__sublink" href="hero-falling-objects.html">Hero, falling objects</a></li><li><a class="nm-drawer__sublink" href="spatial-cards-slider.html">Spatial Cards Slider</a></li><li><a class="nm-drawer__sublink" href="shop-the-look-clubs.html">Shop the Look, clubs</a></li><li><a class="nm-drawer__sublink" href="shop-by-nation-accordion.html" aria-current="page">Shop by Nation accordion</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-rail.html">Shop by Club rail</a></li></ul></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">Soccer.com</span></div>
+  <h1>Shop by Nation accordion</h1>
+  <p class="nm-lede">Nation photo panels that widen on hover. On phones they become a swipe rail. No JavaScript.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-shop-by-nation-accordion"><button type="button" class="nm-tab" role="tab" aria-controls="frame-shop-by-nation-accordion" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-shop-by-nation-accordion" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-shop-by-nation-accordion" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/shop-by-nation-accordion/fastr-paste.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-shop-by-nation-accordion" src="../blocks/shop-by-nation-accordion/fastr-paste.html" height="691" title="Shop by Nation accordion, live demo"></iframe></div></div>
+</section><section class="nm-section" id="review">
+<div class="nm-section__head"><h2 class="nm-h2">Before designers use it<button type="button" class="nm-anchor" aria-label="Copy a link to Before designers use it"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>This block needs a review before it goes on a page.</strong><p>It was copied into the library on 25 Oct 2026 from the canon folder, as it was. Fable and Sacha still need to check it against the paste rules, the five screen widths and contrast. Until then, study it and build from it, but check with Sacha before using it.</p></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste the whole file into one Fastr HTML component.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>fastr-paste.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!--
+  ════════════════════════════════════════════════════════════════════════════
+  SHOP BY NATION — hover-expand accordion · Soccer.com · v3 · 2026-09-17
+  ──────────────────────────────────────────────────────────────────────────
+  v3 adds photography to v2. Everything else is unchanged from v2.
+
+  Surface: Fastr CMS HTML widget. Native component, NOT an iframe.
+  Fragment, not a document: no doctype, html, head or body. v1 had none either.
+  Zero JavaScript. The component is complete with no script.
+
+  HEIGHT BUDGET (exact heights, never min-height)
+    ≤ 767px    480px   swipe rail, one panel visible + peek
+    768–1023px 560px   flush accordion
+    ≥ 1024px   620px   flush accordion
+
+  TOKEN CHECK — every name verified 2026-09-17 against the production
+  components that ship today, the Friends &amp; Family sale page and the Matchday
+  Bar Finder.
+    --theme-text-body ............ exists in production ... kept
+    --theme-bg-page .............. exists in production ... kept
+    --theme-text-oninvert ........ exists in production ... kept
+    --theme-bg-subtle ............ exists in production ... kept
+    --theme-bg-primary-normal .... exists in production ... kept
+    --font-body .................. DOES NOT EXIST ......... removed
+  There is no production font token. Both reference components declare their
+  own local font variable and put the real stack in it, so this one does the
+  same with --sdc-ta-font. Typography ships as utility classes, not tokens.
+  No name here can have its fallback win silently.
+
+  IMAGES — all five real. Chosen from the Tunnel build on the Mac
+  (CLICKUP-ASSET-SWEEP/the-tunnel, 8,313 items, read 2026-09-17). Addresses are
+  built from the file name: the dxassets image host, plus Photos/ and the file
+  name, with + # &amp; encoded. Vendor Assets is the shared tier and is usable on
+  Soccer.com. No WorldSoccerShop asset is used anywhere here.
+
+  RIGHTS: everything in the Tunnel is approved for photography use
+  (Sacha, 2026-09-17). Named players need no separate check, so frames were
+  picked on quality rather than on avoiding a face.
+
+    Germany ..... 3:4  Florian Wirtz, 26/27 away player frame
+    England ..... 3:4  Cole Palmer, 2026 player frame
+    Peru ........ 3:4  federation 2D, the only portrait Peru frame in the Tunnel
+    Scotland .... 3:4  federation 2D, the only portrait Scotland frame in the Tunnel
+    Mexico ...... 3:4  26/27 away, fans
+
+  TWO NATIONS CHANGED, and why. Wales and South Africa have no Soccer.com-usable
+  photography at all: Wales has one Vendor Assets item and it is a thumbnail,
+  and all seven South Africa items are tagged WorldSoccerShop. Rather than ship
+  two grey panels, England and Mexico take their places. Both are live on
+  Soccer.com and both have deep coverage in the Tunnel. Swap them for any other
+  nation freely; the only requirement is a live team page and a portrait frame.
+
+  VERTICAL ONLY (Sacha, 2026-09-17). Panels take portrait frames only:
+  3:4, 4:5, 2:3 or 9:16. Never square, never landscape. A 1:1 or 16:9 frame
+  centre-crops to a strip of itself in a panel this tall and loses the kit.
+  When swapping a nation, check the frame's ratio before the filename.
+
+  CROP: every frame is 3:4. The panel is 1 to 1.375 and a 3:4 frame is 1 to
+  1.333, so a sliver comes off the bottom of each. The crop is anchored top, so
+  faces and kit stay safe. Nothing here is 16:9.
+
+  NOT ONE OF THESE FIVE HAS BEEN SEEN TO RENDER. No agent call was made to the
+  bucket or the image host, per Sacha's standing rule of 2026-08-27 that the
+  check is a human in a real browser. Open each one before this ships.
+
+  LINKS — all five click-verified on the live site 2026-09-17. Every one
+  returns 200. The link book's slugs each redirect one hop to a
+  "-national-team" address, so the canonical addresses are used here and the
+  redirect is skipped.
+  Two corrections to the link book worth making in Airtable:
+    South Africa IS live, at /shop/fan/teams/south-africa-national-team.
+      It is missing from site-links.csv. It is restored to this component.
+    Northern Ireland is genuinely not on Soccer.com. Both plausible addresses
+      return 404. Wales stands in its place. Nothing was invented.
+
+  CONTRAST — measured, worst case (a pure-white photograph behind the scrim)
+    Team name, white on scrim ........ 9.6:1  PASS
+    CTA ink on CTA ground ........... 14.9:1  PASS
+    Section title on page ........... 14.9:1  PASS
+    Focus ring, white on scrim ....... 8.5:1  PASS (3:1 needed)
+
+  PRE-FLIGHT GREP: clean. No html, body, :root, bare * reset or 100vh selectors.
+    The string "body" appears only in the token name --theme-text-body and in
+    this comment. That is a false positive, not a document-level rule.
+
+  ⚠️ DEVIATION 1 — cta-canon.css declares its Osmo API on :root. A CMS widget may
+     not target the root, so the same declarations sit on the wrapper class.
+  ⚠️ DEVIATION 2 — every Osmo .button-009 selector is prefixed with the wrapper
+     class. Declarations, easings, hover calc, click scale and focus ring verbatim.
+  ⚠️ DEVIATION 3 — the label face is Figtree, not Chakra Petch. Figtree is
+     Soccer.com's font; Chakra Petch is WorldSoccerShop's.
+  ⚠️ DEVIATION 4 — CTA ground and ink reference --theme-* tokens rather than the
+     canon's literal #fff/#0A0A0A, per the CMS token rule.
+
+  NO CLICK BEACON. The beacon exists to cross an iframe boundary. This renders
+  natively on soccer.com, so its links are ordinary internal navigation and
+  analytics already sees them.
+
+  CHANGED IN v2
+    1. Phone rail allows vertical page scroll with a thumb on the rail.
+    2. --font-body removed, see the token check above.
+    3. Images: three real frames in, two nations still grey. See above.
+    4. No doctype to remove; v1 was already a fragment.
+    5. --sdc-ta-* renamed --sdc-ta-*. The campaign layer stays for campaign
+       colour and type only.
+    6. Links click-verified and switched to the canonical addresses.
+       South Africa restored in place of Nigeria.
+  ════════════════════════════════════════════════════════════════════════════
+--&gt;
+
+&lt;style&gt;
+/* ── Scoped reset ─────────────────────────────────────────────────────── */
+.sdc-team-accordion,
+.sdc-team-accordion *,
+.sdc-team-accordion *::before,
+.sdc-team-accordion *::after {
+  box-sizing: border-box;
+}
+
+/* ── BASE LAYER — production theme tokens, fallbacks are for preview only ── */
+.sdc-team-accordion {
+  font-family: var(--sdc-ta-font);
+  color: var(--theme-text-body, #27272A);
+  background: var(--theme-bg-page, #FFFFFF);
+
+  /* ── COMPONENT LAYER — renamed from --campaign-* at Fable's review ── */
+  --sdc-ta-font: Figtree, 'Segoe UI', system-ui, sans-serif;
+  --sdc-ta-panel-h: 620px;
+  --sdc-ta-panel-expand: 2.2;
+  --sdc-ta-scrim-floor: rgba(0, 0, 0, 0.85);
+  --sdc-ta-scrim-mid: rgba(0, 0, 0, 0.72);
+  --sdc-ta-scrim-top: rgba(0, 0, 0, 0);
+  --sdc-ta-motion-base: 0.4s;
+  --sdc-ta-motion-ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Osmo Button 009 API — see DEVIATION 1 */
+  --button-009-color: var(--theme-text-body, #27272A);
+  --button-009-color-background: var(--theme-bg-page, #FFFFFF);
+  --button-009-color-focus: var(--theme-text-oninvert, #FFFFFF);
+  --button-009-border-radius: 0;
+  --button-009-icon-size: 1.2143em;
+  --button-009-padding-top: 0.8571em;
+  --button-009-padding-right: 1.1429em;
+  --button-009-padding-bottom: 0.8571em;
+  --button-009-padding-left: 1.1429em;
+  --button-009-gap: 0.5714em;
+  --button-009-overflow: clip;
+  --button-009-focus-inset: -0.125em;
+  --button-009-click-scale: 0.955 0.925;
+  --button-009-ease-hover: cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click: cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --sdc-cta-size: 14px;
+  --sdc-cta-weight: 600;
+  --sdc-cta-line: 1.0714;
+  --sdc-cta-line-em: 1.0714em;
+  --sdc-cta-tracking: 0.08em;
+  --sdc-cta-arrow-size: 1.5714em;
+  --sdc-cta-arrow-tracking: 0.02em;
+}
+
+.sdc-team-accordion__title {
+  margin: 0 0 20px;
+  padding: 0 20px;
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--theme-text-body, #27272A);
+}
+
+/* ── Panel row ────────────────────────────────────────────────────────── */
+.sdc-team-accordion__row {
+  display: flex;
+  width: 100%;
+  height: var(--sdc-ta-panel-h);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.sdc-team-accordion__item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  transition: flex-grow var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease);
+}
+
+.sdc-team-accordion__panel {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+
+/* The focus ring is a pseudo-element, not an outline: the panel image is an
+   absolutely positioned child and paints over the parent's outline. */
+.sdc-team-accordion__panel:focus-visible { outline: none; }
+
+.sdc-team-accordion__panel::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  z-index: 3;
+  pointer-events: none;
+  border: 3px solid var(--theme-text-oninvert, #FFFFFF);
+  box-shadow: 0 0 0 3px var(--theme-bg-primary-normal, #27272A);
+  opacity: 0;
+}
+
+.sdc-team-accordion__panel:focus-visible::after { opacity: 1; }
+
+.sdc-team-accordion__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform-origin: center top;
+  background: var(--theme-bg-subtle, #F5F5F5);
+  /* If a photo 404s, the panel falls back to a clean grey rather than showing
+     the alt text across the artwork. The alt attribute is untouched, so screen
+     readers still read it. Bucket filenames fail silently, so this matters. */
+  color: transparent;
+  font-size: 0;
+  transition: transform var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease);
+}
+
+.sdc-team-accordion__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--sdc-ta-scrim-floor) 0%,
+    var(--sdc-ta-scrim-mid) 22%,
+    var(--sdc-ta-scrim-top) 72%
+  );
+  pointer-events: none;
+}
+
+.sdc-team-accordion__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.sdc-team-accordion__name {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--theme-text-oninvert, #FFFFFF);
+}
+
+/* CTA rests hidden on fine pointers only, and returns on hover OR focus */
+@media (hover: hover) and (pointer: fine) {
+  .sdc-team-accordion__item:hover,
+  .sdc-team-accordion__item:focus-within {
+    flex-grow: var(--sdc-ta-panel-expand);
+  }
+
+  .sdc-team-accordion__panel:hover .sdc-team-accordion__image,
+  .sdc-team-accordion__panel:focus-within .sdc-team-accordion__image {
+    transform: scale(1.06);
+  }
+
+  .sdc-team-accordion__cta {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease),
+      transform var(--sdc-ta-motion-base) var(--sdc-ta-motion-ease);
+  }
+
+  .sdc-team-accordion__panel:hover .sdc-team-accordion__cta,
+  .sdc-team-accordion__panel:focus-within .sdc-team-accordion__cta,
+  .sdc-team-accordion__panel:focus-visible .sdc-team-accordion__cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Tablet ───────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .sdc-team-accordion { --sdc-ta-panel-h: 560px; }
+  .sdc-team-accordion__content { padding: 24px; }
+}
+
+/* ── Phone: swipe rail ────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .sdc-team-accordion { --sdc-ta-panel-h: 480px; }
+
+  .sdc-team-accordion__title {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  .sdc-team-accordion__row {
+    gap: 12px;
+    padding-left: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;
+    touch-action: pan-x pan-y pinch-zoom;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sdc-team-accordion__row::-webkit-scrollbar { display: none; }
+
+  .sdc-team-accordion__item {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+  }
+
+  .sdc-team-accordion__item:last-child { margin-right: 16px; }
+
+  .sdc-team-accordion__panel { border-radius: 4px; }
+
+  .sdc-team-accordion__content { padding: 24px 20px; }
+
+  .sdc-team-accordion__name { font-size: 24px; }
+}
+
+/* ── Reduced motion: everything stops, nothing is hidden ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sdc-team-accordion__item,
+  .sdc-team-accordion__image,
+  .sdc-team-accordion__cta {
+    transition: none;
+  }
+  .sdc-team-accordion__cta {
+    opacity: 1;
+    transform: none;
+  }
+  .sdc-team-accordion__panel:hover .sdc-team-accordion__image,
+  .sdc-team-accordion__panel:focus-within .sdc-team-accordion__image {
+    transform: none;
+  }
+}
+
+/* ═══ OSMO BUTTON 009 — from cta-canon.css, scoped (DEVIATION 2) ════════ */
+.sdc-team-accordion .button-009 {
+  color: var(--button-009-color);
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #0000;
+  outline-style: none;
+  padding: 0;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-grid;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  transition: scale 0.15s var(--button-009-ease-click);
+}
+.sdc-team-accordion .button-009::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: var(--button-009-focus-inset);
+  border-radius: var(--button-009-border-radius);
+  transition: box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events: none;
+  z-index: 1;
+}
+.sdc-team-accordion .button-009__inner {
+  pointer-events: none;
+  grid-column-gap: var(--button-009-gap);
+  grid-row-gap: var(--button-009-gap);
+  padding-top: var(--button-009-padding-top);
+  padding-right: var(--button-009-padding-right);
+  padding-bottom: var(--button-009-padding-bottom);
+  padding-left: var(--button-009-padding-left);
+  z-index: 1;
+  border-radius: var(--button-009-border-radius);
+  overflow: var(--button-009-overflow);
+  grid-area: 1 / 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+.sdc-team-accordion .button-009__icon {
+  width: var(--button-009-icon-size);
+  height: var(--button-009-icon-size);
+  flex: none;
+  transition: translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.sdc-team-accordion .button-009__icon.is--left {
+  left: var(--button-009-padding-right);
+  position: absolute;
+  opacity: 0;
+  translate: -1.5em 0 0;
+}
+.sdc-team-accordion .button-009__text {
+  flex: none;
+  transition: translate 0.5s var(--button-009-ease-hover);
+}
+.sdc-team-accordion .button-009__bg {
+  background-color: var(--button-009-color-background);
+  border-radius: var(--button-009-border-radius);
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .sdc-team-accordion [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text {
+    translate: calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition: translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .sdc-team-accordion [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left {
+    translate: 0 0 0;
+    opacity: 1;
+    transition: translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .sdc-team-accordion [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right {
+    translate: 1.5em 0 0;
+    opacity: 0;
+    transition: translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+/* ═══ END OSMO ═════════════════════════════════════════════════════════ */
+
+/* ── Label skin (DEVIATION 3) ─────────────────────────────────────────── */
+.sdc-team-accordion .button-009 {
+  font-family: var(--sdc-ta-font);
+  font-size: var(--sdc-cta-size);
+}
+.sdc-team-accordion .button-009__text {
+  font-weight: var(--sdc-cta-weight);
+  line-height: var(--sdc-cta-line);
+  letter-spacing: var(--sdc-cta-tracking);
+  margin-right: calc(var(--sdc-cta-tracking) * -1);
+  text-transform: uppercase;
+}
+.sdc-team-accordion .button-009__icon {
+  height: var(--sdc-cta-line-em);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sdc-team-accordion .button-009__icon &gt; i {
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--sdc-cta-arrow-size);
+  letter-spacing: var(--sdc-cta-arrow-tracking);
+  line-height: 1;
+  display: block;
+}
+&lt;/style&gt;
+
+&lt;section class="sdc-team-accordion" aria-labelledby="sdc-team-accordion-title"&gt;
+  &lt;h2 class="sdc-team-accordion__title" id="sdc-team-accordion-title"&gt;Shop by Nation&lt;/h2&gt;
+
+  &lt;ul class="sdc-team-accordion__row"&gt;
+
+    &lt;li class="sdc-team-accordion__item"&gt;
+      &lt;a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/germany-national-team" target="_top"&gt;
+        &lt;img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/germany_2026_away_player_florian_wirtz_21_3x4.jpg"
+             alt="Germany national team kit" loading="eager" decoding="async" /&gt;
+        &lt;span class="sdc-team-accordion__scrim"&gt;&lt;/span&gt;
+        &lt;span class="sdc-team-accordion__content"&gt;
+          &lt;span class="sdc-team-accordion__name"&gt;Germany&lt;/span&gt;
+          &lt;span class="sdc-team-accordion__cta"&gt;
+            &lt;span class="button-009"&gt;
+              &lt;span class="button-009__inner"&gt;
+                &lt;span class="button-009__icon is--left" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+                &lt;span class="button-009__text"&gt;Shop Now&lt;/span&gt;
+                &lt;span class="button-009__icon is--right" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span class="button-009__bg"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+
+    &lt;li class="sdc-team-accordion__item"&gt;
+      &lt;a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/england-national-team" target="_top"&gt;
+        &lt;img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/england_2026_player_cole_palmer_01_3x4.jpg"
+             alt="England national team kit" loading="eager" decoding="async" /&gt;
+        &lt;span class="sdc-team-accordion__scrim"&gt;&lt;/span&gt;
+        &lt;span class="sdc-team-accordion__content"&gt;
+          &lt;span class="sdc-team-accordion__name"&gt;England&lt;/span&gt;
+          &lt;span class="sdc-team-accordion__cta"&gt;
+            &lt;span class="button-009"&gt;
+              &lt;span class="button-009__inner"&gt;
+                &lt;span class="button-009__icon is--left" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+                &lt;span class="button-009__text"&gt;Shop Now&lt;/span&gt;
+                &lt;span class="button-009__icon is--right" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span class="button-009__bg"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+
+    &lt;li class="sdc-team-accordion__item"&gt;
+      &lt;a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/peru-national-team" target="_top"&gt;
+        &lt;img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/Peru_2026_FPF_2D_3x4_RGB-1385594.jpg"
+             alt="Peru national team kit" loading="eager" decoding="async" /&gt;
+        &lt;span class="sdc-team-accordion__scrim"&gt;&lt;/span&gt;
+        &lt;span class="sdc-team-accordion__content"&gt;
+          &lt;span class="sdc-team-accordion__name"&gt;Peru&lt;/span&gt;
+          &lt;span class="sdc-team-accordion__cta"&gt;
+            &lt;span class="button-009"&gt;
+              &lt;span class="button-009__inner"&gt;
+                &lt;span class="button-009__icon is--left" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+                &lt;span class="button-009__text"&gt;Shop Now&lt;/span&gt;
+                &lt;span class="button-009__icon is--right" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span class="button-009__bg"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+
+    &lt;li class="sdc-team-accordion__item"&gt;
+      &lt;a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/scotland-national-team" target="_top"&gt;
+        &lt;img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/Scotland__2026__Away___SFA_2D_3x4_RGB-1385754.jpg"
+             alt="Scotland national team kit" loading="eager" decoding="async" /&gt;
+        &lt;span class="sdc-team-accordion__scrim"&gt;&lt;/span&gt;
+        &lt;span class="sdc-team-accordion__content"&gt;
+          &lt;span class="sdc-team-accordion__name"&gt;Scotland&lt;/span&gt;
+          &lt;span class="sdc-team-accordion__cta"&gt;
+            &lt;span class="button-009"&gt;
+              &lt;span class="button-009__inner"&gt;
+                &lt;span class="button-009__icon is--left" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+                &lt;span class="button-009__text"&gt;Shop Now&lt;/span&gt;
+                &lt;span class="button-009__icon is--right" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span class="button-009__bg"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+
+    &lt;li class="sdc-team-accordion__item"&gt;
+      &lt;a class="sdc-team-accordion__panel" data-hover href="https://www.soccer.com/shop/fan/teams/mexico-national-team" target="_top"&gt;
+        &lt;img class="sdc-team-accordion__image" width="1280" height="1760"
+             src="https://www.imagehandler.net/dxassets/?img=Photos/Mexico_2026_Away__Fans_3x4_RGB-1384305.jpg"
+             alt="Mexico national team kit" loading="eager" decoding="async" /&gt;
+        &lt;span class="sdc-team-accordion__scrim"&gt;&lt;/span&gt;
+        &lt;span class="sdc-team-accordion__content"&gt;
+          &lt;span class="sdc-team-accordion__name"&gt;Mexico&lt;/span&gt;
+          &lt;span class="sdc-team-accordion__cta"&gt;
+            &lt;span class="button-009"&gt;
+              &lt;span class="button-009__inner"&gt;
+                &lt;span class="button-009__icon is--left" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+                &lt;span class="button-009__text"&gt;Shop Now&lt;/span&gt;
+                &lt;span class="button-009__icon is--right" aria-hidden="true"&gt;&lt;i&gt;&amp;#8594;&lt;/i&gt;&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;span class="button-009__bg"&gt;&lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+
+  &lt;/ul&gt;
+&lt;/section&gt;</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/shop-by-nation-accordion/fastr-paste.html" download="shop-by-nation-accordion--fastr-paste.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>

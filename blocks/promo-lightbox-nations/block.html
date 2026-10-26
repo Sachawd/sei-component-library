@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en" data-brand="wss">
+<head>
+<!--
+  promo-lightbox--nations-v1.html : canon v2
+  Sacha's A-to-Z nations lightbox (the newer, cleaner design), fixed and
+  catalogued by Fable 2026-08-27. NOT an iframe block: this document is the
+  SOURCE of a Fastr Custom Action lightbox (Find Your National Team button).
+  Published on Netlify as a team reference copy only; Fastr paste is how it
+  ships. Sister file: promo-lightbox--clubs-v1.html.
+
+  FIXES 2026-08-27, every one verified in a live browser:
+  - Mexico, Italy and Greece filters had a DOUBLE SPACE in the value and
+    returned 0 results (Mexico single-space: 252). All three fixed.
+  - USMNT filter said "US Men's National Team National Team": 0 results.
+    The real facet value is "USA Mens National Team" (227 results).
+    ("USA Womens National Team" also exists, for a future row.)
+  - 10 nations had invisible 1x1 placeholder crests: real crests wired in
+    from the LOGOS crest sheet (Albania, Cuba, Iraq, Ireland, Serbia,
+    Slovakia, Sweden, Trinidad & Tobago, Ukraine, UAE), all load-checked.
+  - Senegal wore ARSENAL's crest: real Senegal crest now.
+  - China row REMOVED: 0 promo-eligible products, and it wore the Chivas
+    crest. Re-add with a real crest if China stock appears.
+  - Title "Snag a Deal by Nation" (family style, per Sacha). "Promotion
+    Eligible" badge removed: it carried the jargon the retitle avoids.
+  - One self-disarming onerror per crest img (rule).
+
+  FASTR SETTINGS: width 720 desktop (860 also fine), full width mobile,
+  SAME source in both the up-to-640 and 641-plus variants.
+-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promo Lightbox: Nations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── WSS Design Tokens ──────────────────────────────────── */
+    :root {
+      --wss-gold-50:  #f7f5ee;
+      --wss-gold-100: #cfc39a;
+      --wss-gold-300: #ad9851;
+      --wss-gold-400: #796a39;
+      --wss-gold-500: #6a5d31;
+
+      --wss-bg:      #ffffff;
+      --wss-surface: #f5f5f5;
+      --wss-muted:   #e5e5e5;
+
+      --wss-text:         #27272a;
+      --wss-text-muted:   #525252;
+      --wss-text-subtle:  #737373;
+      --wss-text-on-dark: #ffffff;
+
+      --wss-border-subtle: #e5e5e5;
+      --wss-border-strong: #171717;
+
+      --wss-gunmetal: #1c1d24;
+      --wss-charcoal: #2e2f3a;
+
+      --wss-sale-bg:   #ef4444;
+      --wss-sale-text: #ffffff;
+
+      --wss-ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --wss-spring: cubic-bezier(0.25, 1, 0.5, 1);
+      --wss-fast:   0.22s;
+      --wss-base:   0.35s;
+
+      --wss-font: 'Chakra Petch', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--wss-font);
+      background: transparent;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Lightbox wrapper ───────────────────────────────── */
+    .wss-lb {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--wss-bg);
+      padding: 40px 40px 48px;
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .wss-lb__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .wss-lb__eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--wss-gold-300);
+      margin-bottom: 6px;
+    }
+
+    .wss-lb__title {
+      font-size: 32px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--wss-text);
+      line-height: 1.1;
+      margin: 0 0 6px;
+    }
+
+    .wss-lb__subtitle {
+      display: block;
+      font-family: var(--wss-font);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--wss-text-subtle);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .wss-lb__badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: var(--wss-sale-bg);
+      color: var(--wss-sale-text);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── Divider ─────────────────────────────────────────── */
+    .wss-lb__rule {
+      height: 2px;
+      background: linear-gradient(90deg, var(--wss-gold-400) 0%, var(--wss-gold-100) 60%, var(--wss-muted) 100%);
+      margin-bottom: 28px;
+      border: none;
+    }
+
+    /* ── Team list ─────────────────────────────────────── */
+    .promo-team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .promo-team-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 14px;
+      background: var(--wss-bg);
+      border: 1.5px solid var(--wss-border-subtle);
+      text-decoration: none;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      transition:
+        background var(--wss-fast) var(--wss-ease),
+        border-color var(--wss-fast) var(--wss-ease),
+        transform var(--wss-fast) var(--wss-spring),
+        box-shadow var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover {
+      background: var(--wss-gunmetal);
+      border-color: var(--wss-gunmetal);
+      transform: translateX(3px);
+      box-shadow: 0 6px 18px rgba(28, 29, 36, 0.18);
+    }
+
+    .promo-team-row:active {
+      transform: scale(0.99);
+    }
+
+    .team-logo-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--wss-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      transition: transform var(--wss-fast) var(--wss-spring), background var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover .team-logo-wrap {
+      transform: scale(1.08);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .team-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .promo-team-row__divider {
+      width: 1px;
+      height: 20px;
+      background: var(--wss-border-subtle);
+      flex-shrink: 0;
+      transition: background var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover .promo-team-row__divider {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .promo-team-row__name {
+      font-family: var(--wss-font);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--wss-text);
+      text-align: left;
+      transition: color var(--wss-fast) var(--wss-ease), font-weight var(--wss-fast);
+    }
+
+    .promo-team-row:hover .promo-team-row__name {
+      color: var(--wss-text-on-dark);
+      font-weight: 600;
+    }
+
+    /* ── Mobile ─────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .wss-lb {
+        padding: 28px 20px 36px;
+      }
+      .wss-lb__title {
+        font-size: 24px;
+      }
+      .wss-lb__header {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .promo-team-row__name {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wss-lb">
+
+    <div class="wss-lb__header">
+      <div>
+        <span class="wss-lb__eyebrow">WorldSoccerShop</span>
+        <h1 class="wss-lb__title">Snag a Deal by Nation</h1>
+        <span class="wss-lb__subtitle">Shop your nation's deals</span>
+      </div>
+    </div>
+
+    <hr class="wss-lb__rule">
+
+    <div class="promo-team-list">
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Albania+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e9/8f/9071a2f8453381581cf8be82c976.png" alt="Albania logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Albania</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Algeria+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/97/f9/3722257a476cace899cf0cd1bf0e.png" alt="Algeria logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Algeria</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Argentina+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1a/04/e1ba4f70474d9b643639b26b8d0b.png" alt="Argentina logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Argentina</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Australia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/db/06/8c476d1d4a0d8f2ffc9c96a35c40.png" alt="Australia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Australia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Austria+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2e/e5/2e00f653441786ee7cd2aacffc5d.png" alt="Austria logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Austria</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Belgium+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fe/da/61d201be4873b7fc4e5a6d2a56e2.png" alt="Belgium logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Belgium</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Brazil+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/99/05/c4034c7d4553a10b9cfd151eb342.png" alt="Brazil logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Brazil</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Cameroon+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/96/ae/f11416604d21a361aaf4eb5eb414.png" alt="Cameroon logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Cameroon</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Canada+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fb/fd/9c6c6bcc460abcd2531cf105869f.png" alt="Canada logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Canada</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Cape+Verde+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b1/31/04d9806345979da9c9e918458bd7.png" alt="Cape Verde logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Cape Verde</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Chile+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fc/60/a85a95684946a4f81f254b1040f1.png" alt="Chile logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Chile</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Colombia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/27/07/40b877f94ac7b14f431dae83ff96.png" alt="Colombia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Colombia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Costa+Rica+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/32/93/7c83c3914df79fd9b93bf7b8b3ff.png" alt="Costa Rica logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Costa Rica</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Croatia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/00/8b/224881854f8db735f0c84dbe30b2.png" alt="Croatia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Croatia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Cuba+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/88/b1/a7fbd25c43f5afebcc2659b0258b.png" alt="Cuba logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Cuba</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Cura%C3%A7ao+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e3/7c/33a478f043619ab55505e058d862.png" alt="Curaçao logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Cura&ccedil;ao</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Czech+Republic+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fb/0f/a674da5d4646a7617f7e98e33765.png" alt="Czech Republic logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Czech Republic</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Denmark+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0e/4f/094226aa44e594dbac4082b38ba3.png" alt="Denmark logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Denmark</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Ecuador+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/49/a7/89e260bc47efa6e676f27f66313f.png" alt="Ecuador logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Ecuador</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Egypt+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a4/8d/a288de4f4ec3888e8539ba24e8d5.png" alt="Egypt logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Egypt</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__El+Salvador+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/29/2b/635d0e164ed89c73e5335833a54b.png" alt="El Salvador logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">El Salvador</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__England+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/3f/8b/fe0042954f5c88e7467860dfe147.png" alt="England logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">England</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__France+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2c/3a/077396044eebaa88266c705f33d2.png" alt="France logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">France</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Germany+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/45/fc/8ff90a9b422a8ed1ab32819f6bc2.png" alt="Germany logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Germany</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Ghana+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/de/e9/e4fe3e1b45d79e5b7fadf69524b8.png" alt="Ghana logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Ghana</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Greece+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fe/56/f96b6a5548178199f3a178654610.png" alt="Greece logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Greece</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Guatemala+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ce/4a/c92d7df84341a5bab0c8c232b94b.png" alt="Guatemala logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Guatemala</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Haiti+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0b/66/97b5b4a24a4084792bdd93cfda39.png" alt="Haiti logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Haiti</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Honduras+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/82/da/5cc8e0fa4935b383fcfe1b823fa6.png" alt="Honduras logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Honduras</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Hungary+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b2/fd/b7739bde4e7eba10813d59fcd86c.png" alt="Hungary logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Hungary</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Iceland+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/6a/37/6704bcc74e5e90de25f4d07538bb.png" alt="Iceland logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Iceland</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Iran+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/56/5d/1a9239b247dfbf54ed62ee5ccdee.png" alt="Iran logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Iran</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Iraq+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1d/09/a70a8fc040bf96317ba2e1ade574.png" alt="Iraq logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Iraq</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Ireland+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d6/bc/df45ed224b1da7f81146d2b86857.png" alt="Ireland logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Ireland</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Israel+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/6e/3f/535e9bc64757af87e86dbbfd389d.png" alt="Israel logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Israel</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Italy+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/96/33/4034820d40e9abf9286ede2be70a.png" alt="Italy logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Italy</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Ivory+Coast+%2F+C%C3%B4te+d%27Ivoire+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ff/0e/ef106919436f9e017e3afd9906c1.png" alt="Ivory Coast logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Ivory Coast</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Jamaica+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/9c/23/fdda3bc6492caea77c74b80e2a94.png" alt="Jamaica logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Jamaica</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Japan+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/61/10/fb3af05a4540b50edf3960952048.png" alt="Japan logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Japan</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Jordan+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d3/e8/a0d080e6486a9bfac7a752106c2e.png" alt="Jordan logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Jordan</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Mexico+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/74/9a/e7206b704553afca07f3ddd750ff.png" alt="Mexico logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Mexico</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Morocco+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f5/74/782aae234358b09a0535c7f55c8e.png" alt="Morocco logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Morocco</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Netherlands+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/42/20/70049ac947a2bb5799a3cac07776.png" alt="Netherlands logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Netherlands</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__New+Zealand+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a3/9f/d559b6cc4985979f04a78ab2bd00.png" alt="New Zealand logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">New Zealand</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Nigeria+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/bd/ce/9dd401874ff285cba45cd41b938f.png" alt="Nigeria logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Nigeria</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Northern+Ireland+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/33/4a/76ccfff74f69bcf93e960667afaa.png" alt="Northern Ireland logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Northern Ireland</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Norway+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/14/e9/f8c68c444148afdbb9ffce4ddb24.png" alt="Norway logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Norway</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Panama+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0b/58/d38c13fe43d79ef89fcd74c8b82c.png" alt="Panama logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Panama</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Paraguay+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fe/12/2e80438f4de88841c12f5cf65feb.png" alt="Paraguay logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Paraguay</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Peru+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/57/79/01474cda458d9bcfeab79984684c.png" alt="Peru logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Peru</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Poland+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d9/af/7632ffd14c279526ea092b42cfb7.png" alt="Poland logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Poland</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Portugal+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a4/d7/bf652ebb489a95d74b6b6f81fce9.png" alt="Portugal logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Portugal</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Qatar+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/59/b7/20217dde4f3eb323862f61eb5aae.png" alt="Qatar logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Qatar</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Saudi+Arabia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d1/3e/183c500645b5a471456546620851.png" alt="Saudi Arabia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Saudi Arabia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Scotland+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f4/5c/ddd6dbc8425aa5a854d1954671c7.png" alt="Scotland logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Scotland</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Senegal+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e4/a2/0f894a6c425882dadd4dcb3c4a99.png" alt="Senegal logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Senegal</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Serbia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f9/11/f6cd2a554d16b5eadd1555e3642a.png" alt="Serbia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Serbia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Slovakia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/68/3e/801e2c794c8c9df9c70e811e4a4b.png" alt="Slovakia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Slovakia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__South+Africa+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/3e/f0/c46437324711a7c9730d2bb81b7e.png" alt="South Africa logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">South Africa</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__South+Korea+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cc/48/3dd8d6c34f629fc56ff965fa01a5.png" alt="South Korea logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">South Korea</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Spain+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/40/de/6ffd69874e3d89f9d77fb261471c.png" alt="Spain logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Spain</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Sweden+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/65/2e/9a2231074b12ac7e5c839e1c42c6.png" alt="Sweden logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Sweden</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Switzerland+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a3/00/0337286e45e48c1d57dd810a7fa3.png" alt="Switzerland logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Switzerland</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Trinidad+%26+Tobago+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b3/cb/33b994004fdb8edfe2a79b925cd1.png" alt="Trinidad &amp; Tobago logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Trinidad &amp; Tobago</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Tunisia+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cf/b1/3048637e40d7be84ec3cdc5157b5.png" alt="Tunisia logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Tunisia</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Turkey+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/62/c2/52571e9e45508a9b5cce217592da.png" alt="Turkey logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Turkey</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Ukraine+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f2/6b/ae053f1441e79b067d45055614ba.png" alt="Ukraine logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Ukraine</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__United+Arab+Emirates+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/eb/51/85b62d7a4348a19db0038ba10fc0.png" alt="United Arab Emirates logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">United Arab Emirates</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Uruguay+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/49/d8/cc2b81e649638377bcfb0f3385ee.png" alt="Uruguay logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Uruguay</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__USA+Mens+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a5/90/0b3ce8614dea85b1e54b7297581e.png" alt="USMNT logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">USMNT</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Uzbekistan+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1e/d4/8e883da8410da673bc1d602b3146.png" alt="Uzbekistan logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Uzbekistan</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Venezuela+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/29/d4/c19c00e4470799d52e967dadc0e7.png" alt="Venezuela logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Venezuela</span>
+      </a>
+      <a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&drawer=facet-drawer&filter=club__Wales+National+Team" target="_top">
+        <div class="team-logo-wrap">
+          <img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0a/70/8ef1c4604e1fa2aee8eac62bebde.png" alt="Wales logo">
+        </div>
+        <div class="promo-team-row__divider"></div>
+        <span class="promo-team-row__name">Wales</span>
+      </a>
+    </div>
+
+  </div>
+<!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_promo_lightbox_nations_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>C-19 · Selection Section, Fall Sale photo v1</title>
+<!--
+  c19-selection-section--fall-sale-photo-v1.html
+  C-19 · SELECTION SECTION, instance: WSS FALL SALE, OCT 2026, PHOTO HERO.
+  Same block as c19-selection-section--fall-sale-v1 with one change: the
+  video hero is replaced by hero-photo--fall-sale-v1, a photo with animated
+  live text built from Sacha's Figma frame (file tiCFROtkZqufIPkASE8z4L,
+  frame 2049:359) on 2026-10-05. Tabs, panels, links and script are the same.
+
+  NOT GENERATOR-MANAGED. Do not run sync/generate against this block.
+
+  ── HERO ─────────────────────────────────────────────────────────────────
+  See hero-photo--fall-sale-v1.html for the source notes and the two
+  numbered deviations from the Figma frame. No promo code and no button
+  in the hero (Sacha, 2026-10-05); the whole hero is one link.
+  ⚠️ The two photos sit in campaign-ops/designer-kit/images/ and only reach
+  their URLs once ./deploy.sh has run.
+
+  ── CARRIED OVER UNCHANGED ───────────────────────────────────────────────
+  Tabs: Jerseys, Player Jerseys, Cleats. 45 products off Tyler's September
+  promo sheet; Tyler confirmed on 2026-10-05 that the jerseys shown are
+  eligible for this offer.
+  ⚠️ PLAYER JERSEYS goes to /shop/products/sale/player-jerseys, the SALE
+  feed, not a promo-eligible filter: the product_type__Player Jerseys facet
+  returned 0 results on 2026-09-11 and 09-12. Not re-checked for this offer.
+  ⚠️ RV7031154 (Argentina home goalkeeper shirt) is still held out.
+
+  ── OFFER ────────────────────────────────────────────────────────────────
+  ClickUp 868mbn9ua (Tyler). $25 off $100 or $50 off $200, code
+  XXXXX, Tue 6 Oct to Mon 12 Oct 2026. On-page name "Fall Sale"
+  (Sacha, 2026-10-05).
+
+  ── HEIGHT BUDGET ────────────────────────────────────────────────────────
+  Measured in Chromium 2026-10-05 at 320, 390, 768 and 1440 wide. Same as
+  the Friends & Family instance, so the Fastr containers do not move.
+
+    <640px    989
+    >=640px   1119
+    >=1024px  1319
+
+  ── EMBED SNIPPET ────────────────────────────────────────────────────────
+  <style>
+    .wss-sel-fallphoto{width:100%;border:0;display:block;height:989px}
+    @media (min-width:640px){.wss-sel-fallphoto{height:1119px}}
+    @media (min-width:1024px){.wss-sel-fallphoto{height:1319px}}
+  </style>
+  <iframe class="wss-sel-fallphoto" loading="lazy" src="https://benevolent-madeleine-5217c1.netlify.app/blocks/c19-selection-section--fall-sale-photo-v1.html" title="Fall Sale" scrolling="no"></iframe>
+
+  Fastr checklist, all three or the bugs come back:
+   1. Responsive Override Breakpoints = 640 / 1024 on the page
+   2. Container height set at EVERY breakpoint
+   3. The revive script once per page
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=DM+Mono:wght@300&family=Figtree:wght@400;500&family=Mohave:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+/* ═══ INLINED VERBATIM FROM css/cta-canon.css ═══ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   cta-canon.css — THE CTA (canon v2) · one button spec, every chassis
+   ─────────────────────────────────────────────────────────────────────────
+   Fills the "one CTA spec" slot from the 07-27 decision
+   ("Type & CTA: dev semantic names — Body 12-20, Label 12-16, one CTA spec").
+   Locked by Sacha 2026-08-02: this IS the canonical CTA.
+
+   THIRD SIBLING stylesheet, alongside wall-canon.css and (when it lands)
+   carousel-canon.css. It is NOT folded into either, because both consume it:
+   the wall, the rails, the hero rails and the feature pills all need the same
+   button, and duplicating it into two chassis is exactly how the old set
+   drifted into 3 arrow styles and 2 zoom scales.
+
+   Load order:  cta-canon.css  →  wall-canon.css / carousel-canon.css
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+
+   SOURCE
+   ─────────────────────────────────────────────────────────────────────────
+   Engine : Osmo Supply "Button 009". Zero JS. Every Osmo class name, the
+            data-button-009 attribute, all easings, the hover calc, the click
+            scale and the focus ring are VERBATIM below.
+   Design : Figma WorldSoccerShop - Site Updates, node 35:539.
+
+   MEASURED FROM FIGMA (verified in Chromium, not eyeballed)
+   ─────────────────────────────────────────────────────────────────────────
+     padding       12px 16px      (symmetric; Osmo stock is asymmetric)
+     gap           8px
+     label         Chakra Petch 600, 14px, tracking 1.12px, UPPERCASE
+     arrow         Chakra Petch 400, 22px, tracking 0.44px, glyph U+2192
+     arrow advance 17px
+     line box      15px      →  12 + 15 + 12 = 39px tall  ✓ matches Figma
+     radius        0         (square; Osmo stock is a 2.5em pill)
+     primary       #000 ground / #fff ink
+     secondary     #fff ground / #000 ink / 0.75px #797474 hairline
+
+   TWO CHANGES FROM THE OSMO SOURCE, both deliberate
+   ─────────────────────────────────────────────────────────────────────────
+   1. The icon <svg> elements become <span> carrying "→". Sacha's design
+      specifies the Unicode arrow set in Chakra Petch, not Osmo's chevron
+      vector. get_design_context returns it as TEXT, not an exported asset,
+      so it is typed rather than drawn. Classes and positions unchanged.
+   2. Each icon span wraps its glyph in an <i>. LOAD-BEARING, not cosmetic:
+      .button-009__icon must stay at the button's 14px font-size or every em
+      in Osmo's hover calc — and in `.is--left { left: var(--…-padding-right) }`
+      — would resolve against 22px and the animation would break. The <i>
+      carries the 22px; the span keeps the maths. Nothing removed or renamed.
+
+   THE HOVER
+   ─────────────────────────────────────────────────────────────────────────
+   Rest: JERSEYS →. On hover the trailing arrow slides right and fades, the
+   label slides right by (icon + gap + padding-right - padding-left) = 25px,
+   and a leading arrow fades in from the left. The label lands exactly on the
+   right padding edge (16 + 25 + 67 = 108 = 124 - 16), so nothing clips inside
+   the overflow:clip inner. Osmo's maths, fed WSS numbers.
+
+   CANON COMPLIANCE (07-27 locked set)
+   ─────────────────────────────────────────────────────────────────────────
+   · Hover is behind @media (hover:hover) and (pointer:fine) AND
+     (prefers-reduced-motion: no-preference). Osmo ships it that way; no
+     wrapper needed.
+   · :focus-visible ring built in. See the on-dark theme below.
+   · target="_top" belongs on every instance in markup (rule B1).
+   · Chakra Petch must be loaded with display=swap + preconnect (rule C3).
+
+   ⚠️ TYPE-ROLE MISMATCH, flagged not silently resolved:
+      wall-canon.css sets --ws-label-14-weight: 500. Figma 35:539 specifies
+      SemiBold 600 for the CTA label. Rather than mutate the shared role, the
+      CTA declares its own --ws-cta-weight: 600. If the token audit decides
+      Label 14 should carry a 600 variant, delete this and point at the role.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Osmo 009 API, re-pointed at WSS values ── */
+  --button-009-color:#fff;
+  --button-009-color-background:#000;
+  --button-009-color-focus:#000;
+  --button-009-border-radius:0;
+  --button-009-icon-size:1.2143em;      /* 17px — the → advance width */
+  --button-009-padding-top:0.8571em;    /* 12px */
+  --button-009-padding-right:1.1429em;  /* 16px */
+  --button-009-padding-bottom:0.8571em; /* 12px */
+  --button-009-padding-left:1.1429em;   /* 16px */
+  --button-009-gap:0.5714em;            /* 8px  */
+  --button-009-overflow:clip;
+  --button-009-focus-inset:-0.125em;
+  --button-009-click-scale:0.955 0.925;
+  --button-009-ease-hover:cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click:cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus:cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ── WSS layer. --ws-font-label is shared with wall-canon.css ── */
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-cta-size:14px;                   /* Label 14 role */
+  --ws-cta-weight:600;                  /* see TYPE-ROLE MISMATCH above */
+  --ws-cta-line:1.0714;                 /* 15px line box → 39px button */
+  --ws-cta-line-em:1.0714em;            /* SAME 15px as a LENGTH. height: needs a length,
+                                           --ws-cta-line is unitless and is invalid there. */
+  --ws-cta-tracking:0.08em;             /* 1.12px */
+  --ws-cta-arrow-size:1.5714em;         /* 22px */
+  --ws-cta-arrow-tracking:0.02em;       /* 0.44px */
+  --ws-cta-hairline:0.75px solid #797474;
+}
+
+/* ═══ OSMO BUTTON 009 — VERBATIM ═════════════════════════════════════════ */
+.button-009{
+  color:var(--button-009-color);
+  -webkit-user-select:none;user-select:none;
+  background-color:#0000;
+  outline-style:none;
+  padding:0;
+  line-height:1;
+  text-decoration:none;
+  display:inline-grid;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  transition:scale 0.15s var(--button-009-ease-click);
+}
+.button-009::after{
+  content:'';display:block;position:absolute;
+  inset:var(--button-009-focus-inset);
+  border-radius:var(--button-009-border-radius);
+  transition:box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events:none;z-index:1;
+}
+.button-009:is(:focus-visible)::after{ box-shadow:0 0 0 0.125em var(--button-009-color-focus); }
+.button-009:active{ scale:var(--button-009-click-scale); }
+.button-009__inner{
+  pointer-events:none;
+  grid-column-gap:var(--button-009-gap);
+  grid-row-gap:var(--button-009-gap);
+  padding-top:var(--button-009-padding-top);
+  padding-right:var(--button-009-padding-right);
+  padding-bottom:var(--button-009-padding-bottom);
+  padding-left:var(--button-009-padding-left);
+  z-index:1;
+  border-radius:var(--button-009-border-radius);
+  overflow:var(--button-009-overflow);
+  grid-area:1 / 1;
+  justify-content:center;align-items:center;
+  display:flex;position:relative;
+}
+.button-009__icon{
+  width:var(--button-009-icon-size);
+  height:var(--button-009-icon-size);
+  flex:none;
+  transition:translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.button-009__icon.is--left{
+  left:var(--button-009-padding-right);
+  position:absolute;
+  opacity:0;
+  translate:-1.5em 0 0;
+}
+.button-009__text{ flex:none; transition:translate 0.5s var(--button-009-ease-hover); }
+.button-009__bg{
+  background-color:var(--button-009-color-background);
+  border-radius:var(--button-009-border-radius);
+  grid-area:1 / 1;width:100%;height:100%;padding:0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){
+  .button-009:is(:hover, :focus-visible) .button-009__text,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text{
+    translate:calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--left,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left{
+    translate:0 0 0;opacity:1;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--right,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right{
+    translate:1.5em 0 0;opacity:0;
+    transition:translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+/* ═══ END OSMO ════════════════════════════════════════════════════════════ */
+
+
+/* ── WSS skin, additive only ─────────────────────────────────────────────── */
+.button-009{
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-cta-size);
+}
+.button-009__text{
+  font-weight:var(--ws-cta-weight);
+  line-height:var(--ws-cta-line);                        /* 15px → 39px button */
+  letter-spacing:var(--ws-cta-tracking);
+  margin-right:calc(var(--ws-cta-tracking) * -1);        /* kill the trailing letter-space; Figma does not render it */
+  text-transform:uppercase;
+}
+.button-009__icon{
+  height:var(--ws-cta-line-em);                          /* 15px. MUST be the -em variant */
+  display:flex;align-items:center;justify-content:center;
+}
+.button-009__icon > i{                                   /* carries the 22px so the span stays at 14px */
+  font-style:normal;
+  font-weight:400;
+  font-size:var(--ws-cta-arrow-size);
+  letter-spacing:var(--ws-cta-arrow-tracking);
+  line-height:1;
+  display:block;
+}
+
+/* ── THEMES (Osmo's documented data-theme pattern) ───────────────────────── */
+
+/* secondary — outlined, for light grounds */
+.button-009[data-theme='secondary']{
+  --button-009-color:#000;
+  --button-009-color-background:#fff;
+}
+.button-009[data-theme='secondary'] .button-009__bg{ border:var(--ws-cta-hairline); }
+
+/* on-dark — for the C-13 wall (#0A0A0A) and any dark surface.
+   REASON THIS EXISTS: the default focus ring is #000 and disappears completely
+   against the wall's ground, so keyboard users lose the focus indicator. White
+   ground reads on dark and the ring flips to white. Osmo's accessibility note
+   calls this out: --button-009-color-focus must contrast with the SURROUNDING
+   background, not the button.
+   ⚠️ Theme name picked by Claude 2026-08-02, not by Sacha. Rename freely. */
+.button-009[data-theme='on-dark']{
+  --button-009-color:#0A0A0A;
+  --button-009-color-background:#fff;
+  --button-009-color-focus:#fff;
+}
+
+
+/* ═══ INLINED VERBATIM FROM css/selection-section-canon.css ═══ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   selection-section-canon.css · SELECTION SECTION chassis (canon v2)
+   ─────────────────────────────────────────────────────────────────────────
+   NEW CHASSIS. Fifth sibling stylesheet, alongside cta-canon.css,
+   wall-canon.css, marquee-canon.css and kit-rail-canon.css.
+
+   Load order:  cta-canon.css  →  selection-section-canon.css
+   The block file inlines both, in that order, so it stays self-contained.
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+
+   SOURCE
+   ─────────────────────────────────────────────────────────────────────────
+   Design : Figma "🏆 Marketing Master Design System",
+            file JAuTYN3BYg7aAJpLTiOR1O, node 3021:118535 "Selection Section".
+   Page   : Figma "WorldSoccerShop - Site Updates",
+            file giimbB3Q80HKID09mX85RJ, node 143:3411 "Jersey Shop Landing
+            page". The section sits at node 180:4071 inside a 1392px container
+            on a 1440px page, so this block is CONTAINER-WIDTH, not full bleed.
+   Brief  : Sacha, 2026-08-21.
+
+   WHY A FIFTH SIBLING AND NOT A KIT RAIL VARIANT
+   ─────────────────────────────────────────────────────────────────────────
+   The Kit Rail is a headed rail. This is a three-part unit: an image hero, a
+   tabbed header whose title and CTA both change with the tab, and a product
+   row. The tab engine and the hero have no counterpart in kit-rail-canon.css,
+   and the product tile here is a padded white card with the label OUTSIDE the
+   card on the section ground, which the Kit Rail does not do either. Folding
+   two unrelated chassis into one sheet is how the old set drifted.
+
+   Shared canon values are still honoured: THE CTA (button-009) is consumed,
+   not redrawn; arrows are the canon hairline chip; --tile-zoom, hover:hover
+   guards, prefers-reduced-motion, target="_top" and fixed-px-per-breakpoint
+   geometry all apply.
+
+   MEASURED FROM FIGMA (desktop, 1392px container)
+   ─────────────────────────────────────────────────────────────────────────
+     ground             #F0EBE6
+     hero               1392 x 649, image object-fit cover
+     hero title         Mohave SemiBold 48px, #FFE014, UPPERCASE, centred
+     hero CTA           "shop by look", CODED BUT HIDDEN (designer annotation)
+     gap hero → head    24
+     head container     14 pad / title / 16 gap / CTA / 14 pad
+     head title         Mohave SemiBold 36px, #382F27, UPPERCASE, centred
+     head CTA           button-009, secondary theme
+     gap head → tabs    8
+     tabs               5 x 169 wide, 12 gap, centred, 34 body + 2 rule = 36
+     tab label          Chakra Petch 600, 14px, tracking 1.12px, UPPERCASE
+     tab rule           active #000, idle #D9D9D9, 2px
+     gap tabs → row     24
+     product row        5 x 272 wide, 8 gap  (5*272 + 4*8 = 1392 exactly)
+     product card       272 x 322, white, 18px padding → 236 x 286 image box
+     product label      18px, #5B4E40, capitalize, centred, 24px above it
+     section pad-bottom 54
+
+   ⚠️ FOUR DELIBERATE DEPARTURES FROM THE FIGMA NODE, all reversible
+   ─────────────────────────────────────────────────────────────────────────
+   1. THE CTA IS FULL SIZE (39px), not the 30px in the frame.
+      The Figma instance is the canon button scaled to 75%: its label reads
+      10.5px / 0.84px tracking and its arrow 16.5px, which are exactly 14,
+      1.12 and 22 multiplied by 0.75. Its hairline reads 0.563px, which is
+      0.75 x 0.75. THE CTA is locked at 39px (Sacha, 2026-08-02) and scaling
+      an instance is not a spec change, so the canon size is used here.
+      Cost: the head container is 110px instead of Figma's 101px.
+      To go back: set --sel-cta-scale:0.75 and re-measure the budget.
+
+   2. THE PRODUCT LABEL IS A FIXED TWO-LINE BOX, not one trimmed line.
+      C-16 shipped a single ellipsised line and it turned real product names
+      into nonsense ("Spain 2-Star 2026 Yamal Home (FIFA World Cup 26 Sleeve
+      Patch)"). Same lesson applied here before it bites. The box is
+      height:2.5em at line-height:1.25, so it is EXACTLY two lines whatever
+      face loads, and a late Figtree cannot move the budget.
+      Cost: the product row is 391px instead of Figma's 359px.
+
+   3. THE PRODUCT IMAGE IS object-fit:contain, not cover.
+      The Figma tile carries a checkerboard placeholder, so cover vs contain
+      there means nothing. Sacha, 2026-08-21: the way products sit inside the
+      containers in her own usaselectionstory.html "is perfect" and this file
+      should copy that placement and sizing. That file contains the render
+      inside a padded frame. Cover would crop sleeves and hems off a product
+      shot, which is the exact bug C-16 was built to fix.
+
+   4. THE PRODUCT LABEL IS FIGTREE, not Inter.
+      Figma says Inter Medium 18px. Inter is not in the system. Figtree is the
+      canon neutral sans and is already loaded by the Quick Links Rail, and it
+      is far closer to Inter than Chakra Petch is. One variable to change:
+      --sel-name-font.
+
+   THE TAB ENGINE
+   ─────────────────────────────────────────────────────────────────────────
+   Designer annotation on node 3021:118540: "The header should change to the
+   same title as the tab that is selected. CTA below each header should link
+   to the annotations on each tab."
+
+   Every panel is REAL MARKUP in the file. There is no client-side templating.
+   JS only toggles the [hidden] attribute, rewrites the head title, and swaps
+   the head CTA's href. That is what makes the degrade honest: with no JS the
+   first panel is fully rendered and shoppable, and the tab strip stays hidden
+   (`.sel-tabs` is display:none until the script adds `.is-ready`), so nobody
+   is offered a control that cannot work.
+
+   ⚠️ THE HEAD CTA LABEL DOES NOT CHANGE, only its href. Figma shows "Shop
+   all" on the staff-picks tab and gives no other label. Open with Sacha.
+
+   ARROWS
+   ─────────────────────────────────────────────────────────────────────────
+   Canon hairline chip, same as C-14 / C-15 / C-16: square, white ground,
+   0.75px #797474 hairline, #131313 glyph, hover INVERTS to white on #131313,
+   :active scale .94, focus ring #C4623F. Desktop mouse only, behind
+   (hover:hover) and (pointer:fine). No dots: a free-scroll rail cannot
+   honestly report a page.
+
+   They are hidden unless the rail actually overflows. At 1392 the five cards
+   fill the row exactly, so on a full-width desktop container there are no
+   arrows to show. The script re-checks on resize and on every tab switch.
+
+   TOUCH
+   ─────────────────────────────────────────────────────────────────────────
+   The rail is native overflow-x, not a drag engine, so there is nothing to
+   preventDefault and the vertical axis belongs to the page at every width by
+   construction. touch-action:pan-y on html/body, no overscroll-behavior:none.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── ground and ink ── */
+  --sel-ground:#FFFFFF;                /* chassis default WHITE (Sacha 08-21). Instances set their own, see INSTANCE SKIN */
+  --sel-paper:#FFFFFF;
+
+  /* ⚠️ THE CARD GROUND IS #F5F5F5, NOT THE FIGMA WHITE. Sacha's real product
+     exports (2026-08-21 CSVs) request the render with bg=f5f5f5 baked in, so
+     the photograph arrives as a 350x350 pale-grey square. object-fit:contain
+     letterboxes that square inside a 236x286 box, and on a pure white card the
+     grey would read as a visible panel with white bands above and below it.
+     Matching the card to the baked ground makes the letterbox invisible.
+     This is exactly what C-16 did: kit-rail-canon.css carries --kr-tile:#F2F2F2
+     described as "the pale ground baked into the /preview/ renders".
+     THE ALTERNATIVE, if the white card matters more: change bg=f5f5f5 to
+     bg=ffffff in the CSVs and set this back to #FFFFFF. That needs a browser
+     check first, because no agent can verify an imagehandler response. */
+  --sel-card-ground:#F5F5F5;
+  --sel-title-ink:#382F27;
+  --sel-hero-ink:#FFE014;
+  --sel-name-ink:#5B4E40;
+  --sel-rule-idle:#D9D9D9;
+  --sel-rule-active:#000000;
+
+  /* ── type ── */
+  --sel-display-font:'Mohave','Chakra Petch',Figtree,system-ui,sans-serif;
+  --sel-label-font:'Chakra Petch',Figtree,system-ui,sans-serif;
+  --sel-name-font:'Figtree','Chakra Petch',system-ui,sans-serif;
+
+  /* Titles run at a unitless line-height, which makes the line BOX an exact
+     multiple of the font-size whatever face loads, so Mohave arriving late
+     cannot move the height budget. .75 matches Figma, where both titles are
+     cap-trimmed to 0.75 of their size. It is only safe while the title is ONE
+     line, because at .75 two lines would collide, so the value opens up below
+     1024px where a long title is far more likely to wrap. */
+  --sel-title-line:0.95;
+
+  /* ── motion ── */
+  --tile-zoom:1.04;              /* canon 07-27, rails */
+  --sel-ease:cubic-bezier(.25,1,.5,1);
+  --sel-dur:.4s;
+
+  /* ── the CTA dial. 1 = canon 39px. 0.75 = the scaled Figma instance. ── */
+  --sel-cta-scale:1;
+
+  /* ── arrows: the canon hairline chip ── */
+  --sel-arrow-size:34px;
+  --sel-arrow-ground:#FFFFFF;
+  --sel-arrow-ink:#131313;
+  --sel-arrow-line:#797474;
+  --sel-arrow-ground-hover:#131313;
+  --sel-arrow-ink-hover:#FFFFFF;
+  --sel-focus:#C4623F;
+
+  /* ── scrollbar ── */
+  --ws-scroll-thumb:#BBBBBB;
+  --ws-scroll-thumb-hover:#8E8E8E;
+
+  /* ── HERO SCRIM. Default none, which matches the Figma node exactly.
+        Yellow on a bright photograph is a real legibility risk and the
+        answer is Sacha's, not an agent's. To turn it on, set this to
+        linear-gradient(to top,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 62%) ── */
+  --sel-hero-scrim:none;
+
+  /* ── HERO GROUND. Replaced per instance with the bucket URL. The shell
+        renders a flat placeholder until the real S3 file exists. ── */
+  --sel-hero-img:none;
+
+  /* ═══ PER-BREAKPOINT GEOMETRY · mobile first, overridden below ═══
+     Fixed px both dimensions (canon A2). No aspect-ratio anywhere, so there
+     is zero height ambiguity and the Fastr container can be an exact number. */
+  --sel-gutter:16px;
+  --sel-hero-h:440px;
+  /* Vertical focal point of the cover crop. Pulled UP on phones because the
+     desktop frame is 2.1:1 and the mobile frame is nearer 0.85:1, so a
+     centred crop of a seated figure cuts his head off. This is a mitigation,
+     not a fix. A real _m crop beats it. */
+  --sel-hero-focus:32%;
+  --sel-hero-title:28px;
+  --sel-hero-gap:14px;
+  --sel-gap-hero-head:20px;
+  --sel-head-pad:12px;
+  --sel-head-title:28px;
+  --sel-head-gap:12px;
+  --sel-gap-head-tabs:8px;
+  --sel-gap-tabs-row:20px;
+  --sel-tab-w:auto;
+  --sel-tab-gap:10px;
+  --sel-tab-pad:14px;
+  --sel-card-w:200px;
+  /* ⚠️ THE CARD IS PORTRAIT, AS FIGMA DRAWS IT (272 x 322 at desktop).
+     Sacha's call, 2026-08-21 ("Portrait I think?"), closing the square-vs-
+     portrait question. The earlier square build (200 / 236 / 272) is one
+     number per breakpoint to bring back. Trade-off on record: renders are
+     requested square (350x350 on the first-list rows), so contain-fitting one
+     into the 236 x 286 image box leaves ~50px of card ground above and below.
+     The card ground is matched to the render ground so that reads as frame,
+     not as a gap. ONE NUMBER PER BREAKPOINT TO REVERT TO SQUARE: 200 / 236 / 272. */
+  --sel-card-h:237px;
+  --sel-card-pad:14px;
+  --sel-card-gap:8px;
+  --sel-name-gap:20px;
+  --sel-name-size:16px;
+  --sel-pad-bottom:20px;               /* was 32. Sacha 08-22: too much ground under the rail on phones */
+}
+
+@media (min-width:640px){
+  :root{
+    --sel-gutter:24px;
+    --sel-title-line:0.85;
+    --sel-hero-h:520px;
+    --sel-hero-focus:38%;
+    --sel-hero-title:38px;
+    --sel-gap-hero-head:24px;
+    --sel-head-pad:14px;
+    --sel-head-title:32px;
+    --sel-head-gap:14px;
+    --sel-gap-tabs-row:20px;
+    --sel-tab-gap:12px;
+    --sel-card-w:236px;
+    --sel-card-h:279px;   /* portrait, Figma. Square was 236. */
+    --sel-card-pad:16px;
+    --sel-name-gap:24px;
+    --sel-name-size:16px;
+    --sel-pad-bottom:40px;
+  }
+}
+
+@media (min-width:1024px){
+  :root{
+    --sel-gutter:0px;            /* the block already sits in the page container */
+    --sel-title-line:0.75;       /* Figma's cap trim. One line at this width. */
+    --sel-hero-h:649px;
+    --sel-hero-focus:42%;
+    --sel-hero-title:48px;
+    --sel-gap-hero-head:24px;
+    --sel-head-pad:14px;
+    --sel-head-title:36px;
+    --sel-head-gap:16px;
+    --sel-gap-tabs-row:24px;
+    --sel-tab-w:169px;
+    --sel-tab-gap:12px;
+    --sel-card-w:272px;
+    --sel-card-h:322px;   /* portrait, Figma. Square was 272. */
+    --sel-card-pad:18px;
+    --sel-name-gap:24px;
+    --sel-name-size:18px;
+    --sel-pad-bottom:54px;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html,body{
+  margin:0;padding:0;
+  background:var(--sel-ground);
+  overflow-x:hidden;overflow-y:hidden;   /* the iframe is an exact height */
+  touch-action:pan-y;                    /* B4: the page keeps the vertical axis */
+}
+/* STANDALONE PREVIEW ONLY. When the file is opened directly (not inside the
+   Fastr iframe) the script adds .is-standalone to <html> so the page can
+   scroll; otherwise a 1319px block is cut off at the window edge and reads as
+   a bug (Sacha, 08-21, twice). Inside an iframe nothing changes. */
+html.is-standalone,html.is-standalone body{overflow-y:auto}
+/* B4: never overscroll-behavior:none on html/body */
+
+.sel{
+  font-family:var(--sel-label-font);
+  color:var(--sel-title-ink);
+  background:var(--sel-ground);
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:var(--sel-pad-bottom);
+  width:100%;
+}
+
+/* ═══ HERO ═══════════════════════════════════════════════════════════════ */
+.sel-hero{
+  position:relative;
+  width:100%;
+  height:var(--sel-hero-h);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* placeholder ground until the real S3 file lands. Delete .is--placeholder
+     on the instance when --sel-hero-img is pointed at the bucket. */
+  background:#2A2622;
+}
+.sel-hero.is--placeholder::before{
+  content:'';position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(135deg,#332E29 0 18px,#2A2622 18px 36px);
+  opacity:.9;
+}
+
+.sel-hero__img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center var(--sel-hero-focus);
+  display:block;
+  border:0;
+}
+
+.sel-hero__scrim{
+  position:absolute;inset:0;
+  background:var(--sel-hero-scrim);
+  pointer-events:none;
+}
+
+.sel-hero__inner{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--sel-hero-gap);
+  padding:0 var(--sel-gutter);
+  text-align:center;
+  max-width:100%;
+}
+
+.sel-hero__title{
+  margin:0;
+  font-family:var(--sel-display-font);
+  font-weight:600;
+  font-size:var(--sel-hero-title);
+  line-height:var(--sel-title-line);
+  color:var(--sel-hero-ink);
+  text-transform:uppercase;
+  letter-spacing:0;
+}
+
+/* ═══ HEAD · title + CTA, both driven by the active tab ══════════════════ */
+.sel-head{
+  margin-top:var(--sel-gap-hero-head);
+  padding:var(--sel-head-pad) var(--sel-gutter);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--sel-head-gap);
+}
+
+.sel-head__title{
+  margin:0;
+  font-family:var(--sel-display-font);
+  font-weight:600;
+  font-size:var(--sel-head-title);
+  line-height:var(--sel-title-line);
+  color:var(--sel-title-ink);
+  text-transform:uppercase;
+  text-align:center;
+  letter-spacing:0;
+}
+
+/* The CTA dial. THE CTA itself is untouched: this scales the whole instance
+   from its own top-centre, so every Osmo em-based measurement inside it stays
+   internally consistent. At the default 1 this rule is a no-op. */
+/* ⚠️ THIS RULE MUST NOT BEAT [hidden]. It did, and the hero button that the
+   designer annotation asked to be hidden shipped VISIBLE into the first demo
+   (Sacha spotted it in a browser on 2026-08-21, 08-21). A class selector
+   outranks the UA sheet's [hidden]{display:none}, so the attribute silently
+   did nothing. Any future display: rule on a component that can be hidden
+   needs the same guard. */
+.sel-cta-scale[hidden]{display:none}
+
+.sel-cta-scale{
+  display:inline-block;
+  transform:scale(var(--sel-cta-scale));
+  transform-origin:top center;
+  height:calc(39px * var(--sel-cta-scale));
+}
+
+/* ═══ TABS ═══════════════════════════════════════════════════════════════ */
+/* Hidden until the script runs. No JS means no working tabs, so the control
+   is not offered at all and panel 1 simply stands on its own. */
+.sel-tabs{display:none}
+.sel.is-ready .sel-tabs{
+  display:flex;
+  margin-top:var(--sel-gap-head-tabs);
+  gap:var(--sel-tab-gap);
+  justify-content:flex-start;
+  padding:0 var(--sel-gutter);
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.sel.is-ready .sel-tabs::-webkit-scrollbar{display:none}
+
+@media (min-width:1024px){
+  .sel.is-ready .sel-tabs{justify-content:center;overflow-x:visible}
+}
+
+.sel-tab{
+  flex:0 0 auto;
+  width:var(--sel-tab-w);
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  background:none;
+  border:0;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+  font-family:var(--sel-label-font);
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.sel-tab__label{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:34px;                         /* exact, so the 36px strip is exact */
+  padding:0 var(--sel-tab-pad);
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:0.08em;               /* 1.12px */
+  line-height:1;
+  text-transform:uppercase;
+  color:#000000;
+  white-space:nowrap;
+}
+
+.sel-tab__rule{
+  height:2px;
+  background:var(--sel-rule-idle);
+  transition:background var(--sel-dur) var(--sel-ease);
+}
+.sel-tab[aria-selected="true"] .sel-tab__rule{background:var(--sel-rule-active)}
+
+@media (hover:hover) and (pointer:fine){
+  .sel-tab:hover .sel-tab__rule{background:#9A938B}
+  .sel-tab[aria-selected="true"]:hover .sel-tab__rule{background:var(--sel-rule-active)}
+}
+.sel-tab:focus-visible{outline:2px solid var(--sel-focus);outline-offset:2px}
+
+/* ═══ PRODUCT RAIL ═══════════════════════════════════════════════════════ */
+.sel-railwrap{
+  position:relative;
+  margin-top:var(--sel-gap-tabs-row);
+}
+
+.sel-panel[hidden]{display:none}
+
+.sel-rail{
+  display:flex;
+  gap:var(--sel-card-gap);
+  padding:0 var(--sel-gutter);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  scroll-padding-inline-start:var(--sel-gutter);
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  touch-action:pan-x pan-y;
+}
+.sel-rail::-webkit-scrollbar{display:none}
+
+@media (min-width:1024px){
+  .sel-rail{
+    scrollbar-width:thin;
+    scrollbar-color:var(--ws-scroll-thumb) transparent;
+  }
+  .sel-rail::-webkit-scrollbar{display:block;height:6px}
+  .sel-rail::-webkit-scrollbar-track{background:transparent}
+  .sel-rail::-webkit-scrollbar-thumb{background:var(--ws-scroll-thumb);border-radius:0}
+  .sel-rail:hover::-webkit-scrollbar-thumb{background:var(--ws-scroll-thumb-hover)}
+}
+
+/* ── the tile ── */
+.sel-item{
+  flex:0 0 auto;
+  width:var(--sel-card-w);
+  display:flex;
+  flex-direction:column;
+  scroll-snap-align:start;
+  text-decoration:none;
+  color:inherit;
+}
+.sel-item:focus-visible{outline:2px solid var(--sel-focus);outline-offset:3px}
+
+.sel-card{
+  width:var(--sel-card-w);
+  height:var(--sel-card-h);
+  background:var(--sel-card-ground);
+  padding:var(--sel-card-pad);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ⚠️ NO IMAGE SUPPLIED. Reached when a CSV arrives in the THIN shape
+   (Product,SKU,URL) with no Product Image column. The picture is NOT derived
+   from the SKU: long_sleeve.csv proves that would be wrong on 123 of 144 rows,
+   because a player jersey has its own RV####### code while its photograph is
+   the base garment, and because iindex is per-product. THE URL RULE covers an
+   image URL like any other, so the tile shows this instead and says so out
+   loud. Re-export in the FULL shape and this state disappears on its own. */
+.sel-card.is--noimg{
+  background:
+    repeating-linear-gradient(135deg,
+      #ECEAE7 0 10px, var(--sel-card-ground) 10px 20px);
+}
+
+.sel-card__img{
+  width:100%;
+  height:100%;
+  object-fit:contain;                  /* contain the render, never crop it */
+  object-position:center;
+  display:block;
+  border:0;
+  transition:transform var(--sel-dur) var(--sel-ease);
+}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .sel-item:hover .sel-card__img{transform:scale(var(--tile-zoom))}
+}
+
+.sel-name{
+  margin-top:var(--sel-name-gap);
+  font-family:var(--sel-name-font);
+  font-weight:500;
+  font-size:var(--sel-name-size);
+  line-height:1.25;
+  /* ⚠️ THREE LINES, NOT TWO. Two was the plan until Sacha's real CSVs landed on
+     2026-08-21 and 18 of 67 product names clipped mid-word at 375px, 3 of them
+     even at 1392 ("Manchester United 26/27 Crop Top Away Jersey by adidas" is
+     54 characters). Measured, not guessed. Three clears every name at every
+     width with zero clipping and costs 20 to 23px on the budget.
+     Still EXACTLY three lines whatever face loads: 3.75em at line-height 1.25.
+     --sel-name-lines is here so the number and the box can never drift apart. */
+  --sel-name-lines:3;
+  height:calc(var(--sel-name-lines) * 1.25em);
+  color:var(--sel-name-ink);
+  text-align:center;
+  /* ⚠️ NO text-transform. Figma specifies capitalize, which is correct for its
+     "Product Name" placeholder and WRONG for real data: it turns "adidas" into
+     "Adidas" and "by" into "By". Sacha's exports are already cased, and the
+     lowercase adidas is deliberate brand styling. Fifth departure from the
+     node, one line to revert. */
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+}
+
+/* ═══ ARROWS · the canon hairline chip ═══════════════════════════════════ */
+.sel-arrow{
+  display:none;
+  position:absolute;
+  top:calc((var(--sel-card-h) / 2) - (var(--sel-arrow-size) / 2));
+  width:var(--sel-arrow-size);
+  height:var(--sel-arrow-size);
+  align-items:center;
+  justify-content:center;
+  background:var(--sel-arrow-ground);
+  color:var(--sel-arrow-ink);
+  border:0.75px solid var(--sel-arrow-line);
+  border-radius:0;
+  padding:0;
+  cursor:pointer;
+  z-index:3;
+  line-height:1;
+  transition:background var(--sel-dur) var(--sel-ease),
+             color var(--sel-dur) var(--sel-ease),
+             transform .15s cubic-bezier(.4,0,.2,1);
+  -webkit-tap-highlight-color:transparent;
+}
+.sel-arrow svg{width:16px;height:16px;display:block}
+.sel-arrow--prev{left:var(--sel-gutter)}
+.sel-arrow--prev svg{transform:rotate(180deg)}
+.sel-arrow--next{right:var(--sel-gutter)}
+
+/* Desktop mouse only. A touch device swipes and does not need them. */
+@media (hover:hover) and (pointer:fine){
+  .sel.is-ready .sel-railwrap.has-overflow .sel-arrow{display:flex}
+  .sel-arrow:hover{
+    background:var(--sel-arrow-ground-hover);
+    color:var(--sel-arrow-ink-hover);
+  }
+}
+.sel-arrow:active{transform:scale(.94)}
+.sel-arrow:focus-visible{outline:2px solid var(--sel-focus);outline-offset:2px}
+.sel-arrow[disabled]{opacity:.35;pointer-events:none}
+
+/* ═══ REDUCED MOTION ═════════════════════════════════════════════════════ */
+/* ⚠️ FOUR LINES BELOW 640px, THREE ABOVE. Measured against all four real CSVs
+   on 2026-08-21. Long sleeve product names run to 84 characters ("Jude
+   Bellingham Real Madrid 26/27 Authentic Long Sleeve Away Jersey by adidas" is
+   77) and 100 of its 144 rows are over 60. Three lines clears every name from
+   640px up and clipped 5 of them at 375px, where the column is only 200px
+   wide. Four on mobile clears all of them at 375, 390 and 414 and costs 20px.
+   Still an exact box whatever face loads. */
+@media (max-width:639px){
+  /* 3 lines on phones (was 4; Sacha 08-22, the 4-line box read as a gap under
+     short names). 5 of 144 long-sleeve names clip to an ellipsis at 375px. */
+  .sel-name{-webkit-line-clamp:3;--sel-name-lines:3}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .sel-rail{scroll-behavior:auto}
+  .sel-card__img,.sel-tab__rule,.sel-arrow{transition:none}
+}
+
+/* ═══ SCREEN READERS ═════════════════════════════════════════════════════ */
+.sel-sr{
+  position:absolute;width:1px;height:1px;
+  padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+</style>
+<style>
+/* ═══ INSTANCE SKIN · c19-selection-section--home-v1 ═══
+   Per-instance values only. The chassis default is white; this instance sits
+   on the Jersey Shop Landing page ground (Sacha, 08-21). Change here, never
+   in the chassis block above. */
+:root{ --sel-ground:#F0EBE6; }
+
+/* The campaign titles are long enough to wrap below 640px. All three wrap to
+   two lines, so the box is pinned to exactly two at that width: the height is
+   then the same whichever tab is open and whether or not Mohave has loaded.
+   Same technique as the product name box in the chassis. */
+@media (max-width:639px){
+  .sel-head__title{height:calc(var(--sel-title-line) * 2em);display:flex;align-items:center;justify-content:center}
+}
+</style>
+<style>
+/* ═══ HERO STYLES — scoped, direct-embed safe ═══════════════════════════ */
+.fs-hero{
+  --fs-h:440px;
+  --fs-ground:#101217;
+  --fs-ink:#FFE014;
+  --fs-display:'Mohave',system-ui,sans-serif;
+  --fs-mono:'DM Mono',ui-monospace,monospace;
+  --fs-loop:6s;
+  --fs-w:1vw;
+
+  --fs-big:calc(17.5 * var(--fs-w));
+  --fs-eyebrow:15px;
+  --fs-fine:8px;
+  --fs-gutter:16px;
+  --fs-top:22px;
+  --fs-bottom:16px;
+  --fs-gap:12px;
+  --fs-focus:50% 0%;
+
+  position:relative;
+  width:100%;
+  height:var(--fs-h);
+  overflow:hidden;
+  background:var(--fs-ground);
+  color:var(--fs-ink);
+  isolation:isolate;
+  container-type:inline-size;
+}
+@supports (width:1cqi){
+  .fs-hero{--fs-w:1cqi}
+}
+@media (min-width:640px){
+  .fs-hero{--fs-h:520px;--fs-big:calc(15.5 * var(--fs-w));--fs-eyebrow:22px;--fs-fine:9px;
+           --fs-gutter:24px;--fs-top:28px;--fs-bottom:20px;--fs-gap:16px}
+}
+@media (min-width:1024px){
+  .fs-hero{--fs-h:649px;--fs-big:min(calc(13 * var(--fs-w)),200px);--fs-eyebrow:clamp(28px,calc(2.4 * var(--fs-w)),40px);
+           --fs-fine:10px;--fs-gutter:40px;--fs-top:34px;--fs-bottom:22px;--fs-gap:18px}
+}
+
+.fs-hero__photo{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  display:block;
+}
+.fs-hero__photo img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:var(--fs-focus);
+  transform-origin:55% 45%;
+  animation:fs-zoom var(--fs-loop) linear infinite;
+}
+@media (min-width:1441px){
+  .fs-hero__photo{
+    left:50%;
+    right:auto;
+    width:1440px;
+    margin-left:-720px;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent);
+  }
+}
+.fs-hero__shade{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(16,18,23,.42) 0%,
+    rgba(16,18,23,0) 20%,
+    rgba(16,18,23,0) 34%,
+    rgba(16,18,23,.74) 66%,
+    rgba(16,18,23,.9) 100%);
+}
+.fs-hero__grain{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  opacity:.16;
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  background-size:140px 140px;
+}
+
+.fs-hero__sr{
+  position:absolute;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  padding:0;
+  overflow:hidden;
+  clip-path:inset(50%);
+  white-space:nowrap;
+}
+
+.fs-hero__head{
+  position:absolute;
+  top:var(--fs-top);
+  left:0;
+  right:0;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-family:var(--fs-display);
+  text-transform:uppercase;
+}
+.fs-hero__stars{
+  font-size:calc(var(--fs-eyebrow) * .42);
+  letter-spacing:.5em;
+  text-indent:.5em;
+  line-height:1;
+  margin-bottom:.6em;
+  --fs-b:1.12s;
+  animation:fs-pop var(--fs-loop) linear var(--fs-b) infinite backwards;
+}
+.fs-hero__eyebrow{
+  font-weight:500;
+  font-style:italic;
+  font-size:var(--fs-eyebrow);
+  line-height:.84;
+  letter-spacing:.08em;
+  text-indent:.08em;
+  white-space:nowrap;
+  --fs-rise:.78em;
+  animation:fs-rise var(--fs-loop) linear 1.27s infinite backwards;
+}
+
+.fs-hero__body{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:var(--fs-bottom);
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-inline:var(--fs-gutter);
+  text-align:center;
+}
+
+.fs-hero__offers{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--fs-display);
+  font-weight:700;
+  font-size:var(--fs-big);
+  line-height:.8;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.fs-hero__offers i{
+  display:inline-block;
+  font-style:normal;
+  --fs-rise:calc(2 * var(--fs-w));
+  animation:fs-rise var(--fs-loop) linear calc(var(--fs-b,0s) + var(--fs-i,0) * var(--fs-s,.08s)) infinite backwards;
+}
+.fs-hero__offers i:nth-child(2){--fs-i:1}
+.fs-hero__offers i:nth-child(3){--fs-i:2}
+.fs-hero__offers i:nth-child(4){--fs-i:3}
+
+.fs-offer{
+  display:flex;
+  align-items:center;
+  gap:.06em;
+}
+.fs-offer--b{--fs-b:.34s}
+.fs-offer__big{letter-spacing:-.035em}
+.fs-offer__side{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.05em;
+}
+.fs-offer__off{font-size:.423em;letter-spacing:.02em}
+.fs-offer__min{font-size:.391em;letter-spacing:-.05em}
+.fs-offer--b .fs-offer__min{font-size:.369em}
+.fs-offer:not(.fs-offer--b) .fs-offer__off i{
+  --fs-s:.05s;
+  animation-name:fs-pop;
+}
+
+.fs-or{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.045em;
+  width:.233em;
+  margin-inline:.26em;
+  animation:fs-settle var(--fs-loop) linear infinite;
+}
+.fs-or::before,
+.fs-or::after{
+  content:"";
+  width:100%;
+  height:max(2px,.016em);
+  background:currentColor;
+}
+.fs-or b{
+  font-weight:700;
+  font-size:.165em;
+  line-height:1;
+  letter-spacing:.04em;
+  text-indent:.04em;
+}
+
+.fs-hero__link{
+  position:absolute;
+  inset:0;
+  z-index:4;
+}
+.fs-hero__link:focus-visible{outline:2px solid var(--fs-ink);outline-offset:-4px}
+
+.fs-hero__fine{
+  margin:var(--fs-gap) 0 0;
+  font-family:var(--fs-mono);
+  font-weight:300;
+  font-size:var(--fs-fine);
+  line-height:1;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+@keyframes fs-zoom{
+  0%,16.667%{transform:scale(1.2);animation-timing-function:ease-in}
+  83.333%,100%{transform:scale(1)}
+}
+@keyframes fs-rise{
+  0%{opacity:0;transform:translateY(var(--fs-rise));animation-timing-function:ease-out}
+  8.333%,100%{opacity:1;transform:none}
+}
+@keyframes fs-pop{
+  0%{opacity:0;transform:scale(0);animation-timing-function:cubic-bezier(.45,1.45,.8,1)}
+  8.333%,100%{opacity:1;transform:none}
+}
+@keyframes fs-settle{
+  0%,10%{transform:scale(1.2);animation-timing-function:ease-out}
+  18.333%,100%{transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .fs-hero__photo img,
+  .fs-hero__stars,
+  .fs-hero__eyebrow,
+  .fs-hero__offers i,
+  .fs-or{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="sel" id="sel" data-block-id="c19-selection-section--fall-sale-photo-v1">
+
+  <section class="fs-hero" aria-label="Fall Sale">
+
+    <picture class="fs-hero__photo">
+      <source media="(max-width:639px)" srcset="https://benevolent-madeleine-5217c1.netlify.app/images/fall-sale-hero_m.jpg">
+      <img src="https://benevolent-madeleine-5217c1.netlify.app/images/fall-sale-hero_d.jpg" width="1920" height="1080"
+           alt="Two fans, one in a white Chelsea jersey and one in a red and black AC Milan jersey"
+           onerror="this.onerror=null;this.style.display='none'">
+    </picture>
+
+    <div class="fs-hero__shade" aria-hidden="true"></div>
+    <div class="fs-hero__grain" aria-hidden="true"></div>
+
+    <div class="fs-hero__head" aria-hidden="true">
+      <span class="fs-hero__stars">&#9733;&#9733;&#9733;</span>
+      <span class="fs-hero__eyebrow">Fall Sale</span>
+    </div>
+
+    <div class="fs-hero__body">
+      <p class="fs-hero__sr">Fall Sale. $25 off $100, or $50 off $200.</p>
+
+      <div class="fs-hero__offers" aria-hidden="true">
+        <div class="fs-offer">
+          <span class="fs-offer__big"><i>$</i><i>2</i><i>5</i></span>
+          <span class="fs-offer__side">
+            <span class="fs-offer__off"><i>O</i><i>F</i><i>F</i></span>
+            <span class="fs-offer__min"><i>$</i><i>1</i><i>O</i><i>O</i></span>
+          </span>
+        </div>
+        <div class="fs-or"><b>OR</b></div>
+        <div class="fs-offer fs-offer--b">
+          <span class="fs-offer__big"><i>$</i><i>5</i><i>O</i></span>
+          <span class="fs-offer__side">
+            <span class="fs-offer__off"><i>O</i><i>F</i><i>F</i></span>
+            <span class="fs-offer__min"><i>$</i><i>2</i><i>O</i><i>O</i></span>
+          </span>
+        </div>
+      </div>
+
+      <p class="fs-hero__fine">*Some exclusions apply</p>
+    </div>
+
+    <a class="fs-hero__link" target="_top" aria-label="Shop the Fall Sale"
+       href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1"></a>
+  </section>
+
+  <div class="sel-head">
+    <h3 class="sel-head__title" id="sel-head-title">Fall Sale jerseys</h3>
+    <span class="sel-cta-scale">
+      <a class="button-009 sel-head__cta" id="sel-head-cta" data-theme="secondary" target="_top"
+         href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;filter=product_type__Jerseys">
+        <span class="button-009__inner">
+          <span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span>
+          <span class="button-009__text">Shop all</span>
+          <span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span>
+        </span>
+        <span class="button-009__bg"></span>
+      </a>
+    </span>
+  </div>
+
+  <div class="sel-tabs" role="tablist" aria-label="Product selections">
+    <button class="sel-tab" type="button" role="tab" id="sel-tab-1" aria-controls="sel-panel-1" aria-selected="true"
+            data-title="Fall Sale jerseys" data-cta="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;filter=product_type__Jerseys">
+      <span class="sel-tab__label">Jerseys</span><span class="sel-tab__rule"></span>
+    </button>
+    <button class="sel-tab" type="button" role="tab" id="sel-tab-2" aria-controls="sel-panel-2" aria-selected="false"
+            data-title="Fall Sale player jerseys" data-cta="https://www.worldsoccershop.com/shop/products/sale/player-jerseys">
+      <span class="sel-tab__label">Player jerseys</span><span class="sel-tab__rule"></span>
+    </button>
+    <button class="sel-tab" type="button" role="tab" id="sel-tab-3" aria-controls="sel-panel-3" aria-selected="false"
+            data-title="Fall Sale cleats" data-cta="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;filter=product_type__Firm+Ground+Shoes">
+      <span class="sel-tab__label">Cleats</span><span class="sel-tab__rule"></span>
+    </button>
+  </div>
+
+  <div class="sel-railwrap" id="sel-railwrap">
+
+    <button class="sel-arrow sel-arrow--prev" type="button" data-sel="prev" aria-label="Previous products">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg>
+    </button>
+    <button class="sel-arrow sel-arrow--next" type="button" data-sel="next" aria-label="More products">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg>
+    </button>
+
+    <div class="sel-panel" id="sel-panel-1" role="tabpanel" aria-labelledby="sel-tab-1">
+      <div class="sel-rail" role="list" aria-label="Jerseys">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142150" aria-label="Nike France Home Top 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike France Home Top 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1142150000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike France Home Top 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130621" aria-label="France 26/27 Authentic Home Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="France 26/27 Authentic Home Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1130621000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">France 26/27 Authentic Home Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142078" aria-label="Nike Brazil Home Top 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Brazil Home Top 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1142078000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Brazil Home Top 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128892" aria-label="Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand">
+          <span class="sel-card"><img class="sel-card__img" alt="Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128892000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130645" aria-label="France 26/27 Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="France 26/27 Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1130645000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">France 26/27 Away Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1121081" aria-label="Club America 25/26 Authentic Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Club America 25/26 Authentic Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1121081000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Club America 25/26 Authentic Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1121077" aria-label="Club America 25/26 Authentic Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Club America 25/26 Authentic Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1121077000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Club America 25/26 Authentic Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1121073" aria-label="Club America 2026 Authentic Third Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Club America 2026 Authentic Third Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1121073000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Club America 2026 Authentic Third Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1127429" aria-label="adidas Mexico 1986 Home Jersey">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Mexico 1986 Home Jersey" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1127429000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Mexico 1986 Home Jersey</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126580" aria-label="Mexico 26/27 Women&#x27;s Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Mexico 26/27 Women&#x27;s Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1126580000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mexico 26/27 Women&#x27;s Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128889" aria-label="Nike USMNT Goalkeeper Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Goalkeeper Jersey 2026" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1128889000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Goalkeeper Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142072" aria-label="USMNT 2026 Home Jersey T-Shirt by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 2026 Home Jersey T-Shirt by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1142072000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 2026 Home Jersey T-Shirt by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130982" aria-label="USMNT 2026 X2 Pre Match Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="USMNT 2026 X2 Pre Match Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1130982000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">USMNT 2026 X2 Pre Match Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1127315" aria-label="adidas Liverpool 1995 Stealth Jersey">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Liverpool 1995 Stealth Jersey" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1127315000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Liverpool 1995 Stealth Jersey</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1127312" aria-label="adidas Liverpool 1995 Away Jersey">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Liverpool 1995 Away Jersey" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1127312000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Liverpool 1995 Away Jersey</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126872" aria-label="adidas Arsenal x Places + Faces Lifestyler Jersey 25/26">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Arsenal x Places + Faces Lifestyler Jersey 25/26" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=jpg&amp;iindex=0007&amp;w=350&amp;h=350&amp;img=A1126872000&amp;c=999&amp;bg=f5f5f5&amp;retBlank=1x1" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Arsenal x Places + Faces Lifestyler Jersey 25/26</span>
+        </a>
+      </div>
+    </div>
+    <div class="sel-panel" id="sel-panel-2" role="tabpanel" aria-labelledby="sel-tab-2" hidden>
+      <div class="sel-rail" role="list" aria-label="Player Jerseys">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029985" aria-label="Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126454000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=AFAH26&amp;l3v=10&amp;l3a=0&amp;l4lc=0OB102&amp;l4s=19&amp;l4l=R1133126&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139414" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Men&#x27;s Replica adidas Messi Argentina Home Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029530" aria-label="Men&#x27;s Replica adidas Messi Argentina Away Jersey 2026">
+          <span class="sel-card"><img class="sel-card__img" alt="Men&#x27;s Replica adidas Messi Argentina Away Jersey 2026" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126550000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=FFFFFF&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFT26&amp;l3v=MESSI&amp;l3a=0&amp;l4c=FFFFFF&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=AFAA26&amp;l4v=10&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139416" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Men&#x27;s Replica adidas Messi Argentina Away Jersey 2026</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031108" aria-label="Nike USMNT Home Top 2026 Pulisic">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Home Top 2026 Pulisic" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142072000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=18335A&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=PULISIC&amp;l2a=0&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=USA26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Home Top 2026 Pulisic</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031168" aria-label="Nike Brazil Home Top 2026 Vini Jr.">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Brazil Home Top 2026 Vini Jr." loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142078000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=009999&amp;l2lc=0OB302&amp;l2s=10&amp;l2f=CBF26&amp;l2v=7&amp;l2a=0&amp;l3lc=0OB102&amp;l3s=19&amp;l3l=R1138458" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Brazil Home Top 2026 Vini Jr.</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7028354" aria-label="Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand">
+          <span class="sel-card"><img class="sel-card__img" alt="Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128892000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=FFFFFF&amp;l2lc=0OB302&amp;l2s=10&amp;l2f=CBF26&amp;l2v=7&amp;l2a=0&amp;l3lc=0OB102&amp;l3s=19&amp;l3l=R1138477" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Vinicius Junior Brazil 26/27 Away Jersey by Nike &amp; Jordan Brand</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7026747" aria-label="Florian Wirtz Germany 26/27 Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Florian Wirtz Germany 26/27 Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126555000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=000000&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=DFBH26&amp;l2v=WIRTZ&amp;l2a=0&amp;l3c=000000&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=DFBH26&amp;l3v=17&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Florian Wirtz Germany 26/27 Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7028192" aria-label="Jamal Musiala Germany 26/27 Long Sleeve Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Jamal Musiala Germany 26/27 Long Sleeve Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126489000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=FFFFFF&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=DFBA26&amp;l2v=MUSIALA&amp;l2a=0&amp;l3c=0081AF&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=DFBA26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Jamal Musiala Germany 26/27 Long Sleeve Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031100" aria-label="Nike USMNT Home Top 2026 Adams">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike USMNT Home Top 2026 Adams" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1142072000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=18335A&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=ADAMS&amp;l2a=0&amp;l3c=18335A&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=USA26&amp;l3v=4&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike USMNT Home Top 2026 Adams</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7030562" aria-label="Gilberto Mora Mexico 26/27 Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Gilberto Mora Mexico 26/27 Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126561000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=FFFFFF&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFH26&amp;l3v=G.MORA&amp;l3a=0&amp;l4c=FFFFFF&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFH26&amp;l4v=19&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139412" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Gilberto Mora Mexico 26/27 Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029703" aria-label="Edson Alvarez Mexico 26/27 Home Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Edson Alvarez Mexico 26/27 Home Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126561000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=FFFFFF&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFH26&amp;l3v=E.ÁLVAREZ&amp;l3a=0&amp;l4c=FFFFFF&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFH26&amp;l4v=4&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139412" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Edson Alvarez Mexico 26/27 Home Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029641" aria-label="Raul Jimenez Mexico 26/27 Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Raul Jimenez Mexico 26/27 Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126563000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=0F380E&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFA26&amp;l3v=RAÚL&amp;l3a=0&amp;l4c=0F380E&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFA26&amp;l4v=9&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139410" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Raul Jimenez Mexico 26/27 Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7030817" aria-label="Julian Quinones Mexico 26/27 Away Jersey by adidas">
+          <span class="sel-card"><img class="sel-card__img" alt="Julian Quinones Mexico 26/27 Away Jersey by adidas" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126563000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l3c=0F380E&amp;l3lc=0OB102&amp;l3s=2&amp;l3f=FMFA26&amp;l3v=J.QUIÑONES&amp;l3a=0&amp;l4c=0F380E&amp;l4lc=0OB302&amp;l4s=10&amp;l4f=FMFA26&amp;l4v=16&amp;l4a=0&amp;l5lc=0OR203&amp;l5s=4&amp;l5l=R1139410" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Julian Quinones Mexico 26/27 Away Jersey by adidas</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7027669" aria-label="Christian Pulisic USMNT 26/27 Youth Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="Christian Pulisic USMNT 26/27 Youth Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128905000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=999998&amp;l2lc=0OB102&amp;l2s=2&amp;l2f=USA26&amp;l2v=PULISIC&amp;l2a=0&amp;l3c=999998&amp;l3lc=0OB302&amp;l3s=8&amp;l3f=USA26&amp;l3v=10&amp;l3a=0" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Christian Pulisic USMNT 26/27 Youth Away Jersey by Nike</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7029069" aria-label="Weston McKennie USMNT 26/27 Youth Away Jersey by Nike">
+          <span class="sel-card"><img class="sel-card__img" alt="Weston McKennie USMNT 26/27 Youth Away Jersey by Nike" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128905000&amp;iset=0108&amp;c=999&amp;iindex=0009&amp;w=350&amp;h=350&amp;l2c=999998&amp;l2lc=0OB302&amp;l2s=8&amp;l2f=USA26&amp;l2v=8&amp;l2a=0&amp;l3lc=0OB102&amp;l3s=15&amp;l3l=R1138851" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Weston McKennie USMNT 26/27 Youth Away Jersey by Nike</span>
+        </a>
+      </div>
+    </div>
+    <div class="sel-panel" id="sel-panel-3" role="tabpanel" aria-labelledby="sel-tab-3" hidden>
+      <div class="sel-rail" role="list" aria-label="Cleats">
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1132817" aria-label="adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1132817000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas F50 Hyperfast Elite FG Cleats (Road to Glory Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126256" aria-label="Nike Mercurial Superfly Elite FG Cleats (Attack Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Mercurial Superfly Elite FG Cleats (Attack Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126256000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Mercurial Superfly Elite FG Cleats (Attack Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130213" aria-label="Nike Mercurial Superfly Pro FG Cleats (Breakout Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Mercurial Superfly Pro FG Cleats (Breakout Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1130213000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Mercurial Superfly Pro FG Cleats (Breakout Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1133272" aria-label="adidas F50 Hyperfast Evo FG Cleats (Chaos vs Control Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas F50 Hyperfast Evo FG Cleats (Chaos vs Control Pack)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1133272000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas F50 Hyperfast Evo FG Cleats (Chaos vs Control Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126093" aria-label="adidas Predator Elite FG Cleats (Reverse Edition)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Predator Elite FG Cleats (Reverse Edition)" loading="eager" decoding="async" fetchpriority="high" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1126093000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Predator Elite FG Cleats (Reverse Edition)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1128188" aria-label="adidas Copa Pure 3 Elite FG Cleats (Immortal DNA Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="adidas Copa Pure 3 Elite FG Cleats (Immortal DNA Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1128188000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">adidas Copa Pure 3 Elite FG Cleats (Immortal DNA Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1132698" aria-label="Nike Tiempo Maestro Elite FG Cleats (Shadow Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Tiempo Maestro Elite FG Cleats (Shadow Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1132698000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Tiempo Maestro Elite FG Cleats (Shadow Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1130210" aria-label="Nike Phantom 6 Pro Low Cut FG Cleats (Erling Haaland Edition)">
+          <span class="sel-card"><img class="sel-card__img" alt="Nike Phantom 6 Pro Low Cut FG Cleats (Erling Haaland Edition)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1130210000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Nike Phantom 6 Pro Low Cut FG Cleats (Erling Haaland Edition)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134695" aria-label="PUMA Ultra Nitro Ultimate FG Cleats (White Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="PUMA Ultra Nitro Ultimate FG Cleats (White Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134695000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">PUMA Ultra Nitro Ultimate FG Cleats (White Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134686" aria-label="PUMA Ultra Nitro Ultimate Laceless FG Cleats (Arrival Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="PUMA Ultra Nitro Ultimate Laceless FG Cleats (Arrival Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134686000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">PUMA Ultra Nitro Ultimate Laceless FG Cleats (Arrival Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1129540" aria-label="PUMA Future 9 Ultimate FG Cleats (City Edition Pack, LA)">
+          <span class="sel-card"><img class="sel-card__img" alt="PUMA Future 9 Ultimate FG Cleats (City Edition Pack, LA)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1129540000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">PUMA Future 9 Ultimate FG Cleats (City Edition Pack, LA)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134127" aria-label="Mizuno Morelia Neo V Beta Pro FG Firm Ground Soccer Cleat">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia Neo V Beta Pro FG Firm Ground Soccer Cleat" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134127000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia Neo V Beta Pro FG Firm Ground Soccer Cleat</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134112" aria-label="Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134112000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia Neo Beta IV MIJ Elite FG Cleats (Bright Black Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134095" aria-label="Mizuno Alpha III MIJ FG Cleats (Bright Black Pack)">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Alpha III MIJ FG Cleats (Bright Black Pack)" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134095000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Alpha III MIJ FG Cleats (Bright Black Pack)</span>
+        </a>
+        <a class="sel-item" role="listitem" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1134156" aria-label="Mizuno Morelia II Japan FG Firm Ground Soccer Cleat">
+          <span class="sel-card"><img class="sel-card__img" alt="Mizuno Morelia II Japan FG Firm Ground Soccer Cleat" loading="eager" decoding="async" fetchpriority="low" src="https://www.imagehandler.net/?istyle=0000&amp;fmt=jpg&amp;img=A1134156000&amp;iset=0108&amp;c=999&amp;iindex=0088&amp;w=350&amp;h=350" onerror="this.onerror=null;this.style.opacity='.25'"></span>
+          <span class="sel-name">Mizuno Morelia II Japan FG Firm Ground Soccer Cleat</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   SELECTION SECTION · tab engine + rail arrows
+   ─────────────────────────────────────────────────────────────────────────
+   Inline, self-contained, no CDN library, never touches the parent page.
+   The whole thing is a progressive enhancement: it adds .is-ready, which is
+   what reveals the tab strip. If this script never runs, panel 1 stands on
+   its own and no dead control is shown.
+   ═══════════════════════════════════════════════════════════════════════ */
+(function () {
+  /* Standalone preview: let the document scroll. Never fires inside Fastr. */
+  try { if (window.self === window.top) document.documentElement.classList.add('is-standalone'); } catch (e) {}
+  var root = document.getElementById('sel');
+  if (!root) return;
+
+  var tabs    = Array.prototype.slice.call(root.querySelectorAll('.sel-tab'));
+  var panels  = Array.prototype.slice.call(root.querySelectorAll('.sel-panel'));
+  var title   = document.getElementById('sel-head-title');
+  var cta     = document.getElementById('sel-head-cta');
+  var wrap    = document.getElementById('sel-railwrap');
+  if (!tabs.length || tabs.length !== panels.length || !title || !cta || !wrap) return;
+
+  var prevBtn = wrap.querySelector('[data-sel="prev"]');
+  var nextBtn = wrap.querySelector('[data-sel="next"]');
+  var active  = 0;
+
+  function currentRail() {
+    return panels[active].querySelector('.sel-rail');
+  }
+
+  /* Arrows exist only when the rail actually overflows. At five cards on a
+     1392px container the row fills it exactly and there is nothing to page. */
+  function syncOverflow() {
+    var rail = currentRail();
+    if (!rail) return;
+    var over = rail.scrollWidth - rail.clientWidth > 2;
+    wrap.classList.toggle('has-overflow', over);
+    if (!over) return;
+    var x = rail.scrollLeft;
+    if (prevBtn) prevBtn.disabled = x <= 2;
+    if (nextBtn) nextBtn.disabled = x >= (rail.scrollWidth - rail.clientWidth - 2);
+  }
+
+  function step(dir) {
+    var rail = currentRail();
+    if (!rail) return;
+    var card = rail.querySelector('.sel-item');
+    var by   = card ? (card.getBoundingClientRect().width + 8) : Math.round(rail.clientWidth * 0.8);
+    rail.scrollBy({ left: dir * by, behavior: 'smooth' });
+  }
+
+  function select(i) {
+    if (i === active) return;
+    active = i;
+    tabs.forEach(function (t, n) {
+      t.setAttribute('aria-selected', n === i ? 'true' : 'false');
+      t.setAttribute('tabindex', n === i ? '0' : '-1');
+    });
+    panels.forEach(function (p, n) {
+      if (n === i) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+    });
+
+    /* The two things the designer annotation asks for: the head title becomes
+       the tab's title, and the head CTA points at the tab's destination. The
+       CTA LABEL is deliberately not changed. Figma gives one label only. */
+    var t = tabs[i];
+    title.textContent = t.getAttribute('data-title') || t.textContent;
+    var href = t.getAttribute('data-cta');
+    if (href) {
+      cta.setAttribute('href', href);
+      cta.setAttribute('aria-label', 'Shop all ' + title.textContent);
+    }
+    syncOverflow();
+  }
+
+  tabs.forEach(function (t, i) {
+    t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft')  n = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home')       n = 0;
+      if (e.key === 'End')        n = tabs.length - 1;
+      if (n === null) return;
+      e.preventDefault();
+      select(n);
+      tabs[n].focus();
+    });
+  });
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { step(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { step(1); });
+
+  panels.forEach(function (p) {
+    var rail = p.querySelector('.sel-rail');
+    if (rail) rail.addEventListener('scroll', syncOverflow, { passive: true });
+  });
+
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(syncOverflow, 120);
+  }, { passive: true });
+
+  root.classList.add('is-ready');
+  syncOverflow();
+
+  /* Fonts land after first paint and can change a rail's scrollWidth, which
+     changes whether the arrows belong on screen. Guarded: document.fonts is
+     absent in older engines and its absence must not kill the tab engine. */
+  if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+    document.fonts.ready.then(syncOverflow);
+  }
+})();
+</script>
+
+<!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_c19_selection_section_fall_sale_photo_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

@@ -11,69 +11,28 @@
 <link rel="stylesheet" href="nutmeg.css">
 
 </head>
-<body>
+<body data-hub="volley" data-page="block">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
 <a class="nm-skip" href="#nm-main">Skip to content</a>
 <header class="nm-header">
   <div class="nm-header__left">
-    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
     <div class="nm-search" role="search">
       <label class="nm-search__field">
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
-        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
         <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
         <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
       </label>
       <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
     </div>
   </div>
-  <div class="nm-header__links">
-    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
-    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
-  </div>
-  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
 </header>
 <div class="nm-shell">
 <div class="nm-scrim" hidden></div>
-<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
-<ul>
-<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
-<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
-<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
-<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
-<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
-<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
-<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
-</ul></li>
-<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
-<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
-<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
-<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
-<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
-<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
-</ul></li>
-</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
-<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
-<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
-<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
-<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
-<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
-<ul class="nm-nav__sub" id="nm-sub-blocks">
-<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
-<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
-<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
-<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
-<li><a class="nm-nav__sublink" href="sale-category-tiles.html" aria-current="page">Sale category tiles</a></li>
-<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
-<li><a class="nm-nav__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li>
-<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
-<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
-<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
-<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
-<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
-</ul></li>
-</ul>
-<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
-</nav>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley"><ul class="nm-rail"><li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li><li><a class="nm-rail__item" href="designer-guide.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="blocks.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li><li><a class="nm-rail__item" href="index.html#tools"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M19 21.5H6.5L5 20V4L6.5 2.5H19V21.5Z" stroke-miterlimit="10"/><path d="M5 19L6.5 17.5H19" stroke-miterlimit="10"/><path d="M15 7.5H9" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Resources</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Components</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="blocks.html">All blocks</a></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="true" aria-controls="nm-sub-components-1"><span>Blocks</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-1"><li><a class="nm-drawer__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li><li><a class="nm-drawer__sublink" href="sale-category-tiles.html" aria-current="page">Sale category tiles</a></li><li><a class="nm-drawer__sublink" href="sale-hero.html">Sale hero</a></li><li><a class="nm-drawer__sublink" href="sale-quick-links.html">Sale quick links strip</a></li><li><a class="nm-drawer__sublink" href="section-breaker.html">Section Breaker</a></li><li><a class="nm-drawer__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li><li><a class="nm-drawer__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-section.html">Shop by Club section</a></li><li><a class="nm-drawer__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li><li><a class="nm-drawer__sublink" href="showcase-slider.html">Showcase Slider</a></li></ul></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="false" aria-controls="nm-sub-components-2"><span>Canon blocks, needs review</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-2" hidden><li><a class="nm-drawer__sublink" href="marquee-back-to-season.html">Marquee, Back to Season</a></li><li><a class="nm-drawer__sublink" href="wall-new-arrivals.html">Wall, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="wall-july-launches.html">Wall, July launches</a></li><li><a class="nm-drawer__sublink" href="marquee-and-wall.html">Marquee and Wall</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-jerseys.html">Launch Carousel, jerseys</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-new-arrivals.html">Launch Carousel, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="intent-selector-small.html">Intent Selector, small</a></li><li><a class="nm-drawer__sublink" href="spotlight-rail-spezial.html">Spotlight Rail, Spezial</a></li><li><a class="nm-drawer__sublink" href="quick-links-rail-new.html">Quick Links Rail, new products</a></li><li><a class="nm-drawer__sublink" href="kit-rail-home.html">Kit Rail, home page</a></li><li><a class="nm-drawer__sublink" href="selection-section-jersey-shop.html">Selection Section, Jersey Shop</a></li><li><a class="nm-drawer__sublink" href="selection-section-fall-sale.html">Selection Section, Fall Sale</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-leagues.html">Shop-by Rail, leagues</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-players.html">Shop-by Rail, players</a></li><li><a class="nm-drawer__sublink" href="intent-chips-promo.html">Intent Selector Chips, promo eligible</a></li><li><a class="nm-drawer__sublink" href="intent-chips-sale.html">Intent Selector Chips, sale</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-promo.html">Team Logo Marquee, promo eligible</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-sale.html">Team Logo Marquee, sale</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-clubs.html">Promo Lightbox, clubs</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-nations.html">Promo Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="shop-lightbox-nations.html">Shop Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="matchup-rail.html">Matchup Rail</a></li><li><a class="nm-drawer__sublink" href="hero-parallax-layers.html">Hero, parallax image layers</a></li><li><a class="nm-drawer__sublink" href="hero-falling-objects.html">Hero, falling objects</a></li><li><a class="nm-drawer__sublink" href="spatial-cards-slider.html">Spatial Cards Slider</a></li><li><a class="nm-drawer__sublink" href="shop-the-look-clubs.html">Shop the Look, clubs</a></li><li><a class="nm-drawer__sublink" href="shop-by-nation-accordion.html">Shop by Nation accordion</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-rail.html">Shop by Club rail</a></li></ul></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
 <main class="nm-main" id="nm-main">
 <div class="nm-panel"><div class="nm-content">
 <div class="nm-title">
@@ -98,16 +57,16 @@
      Reserved heights: Mobile 2552 / 640px and up 1280 / 1024px and up 1624.
      Every rule is scoped to #sel-tiles-sale-v1 and cannot reach the page.
      Look comes from the campaign tokens at the top of the style block. --&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&amp;family=DM+Mono:wght@400&amp;family=Figtree:wght@400&amp;family=Mohave:wght@700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&amp;family=DM+Mono:wght@400&amp;family=Figtree:wght@400&amp;family=Mohave:wght@700&amp;display=swap" rel="stylesheet"&gt;
 
 &lt;style&gt;
-#sel-tiles-sale-v1{--campaign-display:&#x27;Mohave&#x27;,Impact,sans-serif;--campaign-mono:&#x27;DM Mono&#x27;,ui-monospace,monospace;--campaign-body:&#x27;Aeonik&#x27;,&#x27;Figtree&#x27;,Arial,sans-serif;--campaign-label:&#x27;Chakra Petch&#x27;,Arial,sans-serif;--campaign-yellow:#FFE014;--campaign-rest-ink:var(--campaign-yellow);--campaign-white:#FFFFFF;--campaign-ink:#1A2C20;--campaign-chip-ink:#192B1F;--campaign-chip-edge:#969393;--campaign-panel:rgba(255,255,255,.9);--campaign-cta:#000000;--campaign-cta-ink:#EDEADA;--campaign-night:#111111;display:grid;grid-template-columns:1fr;gap:8px;width:100%;background:var(--campaign-white);box-sizing:border-box}
+#sel-tiles-sale-v1{--campaign-display:'Mohave',Impact,sans-serif;--campaign-mono:'DM Mono',ui-monospace,monospace;--campaign-body:'Aeonik','Figtree',Arial,sans-serif;--campaign-label:'Chakra Petch',Arial,sans-serif;--campaign-yellow:#FFE014;--campaign-rest-ink:var(--campaign-yellow);--campaign-white:#FFFFFF;--campaign-ink:#1A2C20;--campaign-chip-ink:#192B1F;--campaign-chip-edge:#969393;--campaign-panel:rgba(255,255,255,.9);--campaign-cta:#000000;--campaign-cta-ink:#EDEADA;--campaign-night:#111111;display:grid;grid-template-columns:1fr;gap:8px;width:100%;background:var(--campaign-white);box-sizing:border-box}
 #sel-tiles-sale-v1 *,#sel-tiles-sale-v1 *::before,#sel-tiles-sale-v1 *::after{box-sizing:border-box}
 #sel-tiles-sale-v1 .st-tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:632px;overflow:hidden;background:var(--campaign-night);margin:0}
 #sel-tiles-sale-v1 .st-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;margin:0}
-#sel-tiles-sale-v1 .st-tile::after{content:&quot;&quot;;position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.55) 100%);pointer-events:none}
+#sel-tiles-sale-v1 .st-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.1) 45%,rgba(0,0,0,.55) 100%);pointer-events:none}
 #sel-tiles-sale-v1 .st-rest,#sel-tiles-sale-v1 .st-panel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
 #sel-tiles-sale-v1 .st-rest{gap:16px;padding:0 16px 40px}
 #sel-tiles-sale-v1 .st-eyebrow{margin:0;font-family:var(--campaign-mono);font-size:14px;line-height:1;text-transform:uppercase}
@@ -157,114 +116,114 @@
 }
 &lt;/style&gt;
 
-&lt;section id=&quot;sel-tiles-sale-v1&quot; aria-label=&quot;Shop the sale by category&quot;&gt;
+&lt;section id="sel-tiles-sale-v1" aria-label="Shop the sale by category"&gt;
 
-  &lt;article class=&quot;st-tile st-has-panel&quot;&gt;
-    &lt;img class=&quot;st-photo&quot; src=&quot;&quot; data-photo=&quot;jerseys&quot; alt=&quot;&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.display=&#x27;none&#x27;&quot;&gt;
-    &lt;div class=&quot;st-rest&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;article class="st-tile st-has-panel"&gt;
+    &lt;img class="st-photo" src="" data-photo="jerseys" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'"&gt;
+    &lt;div class="st-rest" aria-hidden="true"&gt;
       &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;p class=&quot;st-title&quot;&gt;Jerseys&lt;/p&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;p class="st-title"&gt;Jerseys&lt;/p&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;st-panel&quot;&gt;
+    &lt;div class="st-panel"&gt;
       &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;h2 class=&quot;st-title&quot;&gt;Jerseys&lt;/h2&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;h2 class="st-title"&gt;Jerseys&lt;/h2&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
       &lt;/div&gt;
-      &lt;ul class=&quot;st-chips&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/clubs&quot; target=&quot;_top&quot;&gt;Shop by Club&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/national-teams&quot; target=&quot;_top&quot;&gt;Shop by Nation&lt;/a&gt;&lt;/li&gt;
+      &lt;ul class="st-chips"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/clubs" target="_top"&gt;Shop by Club&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/national-teams" target="_top"&gt;Shop by Nation&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
-      &lt;ul class=&quot;st-chips&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Men&quot; target=&quot;_top&quot; aria-label=&quot;Men&#x27;s sale jerseys&quot;&gt;Mens&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Women&quot; target=&quot;_top&quot; aria-label=&quot;Women&#x27;s sale jerseys&quot;&gt;Womens&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Youth&quot; target=&quot;_top&quot; aria-label=&quot;Kids&#x27; sale jerseys&quot;&gt;Kids&lt;/a&gt;&lt;/li&gt;
+      &lt;ul class="st-chips"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Men" target="_top" aria-label="Men's sale jerseys"&gt;Mens&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Women" target="_top" aria-label="Women's sale jerseys"&gt;Womens&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/jerseys?filter=gender_age__Youth" target="_top" aria-label="Kids' sale jerseys"&gt;Kids&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
-      &lt;a class=&quot;st-cta&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/jerseys&quot; target=&quot;_top&quot; aria-label=&quot;Shop all sale jerseys&quot;&gt;Shop all&lt;/a&gt;
+      &lt;a class="st-cta" href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top" aria-label="Shop all sale jerseys"&gt;Shop all&lt;/a&gt;
     &lt;/div&gt;
   &lt;/article&gt;
 
-  &lt;article class=&quot;st-tile st-has-panel&quot;&gt;
-    &lt;img class=&quot;st-photo&quot; src=&quot;&quot; data-photo=&quot;player-kits&quot; alt=&quot;&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.display=&#x27;none&#x27;&quot;&gt;
-    &lt;div class=&quot;st-rest&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;article class="st-tile st-has-panel"&gt;
+    &lt;img class="st-photo" src="" data-photo="player-kits" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'"&gt;
+    &lt;div class="st-rest" aria-hidden="true"&gt;
       &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;p class=&quot;st-title&quot;&gt;Player kits&lt;/p&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;p class="st-title"&gt;Player kits&lt;/p&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;st-panel&quot;&gt;
+    &lt;div class="st-panel"&gt;
       &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;h2 class=&quot;st-title&quot;&gt;Player kits&lt;/h2&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;h2 class="st-title"&gt;Player kits&lt;/h2&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
       &lt;/div&gt;
-      &lt;ul class=&quot;st-chips&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/clubs&quot; target=&quot;_top&quot;&gt;Shop by Club&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/national-teams&quot; target=&quot;_top&quot;&gt;Shop by Nation&lt;/a&gt;&lt;/li&gt;
+      &lt;ul class="st-chips"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/clubs" target="_top"&gt;Shop by Club&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/national-teams" target="_top"&gt;Shop by Nation&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
-      &lt;ul class=&quot;st-chips st-chips--four&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/players/lionel-messi&quot; target=&quot;_top&quot;&gt;Messi&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/players/kylian-mbappe&quot; target=&quot;_top&quot;&gt;Mbappe&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/players/lamine-yamal&quot; target=&quot;_top&quot;&gt;Yamal&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/players/erling-haaland&quot; target=&quot;_top&quot;&gt;Haaland&lt;/a&gt;&lt;/li&gt;
+      &lt;ul class="st-chips st-chips--four"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/players/lionel-messi" target="_top"&gt;Messi&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/players/kylian-mbappe" target="_top"&gt;Mbappe&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/players/lamine-yamal" target="_top"&gt;Yamal&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/players/erling-haaland" target="_top"&gt;Haaland&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
-      &lt;a class=&quot;st-cta&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/player-jerseys&quot; target=&quot;_top&quot; aria-label=&quot;Shop all sale player kits&quot;&gt;Shop all&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/article&gt;
-
-  &lt;article class=&quot;st-tile st-has-panel&quot;&gt;
-    &lt;img class=&quot;st-photo&quot; src=&quot;&quot; data-photo=&quot;apparel&quot; alt=&quot;&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.display=&#x27;none&#x27;&quot;&gt;
-    &lt;div class=&quot;st-rest&quot; aria-hidden=&quot;true&quot;&gt;
-      &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;p class=&quot;st-title&quot;&gt;Apparel&lt;/p&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;st-panel&quot;&gt;
-      &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;h2 class=&quot;st-title&quot;&gt;Apparel&lt;/h2&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;ul class=&quot;st-chips&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/srch?query=apparel&amp;amp;page=1&amp;amp;filter=offers__Insider+Sale&amp;amp;filter=offers__Sale&amp;amp;drawer=facet-drawer&quot; target=&quot;_top&quot;&gt;Shop by Size&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/national-teams&quot; target=&quot;_top&quot;&gt;Shop by Nation&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;ul class=&quot;st-chips&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__T-Shirts&quot; target=&quot;_top&quot;&gt;Tees&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jackets&quot; target=&quot;_top&quot;&gt;Jackets&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; data-link-needed=&quot;sale-accessories&quot;&gt;Accessories&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;a class=&quot;st-cta&quot; href=&quot;https://www.worldsoccershop.com/srch?query=apparel&amp;amp;page=1&amp;amp;filter=offers__Insider+Sale&amp;amp;filter=offers__Sale&quot; target=&quot;_top&quot; aria-label=&quot;Shop all sale apparel&quot;&gt;Shop all&lt;/a&gt;
+      &lt;a class="st-cta" href="https://www.worldsoccershop.com/shop/products/sale/player-jerseys" target="_top" aria-label="Shop all sale player kits"&gt;Shop all&lt;/a&gt;
     &lt;/div&gt;
   &lt;/article&gt;
 
-  &lt;article class=&quot;st-tile st-has-panel&quot;&gt;
-    &lt;img class=&quot;st-photo&quot; src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/adidas-chaos-v-control-pack__H24781-FW26_MP3_PRODUCT_F50_EL~SHOT01_sRGB_Highres_4x5-1409657.jpg&quot; data-photo=&quot;footwear&quot; alt=&quot;&quot; loading=&quot;eager&quot; onerror=&quot;this.onerror=null;this.style.display=&#x27;none&#x27;&quot;&gt;
-    &lt;div class=&quot;st-rest&quot; aria-hidden=&quot;true&quot;&gt;
+  &lt;article class="st-tile st-has-panel"&gt;
+    &lt;img class="st-photo" src="" data-photo="apparel" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'"&gt;
+    &lt;div class="st-rest" aria-hidden="true"&gt;
       &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;p class=&quot;st-title&quot;&gt;Footwear&lt;/p&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;p class="st-title"&gt;Apparel&lt;/p&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;st-panel&quot;&gt;
+    &lt;div class="st-panel"&gt;
       &lt;div&gt;
-        &lt;p class=&quot;st-eyebrow&quot;&gt;Sale&lt;/p&gt;
-        &lt;h2 class=&quot;st-title&quot;&gt;Footwear&lt;/h2&gt;
-        &lt;p class=&quot;st-copy&quot;&gt;Up to 60% off&lt;/p&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;h2 class="st-title"&gt;Apparel&lt;/h2&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
       &lt;/div&gt;
-      &lt;ul class=&quot;st-chips&quot;&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; data-link-needed=&quot;sale-footwear-by-size&quot;&gt;Shop by Size&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Firm+Ground+Shoes&quot; target=&quot;_top&quot;&gt;Cleats&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a class=&quot;st-chip&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Lifestyle+Shoes&quot; target=&quot;_top&quot;&gt;Lifestyle&lt;/a&gt;&lt;/li&gt;
+      &lt;ul class="st-chips"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/srch?query=apparel&amp;amp;page=1&amp;amp;filter=offers__Insider+Sale&amp;amp;filter=offers__Sale&amp;amp;drawer=facet-drawer" target="_top"&gt;Shop by Size&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/national-teams" target="_top"&gt;Shop by Nation&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
-      &lt;a class=&quot;st-cta&quot; href=&quot;https://www.worldsoccershop.com/shop/products/sale/footwear&quot; target=&quot;_top&quot; aria-label=&quot;Shop all sale footwear&quot;&gt;Shop all&lt;/a&gt;
+      &lt;ul class="st-chips"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__T-Shirts" target="_top"&gt;Tees&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Jackets" target="_top"&gt;Jackets&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale/accessories?page=1&amp;amp;filter=product_type__Fan+Accessories&amp;amp;filter=product_type__Hats" target="_top"&gt;Accessories&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;a class="st-cta" href="https://www.worldsoccershop.com/srch?query=apparel&amp;amp;page=1&amp;amp;filter=offers__Insider+Sale&amp;amp;filter=offers__Sale" target="_top" aria-label="Shop all sale apparel"&gt;Shop all&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;article class="st-tile st-has-panel"&gt;
+    &lt;img class="st-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-chaos-v-control-pack__H24781-FW26_MP3_PRODUCT_F50_EL~SHOT01_sRGB_Highres_4x5-1409657.jpg" data-photo="footwear" alt="" loading="eager" onerror="this.onerror=null;this.style.display='none'"&gt;
+    &lt;div class="st-rest" aria-hidden="true"&gt;
+      &lt;div&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;p class="st-title"&gt;Footwear&lt;/p&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="st-panel"&gt;
+      &lt;div&gt;
+        &lt;p class="st-eyebrow"&gt;Sale&lt;/p&gt;
+        &lt;h2 class="st-title"&gt;Footwear&lt;/h2&gt;
+        &lt;p class="st-copy"&gt;Up to 60% off&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;ul class="st-chips"&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/srch?query=footwear&amp;amp;filter=offers__Sale&amp;amp;filter=offers__Insider+Sale" target="_top"&gt;Shop by Size&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Firm+Ground+Shoes" target="_top"&gt;Cleats&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="st-chip" href="https://www.worldsoccershop.com/shop/products/sale?filter=product_type__Lifestyle+Shoes" target="_top"&gt;Lifestyle&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;a class="st-cta" href="https://www.worldsoccershop.com/shop/products/sale/footwear" target="_top" aria-label="Shop all sale footwear"&gt;Shop all&lt;/a&gt;
     &lt;/div&gt;
   &lt;/article&gt;
 

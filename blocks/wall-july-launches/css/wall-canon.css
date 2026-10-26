@@ -1,0 +1,145 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   wall-canon.css — the WALL chassis (canon v2) · C-13 New Arrivals Wall
+   ─────────────────────────────────────────────────────────────────────────
+   SIBLING stylesheet to carousel-canon.css (Fable's call, per the C-13 brief:
+   the wall's interaction model — GSAP drag engine, dark ground, no arrows —
+   shares nothing with the rail chassis, so folding it in would couple two
+   unrelated components). Shared VALUES still come from the same canon:
+   · --tile-zoom: 1.04            (locked 07-27)
+   · hover states behind @media (hover:hover) and (pointer:fine)
+   · prefers-reduced-motion honored (engine never starts; static grid)
+   · semantic type roles mapped below (tokens-july12 · worldsoccer theme)
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+   ─────────────────────────────────────────────────────────────────────────
+   HEIGHT BUDGET (canon rules A4 — embed snippet carries all three):
+     <640px    header 122 + canvas 520 = 642     horizontal-only drag
+     ≥640px    header 134 + canvas 620 = 754     horizontal-only drag
+     ≥1024px   header 142 + canvas 760 = 902     full 2D drag (Osmo stock)
+   Tile fixed px per breakpoint (A2 — no fluid aspect-ratio):
+     <640: card 150×239 in item 190×263 · ≥640: 180×286 in 228×310
+     ≥1024: 220×350 in item 340×382  (22:35 held at every step)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ground + ink (locked 07-31: dark ground #0A0A0A) */
+  --wall-ink:#0A0A0A;
+  --wall-paper:#F4F4F4;          /* Figma neutrals/neutral-200 */
+  --wall-muted:#8d8078;
+  --wall-accent:#E8734A;
+
+  /* canon (07-27) */
+  --tile-zoom:1.04;
+
+  /* semantic type roles — names match the dev scale (tokens-july12, worldsoccer).
+     The wall consumes ROLES; values below are the worldsoccer resolutions. */
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-label-12-size:12px;  --ws-label-12-weight:500;
+  --ws-label-14-size:14px;  --ws-label-14-weight:500;
+  --ws-body-14-size:14px;   --ws-body-14-weight:400;
+  --ws-display-34-size:34px;--ws-display-34-weight:600; /* section heading, Chakra SemiBold 34 caps (Figma 35:538 pattern) */
+}
+
+html,body{background:var(--wall-ink);overflow:hidden;margin:0}
+/* B4: never overscroll-behavior:none on html/body */
+
+.wall-wrap{font-family:var(--ws-font-label);color:var(--wall-paper);-webkit-font-smoothing:antialiased}
+
+/* ── header (fixed-height band, exact px per breakpoint — A3) ─────────── */
+.wall-head{height:122px;box-sizing:border-box;padding:22px 20px 0;overflow:hidden}
+.wall-eyebrow{font-size:var(--ws-label-12-size);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--wall-muted);margin:0 0 6px}
+.wall-title{font-size:26px;font-weight:var(--ws-display-34-weight);letter-spacing:.02em;text-transform:uppercase;line-height:1;margin:0;color:var(--wall-paper)}
+.wall-sub{font-size:var(--ws-body-14-size);font-weight:var(--ws-body-14-weight);color:#b9b2ac;margin:7px 0 0;line-height:1.35}
+.wall-hint{font-size:var(--ws-label-12-size);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--wall-accent);margin:8px 0 0}
+
+/* ═══ OSMO ENGINE CSS — verbatim except the 4 marked lines ═══════════════ */
+.infinite-grid{
+  touch-action:pan-y;              /* DEVIATION 2a (was: none) — browser keeps vertical, parent page scrolls */
+  width:100%;
+  height:520px;                    /* was 100svh — fixed iframe budget (A4) */
+  position:relative;
+  overflow:clip;
+  cursor:grab;
+  transition:opacity .5s ease;
+  opacity:1;
+  background:var(--wall-ink);      /* dark ground (locked) */
+}
+.infinite-grid[data-infinite-grid-status="loading"]{opacity:0}
+.infinite-grid[data-infinite-grid-status="dragging"]{cursor:grabbing}
+.infinite-grid__collection{will-change:transform;width:100%;height:100%;position:absolute}
+.infinite-grid__list{width:100%;height:100%;position:absolute;top:0;left:0}
+.infinite-grid__item{
+  /* DEVIATION 1 (restated per canon A2): fixed px BOTH dimensions instead of
+     the prototype's aspect-ratio — same 22:35 card, zero height ambiguity. */
+  width:190px;height:263px;
+  padding:12px 20px;box-sizing:border-box;
+  will-change:transform;backface-visibility:hidden;
+  justify-content:center;align-items:center;
+  display:flex;position:absolute;top:0;left:0;
+}
+.infinite-grid__card{
+  -webkit-user-select:none;user-select:none;
+  will-change:transform;backface-visibility:hidden;
+  border-radius:4px;               /* Figma 35:399 (3.6 → 4) */
+  width:100%;height:100%;position:relative;
+}
+.infinite-grid__card-img{pointer-events:none;object-fit:cover;border-radius:inherit;width:100%;height:100%;position:absolute}
+/* ═══ end Osmo CSS ═══════════════════════════════════════════════════════ */
+
+/* ── tile internals (ours, sits inside the Osmo card) ─────────────────── */
+.wall-link{position:absolute;inset:0;z-index:2;display:block;border-radius:inherit;color:inherit;text-decoration:none}
+.wall-link:focus-visible{outline:2px solid var(--wall-accent);outline-offset:3px}
+.tk{position:absolute;inset:0;border-radius:inherit;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .35s ease;pointer-events:none}
+.tk img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+.tk svg{width:52%;height:auto;opacity:.9}        /* placeholder jersey only — dies when real images land */
+/* label — per Figma 35:384 (Sacha's 08-01 revision, supersedes both the brief's
+   black bar AND the earlier white pill): full-width gradient SCRIM, white text.
+   The bar sits flush to the card's bottom; its 16px bottom padding floats the
+   text 16px off the card edge (Sacha's "16px from the bottom"). */
+.wall-label{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:8px 8px 16px;
+  background:linear-gradient(179deg, rgba(0,0,0,0) 25%, rgba(0,0,0,.5) 107%);
+  border-radius:0 0 4px 4px;
+  color:#fff;
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-label-12-size);font-weight:var(--ws-label-12-weight);
+  letter-spacing:.06px;text-transform:capitalize;
+  line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* canon: hover only where hover exists */
+@media (hover:hover) and (pointer:fine){
+  .infinite-grid__card:hover .tk{transform:scale(var(--tile-zoom))}
+  .wall-static-card:hover .tk{transform:scale(var(--tile-zoom))}
+}
+
+/* ── ≥640px ───────────────────────────────────────────────────────────── */
+@media (min-width:640px){
+  .wall-head{height:134px;padding:26px 24px 0}
+  .wall-title{font-size:30px}
+  .infinite-grid{height:620px}
+  .infinite-grid__item{width:228px;height:310px;padding:12px 24px}
+}
+
+/* ── ≥1024px — full 2D drag, exactly as Osmo ships it ─────────────────── */
+@media (min-width:1024px){
+  .wall-head{height:142px;padding:28px 28px 0}
+  .wall-title{font-size:var(--ws-display-34-size)}
+  .infinite-grid{height:760px;touch-action:none}   /* Osmo stock on desktop */
+  .infinite-grid__item{width:340px;height:382px;padding:16px 60px}
+}
+
+/* ── reduced motion: engine never initialises (JS guard); this renders ── */
+@media (prefers-reduced-motion:reduce){
+  .infinite-grid{display:none}
+  .wall-static{display:flex !important;flex-wrap:wrap;gap:14px;justify-content:center;align-content:flex-start;height:520px;overflow:hidden;padding:6px}
+  .wall-static .wall-static-card{position:relative;width:150px;height:239px;border-radius:4px}
+  .wall-static .tk{transition:none}
+}
+@media (prefers-reduced-motion:reduce) and (min-width:640px){ .wall-static{height:620px} .wall-static .wall-static-card{width:180px;height:286px} }
+@media (prefers-reduced-motion:reduce) and (min-width:1024px){ .wall-static{height:760px} .wall-static .wall-static-card{width:220px;height:350px} }
+.wall-static{display:none}
+
+/* screen-reader link list (populated from the ITEMS at runtime) */
+.sr-links{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

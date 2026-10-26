@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promo Lightbox, nations · Nutmeg</title>
+<meta name="description" content="The A to Z nations pop-up for promo deals.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+
+</head>
+<body data-hub="volley" data-page="block">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley"><ul class="nm-rail"><li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li><li><a class="nm-rail__item" href="designer-guide.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="blocks.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li><li><a class="nm-rail__item" href="index.html#tools"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M19 21.5H6.5L5 20V4L6.5 2.5H19V21.5Z" stroke-miterlimit="10"/><path d="M5 19L6.5 17.5H19" stroke-miterlimit="10"/><path d="M15 7.5H9" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Resources</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Components</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="blocks.html">All blocks</a></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="false" aria-controls="nm-sub-components-1"><span>Blocks</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-1" hidden><li><a class="nm-drawer__sublink" href="product-tile-gallery.html">Product Tile Gallery</a></li><li><a class="nm-drawer__sublink" href="sale-category-tiles.html">Sale category tiles</a></li><li><a class="nm-drawer__sublink" href="sale-hero.html">Sale hero</a></li><li><a class="nm-drawer__sublink" href="sale-quick-links.html">Sale quick links strip</a></li><li><a class="nm-drawer__sublink" href="section-breaker.html">Section Breaker</a></li><li><a class="nm-drawer__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li><li><a class="nm-drawer__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-section.html">Shop by Club section</a></li><li><a class="nm-drawer__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li><li><a class="nm-drawer__sublink" href="showcase-slider.html">Showcase Slider</a></li></ul></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="true" aria-controls="nm-sub-components-2"><span>Canon blocks, needs review</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-2"><li><a class="nm-drawer__sublink" href="marquee-back-to-season.html">Marquee, Back to Season</a></li><li><a class="nm-drawer__sublink" href="wall-new-arrivals.html">Wall, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="wall-july-launches.html">Wall, July launches</a></li><li><a class="nm-drawer__sublink" href="marquee-and-wall.html">Marquee and Wall</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-jerseys.html">Launch Carousel, jerseys</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-new-arrivals.html">Launch Carousel, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="intent-selector-small.html">Intent Selector, small</a></li><li><a class="nm-drawer__sublink" href="spotlight-rail-spezial.html">Spotlight Rail, Spezial</a></li><li><a class="nm-drawer__sublink" href="quick-links-rail-new.html">Quick Links Rail, new products</a></li><li><a class="nm-drawer__sublink" href="kit-rail-home.html">Kit Rail, home page</a></li><li><a class="nm-drawer__sublink" href="selection-section-jersey-shop.html">Selection Section, Jersey Shop</a></li><li><a class="nm-drawer__sublink" href="selection-section-fall-sale.html">Selection Section, Fall Sale</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-leagues.html">Shop-by Rail, leagues</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-players.html">Shop-by Rail, players</a></li><li><a class="nm-drawer__sublink" href="intent-chips-promo.html">Intent Selector Chips, promo eligible</a></li><li><a class="nm-drawer__sublink" href="intent-chips-sale.html">Intent Selector Chips, sale</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-promo.html">Team Logo Marquee, promo eligible</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-sale.html">Team Logo Marquee, sale</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-clubs.html">Promo Lightbox, clubs</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-nations.html" aria-current="page">Promo Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="shop-lightbox-nations.html">Shop Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="matchup-rail.html">Matchup Rail</a></li><li><a class="nm-drawer__sublink" href="hero-parallax-layers.html">Hero, parallax image layers</a></li><li><a class="nm-drawer__sublink" href="hero-falling-objects.html">Hero, falling objects</a></li><li><a class="nm-drawer__sublink" href="spatial-cards-slider.html">Spatial Cards Slider</a></li><li><a class="nm-drawer__sublink" href="shop-the-look-clubs.html">Shop the Look, clubs</a></li><li><a class="nm-drawer__sublink" href="shop-by-nation-accordion.html">Shop by Nation accordion</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-rail.html">Shop by Club rail</a></li></ul></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <div class="nm-title__meta"><span class="nm-chip nm-chip--yellow">In progress</span><span class="nm-chip nm-chip--grey">WorldSoccerShop</span></div>
+  <h1>Promo Lightbox, nations</h1>
+  <p class="nm-lede">The A to Z nations pop-up for promo deals.</p>
+  <hr class="nm-divider">
+</div>
+<section class="nm-section" id="demo">
+<div class="nm-section__head"><h2 class="nm-h2">Live demo<button type="button" class="nm-anchor" aria-label="Copy a link to Live demo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Switch the screen width. Photos show only once they are on the image host.</p></div>
+<div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-promo-lightbox-nations"><button type="button" class="nm-tab" role="tab" aria-controls="frame-promo-lightbox-nations" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-promo-lightbox-nations" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-promo-lightbox-nations" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/promo-lightbox-nations/block.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-promo-lightbox-nations" src="../blocks/promo-lightbox-nations/block.html" height="1600" title="Promo Lightbox, nations, live demo"></iframe></div></div>
+</section><section class="nm-section" id="review">
+<div class="nm-section__head"><h2 class="nm-h2">Before designers use it<button type="button" class="nm-anchor" aria-label="Copy a link to Before designers use it"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<div class="nm-callout"><strong>This block needs a review before it goes on a page.</strong><p>It was copied into the library on 25 Oct 2026 from the canon folder, as it was. Fable and Sacha still need to check it against the paste rules, the five screen widths and contrast. Until then, study it and build from it, but check with Sacha before using it.</p></div>
+</section><section class="nm-section" id="code">
+<div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">This is the build file from the canon folder. It is not a Fastr paste file yet, so it carries its own page around the block.</p></div>
+<div class="nm-codeblock"><div class="nm-codeblock__bar"><span>block.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en" data-brand="wss"&gt;
+&lt;head&gt;
+&lt;!--
+  promo-lightbox--nations-v1.html : canon v2
+  Sacha's A-to-Z nations lightbox (the newer, cleaner design), fixed and
+  catalogued by Fable 2026-08-27. NOT an iframe block: this document is the
+  SOURCE of a Fastr Custom Action lightbox (Find Your National Team button).
+  Published on Netlify as a team reference copy only; Fastr paste is how it
+  ships. Sister file: promo-lightbox--clubs-v1.html.
+
+  FIXES 2026-08-27, every one verified in a live browser:
+  - Mexico, Italy and Greece filters had a DOUBLE SPACE in the value and
+    returned 0 results (Mexico single-space: 252). All three fixed.
+  - USMNT filter said "US Men's National Team National Team": 0 results.
+    The real facet value is "USA Mens National Team" (227 results).
+    ("USA Womens National Team" also exists, for a future row.)
+  - 10 nations had invisible 1x1 placeholder crests: real crests wired in
+    from the LOGOS crest sheet (Albania, Cuba, Iraq, Ireland, Serbia,
+    Slovakia, Sweden, Trinidad &amp; Tobago, Ukraine, UAE), all load-checked.
+  - Senegal wore ARSENAL's crest: real Senegal crest now.
+  - China row REMOVED: 0 promo-eligible products, and it wore the Chivas
+    crest. Re-add with a real crest if China stock appears.
+  - Title "Snag a Deal by Nation" (family style, per Sacha). "Promotion
+    Eligible" badge removed: it carried the jargon the retitle avoids.
+  - One self-disarming onerror per crest img (rule).
+
+  FASTR SETTINGS: width 720 desktop (860 also fine), full width mobile,
+  SAME source in both the up-to-640 and 641-plus variants.
+--&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Promo Lightbox: Nations&lt;/title&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+  &lt;style&gt;
+    /* ── WSS Design Tokens ──────────────────────────────────── */
+    :root {
+      --wss-gold-50:  #f7f5ee;
+      --wss-gold-100: #cfc39a;
+      --wss-gold-300: #ad9851;
+      --wss-gold-400: #796a39;
+      --wss-gold-500: #6a5d31;
+
+      --wss-bg:      #ffffff;
+      --wss-surface: #f5f5f5;
+      --wss-muted:   #e5e5e5;
+
+      --wss-text:         #27272a;
+      --wss-text-muted:   #525252;
+      --wss-text-subtle:  #737373;
+      --wss-text-on-dark: #ffffff;
+
+      --wss-border-subtle: #e5e5e5;
+      --wss-border-strong: #171717;
+
+      --wss-gunmetal: #1c1d24;
+      --wss-charcoal: #2e2f3a;
+
+      --wss-sale-bg:   #ef4444;
+      --wss-sale-text: #ffffff;
+
+      --wss-ease:   cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --wss-spring: cubic-bezier(0.25, 1, 0.5, 1);
+      --wss-fast:   0.22s;
+      --wss-base:   0.35s;
+
+      --wss-font: 'Chakra Petch', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--wss-font);
+      background: transparent;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Lightbox wrapper ───────────────────────────────── */
+    .wss-lb {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--wss-bg);
+      padding: 40px 40px 48px;
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .wss-lb__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .wss-lb__eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--wss-gold-300);
+      margin-bottom: 6px;
+    }
+
+    .wss-lb__title {
+      font-size: 32px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--wss-text);
+      line-height: 1.1;
+      margin: 0 0 6px;
+    }
+
+    .wss-lb__subtitle {
+      display: block;
+      font-family: var(--wss-font);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--wss-text-subtle);
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .wss-lb__badge {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background: var(--wss-sale-bg);
+      color: var(--wss-sale-text);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── Divider ─────────────────────────────────────────── */
+    .wss-lb__rule {
+      height: 2px;
+      background: linear-gradient(90deg, var(--wss-gold-400) 0%, var(--wss-gold-100) 60%, var(--wss-muted) 100%);
+      margin-bottom: 28px;
+      border: none;
+    }
+
+    /* ── Team list ─────────────────────────────────────── */
+    .promo-team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .promo-team-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 14px;
+      background: var(--wss-bg);
+      border: 1.5px solid var(--wss-border-subtle);
+      text-decoration: none;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      transition:
+        background var(--wss-fast) var(--wss-ease),
+        border-color var(--wss-fast) var(--wss-ease),
+        transform var(--wss-fast) var(--wss-spring),
+        box-shadow var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover {
+      background: var(--wss-gunmetal);
+      border-color: var(--wss-gunmetal);
+      transform: translateX(3px);
+      box-shadow: 0 6px 18px rgba(28, 29, 36, 0.18);
+    }
+
+    .promo-team-row:active {
+      transform: scale(0.99);
+    }
+
+    .team-logo-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--wss-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      transition: transform var(--wss-fast) var(--wss-spring), background var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover .team-logo-wrap {
+      transform: scale(1.08);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .team-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .promo-team-row__divider {
+      width: 1px;
+      height: 20px;
+      background: var(--wss-border-subtle);
+      flex-shrink: 0;
+      transition: background var(--wss-fast) var(--wss-ease);
+    }
+
+    .promo-team-row:hover .promo-team-row__divider {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .promo-team-row__name {
+      font-family: var(--wss-font);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--wss-text);
+      text-align: left;
+      transition: color var(--wss-fast) var(--wss-ease), font-weight var(--wss-fast);
+    }
+
+    .promo-team-row:hover .promo-team-row__name {
+      color: var(--wss-text-on-dark);
+      font-weight: 600;
+    }
+
+    /* ── Mobile ─────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .wss-lb {
+        padding: 28px 20px 36px;
+      }
+      .wss-lb__title {
+        font-size: 24px;
+      }
+      .wss-lb__header {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .promo-team-row__name {
+        font-size: 13px;
+      }
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class="wss-lb"&gt;
+
+    &lt;div class="wss-lb__header"&gt;
+      &lt;div&gt;
+        &lt;span class="wss-lb__eyebrow"&gt;WorldSoccerShop&lt;/span&gt;
+        &lt;h1 class="wss-lb__title"&gt;Snag a Deal by Nation&lt;/h1&gt;
+        &lt;span class="wss-lb__subtitle"&gt;Shop your nation's deals&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;hr class="wss-lb__rule"&gt;
+
+    &lt;div class="promo-team-list"&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Albania+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e9/8f/9071a2f8453381581cf8be82c976.png" alt="Albania logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Albania&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Algeria+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/97/f9/3722257a476cace899cf0cd1bf0e.png" alt="Algeria logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Algeria&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Argentina+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1a/04/e1ba4f70474d9b643639b26b8d0b.png" alt="Argentina logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Argentina&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Australia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/db/06/8c476d1d4a0d8f2ffc9c96a35c40.png" alt="Australia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Australia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Austria+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2e/e5/2e00f653441786ee7cd2aacffc5d.png" alt="Austria logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Austria&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Belgium+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fe/da/61d201be4873b7fc4e5a6d2a56e2.png" alt="Belgium logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Belgium&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Brazil+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/99/05/c4034c7d4553a10b9cfd151eb342.png" alt="Brazil logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Brazil&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Cameroon+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/96/ae/f11416604d21a361aaf4eb5eb414.png" alt="Cameroon logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Cameroon&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Canada+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fb/fd/9c6c6bcc460abcd2531cf105869f.png" alt="Canada logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Canada&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Cape+Verde+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b1/31/04d9806345979da9c9e918458bd7.png" alt="Cape Verde logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Cape Verde&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Chile+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fc/60/a85a95684946a4f81f254b1040f1.png" alt="Chile logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Chile&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Colombia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/27/07/40b877f94ac7b14f431dae83ff96.png" alt="Colombia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Colombia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Costa+Rica+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/32/93/7c83c3914df79fd9b93bf7b8b3ff.png" alt="Costa Rica logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Costa Rica&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Croatia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/00/8b/224881854f8db735f0c84dbe30b2.png" alt="Croatia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Croatia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Cuba+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/88/b1/a7fbd25c43f5afebcc2659b0258b.png" alt="Cuba logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Cuba&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Cura%C3%A7ao+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e3/7c/33a478f043619ab55505e058d862.png" alt="Curaçao logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Cura&amp;ccedil;ao&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Czech+Republic+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fb/0f/a674da5d4646a7617f7e98e33765.png" alt="Czech Republic logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Czech Republic&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Denmark+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0e/4f/094226aa44e594dbac4082b38ba3.png" alt="Denmark logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Denmark&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Ecuador+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/49/a7/89e260bc47efa6e676f27f66313f.png" alt="Ecuador logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Ecuador&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Egypt+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a4/8d/a288de4f4ec3888e8539ba24e8d5.png" alt="Egypt logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Egypt&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__El+Salvador+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/29/2b/635d0e164ed89c73e5335833a54b.png" alt="El Salvador logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;El Salvador&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__England+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/3f/8b/fe0042954f5c88e7467860dfe147.png" alt="England logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;England&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__France+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/2c/3a/077396044eebaa88266c705f33d2.png" alt="France logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;France&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Germany+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/45/fc/8ff90a9b422a8ed1ab32819f6bc2.png" alt="Germany logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Germany&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Ghana+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/de/e9/e4fe3e1b45d79e5b7fadf69524b8.png" alt="Ghana logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Ghana&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Greece+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fe/56/f96b6a5548178199f3a178654610.png" alt="Greece logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Greece&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Guatemala+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ce/4a/c92d7df84341a5bab0c8c232b94b.png" alt="Guatemala logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Guatemala&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Haiti+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0b/66/97b5b4a24a4084792bdd93cfda39.png" alt="Haiti logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Haiti&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Honduras+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/82/da/5cc8e0fa4935b383fcfe1b823fa6.png" alt="Honduras logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Honduras&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Hungary+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b2/fd/b7739bde4e7eba10813d59fcd86c.png" alt="Hungary logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Hungary&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Iceland+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/6a/37/6704bcc74e5e90de25f4d07538bb.png" alt="Iceland logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Iceland&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Iran+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/56/5d/1a9239b247dfbf54ed62ee5ccdee.png" alt="Iran logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Iran&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Iraq+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1d/09/a70a8fc040bf96317ba2e1ade574.png" alt="Iraq logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Iraq&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Ireland+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d6/bc/df45ed224b1da7f81146d2b86857.png" alt="Ireland logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Ireland&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Israel+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/6e/3f/535e9bc64757af87e86dbbfd389d.png" alt="Israel logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Israel&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Italy+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/96/33/4034820d40e9abf9286ede2be70a.png" alt="Italy logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Italy&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Ivory+Coast+%2F+C%C3%B4te+d%27Ivoire+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/ff/0e/ef106919436f9e017e3afd9906c1.png" alt="Ivory Coast logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Ivory Coast&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Jamaica+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/9c/23/fdda3bc6492caea77c74b80e2a94.png" alt="Jamaica logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Jamaica&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Japan+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/61/10/fb3af05a4540b50edf3960952048.png" alt="Japan logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Japan&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Jordan+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d3/e8/a0d080e6486a9bfac7a752106c2e.png" alt="Jordan logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Jordan&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Mexico+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/74/9a/e7206b704553afca07f3ddd750ff.png" alt="Mexico logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Mexico&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Morocco+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f5/74/782aae234358b09a0535c7f55c8e.png" alt="Morocco logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Morocco&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Netherlands+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/42/20/70049ac947a2bb5799a3cac07776.png" alt="Netherlands logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Netherlands&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__New+Zealand+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a3/9f/d559b6cc4985979f04a78ab2bd00.png" alt="New Zealand logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;New Zealand&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Nigeria+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/bd/ce/9dd401874ff285cba45cd41b938f.png" alt="Nigeria logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Nigeria&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Northern+Ireland+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/33/4a/76ccfff74f69bcf93e960667afaa.png" alt="Northern Ireland logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Northern Ireland&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Norway+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/14/e9/f8c68c444148afdbb9ffce4ddb24.png" alt="Norway logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Norway&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Panama+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0b/58/d38c13fe43d79ef89fcd74c8b82c.png" alt="Panama logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Panama&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Paraguay+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/fe/12/2e80438f4de88841c12f5cf65feb.png" alt="Paraguay logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Paraguay&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Peru+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/57/79/01474cda458d9bcfeab79984684c.png" alt="Peru logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Peru&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Poland+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d9/af/7632ffd14c279526ea092b42cfb7.png" alt="Poland logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Poland&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Portugal+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a4/d7/bf652ebb489a95d74b6b6f81fce9.png" alt="Portugal logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Portugal&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Qatar+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/59/b7/20217dde4f3eb323862f61eb5aae.png" alt="Qatar logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Qatar&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Saudi+Arabia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/d1/3e/183c500645b5a471456546620851.png" alt="Saudi Arabia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Saudi Arabia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Scotland+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f4/5c/ddd6dbc8425aa5a854d1954671c7.png" alt="Scotland logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Scotland&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Senegal+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/e4/a2/0f894a6c425882dadd4dcb3c4a99.png" alt="Senegal logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Senegal&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Serbia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f9/11/f6cd2a554d16b5eadd1555e3642a.png" alt="Serbia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Serbia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Slovakia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/68/3e/801e2c794c8c9df9c70e811e4a4b.png" alt="Slovakia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Slovakia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__South+Africa+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/3e/f0/c46437324711a7c9730d2bb81b7e.png" alt="South Africa logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;South Africa&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__South+Korea+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cc/48/3dd8d6c34f629fc56ff965fa01a5.png" alt="South Korea logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;South Korea&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Spain+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/40/de/6ffd69874e3d89f9d77fb261471c.png" alt="Spain logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Spain&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Sweden+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/65/2e/9a2231074b12ac7e5c839e1c42c6.png" alt="Sweden logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Sweden&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Switzerland+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a3/00/0337286e45e48c1d57dd810a7fa3.png" alt="Switzerland logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Switzerland&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Trinidad+%26+Tobago+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/b3/cb/33b994004fdb8edfe2a79b925cd1.png" alt="Trinidad &amp;amp; Tobago logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Trinidad &amp;amp; Tobago&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Tunisia+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/cf/b1/3048637e40d7be84ec3cdc5157b5.png" alt="Tunisia logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Tunisia&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Turkey+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/62/c2/52571e9e45508a9b5cce217592da.png" alt="Turkey logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Turkey&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Ukraine+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/f2/6b/ae053f1441e79b067d45055614ba.png" alt="Ukraine logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Ukraine&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__United+Arab+Emirates+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/eb/51/85b62d7a4348a19db0038ba10fc0.png" alt="United Arab Emirates logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;United Arab Emirates&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Uruguay+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/49/d8/cc2b81e649638377bcfb0f3385ee.png" alt="Uruguay logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Uruguay&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__USA+Mens+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/a5/90/0b3ce8614dea85b1e54b7297581e.png" alt="USMNT logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;USMNT&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Uzbekistan+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/1e/d4/8e883da8410da673bc1d602b3146.png" alt="Uzbekistan logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Uzbekistan&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Venezuela+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/29/d4/c19c00e4470799d52e967dadc0e7.png" alt="Venezuela logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Venezuela&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a class="promo-team-row" href="https://www.worldsoccershop.com/shop/products/promotion-eligible?page=1&amp;drawer=facet-drawer&amp;filter=club__Wales+National+Team" target="_top"&gt;
+        &lt;div class="team-logo-wrap"&gt;
+          &lt;img class="team-logo-img" onerror="this.onerror=null;this.style.opacity='.15'" src="https://images.getfastr.com/0a/70/8ef1c4604e1fa2aee8eac62bebde.png" alt="Wales logo"&gt;
+        &lt;/div&gt;
+        &lt;div class="promo-team-row__divider"&gt;&lt;/div&gt;
+        &lt;span class="promo-team-row__name"&gt;Wales&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. --&gt;
+&lt;script&gt;
+(function () {
+  var BLOCK = "fastr_blocks_promo_lightbox_nations_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target &amp;&amp; e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/promo-lightbox-nations/block.html" download="promo-lightbox-nations--block.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>
+</section><section class="nm-section" id="contact">
+<div class="nm-section__head"><h2 class="nm-h2">Contact<button type="button" class="nm-anchor" aria-label="Copy a link to Contact"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
+<p class="nm-prose">Questions go to the design team in the Site Change Requests list in ClickUp.</p>
+</section>
+<footer class="nm-footer"><span>Nutmeg, started 24 Oct 2026. Sports Endeavors design team.</span><a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">View on GitHub</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+
+</body>
+</html>

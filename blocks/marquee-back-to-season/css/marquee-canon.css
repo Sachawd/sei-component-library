@@ -1,0 +1,327 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   marquee-canon.css — the MARQUEE chassis (canon v2)
+   ─────────────────────────────────────────────────────────────────────────
+   Engine: Osmo Supply "CSS Marquee". Every class name, both data- attributes
+   and the keyframe are VERBATIM. Osmo's optional JS is used as shipped.
+
+   ⚠️ PROPOSED as the one marquee chassis. Not locked until Sacha says so.
+
+   TWO SIZES × TWO COLOURS = FOUR VARIANTS  (Sacha, 2026-08-03)
+   ─────────────────────────────────────────────────────────────────────────
+                        data-theme="black"        data-theme="white"
+     data-marquee="large"   black ground /            white ground /
+                            #f4f4f4 ink               #111 ink
+     data-marquee="small"   black ground /            white ground /
+                            #f4f4f4 ink               #111 ink
+
+   LARGE  = the campaign banner. Figma node 35:886, whose own annotation now
+            reads "Osmo marquee (large)". Image ground + scrim, 36px type.
+            Renamed from "editorial" on 08-03 to match Sacha and the Figma label.
+   SMALL  = the promo / utility bar. The job `00_promo_marquee.html` does today
+            (free shipping, promo codes). Renamed from "utility" on 08-03.
+
+   ⚠️ v1 `00_promo_marquee.html` IS NOT TOUCHED and must not be deleted.
+   Migrating it is a separate later step behind the demo.html gate.
+
+   ═══ THE PADDING BUG THIS FIXES ═══════════════════════════════════════════
+   Measured off Sacha's screenshot (2× retina, halved), then the live file was
+   rendered in Chromium to confirm the cause rather than infer it.
+
+     From the screenshot   band 48.0 · caps 13.0 · above 22.0 · below 12.5
+                           ⇒ the text sits LOW, above:below ≈ 1.76 : 1
+     (the screenshot is at browser zoom; the file's real bar is 40px. The
+      RATIO is what matters and it is the same at any zoom.)
+
+   TWO causes, both confirmed by rendering `Marquee-Free-Shipping.html`:
+
+   1. **QUIRKS MODE.** `document.compatMode === "BackCompat"`. The file is a
+      bare fragment with no doctype, no <html>, no <head>, no <body>. That is a
+      direct hit on rules B3, which names bare fragments as "the other half of
+      the Trending Nations bug". Inline line-box behaviour differs in quirks.
+   2. **`line-height: normal`.** Confirmed on `.wss-marquee__item` — it is never
+      set, so the line box is Chakra Petch's full ascent+descent and the cap
+      band is not centred inside it. `align-items:center` then centres that BOX
+      perfectly (measured 13px above / 13px below), which is why it looks like
+      a padding problem. It is not. The box is centred; the LETTERS are not.
+
+   Padding was never the problem. Adding bottom padding would have moved the
+   whole bar down and left the letters just as off-centre.
+
+   THE FIX, in three layers, most exact first:
+   1. `text-box-trim: trim-both` + `text-box-edge: cap alphabetic` where the
+      browser supports it (Chrome 133+, Safari 18.2+). This trims the line box
+      to the CAP BAND, so flex centring then centres the letters themselves.
+      It is exactly what Figma does, which is why Figma looked right and the
+      build did not.
+   2. Everywhere else: explicit `line-height: 1` + flex centring. That removes
+      the inherited-leading error entirely and lands within about 0.07em.
+   3. `--mq-optical` — a nudge, default 0, for the residual in step 2 if a
+      specific font needs it. ONE number, documented, not a magic value.
+
+   ⚠️ Could not verify step 2's residual with the real font: Google Fonts and
+   npm are both blocked in the build sandbox, so Chakra Petch never loaded.
+   Band heights below ARE font-independent and verified. Eyeball the optical
+   centring once on a machine with the real font and set --mq-optical if needed.
+
+   MEASURED FROM FIGMA 35:886 (large, desktop)
+   ─────────────────────────────────────────────────────────────────────────
+     frame            1456 × 220, 32px side gutter
+     ground           black, then the photo (object-cover), then rgba(0,0,0,.4)
+     band             black, padding 32px 48px, gap 32px  →  100px tall
+     "FRESH KITS"     Chakra Petch Bold 700 · 36px · tracking 17.28px (0.48em)
+     "back to season" Chakra Petch Light 300 · 36px · no tracking
+     ink              #f4f4f4  (neutrals/neutral-200, shared with wall-canon)
+
+   SMALL matches the LIVE bar exactly, so nothing shifts on the page:
+   `Banners/Marquee-Free-Shipping.html` → bar 40px · Chakra Petch 700 · 12px ·
+   tracking 0.14em · 22px item padding · 5px diamond at .85 opacity.
+   Only ONE value changes: ground #111111 → #000000 (the neutrals/black token
+   the large one already uses). Imperceptible, but it is a change — say no and
+   set --mq-black back to #111111.
+
+   HEIGHT BUDGET (canon A4 — embed snippet carries all breakpoints)
+   ─────────────────────────────────────────────────────────────────────────
+     large   <640: type 18 · band 54 · TOTAL 110
+             ≥640: type 26 · band 74 · TOTAL 160
+            ≥1024: type 36 · band 100 · TOTAL 220
+     small   all breakpoints: type 12 · TOTAL 40  (unchanged from live)
+
+   CHANGES FROM THE OSMO SOURCE, all deliberate
+   ─────────────────────────────────────────────────────────────────────────
+   1. `max-width: 42em` removed from `.marquee-css`. Osmo's demo width; this
+      block is full-bleed inside a Fastr iframe.
+   2. `.marquee-css__item-svg` carries a separator GLYPH (🔥 on large, a CSS
+      diamond on small) instead of Osmo's green star vector.
+   3. `prefers-reduced-motion` support ADDED. Osmo's marquee does not honour it
+      and an infinite scroller is the textbook case.
+   4. Optical centring, above. Osmo inherits the same latent line-box problem.
+
+   ⚠️ A REAL FLAME SVG EXISTS IN FIGMA. Node 35:886 contains two 32×32
+   "Icon Container" instances pointing at an exported SVG, alongside the 🔥 text
+   glyphs. That SVG is the fix for the platform-emoji problem (Apple vs Segoe vs
+   Noto). It could not be downloaded here — figma.com is blocked in the sandbox.
+   Export it, drop it in `.marquee-css__item-svg`, delete the glyph.
+
+   ⚠️ LATENT BUG FIXED BY CONSTRUCTION: the live bar's fade edges are hardcoded
+   to `#ffffff`, so on a black bar they render as white smudges. The fades here
+   read `--mq-ground`, so they always match the theme.
+
+   ⚠️ THE LARGE BACKGROUND IMAGE IS NOT BAKED IN. It is `--marquee-bg`, set per
+   instance, so the generator fills it from data (rule D4). See README for the
+   S3 filename and imagehandler URL.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --mq-ink-light:#f4f4f4;                 /* neutrals/neutral-200 */
+  --mq-ink-dark:#111111;
+  --mq-black:#000000;
+  --mq-white:#ffffff;
+  --mq-scrim:rgba(0,0,0,.4);
+  --mq-hairline:#e8e8e8;                  /* white theme only, separates bar from a white page */
+  --mq-font:'Chakra Petch',Figtree,sans-serif;
+  --mq-bold:700;
+  --mq-light:300;
+  --mq-tracking:0.48em;                   /* 17.28px at 36px */
+  --mq-optical:0px;                       /* see THE PADDING BUG note. One number. Default 0. */
+  --mq-fade:0px;                          /* edge fade width. small sets 56px, large stays 0 */
+  --marquee-bg:none;                      /* large only. set per instance: url(...) */
+
+  /* resolved per theme below */
+  --mq-ground:var(--mq-black);
+  --mq-ink:var(--mq-ink-light);
+}
+
+html,body{background:var(--mq-ground);overflow:hidden;margin:0}
+/* B4: never overscroll-behavior:none on html/body */
+
+/* ── themes. Osmo's documented data-theme pattern, same as cta-canon.css ── */
+[data-theme='black']{ --mq-ground:var(--mq-black); --mq-ink:var(--mq-ink-light); }
+[data-theme='white']{ --mq-ground:var(--mq-white); --mq-ink:var(--mq-ink-dark); }
+
+/* ── outer wrap ─────────────────────────────────────────────────────────── */
+.mq-wrap{
+  position:relative;
+  width:100%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--mq-ground);
+  overflow:hidden;
+  box-sizing:border-box;
+}
+.mq-wrap__bg{
+  position:absolute;inset:0;
+  background-image:var(--marquee-bg);
+  background-size:cover;background-position:center;
+  pointer-events:none;
+}
+.mq-wrap__scrim{position:absolute;inset:0;background:var(--mq-scrim);pointer-events:none}
+
+/* edge fades. Read --mq-ground, so they can never be the wrong colour. */
+.mq-wrap::before,.mq-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:var(--mq-fade);
+  z-index:3;pointer-events:none;
+}
+.mq-wrap::before{left:0;background:linear-gradient(to right,var(--mq-ground),transparent)}
+.mq-wrap::after{right:0;background:linear-gradient(to left,var(--mq-ground),transparent)}
+
+/* ═══ OSMO CSS MARQUEE — verbatim except the marked lines ═══════════════════ */
+.marquee-css{
+  color:var(--mq-ink);
+  background-color:var(--mq-ground);
+  width:100%;
+  /* max-width:42em;  ← REMOVED (Osmo demo width; this block is full-bleed) */
+  display:flex;
+  position:relative;
+  overflow:hidden;
+}
+.marquee-css__list{
+  flex:none;
+  align-items:center;
+  display:flex;
+  position:relative;
+}
+.marquee-css__item{
+  grid-column-gap:1em;
+  grid-row-gap:1em;
+  flex:0;
+  align-items:center;
+  padding-top:1em;
+  padding-bottom:1em;
+  padding-right:1em;
+  display:flex;
+}
+.marquee-css__item-p{
+  white-space:nowrap;
+  margin-bottom:0;
+  font-size:1.5em;
+  line-height:1;
+}
+.marquee-css__item-svg{ width:1em; }
+
+/* CSS Keyframe Animation */
+@keyframes translateX{
+  to{ transform:translateX(-100%); }
+}
+[data-css-marquee-list]{
+  animation:translateX 30s linear;
+  animation-iteration-count:infinite;
+  animation-play-state:paused;
+}
+/* ═══ END OSMO CSS ═════════════════════════════════════════════════════════ */
+
+
+/* ── chassis fixes, both sizes ───────────────────────────────────────────
+   (a) Osmo zeroes only `margin-bottom` on the item text because Webflow ships
+       a global reset that already killed margin-top. Standalone the UA's 1em
+       top margin survives and inflates the band by a whole font-size
+       (measured: 136px instead of 100px on desktop).
+   (b) Optical centring. See the header note. Layer 2 of 3.               */
+.marquee-css__item-p{
+  margin-top:0;
+  line-height:1;                       /* never inherit leading. This is the bug. */
+  display:flex;align-items:center;
+  transform:translateY(var(--mq-optical));
+}
+.marquee-css__item{ align-items:center; }
+
+/* Layer 1 of 3: exact where supported. Trims the line box to the cap band, so
+   flex centring centres the LETTERS. Same thing Figma does. */
+@supports (text-box-trim: trim-both) and (text-box-edge: cap alphabetic){
+  .marquee-css__item-p{
+    text-box-trim:trim-both;
+    text-box-edge:cap alphabetic;
+    transform:none;                    /* exact, so the nudge is not wanted */
+  }
+}
+
+/* ── LARGE (Figma 35:886) ───────────────────────────────────────────────── */
+[data-marquee='large'] .mq-wrap,
+.mq-wrap[data-marquee='large']{ height:110px; padding:0 32px; }
+[data-marquee='large'] .marquee-css{
+  position:relative;z-index:1;
+  width:auto;max-width:100%;
+  font-family:var(--mq-font);
+  font-size:18px;                          /* mobile; the em model scales off this */
+}
+[data-marquee='large'] .marquee-css__item{
+  grid-column-gap:.889em;grid-row-gap:.889em;   /* 32px at 36px */
+  padding:1em 0;                                /* 18px v at 18px → band 54px */
+  padding-right:.889em;
+}
+[data-marquee='large'] .marquee-css__list:first-child{ padding-left:1.333em; }
+[data-marquee='large'] .marquee-css__item-p{
+  font-size:1em;color:var(--mq-ink);
+}
+[data-marquee='large'] .marquee-css__item-p.is--kits{
+  font-weight:var(--mq-bold);
+  letter-spacing:var(--mq-tracking);
+  text-transform:uppercase;
+}
+[data-marquee='large'] .marquee-css__item-p.is--sub{
+  font-weight:var(--mq-light);
+  letter-spacing:0;
+}
+[data-marquee='large'] .marquee-css__item-svg{
+  width:auto;font-size:1em;line-height:1;
+  flex:none;display:block;
+}
+
+/* ── SMALL — matches Banners/Marquee-Free-Shipping.html exactly ─────────── */
+[data-marquee='small'] .mq-wrap,
+.mq-wrap[data-marquee='small']{
+  height:40px;                 /* --bar-h from the live file, unchanged */
+  padding:0;
+  --mq-fade:56px;
+}
+[data-marquee='small'][data-theme='white'] .mq-wrap,
+.mq-wrap[data-marquee='small'][data-theme='white']{
+  border-top:1px solid var(--mq-hairline);
+  border-bottom:1px solid var(--mq-hairline);
+}
+[data-marquee='small'] .mq-wrap__bg,
+[data-marquee='small'] .mq-wrap__scrim{ display:none; }
+[data-marquee='small'] .marquee-css{
+  font-family:var(--mq-font);font-size:12px;width:100%;
+}
+[data-marquee='small'] .marquee-css__item{
+  grid-column-gap:1.8333em;grid-row-gap:1.8333em;   /* 22px at 12px, as live */
+  padding:1.1667em 0;                                /* 14px v + 12px line = 40px band */
+  padding-right:1.8333em;
+}
+[data-marquee='small'] .marquee-css__item-p{
+  font-size:1em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mq-ink);
+}
+/* separator: the live 5px diamond. CSS, not an emoji, so no platform surprises. */
+[data-marquee='small'] .marquee-css__item-svg{
+  width:5px;height:5px;flex:none;
+  background:currentColor;transform:rotate(45deg);
+  opacity:.85;font-size:0;
+}
+
+/* ── breakpoints ────────────────────────────────────────────────────────── */
+@media (min-width:640px){
+  [data-marquee='large'] .mq-wrap,
+  .mq-wrap[data-marquee='large']{height:160px}
+  [data-marquee='large'] .marquee-css{font-size:26px}
+  [data-marquee='large'] .marquee-css__item{padding:.923em 0;padding-right:.889em}  /* 24px → band 74 */
+}
+@media (min-width:1024px){
+  [data-marquee='large'] .mq-wrap,
+  .mq-wrap[data-marquee='large']{height:220px}
+  [data-marquee='large'] .marquee-css{font-size:36px}
+  [data-marquee='large'] .marquee-css__item{padding:.889em 0;padding-right:.889em}  /* 32px → band 100 */
+  [data-marquee='large'] .marquee-css__list:first-child{padding-left:1.333em}       /* 48px */
+}
+
+/* ── canon: reduced motion. ADDED — Osmo does not ship this. ─────────────── */
+@media (prefers-reduced-motion:reduce){
+  [data-css-marquee-list]{
+    animation:none !important;
+    transform:none !important;
+  }
+  /* JS also skips init, so no duplicate exists; this covers the CSS-only path */
+  [data-css-marquee-list]:not(:first-child){ display:none; }
+  .marquee-css{ justify-content:center; }
+  [data-marquee='large'] .marquee-css__list:first-child{ padding-left:0; }
+  .mq-wrap::before,.mq-wrap::after{ display:none; }
+}

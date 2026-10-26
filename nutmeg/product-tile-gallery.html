@@ -11,69 +11,28 @@
 <link rel="stylesheet" href="nutmeg.css">
 
 </head>
-<body>
+<body data-hub="volley" data-page="block">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
 <a class="nm-skip" href="#nm-main">Skip to content</a>
 <header class="nm-header">
   <div class="nm-header__left">
-    <a class="nm-logo" href="index.html"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 22H18L17 19H7L6 22Z" stroke="currentColor"/><path d="M11 15L10 19" stroke="currentColor"/><path d="M13 15L14 19" stroke="currentColor"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z" stroke="currentColor"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5" stroke="currentColor"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98" stroke="currentColor"/></svg>Nutmeg</a>
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
     <div class="nm-search" role="search">
       <label class="nm-search__field">
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
-        <span class="nm-visually-hidden">Search Nutmeg</span>
+        <span class="nm-visually-hidden">Search Nutmeg and Volley</span>
         <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
         <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
       </label>
       <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
     </div>
   </div>
-  <div class="nm-header__links">
-    <a class="nm-header__link" href="index.html#whats-new"><svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg>What's New</a>
-    <a class="nm-header__link" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.247C9.62482 2.24599 7.32683 3.09045 5.51745 4.62917C3.70808 6.16789 2.50547 8.30041 2.12495 10.6449C1.74442 12.9894 2.21083 15.3928 3.44066 17.4248C4.67049 19.4568 6.58343 20.9847 8.83701 21.735C9.33701 21.829 9.52101 21.52 9.52101 21.254C9.52101 21.017 9.51201 20.387 9.50801 19.554C6.72701 20.154 6.14001 18.212 6.14001 18.212C5.9554 17.6074 5.56062 17.0889 5.02701 16.75C4.12201 16.13 5.09801 16.142 5.09801 16.142C5.41478 16.1858 5.71737 16.3013 5.9827 16.4798C6.24803 16.6583 6.46908 16.8951 6.62901 17.172C6.7649 17.4186 6.94832 17.6359 7.16868 17.8112C7.38904 17.9866 7.64197 18.1165 7.91284 18.1935C8.18371 18.2705 8.46715 18.293 8.74679 18.2598C9.02642 18.2266 9.2967 18.1383 9.54201 18C9.58642 17.493 9.81098 17.0187 10.175 16.663C7.95401 16.413 5.62001 15.553 5.62001 11.721C5.60586 10.7289 5.97437 9.76951 6.64901 9.042C6.33796 8.18271 6.36947 7.23668 6.73701 6.4C6.73701 6.4 7.57401 6.132 9.48701 7.425C11.1232 6.97435 12.8508 6.97435 14.487 7.425C16.387 6.132 17.224 6.4 17.224 6.4C17.5874 7.23872 17.6231 8.18324 17.324 9.047C17.9972 9.77674 18.3641 10.7373 18.349 11.73C18.349 15.572 16.012 16.417 13.787 16.663C14.024 16.9061 14.2066 17.1967 14.323 17.5156C14.4394 17.8345 14.4867 18.1744 14.462 18.513C14.462 19.852 14.449 20.927 14.449 21.252C14.449 21.514 14.624 21.827 15.137 21.727C17.3976 20.9868 19.3197 19.464 20.5576 17.4329C21.7955 15.4017 22.2679 12.9954 21.8897 10.647C21.5115 8.29856 20.3076 6.16221 18.4947 4.62233C16.6817 3.08245 14.3787 2.24015 12 2.247Z" fill="currentColor"/></svg>Github</a>
-  </div>
-  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 5L5 19" stroke="currentColor" stroke-miterlimit="10"/><path d="M5 5L19 19" stroke="currentColor" stroke-miterlimit="10"/></svg></span></button>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li><li><a class="nm-hubs__link" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a></li><li><a class="nm-hubs__link" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
 </header>
 <div class="nm-shell">
 <div class="nm-scrim" hidden></div>
-<nav class="nm-nav" id="nm-nav" aria-label="Nutmeg">
-<ul>
-<li><a class="nm-nav__link" href="index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Start here</a></li>
-<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-guides"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Designer guides</button>
-<ul class="nm-nav__sub" id="nm-sub-guides" hidden>
-<li><a class="nm-nav__sublink" href="../wss-starter-pack/designer-guide.html">Designer guide</a></li>
-<li><a class="nm-nav__sublink" href="../wss-starter-pack/first-build-walkthrough.html">Your first build</a></li>
-<li><a class="nm-nav__sublink" href="videos.html">Workshop walkthrough</a></li>
-<li><a class="nm-nav__sublink" href="../wss-starter-pack/index.html">WorldSoccerShop starter pack</a></li>
-</ul></li>
-<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="false" aria-controls="nm-sub-tools"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Tools &amp; resources</button>
-<ul class="nm-nav__sub" id="nm-sub-tools" hidden>
-<li><a class="nm-nav__sublink" href="../photo-sizer/index.html">Photo Sizer</a></li>
-<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Code Share</a></li>
-<li><a class="nm-nav__sublink" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">The Tunnel</a></li>
-<li><a class="nm-nav__sublink" href="../index.html">Code library, old view</a></li>
-</ul></li>
-</ul><div class="nm-nav__gap"></div><div class="nm-nav__divider"></div><ul>
-<li><a class="nm-nav__link" href="foundations.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Foundations</a></li>
-<li><a class="nm-nav__link" href="v2-tokens.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>V2 tokens</a></li>
-<li><a class="nm-nav__link" href="icons.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Icons</a></li>
-<li><a class="nm-nav__link" href="components.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Nutmeg components</a></li>
-<li class="nm-nav__group"><button type="button" class="nm-nav__toggle" aria-expanded="true" aria-controls="nm-sub-blocks"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Blocks</button>
-<ul class="nm-nav__sub" id="nm-sub-blocks">
-<li><a class="nm-nav__sublink" href="blocks.html">All blocks</a></li>
-<li><a class="nm-nav__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li>
-<li><a class="nm-nav__sublink" href="sale-hero.html">Sale hero</a></li>
-<li><a class="nm-nav__sublink" href="sale-quick-links.html">Sale quick links strip</a></li>
-<li><a class="nm-nav__sublink" href="sale-category-tiles.html">Sale category tiles</a></li>
-<li><a class="nm-nav__sublink" href="section-breaker.html">Section Breaker</a></li>
-<li><a class="nm-nav__sublink" href="product-tile-gallery.html" aria-current="page">Product Tile Gallery</a></li>
-<li><a class="nm-nav__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li>
-<li><a class="nm-nav__sublink" href="shop-by-club-section.html">Shop by Club section</a></li>
-<li><a class="nm-nav__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li>
-<li><a class="nm-nav__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li>
-<li><a class="nm-nav__sublink" href="showcase-slider.html">Showcase Slider</a></li>
-</ul></li>
-</ul>
-<div class="nm-nav__extras"><a class="nm-nav__extra" href="index.html#whats-new">What's new<svg class="nm-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 2c.4 3.6 1.9 5.1 5.5 5.5-3.6.4-5.1 1.9-5.5 5.5-.4-3.6-1.9-5.1-5.5-5.5C13.1 7.1 14.6 5.6 15 2zM7 12c.3 2.4 1.3 3.4 3.7 3.7-2.4.3-3.4 1.3-3.7 3.7-.3-2.4-1.3-3.4-3.7-3.7C5.7 15.4 6.7 14.4 7 12z"/></svg></a><a class="nm-nav__extra" href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">Github<svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a><a class="nm-nav__extra nm-nav__extra--more" href="../index.html"><svg class="nm-nav__chev" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-miterlimit="10"/></svg>Code library, old view</a></div>
-</nav>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley"><ul class="nm-rail"><li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/><path d="M17.93 9.93C18.1159 9.97908 18.3077 10.0026 18.5 10C19.163 10 19.7989 9.73661 20.2678 9.26777C20.7366 8.79893 21 8.16304 21 7.5C21 6.83696 20.7366 6.20107 20.2678 5.73223C19.7989 5.26339 19.163 5 18.5 5C18.3337 4.98471 18.1663 4.98471 18 5"/><path d="M6 5.05C5.83368 5.03471 5.66632 5.03471 5.5 5.05C4.83696 5.05 4.20107 5.31339 3.73223 5.78223C3.26339 6.25107 3 6.88696 3 7.55C3 8.21304 3.26339 8.84893 3.73223 9.31777C4.20107 9.78661 4.83696 10.05 5.5 10.05C5.6923 10.0526 5.88405 10.0291 6.07 9.98"/></svg><span class="nm-rail__label">Home</span></a></li><li><a class="nm-rail__item" href="designer-guide.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li><li class="nm-rail__split" aria-hidden="true"></li><li><a class="nm-rail__item" href="blocks.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M22 4H2V21H22V4Z"/><path d="M8 9V21"/><path d="M2 9H22"/></svg><span class="nm-rail__label">Components</span></a></li><li><a class="nm-rail__item" href="index.html#tools"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M19 21.5H6.5L5 20V4L6.5 2.5H19V21.5Z" stroke-miterlimit="10"/><path d="M5 19L6.5 17.5H19" stroke-miterlimit="10"/><path d="M15 7.5H9" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Resources</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title">Components</p><ul class="nm-drawer__list"><li><a class="nm-drawer__link" href="blocks.html">All blocks</a></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="true" aria-controls="nm-sub-components-1"><span>Blocks</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-1"><li><a class="nm-drawer__sublink" href="product-tile-gallery.html" aria-current="page">Product Tile Gallery</a></li><li><a class="nm-drawer__sublink" href="sale-category-tiles.html">Sale category tiles</a></li><li><a class="nm-drawer__sublink" href="sale-hero.html">Sale hero</a></li><li><a class="nm-drawer__sublink" href="sale-quick-links.html">Sale quick links strip</a></li><li><a class="nm-drawer__sublink" href="section-breaker.html">Section Breaker</a></li><li><a class="nm-drawer__sublink" href="selection-section-cleat-deals.html">Selection Section, cleat deals</a></li><li><a class="nm-drawer__sublink" href="selection-section-home-page.html">Selection Section, home page</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-logo-rail-champions-league.html">Shop by Club logo rail, Champions League</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-section.html">Shop by Club section</a></li><li><a class="nm-drawer__sublink" href="shop-by-player-trending-players.html">Shop by Player, Trending Players</a></li><li><a class="nm-drawer__sublink" href="showcase-slider.html">Showcase Slider</a></li></ul></li><li class="nm-drawer__group"><button type="button" class="nm-drawer__toggle" aria-expanded="false" aria-controls="nm-sub-components-2"><span>Canon blocks, needs review</span><svg class="nm-drawer__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 9L12 16L19 9" stroke="currentColor" stroke-width="1.5"/></svg></button><ul class="nm-drawer__sub" id="nm-sub-components-2" hidden><li><a class="nm-drawer__sublink" href="marquee-back-to-season.html">Marquee, Back to Season</a></li><li><a class="nm-drawer__sublink" href="wall-new-arrivals.html">Wall, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="wall-july-launches.html">Wall, July launches</a></li><li><a class="nm-drawer__sublink" href="marquee-and-wall.html">Marquee and Wall</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-jerseys.html">Launch Carousel, jerseys</a></li><li><a class="nm-drawer__sublink" href="launch-carousel-new-arrivals.html">Launch Carousel, New Arrivals</a></li><li><a class="nm-drawer__sublink" href="intent-selector-small.html">Intent Selector, small</a></li><li><a class="nm-drawer__sublink" href="spotlight-rail-spezial.html">Spotlight Rail, Spezial</a></li><li><a class="nm-drawer__sublink" href="quick-links-rail-new.html">Quick Links Rail, new products</a></li><li><a class="nm-drawer__sublink" href="kit-rail-home.html">Kit Rail, home page</a></li><li><a class="nm-drawer__sublink" href="selection-section-jersey-shop.html">Selection Section, Jersey Shop</a></li><li><a class="nm-drawer__sublink" href="selection-section-fall-sale.html">Selection Section, Fall Sale</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-leagues.html">Shop-by Rail, leagues</a></li><li><a class="nm-drawer__sublink" href="shop-by-rail-players.html">Shop-by Rail, players</a></li><li><a class="nm-drawer__sublink" href="intent-chips-promo.html">Intent Selector Chips, promo eligible</a></li><li><a class="nm-drawer__sublink" href="intent-chips-sale.html">Intent Selector Chips, sale</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-promo.html">Team Logo Marquee, promo eligible</a></li><li><a class="nm-drawer__sublink" href="team-logo-marquee-sale.html">Team Logo Marquee, sale</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-clubs.html">Promo Lightbox, clubs</a></li><li><a class="nm-drawer__sublink" href="promo-lightbox-nations.html">Promo Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="shop-lightbox-nations.html">Shop Lightbox, nations</a></li><li><a class="nm-drawer__sublink" href="matchup-rail.html">Matchup Rail</a></li><li><a class="nm-drawer__sublink" href="hero-parallax-layers.html">Hero, parallax image layers</a></li><li><a class="nm-drawer__sublink" href="hero-falling-objects.html">Hero, falling objects</a></li><li><a class="nm-drawer__sublink" href="spatial-cards-slider.html">Spatial Cards Slider</a></li><li><a class="nm-drawer__sublink" href="shop-the-look-clubs.html">Shop the Look, clubs</a></li><li><a class="nm-drawer__sublink" href="shop-by-nation-accordion.html">Shop by Nation accordion</a></li><li><a class="nm-drawer__sublink" href="shop-by-club-rail.html">Shop by Club rail</a></li></ul></li></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="index.html#tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="designer-guide.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
 <main class="nm-main" id="nm-main">
 <div class="nm-panel"><div class="nm-content">
 <div class="nm-title">
@@ -87,7 +46,7 @@
 <div class="nm-demo"><div class="nm-demo__bar"><div class="nm-tabs" role="tablist" aria-label="Screen width" data-demo-widths="frame-product-tile-gallery"><button type="button" class="nm-tab" role="tab" aria-controls="frame-product-tile-gallery" data-width="390" aria-selected="false" tabindex="-1">Phone</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-product-tile-gallery" data-width="768" aria-selected="false" tabindex="-1">Tablet</button><button type="button" class="nm-tab" role="tab" aria-controls="frame-product-tile-gallery" data-width="full" aria-selected="true" tabindex="0">Desktop</button></div><a class="nm-btn nm-btn--text" href="../blocks/product-tile-gallery/fastr-paste.html" target="_blank" rel="noopener"><span>Open in a new tab</span><svg class="nm-out" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></div><div class="nm-demo__stage"><iframe class="nm-demo__frame" id="frame-product-tile-gallery" src="../blocks/product-tile-gallery/fastr-paste.html" height="720" title="Product Tile Gallery, live demo"></iframe></div></div>
 </section><section class="nm-section" id="how">
 <div class="nm-section__head"><h2 class="nm-h2">How it&#x27;s built<button type="button" class="nm-anchor" aria-label="Copy a link to How it&#x27;s built"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
-<div class="nm-prose"><p>An edge-to-edge product grid with swipeable photos per tile and a filter and sort bar.</p></div><h3 class="nm-h3">Notes from the code</h3><ul class="nm-list"><li>Each tile: slide 1 is the product cut out from the site&#x27;s image service (transparent PNG) with the Figma drop shadow;</li><li>slide 2 is the plain back where it makes sense; then any cleared photos from the Tunnel.</li><li>A slide whose image fails removes itself, and the bars count what is left. One slide: no bars, no arrows.</li><li>Filter bar follows the Naadam study (19 Oct): quiet uppercase shortcuts, Sort on the right with its own small menu (black edge, notch, chosen order underlined, arrow keys and Escape work), one drawer, live results, removable chips, sticky bar, choices kept in the web address (pt_team, pt_player, pt_price, pt_sort). Set --campaign-sticky-top to the site header height in Fastr.</li><li>Filters work on the tiles in this block only; a full page version would read the site&#x27;s own filters.</li><li>Grid: 2 columns, 3 from 640px, 4 from 1024px. 1px hairlines. The page grows with the grid, so no fixed height.</li></ul>
+<div class="nm-prose"><p>An edge-to-edge product grid with swipeable photos per tile and a filter and sort bar.</p></div><h3 class="nm-h3">Notes from the code</h3><ul class="nm-list"><li>Each tile: slide 1 is the product cut out from the site&#x27;s image service (transparent PNG) with a soft drop shadow;</li><li>slide 2 is the plain back where it makes sense; then any cleared photos from the Tunnel.</li><li>A slide whose image fails removes itself, and the bars count what is left. One slide: no bars, no arrows.</li><li>Filter bar follows the Naadam study (19 Oct): quiet uppercase shortcuts, Sort on the right with its own small menu (black edge, notch, chosen order underlined, arrow keys and Escape work), one drawer, live results, removable chips, sticky bar, choices kept in the web address (pt_team, pt_player, pt_price, pt_sort). Set --campaign-sticky-top to the site header height in Fastr.</li><li>Filters work on the tiles in this block only; a full page version would read the site&#x27;s own filters.</li><li>Grid: 2 columns, 3 from 640px, 4 from 1024px. 1px hairlines. The page grows with the grid, so no fixed height.</li></ul>
 </section><section class="nm-section" id="heights">
 <div class="nm-section__head"><h2 class="nm-h2">Fastr heights<button type="button" class="nm-anchor" aria-label="Copy a link to Fastr heights"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2></div>
 <div class="nm-callout"><strong>No single set of heights.</strong><p>This block's height changes with its settings or its content. Measure it for each use. The notes from the code say why.</p></div>
@@ -97,312 +56,312 @@
 </section><section class="nm-section" id="code">
 <div class="nm-section__head"><h2 class="nm-h2">The code<button type="button" class="nm-anchor" aria-label="Copy a link to The code"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2><p class="nm-section__desc">Paste the whole file into one Fastr HTML component.</p></div>
 <div class="nm-codeblock"><div class="nm-codeblock__bar"><span>fastr-paste.html</span><button type="button" class="nm-copy"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 2H8V5H16V2Z" stroke="currentColor" stroke-miterlimit="10"/><path d="M16 3H17.5L19 4.5V19.5L17.5 21H6.5L5 19.5V4.5L6.5 3H8" stroke="currentColor" stroke-miterlimit="10"/></svg><span>Copy code</span></button></div><pre><code>&lt;!-- Product Tile Gallery, WorldSoccerShop. Edge-to-edge grid of product tiles, each with a swipe gallery.
-     Fastr CMS paste: one HTML widget, direct embed, no iframe. Scoped to [data-block=&quot;product-tile-gallery-v1&quot;].
-     Each tile: slide 1 is the product cut out from the site&#x27;s image service (transparent PNG) with the Figma drop shadow;
+     Fastr CMS paste: one HTML widget, direct embed, no iframe. Scoped to [data-block="product-tile-gallery-v1"].
+     Each tile: slide 1 is the product cut out from the site's image service (transparent PNG) with a soft drop shadow;
      slide 2 is the plain back where it makes sense; then any cleared photos from the Tunnel.
      A slide whose image fails removes itself, and the bars count what is left. One slide: no bars, no arrows.
      Filter bar follows the Naadam study (19 Oct): quiet uppercase shortcuts, Sort on the right with its own small menu (black edge, notch, chosen order underlined, arrow keys and Escape work), one drawer, live results, removable chips, sticky bar, choices kept in the web address (pt_team, pt_player, pt_price, pt_sort). Set --campaign-sticky-top to the site header height in Fastr.
-     Filters work on the tiles in this block only; a full page version would read the site&#x27;s own filters.
+     Filters work on the tiles in this block only; a full page version would read the site's own filters.
      Grid: 2 columns, 3 from 640px, 4 from 1024px. 1px hairlines. The page grows with the grid, so no fixed height.
      Contrast: name #565656 on white 7.0:1 pass. Price 20.9:1 pass. Was price #757575 4.6:1 pass. Sale chip white on #D60730 5.6:1 pass. Filter text 20.9:1 pass. Chips 14.9:1 pass. Every control is at least 44px tall to tap. --&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
-&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;
 
 &lt;style&gt;
-[data-block=&quot;product-tile-gallery-v1&quot;]{--campaign-face:&#x27;Chakra Petch&#x27;,Arial,sans-serif;--campaign-surface:#FFFFFF;--campaign-hairline:#E6E6E6;--campaign-photo-bg:#F5F5F5;--campaign-name:#565656;--campaign-price:#040000;--campaign-was:#757575;--campaign-sale:#D60730;--campaign-chip:#000000;--campaign-chip-ink:#FFFFFF;--campaign-bar:rgba(0,0,0,.18);--campaign-bar-on:rgba(0,0,0,.75);--campaign-arrow:rgba(255,255,255,.85);--campaign-arrow-ink:#111111;--campaign-pill-edge:#000000;--campaign-pill-ink:#192B1F;--campaign-pill-on:#000000;--campaign-pill-on-ink:#EDEADA;
+[data-block="product-tile-gallery-v1"]{--campaign-face:'Chakra Petch',Arial,sans-serif;--campaign-surface:#FFFFFF;--campaign-hairline:#E6E6E6;--campaign-photo-bg:#F5F5F5;--campaign-name:#565656;--campaign-price:#040000;--campaign-was:#757575;--campaign-sale:#D60730;--campaign-chip:#000000;--campaign-chip-ink:#FFFFFF;--campaign-bar:rgba(0,0,0,.18);--campaign-bar-on:rgba(0,0,0,.75);--campaign-arrow:rgba(255,255,255,.85);--campaign-arrow-ink:#111111;--campaign-pill-edge:#000000;--campaign-pill-ink:#192B1F;--campaign-pill-on:#000000;--campaign-pill-on-ink:#EDEADA;
 --campaign-product-shadow:drop-shadow(1px 6px 6.5px rgba(46,37,31,.2)) drop-shadow(2px 24px 12px rgba(46,37,31,.17)) drop-shadow(5px 53px 16px rgba(46,37,31,.1)) drop-shadow(10px 94px 19px rgba(46,37,31,.03));
 display:block;width:100%;background:var(--campaign-surface);font-family:var(--campaign-face);box-sizing:border-box}
-[data-block=&quot;product-tile-gallery-v1&quot;] *,[data-block=&quot;product-tile-gallery-v1&quot;] *::before,[data-block=&quot;product-tile-gallery-v1&quot;] *::after{box-sizing:border-box}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[data-block="product-tile-gallery-v1"] *,[data-block="product-tile-gallery-v1"] *::before,[data-block="product-tile-gallery-v1"] *::after{box-sizing:border-box}
+[data-block="product-tile-gallery-v1"] .ptg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* filter bar: quiet uppercase shortcuts, one shared drawer (Naadam pattern, improved) */
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sentinel{height:1px;margin-bottom:-1px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bar{position:sticky;top:var(--campaign-sticky-top,0px);z-index:5;background:var(--campaign-surface);padding:4px 16px 0;transition:box-shadow .2s ease}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bar.is-stuck{box-shadow:0 1px 0 var(--campaign-hairline)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-row{display:flex;align-items:center;gap:0 20px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-short,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-btn{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:none;color:var(--campaign-price);font:400 13px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-short:hover,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-btn:hover{text-decoration:underline;text-underline-offset:4px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-short--wide{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-row .ptg-sort{margin-left:auto}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort{position:relative}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-btn:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-btn svg{transition:transform .2s ease}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-btn[aria-expanded=&quot;true&quot;] svg{transform:rotate(180deg)}
+[data-block="product-tile-gallery-v1"] .ptg-sentinel{height:1px;margin-bottom:-1px}
+[data-block="product-tile-gallery-v1"] .ptg-bar{position:sticky;top:var(--campaign-sticky-top,0px);z-index:5;background:var(--campaign-surface);padding:4px 16px 0;transition:box-shadow .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-bar.is-stuck{box-shadow:0 1px 0 var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-row{display:flex;align-items:center;gap:0 20px}
+[data-block="product-tile-gallery-v1"] .ptg-short,[data-block="product-tile-gallery-v1"] .ptg-sort-btn{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:none;color:var(--campaign-price);font:400 13px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+[data-block="product-tile-gallery-v1"] .ptg-short:hover,[data-block="product-tile-gallery-v1"] .ptg-sort-btn:hover{text-decoration:underline;text-underline-offset:4px}
+[data-block="product-tile-gallery-v1"] .ptg-short--wide{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-row .ptg-sort{margin-left:auto}
+[data-block="product-tile-gallery-v1"] .ptg-sort{position:relative}
+[data-block="product-tile-gallery-v1"] .ptg-sort-btn:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
+[data-block="product-tile-gallery-v1"] .ptg-sort-btn svg{transition:transform .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-sort-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
 /* sort menu: white box, thin black edge, a small notch pointing at Sort, the chosen order underlined */
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list{position:absolute;top:calc(100% + 2px);right:0;z-index:6;min-width:168px;margin:0;padding:10px 14px;list-style:none;background:var(--campaign-surface);border:1px solid var(--campaign-price)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list[hidden]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list::before{content:&quot;&quot;;position:absolute;top:-6px;right:20px;width:10px;height:10px;background:var(--campaign-surface);border-top:1px solid var(--campaign-price);border-left:1px solid var(--campaign-price);transform:rotate(45deg)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list:focus{outline:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list li{position:relative;display:flex;align-items:center;min-height:30px;margin:0 -6px;padding:0 6px;color:var(--campaign-pill-ink);font:400 13px/1.2 var(--campaign-face);white-space:nowrap;cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list li[aria-selected=&quot;true&quot;]::after{content:&quot;&quot;;position:absolute;left:6px;right:6px;bottom:2px;height:1px;background:var(--campaign-price)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list li:hover,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list li.is-active{background:#F2F2F2}
-@media (pointer:coarse){[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-list li{min-height:44px}}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-short:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-n:not(:empty){margin-left:2px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-count{display:none;margin:0 0 0 auto;font:400 12px/16px var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;color:var(--campaign-name);white-space:nowrap}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:4px 0 12px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chips[hidden]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chip-x{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:6px 12px;border:1px solid var(--campaign-pill-edge);border-radius:999px;background:none;color:var(--campaign-pill-ink);font:500 13px/1 var(--campaign-face);cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chip-x:hover{background:#F2F2F2}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-clearlink{min-height:32px;padding:6px 4px;border:0;background:none;color:var(--campaign-price);font:400 13px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-scrim{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-scrim[hidden],[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-drawer[hidden]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-drawer{position:fixed;inset:0;z-index:1001;display:flex;flex-direction:column;background:var(--campaign-surface);font-family:var(--campaign-face)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-dhead{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 20px;border-bottom:1px solid var(--campaign-hairline)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-dtitle{margin:0;font:600 14px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;color:var(--campaign-price)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-close{width:44px;height:44px;border:0;background:none;color:var(--campaign-price);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-groups{flex:1 1 auto;overflow-y:auto;padding:0 20px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-group{border-bottom:1px solid var(--campaign-hairline)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-gh{margin:0}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-gh button{display:flex;align-items:center;width:100%;min-height:56px;padding:0;border:0;background:none;color:var(--campaign-price);font:500 14px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-align:left}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-gh svg{margin-left:auto;transition:transform .2s ease}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-gh button[aria-expanded=&quot;true&quot;] svg{transform:rotate(180deg)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-opts{padding:0 0 12px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-opts[hidden]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-opt{display:flex;align-items:center;gap:12px;min-height:44px;color:var(--campaign-pill-ink);font:400 14px/1.2 var(--campaign-face);cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-opt input{width:20px;height:20px;margin:0;accent-color:#000000;flex:none;cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-opt input:disabled+span,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-opt input:disabled~.ptg-c{opacity:.45}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-c{margin-left:auto;color:var(--campaign-name);font-size:13px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-dfoot{display:flex;flex-direction:column;gap:8px;padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--campaign-hairline)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-clear,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-view{min-height:48px;padding:12px 16px;font:500 14px/1.2 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-clear{border:1px solid var(--campaign-pill-edge);background:none;color:var(--campaign-price)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-clear[hidden]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-view{border:0;background:var(--campaign-pill-on);color:var(--campaign-pill-on-ink)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-close:focus-visible,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-gh button:focus-visible,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-clear:focus-visible,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-view:focus-visible,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chip-x:focus-visible,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-clearlink:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list{position:absolute;top:calc(100% + 2px);right:0;z-index:6;min-width:168px;margin:0;padding:10px 14px;list-style:none;background:var(--campaign-surface);border:1px solid var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list::before{content:"";position:absolute;top:-6px;right:20px;width:10px;height:10px;background:var(--campaign-surface);border-top:1px solid var(--campaign-price);border-left:1px solid var(--campaign-price);transform:rotate(45deg)}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list:focus{outline:none}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list li{position:relative;display:flex;align-items:center;min-height:30px;margin:0 -6px;padding:0 6px;color:var(--campaign-pill-ink);font:400 13px/1.2 var(--campaign-face);white-space:nowrap;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list li[aria-selected="true"]::after{content:"";position:absolute;left:6px;right:6px;bottom:2px;height:1px;background:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-sort-list li:hover,[data-block="product-tile-gallery-v1"] .ptg-sort-list li.is-active{background:#F2F2F2}
+@media (pointer:coarse){[data-block="product-tile-gallery-v1"] .ptg-sort-list li{min-height:44px}}
+[data-block="product-tile-gallery-v1"] .ptg-short:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
+[data-block="product-tile-gallery-v1"] .ptg-n:not(:empty){margin-left:2px}
+[data-block="product-tile-gallery-v1"] .ptg-count{display:none;margin:0 0 0 auto;font:400 12px/16px var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;color:var(--campaign-name);white-space:nowrap}
+[data-block="product-tile-gallery-v1"] .ptg-chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:4px 0 12px}
+[data-block="product-tile-gallery-v1"] .ptg-chips[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-chip-x{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:6px 12px;border:1px solid var(--campaign-pill-edge);border-radius:999px;background:none;color:var(--campaign-pill-ink);font:500 13px/1 var(--campaign-face);cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-chip-x:hover{background:#F2F2F2}
+[data-block="product-tile-gallery-v1"] .ptg-clearlink{min-height:32px;padding:6px 4px;border:0;background:none;color:var(--campaign-price);font:400 13px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-scrim{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4)}
+[data-block="product-tile-gallery-v1"] .ptg-scrim[hidden],[data-block="product-tile-gallery-v1"] .ptg-drawer[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-drawer{position:fixed;inset:0;z-index:1001;display:flex;flex-direction:column;background:var(--campaign-surface);font-family:var(--campaign-face)}
+[data-block="product-tile-gallery-v1"] .ptg-dhead{display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 20px;border-bottom:1px solid var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-dtitle{margin:0;font:600 14px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;color:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-close{width:44px;height:44px;border:0;background:none;color:var(--campaign-price);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-groups{flex:1 1 auto;overflow-y:auto;padding:0 20px}
+[data-block="product-tile-gallery-v1"] .ptg-group{border-bottom:1px solid var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-gh{margin:0}
+[data-block="product-tile-gallery-v1"] .ptg-gh button{display:flex;align-items:center;width:100%;min-height:56px;padding:0;border:0;background:none;color:var(--campaign-price);font:500 14px/1 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-align:left}
+[data-block="product-tile-gallery-v1"] .ptg-gh svg{margin-left:auto;transition:transform .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-gh button[aria-expanded="true"] svg{transform:rotate(180deg)}
+[data-block="product-tile-gallery-v1"] .ptg-opts{padding:0 0 12px}
+[data-block="product-tile-gallery-v1"] .ptg-opts[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-opt{display:flex;align-items:center;gap:12px;min-height:44px;color:var(--campaign-pill-ink);font:400 14px/1.2 var(--campaign-face);cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-opt input{width:20px;height:20px;margin:0;accent-color:#000000;flex:none;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-opt input:disabled+span,[data-block="product-tile-gallery-v1"] .ptg-opt input:disabled~.ptg-c{opacity:.45}
+[data-block="product-tile-gallery-v1"] .ptg-c{margin-left:auto;color:var(--campaign-name);font-size:13px}
+[data-block="product-tile-gallery-v1"] .ptg-dfoot{display:flex;flex-direction:column;gap:8px;padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-clear,[data-block="product-tile-gallery-v1"] .ptg-view{min-height:48px;padding:12px 16px;font:500 14px/1.2 var(--campaign-face);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+[data-block="product-tile-gallery-v1"] .ptg-clear{border:1px solid var(--campaign-pill-edge);background:none;color:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-clear[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-view{border:0;background:var(--campaign-pill-on);color:var(--campaign-pill-on-ink)}
+[data-block="product-tile-gallery-v1"] .ptg-close:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-gh button:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-clear:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-view:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-chip-x:focus-visible,[data-block="product-tile-gallery-v1"] .ptg-clearlink:focus-visible{outline:2px solid var(--campaign-price);outline-offset:2px}
 /* grid */
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:0;padding:0;list-style:none;background:var(--campaign-hairline)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile{position:relative;min-width:0;background:var(--campaign-surface)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile[hidden]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-link{display:block;color:inherit;text-decoration:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-link:focus-visible{outline:2px solid var(--campaign-price);outline-offset:-2px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-media{position:relative;aspect-ratio:2/3;background:var(--campaign-photo-bg);overflow:hidden}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-track::-webkit-scrollbar{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-slide{position:relative;flex:0 0 100%;height:100%;scroll-snap-align:start;overflow:hidden}
+[data-block="product-tile-gallery-v1"] .ptg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:0;padding:0;list-style:none;background:var(--campaign-hairline)}
+[data-block="product-tile-gallery-v1"] .ptg-tile{position:relative;min-width:0;background:var(--campaign-surface)}
+[data-block="product-tile-gallery-v1"] .ptg-tile[hidden]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-link{display:block;color:inherit;text-decoration:none}
+[data-block="product-tile-gallery-v1"] .ptg-link:focus-visible{outline:2px solid var(--campaign-price);outline-offset:-2px}
+[data-block="product-tile-gallery-v1"] .ptg-media{position:relative;aspect-ratio:2/3;background:var(--campaign-photo-bg);overflow:hidden}
+[data-block="product-tile-gallery-v1"] .ptg-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-x:contain}
+[data-block="product-tile-gallery-v1"] .ptg-track::-webkit-scrollbar{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-slide{position:relative;flex:0 0 100%;height:100%;scroll-snap-align:start;overflow:hidden}
 /* product cutout: centred left to right, its middle 46% down so the soft shadow below balances it */
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-cutout{position:absolute;left:50%;top:46%;width:97.4%;height:auto;aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%);filter:var(--campaign-product-shadow);display:block}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chip{position:absolute;top:10px;left:10px;z-index:2;padding:4px 6px;background:var(--campaign-chip);color:var(--campaign-chip-ink);font:600 10px/1.2 var(--campaign-face);letter-spacing:1px;text-transform:uppercase}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-chip--sale{background:var(--campaign-sale)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bars{position:absolute;left:12px;right:12px;bottom:10px;z-index:2;display:flex;gap:4px;pointer-events:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bars span{flex:1 1 0;height:2px;background:var(--campaign-bar);transition:background-color .25s ease}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bars span.is-on{background:var(--campaign-bar-on)}
+[data-block="product-tile-gallery-v1"] .ptg-cutout{position:absolute;left:50%;top:46%;width:97.4%;height:auto;aspect-ratio:1;object-fit:contain;transform:translate(-50%,-50%);filter:var(--campaign-product-shadow);display:block}
+[data-block="product-tile-gallery-v1"] .ptg-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+[data-block="product-tile-gallery-v1"] .ptg-chip{position:absolute;top:10px;left:10px;z-index:2;padding:4px 6px;background:var(--campaign-chip);color:var(--campaign-chip-ink);font:600 10px/1.2 var(--campaign-face);letter-spacing:1px;text-transform:uppercase}
+[data-block="product-tile-gallery-v1"] .ptg-chip--sale{background:var(--campaign-sale)}
+[data-block="product-tile-gallery-v1"] .ptg-bars{position:absolute;left:12px;right:12px;bottom:10px;z-index:2;display:flex;gap:4px;pointer-events:none}
+[data-block="product-tile-gallery-v1"] .ptg-bars span{flex:1 1 0;height:2px;background:var(--campaign-bar);transition:background-color .25s ease}
+[data-block="product-tile-gallery-v1"] .ptg-bars span.is-on{background:var(--campaign-bar-on)}
 /* on a photo the bars turn white so they stay visible */
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile[data-on-photo] .ptg-bars span{background:rgba(255,255,255,.45)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile[data-on-photo] .ptg-bars span.is-on{background:#FFFFFF}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bars:empty,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bars[data-count=&quot;1&quot;]{display:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-info{display:flex;flex-direction:column;gap:8px;padding:12px 12px 18px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-name{margin:0;font:400 12px/16px var(--campaign-face);letter-spacing:.02em;text-transform:uppercase;color:var(--campaign-name);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-price{margin:0;display:flex;align-items:baseline;gap:6px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-price b{font:700 14px/1.2 var(--campaign-face);color:var(--campaign-price)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-price s{font:400 12px/1.2 var(--campaign-face);color:var(--campaign-was)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-nav{position:absolute;top:0;left:0;right:0;aspect-ratio:2/3;z-index:3;pointer-events:none}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-arrow{position:absolute;top:50%;width:32px;height:32px;margin-top:-16px;padding:0;border:0;border-radius:50%;background:var(--campaign-arrow);color:var(--campaign-arrow-ink);display:none;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:auto;transition:opacity .2s ease}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-prev{left:10px} [data-block=&quot;product-tile-gallery-v1&quot;] .ptg-next{right:10px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-arrow:focus-visible{outline:2px solid var(--campaign-arrow-ink);outline-offset:2px;opacity:1}
+[data-block="product-tile-gallery-v1"] .ptg-tile[data-on-photo] .ptg-bars span{background:rgba(255,255,255,.45)}
+[data-block="product-tile-gallery-v1"] .ptg-tile[data-on-photo] .ptg-bars span.is-on{background:#FFFFFF}
+[data-block="product-tile-gallery-v1"] .ptg-bars:empty,[data-block="product-tile-gallery-v1"] .ptg-bars[data-count="1"]{display:none}
+[data-block="product-tile-gallery-v1"] .ptg-info{display:flex;flex-direction:column;gap:8px;padding:12px 12px 18px}
+[data-block="product-tile-gallery-v1"] .ptg-name{margin:0;font:400 12px/16px var(--campaign-face);letter-spacing:.02em;text-transform:uppercase;color:var(--campaign-name);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+[data-block="product-tile-gallery-v1"] .ptg-price{margin:0;display:flex;align-items:baseline;gap:6px}
+[data-block="product-tile-gallery-v1"] .ptg-price b{font:700 14px/1.2 var(--campaign-face);color:var(--campaign-price)}
+[data-block="product-tile-gallery-v1"] .ptg-price s{font:400 12px/1.2 var(--campaign-face);color:var(--campaign-was)}
+[data-block="product-tile-gallery-v1"] .ptg-nav{position:absolute;top:0;left:0;right:0;aspect-ratio:2/3;z-index:3;pointer-events:none}
+[data-block="product-tile-gallery-v1"] .ptg-arrow{position:absolute;top:50%;width:32px;height:32px;margin-top:-16px;padding:0;border:0;border-radius:50%;background:var(--campaign-arrow);color:var(--campaign-arrow-ink);display:none;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:auto;transition:opacity .2s ease}
+[data-block="product-tile-gallery-v1"] .ptg-prev{left:10px} [data-block="product-tile-gallery-v1"] .ptg-next{right:10px}
+[data-block="product-tile-gallery-v1"] .ptg-arrow:focus-visible{outline:2px solid var(--campaign-arrow-ink);outline-offset:2px;opacity:1}
 @media (min-width:640px){
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bar{padding:4px 24px 0}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-row{gap:0 28px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-short--wide{display:inline-flex}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-count{display:block}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-row .ptg-sort{margin-left:0}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-drawer{left:auto;width:400px;max-width:100%;box-shadow:-8px 0 24px rgba(0,0,0,.12)}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-info{padding:16px 17px 24px}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-price b{font-size:15px}
+[data-block="product-tile-gallery-v1"] .ptg-bar{padding:4px 24px 0}
+[data-block="product-tile-gallery-v1"] .ptg-row{gap:0 28px}
+[data-block="product-tile-gallery-v1"] .ptg-short--wide{display:inline-flex}
+[data-block="product-tile-gallery-v1"] .ptg-count{display:block}
+[data-block="product-tile-gallery-v1"] .ptg-row .ptg-sort{margin-left:0}
+[data-block="product-tile-gallery-v1"] .ptg-drawer{left:auto;width:400px;max-width:100%;box-shadow:-8px 0 24px rgba(0,0,0,.12)}
+[data-block="product-tile-gallery-v1"] .ptg-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+[data-block="product-tile-gallery-v1"] .ptg-info{padding:16px 17px 24px}
+[data-block="product-tile-gallery-v1"] .ptg-price b{font-size:15px}
 }
 @media (min-width:1024px){
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+[data-block="product-tile-gallery-v1"] .ptg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media (min-width:1024px) and (hover:hover){
-[data-block=&quot;product-tile-gallery-v1&quot;].is-ready .ptg-arrow{display:flex}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile:hover .ptg-arrow{opacity:1}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile:hover .ptg-arrow[disabled]{opacity:.4;cursor:default}
-[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-tile[data-count=&quot;1&quot;] .ptg-arrow{display:none}
+[data-block="product-tile-gallery-v1"].is-ready .ptg-arrow{display:flex}
+[data-block="product-tile-gallery-v1"] .ptg-tile:hover .ptg-arrow{opacity:1}
+[data-block="product-tile-gallery-v1"] .ptg-tile:hover .ptg-arrow[disabled]{opacity:.4;cursor:default}
+[data-block="product-tile-gallery-v1"] .ptg-tile[data-count="1"] .ptg-arrow{display:none}
 }
-@media (prefers-reduced-motion:reduce){[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-track{scroll-behavior:auto} [data-block=&quot;product-tile-gallery-v1&quot;] .ptg-arrow,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bars span,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-gh svg,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-bar,[data-block=&quot;product-tile-gallery-v1&quot;] .ptg-sort-btn svg{transition:none}}
+@media (prefers-reduced-motion:reduce){[data-block="product-tile-gallery-v1"] .ptg-track{scroll-behavior:auto} [data-block="product-tile-gallery-v1"] .ptg-arrow,[data-block="product-tile-gallery-v1"] .ptg-bars span,[data-block="product-tile-gallery-v1"] .ptg-gh svg,[data-block="product-tile-gallery-v1"] .ptg-bar,[data-block="product-tile-gallery-v1"] .ptg-sort-btn svg{transition:none}}
 &lt;/style&gt;
 
-&lt;section data-block=&quot;product-tile-gallery-v1&quot; aria-label=&quot;Jerseys on sale&quot;&gt;
-  &lt;div class=&quot;ptg-sentinel&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;ptg-bar&quot;&gt;
-    &lt;div class=&quot;ptg-row&quot;&gt;
-      &lt;button class=&quot;ptg-short&quot; type=&quot;button&quot; data-open=&quot;team&quot; aria-haspopup=&quot;dialog&quot; aria-expanded=&quot;false&quot;&gt;Team&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;ptg-short ptg-short--wide&quot; type=&quot;button&quot; data-open=&quot;player&quot; aria-haspopup=&quot;dialog&quot; aria-expanded=&quot;false&quot;&gt;Player&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;ptg-short ptg-short--wide&quot; type=&quot;button&quot; data-open=&quot;price&quot; aria-haspopup=&quot;dialog&quot; aria-expanded=&quot;false&quot;&gt;Price&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-      &lt;button class=&quot;ptg-short&quot; type=&quot;button&quot; data-open=&quot;all&quot; aria-haspopup=&quot;dialog&quot; aria-expanded=&quot;false&quot;&gt;All filters&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;/button&gt;
-      &lt;p class=&quot;ptg-count&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
-      &lt;div class=&quot;ptg-sort&quot;&gt;
-        &lt;button class=&quot;ptg-sort-btn&quot; type=&quot;button&quot; aria-haspopup=&quot;listbox&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;ptg-sort-list&quot;&gt;Sort: &lt;span class=&quot;ptg-sort-val&quot;&gt;Featured&lt;/span&gt;&lt;svg width=&quot;10&quot; height=&quot;6&quot; viewBox=&quot;0 0 10 6&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M1 1l4 4 4-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.4&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-        &lt;ul class=&quot;ptg-sort-list&quot; id=&quot;ptg-sort-list&quot; role=&quot;listbox&quot; aria-label=&quot;Sort jerseys&quot; tabindex=&quot;-1&quot; hidden&gt;&lt;li role=&quot;option&quot; id=&quot;ptg-sort-order&quot; data-value=&quot;order&quot; data-short=&quot;Featured&quot; aria-selected=&quot;true&quot;&gt;Featured&lt;/li&gt;&lt;li role=&quot;option&quot; id=&quot;ptg-sort-low&quot; data-value=&quot;low&quot; data-short=&quot;Lowest price&quot; aria-selected=&quot;false&quot;&gt;Price, low to high&lt;/li&gt;&lt;li role=&quot;option&quot; id=&quot;ptg-sort-high&quot; data-value=&quot;high&quot; data-short=&quot;Highest price&quot; aria-selected=&quot;false&quot;&gt;Price, high to low&lt;/li&gt;&lt;li role=&quot;option&quot; id=&quot;ptg-sort-saving&quot; data-value=&quot;saving&quot; data-short=&quot;Biggest saving&quot; aria-selected=&quot;false&quot;&gt;Biggest saving&lt;/li&gt;&lt;/ul&gt;
+&lt;section data-block="product-tile-gallery-v1" aria-label="Jerseys on sale"&gt;
+  &lt;div class="ptg-sentinel" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="ptg-bar"&gt;
+    &lt;div class="ptg-row"&gt;
+      &lt;button class="ptg-short" type="button" data-open="team" aria-haspopup="dialog" aria-expanded="false"&gt;Team&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="ptg-short ptg-short--wide" type="button" data-open="player" aria-haspopup="dialog" aria-expanded="false"&gt;Player&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="ptg-short ptg-short--wide" type="button" data-open="price" aria-haspopup="dialog" aria-expanded="false"&gt;Price&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;/button&gt;
+      &lt;button class="ptg-short" type="button" data-open="all" aria-haspopup="dialog" aria-expanded="false"&gt;All filters&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;/button&gt;
+      &lt;p class="ptg-count" aria-live="polite"&gt;&lt;/p&gt;
+      &lt;div class="ptg-sort"&gt;
+        &lt;button class="ptg-sort-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="ptg-sort-list"&gt;Sort: &lt;span class="ptg-sort-val"&gt;Featured&lt;/span&gt;&lt;svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"&gt;&lt;path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;ul class="ptg-sort-list" id="ptg-sort-list" role="listbox" aria-label="Sort jerseys" tabindex="-1" hidden&gt;&lt;li role="option" id="ptg-sort-order" data-value="order" data-short="Featured" aria-selected="true"&gt;Featured&lt;/li&gt;&lt;li role="option" id="ptg-sort-low" data-value="low" data-short="Lowest price" aria-selected="false"&gt;Price, low to high&lt;/li&gt;&lt;li role="option" id="ptg-sort-high" data-value="high" data-short="Highest price" aria-selected="false"&gt;Price, high to low&lt;/li&gt;&lt;li role="option" id="ptg-sort-saving" data-value="saving" data-short="Biggest saving" aria-selected="false"&gt;Biggest saving&lt;/li&gt;&lt;/ul&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;ptg-chips&quot; hidden&gt;&lt;/div&gt;
+    &lt;div class="ptg-chips" hidden&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;ptg-scrim&quot; hidden&gt;&lt;/div&gt;
-  &lt;div class=&quot;ptg-drawer&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Filters&quot; hidden&gt;
-    &lt;div class=&quot;ptg-dhead&quot;&gt;&lt;p class=&quot;ptg-dtitle&quot;&gt;Filters&lt;/p&gt;&lt;button class=&quot;ptg-close&quot; type=&quot;button&quot; aria-label=&quot;Close filters&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 14 14&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M2 2l10 10M12 2L2 12&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
-    &lt;div class=&quot;ptg-groups&quot;&gt;
-      &lt;section class=&quot;ptg-group&quot; data-group=&quot;team&quot;&gt;&lt;h3 class=&quot;ptg-gh&quot;&gt;&lt;button type=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;Team&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;svg width=&quot;10&quot; height=&quot;6&quot; viewBox=&quot;0 0 10 6&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M1 1l4 4 4-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.4&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/h3&gt;
-        &lt;div class=&quot;ptg-opts&quot; hidden&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;club&quot;&gt;&lt;span&gt;Clubs&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;nation&quot;&gt;&lt;span&gt;National teams&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;/section&gt;
-      &lt;section class=&quot;ptg-group&quot; data-group=&quot;player&quot;&gt;&lt;h3 class=&quot;ptg-gh&quot;&gt;&lt;button type=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;Player&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;svg width=&quot;10&quot; height=&quot;6&quot; viewBox=&quot;0 0 10 6&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M1 1l4 4 4-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.4&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/h3&gt;
-        &lt;div class=&quot;ptg-opts&quot; hidden&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;named&quot;&gt;&lt;span&gt;With a player name&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;plain&quot;&gt;&lt;span&gt;No name&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;/section&gt;
-      &lt;section class=&quot;ptg-group&quot; data-group=&quot;price&quot;&gt;&lt;h3 class=&quot;ptg-gh&quot;&gt;&lt;button type=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;Price&lt;span class=&quot;ptg-n&quot;&gt;&lt;/span&gt;&lt;svg width=&quot;10&quot; height=&quot;6&quot; viewBox=&quot;0 0 10 6&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M1 1l4 4 4-4&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.4&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/h3&gt;
-        &lt;div class=&quot;ptg-opts&quot; hidden&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;under75&quot;&gt;&lt;span&gt;Under $75&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;75to125&quot;&gt;&lt;span&gt;$75 to $125&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;ptg-opt&quot;&gt;&lt;input type=&quot;checkbox&quot; value=&quot;over125&quot;&gt;&lt;span&gt;Over $125&lt;/span&gt;&lt;span class=&quot;ptg-c&quot;&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;div class="ptg-scrim" hidden&gt;&lt;/div&gt;
+  &lt;div class="ptg-drawer" role="dialog" aria-modal="true" aria-label="Filters" hidden&gt;
+    &lt;div class="ptg-dhead"&gt;&lt;p class="ptg-dtitle"&gt;Filters&lt;/p&gt;&lt;button class="ptg-close" type="button" aria-label="Close filters"&gt;&lt;svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"&gt;&lt;path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+    &lt;div class="ptg-groups"&gt;
+      &lt;section class="ptg-group" data-group="team"&gt;&lt;h3 class="ptg-gh"&gt;&lt;button type="button" aria-expanded="false"&gt;Team&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"&gt;&lt;path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/h3&gt;
+        &lt;div class="ptg-opts" hidden&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="club"&gt;&lt;span&gt;Clubs&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="nation"&gt;&lt;span&gt;National teams&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class="ptg-group" data-group="player"&gt;&lt;h3 class="ptg-gh"&gt;&lt;button type="button" aria-expanded="false"&gt;Player&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"&gt;&lt;path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/h3&gt;
+        &lt;div class="ptg-opts" hidden&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="named"&gt;&lt;span&gt;With a player name&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="plain"&gt;&lt;span&gt;No name&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class="ptg-group" data-group="price"&gt;&lt;h3 class="ptg-gh"&gt;&lt;button type="button" aria-expanded="false"&gt;Price&lt;span class="ptg-n"&gt;&lt;/span&gt;&lt;svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"&gt;&lt;path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/h3&gt;
+        &lt;div class="ptg-opts" hidden&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="under75"&gt;&lt;span&gt;Under $75&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="75to125"&gt;&lt;span&gt;$75 to $125&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;label class="ptg-opt"&gt;&lt;input type="checkbox" value="over125"&gt;&lt;span&gt;Over $125&lt;/span&gt;&lt;span class="ptg-c"&gt;&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;/section&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;ptg-dfoot&quot;&gt;&lt;button class=&quot;ptg-clear&quot; type=&quot;button&quot; hidden&gt;Clear all&lt;/button&gt;&lt;button class=&quot;ptg-view&quot; type=&quot;button&quot;&gt;View items&lt;/button&gt;&lt;/div&gt;
+    &lt;div class="ptg-dfoot"&gt;&lt;button class="ptg-clear" type="button" hidden&gt;Clear all&lt;/button&gt;&lt;button class="ptg-view" type="button"&gt;View items&lt;/button&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;ul class=&quot;ptg-grid&quot;&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;club&quot; data-player=&quot;plain&quot; data-price=&quot;64.99&quot; data-saving=&quot;85.0&quot; data-order=&quot;1&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-authentic-adidas-charlotte-fc-third-jersey-2025_A1116910&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1116910000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0009&amp;w=700&amp;h=700&amp;img=A1116910000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+  &lt;ul class="ptg-grid"&gt;
+      &lt;li class="ptg-tile" data-team="club" data-player="plain" data-price="64.99" data-saving="85.0" data-order="1"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-authentic-adidas-charlotte-fc-third-jersey-2025_A1116910" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1116910000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;&lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0009&amp;w=700&amp;h=700&amp;img=A1116910000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Charlotte FC 2025 Authentic Third Jersey by adidas&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$149.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$64.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Charlotte FC 2025 Authentic Third Jersey by adidas&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$149.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$64.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Charlotte FC 2025 Authentic Third Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Charlotte FC 2025 Authentic Third Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Charlotte FC 2025 Authentic Third Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Charlotte FC 2025 Authentic Third Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;nation&quot; data-player=&quot;named&quot; data-price=&quot;64.99&quot; data-saving=&quot;35.0&quot; data-order=&quot;2&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/nike-usmnt-home-top-2026-sullivan_RV7032734&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1142072000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="nation" data-player="named" data-price="64.99" data-saving="35.0" data-order="2"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/nike-usmnt-home-top-2026-sullivan_RV7032734" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1142072000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$99.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$64.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$99.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$64.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;nation&quot; data-player=&quot;named&quot; data-price=&quot;124.99&quot; data-saving=&quot;10.0&quot; data-order=&quot;3&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-replica-nike-sullivan-usmnt-away-jersey-2026_RV7032730&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1128890000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="nation" data-player="named" data-price="124.99" data-saving="10.0" data-order="3"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-nike-sullivan-usmnt-away-jersey-2026_RV7032730" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1128890000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Cavan Sullivan USMNT 26/27 Away Jersey by Nike&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$134.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$124.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Cavan Sullivan USMNT 26/27 Away Jersey by Nike&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$134.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$124.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Cavan Sullivan USMNT 26/27 Away Jersey by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Cavan Sullivan USMNT 26/27 Away Jersey by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Cavan Sullivan USMNT 26/27 Away Jersey by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Cavan Sullivan USMNT 26/27 Away Jersey by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;club&quot; data-player=&quot;plain&quot; data-price=&quot;54.99&quot; data-saving=&quot;45.0&quot; data-order=&quot;4&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-fc-dallas-away-jersey-25-26_A1108663&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1108663000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0009&amp;w=700&amp;h=700&amp;img=A1108663000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="club" data-player="plain" data-price="54.99" data-saving="45.0" data-order="4"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-fc-dallas-away-jersey-25-26_A1108663" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1108663000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;&lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0009&amp;w=700&amp;h=700&amp;img=A1108663000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;FC Dallas 2025 Away Jersey by adidas&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$99.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$54.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;FC Dallas 2025 Away Jersey by adidas&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$99.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$54.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of FC Dallas 2025 Away Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of FC Dallas 2025 Away Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of FC Dallas 2025 Away Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of FC Dallas 2025 Away Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;club&quot; data-player=&quot;plain&quot; data-price=&quot;139.99&quot; data-saving=&quot;30.0&quot; data-order=&quot;5&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-authentic-nike-barcelona-home-jersey-25-26_A1121582&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1121582000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0009&amp;w=700&amp;h=700&amp;img=A1121582000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="club" data-player="plain" data-price="139.99" data-saving="30.0" data-order="5"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-authentic-nike-barcelona-home-jersey-25-26_A1121582" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1121582000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;&lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0009&amp;w=700&amp;h=700&amp;img=A1121582000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Barcelona 25/26 Authentic Home Jersey by Nike&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$169.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$139.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Barcelona 25/26 Authentic Home Jersey by Nike&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$169.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$139.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Barcelona 25/26 Authentic Home Jersey by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Barcelona 25/26 Authentic Home Jersey by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Barcelona 25/26 Authentic Home Jersey by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Barcelona 25/26 Authentic Home Jersey by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;club&quot; data-player=&quot;named&quot; data-price=&quot;108.99&quot; data-saving=&quot;29.0&quot; data-order=&quot;6&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-replica-nike-lamine-yamal-barcelona-away-jersey-25-26_RV7025543&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1121588000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="club" data-player="named" data-price="108.99" data-saving="29.0" data-order="6"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-nike-lamine-yamal-barcelona-away-jersey-25-26_RV7025543" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1121588000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Lamine Yamal Barcelona 25/26 Away Jersey by Nike&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$137.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$108.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Lamine Yamal Barcelona 25/26 Away Jersey by Nike&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$137.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$108.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Lamine Yamal Barcelona 25/26 Away Jersey by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Lamine Yamal Barcelona 25/26 Away Jersey by Nike&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Lamine Yamal Barcelona 25/26 Away Jersey by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Lamine Yamal Barcelona 25/26 Away Jersey by Nike"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;nation&quot; data-player=&quot;named&quot; data-price=&quot;129.99&quot; data-saving=&quot;10.0&quot; data-order=&quot;7&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-messi-argentina-away-jersey-2026-fifa-world-cup-26-patch_RV7029449&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1127436000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ptg-slide ptg-slide--photo&quot;&gt;&lt;img class=&quot;ptg-photo&quot; src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/argentina_2026_away_lifestyle_LIONEL_MESSI_3x4.jpg&quot; alt=&quot;&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;&lt;div class=&quot;ptg-slide ptg-slide--photo&quot;&gt;&lt;img class=&quot;ptg-photo&quot; src=&quot;https://www.imagehandler.net/dxassets/?img=Photos/argentina_2026_away_detail_01_3x4.jpg&quot; alt=&quot;&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="nation" data-player="named" data-price="129.99" data-saving="10.0" data-order="7"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-messi-argentina-away-jersey-2026-fifa-world-cup-26-patch_RV7029449" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1127436000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;&lt;div class="ptg-slide ptg-slide--photo"&gt;&lt;img class="ptg-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/argentina_2026_away_lifestyle_LIONEL_MESSI_3x4.jpg" alt="" width="900" height="1200" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;&lt;div class="ptg-slide ptg-slide--photo"&gt;&lt;img class="ptg-photo" src="https://www.imagehandler.net/dxassets/?img=Photos/argentina_2026_away_detail_01_3x4.jpg" alt="" width="900" height="1200" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Lionel Messi Argentina 26/27 Away Jersey by adidas&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$139.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$129.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Lionel Messi Argentina 26/27 Away Jersey by adidas&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$139.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$129.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Lionel Messi Argentina 26/27 Away Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Lionel Messi Argentina 26/27 Away Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Lionel Messi Argentina 26/27 Away Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Lionel Messi Argentina 26/27 Away Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
-      &lt;li class=&quot;ptg-tile&quot; data-team=&quot;nation&quot; data-player=&quot;named&quot; data-price=&quot;124.99&quot; data-saving=&quot;15.0&quot; data-order=&quot;8&quot;&gt;
-        &lt;a class=&quot;ptg-link&quot; href=&quot;https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-messi-argentina-home-jersey-2026-fifa-world-cup-26-patch_RV7029424&quot; target=&quot;_top&quot;&gt;
-          &lt;div class=&quot;ptg-media&quot;&gt;
-            &lt;div class=&quot;ptg-track&quot;&gt;
-              &lt;div class=&quot;ptg-slide ptg-slide--cutout&quot;&gt;&lt;img class=&quot;ptg-cutout&quot; src=&quot;https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1127416000&amp;c=999&amp;retBlank=1x1&quot; alt=&quot;&quot; width=&quot;700&quot; height=&quot;700&quot; loading=&quot;lazy&quot; onerror=&quot;this.onerror=null;this.closest(&#x27;.ptg-slide&#x27;).remove()&quot;&gt;&lt;/div&gt;
+      &lt;li class="ptg-tile" data-team="nation" data-player="named" data-price="124.99" data-saving="15.0" data-order="8"&gt;
+        &lt;a class="ptg-link" href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-messi-argentina-home-jersey-2026-fifa-world-cup-26-patch_RV7029424" target="_top"&gt;
+          &lt;div class="ptg-media"&gt;
+            &lt;div class="ptg-track"&gt;
+              &lt;div class="ptg-slide ptg-slide--cutout"&gt;&lt;img class="ptg-cutout" src="https://www.imagehandler.net/preview/?iset=0100&amp;fmt=png&amp;iindex=0007&amp;w=700&amp;h=700&amp;img=A1127416000&amp;c=999&amp;retBlank=1x1" alt="" width="700" height="700" onerror="this.onerror=null;this.closest('.ptg-slide').remove()"&gt;&lt;/div&gt;
             &lt;/div&gt;
-            &lt;span class=&quot;ptg-chip ptg-chip--sale&quot;&gt;Sale&lt;/span&gt;
-            &lt;div class=&quot;ptg-bars&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+            &lt;span class="ptg-chip ptg-chip--sale"&gt;Sale&lt;/span&gt;
+            &lt;div class="ptg-bars" aria-hidden="true"&gt;&lt;/div&gt;
           &lt;/div&gt;
-          &lt;div class=&quot;ptg-info&quot;&gt;
-            &lt;p class=&quot;ptg-name&quot;&gt;Lionel Messi Argentina 26/27 Home Jersey by adidas&lt;/p&gt;
-            &lt;p class=&quot;ptg-price&quot;&gt;&lt;s&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Was &lt;/span&gt;$139.99&lt;/s&gt; &lt;b&gt;&lt;span class=&quot;ptg-sr&quot;&gt;Now &lt;/span&gt;$124.99&lt;/b&gt;&lt;/p&gt;
+          &lt;div class="ptg-info"&gt;
+            &lt;p class="ptg-name"&gt;Lionel Messi Argentina 26/27 Home Jersey by adidas&lt;/p&gt;
+            &lt;p class="ptg-price"&gt;&lt;s&gt;&lt;span class="ptg-sr"&gt;Was &lt;/span&gt;$139.99&lt;/s&gt; &lt;b&gt;&lt;span class="ptg-sr"&gt;Now &lt;/span&gt;$124.99&lt;/b&gt;&lt;/p&gt;
           &lt;/div&gt;
         &lt;/a&gt;
-        &lt;div class=&quot;ptg-nav&quot;&gt;
-          &lt;button class=&quot;ptg-arrow ptg-prev&quot; type=&quot;button&quot; aria-label=&quot;Previous photo of Lionel Messi Argentina 26/27 Home Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M9 2 L4 7 L9 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
-          &lt;button class=&quot;ptg-arrow ptg-next&quot; type=&quot;button&quot; aria-label=&quot;Next photo of Lionel Messi Argentina 26/27 Home Jersey by adidas&quot;&gt;&lt;svg viewBox=&quot;0 0 14 14&quot; width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;path d=&quot;M5 2 L10 7 L5 12&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;div class="ptg-nav"&gt;
+          &lt;button class="ptg-arrow ptg-prev" type="button" aria-label="Previous photo of Lionel Messi Argentina 26/27 Home Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M9 2 L4 7 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class="ptg-arrow ptg-next" type="button" aria-label="Next photo of Lionel Messi Argentina 26/27 Home Jersey by adidas"&gt;&lt;svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"&gt;&lt;path d="M5 2 L10 7 L5 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/&gt;&lt;/svg&gt;&lt;/button&gt;
         &lt;/div&gt;
       &lt;/li&gt;
   &lt;/ul&gt;
@@ -410,133 +369,133 @@ display:block;width:100%;background:var(--campaign-surface);font-family:var(--ca
 
 &lt;script&gt;
 (function(){
-  var root=document.querySelector(&#x27;[data-block=&quot;product-tile-gallery-v1&quot;]&#x27;);
+  var root=document.querySelector('[data-block="product-tile-gallery-v1"]');
   if(!root)return;
-  var grid=root.querySelector(&#x27;.ptg-grid&#x27;);
+  var grid=root.querySelector('.ptg-grid');
   function setup(tile){
-    var track=tile.querySelector(&#x27;.ptg-track&#x27;),bars=tile.querySelector(&#x27;.ptg-bars&#x27;);
-    var prev=tile.querySelector(&#x27;.ptg-prev&#x27;),next=tile.querySelector(&#x27;.ptg-next&#x27;);
-    function slides(){return track.querySelectorAll(&#x27;.ptg-slide&#x27;);}
+    var track=tile.querySelector('.ptg-track'),bars=tile.querySelector('.ptg-bars');
+    var prev=tile.querySelector('.ptg-prev'),next=tile.querySelector('.ptg-next');
+    function slides(){return track.querySelectorAll('.ptg-slide');}
     function index(){var w=track.clientWidth||1;return Math.round(track.scrollLeft/w);}
     function draw(){
       var n=slides().length,i=Math.min(index(),Math.max(n-1,0));
-      tile.setAttribute(&#x27;data-count&#x27;,n);bars.setAttribute(&#x27;data-count&#x27;,n);
-      if(bars.children.length!==n){bars.innerHTML=&#x27;&#x27;;for(var k=0;k&lt;n;k++)bars.appendChild(document.createElement(&#x27;span&#x27;));}
-      for(var j=0;j&lt;bars.children.length;j++)bars.children[j].classList.toggle(&#x27;is-on&#x27;,j===i);
+      tile.setAttribute('data-count',n);bars.setAttribute('data-count',n);
+      if(bars.children.length!==n){bars.innerHTML='';for(var k=0;k&lt;n;k++)bars.appendChild(document.createElement('span'));}
+      for(var j=0;j&lt;bars.children.length;j++)bars.children[j].classList.toggle('is-on',j===i);
       prev.disabled=i&lt;=0;next.disabled=i&gt;=n-1;
-      var cur=slides()[i];tile.toggleAttribute(&#x27;data-on-photo&#x27;,!!(cur&amp;&amp;cur.classList.contains(&#x27;ptg-slide--photo&#x27;)));
+      var cur=slides()[i];tile.toggleAttribute('data-on-photo',!!(cur&amp;&amp;cur.classList.contains('ptg-slide--photo')));
     }
     function go(d){
-      var reduce=window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches;
-      track.scrollTo({left:(index()+d)*track.clientWidth,behavior:reduce?&#x27;auto&#x27;:&#x27;smooth&#x27;});
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      track.scrollTo({left:(index()+d)*track.clientWidth,behavior:reduce?'auto':'smooth'});
     }
-    prev.addEventListener(&#x27;click&#x27;,function(){go(-1);});
-    next.addEventListener(&#x27;click&#x27;,function(){go(1);});
-    var t;track.addEventListener(&#x27;scroll&#x27;,function(){clearTimeout(t);t=setTimeout(draw,60);},{passive:true});
+    prev.addEventListener('click',function(){go(-1);});
+    next.addEventListener('click',function(){go(1);});
+    var t;track.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(draw,60);},{passive:true});
     new MutationObserver(draw).observe(track,{childList:true});
-    window.addEventListener(&#x27;resize&#x27;,draw);
+    window.addEventListener('resize',draw);
     draw();
   }
-  Array.prototype.forEach.call(root.querySelectorAll(&#x27;.ptg-tile&#x27;),setup);
+  Array.prototype.forEach.call(root.querySelectorAll('.ptg-tile'),setup);
   /* filters: one shared drawer, live results, chips, shareable web address */
-  var tiles=Array.prototype.slice.call(root.querySelectorAll(&#x27;.ptg-tile&#x27;));
-  var LABEL={club:&#x27;Clubs&#x27;,nation:&#x27;National teams&#x27;,named:&#x27;With a player name&#x27;,plain:&#x27;No name&#x27;,under75:&#x27;Under $75&#x27;,&#x27;75to125&#x27;:&#x27;$75 to $125&#x27;,over125:&#x27;Over $125&#x27;};
-  var state={team:[],player:[],price:[]},sortKey=&#x27;order&#x27;;
-  var sortBtn=root.querySelector(&#x27;.ptg-sort-btn&#x27;),sortList=root.querySelector(&#x27;.ptg-sort-list&#x27;),sortOpts=Array.prototype.slice.call(sortList.querySelectorAll(&#x27;[role=&quot;option&quot;]&#x27;)),activeIx=0;
-  var drawer=root.querySelector(&#x27;.ptg-drawer&#x27;),scrim=root.querySelector(&#x27;.ptg-scrim&#x27;),chips=root.querySelector(&#x27;.ptg-chips&#x27;);
-  var count=root.querySelector(&#x27;.ptg-count&#x27;),view=root.querySelector(&#x27;.ptg-view&#x27;),clear=root.querySelector(&#x27;.ptg-clear&#x27;);
+  var tiles=Array.prototype.slice.call(root.querySelectorAll('.ptg-tile'));
+  var LABEL={club:'Clubs',nation:'National teams',named:'With a player name',plain:'No name',under75:'Under $75','75to125':'$75 to $125',over125:'Over $125'};
+  var state={team:[],player:[],price:[]},sortKey='order';
+  var sortBtn=root.querySelector('.ptg-sort-btn'),sortList=root.querySelector('.ptg-sort-list'),sortOpts=Array.prototype.slice.call(sortList.querySelectorAll('[role="option"]')),activeIx=0;
+  var drawer=root.querySelector('.ptg-drawer'),scrim=root.querySelector('.ptg-scrim'),chips=root.querySelector('.ptg-chips');
+  var count=root.querySelector('.ptg-count'),view=root.querySelector('.ptg-view'),clear=root.querySelector('.ptg-clear');
   var opener=null;
-  function bucket(p){p=+p;return p&lt;75?&#x27;under75&#x27;:p&lt;=125?&#x27;75to125&#x27;:&#x27;over125&#x27;;}
-  function val(t,g){return g===&#x27;price&#x27;?bucket(t.getAttribute(&#x27;data-price&#x27;)):t.getAttribute(&#x27;data-&#x27;+g);}
+  function bucket(p){p=+p;return p&lt;75?'under75':p&lt;=125?'75to125':'over125';}
+  function val(t,g){return g==='price'?bucket(t.getAttribute('data-price')):t.getAttribute('data-'+g);}
   function match(t,skip){for(var g in state){if(g===skip||!state[g].length)continue;if(state[g].indexOf(val(t,g))&lt;0)return false;}return true;}
   function total(){return state.team.length+state.player.length+state.price.length;}
   function writeUrl(){
     try{var u=new URL(window.location.href);
-      for(var g in state){if(state[g].length)u.searchParams.set(&#x27;pt_&#x27;+g,state[g].join(&#x27;,&#x27;));else u.searchParams.delete(&#x27;pt_&#x27;+g);}
-      if(sortKey!==&#x27;order&#x27;)u.searchParams.set(&#x27;pt_sort&#x27;,sortKey);else u.searchParams.delete(&#x27;pt_sort&#x27;);
-      history.replaceState(null,&#x27;&#x27;,u.toString());}catch(e){}
+      for(var g in state){if(state[g].length)u.searchParams.set('pt_'+g,state[g].join(','));else u.searchParams.delete('pt_'+g);}
+      if(sortKey!=='order')u.searchParams.set('pt_sort',sortKey);else u.searchParams.delete('pt_sort');
+      history.replaceState(null,'',u.toString());}catch(e){}
   }
   function readUrl(){
     try{var u=new URL(window.location.href);
-      for(var g in state){var v=u.searchParams.get(&#x27;pt_&#x27;+g);state[g]=v?v.split(&#x27;,&#x27;).filter(function(x){return LABEL[x];}):[];}
-      var s=u.searchParams.get(&#x27;pt_sort&#x27;);if(s&amp;&amp;sortList.querySelector(&#x27;[data-value=&quot;&#x27;+s+&#x27;&quot;]&#x27;))sortKey=s;}catch(e){}
+      for(var g in state){var v=u.searchParams.get('pt_'+g);state[g]=v?v.split(',').filter(function(x){return LABEL[x];}):[];}
+      var s=u.searchParams.get('pt_sort');if(s&amp;&amp;sortList.querySelector('[data-value="'+s+'"]'))sortKey=s;}catch(e){}
   }
   function render(){
     var shown=0;tiles.forEach(function(t){var ok=match(t);t.hidden=!ok;if(ok)shown++;});
-    var words=shown+(shown===1?&#x27; item&#x27;:&#x27; items&#x27;);
-    count.textContent=words;view.textContent=&#x27;View &#x27;+words;
+    var words=shown+(shown===1?' item':' items');
+    count.textContent=words;view.textContent='View '+words;
     var key=sortKey;
-    sortOpts.forEach(function(o){var on=o.getAttribute(&#x27;data-value&#x27;)===key;o.setAttribute(&#x27;aria-selected&#x27;,on?&#x27;true&#x27;:&#x27;false&#x27;);if(on)root.querySelector(&#x27;.ptg-sort-val&#x27;).textContent=o.getAttribute(&#x27;data-short&#x27;);});
-    tiles.slice().sort(function(a,b){var pa=+a.getAttribute(&#x27;data-price&#x27;),pb=+b.getAttribute(&#x27;data-price&#x27;);
-      if(key===&#x27;low&#x27;)return pa-pb;if(key===&#x27;high&#x27;)return pb-pa;if(key===&#x27;saving&#x27;)return +b.getAttribute(&#x27;data-saving&#x27;)-+a.getAttribute(&#x27;data-saving&#x27;);
-      return +a.getAttribute(&#x27;data-order&#x27;)-+b.getAttribute(&#x27;data-order&#x27;);}).forEach(function(t){grid.appendChild(t);});
-    Array.prototype.forEach.call(root.querySelectorAll(&#x27;.ptg-group&#x27;),function(sec){
-      var g=sec.getAttribute(&#x27;data-group&#x27;),n=state[g].length;
-      sec.querySelector(&#x27;.ptg-n&#x27;).textContent=n?&#x27; (&#x27;+n+&#x27;)&#x27;:&#x27;&#x27;;
-      var sh=root.querySelector(&#x27;.ptg-short[data-open=&quot;&#x27;+g+&#x27;&quot;] .ptg-n&#x27;);if(sh)sh.textContent=n?&#x27; (&#x27;+n+&#x27;)&#x27;:&#x27;&#x27;;
-      Array.prototype.forEach.call(sec.querySelectorAll(&#x27;input&#x27;),function(box){
+    sortOpts.forEach(function(o){var on=o.getAttribute('data-value')===key;o.setAttribute('aria-selected',on?'true':'false');if(on)root.querySelector('.ptg-sort-val').textContent=o.getAttribute('data-short');});
+    tiles.slice().sort(function(a,b){var pa=+a.getAttribute('data-price'),pb=+b.getAttribute('data-price');
+      if(key==='low')return pa-pb;if(key==='high')return pb-pa;if(key==='saving')return +b.getAttribute('data-saving')-+a.getAttribute('data-saving');
+      return +a.getAttribute('data-order')-+b.getAttribute('data-order');}).forEach(function(t){grid.appendChild(t);});
+    Array.prototype.forEach.call(root.querySelectorAll('.ptg-group'),function(sec){
+      var g=sec.getAttribute('data-group'),n=state[g].length;
+      sec.querySelector('.ptg-n').textContent=n?' ('+n+')':'';
+      var sh=root.querySelector('.ptg-short[data-open="'+g+'"] .ptg-n');if(sh)sh.textContent=n?' ('+n+')':'';
+      Array.prototype.forEach.call(sec.querySelectorAll('input'),function(box){
         box.checked=state[g].indexOf(box.value)&gt;-1;
         var c=tiles.filter(function(t){return match(t,g)&amp;&amp;val(t,g)===box.value;}).length;
-        box.parentNode.querySelector(&#x27;.ptg-c&#x27;).textContent=&#x27;(&#x27;+c+&#x27;)&#x27;;
+        box.parentNode.querySelector('.ptg-c').textContent='('+c+')';
         box.disabled=!c&amp;&amp;!box.checked;
       });
     });
-    var all=root.querySelector(&#x27;.ptg-short[data-open=&quot;all&quot;] .ptg-n&#x27;);all.textContent=total()?&#x27; (&#x27;+total()+&#x27;)&#x27;:&#x27;&#x27;;
+    var all=root.querySelector('.ptg-short[data-open="all"] .ptg-n');all.textContent=total()?' ('+total()+')':'';
     clear.hidden=!total();
-    chips.innerHTML=&#x27;&#x27;;chips.hidden=!total();
-    for(var g in state)state[g].forEach(function(v){var b=document.createElement(&#x27;button&#x27;);b.type=&#x27;button&#x27;;b.className=&#x27;ptg-chip-x&#x27;;b.setAttribute(&#x27;aria-label&#x27;,&#x27;Remove filter: &#x27;+LABEL[v]);b.innerHTML=LABEL[v]+&#x27; &lt;span aria-hidden=&quot;true&quot;&gt;×&lt;/span&gt;&#x27;;b.addEventListener(&#x27;click&#x27;,(function(gg,vv){return function(){state[gg]=state[gg].filter(function(x){return x!==vv;});render();writeUrl();};})(g,v));chips.appendChild(b);});
-    if(total()){var c=document.createElement(&#x27;button&#x27;);c.type=&#x27;button&#x27;;c.className=&#x27;ptg-clearlink&#x27;;c.textContent=&#x27;Clear all&#x27;;c.addEventListener(&#x27;click&#x27;,reset);chips.appendChild(c);}
+    chips.innerHTML='';chips.hidden=!total();
+    for(var g in state)state[g].forEach(function(v){var b=document.createElement('button');b.type='button';b.className='ptg-chip-x';b.setAttribute('aria-label','Remove filter: '+LABEL[v]);b.innerHTML=LABEL[v]+' &lt;span aria-hidden="true"&gt;×&lt;/span&gt;';b.addEventListener('click',(function(gg,vv){return function(){state[gg]=state[gg].filter(function(x){return x!==vv;});render();writeUrl();};})(g,v));chips.appendChild(b);});
+    if(total()){var c=document.createElement('button');c.type='button';c.className='ptg-clearlink';c.textContent='Clear all';c.addEventListener('click',reset);chips.appendChild(c);}
   }
   function reset(){for(var g in state)state[g]=[];render();writeUrl();}
-  function setGroup(sec,open){var b=sec.querySelector(&#x27;.ptg-gh button&#x27;);b.setAttribute(&#x27;aria-expanded&#x27;,open?&#x27;true&#x27;:&#x27;false&#x27;);sec.querySelector(&#x27;.ptg-opts&#x27;).hidden=!open;}
-  function focusables(){return Array.prototype.filter.call(drawer.querySelectorAll(&#x27;button,input,select&#x27;),function(e){return !e.disabled&amp;&amp;e.offsetParent!==null;});}
+  function setGroup(sec,open){var b=sec.querySelector('.ptg-gh button');b.setAttribute('aria-expanded',open?'true':'false');sec.querySelector('.ptg-opts').hidden=!open;}
+  function focusables(){return Array.prototype.filter.call(drawer.querySelectorAll('button,input,select'),function(e){return !e.disabled&amp;&amp;e.offsetParent!==null;});}
   function openDrawer(group,btn){
-    opener=btn;drawer.hidden=false;scrim.hidden=false;document.documentElement.style.overflow=&#x27;hidden&#x27;;
-    Array.prototype.forEach.call(root.querySelectorAll(&#x27;.ptg-short&#x27;),function(s){s.setAttribute(&#x27;aria-expanded&#x27;,s===btn?&#x27;true&#x27;:&#x27;false&#x27;);});
-    var target=group===&#x27;all&#x27;?&#x27;team&#x27;:group;
-    Array.prototype.forEach.call(drawer.querySelectorAll(&#x27;.ptg-group&#x27;),function(sec){if(sec.getAttribute(&#x27;data-group&#x27;)===target)setGroup(sec,true);});
-    var sec=drawer.querySelector(&#x27;.ptg-group[data-group=&quot;&#x27;+target+&#x27;&quot;]&#x27;);var first=sec&amp;&amp;sec.querySelector(&#x27;input:not(:disabled)&#x27;);
-    (first||drawer.querySelector(&#x27;.ptg-close&#x27;)).focus();
+    opener=btn;drawer.hidden=false;scrim.hidden=false;document.documentElement.style.overflow='hidden';
+    Array.prototype.forEach.call(root.querySelectorAll('.ptg-short'),function(s){s.setAttribute('aria-expanded',s===btn?'true':'false');});
+    var target=group==='all'?'team':group;
+    Array.prototype.forEach.call(drawer.querySelectorAll('.ptg-group'),function(sec){if(sec.getAttribute('data-group')===target)setGroup(sec,true);});
+    var sec=drawer.querySelector('.ptg-group[data-group="'+target+'"]');var first=sec&amp;&amp;sec.querySelector('input:not(:disabled)');
+    (first||drawer.querySelector('.ptg-close')).focus();
   }
-  function closeDrawer(){drawer.hidden=true;scrim.hidden=true;document.documentElement.style.overflow=&#x27;&#x27;;
-    Array.prototype.forEach.call(root.querySelectorAll(&#x27;.ptg-short&#x27;),function(s){s.setAttribute(&#x27;aria-expanded&#x27;,&#x27;false&#x27;);});
+  function closeDrawer(){drawer.hidden=true;scrim.hidden=true;document.documentElement.style.overflow='';
+    Array.prototype.forEach.call(root.querySelectorAll('.ptg-short'),function(s){s.setAttribute('aria-expanded','false');});
     if(opener)opener.focus();}
-  Array.prototype.forEach.call(root.querySelectorAll(&#x27;.ptg-short&#x27;),function(b){b.addEventListener(&#x27;click&#x27;,function(){openDrawer(b.getAttribute(&#x27;data-open&#x27;),b);});});
-  Array.prototype.forEach.call(drawer.querySelectorAll(&#x27;.ptg-group&#x27;),function(sec){
-    var g=sec.getAttribute(&#x27;data-group&#x27;);
-    sec.querySelector(&#x27;.ptg-gh button&#x27;).addEventListener(&#x27;click&#x27;,function(){setGroup(sec,this.getAttribute(&#x27;aria-expanded&#x27;)!==&#x27;true&#x27;);});
-    Array.prototype.forEach.call(sec.querySelectorAll(&#x27;input&#x27;),function(box){box.addEventListener(&#x27;change&#x27;,function(){
+  Array.prototype.forEach.call(root.querySelectorAll('.ptg-short'),function(b){b.addEventListener('click',function(){openDrawer(b.getAttribute('data-open'),b);});});
+  Array.prototype.forEach.call(drawer.querySelectorAll('.ptg-group'),function(sec){
+    var g=sec.getAttribute('data-group');
+    sec.querySelector('.ptg-gh button').addEventListener('click',function(){setGroup(sec,this.getAttribute('aria-expanded')!=='true');});
+    Array.prototype.forEach.call(sec.querySelectorAll('input'),function(box){box.addEventListener('change',function(){
       state[g]=state[g].filter(function(x){return x!==box.value;});if(box.checked)state[g].push(box.value);render();writeUrl();});});
   });
-  drawer.querySelector(&#x27;.ptg-close&#x27;).addEventListener(&#x27;click&#x27;,closeDrawer);
-  scrim.addEventListener(&#x27;click&#x27;,closeDrawer);view.addEventListener(&#x27;click&#x27;,closeDrawer);clear.addEventListener(&#x27;click&#x27;,reset);
-  drawer.addEventListener(&#x27;keydown&#x27;,function(e){
-    if(e.key===&#x27;Escape&#x27;){e.preventDefault();closeDrawer();return;}
-    if(e.key!==&#x27;Tab&#x27;)return;var f=focusables();if(!f.length)return;
+  drawer.querySelector('.ptg-close').addEventListener('click',closeDrawer);
+  scrim.addEventListener('click',closeDrawer);view.addEventListener('click',closeDrawer);clear.addEventListener('click',reset);
+  drawer.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){e.preventDefault();closeDrawer();return;}
+    if(e.key!=='Tab')return;var f=focusables();if(!f.length)return;
     if(e.shiftKey&amp;&amp;document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus();}
     else if(!e.shiftKey&amp;&amp;document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus();}
   });
-  function markActive(i){activeIx=(i+sortOpts.length)%sortOpts.length;sortOpts.forEach(function(o,k){o.classList.toggle(&#x27;is-active&#x27;,k===activeIx);});sortList.setAttribute(&#x27;aria-activedescendant&#x27;,sortOpts[activeIx].id);}
-  function openSort(){sortList.hidden=false;sortBtn.setAttribute(&#x27;aria-expanded&#x27;,&#x27;true&#x27;);markActive(sortOpts.findIndex(function(o){return o.getAttribute(&#x27;data-value&#x27;)===sortKey;}));sortList.focus();}
-  function closeSort(back){sortList.hidden=true;sortBtn.setAttribute(&#x27;aria-expanded&#x27;,&#x27;false&#x27;);if(back)sortBtn.focus();}
-  function choose(i){sortKey=sortOpts[i].getAttribute(&#x27;data-value&#x27;);closeSort(true);render();writeUrl();}
-  sortBtn.addEventListener(&#x27;click&#x27;,function(){sortList.hidden?openSort():closeSort(true);});
-  sortBtn.addEventListener(&#x27;keydown&#x27;,function(e){if(e.key===&#x27;ArrowDown&#x27;||e.key===&#x27;ArrowUp&#x27;){e.preventDefault();openSort();}});
-  sortOpts.forEach(function(o,i){o.addEventListener(&#x27;click&#x27;,function(){choose(i);});o.addEventListener(&#x27;mousemove&#x27;,function(){markActive(i);});});
-  sortList.addEventListener(&#x27;keydown&#x27;,function(e){
-    if(e.key===&#x27;ArrowDown&#x27;){e.preventDefault();markActive(activeIx+1);}
-    else if(e.key===&#x27;ArrowUp&#x27;){e.preventDefault();markActive(activeIx-1);}
-    else if(e.key===&#x27;Home&#x27;){e.preventDefault();markActive(0);}
-    else if(e.key===&#x27;End&#x27;){e.preventDefault();markActive(sortOpts.length-1);}
-    else if(e.key===&#x27;Enter&#x27;||e.key===&#x27; &#x27;){e.preventDefault();choose(activeIx);}
-    else if(e.key===&#x27;Escape&#x27;){e.preventDefault();closeSort(true);}
-    else if(e.key===&#x27;Tab&#x27;){closeSort(false);}
+  function markActive(i){activeIx=(i+sortOpts.length)%sortOpts.length;sortOpts.forEach(function(o,k){o.classList.toggle('is-active',k===activeIx);});sortList.setAttribute('aria-activedescendant',sortOpts[activeIx].id);}
+  function openSort(){sortList.hidden=false;sortBtn.setAttribute('aria-expanded','true');markActive(sortOpts.findIndex(function(o){return o.getAttribute('data-value')===sortKey;}));sortList.focus();}
+  function closeSort(back){sortList.hidden=true;sortBtn.setAttribute('aria-expanded','false');if(back)sortBtn.focus();}
+  function choose(i){sortKey=sortOpts[i].getAttribute('data-value');closeSort(true);render();writeUrl();}
+  sortBtn.addEventListener('click',function(){sortList.hidden?openSort():closeSort(true);});
+  sortBtn.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();openSort();}});
+  sortOpts.forEach(function(o,i){o.addEventListener('click',function(){choose(i);});o.addEventListener('mousemove',function(){markActive(i);});});
+  sortList.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){e.preventDefault();markActive(activeIx+1);}
+    else if(e.key==='ArrowUp'){e.preventDefault();markActive(activeIx-1);}
+    else if(e.key==='Home'){e.preventDefault();markActive(0);}
+    else if(e.key==='End'){e.preventDefault();markActive(sortOpts.length-1);}
+    else if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(activeIx);}
+    else if(e.key==='Escape'){e.preventDefault();closeSort(true);}
+    else if(e.key==='Tab'){closeSort(false);}
   });
-  document.addEventListener(&#x27;click&#x27;,function(e){if(!sortList.hidden&amp;&amp;!root.querySelector(&#x27;.ptg-sort&#x27;).contains(e.target))closeSort(false);});
-  var bar=root.querySelector(&#x27;.ptg-bar&#x27;),sentinel=root.querySelector(&#x27;.ptg-sentinel&#x27;);
-  if(&#x27;IntersectionObserver&#x27; in window)new IntersectionObserver(function(es){bar.classList.toggle(&#x27;is-stuck&#x27;,!es[0].isIntersecting);}).observe(sentinel);
+  document.addEventListener('click',function(e){if(!sortList.hidden&amp;&amp;!root.querySelector('.ptg-sort').contains(e.target))closeSort(false);});
+  var bar=root.querySelector('.ptg-bar'),sentinel=root.querySelector('.ptg-sentinel');
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){bar.classList.toggle('is-stuck',!es[0].isIntersecting);}).observe(sentinel);
   readUrl();render();
-  root.classList.add(&#x27;is-ready&#x27;);
+  root.classList.add('is-ready');
 })();
 &lt;/script&gt;
 </code></pre></div><p style="margin-top:16px"><a class="nm-btn nm-btn--outline" href="../blocks/product-tile-gallery/fastr-paste.html" download="product-tile-gallery--fastr-paste.html"><span>Download HTML</span><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-miterlimit="10"/></svg></a></p>

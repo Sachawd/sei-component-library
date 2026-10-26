@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Logo Marquee: Promo Eligible</title>
+<!--
+  team-logo-marquee--promo-eligible-v1.html : canon v2
+  Built by Fable 2026-08-27 from Sacha's wss-deals-team marquee markup.
+  Instance: PROMO ELIGIBLE placement (Labor Day / promo pages). NOT editable (per Sacha 08-27): fixed content, no URL params.
+  Twin file: team-logo-marquee--sale-v1.html (identical engine and logos, separate file so each
+  placement gets its own click-beacon id).
+
+  CHANGES vs Sacha's source, both per her word 08-27:
+  - stroke boxes REMOVED (no border, no radius, transparent card ground)
+  - wrapped as a full self-contained document for iframe embedding
+
+  DECORATIVE: cards are not links (pointer-events none, from the source).
+  Auto-scrolls right to left, 65s loop; prefers-reduced-motion gets a
+  static, manually scrollable row.
+
+  LOGOS: 12 crests (8 clubs + 4 national teams) on images.getfastr.com,
+  the Fastr-hosted crest set from the link book. Verbatim from Sacha's
+  markup, one self-disarming onerror each.
+
+  FONT: labels are "PP Fraktion Mono" on Fastr pages, but that file lives
+  only on Fastr's side and cannot reach an iframe, so Chivo Mono (Google)
+  loads as the in-iframe face; Courier New is the last resort.
+
+  HEIGHT BUDGET, measured headless: mobile 96 . tablet 112 . desktop 112.
+  EMBED SNIPPET:
+    <style>.wss-tlm{width:100%;border:0;display:block;height:96px}@media (min-width:640px){.wss-tlm{height:112px}}</style>
+    <iframe class="wss-tlm" loading="lazy" scrolling="no"
+      src="https://benevolent-madeleine-5217c1.netlify.app/blocks/team-logo-marquee--promo-eligible-v1.html"
+      title="Find deals by team"></iframe>
+  Fastr containers: 96 / 112 / 112, breakpoints 640/1024, revive script once per page.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #ffffff; overflow: hidden; }
+  .wss-deals-team, .wss-deals-team * { box-sizing: border-box; }
+  .wss-deals-team {
+    width: 100%;
+    background: transparent;
+    padding: 16px 0 16px;
+    font-family: "Mohave", "Arial Narrow", sans-serif;
+  }
+  .wss-deals-team__rail-outer {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .wss-deals-team__rail-outer::before,
+  .wss-deals-team__rail-outer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .wss-deals-team__rail-outer::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+  }
+  .wss-deals-team__rail-outer::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+  }
+  .wss-deals-team__track {
+    display: flex;
+    gap: 8px;
+    width: max-content;
+    animation: wss-logo-scroll 65s linear infinite;
+    will-change: transform;
+  }
+  @keyframes wss-logo-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  /* Logo card: stroke box removed per Sacha 08-27 (no border, no radius,
+     transparent ground) */
+  .wss-deals-team__logo-card {
+    flex: 0 0 100px;
+    height: 80px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px 9px;
+    pointer-events: none;
+  }
+  .wss-deals-team__logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+  }
+  .wss-deals-team__name {
+    font-family: "PP Fraktion Mono", "Chivo Mono", "Courier New", monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 88px;
+  }
+  @media (max-width: 639px) {
+    .wss-deals-team { padding: 12px 0 12px; }
+    .wss-deals-team__logo-card { flex-basis: 86px; height: 72px; }
+    .wss-deals-team__logo { width: 34px; height: 34px; }
+    .wss-deals-team__name { font-size: 7.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wss-deals-team__track { animation: none; transform: none; }
+    .wss-deals-team__rail-outer { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+<section class="wss-deals-team" aria-label="Find deals by team">
+  <div class="wss-deals-team__rail-outer">
+    <div class="wss-deals-team__track">
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/7c/e3/94139f8c45659d404f990fc2652c.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Real Madrid</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/c3/4b/ae6184594058b8fae9a0a4322080.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Barcelona</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/4f/c6/1672ee624c5ebe0d78cda317758c.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Liverpool</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/59/13/621afd11463d95d4ec0860121ab9.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Arsenal</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/72/d5/9c5a56c74aaa8f610e5b1788d09c.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Bayern Munich</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/bb/04/7a876dd242dbb8cce1b80c3c5d5d.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">PSG</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/12/3d/b94859c340fdba6607a1003be7a6.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Juventus</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/b4/58/c8bb3c5a418e8b502c2b65d4fb4b.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Man City</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/a5/90/0b3ce8614dea85b1e54b7297581e.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">USA</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/74/9a/e7206b704553afca07f3ddd750ff.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Mexico</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/1a/04/e1ba4f70474d9b643639b26b8d0b.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Argentina</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/99/05/c4034c7d4553a10b9cfd151eb342.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Brazil</span></div>
+      <!-- duplicate set for the seamless loop -->
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/7c/e3/94139f8c45659d404f990fc2652c.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Real Madrid</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/c3/4b/ae6184594058b8fae9a0a4322080.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Barcelona</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/4f/c6/1672ee624c5ebe0d78cda317758c.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Liverpool</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/59/13/621afd11463d95d4ec0860121ab9.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Arsenal</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/72/d5/9c5a56c74aaa8f610e5b1788d09c.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Bayern Munich</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/bb/04/7a876dd242dbb8cce1b80c3c5d5d.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">PSG</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/12/3d/b94859c340fdba6607a1003be7a6.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Juventus</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/b4/58/c8bb3c5a418e8b502c2b65d4fb4b.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Man City</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/a5/90/0b3ce8614dea85b1e54b7297581e.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">USA</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/74/9a/e7206b704553afca07f3ddd750ff.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Mexico</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/1a/04/e1ba4f70474d9b643639b26b8d0b.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Argentina</span></div>
+      <div class="wss-deals-team__logo-card"><img class="wss-deals-team__logo"
+          src="https://images.getfastr.com/99/05/c4034c7d4553a10b9cfd151eb342.png"
+          onerror="this.onerror=null;this.style.opacity='.15'"
+          alt=""><span class="wss-deals-team__name">Brazil</span></div>
+    </div>
+  </div>
+</section>
+<!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_team_logo_marquee_promo_eligible_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

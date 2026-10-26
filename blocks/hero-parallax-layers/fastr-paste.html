@@ -1,0 +1,90 @@
+<!--
+  Hero / Parallax Image Layers, v1. Fastr CMS component, no iframe.
+  Osmo: Parallax Image Layers. Serial: none yet.
+  Heights: phone 560, tablet 760 (from 640), desktop 900 (from 1024).
+  Swap per use: the three layer images, the alt on the front layer, the title.
+  Layer order, back to front: 1 back image, 2 middle image, 3 title, 4 front image.
+  The images here are grey placeholders. Real photos are served from the image handler, never stored beside this file.
+  More than one on a page: give each wrapper its own id.
+-->
+<style>
+.pil{
+  --pil-surface:var(--theme-bg-subtle, #F5F5F5);
+  --pil-title:var(--theme-text-onimage,#fff);
+  position:relative;width:100%;height:560px;overflow:hidden;background:var(--pil-surface)
+}
+.pil,.pil *,.pil *::before,.pil *::after{box-sizing:border-box}
+.pil img{display:block}
+
+/* Osmo · Parallax Image Layers, layer CSS */
+.pil__visuals{position:absolute;top:0;left:0;width:100%;height:120%}
+.pil__layers{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}
+.pil__layer-img{pointer-events:none;object-fit:cover;width:100%;max-width:none;height:117.5%;position:absolute;top:-17.5%;left:0}
+.pil__layer-title{position:absolute;top:0;left:0;width:100%;height:560px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+
+.pil__title{margin:0;padding:0 16px;font-family:inherit;font-weight:800;font-size:64px;line-height:1;letter-spacing:-.02em;color:var(--pil-title);text-align:center}
+
+@media (min-width:640px){
+  .pil{height:760px}
+  .pil__layer-title{height:760px}
+  .pil__title{font-size:112px}
+}
+@media (min-width:1024px){
+  .pil{height:900px}
+  .pil__layer-title{height:900px}
+  .pil__title{font-size:176px}
+}
+</style>
+
+<div class="pil" id="pil-1">
+  <div class="pil__visuals">
+    <div data-parallax-layers class="pil__layers">
+      <img data-parallax-layer="1" class="pil__layer-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='900' viewBox='0 0 1440 900'%3E%3Crect width='1440' height='900' fill='%236E6E6E'/%3E%3C/svg%3E" width="1440" height="900" loading="eager" decoding="async" alt="" onerror="this.onerror=null;this.hidden=true">
+      <img data-parallax-layer="2" class="pil__layer-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='900' viewBox='0 0 1440 900'%3E%3Cellipse cx='720' cy='980' rx='1100' ry='420' fill='%234A4A4A'/%3E%3C/svg%3E" width="1440" height="900" loading="eager" decoding="async" alt="" onerror="this.onerror=null;this.hidden=true">
+      <div data-parallax-layer="3" class="pil__layer-title">
+        <h2 class="pil__title">Title</h2>
+      </div>
+      <img data-parallax-layer="4" class="pil__layer-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='900' viewBox='0 0 1440 900'%3E%3Ccircle cx='720' cy='640' r='42' fill='%232B2B2B'/%3E%3Crect x='655' y='690' width='130' height='210' rx='40' fill='%232B2B2B'/%3E%3C/svg%3E" width="1440" height="900" loading="eager" decoding="async" alt="" onerror="this.onerror=null;this.hidden=true">
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var roots = document.querySelectorAll(".pil:not([data-pil-ready])");
+  if (!roots.length) return;
+  roots.forEach(function(el){ el.setAttribute("data-pil-ready", ""); });
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  function load(src, ready, done){
+    if (ready()) return done();
+    var s = document.createElement("script");
+    s.src = src; s.async = false; s.onload = done; s.onerror = done;
+    document.head.appendChild(s);
+  }
+
+  // Osmo · Parallax Image Layers
+  // ⚠️DEVIATION 1: scrub 0 → 0.6 so layers ease behind the scroll, off under reduced motion
+  // ⚠️DEVIATION 2: scoped to this component's root, the host page is never queried
+  function initParallaxLayers(root){
+    root.querySelectorAll("[data-parallax-layers]").forEach(function(triggerElement){
+      var tl = gsap.timeline({scrollTrigger:{trigger:triggerElement, start:"0% 0%", end:"100% 0%", scrub:0.6}});
+      var layers = [{layer:"1", yPercent:70},{layer:"2", yPercent:55},{layer:"3", yPercent:40},{layer:"4", yPercent:10}];
+      layers.forEach(function(layerObj, idx){
+        tl.to(triggerElement.querySelectorAll('[data-parallax-layer="' + layerObj.layer + '"]'), {yPercent:layerObj.yPercent, ease:"none"}, idx === 0 ? undefined : "<");
+      });
+    });
+  }
+
+  load("https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js", function(){ return typeof window.gsap !== "undefined"; }, function(){
+    if (typeof window.gsap === "undefined") return;
+    load("https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js", function(){ return typeof window.ScrollTrigger !== "undefined"; }, function(){
+      if (typeof window.ScrollTrigger === "undefined") return;
+      gsap.registerPlugin(ScrollTrigger);
+      roots.forEach(function(root){
+        try { initParallaxLayers(root); } catch (e) { if (window.console) console.warn("Parallax Image Layers:", e); }
+      });
+    });
+  });
+})();
+</script>

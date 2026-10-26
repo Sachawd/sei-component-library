@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>C-16 · Kit Rail — Spain Champions (Home)</title>
+<!--
+  c16-kit-rail--home-v1.html — C-16 · Kit Rail — Spain Champions (Home)
+  HOME PAGE INSTANCE, copied from c16-kit-rail--spain-champions-v1.html (Fable, 2026-08-22).
+  Same 13 cards, same order, same links. Two differences, both in the INSTANCE SKIN
+  at the end of the kit-rail style block: Mohave 600 title, and #F0EBE6 paper.
+  The /preview/ renders carry their ground as a URL parameter, so bg=f0ebe6 became
+  bg=f0ebe6 and --kr-tile matches; the tile dissolves into the paper instead of
+  sitting on it as a grey square. Heights UNCHANGED (title is 1-line clamped, head
+  is an exact 39px, Mohave is narrower than Chakra Petch). Registry: serial C-16,
+  instance home. Original 2026-08-06 notes follow.
+
+  ORIGINAL HEADER:
+  c16-kit-rail--spain-champions-v1.html — C-16 · Kit Rail — Spain Champions
+  DEPLOY INSTANCE built from _CANON_V2/SHELL-kit-rail-v2.html (Fable, 2026-08-06).
+  CSS inlined (cta-canon + kit-rail-canon) so this file is fully self-contained.
+  Edit the SHELL + canon css for chassis changes; edit THIS file for content.
+  ⚠️ NOT YET CLEARED TO DEPLOY: Tyler must sign off the ball→jerseys→apparel
+  grouping, and the /shop/details/_RV####### links are UNVERIFIED. Run
+  tools/add_click_beacon.py at deploy. Registry: serial C-16, Status=Preview.
+  Contained product renders on white. The format that suits PDP photography.
+  Spec, the three tuned numbers and the reference-file bugs are all documented
+  in css/kit-rail-canon.css. PROPOSED, not locked.
+
+  REPLACES, for the Spain Champions placement:
+    blocks/carousel-product--spain-champions (the boxed 2:3 Flickity rail)
+  That block crops every kit with object-fit:cover on a 2:3 card. This one
+  contains the render instead, so sleeves and hems survive.
+
+  DOCTYPE PRESENT ON PURPOSE. Sacha's reference file has a stray "[" ahead of
+  its doctype, which puts it in QUIRKS MODE (verified: compatMode ===
+  "BackCompat") and prints a literal "[" top-left. Rules B3.
+
+  HEIGHT BUDGET (A4) — MEASURED in Chromium, not estimated
+    <640px    TOTAL 324   (media 190 square, label 38, head 44)
+    >=640px   TOTAL 375   (media 240 square, label 40, head 39)
+    >=1024px  TOTAL 415   (media 280 square, label 40, head 39)
+  Up 15px from the previous pass because the label is now TWO lines, not one.
+  Product names run to "Spain 2-Star 2026 Yamal Home (FIFA World Cup 26 Sleeve
+  Patch)" and a single ellipsised line turned those into nonsense.
+
+  FONT-INDEPENDENT, which is the point. The section title is line-clamped, the
+  head has an exact height, and the label box is an exact 2-line height in em.
+  A late-loading Chakra Petch cannot change a wrap count and blow the budget.
+  That is exactly how it breaks otherwise: measured at 54px on mobile before
+  the title clamp went in.
+
+  EMBED SNIPPET
+  <style>
+    .wss-kr{width:100%;border:0;display:block;height:324px}
+    @media (min-width:640px){.wss-kr{height:375px}}
+    @media (min-width:1024px){.wss-kr{height:415px}}
+  </style>
+  <iframe class="wss-kr" loading="lazy" src="https://benevolent-madeleine-5217c1.netlify.app/blocks/c16-kit-rail--home-v1.html" title="Official champions product"></iframe>
+
+  ═══ CONTENT — 13 cards, GROUPED, COMPLETE ════════════════════════════════
+  Every card has a real image and a real title. No placeholders remain.
+
+  ⚠️ THE ORDER IS NO LONGER TYLER'S FLAT LIST. Sacha, 2026-08-06: "group them
+  together logically, maybe so the ball is the first image, and then there's all
+  the jerseys together and then all the apparel together." Tyler asked for his
+  15 "in this order" earlier the same day, so this DEPARTS from what he signed
+  off and Sacha needs to clear it with him.
+
+  ✅ Tyler's RELATIVE order is preserved inside every group. His jersey rows ran
+  1,2,3,5,8,10,13,14,15 and his apparel rows 7,9,11. Both were already ascending,
+  so grouping cost nothing. Only the grouping moved; nothing was re-sorted.
+
+    BALL      1   RV7031150   Spain v Argentina Final Ball          (Tyler 4)
+    JERSEYS   2   A1142234    Spain 2 Star Home Jersey              (Tyler 1)
+              3   RV7031224   Spain Champions Jersey                (Tyler 2)
+              4   RV7029456   Spain FIFA World Cup 26 Patch Jersey  (Tyler 3)
+              5   A1142235    Spain Yamal 2 Star Jersey             (Tyler 5)
+              6   RV7031544   Yamal Artist Series Spain Home        (Tyler 8)
+              7   RV7031217   Spain 2-Star Yamal, WC26 Sleeve Patch (Tyler 10)
+              8   A1126528    Spain 1 Star Home Jersey              (Tyler 13)
+              9   A1142237    Spain 2-Star Youth Home               (Tyler 12's image)
+             10   RV7031547   Ferran Artist Series Spain Home       (Sacha 08-06)
+    APPAREL  11   A1142184    Spain Winners Travel Tee, Scarlet     (Tyler 7)
+             12   A1142188    Spain Winners Travel Hoodie           (Tyler 9)
+             13   A1142195    Spain Winners Parade Hoodie           (Tyler 11)
+
+  DROPPED, both by Sacha 08-06:
+    RV7031215  "Let's remove this one completely."
+    RV7031227  no image was ever supplied. See the note below for why the Youth
+               image ended up on A1142237 instead of here.
+
+  ⚠️ WHY THE YOUTH IMAGE IS ON A1142237 AND NOT ON RV7031227.
+  Sacha's fix list put "Spain 2-Star Youth Home" at his number 12, which is
+  RV7031227. But that image is img=A1142237000, and by HIS OWN img= rule that is
+  SKU A1142237, which has its own row. He then sent the Ferran URL for "the one
+  missing image", which at that moment was RV7031547. Taking both at face value:
+      Ferran → RV7031547 (direct instruction) · Youth → A1142237 (img= rule)
+  which left RV7031227 with nothing, and he dropped it. Every image in the rail
+  is now unique.
+
+  ⚠️ A1126528 GOT THE PLAIN 1-STAR IMAGE, WHICH SACHA DID NOT INSTRUCT. He said
+  "13) Good", but the image that row was carrying (1-star + WC26 patch) is
+  byte-identical to the one he assigned to RV7029456, so keeping both would have
+  put the same picture in the rail twice. The plain image is the exact parallel
+  of what he did himself at Tyler 1. One line to revert if wrong.
+
+  ⚠️ ARROWS ADDED 08-06, REVERSING the locked "Kit Rail stays arrow-less".
+  Sacha: "are we going to add the arrows as in the other carousels to match for
+  our desktop mouse users?" Desktop mouse only, header top right, left of Shop
+  all.
+  ✅ STYLE SETTLED BY SACHA 08-06 (his review of the first pass): the CANON
+  HAIRLINE CHIP, same as C-14/C-15 — square, white ground, 0.75px #797474
+  hairline, black glyph, hover inverts to white-on-#131313. The first pass's
+  black circles ("black on paper") were rejected: "the arrows look wrong and
+  not consistent with the others." One arrow style everywhere. Full spec and
+  history in css/kit-rail-canon.css. Logged in RUNNING-LIST 08-06.
+
+  ⚠️ HOW TO READ AN IMAGEHANDLER URL. This is what maps an image to a row.
+    img=      the BASE GARMENT. A1142234000 → A1142234. For a plain A-SKU row
+              this IS the SKU (Sacha, 08-06: "check the URL string in the image
+              handler URL for the SKU"). For an RV row it is only the base the
+              recipe is built on, so it does NOT identify the row.
+    iindex=   the view. 0007 = standard product shot. 0009 = customised view.
+    l1* l2* l3* = applied layers, one group per layer.
+                  WC26 patch    l1lc=0OR203 l1s=4 l1l=R1139416
+                  name layer    l2v=LAMINE%20YAMAL / l2v=FERRAN
+                  number layer  l3v=19 / l3v=7
+  Two consequences worth remembering:
+  · the WC26 patch params are IDENTICAL on the 2-star and the 1-star, which is
+    how you can tell "patch" is a layer, not a different garment;
+  · an RV's image cannot be derived from its RV number. It always has to be
+    supplied.
+
+  ⚠️ fmt=jpg, w=800. The earlier note here saying "png, not jpg" was WRONG and
+  is withdrawn. Verified 08-06 against the real renders: /preview/ assets are
+  NOT transparent whatever fmt says, they are 1:1 with a pale cool-grey ground
+  baked into the pixels. That is why the media box is square and there is no
+  drop shadow. Sacha's jpg URLs are used as sent, only the width is normalised
+  from 2000 to 800 (rule C2: the card is 280px, so 800 is already 2.8x, and
+  2000 is roughly 6x the pixels for no visible gain).
+
+  ⚠️ TYLER, 08-06: "some of those links dont work". Not yet diagnosed and
+  NOTHING HERE IS LINK-CHECKED; worldsoccershop is not reachable from the build
+  sandbox. Most likely the /shop/details/_RV####### PDP links, which are
+  GENERATED from the SKU and have never been opened. Check before this ships:
+  a dead link on a live carousel is worse than a missing image.
+
+  ⚠️ NO CLICK BEACON YET. Cards are links, so run tools/add_click_beacon.py
+  before this ships (rules D2). Keep UTMs off, these are internal links.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Mohave:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ═══ cta-canon.css (inlined verbatim) ═══ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   cta-canon.css — THE CTA (canon v2) · one button spec, every chassis
+   ─────────────────────────────────────────────────────────────────────────
+   Fills the "one CTA spec" slot from the 07-27 decision
+   ("Type & CTA: dev semantic names — Body 12-20, Label 12-16, one CTA spec").
+   Locked by Sacha 2026-08-02: this IS the canonical CTA.
+
+   THIRD SIBLING stylesheet, alongside wall-canon.css and (when it lands)
+   carousel-canon.css. It is NOT folded into either, because both consume it:
+   the wall, the rails, the hero rails and the feature pills all need the same
+   button, and duplicating it into two chassis is exactly how the old set
+   drifted into 3 arrow styles and 2 zoom scales.
+
+   Load order:  cta-canon.css  →  wall-canon.css / carousel-canon.css
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+
+   SOURCE
+   ─────────────────────────────────────────────────────────────────────────
+   Engine : Osmo Supply "Button 009". Zero JS. Every Osmo class name, the
+            data-button-009 attribute, all easings, the hover calc, the click
+            scale and the focus ring are VERBATIM below.
+   Design : Figma WorldSoccerShop - Site Updates, node 35:539.
+
+   MEASURED FROM FIGMA (verified in Chromium, not eyeballed)
+   ─────────────────────────────────────────────────────────────────────────
+     padding       12px 16px      (symmetric; Osmo stock is asymmetric)
+     gap           8px
+     label         Chakra Petch 600, 14px, tracking 1.12px, UPPERCASE
+     arrow         Chakra Petch 400, 22px, tracking 0.44px, glyph U+2192
+     arrow advance 17px
+     line box      15px      →  12 + 15 + 12 = 39px tall  ✓ matches Figma
+     radius        0         (square; Osmo stock is a 2.5em pill)
+     primary       #000 ground / #fff ink
+     secondary     #fff ground / #000 ink / 0.75px #797474 hairline
+
+   TWO CHANGES FROM THE OSMO SOURCE, both deliberate
+   ─────────────────────────────────────────────────────────────────────────
+   1. The icon <svg> elements become <span> carrying "→". Sacha's design
+      specifies the Unicode arrow set in Chakra Petch, not Osmo's chevron
+      vector. get_design_context returns it as TEXT, not an exported asset,
+      so it is typed rather than drawn. Classes and positions unchanged.
+   2. Each icon span wraps its glyph in an <i>. LOAD-BEARING, not cosmetic:
+      .button-009__icon must stay at the button's 14px font-size or every em
+      in Osmo's hover calc — and in `.is--left { left: var(--…-padding-right) }`
+      — would resolve against 22px and the animation would break. The <i>
+      carries the 22px; the span keeps the maths. Nothing removed or renamed.
+
+   THE HOVER
+   ─────────────────────────────────────────────────────────────────────────
+   Rest: JERSEYS →. On hover the trailing arrow slides right and fades, the
+   label slides right by (icon + gap + padding-right - padding-left) = 25px,
+   and a leading arrow fades in from the left. The label lands exactly on the
+   right padding edge (16 + 25 + 67 = 108 = 124 - 16), so nothing clips inside
+   the overflow:clip inner. Osmo's maths, fed WSS numbers.
+
+   CANON COMPLIANCE (07-27 locked set)
+   ─────────────────────────────────────────────────────────────────────────
+   · Hover is behind @media (hover:hover) and (pointer:fine) AND
+     (prefers-reduced-motion: no-preference). Osmo ships it that way; no
+     wrapper needed.
+   · :focus-visible ring built in. See the on-dark theme below.
+   · target="_top" belongs on every instance in markup (rule B1).
+   · Chakra Petch must be loaded with display=swap + preconnect (rule C3).
+
+   ⚠️ TYPE-ROLE MISMATCH, flagged not silently resolved:
+      wall-canon.css sets --ws-label-14-weight: 500. Figma 35:539 specifies
+      SemiBold 600 for the CTA label. Rather than mutate the shared role, the
+      CTA declares its own --ws-cta-weight: 600. If the token audit decides
+      Label 14 should carry a 600 variant, delete this and point at the role.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Osmo 009 API, re-pointed at WSS values ── */
+  --button-009-color:#fff;
+  --button-009-color-background:#000;
+  --button-009-color-focus:#000;
+  --button-009-border-radius:0;
+  --button-009-icon-size:1.2143em;      /* 17px — the → advance width */
+  --button-009-padding-top:0.8571em;    /* 12px */
+  --button-009-padding-right:1.1429em;  /* 16px */
+  --button-009-padding-bottom:0.8571em; /* 12px */
+  --button-009-padding-left:1.1429em;   /* 16px */
+  --button-009-gap:0.5714em;            /* 8px  */
+  --button-009-overflow:clip;
+  --button-009-focus-inset:-0.125em;
+  --button-009-click-scale:0.955 0.925;
+  --button-009-ease-hover:cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click:cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus:cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ── WSS layer. --ws-font-label is shared with wall-canon.css ── */
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-cta-size:14px;                   /* Label 14 role */
+  --ws-cta-weight:600;                  /* see TYPE-ROLE MISMATCH above */
+  --ws-cta-line:1.0714;                 /* 15px line box → 39px button */
+  --ws-cta-line-em:1.0714em;            /* SAME 15px as a LENGTH. height: needs a length,
+                                           --ws-cta-line is unitless and is invalid there. */
+  --ws-cta-tracking:0.08em;             /* 1.12px */
+  --ws-cta-arrow-size:1.5714em;         /* 22px */
+  --ws-cta-arrow-tracking:0.02em;       /* 0.44px */
+  --ws-cta-hairline:0.75px solid #797474;
+}
+
+/* ═══ OSMO BUTTON 009 — VERBATIM ═════════════════════════════════════════ */
+.button-009{
+  color:var(--button-009-color);
+  -webkit-user-select:none;user-select:none;
+  background-color:#0000;
+  outline-style:none;
+  padding:0;
+  line-height:1;
+  text-decoration:none;
+  display:inline-grid;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  transition:scale 0.15s var(--button-009-ease-click);
+}
+.button-009::after{
+  content:'';display:block;position:absolute;
+  inset:var(--button-009-focus-inset);
+  border-radius:var(--button-009-border-radius);
+  transition:box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events:none;z-index:1;
+}
+.button-009:is(:focus-visible)::after{ box-shadow:0 0 0 0.125em var(--button-009-color-focus); }
+.button-009:active{ scale:var(--button-009-click-scale); }
+.button-009__inner{
+  pointer-events:none;
+  grid-column-gap:var(--button-009-gap);
+  grid-row-gap:var(--button-009-gap);
+  padding-top:var(--button-009-padding-top);
+  padding-right:var(--button-009-padding-right);
+  padding-bottom:var(--button-009-padding-bottom);
+  padding-left:var(--button-009-padding-left);
+  z-index:1;
+  border-radius:var(--button-009-border-radius);
+  overflow:var(--button-009-overflow);
+  grid-area:1 / 1;
+  justify-content:center;align-items:center;
+  display:flex;position:relative;
+}
+.button-009__icon{
+  width:var(--button-009-icon-size);
+  height:var(--button-009-icon-size);
+  flex:none;
+  transition:translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.button-009__icon.is--left{
+  left:var(--button-009-padding-right);
+  position:absolute;
+  opacity:0;
+  translate:-1.5em 0 0;
+}
+.button-009__text{ flex:none; transition:translate 0.5s var(--button-009-ease-hover); }
+.button-009__bg{
+  background-color:var(--button-009-color-background);
+  border-radius:var(--button-009-border-radius);
+  grid-area:1 / 1;width:100%;height:100%;padding:0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){
+  .button-009:is(:hover, :focus-visible) .button-009__text,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text{
+    translate:calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--left,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left{
+    translate:0 0 0;opacity:1;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--right,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right{
+    translate:1.5em 0 0;opacity:0;
+    transition:translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+/* ═══ END OSMO ════════════════════════════════════════════════════════════ */
+
+
+/* ── WSS skin, additive only ─────────────────────────────────────────────── */
+.button-009{
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-cta-size);
+}
+.button-009__text{
+  font-weight:var(--ws-cta-weight);
+  line-height:var(--ws-cta-line);                        /* 15px → 39px button */
+  letter-spacing:var(--ws-cta-tracking);
+  margin-right:calc(var(--ws-cta-tracking) * -1);        /* kill the trailing letter-space; Figma does not render it */
+  text-transform:uppercase;
+}
+.button-009__icon{
+  height:var(--ws-cta-line-em);                          /* 15px. MUST be the -em variant */
+  display:flex;align-items:center;justify-content:center;
+}
+.button-009__icon > i{                                   /* carries the 22px so the span stays at 14px */
+  font-style:normal;
+  font-weight:400;
+  font-size:var(--ws-cta-arrow-size);
+  letter-spacing:var(--ws-cta-arrow-tracking);
+  line-height:1;
+  display:block;
+}
+
+/* ── THEMES (Osmo's documented data-theme pattern) ───────────────────────── */
+
+/* secondary — outlined, for light grounds */
+.button-009[data-theme='secondary']{
+  --button-009-color:#000;
+  --button-009-color-background:#fff;
+}
+.button-009[data-theme='secondary'] .button-009__bg{ border:var(--ws-cta-hairline); }
+
+/* on-dark — for the C-13 wall (#0A0A0A) and any dark surface.
+   REASON THIS EXISTS: the default focus ring is #000 and disappears completely
+   against the wall's ground, so keyboard users lose the focus indicator. White
+   ground reads on dark and the ring flips to white. Osmo's accessibility note
+   calls this out: --button-009-color-focus must contrast with the SURROUNDING
+   background, not the button.
+   ⚠️ Theme name picked by Claude 2026-08-02, not by Sacha. Rename freely. */
+.button-009[data-theme='on-dark']{
+  --button-009-color:#0A0A0A;
+  --button-009-color-background:#fff;
+  --button-009-color-focus:#fff;
+}
+
+/* ═══ kit-rail-canon.css (inlined verbatim) ═══ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   kit-rail-canon.css — KIT RAIL (canon v2)
+   ─────────────────────────────────────────────────────────────────────────
+   The rail for CONTAINED PRODUCT RENDERS. Square media, nothing cropped,
+   label below. This is the format that suits PDP photography, which the boxed
+   Card/Product rail does not: a 2:3 card with object-fit:cover lops the
+   sleeves and hem off every kit.
+
+   ⚠️ REVISED 2026-08-06 after seeing the real renders. First pass assumed the
+   imagehandler /preview/ assets were transparent PNGs and floated them on
+   white with a drop shadow, the way Sacha's adidas reference does. They are
+   NOT transparent: they are 1:1 with a pale cool-grey ground baked into the
+   pixels. See the card section for what that forced to change and why.
+
+   Consumes cta-canon.css. Load order:  cta-canon.css → kit-rail-canon.css
+
+   ⚠️ PROPOSED. Not locked.
+
+   SOURCE
+   ─────────────────────────────────────────────────────────────────────────
+   Sacha's reference: 00_Component Rebuild Audit/Product Carousels/
+   Product-Carousel.html (the adidas away-kits rail). He likes the format and
+   asked for two things dialled back: the edge fade and the hover.
+
+   ⚠️ THREE BUGS IN THAT REFERENCE FILE, none of them carried over here:
+   1. A stray "[" before the doctype and "]" after </html>. Verified in
+      Chromium: document.compatMode === "BackCompat", i.e. QUIRKS MODE
+      (rules B3), and the "[" renders as literal text top-left. It is visible
+      in Sacha's own screenshot.
+   2. Both <link> stylesheets 404. The paths are relative to the repo root but
+      the file sits two folders down, so _ws-tokens.css and _brand-wss.css
+      never load and Chakra Petch never applies.
+   3. Images are loading="lazy" — wrong inside an iframe (rules C1).
+
+   THE THREE NUMBERS SACHA ASKED ABOUT
+   ─────────────────────────────────────────────────────────────────────────
+                        reference        here      why
+     edge fade          10% per side     40px      10% is 144px at 1440 wide,
+                                                   which swallows half of the
+                                                   first and last product.
+                                                   40px is a softening, not a
+                                                   vignette.
+     sibling dim        0.40 + gray 20%  0.72      0.40 reads as "disabled".
+                                                   0.72 reads as "not this one".
+                                                   Greyscale is dropped: these
+                                                   are colourways, desaturating
+                                                   them fights the merchandise.
+     hover zoom         1.12             1.06      canon 07-27 locks 1.06 for
+                                                   the Kit Rail (1.04 for boxed
+                                                   product rails). It also moved
+                                                   from the CARD to the IMAGE
+                                                   inside a clipping box, so the
+                                                   label no longer jitters and
+                                                   the scroller needs no dead
+                                                   padding to avoid clipping.
+
+   All three are variables at the top of this file. Nudge them there, not
+   inline, so every Kit Rail moves together.
+
+   CANON COMPLIANCE (07-27 locked set)
+   ─────────────────────────────────────────────────────────────────────────
+   · ⚠️ ARROWS, WHICH REVERSES A LOCKED DECISION. The 07-27 set says "Kit Rail
+     stays arrow-less". Sacha reopened it 2026-08-06: "are we going to add the
+     arrows as in the other carousels to match for our desktop mouse users?"
+     He is right, and the reason the old rule held no longer applies: a mouse
+     user has no affordance here at all. The scrollbar is 6px and the edge fade
+     was just cut from 10% to 40px, so between them they were carrying the
+     whole burden of "this scrolls" and neither is loud enough on a desktop.
+     ⚠️ THIS NEEDS LOGGING IN RUNNING-LIST. Until it is, the canon doc and this
+     file disagree, and the canon doc's own rule is that if it is not on the
+     list it is not agreed.
+   · ✅ ARROWS ARE THE CANON HAIRLINE CHIP (settled by Sacha, 2026-08-06).
+     First pass shipped black circles here, argued from "white on imagery,
+     black on paper". Sacha's review: "the arrows look wrong and not
+     consistent with the others." Ruling: ONE arrow style across every rail —
+     the C-14/C-15 chip. Square (no radius), white ground, 0.75px #797474
+     hairline, #131313 glyph, hover INVERTS to black-on-#131313, :active
+     scale .94, focus ring #C4623F. Visibility on white paper is carried by
+     the hairline, exactly as it is in the C-14 header. The circle idea and
+     the "black on paper" canon amendment are both withdrawn.
+   · Arrows sit in the HEADER TOP RIGHT per canon, to the left of Shop all.
+     Same three-control header as the Launch Carousel built 08-03.
+   · Arrows are DESKTOP MOUSE ONLY, behind (hover:hover) and (pointer:fine).
+     A touch device swipes and does not need them.
+   · no dots
+   · --tile-zoom 1.06, the Kit Rail value
+   · every hover behind @media (hover:hover) and (pointer:fine)
+   · prefers-reduced-motion honoured
+   · target="_top" on every card link
+   · 6px scrollbar via --ws-scroll-thumb
+   · fixed px per breakpoint, no fluid aspect-ratio (A2), exact heights (A3)
+
+   ⚠️ LABELS ARE ALWAYS VISIBLE, unlike the reference which reveals them on
+   hover. A shopper scanning a rail cannot hover fifteen things to find out
+   what they are, and on the live block the labels are already permanent.
+   Sacha's own words on the wall: "I do need people to be able to know what
+   it is."
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --kr-ink:#111111;
+  --kr-paper:#ffffff;
+  --kr-font:'Chakra Petch',Figtree,system-ui,sans-serif;
+
+  /* ── the three dials ── */
+  --kr-fade:40px;              /* was 10% of container. Fixed px, so it cannot
+                                  scale up into the product on a wide screen. */
+  --kr-dim:0.72;               /* siblings while another card is hovered */
+  --tile-zoom:1.06;            /* canon 07-27, Kit Rail */
+
+  --kr-ease:cubic-bezier(.25,1,.5,1);
+  --kr-dur:.4s;
+
+  --ws-scroll-thumb:#bbbbbb;
+  --ws-scroll-thumb-hover:#8e8e8e;
+
+  /* per-breakpoint geometry, overridden below */
+  --kr-card-w:280px;           /* media is a SQUARE of this width */
+  --kr-gap:20px;
+  --kr-gutter:40px;
+  --kr-zoom-room:0px;          /* the zoom lives inside a clipping media box now,
+                                  so the scroller needs no dead padding */
+  --kr-tile:#F2F2F2;           /* the pale ground baked into the /preview/ renders.
+                                  Sampled 08-06. One number, change it here. */
+  --kr-head-h:39px;            /* = the CTA's height, so the row sits on one baseline */
+  --kr-arrow-size:34px;        /* chip size. C-14 runs 40 desktop / 34 mobile; the
+                                  Kit Rail head is an exact 39px (A3), so 34 is the
+                                  size that fits WITHOUT growing the height budget. */
+  --kr-arrow-ground:#ffffff;   /* canon chip: white ground… */
+  --kr-arrow-ink:#131313;      /* …black glyph… */
+  --kr-arrow-line:#797474;     /* …0.75px hairline. Same chip as C-14/C-15 and the
+                                  CTA secondary theme. */
+  --kr-arrow-ground-hover:#131313;   /* hover INVERTS, it does not darken */
+  --kr-arrow-ink-hover:#ffffff;
+  --kr-title-size:24px;
+  --kr-title-lines:1;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{
+  background:var(--kr-paper);
+  margin:0;padding:0;
+  overflow-x:hidden;overflow-y:hidden;   /* let a vertical wheel reach the parent */
+  touch-action:pan-y;
+}
+/* B4: never overscroll-behavior:none on html/body */
+
+.kr{
+  font-family:var(--kr-font);
+  color:var(--kr-ink);
+  -webkit-font-smoothing:antialiased;
+  background:var(--kr-paper);
+  width:100%;
+  padding:16px 0 20px;
+  position:relative;
+}
+
+/* ── header ─────────────────────────────────────────────────────────────── */
+/* ⚠️ THE HEAD HAS AN EXACT HEIGHT, and the title is line-clamped to fit it.
+   Rule A3 wants exact heights, not min-height, and this is where a rail
+   silently breaks its budget: an uppercase title is font-dependent, so with
+   Chakra Petch loading late (or not at all) the wrap count changes and the
+   whole component grows. Measured on mobile before this fix: the title took
+   THREE lines and the head went 39 → 54. Clamped, the budget below holds
+   whatever the font does. */
+.kr__head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  height:var(--kr-head-h);
+  padding:0 var(--kr-gutter);margin-bottom:20px;
+}
+.kr__title{
+  flex:1 1 auto;           /* takes the slack, so the arrows and Shop all sit
+                              together on the right instead of being spread
+                              across the header by space-between */
+  margin:0;font-size:var(--kr-title-size);font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;line-height:1.1;
+  min-width:0;
+  display:-webkit-box;-webkit-box-orient:vertical;
+  -webkit-line-clamp:var(--kr-title-lines);overflow:hidden;
+}
+.kr__cta{flex:none}
+
+/* ── arrows ─────────────────────────────────────────────────────────────
+   Hidden by default and revealed only for a fine pointer, so a phone never
+   renders them and the header row keeps its exact height either way.
+   They also hide themselves at the ends of the scroll, driven by the SAME
+   is--at-start / is--at-end classes the edge fade already uses. One source of
+   truth for "where are we in this rail", not two. ── */
+.kr__nav{display:none}
+@media (hover:hover) and (pointer:fine){
+  .kr__nav{display:flex;align-items:center;gap:8px;flex:none}
+}
+.kr__arrow{
+  appearance:none;padding:0;margin:0;
+  width:var(--kr-arrow-size);height:var(--kr-arrow-size);
+  border-radius:0;                        /* canon chips are SQUARE */
+  background:var(--kr-arrow-ground);
+  border:0.75px solid var(--kr-arrow-line);
+  color:var(--kr-arrow-ink);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .3s var(--kr-ease), color .3s var(--kr-ease),
+             border-color .3s var(--kr-ease), opacity .2s linear;
+}
+.kr__arrow svg{width:13px;height:13px;display:block}
+.kr__arrow.is--prev svg{transform:scaleX(-1)}
+.kr__arrow:hover{
+  background:var(--kr-arrow-ground-hover);
+  color:var(--kr-arrow-ink-hover);
+  border-color:var(--kr-arrow-ground-hover);
+}
+.kr__arrow:active{scale:.94}
+.kr__arrow:focus-visible{outline:2px solid #C4623F;outline-offset:2px}
+/* visibility, not display: the header must not reflow when an arrow goes away.
+   The live Spain block does the same thing and it is the right call. */
+.kr__arrow[disabled]{visibility:hidden;opacity:0;pointer-events:none}
+.kr__rail.is--at-start ~ * .kr__arrow{}   /* placeholder, state is set in JS */
+
+@media (prefers-reduced-motion:reduce){
+  .kr__arrow{transition:none}
+}
+
+/* ── the rail ───────────────────────────────────────────────────────────── */
+/* The mask lives on the SCROLLER, not on a wrapper, so the fade tracks the
+   scrollport edges exactly. --kr-fade-l is toggled to 0 at scrollLeft 0 by the
+   init script, because a fade over the first product when there is nothing to
+   the left of it reads as a rendering fault, which is what it looked like in
+   the reference. Same for the right edge at the end. */
+.kr__rail{
+  --kr-fade-l:var(--kr-fade);
+  --kr-fade-r:var(--kr-fade);
+  display:flex;align-items:flex-start;
+  gap:var(--kr-gap);
+  list-style:none;margin:0;
+  padding:var(--kr-zoom-room) var(--kr-gutter);
+  overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  scroll-padding-inline:var(--kr-gutter);   /* MUST match the padding. snap aligns
+                                               to the SCROLLPORT edge, not the padding
+                                               edge, so without this the rail
+                                               auto-scrolls a gutter on load. */
+  overscroll-behavior-x:contain;
+  touch-action:pan-x pinch-zoom;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:var(--ws-scroll-thumb) transparent;
+
+  -webkit-mask-image:linear-gradient(to right,
+      transparent 0, #000 var(--kr-fade-l),
+      #000 calc(100% - var(--kr-fade-r)), transparent 100%);
+          mask-image:linear-gradient(to right,
+      transparent 0, #000 var(--kr-fade-l),
+      #000 calc(100% - var(--kr-fade-r)), transparent 100%);
+  transition:-webkit-mask-image .25s linear, mask-image .25s linear;
+}
+.kr__rail.is--at-start{ --kr-fade-l:0px; }
+.kr__rail.is--at-end{   --kr-fade-r:0px; }
+
+.kr__rail::-webkit-scrollbar{height:6px}
+.kr__rail::-webkit-scrollbar-track{background:transparent}
+.kr__rail::-webkit-scrollbar-thumb{background:var(--ws-scroll-thumb);border-radius:3px}
+.kr__rail::-webkit-scrollbar-thumb:hover{background:var(--ws-scroll-thumb-hover)}
+
+/* ── the card ───────────────────────────────────────────────────────────
+   ⚠️ SQUARE MEDIA, AND THAT IS NOT A STYLE CHOICE.
+   Verified 2026-08-06 by rendering the real imagehandler URLs: the /preview/
+   renders are 1:1 and they carry a PALE COOL-GREY GROUND BAKED INTO THE PIXELS.
+   They are not transparent PNGs, whatever fmt= says. Consequences:
+
+   · the floating-on-white look of Sacha's adidas reference is not reachable
+     from these assets. That rail used getfastr PNGs with real alpha.
+   · a drop-shadow would draw around the asset's RECTANGLE, not the garment.
+     Removed. If transparent art ever lands, put it back with --kr-shadow.
+   · a square media box means a square asset fills it EDGE TO EDGE under
+     object-fit:contain, so the baked ground becomes the tile and there is no
+     letterboxed strip in a different colour. That is the whole trick.
+
+   This is also why the label moved BELOW the media instead of floating over
+   it: with a ground behind the garment, a white chip on top reads as a sticker.
+
+   And it still solves the original problem. The live block crops these squares
+   into a 2:3 card with object-fit:cover, which is what lops the sleeves off.
+   Nothing is cropped here. ── */
+.kr__card{flex:0 0 auto;width:var(--kr-card-w);scroll-snap-align:start}
+.kr__link{
+  display:block;position:relative;
+  width:100%;
+  text-decoration:none;color:inherit;
+  transition:opacity var(--kr-dur) var(--kr-ease),
+             transform var(--kr-dur) var(--kr-ease);
+}
+.kr__link:focus-visible{outline:2px solid var(--kr-ink);outline-offset:4px}
+
+.kr__media{
+  display:block;
+  width:100%;height:var(--kr-card-w);   /* SQUARE. Tracks the card width. */
+  background:var(--kr-tile);            /* matches the asset's baked ground, so a
+                                           1px rounding gap never shows as a seam */
+  overflow:hidden;
+}
+.kr__img{
+  display:block;width:100%;height:100%;
+  object-fit:contain;                   /* the whole point. No cropped sleeves. */
+  transition:transform var(--kr-dur) var(--kr-ease);
+}
+
+/* ⚠️ THE LABEL IS EXACTLY TWO LINES TALL, ALWAYS, whether the name uses one or
+   two. Product names here run to "Spain 2-Star 2026 Yamal Home (FIFA World Cup
+   26 Sleeve Patch)", which a single nowrap line would ellipsis into nonsense.
+   Two lines with a clamp keeps the name readable AND keeps the card height
+   exact (rule A3), so the iframe budget holds no matter what the copy says.
+   The height is em-based, so it tracks the font-size at every breakpoint. */
+.kr__label{
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  overflow:hidden;
+  height:calc(10px + 2.5em);
+  padding:10px 2px 0;
+  color:var(--kr-ink);
+  font-size:12px;font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;line-height:1.25;
+}
+
+/* ── hover. Dim the field, lift the one. ────────────────────────────────── */
+/* The zoom is now on the IMAGE inside a clipping media box, not on the whole
+   card. Scaling the card would also scale the label, which makes the type
+   jitter, and it needed dead padding in the scroller to avoid clipping. This
+   version needs neither, which is why --kr-zoom-room is down to 0. */
+@media (hover:hover) and (pointer:fine){
+  .kr__rail:hover .kr__link{ opacity:var(--kr-dim); }
+  .kr__rail:hover .kr__link:hover{ opacity:1; }
+  .kr__rail:hover .kr__link:hover .kr__img{ transform:scale(var(--tile-zoom)); }
+  /* keyboard gets the same treatment as the mouse, or tabbing through a
+     dimmed rail leaves the focused card dimmed */
+  .kr__link:focus-visible{ opacity:1; }
+  .kr__link:focus-visible .kr__img{ transform:scale(var(--tile-zoom)); }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .kr__link,.kr__img,.kr__rail{transition:none}
+  .kr__rail:hover .kr__link{opacity:1}
+  .kr__rail:hover .kr__link:hover .kr__img{transform:none}
+  .kr__rail{scroll-snap-type:none}
+}
+
+/* ── breakpoints. Fixed px per step (A2), never fluid. ──────────────────── */
+@media (max-width:1023px){
+  :root{--kr-card-w:240px;--kr-gap:16px;--kr-gutter:24px;--kr-title-size:20px}
+}
+@media (max-width:639px){
+  :root{--kr-card-w:190px;--kr-gap:12px;--kr-gutter:16px;
+        --kr-title-size:16px;--kr-title-lines:2;--kr-head-h:44px}
+  .kr__head{gap:12px;margin-bottom:16px}
+  .kr__label{font-size:11px}
+  /* No hover on touch, so no dim and no zoom-room. The fade also comes off:
+     on a phone the rail is obviously swipeable and a fade over a 190px card
+     is a big proportion of it. */
+  .kr__rail{--kr-fade:0px}
+}
+
+/* ═══ INSTANCE SKIN · c16-kit-rail--home-v1 ═══
+   HOME PAGE variant (Sacha 08-22): Mohave header + the Jersey Shop paper.
+   --kr-tile follows the renders, which now request bg=f0ebe6 (see header).
+   Title size untouched, so heights stay 324 / 375 / 415. */
+:root{ --kr-paper:#F0EBE6; --kr-tile:#F0EBE6; }
+.kr__title{ font-family:'Mohave','Chakra Petch',Figtree,sans-serif; font-weight:600; }
+</style>
+</head>
+<body>
+
+<section class="kr" aria-label="Official champions product">
+
+  <div class="kr__head">
+    <h2 class="kr__title">Official Champions Product</h2>
+      <div class="kr__nav">
+        <button class="kr__arrow is--prev" type="button" data-kr="prev" aria-label="Previous products" aria-controls="kr-rail" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg></button>
+        <button class="kr__arrow is--next" type="button" data-kr="next" aria-label="More products" aria-controls="kr-rail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg></button>
+      </div>
+    <a class="button-009 kr__cta" data-theme="secondary" target="_top"
+       href="https://www.worldsoccershop.com/shop/national-teams/spain-national-team">
+      <span class="button-009__inner">
+        <span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span>
+        <span class="button-009__text">Shop all</span>
+        <span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span>
+      </span>
+      <span class="button-009__bg"></span>
+    </a>
+  </div>
+
+  <ul class="kr__rail is--at-start" id="kr-rail" role="list" aria-label="Official champions product">
+
+    <!-- ═══ BALL ═══════════════════════════════════════════════════ -->
+
+    <!-- 1 · RV7031150 · Tyler 4 -->
+    <!-- TYLER ROLL 2026-08-18 (Fable): +RV7031229/RV7031225/RV7031228 (match-details RVs, recipes from the FEF Virtual Upload Template + Sacha's R1141954 layer) +A1142238 (Yamal youth champions) — removed A1142234, RV7029456, RV7031217, A1142195. Grouping unchanged per Sacha 08-06: ball, then jerseys (Tyler's relative order), then apparel. All 4 new PDP links click-checked in a real browser 08-18. -->
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031150" aria-label="Shop Spain v Argentina Final Ball">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" fetchpriority="high" alt="Spain v Argentina Final Ball"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1127906000&amp;iset=0108&amp;iindex=0135&amp;l1lc=0OZ101&amp;l1s=2&amp;l1l=L1393284&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Spain v Argentina Final Ball</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031229" aria-label="Shop Yamal 2-Star Match Details">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" fetchpriority="high" alt="Yamal 2-Star Match Details"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142235000&amp;iset=0108&amp;iindex=0007&amp;l1lc=0OF111&amp;l1s=4&amp;l1l=R1141954&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Yamal 2-Star Match Details</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142235" aria-label="Shop Spain Yamal 2 Star Jersey">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Spain Yamal 2 Star Jersey"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142235000&amp;iset=0108&amp;iindex=0009&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Spain Yamal 2 Star Jersey</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031224" aria-label="Shop Spain Champions Jersey">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" fetchpriority="high" alt="Spain Champions Jersey"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142234000&amp;iset=0108&amp;iindex=0009&amp;l1lc=0OB102&amp;l1s=15&amp;l1l=R1142305&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Spain Champions Jersey</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031225" aria-label="Shop Champions Jersey + Match Details">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Champions Jersey + Match Details"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142234000&amp;iset=0108&amp;iindex=0009&amp;l1lc=0OB102&amp;l1s=15&amp;l1l=R1142305&amp;l2lc=0OF111&amp;l2s=4&amp;l2l=R1141954&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Champions Jersey + Match Details</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031228" aria-label="Shop 2-Star Match Details">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="2-Star Match Details"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142234000&amp;iset=0108&amp;iindex=0007&amp;l1lc=0OF111&amp;l1s=4&amp;l1l=R1141954&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">2-Star Match Details</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142238" aria-label="Shop Yamal 2-Star Youth Champions">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Yamal 2-Star Youth Champions"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142238000&amp;iset=0108&amp;iindex=0009&amp;l1lc=0OB102&amp;l1s=13&amp;l1l=R1142306&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Yamal 2-Star Youth Champions</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031547" aria-label="Shop Ferran Artist Series Spain Home">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Ferran Artist Series Spain Home"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142234000&amp;iset=0108&amp;iindex=0009&amp;l2c=E6D72D&amp;l2lc=0OB102&amp;l2s=1.5&amp;l2f=SPA365&amp;l2v=FERRAN&amp;l2a=0&amp;l3c=5F2328&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=SPA365&amp;l3v=7&amp;l3a=0&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Ferran Artist Series</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1126528" aria-label="Shop Spain 1 Star Home Jersey">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Spain 1 Star Home Jersey"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1126528000&amp;iset=0108&amp;iindex=0007&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Spain 1 Star Home Jersey</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_RV7031544" aria-label="Shop Yamal Artist Series Spain Home">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Yamal Artist Series Spain Home"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142234000&amp;iset=0108&amp;iindex=0009&amp;l2c=E6D72D&amp;l2lc=0OB102&amp;l2s=1.5&amp;l2f=SPA365&amp;l2v=LAMINE%20YAMAL&amp;l2a=0&amp;l3c=5F2328&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=SPA365&amp;l3v=19&amp;l3a=0&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Yamal Artist Series</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142237" aria-label="Shop Spain 2-Star Youth Home">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Spain 2-Star Youth Home"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142237000&amp;iset=0108&amp;iindex=0009&amp;l1lc=0OB102&amp;l1s=13&amp;l1l=R1142306&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Spain 2-Star Youth Home</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142184" aria-label="Shop Spain Winners Travel Tee, Scarlet">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Spain Winners Travel Tee, Scarlet"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142184000&amp;iset=0108&amp;iindex=0007&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Winners Travel Tee</span>
+      </a>
+    </li>
+    <li class="kr__card">
+      <a class="kr__link" target="_top" href="https://www.worldsoccershop.com/shop/details/_A1142188" aria-label="Shop Spain Winners Travel Hoodie">
+        <span class="kr__media">
+          <img class="kr__img" loading="eager" decoding="async" alt="Spain Winners Travel Hoodie"
+               src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=800&amp;h=800&amp;cmp=100&amp;c=999&amp;img=A1142188000&amp;iset=0108&amp;iindex=0007&amp;bg=f0ebe6">
+        </span>
+        <span class="kr__label">Winners Travel Hoodie</span>
+      </a>
+    </li>
+
+  </ul>
+</section>
+
+<script>
+/* The only script in this component, and it does two things, both driven by one
+   piece of state: where are we in the scroll.
+
+   1. EDGE FADE. A fade over the first product when there is nothing to its left
+      does not read as "there is more this way", it reads as a rendering fault.
+      That is what it looks like in Sacha's reference file and it is half of why
+      he said it fades too much. Left edge is crisp until you scroll; right edge
+      goes crisp at the end.
+   2. ARROWS. Same state, so the fade and the arrows can never disagree about
+      whether you are at an end. Added 2026-08-06 at Sacha's request, for
+      desktop mouse users. They are display:none unless the pointer is fine, so
+      a phone never renders them.
+
+   Rule B2 is zero-JS by default; this is a documented exception. It touches
+   nothing outside the iframe. With JS off you still get a scrollable rail with
+   a visible scrollbar, a static fade and no arrows, which is the pre-08-06
+   behaviour and is perfectly usable. */
+(function () {
+  var rail = document.getElementById('kr-rail');
+  if (!rail) return;
+  var prev = document.querySelector('[data-kr="prev"]');
+  var next = document.querySelector('[data-kr="next"]');
+
+  /* One card plus one gap, read from the DOM rather than hardcoded, so the
+     three breakpoints do not each need their own number. Two cards per click
+     is the live block's behaviour and it feels right at this card width. */
+  function step() {
+    var card = rail.querySelector('.kr__card');
+    if (!card) return 300;
+    var gap = parseFloat(getComputedStyle(rail).columnGap || getComputedStyle(rail).gap) || 20;
+    return (card.getBoundingClientRect().width + gap) * 2;
+  }
+  function update() {
+    var max = rail.scrollWidth - rail.clientWidth;
+    var atStart = rail.scrollLeft <= 2;
+    var atEnd = rail.scrollLeft >= max - 2;
+    rail.classList.toggle('is--at-start', atStart);
+    rail.classList.toggle('is--at-end', atEnd);
+    /* If nothing overflows there is nothing to navigate, so BOTH go away.
+       Without this you get two live-looking buttons that do nothing. */
+    if (prev) prev.disabled = atStart || max <= 2;
+    if (next) next.disabled = atEnd || max <= 2;
+  }
+  function go(dir) {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    rail.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' });
+  }
+  if (prev) prev.addEventListener('click', function () { go(-1); });
+  if (next) next.addEventListener('click', function () { go(1); });
+
+  var raf;
+  rail.addEventListener('scroll', function () {
+    cancelAnimationFrame(raf); raf = requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+
+<!-- WSS-CLICK-BEACON — attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_c16_kit_rail_spain_champions_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

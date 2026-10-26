@@ -1,0 +1,665 @@
+<!--
+  Rail / Shop the Look by Club, v1. Fastr CMS component, no iframe.
+  Serial: none yet. Skin: WorldSoccerShop, base theme tokens only, no campaign layer.
+  Heights: phone 600, tablet 660 (from 768), desktop 780 (from 1024).
+  Swap per use: each card's club name and club link, and up to five products per card (photo, name, price, link).
+  The five places on a card are fixed: a jersey, b shorts, c socks, d scarf or cap, e ball.
+  Photos are served from the image handler by article number, never stored beside this file.
+  More than one on a page: give each wrapper its own id, and change the id in the style block and the chip ids to match.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.stl{
+  /* Base layer. Production theme tokens; the values after the comma are for the preview only. Contrast on the preview values, measured: text on page 14.9:1 pass, text on card 13.7:1 pass, chip text on chip 17.7:1 pass, plus button ring on card 9.6:1 pass, arrow edge on page 10.4:1 pass, focus ring on card 13.7:1 pass. Card on page 1.1:1 and divider on page 1.3:1 are decoration, nothing depends on them. */
+  --stl-ink:var(--theme-text-body,#27272A);
+  --stl-page:var(--theme-bg-surface-white,#FFFFFF);
+  --stl-surface:var(--theme-bg-subtle,#F5F5F5);
+  --stl-invert:var(--theme-bg-surface-invert,#18181B);
+  --stl-on-invert:var(--theme-text-invert,#FFFFFF);
+  --stl-rule:var(--theme-border-subtle,#E4E4E7);
+  --stl-line:var(--theme-border-secondary,#3F3F46);
+  --stl-label:'Chakra Petch',system-ui,sans-serif;
+  --stl-body:'Inter',system-ui,sans-serif;
+  --stl-ease:cubic-bezier(0.32, 0.72, 0, 1);
+
+  --stl-h:600px;
+  --stl-pad-top:32px;
+  --stl-head-h:44px;
+  --stl-head-gap:20px;
+  --stl-gutter:16px;
+  --stl-gap:12px;
+  --stl-card-w:300px;
+  --stl-card-h:460px;
+  --stl-club-h:48px;
+  --stl-stage-h:332px;
+  --stl-title:40px;
+  --stl-club:20px;
+  --stl-drawer-w:340px;
+
+  --button-009-color:#fff;
+  --button-009-color-background:#000;
+  --button-009-color-focus:#000;
+  --button-009-border-radius:0;
+  --button-009-icon-size:1.2143em;
+  --button-009-padding-top:0.8571em;
+  --button-009-padding-right:1.1429em;
+  --button-009-padding-bottom:0.8571em;
+  --button-009-padding-left:1.1429em;
+  --button-009-gap:0.5714em;
+  --button-009-overflow:clip;
+  --button-009-focus-inset:-0.125em;
+  --button-009-click-scale:0.955 0.925;
+  --button-009-ease-hover:cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click:cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus:cubic-bezier(0.32, 0.72, 0, 1);
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-cta-size:14px;
+  --ws-cta-weight:600;
+  --ws-cta-line:1.0714;
+  --ws-cta-line-em:1.0714em;
+  --ws-cta-tracking:0.08em;
+  --ws-cta-arrow-size:1.5714em;
+  --ws-cta-arrow-tracking:0.02em;
+  --ws-cta-hairline:0.75px solid #797474;
+
+  position:relative;width:100%;height:var(--stl-h);padding:var(--stl-pad-top) 0 0;overflow:hidden;overflow:clip;
+  background:var(--stl-page);color:var(--stl-ink);font-family:var(--stl-body);font-size:16px;line-height:1.3;
+  text-align:left;-webkit-font-smoothing:antialiased
+}
+.stl,.stl *,.stl *::before,.stl *::after{box-sizing:border-box}
+.stl [hidden]{display:none!important}
+:where(.stl) ul{list-style:none;margin:0;padding:0}
+:where(.stl) li{margin:0;padding:0}
+:where(.stl) img{display:block;max-width:none}
+:where(.stl) button{font:inherit;color:inherit;margin:0;border-radius:0;-webkit-appearance:none;appearance:none}
+#stl-clubs-v1.stl a[href]{text-decoration:none}
+#stl-clubs-v1.stl button[type]{min-height:0}
+.stl .stl__sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* Osmo · Button 009, from css/cta-canon.css */
+/* ⚠️DEVIATION 1: every selector is scoped under .stl and the variables sit on .stl; Fastr has no sandbox */
+.stl .button-009{
+  color:var(--button-009-color);
+  -webkit-user-select:none;user-select:none;
+  background-color:#0000;
+  outline-style:none;
+  padding:0;
+  line-height:1;
+  text-decoration:none;
+  display:inline-grid;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  transition:scale 0.15s var(--button-009-ease-click);
+}
+.stl .button-009::after{
+  content:'';display:block;position:absolute;
+  inset:var(--button-009-focus-inset);
+  border-radius:var(--button-009-border-radius);
+  transition:box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events:none;z-index:1;
+}
+.stl .button-009:is(:focus-visible)::after{ box-shadow:0 0 0 0.125em var(--button-009-color-focus); }
+.stl .button-009:active{ scale:var(--button-009-click-scale); }
+.stl .button-009__inner{
+  pointer-events:none;
+  grid-column-gap:var(--button-009-gap);
+  grid-row-gap:var(--button-009-gap);
+  padding-top:var(--button-009-padding-top);
+  padding-right:var(--button-009-padding-right);
+  padding-bottom:var(--button-009-padding-bottom);
+  padding-left:var(--button-009-padding-left);
+  z-index:1;
+  border-radius:var(--button-009-border-radius);
+  overflow:var(--button-009-overflow);
+  grid-area:1 / 1;
+  justify-content:center;align-items:center;
+  display:flex;position:relative;
+}
+.stl .button-009__icon{
+  width:var(--button-009-icon-size);
+  height:var(--button-009-icon-size);
+  flex:none;
+  transition:translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.stl .button-009__icon.is--left{
+  left:var(--button-009-padding-right);
+  position:absolute;
+  opacity:0;
+  translate:-1.5em 0 0;
+}
+.stl .button-009__text{ flex:none; transition:translate 0.5s var(--button-009-ease-hover); }
+.stl .button-009__bg{
+  background-color:var(--button-009-color-background);
+  border-radius:var(--button-009-border-radius);
+  grid-area:1 / 1;width:100%;height:100%;padding:0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){
+  .stl .button-009:is(:hover, :focus-visible) .button-009__text,
+  .stl [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text{
+    translate:calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .stl .button-009:is(:hover, :focus-visible) .button-009__icon.is--left,
+  .stl [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left{
+    translate:0 0 0;opacity:1;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .stl .button-009:is(:hover, :focus-visible) .button-009__icon.is--right,
+  .stl [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right{
+    translate:1.5em 0 0;opacity:0;
+    transition:translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+.stl .button-009{
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-cta-size);
+}
+.stl .button-009__text{
+  font-weight:var(--ws-cta-weight);
+  line-height:var(--ws-cta-line);                        
+  letter-spacing:var(--ws-cta-tracking);
+  margin-right:calc(var(--ws-cta-tracking) * -1);        
+  text-transform:uppercase;
+}
+.stl .button-009__icon{
+  height:var(--ws-cta-line-em);                          
+  display:flex;align-items:center;justify-content:center;
+}
+.stl .button-009__icon > i{                                   
+  font-style:normal;
+  font-weight:400;
+  font-size:var(--ws-cta-arrow-size);
+  letter-spacing:var(--ws-cta-arrow-tracking);
+  line-height:1;
+  display:block;
+}
+.stl .button-009[data-theme='secondary']{
+  --button-009-color:#000;
+  --button-009-color-background:#fff;
+}
+.stl .button-009[data-theme='secondary'] .button-009__bg{ border:var(--ws-cta-hairline); }
+.stl button.button-009{border:0;cursor:pointer}
+/* ⚠️DEVIATION 2: the button on a card is set at 12px, so it sits under the club name (Sacha, 5 Oct 2026). Every measure in the button scales with it; it stands 33px tall. */
+.stl .stl__foot .button-009{font-size:12px}
+.stl a.button-009{cursor:pointer}
+#stl-clubs-v1.stl a.button-009{color:var(--button-009-color)}
+
+.stl .stl__head{display:flex;align-items:flex-end;justify-content:space-between;height:var(--stl-head-h);margin:0 0 var(--stl-head-gap);padding:0 var(--stl-gutter)}
+#stl-clubs-v1 h2.stl__title{margin:0;padding:0;font-family:var(--stl-label);font-weight:600;font-size:var(--stl-title);line-height:1;letter-spacing:-.01em;text-transform:uppercase;color:var(--stl-ink)}
+.stl .stl__arrows{display:none;gap:8px;flex:0 0 auto}
+.stl .stl__arrow{display:flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;background:var(--stl-page);color:var(--stl-ink);border:.75px solid var(--stl-line);cursor:pointer;font-family:var(--stl-label);transition:background-color .2s,color .2s}
+.stl .stl__arrow i{font-style:normal;font-weight:400;font-size:22px;line-height:1;display:block}
+.stl .stl__arrow:disabled{opacity:.35;cursor:default}
+.stl .stl__arrow:focus-visible,.stl .stl__dot:focus-visible .stl__plus,.stl .stl__pic:focus-visible,.stl .stl__row:focus-visible{outline:2px solid var(--stl-ink);outline-offset:2px}
+.stl .stl__chip:focus-visible{outline:2px solid var(--stl-on-invert);outline-offset:-4px}
+
+.stl .stl__viewport{position:relative;height:var(--stl-card-h)}
+.stl .stl__rail{display:flex;margin:0;list-style:none;gap:var(--stl-gap);height:var(--stl-card-h);position:relative;padding:0 var(--stl-gutter);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding:0 var(--stl-gutter);overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.stl .stl__rail::-webkit-scrollbar{display:none}
+.stl .stl__card{position:relative;margin:0;flex:0 0 var(--stl-card-w);width:var(--stl-card-w);height:var(--stl-card-h);background:var(--stl-surface);scroll-snap-align:start;transition:opacity .3s var(--stl-ease),filter .3s var(--stl-ease)}
+#stl-clubs-v1 h3.stl__club{display:flex;align-items:center;height:var(--stl-club-h);margin:0;padding:0 16px;font-family:var(--stl-label);font-weight:600;font-size:var(--stl-club);line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--stl-ink)}
+.stl .stl__stage{position:relative;width:var(--stl-card-w);height:var(--stl-stage-h)}
+.stl .stl__foot{display:flex;align-items:center;height:calc(var(--stl-card-h) - var(--stl-club-h) - var(--stl-stage-h));padding:0 16px}
+
+.stl .stl__item{position:absolute;width:calc(var(--stl-card-w) * var(--w));height:calc(var(--stl-card-w) * var(--w));left:calc(var(--stl-card-w) * var(--x));top:calc(var(--stl-stage-h) * var(--y))}
+.stl .stl__item--a{--w:.56;--x:.02;--y:.02}
+.stl .stl__item--b{--w:.40;--x:.30;--y:.55}
+.stl .stl__item--c{--w:.26;--x:.02;--y:.58}
+.stl .stl__item--d{--w:.36;--x:.62;--y:.12}
+.stl .stl__item--e{--w:.26;--x:.72;--y:.60}
+.stl .stl__pic{display:block;width:100%;height:100%}
+.stl .stl__pic img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:scale .5s var(--stl-ease),opacity .3s ease-out}
+.stl .stl__item.is-open .stl__pic img,.stl .stl__item.is-lit .stl__pic img{scale:1.06}
+.stl .stl__stage:has(.is-open,.is-lit) .stl__item:not(.is-open,.is-lit) .stl__pic img{opacity:.4}
+.stl .stl__item.is-lit .stl__plus{background:var(--stl-invert);color:var(--stl-on-invert)}
+
+.stl .stl__dot{position:absolute;top:calc(8% - 8px);right:calc(4% - 8px);z-index:2;display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer}
+.stl .stl__item--a .stl__dot{right:auto;left:calc(6% - 8px)}
+.stl .stl__plus{position:relative;display:block;width:28px;height:28px;border:1px solid var(--stl-line);border-radius:50%;background:var(--stl-page);color:var(--stl-ink);transition:background-color .2s,color .2s,rotate .3s var(--stl-ease)}
+.stl .stl__plus::before,.stl .stl__plus::after{content:'';position:absolute;left:50%;top:50%;width:10px;height:1.5px;margin:-.75px 0 0 -5px;background:currentColor}
+.stl .stl__plus::after{rotate:90deg}
+.stl .stl__dot[aria-expanded='true'] .stl__plus{background:var(--stl-invert);color:var(--stl-on-invert);rotate:45deg}
+
+.stl .stl__chip{position:absolute;z-index:4;top:calc(8% + 34px);left:0;display:grid;grid-template-columns:1fr auto;column-gap:10px;row-gap:4px;align-items:end;width:184px;padding:10px 12px;background:var(--stl-invert);color:var(--stl-on-invert);animation:stl-rise .25s var(--stl-ease) both}
+#stl-clubs-v1.stl a.stl__chip{color:var(--stl-on-invert)}
+.stl .stl__item--d .stl__chip,.stl .stl__item--e .stl__chip{left:auto;right:0}
+.stl .stl__item--c .stl__chip,.stl .stl__item--e .stl__chip{top:auto;bottom:calc(92% + 6px)}
+.stl .stl__chip-name{grid-column:1 / -1;font-size:12px;line-height:1.3;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.stl .stl__chip-price,.stl .stl__row-price{font-family:var(--stl-label);font-weight:600;font-size:14px;line-height:1.0714}
+.stl .stl__chip-go{font-family:var(--stl-label);font-size:22px;line-height:15px}
+.stl .stl__chip s,.stl .stl__row s{margin-left:6px;font-weight:400;opacity:.75}
+
+.stl:not(.stl--js) .stl__dot,.stl:not(.stl--js) [data-stl-open],.stl--js .stl__foot [data-stl-all]{display:none}
+
+.stl--open .stl__card{opacity:.3;filter:blur(2px)}
+.stl--open .stl__card.is-current{opacity:1;filter:none}
+.stl--open .stl__rail{overflow-x:hidden}
+
+.stl .stl__drawer{position:absolute;z-index:5;top:0;left:var(--stl-gutter);right:var(--stl-gutter);height:var(--stl-card-h);display:flex;flex-direction:column;background:var(--stl-page);border:.75px solid var(--stl-line);animation:stl-slide .35s var(--stl-ease) both}
+.stl .stl__drawer-head{flex:0 0 56px;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 16px;border-bottom:1px solid var(--stl-rule)}
+#stl-clubs-v1 p.stl__drawer-title{margin:0;padding:0;font-family:var(--stl-label);font-weight:600;font-size:14px;line-height:1.0714;letter-spacing:.08em;text-transform:uppercase;color:var(--stl-ink)}
+.stl .stl__close i{font-size:24px}
+.stl .stl__list{flex:1 1 0;margin:0;list-style:none;min-height:0;display:flex;flex-direction:column;padding:0 16px}
+.stl .stl__list li{flex:1 1 0;margin:0;padding:0;min-height:0;display:flex;border-bottom:1px solid var(--stl-rule);animation:stl-rise .45s var(--stl-ease) both}
+.stl .stl__list li:nth-child(2){animation-delay:.05s}
+.stl .stl__list li:nth-child(3){animation-delay:.1s}
+.stl .stl__list li:nth-child(4){animation-delay:.15s}
+.stl .stl__list li:nth-child(5){animation-delay:.2s}
+.stl .stl__list li:last-child{border-bottom:0}
+.stl .stl__row{flex:1 1 auto;display:grid;grid-template-columns:52px 1fr auto;column-gap:12px;align-items:center;color:var(--stl-ink)}
+#stl-clubs-v1.stl a.stl__row{color:var(--stl-ink)}
+.stl .stl__row-pic{width:52px;height:52px;overflow:hidden;background:var(--stl-surface)}
+.stl .stl__row-pic img{width:52px;height:52px;object-fit:contain;mix-blend-mode:multiply;transition:scale .5s var(--stl-ease)}
+.stl .stl__row-text{display:flex;flex-direction:column;gap:5px;min-width:0}
+.stl .stl__row-name{font-size:13px;line-height:1.3;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:1px;text-underline-offset:3px;transition:text-decoration-color .3s ease-out;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.stl .stl__row-go{font-family:var(--stl-label);font-size:22px;line-height:1;transition:translate .3s var(--stl-ease)}
+.stl .stl__drawer-foot{flex:0 0 72px;display:flex;align-items:center;padding:0 16px;border-top:1px solid var(--stl-rule)}
+
+@keyframes stl-rise{from{opacity:0;translate:0 6px}to{opacity:1;translate:0 0}}
+@keyframes stl-slide{from{opacity:0;translate:24px 0}to{opacity:1;translate:0 0}}
+
+@media (hover:hover) and (pointer:fine){
+  .stl .stl__arrow:not(:disabled):hover,.stl .stl__dot:hover .stl__plus{background:var(--stl-invert);color:var(--stl-on-invert)}
+  .stl .stl__row:hover .stl__row-go{translate:4px 0}
+  .stl .stl__row:hover .stl__row-pic img{scale:1.12}
+  .stl .stl__row:hover .stl__row-name{text-decoration-color:currentColor}
+  .stl .stl__item:hover .stl__pic img{scale:1.06}
+  .stl .stl__item:hover .stl__plus{background:var(--stl-invert);color:var(--stl-on-invert)}
+  .stl .stl__stage:has(.stl__item:hover) .stl__item:not(:hover,.is-open) .stl__pic img{opacity:.4}
+}
+@media (hover:hover) and (pointer:fine) and (min-width:1024px){
+  .stl--js .stl__arrows{display:flex}
+}
+@media (min-width:768px){
+  .stl{--stl-h:660px;--stl-pad-top:40px;--stl-head-h:48px;--stl-head-gap:24px;--stl-gutter:32px;--stl-gap:16px;--stl-card-w:340px;--stl-card-h:500px;--stl-club-h:52px;--stl-stage-h:364px;--stl-title:44px;--stl-club:22px}
+  .stl .stl__drawer{right:auto;width:var(--stl-drawer-w)}
+  .stl .stl__row{grid-template-columns:60px 1fr auto}
+  .stl .stl__row-pic,.stl .stl__row-pic img{width:60px;height:60px}
+}
+@media (min-width:1024px){
+  .stl{--stl-h:780px;--stl-pad-top:56px;--stl-head-h:56px;--stl-head-gap:28px;--stl-gutter:48px;--stl-gap:20px;--stl-card-w:400px;--stl-card-h:580px;--stl-club-h:56px;--stl-stage-h:436px;--stl-title:48px;--stl-club:24px;--stl-drawer-w:420px}
+  .stl .stl__chip{width:200px}
+  .stl .stl__row{grid-template-columns:72px 1fr auto}
+  .stl .stl__row-pic,.stl .stl__row-pic img{width:72px;height:72px}
+}
+@media (prefers-reduced-motion:reduce){
+  .stl .stl__chip,.stl .stl__drawer,.stl .stl__list li{animation:none}
+  .stl .stl__pic img,.stl .stl__row-pic img,.stl .stl__row-name{transition:none;scale:none}
+  .stl .stl__card,.stl .stl__plus,.stl .stl__arrow,.stl .stl__row-go{transition:none}
+}
+
+</style>
+<section class="stl" id="stl-clubs-v1" data-stl aria-labelledby="stl-clubs-v1-title">
+  <div class="stl__head">
+    <h2 class="stl__title" id="stl-clubs-v1-title">Shop the look</h2>
+    <div class="stl__arrows">
+      <button type="button" class="stl__arrow" data-stl-prev aria-label="Previous looks" disabled><i aria-hidden="true">&#8592;</i></button>
+      <button type="button" class="stl__arrow" data-stl-next aria-label="Next looks"><i aria-hidden="true">&#8594;</i></button>
+    </div>
+  </div>
+  <div class="stl__viewport" data-stl-viewport>
+    <ul class="stl__rail" data-stl-rail>
+    <li class="stl__card" data-stl-card data-stl-club="Real Madrid">
+      <h3 class="stl__club">Real Madrid</h3>
+      <div class="stl__stage">
+        <div class="stl__item stl__item--a" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-real-madrid-home-jersey-26-27_A1132285" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132285000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="Real Madrid 26/27 Home Jersey by adidas" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-1-1"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">Real Madrid 26/27 Home Jersey by adidas, $99.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-1-1" data-stl-chip href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-real-madrid-home-jersey-26-27_A1132285" target="_top" hidden><span class="stl__chip-name">Real Madrid 26/27 Home Jersey by adidas</span><span class="stl__chip-price">$99.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--b" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-home-short-26-27_A1132429" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132429000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="adidas Real Madrid Home Short 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-1-2"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Real Madrid Home Short 26/27, $59.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-1-2" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-home-short-26-27_A1132429" target="_top" hidden><span class="stl__chip-name">adidas Real Madrid Home Short 26/27</span><span class="stl__chip-price">$59.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--c" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-crew-sock-2-26-27-3-pack_A1134898" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134898000&amp;iset=0108&amp;iindex=0014&amp;bg=ffffff" alt="adidas Real Madrid Crew Sock 2 26/27 - 3 Pack" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-1-3"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Real Madrid Crew Sock 2 26/27 - 3 Pack, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-1-3" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-crew-sock-2-26-27-3-pack_A1134898" target="_top" hidden><span class="stl__chip-name">adidas Real Madrid Crew Sock 2 26/27 - 3 Pack</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--d" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-scarf-26-27_A1132564" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132564000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Real Madrid Scarf 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-1-4"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Real Madrid Scarf 26/27, $34.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-1-4" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-scarf-26-27_A1132564" target="_top" hidden><span class="stl__chip-name">adidas Real Madrid Scarf 26/27</span><span class="stl__chip-price">$34.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--e" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-home-club-soccer-ball_A1134332" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134332000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Real Madrid Home Club Soccer Ball" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-1-5"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Real Madrid Home Club Soccer Ball, $29.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-1-5" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-real-madrid-home-club-soccer-ball_A1134332" target="_top" hidden><span class="stl__chip-name">adidas Real Madrid Home Club Soccer Ball</span><span class="stl__chip-price">$29.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+      </div>
+      <div class="stl__foot">
+        <button data-button-009 type="button" data-stl-open aria-haspopup="dialog" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">View the look</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></button>
+        <a data-button-009 href="https://www.worldsoccershop.com/shop/clubs/real-madrid" target="_top" data-stl-all class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Shop Real Madrid</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+      </div>
+    </li>
+    <li class="stl__card" data-stl-card data-stl-club="Manchester United">
+      <h3 class="stl__club">Manchester United</h3>
+      <div class="stl__stage">
+        <div class="stl__item stl__item--a" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-manchester-united-home-jersey-26-27_A1132291" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132291000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="Manchester United 26/27 Home Jersey by adidas" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-2-1"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">Manchester United 26/27 Home Jersey by adidas, $99.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-2-1" data-stl-chip href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-manchester-united-home-jersey-26-27_A1132291" target="_top" hidden><span class="stl__chip-name">Manchester United 26/27 Home Jersey by adidas</span><span class="stl__chip-price">$99.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--b" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-home-short-26-27-white_A1132410" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132410000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="adidas Manchester United Home Short 26/27 White" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-2-2"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Manchester United Home Short 26/27 White, $54.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-2-2" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-home-short-26-27-white_A1132410" target="_top" hidden><span class="stl__chip-name">adidas Manchester United Home Short 26/27 White</span><span class="stl__chip-price">$54.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--c" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-crew-sock-2-26-27-3-pack_A1134897" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134897000&amp;iset=0108&amp;iindex=0014&amp;bg=ffffff" alt="adidas Manchester United Crew Sock 2 26/27 - 3 Pack" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-2-3"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Manchester United Crew Sock 2 26/27 - 3 Pack, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-2-3" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-crew-sock-2-26-27-3-pack_A1134897" target="_top" hidden><span class="stl__chip-name">adidas Manchester United Crew Sock 2 26/27 - 3 Pack</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--d" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-scarf-1-26-27_A1132560" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132560000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Manchester United Scarf 1 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-2-4"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Manchester United Scarf 1 26/27, $34.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-2-4" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-scarf-1-26-27_A1132560" target="_top" hidden><span class="stl__chip-name">adidas Manchester United Scarf 1 26/27</span><span class="stl__chip-price">$34.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--e" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-club-home-soccer-ball_A1134331" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134331000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Manchester United Club Home Soccer Ball" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-2-5"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Manchester United Club Home Soccer Ball, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-2-5" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-manchester-united-club-home-soccer-ball_A1134331" target="_top" hidden><span class="stl__chip-name">adidas Manchester United Club Home Soccer Ball</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+      </div>
+      <div class="stl__foot">
+        <button data-button-009 type="button" data-stl-open aria-haspopup="dialog" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">View the look</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></button>
+        <a data-button-009 href="https://www.worldsoccershop.com/shop/clubs/manchester-united" target="_top" data-stl-all class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Shop Manchester United</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+      </div>
+    </li>
+    <li class="stl__card" data-stl-card data-stl-club="Liverpool">
+      <h3 class="stl__club">Liverpool</h3>
+      <div class="stl__stage">
+        <div class="stl__item stl__item--a" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-liverpool-home-jersey-26-27_A1132290" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132290000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="Liverpool 26/27 Home Jersey by adidas" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-3-1"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">Liverpool 26/27 Home Jersey by adidas, $99.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-3-1" data-stl-chip href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-liverpool-home-jersey-26-27_A1132290" target="_top" hidden><span class="stl__chip-name">Liverpool 26/27 Home Jersey by adidas</span><span class="stl__chip-price">$99.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--b" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-home-short-26-27_A1132391" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132391000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="adidas Liverpool Home Short 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-3-2"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Liverpool Home Short 26/27, $59.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-3-2" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-home-short-26-27_A1132391" target="_top" hidden><span class="stl__chip-name">adidas Liverpool Home Short 26/27</span><span class="stl__chip-price">$59.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--c" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-crew-sock-2-26-27-3-pack_A1134896" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134896000&amp;iset=0108&amp;iindex=0014&amp;bg=ffffff" alt="adidas Liverpool Crew Sock 2 26/27 - 3 Pack" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-3-3"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Liverpool Crew Sock 2 26/27 - 3 Pack, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-3-3" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-crew-sock-2-26-27-3-pack_A1134896" target="_top" hidden><span class="stl__chip-name">adidas Liverpool Crew Sock 2 26/27 - 3 Pack</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--d" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-scarf-1-26-27_A1132557" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132557000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Liverpool Scarf 1 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-3-4"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Liverpool Scarf 1 26/27, $34.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-3-4" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-scarf-1-26-27_A1132557" target="_top" hidden><span class="stl__chip-name">adidas Liverpool Scarf 1 26/27</span><span class="stl__chip-price">$34.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--e" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-club-home-soccer-ball_A1134329" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134329000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Liverpool Club Home Soccer Ball" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-3-5"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Liverpool Club Home Soccer Ball, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-3-5" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-liverpool-club-home-soccer-ball_A1134329" target="_top" hidden><span class="stl__chip-name">adidas Liverpool Club Home Soccer Ball</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+      </div>
+      <div class="stl__foot">
+        <button data-button-009 type="button" data-stl-open aria-haspopup="dialog" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">View the look</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></button>
+        <a data-button-009 href="https://www.worldsoccershop.com/shop/clubs/liverpool" target="_top" data-stl-all class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Shop Liverpool</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+      </div>
+    </li>
+    <li class="stl__card" data-stl-card data-stl-club="Arsenal">
+      <h3 class="stl__club">Arsenal</h3>
+      <div class="stl__stage">
+        <div class="stl__item stl__item--a" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-arsenal-home-jersey-26-27_A1132260" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132260000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="Arsenal 26/27 Home Jersey by adidas" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-4-1"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">Arsenal 26/27 Home Jersey by adidas, $99.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-4-1" data-stl-chip href="https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-arsenal-home-jersey-26-27_A1132260" target="_top" hidden><span class="stl__chip-name">Arsenal 26/27 Home Jersey by adidas</span><span class="stl__chip-price">$99.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--b" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-home-short-26-27_A1132323" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132323000&amp;iset=0108&amp;iindex=0007&amp;bg=ffffff" alt="adidas Arsenal Home Short 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-4-2"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Arsenal Home Short 26/27, $59.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-4-2" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-home-short-26-27_A1132323" target="_top" hidden><span class="stl__chip-name">adidas Arsenal Home Short 26/27</span><span class="stl__chip-price">$59.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--c" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-crew-sock-2-26-27-3-pack_A1134893" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134893000&amp;iset=0108&amp;iindex=0014&amp;bg=ffffff" alt="adidas Arsenal Crew Sock 2 26/27 - 3 Pack" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-4-3"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Arsenal Crew Sock 2 26/27 - 3 Pack, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-4-3" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-crew-sock-2-26-27-3-pack_A1134893" target="_top" hidden><span class="stl__chip-name">adidas Arsenal Crew Sock 2 26/27 - 3 Pack</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--d" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-scarf-26-27_A1132551" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1132551000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Arsenal Scarf 26/27" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-4-4"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Arsenal Scarf 26/27, $34.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-4-4" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-scarf-26-27_A1132551" target="_top" hidden><span class="stl__chip-name">adidas Arsenal Scarf 26/27</span><span class="stl__chip-price">$34.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="stl__item stl__item--e" data-stl-item>
+          <a class="stl__pic" data-stl-pic href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-club-home-soccer-ball_A1134324" target="_top"><img src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=480&amp;h=480&amp;cmp=100&amp;c=999&amp;img=A1134324000&amp;iset=0108&amp;iindex=0062&amp;bg=ffffff" alt="adidas Arsenal Club Home Soccer Ball" width="480" height="480" loading="eager" decoding="async" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 10 10%22%3E%3Crect width=%2210%22 height=%2210%22 fill=%22%23D4D4D8%22/%3E%3C/svg%3E'"></a>
+          <button type="button" class="stl__dot" data-stl-dot aria-expanded="false" aria-controls="stl-clubs-v1-chip-4-5"><span class="stl__plus" aria-hidden="true"></span><span class="stl__sr">adidas Arsenal Club Home Soccer Ball, $24.99. Show details</span></button>
+          <a class="stl__chip" id="stl-clubs-v1-chip-4-5" data-stl-chip href="https://www.worldsoccershop.com/shop/details/adidas-arsenal-club-home-soccer-ball_A1134324" target="_top" hidden><span class="stl__chip-name">adidas Arsenal Club Home Soccer Ball</span><span class="stl__chip-price">$24.99</span><span class="stl__chip-go" aria-hidden="true">&#8594;</span></a>
+        </div>
+      </div>
+      <div class="stl__foot">
+        <button data-button-009 type="button" data-stl-open aria-haspopup="dialog" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">View the look</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></button>
+        <a data-button-009 href="https://www.worldsoccershop.com/shop/clubs/arsenal" target="_top" data-stl-all class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Shop Arsenal</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+      </div>
+    </li>
+    </ul>
+    <div class="stl__drawer" data-stl-drawer role="dialog" aria-modal="true" aria-labelledby="stl-clubs-v1-drawer-title" hidden>
+      <div class="stl__drawer-head">
+        <p class="stl__drawer-title" id="stl-clubs-v1-drawer-title" data-stl-drawer-title></p>
+        <button type="button" class="stl__arrow stl__close" data-stl-close aria-label="Close the look"><i aria-hidden="true">&#215;</i></button>
+      </div>
+      <ul class="stl__list" data-stl-list></ul>
+      <div class="stl__drawer-foot">
+        <a data-button-009 data-theme="secondary" target="_top" data-stl-drawer-all class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text"></span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var roots = document.querySelectorAll('.stl[data-stl]:not(.stl--js)');
+  Array.prototype.forEach.call(roots, function (root) {
+    var viewport = root.querySelector('[data-stl-viewport]');
+    var rail = root.querySelector('[data-stl-rail]');
+    var drawer = root.querySelector('[data-stl-drawer]');
+    var list = root.querySelector('[data-stl-list]');
+    var drawerTitle = root.querySelector('[data-stl-drawer-title]');
+    var drawerAll = root.querySelector('[data-stl-drawer-all]');
+    var closeBtn = root.querySelector('[data-stl-close]');
+    var prev = root.querySelector('[data-stl-prev]');
+    var next = root.querySelector('[data-stl-next]');
+    if (!viewport || !rail || !drawer || !list) return;
+
+    var cards = Array.prototype.slice.call(rail.querySelectorAll('[data-stl-card]'));
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var wide = window.matchMedia('(min-width: 768px)');
+    var openItem = null;
+    var opener = null;
+    var ticking = false;
+
+    function light(item, on) { item.classList.toggle('is-lit', on); }
+
+    root.classList.add('stl--js');
+    Array.prototype.forEach.call(rail.querySelectorAll('[data-stl-pic]'), function (pic) {
+      pic.setAttribute('tabindex', '-1');
+      pic.setAttribute('aria-hidden', 'true');
+    });
+
+    function px(el, prop) { return parseFloat(getComputedStyle(el)[prop]) || 0; }
+
+    function closeChip() {
+      if (!openItem) return;
+      openItem.classList.remove('is-open');
+      openItem.querySelector('[data-stl-dot]').setAttribute('aria-expanded', 'false');
+      openItem.querySelector('[data-stl-chip]').hidden = true;
+      openItem = null;
+    }
+
+    function toggleChip(item) {
+      var same = item === openItem;
+      closeChip();
+      if (same) return;
+      item.classList.add('is-open');
+      item.querySelector('[data-stl-dot]').setAttribute('aria-expanded', 'true');
+      item.querySelector('[data-stl-chip]').hidden = false;
+      openItem = item;
+    }
+
+    function fillDrawer(card) {
+      var club = card.getAttribute('data-stl-club') || '';
+      var all = card.querySelector('[data-stl-all]');
+      drawerTitle.textContent = club;
+      if (drawerAll && all) {
+        drawerAll.setAttribute('href', all.getAttribute('href'));
+        drawerAll.querySelector('.button-009__text').textContent = 'Shop ' + club;
+      }
+      list.textContent = '';
+      Array.prototype.forEach.call(card.querySelectorAll('[data-stl-item]'), function (item) {
+        var chip = item.querySelector('[data-stl-chip]');
+        var img = item.querySelector('img');
+        var li = document.createElement('li');
+        var row = document.createElement('a');
+        var pic = document.createElement('span');
+        var thumb = document.createElement('img');
+        var text = document.createElement('span');
+        var name = document.createElement('span');
+        var price = document.createElement('span');
+        var go = document.createElement('span');
+        row.className = 'stl__row';
+        row.href = chip.getAttribute('href');
+        row.target = '_top';
+        pic.className = 'stl__row-pic';
+        thumb.alt = '';
+        thumb.width = 72;
+        thumb.height = 72;
+        thumb.decoding = 'async';
+        thumb.src = img.currentSrc || img.src;
+        text.className = 'stl__row-text';
+        name.className = 'stl__row-name';
+        name.textContent = chip.querySelector('.stl__chip-name').textContent;
+        price.className = 'stl__row-price';
+        price.innerHTML = chip.querySelector('.stl__chip-price').innerHTML;
+        go.className = 'stl__row-go';
+        go.setAttribute('aria-hidden', 'true');
+        go.textContent = '→';
+        pic.appendChild(thumb);
+        text.appendChild(name);
+        text.appendChild(price);
+        row.appendChild(pic);
+        row.appendChild(text);
+        row.appendChild(go);
+        row.addEventListener('mouseenter', function () { light(item, true); });
+        row.addEventListener('mouseleave', function () { light(item, false); });
+        row.addEventListener('focus', function () { light(item, true); });
+        row.addEventListener('blur', function () { light(item, false); });
+        li.appendChild(row);
+        list.appendChild(li);
+      });
+    }
+
+    function placeDrawer(card) {
+      var pad = px(rail, 'paddingLeft');
+      var gap = px(rail, 'columnGap');
+      var max = rail.scrollWidth - rail.clientWidth;
+      var target = Math.max(0, Math.min(card.offsetLeft - pad, max));
+      drawer.style.left = '';
+      if (wide.matches) {
+        var room = viewport.clientWidth;
+        var cardLeft = card.offsetLeft - target;
+        var cardW = card.offsetWidth;
+        var drawerW = parseFloat(getComputedStyle(root).getPropertyValue('--stl-drawer-w')) || 340;
+        var left = cardLeft + cardW + gap;
+        if (left + drawerW > room - pad) left = cardLeft - gap - drawerW;
+        if (left < pad) left = room - pad - drawerW;
+        drawer.style.left = left + 'px';
+      }
+      rail.scrollTo({ left: target, behavior: reduce.matches ? 'auto' : 'smooth' });
+    }
+
+    function openDrawer(card, from) {
+      closeChip();
+      opener = from;
+      cards.forEach(function (c) { c.classList.toggle('is-current', c === card); });
+      fillDrawer(card);
+      placeDrawer(card);
+      root.classList.add('stl--open');
+      rail.inert = true;
+      if (prev) prev.disabled = true;
+      if (next) next.disabled = true;
+      drawer.hidden = false;
+      closeBtn.focus({ preventScroll: true });
+    }
+
+    function closeDrawer(restore) {
+      if (drawer.hidden) return;
+      drawer.hidden = true;
+      rail.inert = false;
+      root.classList.remove('stl--open');
+      cards.forEach(function (c) { c.classList.remove('is-current'); });
+      Array.prototype.forEach.call(rail.querySelectorAll('.is-lit'), function (el) { light(el, false); });
+      updateArrows();
+      if (restore && opener) opener.focus({ preventScroll: true });
+      opener = null;
+    }
+
+    function updateArrows() {
+      if (!prev || !next || !drawer.hidden) return;
+      var max = rail.scrollWidth - rail.clientWidth;
+      prev.disabled = rail.scrollLeft <= 1;
+      next.disabled = rail.scrollLeft >= max - 1;
+    }
+
+    function step(dir) {
+      var first = cards[0];
+      if (!first) return;
+      var by = first.offsetWidth + px(rail, 'columnGap');
+      rail.scrollBy({ left: dir * by, behavior: reduce.matches ? 'auto' : 'smooth' });
+    }
+
+    rail.addEventListener('click', function (e) {
+      var dot = e.target.closest('[data-stl-dot]');
+      var pic = e.target.closest('[data-stl-pic]');
+      var open = e.target.closest('[data-stl-open]');
+      if (open) {
+        openDrawer(open.closest('[data-stl-card]'), open);
+        e.stopPropagation();
+        return;
+      }
+      if (dot || pic) {
+        e.preventDefault();
+        toggleChip((dot || pic).closest('[data-stl-item]'));
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (openItem && !openItem.contains(e.target)) closeChip();
+      if (!drawer.hidden && !drawer.contains(e.target)) closeDrawer(false);
+    });
+
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (!drawer.hidden) { closeDrawer(true); return; }
+        if (openItem) {
+          var dot = openItem.querySelector('[data-stl-dot]');
+          closeChip();
+          dot.focus({ preventScroll: true });
+        }
+        return;
+      }
+      if (e.key === 'Tab' && !drawer.hidden) {
+        var stops = drawer.querySelectorAll('a[href], button:not([disabled])');
+        if (!stops.length) return;
+        var firstStop = stops[0];
+        var lastStop = stops[stops.length - 1];
+        if (e.shiftKey && document.activeElement === firstStop) { e.preventDefault(); lastStop.focus(); }
+        else if (!e.shiftKey && document.activeElement === lastStop) { e.preventDefault(); firstStop.focus(); }
+      }
+    });
+
+    closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeDrawer(true); });
+    if (prev) prev.addEventListener('click', function () { step(-1); });
+    if (next) next.addEventListener('click', function () { step(1); });
+    rail.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; updateArrows(); });
+    }, { passive: true });
+    window.addEventListener('resize', function () { closeDrawer(false); updateArrows(); });
+    updateArrows();
+  });
+})();
+
+</script>

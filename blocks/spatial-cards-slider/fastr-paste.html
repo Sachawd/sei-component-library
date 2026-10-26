@@ -1,0 +1,755 @@
+<!--
+  Slider / Spatial Cards Slider (GSAP), v1. Fastr CMS component, no iframe.
+  Osmo: Spatial Cards Slider (GSAP). Serial: none yet. Skin: WorldSoccerShop, from the Figma frame "Spatial Cards Slider".
+  Heights: phone 600, tablet 760 (from 768), desktop 900 (from 1024).
+  Swap per use: each card's photo, title and link. Links come from the link book.
+  The photos here are grey placeholders. Real photos are served from the image handler, never stored beside this file.
+  More than one on a page: give each wrapper its own id.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Mohave:wght@400&family=Chakra+Petch:wght@500&display=swap" rel="stylesheet">
+<style>
+.scs{
+  /* Campaign layer. Contrast, measured: card title on card 16.1:1 pass, Previous label on its button 17.4:1 pass, Next label on its button 14.7:1 pass, resting dot on surface 3.1:1 pass, active dot on surface 20.1:1 pass, active dot against resting dot 6.4:1 pass, focus ring on surface 15.4:1 pass. Card edge on surface 1.0:1 and Previous button edge on surface 1.0:1 both fail 3:1; they are told apart by their contents, not their edge. */
+  --campaign-surface:#06070B;
+  --campaign-card:#000000;
+  --campaign-on-card:#EBE0CF;
+  --campaign-control:#000000;
+  --campaign-on-control:#EDEADA;
+  --campaign-control-next:#FFFFFF;
+  --campaign-on-control-next:#1A2C20;
+  --campaign-dot:rgba(235,224,207,.4);
+  --campaign-dot-active:#FFFFFF;
+  --campaign-display:'Mohave','Arial Narrow',sans-serif;
+  --campaign-control-face:'Chakra Petch',system-ui,sans-serif;
+
+  position:relative;width:100%;height:600px;overflow:hidden;overflow:clip;font-size:16px;line-height:1.2;-webkit-font-smoothing:antialiased;text-align:left
+}
+.scs,.scs *,.scs *::before,.scs *::after{box-sizing:border-box}
+.scs img{display:block;max-width:none}
+.scs [hidden]{display:none!important}
+
+/* Osmo · Spatial Cards Slider (GSAP) */
+/* ⚠️DEVIATION 1: every selector is scoped under .scs; Fastr has no sandbox */
+/* ⚠️DEVIATION 2: the section has a fixed height per breakpoint in place of min-height:100dvh; no viewport units on Fastr */
+/* ⚠️DEVIATION 3: colours, faces, the 3em gap, the 34px controls and the title style follow the Figma frame, through the campaign layer above */
+/* ⚠️DEVIATION 4: the tablet breakpoint stays at Osmo's 767px for the slider curve; the height steps at 768 and 1024 */
+.scs.demo-section {
+  display: flex;
+  background-color: var(--campaign-surface);
+}
+
+.scs .spatial-gsap-slider {
+  grid-column-gap: 3em;
+  grid-row-gap: 3em;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 5em;
+  display: flex;
+  position: relative;
+}
+
+.scs [data-spatial-slider-init] {
+  --slider-gap: 2.5em;
+  --slider-curve: 30deg;
+  --slider-perspective: 120em;
+  --slider-direction: 1;
+}
+
+.scs .spatial-gsap-slider__collection {
+  max-width: 100%;
+  position: relative;
+}
+
+.scs .spatial-gsap-slider__list {
+  -webkit-user-select: none;
+  user-select: none;
+  will-change: transform;
+  touch-action: pan-y;
+  backface-visibility: hidden;
+  grid-column-gap: var(--slider-gap);
+  grid-row-gap: var(--slider-gap);
+  max-width: 100%;
+  transform-style: preserve-3d;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  perspective: var(--slider-perspective);
+}
+
+.scs .spatial-gsap-slider__item {
+  flex: none;
+  position: absolute;
+}
+
+.scs [data-spatial-slider-list] > :first-child {
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .scs [data-spatial-slider-init] {
+    --slider-gap: 1em;
+    --slider-curve: 45deg;
+  }
+}
+
+/* Demo Card */
+.scs .demo-card {
+  color: var(--campaign-on-card);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--campaign-card);
+  border-radius: 1.375em;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 18em;
+  padding-top: .625em;
+  padding-left: .625em;
+  padding-right: .625em;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .scs .demo-card {
+    width: 15em;
+  }
+}
+
+.scs .demo-card__media {
+  aspect-ratio: 1;
+  border-radius: .75em;
+  width: 100%;
+  position: relative;
+}
+
+.scs .cover-image {
+  object-fit: cover;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.scs .demo-card__info {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3.5em;
+  padding-left: .75em;
+  padding-right: .75em;
+  display: flex;
+}
+
+.scs .demo-card__h {
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--campaign-display);
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1;
+  color: inherit;
+}
+
+/* Controls */
+.scs .spatial-gsap-slider__controls {
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+  justify-content: center;
+  align-items: center;
+  padding-left: 3em;
+  padding-right: 3em;
+  display: flex;
+  position: relative;
+}
+
+.scs .spatial-gsap-slider__control-btn {
+  z-index: 1;
+  color: var(--campaign-on-control);
+  cursor: pointer;
+  background-color: var(--campaign-control);
+  border-radius: 50em;
+  height: 34px;
+  padding: 0 16px;
+  font-family: var(--campaign-control-face);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  position: relative;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+.scs .spatial-gsap-slider__control-btn.is--next {
+  color: var(--campaign-on-control-next);
+  background-color: var(--campaign-control-next);
+}
+
+.scs .spatial-gsap-slider__dots {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* ⚠️DEVIATION 5: each dot is a 24px tap target; its 5px surface-coloured border leaves a 14px visible dot */
+.scs .spatial-gsap-slider__control-dot {
+  z-index: 1;
+  outline-offset: 0px;
+  color: var(--campaign-dot);
+  cursor: pointer;
+  background-color: currentColor;
+  background-clip: padding-box;
+  border: 5px solid var(--campaign-surface);
+  border-radius: 50em;
+  outline: 0 #0000;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  font-size: 1em;
+  font-weight: 500;
+  transition-property: color;
+  transition-duration: .1s;
+  transition-timing-function: ease;
+  position: relative;
+  overflow: hidden;
+  outline: 0;
+  box-shadow: none;
+}
+
+.scs .spatial-gsap-slider__control-dot[data-spatial-slider-control-status="active"] {
+  color: var(--campaign-dot-active);
+}
+
+.scs .demo-card:focus-visible,
+.scs .spatial-gsap-slider__control-btn:focus-visible,
+.scs .spatial-gsap-slider__control-dot:focus-visible{outline:2px solid var(--campaign-on-card);outline-offset:2px}
+
+.scs:not(.is-live) .spatial-gsap-slider__collection{width:100%}
+.scs:not(.is-live) .spatial-gsap-slider__list{justify-content:flex-start;padding:0 16px;overflow-x:auto;perspective:none;transform-style:flat;-webkit-user-select:auto;user-select:auto}
+.scs:not(.is-live) .spatial-gsap-slider__item{position:relative}
+.scs:not(.is-live) .spatial-gsap-slider__controls{visibility:hidden}
+
+@media (min-width:768px){
+  .scs{height:760px}
+}
+@media (min-width:1024px){
+  .scs{height:900px}
+  .scs .spatial-gsap-slider{padding-top:200px}
+}
+</style>
+
+<section class="demo-section scs" id="scs-1">
+  <div data-spatial-slider-init="" data-spatial-slider-drag-status="grab" class="spatial-gsap-slider" aria-label="Shop by category">
+    <div data-spatial-slider-collection="" class="spatial-gsap-slider__collection">
+      <div data-spatial-slider-list="" class="spatial-gsap-slider__list">
+        <div data-spatial-slider-item-status="active" data-spatial-slider-item="" class="spatial-gsap-slider__item">
+          <a class="demo-card" href="https://www.worldsoccershop.com/shop/products/ready-to-ship" target="_top" draggable="false">
+            <div class="demo-card__media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='536' height='536' viewBox='0 0 536 536'%3E%3Crect width='536' height='536' fill='%235E5E5E'/%3E%3C/svg%3E" width="268" height="268" loading="eager" decoding="async" draggable="false" alt="" class="cover-image" onerror="this.onerror=null;this.hidden=true"></div>
+            <div class="demo-card__info">
+              <h3 class="demo-card__h">In stock ready to ship</h3>
+            </div>
+          </a>
+        </div>
+        <div data-spatial-slider-item-status="inview" data-spatial-slider-item="" class="spatial-gsap-slider__item">
+          <a class="demo-card" href="https://www.worldsoccershop.com/srch?query=player+jerseys" target="_top" draggable="false">
+            <div class="demo-card__media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='536' height='536' viewBox='0 0 536 536'%3E%3Crect width='536' height='536' fill='%236E6E6E'/%3E%3C/svg%3E" width="268" height="268" loading="eager" decoding="async" draggable="false" alt="" class="cover-image" onerror="this.onerror=null;this.hidden=true"></div>
+            <div class="demo-card__info">
+              <h3 class="demo-card__h">Player jerseys</h3>
+            </div>
+          </a>
+        </div>
+        <div data-spatial-slider-item-status="inview" data-spatial-slider-item="" class="spatial-gsap-slider__item">
+          <a class="demo-card" href="https://www.worldsoccershop.com/shop/products/new/jerseys" target="_top" draggable="false">
+            <div class="demo-card__media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='536' height='536' viewBox='0 0 536 536'%3E%3Crect width='536' height='536' fill='%237E7E7E'/%3E%3C/svg%3E" width="268" height="268" loading="eager" decoding="async" draggable="false" alt="" class="cover-image" onerror="this.onerror=null;this.hidden=true"></div>
+            <div class="demo-card__info">
+              <h3 class="demo-card__h">New jerseys</h3>
+            </div>
+          </a>
+        </div>
+        <div data-spatial-slider-item-status="inview" data-spatial-slider-item="" class="spatial-gsap-slider__item">
+          <a class="demo-card" href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top" draggable="false">
+            <div class="demo-card__media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='536' height='536' viewBox='0 0 536 536'%3E%3Crect width='536' height='536' fill='%236E6E6E'/%3E%3C/svg%3E" width="268" height="268" loading="eager" decoding="async" draggable="false" alt="" class="cover-image" onerror="this.onerror=null;this.hidden=true"></div>
+            <div class="demo-card__info">
+              <h3 class="demo-card__h">Sale jerseys</h3>
+            </div>
+          </a>
+        </div>
+        <div data-spatial-slider-item-status="inview" data-spatial-slider-item="" class="spatial-gsap-slider__item">
+          <a class="demo-card" href="https://www.worldsoccershop.com/shop/footwear" target="_top" draggable="false">
+            <div class="demo-card__media"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='536' height='536' viewBox='0 0 536 536'%3E%3Crect width='536' height='536' fill='%235E5E5E'/%3E%3C/svg%3E" width="268" height="268" loading="eager" decoding="async" draggable="false" alt="" class="cover-image" onerror="this.onerror=null;this.hidden=true"></div>
+            <div class="demo-card__info">
+              <h3 class="demo-card__h">Footwear</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="spatial-gsap-slider__controls">
+      <button data-spatial-slider-control="prev" class="spatial-gsap-slider__control-btn">Previous</button>
+      <div data-spatial-slider-generate-dots="" class="spatial-gsap-slider__dots">
+        <button data-spatial-slider-control="1" data-spatial-slider-control-status="active" class="spatial-gsap-slider__control-dot"></button>
+        <button data-spatial-slider-control="2" data-spatial-slider-control-status="not-active" class="spatial-gsap-slider__control-dot"></button>
+        <button data-spatial-slider-control="3" data-spatial-slider-control-status="not-active" class="spatial-gsap-slider__control-dot"></button>
+        <button data-spatial-slider-control="4" data-spatial-slider-control-status="not-active" class="spatial-gsap-slider__control-dot"></button>
+        <button data-spatial-slider-control="5" data-spatial-slider-control-status="not-active" class="spatial-gsap-slider__control-dot"></button>
+      </div>
+      <button data-spatial-slider-control="next" class="spatial-gsap-slider__control-btn is--next">Next</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var roots = document.querySelectorAll(".scs:not([data-scs-ready])");
+  if (!roots.length) return;
+  roots.forEach(function(el){ el.setAttribute("data-scs-ready", ""); });
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function load(src, ready, done){
+    if (ready()) return done();
+    var s = document.createElement("script");
+    s.src = src; s.async = false; s.onload = done; s.onerror = done;
+    document.head.appendChild(s);
+  }
+
+  function holdClones(root){
+    var list = root.querySelector("[data-spatial-slider-list]");
+    if (!list) return;
+    function sweep(){
+      list.querySelectorAll("[data-spatial-slider-clone] a").forEach(function(a){ a.tabIndex = -1; });
+    }
+    sweep();
+    if (window.MutationObserver) new MutationObserver(sweep).observe(list, {childList:true});
+    list.addEventListener("focusin", function(e){
+      var link = e.target.closest ? e.target.closest("a") : null;
+      if (!link || !link.matches(":focus-visible")) return;
+      var item = link.closest("[data-spatial-slider-item]:not([data-spatial-slider-clone])");
+      if (!item) return;
+      var n = Array.prototype.indexOf.call(list.querySelectorAll(":scope > [data-spatial-slider-item]:not([data-spatial-slider-clone])"), item) + 1;
+      var dot = root.querySelector('[data-spatial-slider-control="' + n + '"]');
+      if (dot && dot.getAttribute("data-spatial-slider-control-status") !== "active") dot.click();
+    });
+  }
+
+  function tapGate(root){
+    var area = root.querySelector("[data-spatial-slider-collection]");
+    if (!area) return;
+    var down = null;
+    function linkAt(x, y){
+      var best = null, bestDistance = Infinity;
+      area.querySelectorAll("[data-spatial-slider-item] a").forEach(function(link){
+        var r = link.getBoundingClientRect();
+        if (x < r.left || x > r.right || y < r.top || y > r.bottom) return;
+        var distance = Math.abs(x - (r.left + r.width / 2));
+        if (distance < bestDistance) { best = link; bestDistance = distance; }
+      });
+      return best;
+    }
+    area.addEventListener("pointerdown", function(e){
+      if (e.button) return;
+      down = {x:e.clientX, y:e.clientY, t:Date.now()};
+    });
+    area.addEventListener("click", function(e){
+      var link = e.target.closest ? e.target.closest("a") : null;
+      if (link && e.detail !== 0) e.preventDefault();
+    }, true);
+    window.addEventListener("pointercancel", function(){ down = null; });
+    window.addEventListener("pointerup", function(e){
+      var d = down; down = null;
+      if (!d) return;
+      if (Math.abs(e.clientX - d.x) >= 6 || Math.abs(e.clientY - d.y) >= 6 || Date.now() - d.t >= 350) return;
+      var link = linkAt(e.clientX, e.clientY);
+      if (!link) return;
+      if (e.metaKey || e.ctrlKey) window.open(link.href, "_blank", "noopener");
+      else link.click();
+    });
+  }
+
+  function start(){
+    // Osmo · Spatial Cards Slider (GSAP)
+    // ⚠️DEVIATION 6: a Previous, Next or dot move is instant under reduced motion
+    // ⚠️DEVIATION 7: started once the four GSAP files have landed, not on DOMContentLoaded; a Fastr component can arrive after that event
+    gsap.registerPlugin(Draggable, InertiaPlugin, CustomEase);
+    CustomEase.create("spatial", "0.25, 0.1, 0, 1");
+
+    function initSpatialCardsSlider() {
+      const slideDuration = reduce ? 0 : 1; // ⚠️DEVIATION 6
+      const clickEase = 'spatial';
+
+      document.querySelectorAll('[data-spatial-slider-init]').forEach(container => {
+        if (container._spatialSliderDraggable) container._spatialSliderDraggable.kill();
+        if (container._spatialSliderImageObserver) container._spatialSliderImageObserver.disconnect();
+
+        if (container._spatialSliderProxy) {
+          gsap.killTweensOf(container._spatialSliderProxy);
+          container._spatialSliderProxy.remove();
+        }
+
+        const collection = container.querySelector('[data-spatial-slider-collection]');
+        const track = container.querySelector('[data-spatial-slider-list]');
+        if (!collection || !track) return;
+
+        gsap.set(track, { clearProps: 'transform' });
+
+        container.querySelectorAll('[data-spatial-slider-item]').forEach(item => {
+          gsap.set(item, { clearProps: 'transform' });
+        });
+
+        container.querySelectorAll('[data-spatial-slider-clone]').forEach(el => el.remove());
+
+        const originalItems = Array.from(track.querySelectorAll(':scope > [data-spatial-slider-item]:not([data-spatial-slider-clone])'));
+        if (!originalItems.length) return;
+
+        container.setAttribute('role', 'region');
+        container.setAttribute('aria-roledescription', 'carousel');
+        container.setAttribute('aria-label', container.getAttribute('aria-label') || 'Spatial Cards Slider');
+        track.setAttribute('role', 'group');
+        track.setAttribute('aria-label', 'Slides');
+
+        const dotsWrap = container.querySelector('[data-spatial-slider-generate-dots]');
+
+        if (dotsWrap) {
+          const dots = Array.from(dotsWrap.querySelectorAll('[data-spatial-slider-control]'));
+
+          if (dots.length) {
+            const template = dots[0];
+            dots.slice(1).forEach(dot => dot.remove());
+
+            for (let i = 1; i <= originalItems.length; i++) {
+              const dot = i === 1 ? template : template.cloneNode(true);
+              dot.setAttribute('data-spatial-slider-control', String(i));
+              dot.setAttribute('data-spatial-slider-control-status', 'not-active');
+              if (i > 1) dotsWrap.appendChild(dot);
+            }
+          }
+        }
+
+        const controls = Array.from(container.querySelectorAll('[data-spatial-slider-control]'));
+        const totalEl = container.querySelector('[data-spatial-slider-total-slide]');
+        const indicators = Array.from(container.querySelectorAll('[data-spatial-slider-active-slide]'));
+        const mod = (value, total) => ((value % total) + total) % total;
+        const formatNumber = value => value < 10 ? '0' + value : String(value);
+
+        if (totalEl) totalEl.textContent = formatNumber(originalItems.length);
+
+        originalItems.forEach((item, index) => {
+          item.removeAttribute('data-spatial-slider-item-status');
+          item.removeAttribute('aria-hidden');
+          item.setAttribute('role', 'group');
+          item.setAttribute('aria-label', `Slide ${index + 1} of ${originalItems.length}`);
+        });
+
+        controls.forEach(btn => {
+          const value = btn.getAttribute('data-spatial-slider-control');
+
+          if (value === 'prev') btn.setAttribute('aria-label', 'Previous slide');
+          if (value === 'next') btn.setAttribute('aria-label', 'Next slide');
+
+          if (/^\d+$/.test(value)) {
+            btn.setAttribute('aria-label', `Go to slide ${value}`);
+            btn.setAttribute('aria-current', 'false');
+          }
+        });
+
+        const containerStyles = getComputedStyle(container);
+        const trackStyles = getComputedStyle(track);
+        const curve = Math.abs(parseFloat(containerStyles.getPropertyValue('--slider-curve'))) || 12;
+        const directionValue = parseFloat(containerStyles.getPropertyValue('--slider-direction'));
+        const direction = directionValue < 0 ? -1 : 1;
+        const gap = parseFloat(trackStyles.columnGap) || 0;
+        const curveRadians = curve * Math.PI / 180;
+
+        const firstRect = originalItems[0].getBoundingClientRect();
+        const itemWidth = firstRect.width;
+        const itemHeight = firstRect.height;
+
+        const perspectiveValue = parseFloat(getComputedStyle(track).perspective);
+        const perspective = Number.isFinite(perspectiveValue) ? perspectiveValue : 1200;
+
+        const getProjectedEdgeX = (radius, angle, side) => {
+          const radians = angle * Math.PI / 180;
+          const rotation = -direction * radians;
+          const localX = side * itemWidth / 2;
+
+          const centerX = Math.sin(radians) * radius;
+          const centerZ = direction * radius * (1 - Math.cos(radians));
+
+          const x = centerX + localX * Math.cos(rotation);
+          const z = centerZ - localX * Math.sin(rotation);
+
+          return x * perspective / (perspective - z);
+        };
+
+        let spatialRadius = itemWidth / Math.sin(curveRadians);
+
+        for (let i = 0; i < 8; i++) {
+          const nextLeft = getProjectedEdgeX(spatialRadius, curve, -1);
+          const currentRight = itemWidth / 2;
+          const currentGap = nextLeft - currentRight;
+          const correction = gap - currentGap;
+
+          spatialRadius += correction / Math.sin(curveRadians);
+        }
+
+        const stepDistance = Math.sin(curveRadians) * spatialRadius;
+        const tangentRatio = (-direction * spatialRadius) / (perspective - direction * spatialRadius);
+        const edgeAngle = Math.acos(gsap.utils.clamp(-1, 1, tangentRatio)) * 180 / Math.PI;
+        const maxSideItems = Math.ceil(edgeAngle / curve);
+        const maxLoopItems = maxSideItems * 2;
+
+        const getSpatialPosition = offset => {
+          const angle = gsap.utils.clamp(-edgeAngle, edgeAngle, offset * curve);
+          const radians = angle * Math.PI / 180;
+
+          return {
+            x: Math.sin(radians) * spatialRadius,
+            z: direction * spatialRadius * (1 - Math.cos(radians)),
+            rotationY: -direction * angle
+          };
+        };
+
+        const containerRect = container.getBoundingClientRect();
+        const trackRect = track.getBoundingClientRect();
+        const originX = trackRect.left + trackRect.width / 2;
+        const leftLimit = containerRect.left - originX;
+        const rightLimit = containerRect.right - originX;
+
+        const isOffsetInside = offset => {
+          if (Math.abs(offset * curve) >= edgeAngle) return false;
+
+          const position = getSpatialPosition(offset);
+          const scale = perspective / (perspective - position.z);
+          const radians = Math.abs(position.rotationY) * Math.PI / 180;
+          const halfWidth = Math.abs(Math.cos(radians)) * itemWidth * scale / 2;
+          const x = position.x * scale;
+
+          return x + halfWidth >= leftLimit && x - halfWidth <= rightLimit;
+        };
+
+        const getVisibleCount = () => {
+          let left = 0;
+          let right = 0;
+
+          for (let i = 1; i < maxSideItems && isOffsetInside(i); i++) right = i;
+          for (let i = 1; i < maxSideItems && isOffsetInside(-i); i++) left = i;
+
+          return Math.min(maxLoopItems, 1 + left + right + 2);
+        };
+
+        const minItemsNeeded = getVisibleCount();
+        const neededItems = originalItems.length >= minItemsNeeded
+          ? originalItems.length
+          : Math.ceil(minItemsNeeded / originalItems.length) * originalItems.length;
+
+        for (let i = originalItems.length; i < neededItems; i++) {
+          const clone = originalItems[i % originalItems.length].cloneNode(true);
+          clone.setAttribute('data-spatial-slider-clone', '');
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        }
+
+        const items = Array.from(track.querySelectorAll(':scope > [data-spatial-slider-item]'));
+        const totalItems = items.length;
+
+        track.style.height = itemHeight + 'px';
+        container.setAttribute('data-spatial-slider-drag-status', 'grab');
+
+        items.forEach(item => item.setAttribute('data-spatial-slider-item-status', 'not-active'));
+
+        const proxy = document.createElement('div');
+        proxy.setAttribute('data-spatial-slider-proxy', '');
+
+        Object.assign(proxy.style, {
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          pointerEvents: 'none',
+          opacity: '0'
+        });
+
+        container.appendChild(proxy);
+        container._spatialSliderProxy = proxy;
+
+        gsap.set(proxy, { x: 0 });
+
+        const setX = items.map(item => gsap.quickSetter(item, 'x', 'px'));
+        const setZ = items.map(item => gsap.quickSetter(item, 'z', 'px'));
+        const setRotationY = items.map(item => gsap.quickSetter(item, 'rotationY', 'deg'));
+
+        const getIndex = () => -gsap.getProperty(proxy, 'x') / stepDistance;
+
+        const nearestDelta = (index, realIndex) => {
+          const loop = Math.round((realIndex - index) / totalItems);
+          return index - (realIndex - loop * totalItems);
+        };
+
+        const getSlideDelta = (target, realIndex) => {
+          let bestDelta = 0;
+          let bestDistance = Infinity;
+
+          items.forEach((item, index) => {
+            if (index % originalItems.length !== target) return;
+
+            const delta = nearestDelta(index, realIndex);
+            const distance = Math.abs(delta);
+
+            if (distance < bestDistance) {
+              bestDelta = delta;
+              bestDistance = distance;
+            }
+          });
+
+          return bestDelta;
+        };
+
+        let lastActiveIndex = null;
+
+        const updateActiveUI = (activeIndex, activeSlideIndex) => {
+          if (activeIndex === lastActiveIndex) return;
+
+          items.forEach((item, index) => {
+            item.setAttribute('data-spatial-slider-item-status', index === activeIndex ? 'active' : 'inview');
+          });
+
+          indicators.forEach(el => el.textContent = formatNumber(activeSlideIndex + 1));
+
+          controls.forEach(btn => {
+            const value = btn.getAttribute('data-spatial-slider-control');
+            if (!/^\d+$/.test(value)) return;
+
+            const isActive = parseInt(value, 10) - 1 === activeSlideIndex;
+            btn.setAttribute('data-spatial-slider-control-status', isActive ? 'active' : 'not-active');
+            btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+          });
+
+          lastActiveIndex = activeIndex;
+        };
+
+        const render = () => {
+          const realIndex = getIndex();
+          const activeIndex = mod(Math.round(realIndex), totalItems);
+          const activeSlideIndex = activeIndex % originalItems.length;
+
+          items.forEach((item, index) => {
+            const position = getSpatialPosition(nearestDelta(index, realIndex));
+
+            setX[index](position.x);
+            setZ[index](position.z);
+            setRotationY[index](position.rotationY);
+          });
+
+          updateActiveUI(activeIndex, activeSlideIndex);
+        };
+
+        controls.forEach(btn => {
+          const value = btn.getAttribute('data-spatial-slider-control');
+          btn.disabled = false;
+
+          btn.onclick = () => {
+            gsap.killTweensOf(proxy);
+
+            const currentIndex = getIndex();
+            let targetIndex;
+
+            if (value === 'next' || value === 'prev') {
+              targetIndex = Math.round(currentIndex) + (value === 'next' ? 1 : -1);
+            } else if (/^\d+$/.test(value)) {
+              const targetSlide = Math.max(0, Math.min(originalItems.length - 1, parseInt(value, 10) - 1));
+              targetIndex = currentIndex + getSlideDelta(targetSlide, currentIndex);
+            } else {
+              return;
+            }
+
+            gsap.to(proxy, {
+              x: -targetIndex * stepDistance,
+              duration: slideDuration,
+              ease: clickEase,
+              onUpdate: render
+            });
+          };
+        });
+
+        container._spatialSliderDraggable = Draggable.create(proxy, {
+          type: 'x',
+          trigger: collection,
+          inertia: true,
+          throwResistance: 2000,
+          dragResistance: 0.05,
+          maxDuration: 1,
+          minDuration: 0.5,
+          edgeResistance: 0.75,
+          overshootTolerance: 0,
+          snap: value => Math.round(value / stepDistance) * stepDistance,
+          onDrag: render,
+          onThrowUpdate: render,
+          onThrowComplete: () => {
+            container.setAttribute('data-spatial-slider-drag-status', 'grab');
+            render();
+          },
+          onPress: () => container.setAttribute('data-spatial-slider-drag-status', 'grabbing'),
+          onDragStart: () => container.setAttribute('data-spatial-slider-drag-status', 'grabbing'),
+          onRelease: () => container.setAttribute('data-spatial-slider-drag-status', 'grab')
+        })[0];
+
+        render();
+
+        // Fix for Lazy Loading images on Safari
+        container._spatialSliderImageObserver = new IntersectionObserver(([entry], observer) => {
+          if (!entry.isIntersecting) return;
+          container.querySelectorAll('[data-spatial-slider-item] img[loading="lazy"]').forEach(img => {
+            img.loading = 'eager';
+          });
+          observer.disconnect();
+        });
+        container._spatialSliderImageObserver.observe(container);
+      });
+
+      if (initSpatialCardsSlider._resize) window.removeEventListener('resize', initSpatialCardsSlider._resize);
+
+      initSpatialCardsSlider._resize = debounceOnWidthChange(initSpatialCardsSlider, 200);
+      window.addEventListener('resize', initSpatialCardsSlider._resize);
+    }
+
+    function debounceOnWidthChange(fn, ms) {
+      let lastWidth = window.innerWidth;
+      let timer;
+
+      return function (...args) {
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+          if (window.innerWidth === lastWidth) return;
+          lastWidth = window.innerWidth;
+          fn.apply(this, args);
+        }, ms);
+      };
+    }
+
+    roots.forEach(function(root){ root.classList.add("is-live"); });
+    initSpatialCardsSlider();
+    roots.forEach(holdClones);
+    roots.forEach(tapGate);
+  }
+
+  var base = "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/";
+  load(base + "gsap.min.js", function(){ return typeof window.gsap !== "undefined"; }, function(){
+    if (typeof window.gsap === "undefined") return;
+    load(base + "Draggable.min.js", function(){ return typeof window.Draggable !== "undefined"; }, function(){
+      load(base + "InertiaPlugin.min.js", function(){ return typeof window.InertiaPlugin !== "undefined"; }, function(){
+        load(base + "CustomEase.min.js", function(){ return typeof window.CustomEase !== "undefined"; }, function(){
+          if (typeof window.Draggable === "undefined" || typeof window.InertiaPlugin === "undefined" || typeof window.CustomEase === "undefined") return;
+          try { start(); } catch (e) {
+            roots.forEach(function(root){ root.classList.remove("is-live"); });
+            if (window.console) console.warn("Spatial Cards Slider:", e);
+          }
+        });
+      });
+    });
+  });
+})();
+</script>

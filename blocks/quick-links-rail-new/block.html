@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Quick Links Rail · /shop/products/new</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet">
+<!--
+  quick-links-rail--products-new-v1.html
+  NEW CHASSIS, canon v2. Replaces the native Fastr quick links on a PLP.
+  Built from Figma "DX/Custom Navigation Links", file XlbbgTWMy6usuOB0y37K4L,
+  node 4537:50350 (Sacha, 2026-08-18). Three variants exist in Figma: Desktop
+  Single Row (3451:7713), Mobile (4537:50349), Desktop Double Row (4632:119520).
+  THIS FILE BUILDS THE SINGLE ROW, per Sacha 08-18.
+
+  ⚠️ NO SERIAL YET. Serials are minted once and never reused, and minting one is
+  Sacha's call, not an agent's. Next free looks like C-17. Do NOT create the
+  Publishing Objects row until he confirms the number.
+
+  ⚠️ NOT CLEARED TO DEPLOY. Four images below are candidates, not verified. The
+  imagehandler returns 400 to curl and to bots, so nothing here can be checked
+  by an agent. Open this file in a browser and look at it before it goes
+  anywhere. See VERIFY LIST.
+
+  DOCTYPE IS THE FIRST BYTE ON PURPOSE (rules B3). One stray character ahead of
+  it puts the document in quirks mode.
+
+  ── PILOT SCOPE ──────────────────────────────────────────────────────────────
+  One location only: /shop/products/new, 15 links, exactly as Tyler's
+  "Quick Links Sheet" has them. The other 21 locations in that CSV are NOT built
+  here. Clone this file per location once the chassis is signed off, or template
+  it into the generator, which is the agreed phase two.
+
+  ── HEIGHT BUDGET (A4) ───────────────────────────────────────────────────────
+    <640px    TOTAL 102   (16 pad + 70 chip + 16 pad)
+    >=640px   TOTAL 134   (32 pad + 70 chip + 32 pad)
+    >=1024px  TOTAL 134
+  Both numbers come straight from Figma (mobile frame 102, desktop frame 134).
+  FONT-INDEPENDENT: the chip height is driven by the 62px image box, not by the
+  label. The label is clamped to 3 lines inside a 126px column, and 3 x 20px is
+  60px, which still fits inside 70. A late-loading Figtree cannot move the
+  budget. Text-only chips carry the same fixed 70px height so the row stays even.
+
+  ── EMBED SNIPPET ────────────────────────────────────────────────────────────
+  <style>
+    .wss-ql{width:100%;border:0;display:block;height:102px}
+    @media (min-width:640px){.wss-ql{height:134px}}
+  </style>
+  <iframe class="wss-ql" loading="lazy" src="https://benevolent-madeleine-5217c1.netlify.app/blocks/quick-links-rail--products-new-v1.html" title="Jump to"></iframe>
+
+  Fastr checklist, all three or the bugs come back:
+   1. Responsive Override Breakpoints = 640 / 1024 on the page
+   2. Container height set at EVERY breakpoint (Fastr does not read media queries)
+   3. The revive script once per page, from
+      Rules and Resources/fastr-page-revive-script.html
+
+  ── ⚠️ SEO, ACCEPTED WITH EYES OPEN (Sacha, 08-18) ──────────────────────────
+  These are navigation links and they now live inside an iframe, so Google does
+  not see them as links from the PLP and they pass no link equity. That IS a
+  change from the native quick links. Sacha accepted it: the quick links are a
+  shopper convenience, not an SEO asset.
+
+  ── IMAGES: WHERE EVERY ONE CAME FROM ────────────────────────────────────────
+  14 of 15 chips carry a picture. 1 is text-only by design (Jersey Drops).
+  Nothing here was invented (THE URL RULE). Three sources, in this order:
+    9  crests          getfastr, from the club logo sheet
+    3  product renders imagehandler /preview/, SKU recipe
+    2  library photos  imagehandler /dxassets/, S3 asset library
+
+  ⚠️ WHAT LIVE RENDERING TAUGHT US, 08-18. Sacha put the first pass in a browser
+  and the verdict was clear: **product renders beat library photography at this
+  size, every time.** The Yamal /preview/ render is instantly legible as a jersey.
+  The library frames are editorial, shot in rooms and car parks, and at 70px they
+  are texture, not information. The Messi chip was moved off the library because
+  of exactly this. Prefer /preview/ for anything wearable; keep the library for
+  boots, where a lit product photo on a coloured ground still reads.
+  Every one still needs a browser eyeball, because the handler returns 400 to
+  curl and to bots and no agent can check any of them.
+
+  CRESTS, solid. Straight from
+  LOGOS - Club and National Team/Club Logo FASTR URLs - Club Logo FASTR URLs.csv
+  Real getfastr PNGs with real alpha, which is why they sit so well on white.
+    Barcelona · Real Madrid · Man United · Man City · Arsenal · Chelsea
+    Chivas · Club America · Liverpool (filed as club_liverpool-fc.png)
+
+  ⚠️ THAT CSV HAS DUPLICATE ROWS AND THEY DISAGREE. "club_barcelona" (row 5) and
+  "club_fc-barcelona" (row 37) are two different URLs, and "club_real-madrid"
+  appears TWICE (rows 26 and 45) with two different URLs. This file uses row 5
+  and row 26. Someone should decide which is canonical and dedupe the sheet,
+  because the next person to match against it will get a different answer.
+
+  NEW FOOTWEAR, solid. Tyler already filled this one in on the CSV. Only change
+  is w/h 600 -> 160, since the slot is 62px and 600px is 14x more pixels than the
+  slot can show. The imagehandler resizes from the URL.
+
+  LAMINE YAMAL, solid. Lifted verbatim from c16-kit-rail--spain-champions-v1
+  line 848, which is a real, already-rendered URL: the Spain 2-star base garment
+  with the LAMINE YAMAL name layer and the 19 number layer applied. Same w/h
+  reduction.
+
+  MESSI, ADIDAS FOOTWEAR, NIKE FOOTWEAR: from the S3 asset library, 08-18.
+  All three were text-only or unverified SKU guesses in the first pass. They now
+  point at real files confirmed present in s3-ready--JULY-WAVE--uploaded, and each
+  carries is--photo so it crops square instead of letterboxing. Per-chip notes and
+  alternative frames are in the comments on the chips themselves.
+
+  ✅ CORRECTION, 08-18, and it matters. An earlier pass of this file said the
+  bucket held "693 of 1,969" assets and "exactly one usable Nike boot frame".
+  BOTH WRONG. That was measured by checking filenames against the
+  s3-ready--JULY-WAVE--uploaded STAGING FOLDER, which is one wave's staging area,
+  not a manifest of the bucket. Later waves went up from other folders and the
+  gallery has been regenerated since.
+
+  The real numbers, read from the current gallery-v3 ITEMS:
+      136 footwear images on S3 across 12 launches (plus ~76 in the link layer)
+  Including, for the Nike chip specifically, twelve 1200x1200 SQUARE product
+  shots in "Nike Mercurial Superfly 11 Mbappe PE" (launch 2026-08-10, past, so
+  clear to use). Square 1200px product shots are the best possible source for a
+  62px chip and they beat the Tiempo Ligera frame this file currently uses.
+  NOT swapped in here only because every filename in that set carries spaces and
+  double-spaces, which need %20 on top of the standard encoder. Pull it with the
+  gallery's "Copy CDN link" button and paste it over the Nike src.
+
+  The lesson worth keeping: a staging folder is not a manifest. Read the gallery
+  data, and if a wave looks empty, suspect the measurement before the pipeline.
+
+  ⚠️ AND IT IS STILL NOT A PLAYER LIBRARY. It is a vendor LAUNCH sweep organised
+  by campaign wave. Messi resolves only because Inter Miami happened to launch a
+  third kit with 2D product shots in it. Yamal, Ronaldo, Pulisic, Mbappe and the
+  other twenty player chips across the sheet do NOT have an equivalent, and no
+  amount of digging turns a launch sweep into a per-player library. For those the
+  answer stays the imagehandler /preview/ SKU recipe, or the src the live quick
+  links are already using.
+
+  ── FONT: THIS IS THE SOCCER.COM BUILD ───────────────────────────────────────
+  Figtree, per the Figma, loaded display=swap with preconnect (rule C3).
+  ✅ RESOLVED by Sacha 08-18: Figtree is SOCCER.COM's face. This file is the
+  soccer.com instance and stays on Figtree. The WSS instance runs CHAKRA PETCH,
+  like C-13 to C-16.
+
+  ⚠️ TO CLONE THIS FOR WSS, two lines and nothing else:
+    1. the <link> in <head> -> the Chakra Petch one C-16 uses:
+       fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&display=swap
+    2. --ql-font -> 'Chakra Petch',Figtree,system-ui,sans-serif
+  The whole type stack is behind that ONE variable on purpose, so the two brands
+  can never drift into two stylesheets. Do not hardcode a family anywhere else.
+
+  ── IMAGES FROM THE S3 ASSET LIBRARY (added 08-18 at Sacha's ask) ────────────
+  Yes, this works, and three chips now use it. The pattern, straight from the
+  documented one, no derivation:
+
+     https://www.imagehandler.net/dxassets/?img=Photos/<filename>&w=160
+
+  <filename> is the `f` field on any gallery-v3 item. Verified that `f` matches
+  the uploaded filenames byte for byte against s3-ready--JULY-WAVE--uploaded, and
+  that none of the ones used here contain +, #, & or a space, which is the trap
+  that killed 79 assets.
+
+  ⚠️⚠️ EMBARGO. THE BIGGEST RULE ON THIS COMPONENT, AND IT IS NEW.
+  The asset library holds PRE-LAUNCH imagery. That is the entire reason the
+  Tunnel is password-protected and is called "the tunnel" rather than anything
+  descriptive. THIS BLOCK IS PUBLIC. Putting an embargoed kit on a PLP leaks it.
+
+  So: every library asset on a chip must be date-checked against the item's `d`
+  field before it goes live, and re-checked if a chip is ever swapped.
+
+  Future-dated on S3 as of 2026-08-18, do NOT use any of these yet:
+      2026-08-20  Nike Chelsea 26/27 Third
+      2026-08-20  adidas Bayern Munich 26/27 Third
+      2026-08-27  PUMA Man City 26/27 Third
+      2026-08-31  Nike Atletico Madrid 26/27 Third
+      2026-09-03  Nike Inter Milan 26/27 Third
+      2026-09-15  adidas Final Rush Pack
+  That list goes stale. Regenerate it, do not trust this copy:
+      [...new Set(ITEMS.filter(i=>i.k==='p'&&i.d>TODAY).map(i=>i.d+' '+i.la))]
+
+  ✅ All three library assets used here are past-dated and safe:
+      Inter Miami 2026 Third  2026-07-30
+      adidas Leather Tech     2026-08-04
+      Nike Tiempo Ligera FT   2026-07-30
+
+  ⚠️ ENCODE THE FILENAME BEFORE YOU CONCATENATE. It is a QUERY PARAMETER, so a
+  literal + means SPACE and silently resolves to the wrong file. This killed 79
+  assets for three weeks in July. adidas ships names starting "+H24781-".
+      const enc = f => f.replace(/\+/g,'%2B').replace(/#/g,'%23').replace(/&/g,'%26');
+  Real spaces need %20 on top of that, and plenty of Nike keys have them, some
+  with DOUBLE spaces. The three used here are clean, checked character by
+  character. For anything else, use the gallery's "Copy CDN link" button, which
+  runs the encoder for you, rather than hand-building from the `f` field.
+
+  ⚠️ READ gallery-v3.html, NEVER WRITE IT. Its `const ITEMS` array is generated
+  by the sweep and the next wave overwrites anything hand-edited.
+
+  ⚠️ THESE ARE PHOTOS, NOT LOGOS, SO THEY NEED object-fit:cover.
+  The library is campaign creative: 527 items at 3:4, 505 at 16:9, 308 at 4:5,
+  and only 98 at 1:1. Dropped into a 62px SQUARE under object-fit:contain a 16:9
+  frame letterboxes down to a 62x35 sliver with white above and below, which
+  looks broken rather than small. So chips carrying library photography get
+  class="is--photo", which switches that one image to cover and centre-crops it.
+  Crests and product renders stay on contain, because cover would clip a crest.
+  ONE FLAG PER CHIP. Get it wrong and it is visibly wrong, not subtly wrong.
+
+  ── DESIGN NOTES, FAITHFUL vs CHANGED ────────────────────────────────────────
+  FAITHFUL: chip 1px #a3a3a3 border, 4px radius, 8px padding-x / 4px padding-y,
+  8px gap, 62px square image, 1px #e5e5e5 full-height divider, label Figtree 400
+  14/20 capitalize in a 126px column, 16px gap between chips (8px mobile), 48px
+  arrow chips desktop / 20px mobile with the soccer/Shadow/Light/400 two-layer
+  shadow, arrows overlaying the rail edges.
+
+  ⚠️ ONE THING TO DECIDE. In Figma the "Jump To" label is INSIDE the scrolling
+  row, so it scrolls away with the chips, and the left arrow then floats over
+  live chips instead of over its own 52px spacer. Built faithful to Figma here.
+  If you would rather the label stayed pinned at the left while the chips move
+  under it, that is one CSS line (marked PINNED-LABEL below). It reads better as
+  a nav, but it is a design change and it is yours to call, not mine.
+
+  ── VERIFY LIST, before this goes anywhere ───────────────────────────────────
+   1. Open in a browser. Confirm ALL 14 pictures render. Pay attention to the
+      three S3 ones (Messi, adidas, Nike): a wrong filename 404s SILENTLY and the
+      onerror here quietly turns the chip into a text chip, which looks
+      intentional. If a chip you expected to have a picture does not, that is a
+      dead URL, not a design.
+   2. Confirm the two duplicate-crest picks (Barcelona, Real Madrid) are the
+      right ones.
+   3. Confirm the 15 destination URLs are Tyler's, unchanged. They are copied
+      from his sheet verbatim and nothing was derived.
+   4. Sacha mints the serial, then the registry row.
+   5. Add a NAMED cp line to deploy.sh with EXACTLY ONE SPACE between the paths,
+      or add_click_beacon.py will not see it and this ships untracked, the way
+      C-13 and C-15 did.
+   6. ⚠️ RE-RUN THE EMBARGO CHECK. Not once, every time a chip's picture changes
+      and every time this file is cloned for another location. A kit that was
+      safe last week is still safe; a kit added this week may not be. This is the
+      only check on the list where getting it wrong leaks a product launch rather
+      than just looking bad.
+-->
+<style>
+:root{
+  --ql-paper:#ffffff;
+  --ql-ink:#000000;
+  --ql-label-ink:#525252;          /* "Jump To" */
+  --ql-chip-line:#a3a3a3;          /* chip border, Figma */
+  --ql-divider:#e5e5e5;            /* vertical rule inside the chip */
+  --ql-arrow-line:#e5e5e5;
+  --ql-font:'Figtree',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+
+  --ql-pad-y:32px;                 /* desktop. 16px under 640. */
+  --ql-gap:16px;                   /* between chips. 8px under 640. */
+  --ql-chip-h:70px;                /* THE height budget lives here. Figma's
+                                      4 + 62 + 4. Still 70 after DEVIATION-3;
+                                      the media just fills it now. */
+  --ql-media:70px;                 /* was 62 inset, now flush. Tracks --ql-chip-h:
+                                      change one, change both, or the media stops
+                                      being square. */
+  --ql-label-w:126px;
+  --ql-gutter:52px;                /* the arrow's lane, Figma */
+  --ql-arrow:48px;
+  --ql-arrow-icon:24px;
+  --ql-ease:cubic-bezier(.25,1,.5,1);
+}
+
+html,body{
+  background:var(--ql-paper);
+  margin:0;padding:0;
+  overflow-x:hidden;
+  overflow-y:hidden;               /* let a vertical wheel reach the parent page */
+  touch-action:pan-y;              /* rules B4. The vertical axis belongs to the page. */
+}
+
+.ql{
+  font-family:var(--ql-font);
+  color:var(--ql-ink);
+  -webkit-font-smoothing:antialiased;
+  background:var(--ql-paper);
+  position:relative;
+  width:100%;
+  padding:var(--ql-pad-y) 0;
+}
+
+/* ── THE RAIL ─────────────────────────────────────────────────────────────
+   Native scroll, no engine. A quick-links row is 15 short items, not a 30-tile
+   infinite grid, and GSAP here would be weight for nothing. Arrows are added on
+   top for desktop mouse users, because a mouse wheel cannot scroll a horizontal
+   rail (design canon). No dots: a free-scroll rail cannot honestly report a
+   "page". ── */
+.ql__rail{
+  display:flex;
+  align-items:center;
+  gap:var(--ql-gap);
+  list-style:none;
+  margin:0;
+  padding:0 var(--ql-gutter) 0 0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x proximity;
+  overscroll-behavior-x:contain;
+  touch-action:pan-x pinch-zoom;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;            /* the arrows and the overflow are the affordance */
+}
+.ql__rail::-webkit-scrollbar{display:none}
+
+/* ── "JUMP TO" ────────────────────────────────────────────────────────────
+   First child of the rail, so it scrolls with the chips. That is what Figma
+   does. Its left half is the 52px transparent lane the left arrow sits in.
+   PINNED-LABEL: to pin it instead, change this one line to
+       position:sticky;left:0;z-index:2;background:var(--ql-paper);
+   and nothing else needs to move. ── */
+.ql__jump{
+  flex:0 0 auto;
+  scroll-snap-align:start;         /* ⚠️ LOAD-BEARING. Without it the rail lands at
+                                      scrollLeft 138 on load and "Jump To" is already
+                                      scrolled off before anyone touches it: the label
+                                      was not a snap target, so the browser snapped
+                                      past it to the first chip. Measured, not
+                                      theorised. Same class of bug as C-16's
+                                      scroll-padding-inline note. */
+  display:flex;
+  align-items:center;
+  height:var(--ql-chip-h);
+  padding-left:var(--ql-gutter);   /* the arrow's lane */
+  padding-right:8px;
+  font-size:14px;
+  font-weight:700;
+  line-height:20px;
+  letter-spacing:0.07px;
+  color:var(--ql-label-ink);
+  white-space:nowrap;
+  -webkit-user-select:none;user-select:none;
+}
+
+/* ── THE CHIP ─────────────────────────────────────────────────────────────
+   Fixed 70px height on BOTH variants, image and text-only, so the row stays
+   level and the iframe budget holds no matter which mix a location needs. ── */
+.ql__item{flex:0 0 auto;scroll-snap-align:start}
+.ql__chip{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* ⚠️ gap:0, NOT Figma's 8px, and this is the second half of DEVIATION-3.
+     Sacha, 08-18: "these are ALMOST filling but not quite... if you look at the
+     logos they aren't perfectly centred."
+     Both symptoms were the same 8px flex gap. It sat between the MEDIA and the
+     DIVIDER, so a render with a baked #f2f2f2 ground stopped 8px short of the
+     rule and left a white strip that read as "the image failed to fill". And it
+     made the crests look shifted left: the eye reads media+gap (78px) as the
+     picture area and centres against that, while the crest is centred in its
+     own 70px. Off by exactly half the gap, 4px, which is precisely how far out
+     they look.
+     The 8px now lives on .ql__rule as margin-right, so the media butts the
+     divider and the divider keeps its breathing room before the text. */
+  gap:0;
+  height:var(--ql-chip-h);
+  box-sizing:border-box;
+  /* ⚠️ DEVIATION-3 (Sacha, 08-18, after seeing it live): the media BLEEDS to the
+     chip edge instead of sitting in Figma's 4px/8px inset. His words: "can we
+     have the image field fill vs have padding".
+     Right call. At 62px inset in a white chip on a white page the picture read as
+     a stamp floating in space; flush, the chip reads as one object with a picture
+     side and a text side, and the vertical rule finally has a job.
+     Chip padding drops to right-only. The media grows 62 -> 70 to fill the full
+     chip height, and because the old geometry was 8px pad + 62px media = 70px,
+     the chip's overall width does not move. Same budget, bigger picture.
+     overflow:hidden is what clips the media's left corners to the 4px radius. */
+  padding:0 8px 0 0;
+  overflow:hidden;
+  background:var(--ql-paper);
+  border:1px solid var(--ql-chip-line);
+  border-radius:4px;
+  text-decoration:none;
+  color:var(--ql-ink);
+  -webkit-tap-highlight-color:transparent;
+  transition:border-color .25s var(--ql-ease), background-color .25s var(--ql-ease);
+}
+.ql__chip:focus-visible{outline:2px solid var(--ql-ink);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){
+  .ql__chip:hover{border-color:var(--ql-ink)}
+}
+@media (prefers-reduced-motion:reduce){
+  .ql__chip{transition:none}
+}
+
+.ql__media{
+  flex:0 0 auto;
+  display:block;
+  width:var(--ql-media);
+  height:var(--ql-media);   /* = --ql-chip-h, so it fills top to bottom */
+  overflow:hidden;
+}
+.ql__img{
+  display:block;width:100%;height:100%;
+  object-fit:contain;              /* crests are logo-shaped, product renders are
+                                      square. contain is the only thing that is
+                                      right for both. Nothing is cropped. */
+}
+
+/* ── PHOTO CHIPS ──────────────────────────────────────────────────────────
+   For images coming out of the S3 asset library, which is 3:4 / 16:9 / 4:5
+   campaign photography rather than square cutouts. contain would letterbox a
+   16:9 frame into a 62x35 sliver; cover centre-crops it to fill the square.
+   The tile behind it stops a 1px rounding gap showing as a white seam.
+   Crests must NEVER carry this class: cover would clip the badge. ── */
+.ql__chip.is--photo .ql__media{background:#f2f2f2}
+.ql__chip.is--photo .ql__img{object-fit:cover}
+.ql__rule{
+  flex:0 0 auto;
+  width:1px;
+  align-self:stretch;
+  background:var(--ql-divider);
+  margin-right:8px;      /* the old flex gap, moved to ONE side. See gap:0 above. */
+}
+.ql__text{
+  flex:0 0 auto;
+  width:var(--ql-label-w);
+  font-size:14px;
+  font-weight:400;
+  line-height:20px;
+  /* ⚠️ DEVIATION-1. Figma sets text-transform:capitalize on this label. Removed,
+     deliberately, because it BREAKS BRAND NAMES. Rendered live it turns Tyler's
+     "adidas Footwear" into "Adidas Footwear", and across the other 21 locations
+     in his sheet it would also produce "Puma", "Adidas Predator" and "Vini Jr.".
+     adidas and PUMA are lowercase and uppercase wordmarks respectively and neither
+     is a style choice we get to make. Every label in the sheet is already cased
+     correctly by hand, so capitalize adds nothing and only ever does damage.
+     One line to restore if the design team disagrees. */
+  word-break:break-word;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+  overflow:hidden;                 /* 3 x 20 = 60 < 70. The budget cannot move. */
+}
+
+/* text-only variant, for links that have no honest picture: sizes, prices,
+   "Turf & Indoor", and for now Lionel Messi. Image box and divider are gone,
+   the label sizes to its own text instead of sitting in a 126px column. */
+.ql__chip.is--text{padding:4px 8px}   /* no media to bleed, so it keeps Figma's
+                                         inset on both sides */
+.ql__chip.is--text .ql__text{width:auto;max-width:200px;white-space:nowrap;
+  -webkit-line-clamp:1;padding:0 4px}
+
+/* ── ARROWS ───────────────────────────────────────────────────────────────
+   Desktop mouse only. display:none by default so a phone never renders them,
+   and the height budget is identical either way. They hide at the ends rather
+   than sitting there disabled and dead. ── */
+.ql__arrow{display:none}
+@media (hover:hover) and (pointer:fine){
+  .ql__arrow{
+    display:flex;align-items:center;justify-content:center;
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:var(--ql-arrow);height:var(--ql-arrow);
+    appearance:none;padding:0;margin:0;
+    background:var(--ql-paper);
+    border:1px solid var(--ql-arrow-line);
+    border-radius:0;
+    color:var(--ql-ink);
+    cursor:pointer;
+    z-index:3;
+    box-shadow:0 8px 16px 0 rgba(48,49,51,.1), 0 0 1px 0 rgba(48,49,51,.05);
+    transition:opacity .2s linear, background-color .25s var(--ql-ease), color .25s var(--ql-ease);
+  }
+  .ql__arrow.is--prev{left:0}
+  .ql__arrow.is--next{right:0}
+  .ql__arrow svg{width:var(--ql-arrow-icon);height:var(--ql-arrow-icon);display:block}
+  .ql__arrow.is--prev svg{transform:scaleX(-1)}
+  .ql__arrow:hover{background:#131313;color:#ffffff;border-color:#131313}
+  .ql__arrow:active{scale:.94}
+  .ql__arrow:focus-visible{outline:2px solid var(--ql-ink);outline-offset:2px}
+  /* ⚠️ DEVIATION-2. Figma's frame draws BOTH arrows at rest. Here each one hides
+     itself at its end of the scroll. A left arrow at scrollLeft 0 is a control
+     that cannot do anything, and a row of dead controls is what teaches people
+     to stop pressing them. The design already allows this: showArrowLeft and
+     showArrowRight are booleans on the Figma component, so this is the design's
+     own switch, thrown by scroll position instead of by hand. Same behaviour as
+     C-16. Delete this rule to show them permanently. */
+  .ql__arrow[disabled]{visibility:hidden;opacity:0;pointer-events:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ql__arrow{transition:none}
+}
+
+/* ── MOBILE ───────────────────────────────────────────────────────────────
+   Figma's mobile frame is 102 tall with 16px padding and an 8px gap. Arrows in
+   that frame are a 20px chip, but they are behind (hover:hover) and never draw
+   on a real phone, so the sizes below only matter to a narrow desktop window. */
+@media (max-width:639px){
+  :root{
+    --ql-pad-y:16px;
+    --ql-gap:8px;
+    --ql-gutter:43px;
+    --ql-arrow:20px;
+    --ql-arrow-icon:12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="ql" aria-label="Jump to">
+
+  <ul class="ql__rail" id="ql-rail" role="list">
+
+    <li class="ql__jump" aria-hidden="true">Jump To</li>
+
+    <!-- 1 · Jersey Drops · TEXT-ONLY, no crest and no product shot applies -->
+    <li class="ql__item">
+      <a class="ql__chip is--text" target="_top" href="https://www.worldsoccershop.com/shop/products/new?pageSize=96&amp;filter=product_type__Jerseys&amp;page=1&amp;order=4&amp;page_size=96">
+        <span class="ql__text">Jersey Drops</span>
+      </a>
+    </li>
+
+    <!-- 2 · New Footwear · image from Tyler's own CSV row, w/h reduced to 160 -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/products/footwear?filter=offers__New+Arrival&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=160&amp;h=160&amp;cmp=100&amp;c=999&amp;img=A1132703000&amp;iset=0108&amp;iindex=0096&amp;retBlank=1x1&amp;bg=f2f2f2"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">New Footwear</span>
+      </a>
+    </li>
+
+    <!-- 3 · Barcelona · crest, club_barcelona (row 5 of the FASTR sheet) -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/barcelona?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/31/ad/fa2276864b60922f51d8e2ffce9f.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Barcelona</span>
+      </a>
+    </li>
+
+    <!-- 4 · Real Madrid · crest, club_real-madrid (row 26 of the FASTR sheet) -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/real-madrid?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/3c/21/ae416f344b9baf9504cff0ae4ffa.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Real Madrid</span>
+      </a>
+    </li>
+
+    <!-- 5 · Lionel Messi
+         ⚠️ CHANGED 08-18 after Sacha saw it live. The previous src was the S3
+         library frame "..._2D_PRODUCT_MESSI_JERSEY_9.16.jpg" and it rendered as a
+         ROOM: a tee on a wall, a chair, trousers hanging. Despite the word PRODUCT
+         in the filename, the ENTIRE Inter Miami third set is editorial styling.
+         The sibling frames are literally named PARKINGLOT, POOLSIDE and SOLO.
+         LESSON: on this library, "PRODUCT" in a filename means the shoot's product
+         story, NOT a cut-out on white. Do not trust the token, look at the picture.
+
+         Now a /preview/ product render instead, same recipe as Yamal below, built
+         on the Inter Miami 2026 Third SKU A1135212 from the DAM.
+         ⚠️ This is the jersey WITHOUT a Messi nameset, because I do not have the
+         MLS name/number layer params the way C-16 has Spain's. It reads correctly
+         at chip size and it is unmistakably the right kit. If you want the actual
+         Messi #10, the live quick links already carry one: paste that src here. -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/players/lionel-messi?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=160&amp;h=160&amp;cmp=100&amp;c=999&amp;img=A1135212000&amp;iset=0108&amp;iindex=0007&amp;bg=f2f2f2"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Lionel Messi</span>
+      </a>
+    </li>
+
+    <!-- 6 · Lamine Yamal · verbatim from C-16 line 848, w/h reduced to 160 -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/players/lamine-yamal?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://www.imagehandler.net/preview/?istyle=0000&amp;fmt=jpg&amp;w=160&amp;h=160&amp;cmp=100&amp;c=999&amp;img=A1142234000&amp;iset=0108&amp;iindex=0009&amp;l2c=E6D72D&amp;l2lc=0OB102&amp;l2s=1.5&amp;l2f=SPA365&amp;l2v=LAMINE%20YAMAL&amp;l2a=0&amp;l3c=5F2328&amp;l3lc=0OB302&amp;l3s=10&amp;l3f=SPA365&amp;l3v=19&amp;l3a=0&amp;bg=f2f2f2"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Lamine Yamal</span>
+      </a>
+    </li>
+
+    <!-- 7 · adidas Footwear · S3 ASSET LIBRARY, confirmed uploaded.
+         adidas Leather Tech Pack, F50 single-boot shot, 3:4 at 1800x2400.
+         A single boot centred crops to a square better than a pair does.
+         Other confirmed-uploaded frames from the same pack if this one is wrong:
+           __F50_PAIR_SHOT.jpg · __PRED_SINGLE_BOOT_2.jpg · __F50_PRED.jpg (4:5) -->
+    <li class="ql__item">
+      <a class="ql__chip is--photo" target="_top" href="https://www.worldsoccershop.com/shop/products/footwear?page=1&amp;filter=offers__New+Arrival&amp;filter=brand__adidas">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://www.imagehandler.net/dxassets/?img=Photos/adidas-leather-tech-pack__F50_SINGLE_BOOT_2.jpg&amp;w=160"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">adidas Footwear</span>
+      </a>
+    </li>
+
+    <!-- 8 · Nike Footwear · S3 ASSET LIBRARY. Launch 2026-07-30, past, safe.
+         Nike Tiempo Ligera FT, a single 1098x679 frame. Clean filename, no
+         spaces, no encoding needed, which is why it is the one wired up.
+         ⚠️ THERE IS A BETTER ONE AND YOU SHOULD SWAP IT IN.
+         "Nike Mercurial Superfly 11 Mbappe PE" (launch 2026-08-10, past, clear)
+         has TWELVE 1200x1200 square product shots. Square 1200px is the ideal
+         source for a 62px chip. Not wired up here because every filename in that
+         set contains spaces and double-spaces, and hand-encoding those is exactly
+         how assets die silently on this bucket. Open the gallery, find the shot,
+         hit "Copy CDN link", paste it over the src below. Thirty seconds and this
+         chip gets materially better. -->
+    <li class="ql__item">
+      <a class="ql__chip is--photo" target="_top" href="https://www.worldsoccershop.com/shop/products/footwear?page=1&amp;filter=offers__New+Arrival&amp;filter=brand__Nike">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://www.imagehandler.net/dxassets/?img=Photos/nike-tiempo-ligera-ft-rid__image.jpg&amp;w=160"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Nike Footwear</span>
+      </a>
+    </li>
+
+    <!-- 9 · Manchester United · crest -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/manchester-united?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/af/31/02454f2e4790882965e9380eda7d.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Manchester United</span>
+      </a>
+    </li>
+
+    <!-- 10 · Liverpool · crest, filed as club_liverpool-fc.png -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/liverpool?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/4f/c6/1672ee624c5ebe0d78cda317758c.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Liverpool</span>
+      </a>
+    </li>
+
+    <!-- 11 · Arsenal · crest -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/arsenal?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/59/13/621afd11463d95d4ec0860121ab9.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Arsenal</span>
+      </a>
+    </li>
+
+    <!-- 12 · Chelsea · crest -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/chelsea?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/c2/4f/b5c713484133b5362bec7d8dabae.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Chelsea</span>
+      </a>
+    </li>
+
+    <!-- 13 · Chivas · crest -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/chivas?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/f0/46/8cf4e23f460cbeadc894c6d9d0e1.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Chivas</span>
+      </a>
+    </li>
+
+    <!-- 14 · Club America · crest -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/club-america?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/4f/06/a0fd1c73413aaf9d97fbae57f932.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Club America</span>
+      </a>
+    </li>
+
+    <!-- 15 · Manchester City · crest -->
+    <li class="ql__item">
+      <a class="ql__chip" target="_top" href="https://www.worldsoccershop.com/shop/clubs/manchester-city?order=4&amp;page=1">
+        <span class="ql__media"><img class="ql__img" loading="eager" decoding="async" alt=""
+          src="https://images.getfastr.com/b4/58/c8bb3c5a418e8b502c2b65d4fb4b.png"
+          onerror="this.onerror=null;var c=this.closest('.ql__chip');if(c){c.classList.add('is--text');var m=c.querySelector('.ql__media'),r=c.querySelector('.ql__rule');if(m)m.remove();if(r)r.remove();}"></span>
+        <span class="ql__rule"></span>
+        <span class="ql__text">Manchester City</span>
+      </a>
+    </li>
+
+  </ul>
+
+  <button class="ql__arrow is--prev" type="button" data-ql="prev" aria-label="Scroll links left" aria-controls="ql-rail" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg></button>
+  <button class="ql__arrow is--next" type="button" data-ql="next" aria-label="Scroll links right" aria-controls="ql-rail"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/><path d="M21 12H2" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"/></svg></button>
+
+</section>
+
+<script>
+/* Arrows only. Rule B2 is zero-JS by default and this is the documented
+   exception: a mouse wheel cannot scroll a horizontal rail, so desktop needs
+   them (design canon). Everything degrades: with JS off you still get a
+   scrollable, swipeable, fully linked rail and the arrows simply never wake up.
+   Nothing outside the iframe is touched. */
+(function () {
+  var rail = document.getElementById('ql-rail');
+  if (!rail) return;
+  var prev = document.querySelector('[data-ql="prev"]');
+  var next = document.querySelector('[data-ql="next"]');
+
+  /* Read one chip plus one gap from the DOM rather than hardcoding it, so the
+     two breakpoints do not each need their own number. Three chips per click:
+     these are much narrower than a product card, and two felt stingy. */
+  function step() {
+    var chip = rail.querySelector('.ql__item');
+    if (!chip) return 300;
+    var cs = getComputedStyle(rail);
+    var gap = parseFloat(cs.columnGap || cs.gap) || 16;
+    return (chip.getBoundingClientRect().width + gap) * 3;
+  }
+  function update() {
+    var max = rail.scrollWidth - rail.clientWidth;
+    var atStart = rail.scrollLeft <= 2;
+    var atEnd = rail.scrollLeft >= max - 2;
+    /* If nothing overflows there is nothing to navigate, so both go away rather
+       than sitting there looking live and doing nothing. */
+    if (prev) prev.disabled = atStart || max <= 2;
+    if (next) next.disabled = atEnd || max <= 2;
+  }
+  function go(dir) {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    rail.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' });
+  }
+  if (prev) prev.addEventListener('click', function () { go(-1); });
+  if (next) next.addEventListener('click', function () { go(1); });
+
+  var raf;
+  rail.addEventListener('scroll', function () {
+    cancelAnimationFrame(raf); raf = requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+
+<!-- WSS-CLICK-BEACON, attribution-safe click tracking (rules D2). Posts clicks to the
+     parent page; pair with Rules and Resources/fastr-parent-click-listener.html.
+     ⚠️ This copy is hand-written so the block is never live untracked. It is NOT a
+     substitute for the NAMED cp line in deploy.sh, which is what add_click_beacon.py
+     matches on. C-13 and C-15 both ran live with no tracking because they arrived
+     via the blocks/*.html glob, which the script cannot see. -->
+<script>
+(function () {
+  var BLOCK = "fastr_blocks_quick_links_products_new_v1";
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    try {
+      window.parent.postMessage({
+        type: "wss-block-click",
+        block: BLOCK,
+        label: (a.getAttribute("aria-label") || a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 80),
+        href: a.href
+      }, "*");
+    } catch (err) { /* fire-and-forget */ }
+  }, true);
+})();
+</script>
+
+</body>
+</html>

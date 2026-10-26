@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intent Selector (Small)</title>
+<!--
+  intent-selector-small--v1.html — canon v2 · Figma node 60:464 "Intent Selector/Small"
+  Built by Fable 2026-08-03. First pure consumer of THE CTA outside a carousel:
+  8 canonical buttons (6 primary black + 2 data-theme="secondary" white/hairline),
+  zero new styles beyond the row layout below. cta-canon.css inlined VERBATIM.
+
+  MEASURED FROM FIGMA: row py 24 · pl 24 · SHOP→ Chakra SemiBold 32/0.64px caps ·
+  gap SHOP→buttons 42 · gap between buttons 12 · total 87 (24+39+24).
+
+  HEIGHT BUDGET (A4): 87px ALL breakpoints — mobile scrolls the row horizontally.
+  EMBED SNIPPET:
+    <style>.wss-isl{width:100%;height:87px;border:0;display:block}</style>
+    <iframe class="wss-isl" loading="lazy" scrolling="no"
+      src="https://benevolent-madeleine-5217c1.netlify.app/blocks/intent-selector-small--v1.html"
+      title="Shop by intent"></iframe>
+
+  ALL LINKS RESOLVED 08-03 from Sacha's WorldSoccerShop Site Map table
+  (app8ia59raQmVdp8b/tblyCI515wmVZR0xo). Note: NEW ARRIVALS points at
+  products/new/jerseys — the map has no generic all-new page; flag if one exists.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ▼ cta-canon.css (inlined verbatim) ▼ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   cta-canon.css — THE CTA (canon v2) · one button spec, every chassis
+   ─────────────────────────────────────────────────────────────────────────
+   Fills the "one CTA spec" slot from the 07-27 decision
+   ("Type & CTA: dev semantic names — Body 12-20, Label 12-16, one CTA spec").
+   Locked by Sacha 2026-08-02: this IS the canonical CTA.
+
+   THIRD SIBLING stylesheet, alongside wall-canon.css and (when it lands)
+   carousel-canon.css. It is NOT folded into either, because both consume it:
+   the wall, the rails, the hero rails and the feature pills all need the same
+   button, and duplicating it into two chassis is exactly how the old set
+   drifted into 3 arrow styles and 2 zoom scales.
+
+   Load order:  cta-canon.css  →  wall-canon.css / carousel-canon.css
+   NEVER linked by any v1 block. carousel-base.css is untouched.
+
+   SOURCE
+   ─────────────────────────────────────────────────────────────────────────
+   Engine : Osmo Supply "Button 009". Zero JS. Every Osmo class name, the
+            data-button-009 attribute, all easings, the hover calc, the click
+            scale and the focus ring are VERBATIM below.
+   Design : Figma WorldSoccerShop - Site Updates, node 35:539.
+
+   MEASURED FROM FIGMA (verified in Chromium, not eyeballed)
+   ─────────────────────────────────────────────────────────────────────────
+     padding       12px 16px      (symmetric; Osmo stock is asymmetric)
+     gap           8px
+     label         Chakra Petch 600, 14px, tracking 1.12px, UPPERCASE
+     arrow         Chakra Petch 400, 22px, tracking 0.44px, glyph U+2192
+     arrow advance 17px
+     line box      15px      →  12 + 15 + 12 = 39px tall  ✓ matches Figma
+     radius        0         (square; Osmo stock is a 2.5em pill)
+     primary       #000 ground / #fff ink
+     secondary     #fff ground / #000 ink / 0.75px #797474 hairline
+
+   TWO CHANGES FROM THE OSMO SOURCE, both deliberate
+   ─────────────────────────────────────────────────────────────────────────
+   1. The icon <svg> elements become <span> carrying "→". Sacha's design
+      specifies the Unicode arrow set in Chakra Petch, not Osmo's chevron
+      vector. get_design_context returns it as TEXT, not an exported asset,
+      so it is typed rather than drawn. Classes and positions unchanged.
+   2. Each icon span wraps its glyph in an <i>. LOAD-BEARING, not cosmetic:
+      .button-009__icon must stay at the button's 14px font-size or every em
+      in Osmo's hover calc — and in `.is--left { left: var(--…-padding-right) }`
+      — would resolve against 22px and the animation would break. The <i>
+      carries the 22px; the span keeps the maths. Nothing removed or renamed.
+
+   THE HOVER
+   ─────────────────────────────────────────────────────────────────────────
+   Rest: JERSEYS →. On hover the trailing arrow slides right and fades, the
+   label slides right by (icon + gap + padding-right - padding-left) = 25px,
+   and a leading arrow fades in from the left. The label lands exactly on the
+   right padding edge (16 + 25 + 67 = 108 = 124 - 16), so nothing clips inside
+   the overflow:clip inner. Osmo's maths, fed WSS numbers.
+
+   CANON COMPLIANCE (07-27 locked set)
+   ─────────────────────────────────────────────────────────────────────────
+   · Hover is behind @media (hover:hover) and (pointer:fine) AND
+     (prefers-reduced-motion: no-preference). Osmo ships it that way; no
+     wrapper needed.
+   · :focus-visible ring built in. See the on-dark theme below.
+   · target="_top" belongs on every instance in markup (rule B1).
+   · Chakra Petch must be loaded with display=swap + preconnect (rule C3).
+
+   ⚠️ TYPE-ROLE MISMATCH, flagged not silently resolved:
+      wall-canon.css sets --ws-label-14-weight: 500. Figma 35:539 specifies
+      SemiBold 600 for the CTA label. Rather than mutate the shared role, the
+      CTA declares its own --ws-cta-weight: 600. If the token audit decides
+      Label 14 should carry a 600 variant, delete this and point at the role.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Osmo 009 API, re-pointed at WSS values ── */
+  --button-009-color:#fff;
+  --button-009-color-background:#000;
+  --button-009-color-focus:#000;
+  --button-009-border-radius:0;
+  --button-009-icon-size:1.2143em;      /* 17px — the → advance width */
+  --button-009-padding-top:0.8571em;    /* 12px */
+  --button-009-padding-right:1.1429em;  /* 16px */
+  --button-009-padding-bottom:0.8571em; /* 12px */
+  --button-009-padding-left:1.1429em;   /* 16px */
+  --button-009-gap:0.5714em;            /* 8px  */
+  --button-009-overflow:clip;
+  --button-009-focus-inset:-0.125em;
+  --button-009-click-scale:0.955 0.925;
+  --button-009-ease-hover:cubic-bezier(0.32, 0.72, 0, 1);
+  --button-009-ease-click:cubic-bezier(0.4, 0, 0.2, 1);
+  --button-009-ease-focus:cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ── WSS layer. --ws-font-label is shared with wall-canon.css ── */
+  --ws-font-label:'Chakra Petch',Figtree,sans-serif;
+  --ws-cta-size:14px;                   /* Label 14 role */
+  --ws-cta-weight:600;                  /* see TYPE-ROLE MISMATCH above */
+  --ws-cta-line:1.0714;                 /* 15px line box → 39px button */
+  --ws-cta-line-em:1.0714em;            /* SAME 15px as a LENGTH. height: needs a length,
+                                           --ws-cta-line is unitless and is invalid there. */
+  --ws-cta-tracking:0.08em;             /* 1.12px */
+  --ws-cta-arrow-size:1.5714em;         /* 22px */
+  --ws-cta-arrow-tracking:0.02em;       /* 0.44px */
+  --ws-cta-hairline:0.75px solid #797474;
+}
+
+/* ═══ OSMO BUTTON 009 — VERBATIM ═════════════════════════════════════════ */
+.button-009{
+  color:var(--button-009-color);
+  -webkit-user-select:none;user-select:none;
+  background-color:#0000;
+  outline-style:none;
+  padding:0;
+  line-height:1;
+  text-decoration:none;
+  display:inline-grid;
+  position:relative;
+  -webkit-tap-highlight-color:transparent;
+  transition:scale 0.15s var(--button-009-ease-click);
+}
+.button-009::after{
+  content:'';display:block;position:absolute;
+  inset:var(--button-009-focus-inset);
+  border-radius:var(--button-009-border-radius);
+  transition:box-shadow 0.3s var(--button-009-ease-focus);
+  pointer-events:none;z-index:1;
+}
+.button-009:is(:focus-visible)::after{ box-shadow:0 0 0 0.125em var(--button-009-color-focus); }
+.button-009:active{ scale:var(--button-009-click-scale); }
+.button-009__inner{
+  pointer-events:none;
+  grid-column-gap:var(--button-009-gap);
+  grid-row-gap:var(--button-009-gap);
+  padding-top:var(--button-009-padding-top);
+  padding-right:var(--button-009-padding-right);
+  padding-bottom:var(--button-009-padding-bottom);
+  padding-left:var(--button-009-padding-left);
+  z-index:1;
+  border-radius:var(--button-009-border-radius);
+  overflow:var(--button-009-overflow);
+  grid-area:1 / 1;
+  justify-content:center;align-items:center;
+  display:flex;position:relative;
+}
+.button-009__icon{
+  width:var(--button-009-icon-size);
+  height:var(--button-009-icon-size);
+  flex:none;
+  transition:translate 0.5s var(--button-009-ease-hover), opacity 0.15s ease-out;
+}
+.button-009__icon.is--left{
+  left:var(--button-009-padding-right);
+  position:absolute;
+  opacity:0;
+  translate:-1.5em 0 0;
+}
+.button-009__text{ flex:none; transition:translate 0.5s var(--button-009-ease-hover); }
+.button-009__bg{
+  background-color:var(--button-009-color-background);
+  border-radius:var(--button-009-border-radius);
+  grid-area:1 / 1;width:100%;height:100%;padding:0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference){
+  .button-009:is(:hover, :focus-visible) .button-009__text,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__text{
+    translate:calc(var(--button-009-icon-size) + var(--button-009-gap) + var(--button-009-padding-right) - var(--button-009-padding-left)) 0 0;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover);
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--left,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--left{
+    translate:0 0 0;opacity:1;
+    transition:translate 0.5s 0.075s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+  .button-009:is(:hover, :focus-visible) .button-009__icon.is--right,
+  [data-hover]:is(:hover, :focus-visible) .button-009 .button-009__icon.is--right{
+    translate:1.5em 0 0;opacity:0;
+    transition:translate 0.5s 0.05s var(--button-009-ease-hover), opacity 0.15s 0.075s ease-out;
+  }
+}
+/* ═══ END OSMO ════════════════════════════════════════════════════════════ */
+
+
+/* ── WSS skin, additive only ─────────────────────────────────────────────── */
+.button-009{
+  font-family:var(--ws-font-label);
+  font-size:var(--ws-cta-size);
+}
+.button-009__text{
+  font-weight:var(--ws-cta-weight);
+  line-height:var(--ws-cta-line);                        /* 15px → 39px button */
+  letter-spacing:var(--ws-cta-tracking);
+  margin-right:calc(var(--ws-cta-tracking) * -1);        /* kill the trailing letter-space; Figma does not render it */
+  text-transform:uppercase;
+}
+.button-009__icon{
+  height:var(--ws-cta-line-em);                          /* 15px. MUST be the -em variant */
+  display:flex;align-items:center;justify-content:center;
+}
+.button-009__icon > i{                                   /* carries the 22px so the span stays at 14px */
+  font-style:normal;
+  font-weight:400;
+  font-size:var(--ws-cta-arrow-size);
+  letter-spacing:var(--ws-cta-arrow-tracking);
+  line-height:1;
+  display:block;
+}
+
+/* ── THEMES (Osmo's documented data-theme pattern) ───────────────────────── */
+
+/* secondary — outlined, for light grounds */
+.button-009[data-theme='secondary']{
+  --button-009-color:#000;
+  --button-009-color-background:#fff;
+}
+.button-009[data-theme='secondary'] .button-009__bg{ border:var(--ws-cta-hairline); }
+
+/* on-dark — for the C-13 wall (#0A0A0A) and any dark surface.
+   REASON THIS EXISTS: the default focus ring is #000 and disappears completely
+   against the wall's ground, so keyboard users lose the focus indicator. White
+   ground reads on dark and the ring flips to white. Osmo's accessibility note
+   calls this out: --button-009-color-focus must contrast with the SURROUNDING
+   background, not the button.
+   ⚠️ Theme name picked by Claude 2026-08-02, not by Sacha. Rename freely. */
+.button-009[data-theme='on-dark']{
+  --button-009-color:#0A0A0A;
+  --button-009-color-background:#fff;
+  --button-009-color-focus:#fff;
+}
+
+/* ▼ intent-selector-small layer (this file only) ▼ */
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;overflow:hidden}
+.isl{display:flex;align-items:center;gap:42px;padding:24px 0 24px 24px;height:87px;font-family:'Chakra Petch',Figtree,sans-serif}
+.isl__label{font-size:32px;font-weight:600;letter-spacing:0.64px;text-transform:uppercase;color:#000;white-space:nowrap;line-height:1}
+.isl__label .arr{font-weight:400}
+.isl__row{display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding-right:24px}
+.isl__row::-webkit-scrollbar{display:none}
+.isl__row .button-009{flex:none}
+@media (max-width:639px){ .isl{gap:20px;padding-left:16px} .isl__label{font-size:24px} }
+</style>
+</head>
+<body>
+<nav class="isl" aria-label="Shop by intent">
+  <p class="isl__label">Shop <span class="arr">&#8594;</span></p>
+  <div class="isl__row">
+    <!-- ✓ Sacha 08-03: /shop/products/jerseys (was /shop/jerseys) -->
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/products/jerseys" target="_top" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">All jerseys</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <!-- ✓ Sacha 08-03: Shop by Player index -->
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/players/" target="_top" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Player jerseys</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <!-- ✓ Sacha 08-03: canon firm-ground page (was /collections/soccer-boots from the old selector) -->
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/products/footwear/firm-ground" target="_top" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Soccer cleats</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <!-- ✓ from the WSS Site Map table (08-03) -->
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/products/footwear/soccer-lifestyle-shoes" target="_top" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Lifestyle footwear</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/products/sale/jerseys" target="_top" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Sale jerseys</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <!-- ✓ Sacha 08-03: /shop/products/new/ (all new arrivals, was products/new/jerseys) -->
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/products/new/" target="_top" class="button-009"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">New arrivals</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/national-teams/" target="_top" class="button-009" data-theme="secondary"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Shop national teams</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+    <a data-button-009 href="https://www.worldsoccershop.com/shop/clubs/" target="_top" class="button-009" data-theme="secondary"><span class="button-009__inner"><span aria-hidden="true" class="button-009__icon is--left"><i>&#8594;</i></span><span class="button-009__text">Shop by club</span><span aria-hidden="true" class="button-009__icon is--right"><i>&#8594;</i></span></span><span class="button-009__bg"></span></a>
+  </div>
+</nav>
+</body>
+</html>
