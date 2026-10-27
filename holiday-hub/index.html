@@ -150,7 +150,9 @@
   .hh-cal__day.is-today { box-shadow: inset 0 0 0 2px var(--nm-purple); background: var(--nm-white); }
   .hh-cal__day.is-today .hh-cal__num { color: var(--nm-purple-text); }
   .hh-cal__events { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-  .hh-ev { display: -webkit-box; overflow: hidden; padding: 2px 6px; border-radius: 4px; font: 500 11px/14px var(--nm-sans); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
+  .hh-ev { display: -webkit-box; overflow: hidden; padding: 2px 6px; border-radius: 4px; font: 500 11px/14px var(--nm-sans); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow-wrap: anywhere; text-decoration: none; }
+  a.hh-ev:hover { text-decoration: underline; }
+  a.hh-ev:focus-visible { outline: 2px solid var(--nm-purple-text); outline-offset: 1px; }
   .hh-ev--launch { background: var(--nm-purple-text); color: var(--nm-white); }
   .hh-ev--date { background: var(--nm-white); color: var(--nm-title); box-shadow: inset 0 0 0 1px #8A8A87; }
   .hh-ev--p-eoss { background: #FFD9C7; color: #7A2E0E; }
@@ -165,6 +167,8 @@
   .hh-ev--p-lastcall { background: #3E143F; color: #FFFFFF; }
   .hh-ev--p-giftcard { background: #E8DFCC; color: #4A3B1F; }
   .hh-ev--p-singles { background: #EAE6FD; color: #402287; }
+  .hh-ev--p-teamfanwear { background: #DCE7FE; color: #1A337E; }
+  .hh-ev--p-teampopup { background: #DDF3E4; color: #14532D; }
   .hh-ev--due { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
   .hh-ev--late { background: #FBE3E1; color: #8C1F18; }
   .hh-ev--done { background: var(--nm-chip-grey); color: var(--nm-chip-grey-ink); text-decoration: line-through; }
@@ -303,7 +307,7 @@
 </header>
 <div class="nm-shell">
 <div class="nm-scrim" hidden></div>
-<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#overview"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li><a class="nm-rail__item" href="#my-day"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4"/><path d="M12 20V22.5"/><path d="M4.6 4.6L6.4 6.4"/><path d="M17.6 17.6L19.4 19.4"/><path d="M1.5 12H4"/><path d="M20 12H22.5"/><path d="M4.6 19.4L6.4 17.6"/><path d="M17.6 6.4L19.4 4.6"/></svg><span class="nm-rail__label">My Day</span></a></li><li><a class="nm-rail__item" href="#calendar"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M21.5 4.5H2.5V21.5H21.5V4.5Z"/><path d="M2.5 9.5H21.5"/><path d="M7 2V7"/><path d="M17 2V7"/></svg><span class="nm-rail__label">Calendar</span></a></li><li><a class="nm-rail__item" href="#team"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20C2.5 16.4 5.4 13.5 9 13.5C12.6 13.5 15.5 16.4 15.5 20"/><circle cx="17" cy="9" r="2.5"/><path d="M16 13.6C19.2 13.4 21.5 15.9 21.5 19"/></svg><span class="nm-rail__label">Team</span></a></li><li><a class="nm-rail__item" href="#links"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 14L14 10"/><path d="M8.5 11L5.5 14A3.5 3.5 0 0 0 10.5 19L13.5 16"/><path d="M15.5 13L18.5 10A3.5 3.5 0 0 0 13.5 5L10.5 8"/></svg><span class="nm-rail__label">Links</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title" id="hhDrawerTitle">Holiday 2026</p><ul class="nm-drawer__list" id="hhDrawerList"></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
+<nav class="nm-nav" id="nm-nav" aria-label="Holiday 2026"><ul class="nm-rail"><li><a class="nm-rail__item" href="#overview"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Holiday 2026</span></a></li><li><a class="nm-rail__item" href="#calendar"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M21.5 4.5H2.5V21.5H21.5V4.5Z"/><path d="M2.5 9.5H21.5"/><path d="M7 2V7"/><path d="M17 2V7"/></svg><span class="nm-rail__label">Calendar</span></a></li><li><a class="nm-rail__item" href="#my-day"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5V4"/><path d="M12 20V22.5"/><path d="M4.6 4.6L6.4 6.4"/><path d="M17.6 17.6L19.4 19.4"/><path d="M1.5 12H4"/><path d="M20 12H22.5"/><path d="M4.6 19.4L6.4 17.6"/><path d="M17.6 6.4L19.4 4.6"/></svg><span class="nm-rail__label">My Day</span></a></li><li><a class="nm-rail__item" href="#team"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20C2.5 16.4 5.4 13.5 9 13.5C12.6 13.5 15.5 16.4 15.5 20"/><circle cx="17" cy="9" r="2.5"/><path d="M16 13.6C19.2 13.4 21.5 15.9 21.5 19"/></svg><span class="nm-rail__label">Team</span></a></li><li><a class="nm-rail__item" href="#links"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M10 14L14 10"/><path d="M8.5 11L5.5 14A3.5 3.5 0 0 0 10.5 19L13.5 16"/><path d="M15.5 13L18.5 10A3.5 3.5 0 0 0 13.5 5L10.5 8"/></svg><span class="nm-rail__label">Links</span></a></li></ul><div class="nm-drawer"><p class="nm-drawer__title" id="hhDrawerTitle">Holiday 2026</p><ul class="nm-drawer__list" id="hhDrawerList"></ul></div><div class="nm-nav__extras"><a class="nm-nav__extra" href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel<span class="nm-visually-hidden"> (opens in a new tab)</span></a><a class="nm-nav__extra" href="../nutmeg/index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../nutmeg/step-tools.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a><a class="nm-nav__extra" href="../nutmeg/foundations.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Design System</a><a class="nm-nav__extra" href="../nutmeg/get-started.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Guides</a></div></nav>
 <main class="nm-main" id="nm-main">
 <div class="nm-panel"><div class="nm-content">
 
@@ -337,6 +341,22 @@
     <details class="hh-details hh-sec" id="sec-soon"><summary><span>Next 2 weeks</span><span class="hh-chips" id="hhSoonChips"></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="hh-details__body" id="hhSoon"></div></details>
   </div>
   <div class="hh-stats hh-sec" id="sec-numbers"></div>
+</div>
+
+<div class="hh-view" id="view-calendar" data-view="calendar" hidden>
+  <section class="hh-panel hh-cal hh-sec" id="sec-month" aria-labelledby="calTitle">
+    <div class="hh-panel__head">
+      <h2 class="hh-panel__title" id="calTitle">Month view</h2>
+      <div class="hh-cal__bar">
+        <button type="button" class="hh-iconbtn" data-month="-1" aria-label="Previous month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <p class="hh-cal__month" id="hhMonth" aria-live="polite"></p>
+        <button type="button" class="hh-iconbtn" data-month="1" aria-label="Next month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+    </div>
+    <div class="hh-cal__grid" id="hhCalGrid" role="list"></div>
+    <ul class="hh-cal__key hh-sec" id="hhCalKey" aria-label="Calendar key"></ul>
+    <p class="hh-cal__note">Every promo colour passes contrast with its text (lowest 6.2:1, needs 4.5:1).</p>
+  </section>
 </div>
 
 <div class="hh-view" id="view-my-day" data-view="my-day" hidden>
@@ -386,22 +406,6 @@
   </details>
 </div>
 
-<div class="hh-view" id="view-calendar" data-view="calendar" hidden>
-  <section class="hh-panel hh-cal hh-sec" id="sec-month" aria-labelledby="calTitle">
-    <div class="hh-panel__head">
-      <h2 class="hh-panel__title" id="calTitle">Month view</h2>
-      <div class="hh-cal__bar">
-        <button type="button" class="hh-iconbtn" data-month="-1" aria-label="Previous month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <p class="hh-cal__month" id="hhMonth" aria-live="polite"></p>
-        <button type="button" class="hh-iconbtn" data-month="1" aria-label="Next month"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      </div>
-    </div>
-    <div class="hh-cal__grid" id="hhCalGrid" role="list"></div>
-    <ul class="hh-cal__key hh-sec" id="hhCalKey" aria-label="Calendar key"></ul>
-    <p class="hh-cal__note">Every promo colour passes contrast with its text (lowest 6.2:1, needs 4.5:1).</p>
-  </section>
-</div>
-
 <div class="hh-view" id="view-team" data-view="team" hidden>
   <div class="hh-team" id="hhTeam"></div>
 </div>
@@ -431,7 +435,9 @@
 
   var SDC = ["rickey", "jordan", "sacha", "courtney", "brock", "casey", "whitney", "matty", "michael", "darren", "danny"];
   var WSS = ["tyler", "alex", "holly", "sacha", "jordan", "courtney"];
-  var TEAM = ["rickey", "jordan", "sacha", "courtney", "darren", "brock"];
+  var TEAM = ["rickey", "jordan", "sacha", "courtney", "darren", "brock", "casey"];
+  var ALL_STORES_PEOPLE = ["sacha", "jordan", "courtney"];
+  var SDC_TEAM_PEOPLE = ["rickey", "darren", "brock", "casey"];
 
   var PEOPLE = {
     rickey: {
@@ -679,11 +685,21 @@
       text: "WorldSoccerShop Holiday shoot: styling shopping list, looks and props",
       detail: "The shopping list, looks and props for the WorldSoccerShop Holiday shoot.",
       previewUrl: "https://wss-shoots.netlify.app/holiday-2026/looks.html", clickupUrl: "https://app.clickup.com/t/868mk8hy3" },
-    { id: "wss-shoot-models", col: "Holiday & Promotions", urgency: 4, status: "In progress",
+    { id: "wss-shoot-models", col: "Holiday & Promotions", urgency: 4, due: "2026-10-20", status: "In progress",
       people: ["holly", "alex", "tyler", "sacha"],
       text: "WorldSoccerShop Holiday shoot: model picks",
       detail: "Picking the models for the WorldSoccerShop Holiday shoot.",
       clickupUrl: "https://app.clickup.com/t/868mk0z0z" },
+    { id: "wss-pages-scr", col: "Holiday & Promotions", urgency: 4, due: "2026-10-23", status: "In design",
+      people: ["sacha", "tyler", "alex", "holly"],
+      text: "WorldSoccerShop Holiday Pages (Site Change Requests)",
+      detail: "Site Change Requests task for WorldSoccerShop Holiday pages.",
+      clickupUrl: "https://app.clickup.com/t/868mhfq5b" },
+    { id: "wss-holiday-subtask-live", col: "Holiday & Promotions", urgency: 3, due: "2026-10-31", status: "Planning",
+      people: ["tyler", "sacha", "alex", "holly"],
+      text: "Launch: WorldSoccerShop Holiday campaign goes live (subtask)",
+      detail: "ClickUp subtask dated Sat 31 Oct ahead of the Mon 2 Nov kickoff.",
+      clickupUrl: "https://app.clickup.com/t/868mcpbtm" },
     { id: "wss-singles-day", col: "Holiday & Promotions", urgency: 5, launch: "2026-11-09", until: "2026-11-18", promo: "singles",
       people: ["tyler", "alex", "holly", "sacha", "jordan"],
       text: "Singles Day and Kitbag Deals",
@@ -777,12 +793,12 @@
       text: "Build the WorldSoccerShop Holiday landing pages",
       detail: "The Holiday landing pages for the WorldSoccerShop Holiday Kickoff on Mon 2 Nov.",
       clickupUrl: "https://app.clickup.com/t/868mcp0vb" },
-    { id: "wss-pilot-alex", col: "DX Pages & Enablement", urgency: 4, status: "In progress",
+    { id: "wss-pilot-alex", col: "DX Pages & Enablement", urgency: 4, due: "2026-10-30", status: "In progress",
       people: ["alex", "sacha", "tyler"],
       text: "Fastr pilot 1 (Alex): rebuild the WorldSoccerShop Shop by Club section",
       detail: "Alex's first Fastr CMS build, from the WorldSoccerShop starter pack.",
       previewUrl: "../nutmeg/starter-pack-wss.html", clickupUrl: "https://app.clickup.com/t/9011460926/868mmqnrk" },
-    { id: "wss-pilot-holly", col: "DX Pages & Enablement", urgency: 5, status: "In progress",
+    { id: "wss-pilot-holly", col: "DX Pages & Enablement", urgency: 5, due: "2026-10-30", status: "In progress",
       people: ["holly", "sacha", "tyler"],
       text: "Fastr pilot 2 (Holly): build the WorldSoccerShop Premier League Shop by Club logo rail",
       detail: "Holly's first Fastr CMS build, from the WorldSoccerShop starter pack.",
@@ -804,57 +820,77 @@
       clickupUrl: "https://app.clickup.com/t/868kxk5tv" }
   ];
 
-  var CROSS_STORE = ["sacha", "jordan", "courtney"];
+  var CROSS_STORE = ["sacha", "jordan", "courtney", "rickey", "darren", "brock", "casey"];
   var STORES = [
-    { key: "both", label: "Both" },
+    { key: "both", label: "All" },
     { key: "sdc", label: "Soccer.com" },
-    { key: "wss", label: "WorldSoccerShop" }
+    { key: "wss", label: "WorldSoccerShop" },
+    { key: "team", label: "Team Sales" }
   ];
-  var TASK_STORE = { "wss-eoss-launch": "wss", "wss-holiday-launch": "wss", "wss-holiday-landing": "wss", "wss-shoot-styling": "wss", "wss-shoot-models": "wss", "wss-pilot-alex": "wss", "wss-pilot-holly": "wss", "wss-singles-day": "wss" };
+  var TASK_STORE = {
+    "wss-eoss-launch": "wss", "wss-holiday-launch": "wss", "wss-holiday-landing": "wss", "wss-shoot-styling": "wss",
+    "wss-shoot-models": "wss", "wss-pages-scr": "wss", "wss-holiday-subtask-live": "wss", "wss-pilot-alex": "wss",
+    "wss-pilot-holly": "wss", "wss-singles-day": "wss",
+    "cu-team-holiday-popups": "team", "cu-tampa-bay-social": "team", "cu-vb-lookbook-2027": "team",
+    "cu-nike-laser-shorts": "team", "cu-alumagoal-guide": "team", "cu-volleyball-2027": "team",
+    "cu-team-catalog-2027": "team", "cu-cpl-email-styling": "team", "cu-epsc-showcase": "team",
+    "cu-ros-events": "team", "cu-playerpass-email": "team", "cu-oct-feedback": "team",
+    "cu-waiting-copy-events": "team", "cu-rfq-page": "team", "cu-caysa": "team",
+    "cu-dx-club-mgmt": "team", "cu-custom-uniforms-mock": "team", "cu-convention-headshots": "team"
+  };
   TASKS.forEach(function (t) { t.store = TASK_STORE[t.id] || "sdc"; });
 
   var KEY_DATES = [
-    { date: "2026-10-23", label: "Tampa Bay Super Cup page goes live", store: "sdc", people: SDC },
-    { date: "2026-10-26", label: "First 3 team pop-up stores in QA", store: "sdc", people: TEAM },
-    { date: "2026-11-02", label: "WorldSoccerShop Holiday Kickoff", store: "wss", people: WSS, big: true },
-    { date: "2026-11-02", label: "All 47 team pop-up stores and Email 1 go live", store: "sdc", people: TEAM, big: true },
-    { date: "2026-11-05", label: "Match Day flier", people: ["rickey"] },
-    { date: "2026-11-06", label: "Invite creative", people: ["rickey"] },
-    { date: "2026-12-16", label: "Last day for ground shipping", store: "sdc", people: SDC },
-    { date: "2026-12-21", label: "Last day for 2-day shipping", store: "sdc", people: SDC }
+    { date: "2026-10-23", label: "Tampa Bay Super Cup page goes live", store: "team", people: TEAM, clickupUrl: "https://app.clickup.com/t/868mjpbrg" },
+    { date: "2026-10-26", label: "First 3 team pop-up stores in QA (Beach FC, HTX, Phoenix)", store: "team", people: TEAM, clickupUrl: "https://app.clickup.com/t/868mjpbrg" },
+    { date: "2026-11-02", label: "WorldSoccerShop Holiday Kickoff", store: "wss", people: WSS, big: true, clickupUrl: "https://app.clickup.com/t/868mcnzzr" },
+    { date: "2026-11-02", label: "All 47 team pop-up stores and GIFT25 Email 1 go live", store: "team", people: TEAM, big: true, clickupUrl: "https://app.clickup.com/t/868mjpbrg" },
+    { date: "2026-11-03", label: "WorldSoccerShop Holiday 2026 shoot (Shootify)", store: "wss", people: WSS, clickupUrl: "https://app.clickup.com/t/868mh25ju" },
+    { date: "2026-11-05", label: "Match Day flier", store: "team", people: ["rickey", "sacha", "jordan"], clickupUrl: "https://app.clickup.com/t/868k0exnj" },
+    { date: "2026-11-06", label: "Invite creative", store: "team", people: ["rickey", "sacha", "jordan"], clickupUrl: "https://app.clickup.com/t/868k0exnj" },
+    { date: "2026-12-16", label: "Last day for ground shipping", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { date: "2026-12-21", label: "Last day for 2-day shipping", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" }
   ];
 
   var PROMOS = [
-    { promo: "eoss", date: "2026-10-22", until: "2026-10-27", label: "Big End of Season Sale (non-MAP items)", store: "sdc", people: SDC },
-    { promo: "cleats", date: "2026-10-28", until: "2026-10-29", label: "4x On Cleats", store: "sdc", people: SDC },
-    { promo: "early", date: "2026-10-30", until: "2026-11-09", label: "Early Holiday Promo: 25% to 50% sitewide, 40% Fan Wear", store: "sdc", people: SDC, big: true },
-    { promo: "nn", date: "2026-10-30", until: "2026-11-09", label: "Free Player Name and Number (700+ jerseys)", store: "sdc", people: SDC },
-    { promo: "puma", date: "2026-11-10", until: "2026-11-16", label: "PUMA Ball GWP and Pre-Game Holiday Sale", store: "sdc", people: SDC },
-    { promo: "earlybf", date: "2026-11-17", until: "2026-11-23", label: "Early Black Friday Deals", store: "sdc", people: SDC },
-    { promo: "bf", date: "2026-11-24", label: "Black Friday starts: 25% to 60% off, adidas Cleat Bag GWP, adidas Free Name and Number", store: "sdc", people: SDC, big: true },
-    { promo: "cyber", date: "2026-11-30", until: "2026-12-01", label: "Cyber Monday: 30% sitewide", store: "sdc", people: SDC, big: true },
-    { promo: "cyberweek", date: "2026-12-02", until: "2026-12-08", label: "Cyber Week", store: "sdc", people: SDC },
-    { promo: "lastcall", date: "2026-12-09", until: "2026-12-21", label: "25% to 60% off and a free gift over $250", store: "sdc", people: SDC },
-    { promo: "giftcard", date: "2026-12-22", until: "2027-01-04", label: "Gift Card Promo and 27% off orders of $100+", store: "sdc", people: SDC },
-    { promo: "eoss", date: "2026-10-23", label: "WorldSoccerShop End of Season Sale", store: "wss", people: WSS },
-    { promo: "singles", date: "2026-11-09", until: "2026-11-18", label: "Singles Day and Kitbag Deals", store: "wss", people: WSS, big: true }
+    { promo: "eoss", date: "2026-10-22", until: "2026-10-27", label: "Big End of Season Sale (non-MAP items)", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "cleats", date: "2026-10-28", until: "2026-10-29", label: "4x On Cleats", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "early", date: "2026-10-30", until: "2026-11-09", label: "Early Holiday Promo: 25% to 50% sitewide, 40% Fan Wear", store: "sdc", people: SDC, big: true, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "nn", date: "2026-10-30", until: "2026-11-09", label: "Free Player Name and Number (700+ jerseys)", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw1a" },
+    { promo: "puma", date: "2026-11-10", until: "2026-11-16", label: "PUMA Ball GWP and Pre-Game Holiday Sale", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "earlybf", date: "2026-11-17", until: "2026-11-23", label: "Early Black Friday Deals", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "bf", date: "2026-11-24", label: "Black Friday starts: 25% to 60% off, adidas Cleat Bag GWP, adidas Free Name and Number", store: "sdc", people: SDC, big: true, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "cyber", date: "2026-11-30", until: "2026-12-01", label: "Cyber Monday: 30% sitewide", store: "sdc", people: SDC, big: true, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "cyberweek", date: "2026-12-02", until: "2026-12-08", label: "Cyber Week", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "lastcall", date: "2026-12-09", until: "2026-12-21", label: "25% to 60% off and a free gift over $250", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "giftcard", date: "2026-12-22", until: "2027-01-04", label: "Gift Card Promo and 27% off orders of $100+", store: "sdc", people: SDC, clickupUrl: "https://app.clickup.com/t/868mdkw02" },
+    { promo: "eoss", date: "2026-10-23", until: "2026-10-27", label: "WorldSoccerShop End of Season Sale", store: "wss", people: WSS, clickupUrl: "https://app.clickup.com/9011460926/v/li/901113266761" },
+    { promo: "early", date: "2026-10-26", until: "2026-11-09", label: "WorldSoccerShop Early Holiday: 25% Off Sitewide", store: "wss", people: WSS, big: true, clickupUrl: "https://app.clickup.com/t/868mcnzzr" },
+    { promo: "singles", date: "2026-11-09", until: "2026-11-18", label: "Singles Day and Kitbag Deals", store: "wss", people: WSS, big: true, clickupUrl: "https://app.clickup.com/t/868mcnzzr" },
+    { promo: "earlybf", date: "2026-11-13", until: "2026-11-23", label: "WorldSoccerShop Extra 25% Off Sale", store: "wss", people: WSS, clickupUrl: "https://app.clickup.com/t/868mcnzzr" },
+    { promo: "bf", date: "2026-11-24", until: "2026-11-29", label: "WorldSoccerShop Black Friday Sale", store: "wss", people: WSS, big: true, clickupUrl: "https://app.clickup.com/t/868mcpbck" },
+    { promo: "cyber", date: "2026-11-30", until: "2026-12-01", label: "WorldSoccerShop Cyber Monday Sale", store: "wss", people: WSS, big: true, clickupUrl: "https://app.clickup.com/t/868mcpbea" },
+    { promo: "cyberweek", date: "2026-12-02", until: "2026-12-07", label: "WorldSoccerShop Cyber Week", store: "wss", people: WSS, clickupUrl: "https://app.clickup.com/t/868mcpbea" },
+    { promo: "teamfanwear", date: "2026-10-30", until: "2026-11-06", label: "Team Holiday Pop-Ups: 40% Off Club Fanwear Kickoff Email", store: "team", people: TEAM, big: true, clickupUrl: "https://app.clickup.com/t/868mjpbrg" },
+    { promo: "teampopup", date: "2026-11-02", until: "2026-12-15", label: "Team Holiday Pop-Up Stores (50 clubs): 25% Off Top Gifts", store: "team", people: TEAM, big: true, clickupUrl: "https://app.clickup.com/t/868mjpbrg" }
   ];
-  var PROMO_NAMES = { eoss: "End of Season Sale", cleats: "4x On Cleats", early: "Early Holiday Promo", nn: "Free Player Name and Number", puma: "PUMA Ball GWP and Pre-Game", earlybf: "Early Black Friday", bf: "Black Friday", cyber: "Cyber Monday", cyberweek: "Cyber Week", lastcall: "25% to 60% off and free gift", giftcard: "Gift Card Promo", singles: "Singles Day and Kitbag" };
+  var PROMO_NAMES = { eoss: "End of Season Sale", cleats: "4x On Cleats", early: "Early Holiday Promo", nn: "Free Player Name and Number", puma: "PUMA Ball GWP and Pre-Game", earlybf: "Early Black Friday / Extra 25% Off", bf: "Black Friday", cyber: "Cyber Monday", cyberweek: "Cyber Week", lastcall: "25% to 60% off and free gift", giftcard: "Gift Card Promo", singles: "Singles Day and Kitbag", teamfanwear: "Team 40% Off Club Fanwear", teampopup: "Team Holiday Pop-Up Stores (50 clubs)" };
 
   var QA = [
-    { ticket: "WEB-16706", store: "sdc", status: "Fixed", text: "Tampa Bay Super Cup V2: all 8 of Courtney's QA items fixed by Sacha and checked live on desktop and iPhone Safari." },
-    { ticket: "WEB-16778", store: "sdc", status: "In progress", text: "iPad menu swipe hint: the Tampa menu already wraps on iPad. The pop-up store menu now has arrows and fades, and the 3 pilot stores get it on their next rebuild." },
-    { ticket: "Sprint 151", store: "sdc", status: "Ready for QA", text: "3 pilot team holiday pop-up stores staged, with clickable product links and the 48-store Airtable table." }
+    { ticket: "WEB-16706", store: "team", status: "Fixed", text: "Tampa Bay Super Cup V2: all 8 of Courtney's QA items fixed by Sacha and checked live on desktop and iPhone Safari." },
+    { ticket: "WEB-16778", store: "team", status: "In progress", text: "iPad menu swipe hint: the Tampa menu already wraps on iPad. The pop-up store menu now has arrows and fades, and the 3 pilot stores get it on their next rebuild." },
+    { ticket: "Sprint 151", store: "team", status: "Ready for QA", text: "3 pilot team holiday pop-up stores staged, with clickable product links and the 48-store Airtable table." }
   ];
 
   var LINKS = [
     { group: "Figma", items: [
       { label: "Holiday Master File (Whitney's)", url: FIGMA_HOLIDAY_MASTER, store: "sdc", people: SDC },
-      { label: "Team pop-up emails", url: FIGMA_TEAM_POPUP, store: "sdc", people: TEAM },
+      { label: "Team pop-up emails", url: FIGMA_TEAM_POPUP, store: "team", people: TEAM },
       { label: "Cabana 8", url: FIGMA_CABANA }
     ] },
     { group: "ClickUp", items: [
       { label: "Live team view", url: CLICKUP_TEAM_VIEW },
+      { label: "Promotions list (all promos)", url: "https://app.clickup.com/9011460926/v/li/901113266761" },
       { label: "Designer context doc", url: CLICKUP_CONTEXT_DOC },
       { label: "Courtney's QA view", url: "https://sharing.clickup.com/9011460926/l/h/8chzyty-52231/8a5e335fbd0dc45" }
     ] },
@@ -862,15 +898,16 @@
       { label: "Superside Holiday hub", url: SUPERSIDE_HUB, store: "sdc", people: SDC },
       { label: "235 holiday photo selects", url: PHOTO_SELECTS, store: "sdc", people: SDC },
       { label: "Holiday photos in Box", url: PHOTO_BOX, store: "sdc", people: SDC },
-      { label: "Pop-up package hub", url: PREVIEW_POPUP_HUB, store: "sdc", people: TEAM },
-      { label: "Holiday Pop-Up Stores: where we are, 26 Oct", url: "../holiday-popup-package/09-Holiday-Pop-Up-Stores-Where-We-Are--2026-10-26.html", store: "sdc", people: TEAM },
-      { label: "3 pilot stores", url: "https://ncfc-holiday-demo.netlify.app/pilots/", store: "sdc", people: TEAM },
-      { label: "NCFC demo store", url: "https://ncfc-holiday-demo.netlify.app/", store: "sdc", people: TEAM },
+      { label: "Team Pop-Up All-in-One Hub (Item 10)", url: "../holiday-popup-package/10-Holiday-Pop-Up-Stores-All-In-One-Hub--2026-10-26.html", store: "team", people: TEAM },
+      { label: "Pop-up package hub", url: PREVIEW_POPUP_HUB, store: "team", people: TEAM },
+      { label: "Holiday Pop-Up Stores: where we are, 26 Oct", url: "../holiday-popup-package/09-Holiday-Pop-Up-Stores-Where-We-Are--2026-10-26.html", store: "team", people: TEAM },
+      { label: "3 pilot stores", url: "https://ncfc-holiday-demo.netlify.app/pilots/", store: "team", people: TEAM },
+      { label: "NCFC demo store", url: "https://ncfc-holiday-demo.netlify.app/", store: "team", people: TEAM },
       { label: "Ready-to-Ship player jerseys", url: WSS_READY_TO_SHIP, store: "wss", people: WSS },
       { label: "WorldSoccerShop Holiday shoot looks", url: "https://wss-shoots.netlify.app/holiday-2026/looks.html", store: "wss", people: WSS }
     ] },
     { group: "Tools", items: [
-      { label: "The Tunnel", url: "https://the-tunnel.netlify.app/v2" },
+      { label: "The Tunnel", url: "https://the-tunnel.netlify.app/" },
       { label: "Code library", url: "../index.html" },
       { label: "Photo sizer", url: "../photo-sizer/index.html" },
       { label: "Fastr workspace", url: "https://sportsendeavors.fastrworkspace.com/optimize/cms/" }
@@ -954,7 +991,7 @@
     openCardId: null,
     updatesOpen: false,
     riskAll: false,
-    store: "both",
+    store: ["both", "sdc", "wss", "team"].indexOf((params.get("store") || "").toLowerCase()) !== -1 ? (params.get("store") || "").toLowerCase() : "both",
     month: new Date(TODAY.getFullYear(), TODAY.getMonth(), 1),
     doneMap: {},
     noteMap: {},
@@ -1008,13 +1045,19 @@
 
   function me() { return PEOPLE[state.person] || PEOPLE.sacha; }
 
+  function allowedStores(person) {
+    if (ALL_STORES_PEOPLE.indexOf(person) !== -1) return ["both", "sdc", "wss", "team"];
+    if (SDC_TEAM_PEOPLE.indexOf(person) !== -1) return ["both", "sdc", "team"];
+    if (WSS.indexOf(person) !== -1) return ["wss"];
+    return ["sdc"];
+  }
+
   function storeNow() {
-    return CROSS_STORE.indexOf(state.person) !== -1 ? state.store : "both";
+    return viewerScope();
   }
 
   function inStore(item) {
-    var s = storeNow();
-    return s === "both" || !item.store || item.store === "both" || item.store === s;
+    return fitsScope(item.store);
   }
 
   function myTasks() {
@@ -1025,7 +1068,10 @@
 
   function fitsScope(store) {
     var scope = viewerScope();
-    return scope === "both" || !store || store === "both" || store === scope;
+    var allowed = allowedStores(state.person);
+    if (!store || store === "both") return true;
+    if (scope === "both") return allowed.indexOf(store) !== -1;
+    return store === scope;
   }
 
   function teamTasks() {
@@ -1278,19 +1324,20 @@
   function eventsFor(tasks) {
     var out = [];
     KEY_DATES.forEach(function (k) {
-      if (!sees(k.people, state.person) || !inStore(k)) return;
-      out.push({ date: k.date, until: k.until, label: k.label, kind: "date", store: k.store });
+      if (!inStore(k)) return;
+      out.push({ date: k.date, until: k.until, label: k.label, kind: "date", store: k.store, url: k.clickupUrl || k.previewUrl });
     });
     PROMOS.forEach(function (k) {
-      if (!sees(k.people, state.person) || !inStore(k)) return;
-      out.push({ date: k.date, until: k.until, label: k.label, kind: "p-" + k.promo, promo: k.promo, store: k.store });
+      if (!inStore(k)) return;
+      out.push({ date: k.date, until: k.until, label: k.label, kind: "p-" + k.promo, promo: k.promo, store: k.store, url: k.clickupUrl || k.previewUrl });
     });
     tasks.forEach(function (t) {
       if (t.promo) return;
-      if (t.launch) out.push({ date: t.launch, until: t.until, label: t.text, kind: "launch", store: t.store });
+      var url = t.clickupUrl || t.previewUrl || t.figmaUrl;
+      if (t.launch) out.push({ date: t.launch, until: t.until, label: t.text, kind: "launch", store: t.store, url: url });
       else if (t.due) {
         var r = riskOf(t);
-        out.push({ date: t.due, label: t.text, kind: isDone(t) ? "done" : (r && r.level === "late" ? "late" : "due"), store: t.store });
+        out.push({ date: t.due, label: t.text, kind: isDone(t) ? "done" : (r && r.level === "late" ? "late" : "due"), store: t.store, url: url });
       }
     });
     return out;
@@ -1302,15 +1349,17 @@
   }
 
   function renderCalendar() {
-    var events = eventsFor(myTasks());
-    var tagStores = CROSS_STORE.indexOf(state.person) !== -1 && state.store === "both";
+    var events = eventsFor(teamTasks());
+    var tagStores = viewerScope() === "both";
+    var storeBadge = { sdc: "SDC", wss: "WSS", team: "TEAM" };
+    var storeFull = { sdc: "Soccer.com", wss: "WorldSoccerShop", team: "Team Sales" };
     var storeTag = function (e) {
-      if (!tagStores || (e.store !== "sdc" && e.store !== "wss")) return "";
-      return '<span class="hh-ev__store">' + (e.store === "sdc" ? "SDC" : "WSS") + '</span>';
+      if (!tagStores || !storeBadge[e.store]) return "";
+      return '<span class="hh-ev__store">' + storeBadge[e.store] + '</span>';
     };
     var storeWord = function (e) {
-      if (!tagStores || (e.store !== "sdc" && e.store !== "wss")) return e.label;
-      return e.label + (e.store === "sdc" ? " (Soccer.com)" : " (WorldSoccerShop)");
+      if (!tagStores || !storeFull[e.store]) return e.label;
+      return e.label + " (" + storeFull[e.store] + ")";
     };
     var m = state.month;
     $("hhMonth").textContent = MONTHS_LONG[m.getMonth()] + " " + m.getFullYear();
@@ -1329,9 +1378,12 @@
       var cls = "hh-cal__day" + (d.getMonth() !== m.getMonth() ? " is-out" : "") + (iso === todayIso ? " is-today" : "") + (evs.length ? " has-events" : "");
       var label = DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS_LONG[d.getMonth()] + (evs.length ? ": " + evs.map(storeWord).join("; ") : "");
       cells.push('<div class="' + cls + '" role="listitem" aria-label="' + esc(label) + '"><span class="hh-cal__num" aria-hidden="true">' + d.getDate() + '</span>' +
-        '<span class="hh-cal__events" aria-hidden="true">' + evs.slice(0, 3).map(function (e) {
+        '<span class="hh-cal__events">' + evs.slice(0, 5).map(function (e) {
+          if (e.url) {
+            return '<a class="hh-ev hh-ev--' + e.kind + '" href="' + esc(e.url) + '" target="_blank" rel="noopener" data-new-window="1" title="Open in ClickUp: ' + esc(e.label) + '">' + storeTag(e) + esc(e.label) + '</a>';
+          }
           return '<span class="hh-ev hh-ev--' + e.kind + '">' + storeTag(e) + esc(e.label) + '</span>';
-        }).join("") + (evs.length > 3 ? '<span class="hh-ev hh-ev--more">' + (evs.length - 3) + ' more</span>' : "") + '</span></div>');
+        }).join("") + (evs.length > 5 ? '<span class="hh-ev hh-ev--more">' + (evs.length - 5) + ' more</span>' : "") + '</span></div>');
     }
     $("hhCalGrid").innerHTML = cells.join("");
 
@@ -1350,7 +1402,6 @@
   }
 
   function renderSoon() {
-    var storeName = { sdc: "Soccer.com", wss: "WorldSoccerShop" };
     var both = viewerScope() === "both";
     var soon = eventsFor(teamTasks()).filter(function (e) {
       var n = daysFromToday(e.date), end = e.until ? daysFromToday(e.until) : n;
@@ -1362,8 +1413,9 @@
       soon.map(function (e) {
         var running = e.until && daysFromToday(e.date) < 0;
         var when = running ? "Until " + shortDate(e.until) : shortDate(e.date);
-        return '<tr><td><span class="hh-team__when">' + esc(when) + '</span></td><td>' + esc(e.label) + '</td>' +
-          (both ? '<td>' + (e.store === "sdc" ? chip("blue", "Soccer.com") : e.store === "wss" ? chip("green", "WorldSoccerShop") : "") + '</td>' : "") + '</tr>';
+        var what = e.url ? '<a class="hh-tasklink" href="' + esc(e.url) + '" target="_blank" rel="noopener" data-new-window="1">' + esc(e.label) + '<span class="hh-visually-hidden"> (opens in a new window)</span></a>' : esc(e.label);
+        return '<tr><td><span class="hh-team__when">' + esc(when) + '</span></td><td>' + what + '</td>' +
+          (both ? '<td>' + (e.store === "sdc" ? chip("blue", "Soccer.com") : e.store === "wss" ? chip("green", "WorldSoccerShop") : e.store === "team" ? chip("purple", "Team Sales") : "") + '</td>' : "") + '</tr>';
       }).join("") + '</tbody></table></div>';
   }
 
@@ -1464,11 +1516,11 @@
 
   function buildPrompt() {
     var p = me(), scope = viewerScope(), out = [];
-    var storeName = { sdc: "Soccer.com", wss: "WorldSoccerShop" };
+    var storeName = { sdc: "Soccer.com", wss: "WorldSoccerShop", team: "Team Sales" };
     out.push(p.prompt, "");
     out.push("Today is " + shortDate(isoOf(TODAY)) + " " + TODAY.getFullYear() + ".");
     if (scope === "both") out.push("Store rule: Soccer.com and WorldSoccerShop never mix. Keep every piece of work to one store. Never use one store's photos, products, promos or copy for the other.");
-    else out.push("Store rule: you work on " + storeName[scope] + " only. Never use " + storeName[scope === "sdc" ? "wss" : "sdc"] + " photos, products, promos or copy.");
+    else out.push("Store rule: you work on " + storeName[scope] + " only. Never mix Soccer.com and WorldSoccerShop photos, products, promos or copy.");
     out.push("Promo codes are not shared here. Check the ClickUp task for the real code before you export anything.", "");
 
     out.push("Latest update (" + p.updateTime + "):");
@@ -1523,13 +1575,17 @@
   }
 
   function viewerScope() {
-    if (CROSS_STORE.indexOf(state.person) !== -1) return state.store;
-    return WSS.indexOf(state.person) !== -1 && SDC.indexOf(state.person) === -1 ? "wss" : "sdc";
+    var allowed = allowedStores(state.person);
+    if (allowed.length === 1) return allowed[0];
+    return allowed.indexOf(state.store) !== -1 ? state.store : "both";
   }
 
   function homeStore(k) {
-    var s = SDC.indexOf(k) !== -1, w = WSS.indexOf(k) !== -1;
-    return s && w ? "both" : (w ? "wss" : "sdc");
+    var allowed = allowedStores(k);
+    if (allowed.indexOf("wss") !== -1 && allowed.indexOf("sdc") !== -1) return "both";
+    if (allowed.indexOf("wss") !== -1) return "wss";
+    if (k === "darren") return "team";
+    return "sdc";
   }
 
   function openTeamRows() {
@@ -1543,10 +1599,14 @@
     var scope = viewerScope();
     var members = Object.keys(PEOPLE).filter(function (k) {
       if (k === "sacha") return false;
-      var h = homeStore(k);
-      return scope === "both" || h === "both" || h === scope;
+      var memberStores = allowedStores(k);
+      if (scope === "both") {
+        var myStores = allowedStores(state.person);
+        return memberStores.some(function (s) { return s !== "both" && myStores.indexOf(s) !== -1; });
+      }
+      return memberStores.indexOf(scope) !== -1;
     });
-    var storeChip = { sdc: chip("blue", "Soccer.com"), wss: chip("green", "WorldSoccerShop"), both: chip("purple", "Both stores") };
+    var storeChip = { sdc: chip("blue", "Soccer.com"), wss: chip("green", "WorldSoccerShop"), team: chip("purple", "Team Sales"), both: chip("purple", "All stores") };
     var QA_COLOUR = { "Fixed": "green", "In progress": "orange", "Ready for QA": "blue" };
     $("hhTeam").innerHTML = members.map(function (k) {
       var p = PEOPLE[k], h = homeStore(k);
@@ -1744,21 +1804,23 @@
 
   function renderStore() {
     var box = $("hhStore");
-    var show = CROSS_STORE.indexOf(state.person) !== -1;
+    var allowed = allowedStores(state.person);
+    var show = allowed.length > 1;
     box.hidden = !show;
     if (!show) return;
-    box.innerHTML = STORES.map(function (s) {
-      return '<button type="button" data-store="' + s.key + '" aria-pressed="' + (s.key === state.store) + '">' + esc(s.label) + '</button>';
+    var active = viewerScope();
+    box.innerHTML = STORES.filter(function (s) { return allowed.indexOf(s.key) !== -1; }).map(function (s) {
+      return '<button type="button" data-store="' + s.key + '" aria-pressed="' + (s.key === active) + '">' + esc(s.label) + '</button>';
     }).join("");
   }
 
   var VIEWS = {
     overview: { drawer: [["sec-risk", "What's at risk"], ["sec-soon", "Next 2 weeks"], ["sec-numbers", "Team numbers"]] },
-    "my-day": { drawer: [["sec-note", "Your latest note"], ["sec-tasks", "Your tasks"], ["sec-prompt", "Starter prompt"], ["sec-update", "Send an update"], ["sec-reference", "Jerseys and codes"]] },
     calendar: { drawer: [["sec-month", "Month view"], ["hhCalKey", "Colour key"]] },
+    "my-day": { drawer: [["sec-note", "Your latest note"], ["sec-tasks", "Your tasks"], ["sec-prompt", "Starter prompt"], ["sec-update", "Send an update"], ["sec-reference", "Jerseys and codes"]] },
     team: { drawer: null }
   };
-  var VIEW_NAME = { overview: "Holiday 2026", "my-day": "My Day", calendar: "Calendar", team: "Team" };
+  var VIEW_NAME = { overview: "Holiday 2026", calendar: "Calendar", "my-day": "My Day", team: "Team" };
 
   function currentView() {
     var h = location.hash.slice(1);
@@ -1773,8 +1835,8 @@
     var p = me(), v = state.view;
     var head = {
       overview: ["Holiday 2026 Hub", "Hello, " + p.name + ". Here's where the whole design team stands today."],
+      calendar: ["Calendar", "Promos, key dates and due dates, month by month. Click any item to open it in ClickUp."],
       "my-day": ["Hello, " + p.name + ".", "Everything that's yours: your tasks, your latest note and your starter prompt."],
-      calendar: ["Calendar", "Promos, key dates and your due dates, month by month."],
       team: ["Team", "What everyone has on their plate. Open a name to see their tasks."]
     }[v];
     $("hhViewTitle").textContent = head[0];
