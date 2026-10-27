@@ -301,3 +301,14 @@ body[data-hub="tunnel"] .nm-search__field svg { color: var(--tn-blue); }
   .tn-tools-table td:nth-child(3) { grid-row: 3; }
   .tn-tools-table td.tn-tools-table__go { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
 }
+
+/* Campaign chips and 360 spins */
+.tn-chip--leave { border-style: dashed; }
+.tn-card--spin .tn-card__media { aspect-ratio: 4 / 5; padding: 0; border: 0; }
+.tn-card__play { position: absolute; z-index: 2; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(17, 16, 16, 0.72); color: var(--nm-white); transition: transform .45s cubic-bezier(.625, .05, 0, 1); }
+.tn-card__play svg { width: 26px; height: 26px; margin-left: 3px; }
+.tn-card--spin .tn-card__media:hover .tn-card__play { transform: scale(1.08); }
+.tn-viewer__video { border: 0; background: var(--nm-black); }
+.tn-viewer__playbtn { position: absolute; left: 50%; bottom: 24px; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px 10px 14px; border: 0; border-radius: var(--nm-radius-pill); background: var(--nm-white); color: #151515; font: 500 14px/20px var(--nm-sans); transform: translateX(-50%); cursor: pointer; }
+.tn-viewer__playbtn svg { width: 20px; height: 20px; }
+@media (prefers-reduced-motion: reduce) { .tn-card__play { transition: none; } }

@@ -84,7 +84,7 @@
     { tab: "sizes", name: "Photo Sizer", what: "Sizes one photo for a site block.", url: "../photo-sizer/index.html" },
     { tab: "graphics", name: "Soccer.com graphics", what: "Builds Soccer.com matchup banners.", url: TOOLS_SITE + "soccer-com-graphics.html" },
     { tab: "graphics", name: "WorldSoccerShop graphics", what: "Builds WorldSoccerShop matchup cards.", url: TOOLS_SITE + "worldsoccershop-graphics.html" },
-    { tab: "find", name: "Find by SKU list", what: "Paste article numbers and see every shoot that has them.", url: TOOLS_SITE + "index.html#skus" },
+    { tab: "find", name: "Find by SKU list", what: "Paste article numbers and see every shoot that has them.", url: TOOLS_SITE + "v1/index.html#skus" },
     { tab: "find", name: "Logo search", what: "Club, federation and brand logos.", url: TOOLS_SITE + "logos.html" },
     { tab: "help", name: "Team guide", what: "How each team uses the Tunnel, step by step.", url: TOOLS_SITE + "v2/team-guide.html" },
     { tab: "help", name: "Aspect ratios and image specs", what: "The size rules, in Box.", url: "https://sportsendeavors.app.box.com/folder/326752475361" },
@@ -321,6 +321,43 @@
     }).join("");
   }
 
+  function vimeoEmbed(url) {
+    var m = /vimeo\.com\/(?:video\/)?(\d+)(?:\/([0-9a-f]+))?/.exec(url || "");
+    if (!m) return "";
+    return "https://player.vimeo.com/video/" + m[1] + "?autoplay=1&loop=1&title=0&byline=0&portrait=0" + (m[2] ? "&h=" + m[2] : "");
+  }
+  function spinTitle(f) { return String(f.ds || f.f || "360 spin").split(". (")[0].replace(/\.$/, ""); }
+
+  function renderSpins(rows, s3) {
+    note.textContent = "Loading 360 spins...";
+    brandGrid.innerHTML = "";
+    var want = currentFilter.q;
+    Promise.all(rows.map(function (r) {
+      return loadJSON("files/campaign-soccer-com/" + r.sl + ".json").then(function (d) {
+        return d && d.files ? d.files.map(function (f, i) { return { f: f, i: i, sl: r.sl, base: d.s3 || s3 }; }) : [];
+      });
+    })).then(function (lists) {
+      if (currentFilter.sub !== "spins" || currentFilter.q !== want) return;
+      var spins = [].concat.apply([], lists).filter(function (x) { return x.f.vimeo; });
+      note.textContent = "Showing " + num(spins.length) + " " + CAMPAIGN + " 360 spins. Each one plays in the viewer.";
+      brandGrid.innerHTML = spins.map(function (x) {
+        var t = spinTitle(x.f), poster = fileUrl(x.f, x.base);
+        return '<article class="tn-card tn-card--spin">' +
+          '<button type="button" class="tn-card__media" data-spin-play="' + esc(x.sl) + '" data-spin-i="' + x.i + '" aria-label="Play ' + esc(t) + '">' +
+            '<img src="' + esc(poster) + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' +
+            '<span class="tn-card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>' +
+            '<span class="tn-card__store tn-card__store--sdc">360 spin</span>' +
+          "</button>" +
+          '<div class="tn-card__body">' +
+            '<p class="tn-card__meta"><span>' + esc(x.f.r || "9:16") + "</span><span>Vimeo</span></p>" +
+            '<h3 class="tn-card__title">' + esc(t) + "</h3>" +
+            '<div class="tn-card__actions"><button type="button" class="tn-btn" data-spin-play="' + esc(x.sl) + '" data-spin-i="' + x.i + '">Play spin</button>' +
+            '<a class="tn-btn tn-btn--outline" href="' + esc(x.f.vimeo) + '" target="_blank" rel="noopener">Open in Vimeo &#8599;</a></div>' +
+          "</div></article>";
+      }).join("") || '<p class="tn-empty">No 360 spins match that search.</p>';
+    });
+  }
+
   function renderBrandResults(key, bundle) {
     var b = BRANDS[key];
     var main = bundle.main;
@@ -345,7 +382,25 @@
 
     var holRows = campaignRows(campRows, "holiday");
 
-    // Quick chips bar
+    // Quick chips bar. Inside a campaign every chip stays inside that campaign.
+    if (currentFilter.type === "campaign") {
+      var scoped = campaignRows(campRows, currentFilter.val);
+      var name = currentFilter.val === "other" ? "Other campaigns" : CAMPAIGN;
+      var spinRows = scoped.filter(function (r) { return r.vid; });
+      var catCount = {};
+      scoped.forEach(function (r) { (r.cats || []).forEach(function (c) { catCount[c] = (catCount[c] || 0) + 1; }); });
+      var subDefs = [{ label: "All " + name + " (" + num(scoped.length) + ")", sub: "" }];
+      if (spinRows.length) {
+        subDefs.push({ label: "Photos (" + num(scoped.length - spinRows.length) + ")", sub: "photos" });
+        subDefs.push({ label: "360 spins and video (" + num(spinRows.reduce(function (n, r) { return n + Number(r.c || 0); }, 0)) + ")", sub: "spins" });
+      }
+      Object.keys(catCount).sort(function (a, c) { return catCount[c] - catCount[a]; }).forEach(function (c) {
+        subDefs.push({ label: c + " (" + num(catCount[c]) + ")", sub: "cat:" + c });
+      });
+      quickChips.innerHTML = subDefs.map(function (cd) {
+        return '<button type="button" class="tn-chip" data-fsub="' + esc(cd.sub) + '" aria-pressed="' + ((currentFilter.sub || "") === cd.sub) + '">' + esc(cd.label) + "</button>";
+      }).join("") + '<button type="button" class="tn-chip tn-chip--leave" data-ftype="all" data-fval="" data-flabel="All Shoots">Leave ' + esc(name) + "</button>";
+    } else {
     var chipDefs = [{ label: "All Shoots (" + num(allRows.length) + ")", type: "all", val: "" }];
     (main.cats || []).slice(0, 5).forEach(function (c) {
       chipDefs.push({ label: c.k + " (" + num(c.n) + ")", type: "cat", val: c.k });
@@ -360,6 +415,7 @@
       var on = currentFilter.type === cd.type && currentFilter.val === cd.val;
       return '<button type="button" class="tn-chip" data-ftype="' + esc(cd.type) + '" data-fval="' + esc(cd.val) + '" data-flabel="' + esc(cd.label.replace(/\s*\([^)]*\)$/, "")) + '" aria-pressed="' + (on ? "true" : "false") + '">' + esc(cd.label) + "</button>";
     }).join("");
+    }
 
     function matchQuery(r) {
       if (!words.length) return true;
@@ -382,7 +438,14 @@
     }
 
     if (currentFilter.type === "campaign") {
-      var cHits = campaignRows(campRows, currentFilter.val).filter(matchQuery);
+      var sub = currentFilter.sub || "";
+      var cHits = campaignRows(campRows, currentFilter.val).filter(matchQuery).filter(function (r) {
+        if (sub === "photos") return !r.vid;
+        if (sub === "spins") return r.vid;
+        if (sub.indexOf("cat:") === 0) return (r.cats || []).indexOf(sub.slice(4)) >= 0;
+        return true;
+      });
+      if (sub === "spins") { renderSpins(cHits, camp.s3); return; }
       var cAssets = cHits.reduce(function (n, r) { return n + Number(r.c || 0); }, 0);
       note.textContent = "Showing " + num(cHits.length) + (currentFilter.val === "other" ? " other campaign shoot" : " " + CAMPAIGN + " shoot") + (cHits.length === 1 ? "" : "s") + " (" + num(cAssets) + " assets).";
       brandGrid.innerHTML = cHits.map(function (r) { return renderShootCard(r, camp.s3, "campaign-soccer-com"); }).join("") || '<p class="tn-empty">No matching campaign shoots found.</p>';
@@ -733,6 +796,38 @@
     img.style.top = box.y + "px";
   }
 
+  function playSpin() {
+    var f = SD && SD.files[V.idx];
+    var src = f && vimeoEmbed(f.vimeo);
+    if (!src || !V.open) return;
+    var box = fitBox(V.dims || { w: 9, h: 16 });
+    var fr = document.createElement("iframe");
+    fr.className = "tn-viewer__img tn-viewer__video";
+    fr.src = src;
+    fr.title = spinTitle(f);
+    fr.allow = "autoplay; fullscreen; picture-in-picture";
+    fr.setAttribute("allowfullscreen", "");
+    place(fr, box);
+    if (V.img && V.img.parentNode) V.img.parentNode.removeChild(V.img);
+    var pb = vStage.querySelector(".tn-viewer__playbtn");
+    if (pb) pb.remove();
+    vStage.appendChild(fr);
+    V.img = fr;
+    announce("Playing the 360 spin.");
+  }
+  function addPlayButton(f) {
+    var old = vStage.querySelector(".tn-viewer__playbtn");
+    if (old) old.remove();
+    $("tn-v-spin").hidden = !f.vimeo;
+    if (!f.vimeo) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "tn-viewer__playbtn";
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span>Play 360 spin</span>';
+    b.addEventListener("click", playSpin);
+    vStage.appendChild(b);
+  }
+
   function makeStageImage(f) {
     if (!isImageFile(f)) {
       var empty = document.createElement("div");
@@ -867,7 +962,7 @@
   }
 
   function layoutCurrent() {
-    if (!V.img || V.img.tagName !== "IMG") return;
+    if (!V.img || (V.img.tagName !== "IMG" && V.img.tagName !== "IFRAME")) return;
     place(V.img, fitBox(V.dims));
   }
 
@@ -893,6 +988,8 @@
       V.dims = d;
       if (!f.w) paintPanel();
       if (el.tagName === "IMG") { place(el, fitBox(d)); el.style.visibility = ""; }
+      addPlayButton(f);
+      if (V.autoplay) { V.autoplay = false; if (f.vimeo) setTimeout(playSpin, 250); }
       var others = Array.prototype.filter.call(document.querySelectorAll("#tn-photos .tn-photo"), function (c) { return c.getAttribute("data-photo") !== String(i); });
       var done = function () { V.busy = false; $("tn-v-title").focus(); preloadNeighbours(); };
 
@@ -943,6 +1040,7 @@
     dims(f, cardImg(mine)).then(function (d) {
       if (V.idx !== mine) return;
       V.dims = d;
+      addPlayButton(f);
       if (!f.w) setTimeout(function () { if (V.idx === mine) paintPanel(); }, 160);
       if (el.tagName === "IMG") {
         place(el, fitBox(d));
@@ -955,7 +1053,7 @@
   function finishClose() {
     viewer.close();
     vStage.innerHTML = "";
-    V.img = null; V.open = false; V.busy = false;
+    V.img = null; V.open = false; V.busy = false; V.autoplay = false;
     [vBg, vBar, vPanel].forEach(function (n) { n.removeAttribute("style"); });
     viewer.removeAttribute("style");
     document.querySelectorAll("#tn-photos .tn-photo").forEach(function (c) { c.style.opacity = ""; c.style.visibility = ""; });
@@ -1044,6 +1142,7 @@
   $("tn-v-close").addEventListener("click", closeViewer);
   $("tn-v-dl").addEventListener("click", downloadPhoto);
   $("tn-v-pick").addEventListener("click", function () { togglePick(V.idx); });
+  $("tn-v-spin").addEventListener("click", playSpin);
   $("tn-v-copy").addEventListener("click", function () {
     var b = this, u = b.getAttribute("data-url");
     if (!u || !navigator.clipboard) return;
@@ -1092,6 +1191,18 @@
     var has = new URL(location.href).searchParams.get("photo");
     if (V.open && !has) { V.pushed = false; animateClose(); }
     else if (!V.open && has) openFromAddress();
+  });
+
+  document.addEventListener("click", function (e) {
+    var sp = e.target.closest("[data-spin-play]");
+    if (!sp) return;
+    var i = Number(sp.getAttribute("data-spin-i"));
+    openShootDialog("campaign-soccer-com", sp.getAttribute("data-spin-play")).then(function (ok) {
+      if (!ok) return;
+      ensureCard(i);
+      V.autoplay = true;
+      openViewer(i, { fly: false });
+    });
   });
 
   $("tn-sd-body").addEventListener("click", function (e) {
@@ -1212,6 +1323,7 @@
     }
     var s = e.target.closest("button.nm-drawer__sublink");
     if (s && currentKey) {
+      currentFilter.sub = "";
       currentFilter.type = s.getAttribute("data-ftype") || "all";
       currentFilter.val = s.getAttribute("data-fval") || "";
       currentFilter.label = s.getAttribute("data-flabel") || "";
@@ -1225,7 +1337,13 @@
 
   quickChips.addEventListener("click", function (e) {
     var c = e.target.closest(".tn-chip");
+    if (c && currentKey && c.hasAttribute("data-fsub")) {
+      currentFilter.sub = c.getAttribute("data-fsub");
+      loadBrandBundle(currentKey).then(function (bundle) { renderBrandResults(currentKey, bundle); });
+      return;
+    }
     if (c && currentKey) {
+      currentFilter.sub = "";
       currentFilter.type = c.getAttribute("data-ftype") || "all";
       currentFilter.val = c.getAttribute("data-fval") || "";
       currentFilter.label = c.getAttribute("data-flabel") || "";

@@ -227,13 +227,13 @@ a.nm-rail__item:hover { background: rgba(0, 0, 0, 0.04); }
 
 /* List */
 .nm-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.nm-list li { display: flex; align-items: flex-start; gap: 16px; padding-left: 10px; color: var(--nm-text); font: 400 18px/30px var(--nm-sans); }
-.nm-list li::before { content: "\00B7"; flex: none; width: 7px; color: var(--nm-accent, var(--nm-purple)); font: 700 24px/30px var(--nm-sans); letter-spacing: -0.16px; }
+.nm-list li { position: relative; display: block; padding-left: 33px; color: var(--nm-text); font: 400 18px/30px var(--nm-sans); }
+.nm-list li::before { content: "\00B7"; position: absolute; left: 10px; top: 0; width: 7px; color: var(--nm-accent, var(--nm-purple)); font: 700 24px/30px var(--nm-sans); letter-spacing: -0.16px; }
 
 /* Lists inside cards and table cells (writing rule, 26 Oct 2026) */
 .nm-card .nm-list--rule { display: flex; }
-.nm-list--compact li { gap: 12px; padding-left: 0; font-size: 16px; line-height: 24px; }
-.nm-list--compact li::before { line-height: 24px; }
+.nm-list--compact li { padding-left: 19px; font-size: 16px; line-height: 24px; }
+.nm-list--compact li::before { left: 0; line-height: 24px; }
 .nm-table .nm-list--compact li { font-size: 14px; line-height: 20px; }
 .nm-table .nm-list--compact li::before { font-size: 20px; line-height: 20px; }
 .nm-table tr:has(.nm-list) > td { vertical-align: top; }

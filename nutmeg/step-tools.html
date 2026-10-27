@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>03 - Tools & Links · Volley</title>
-<meta name="description" content="Your 12 daily tools, bookmarks, and Box folder paths.">
+<meta name="description" content="Your daily tools, bookmarks and Box folder paths, grouped by what you are doing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -37,37 +37,64 @@
 <div class="nm-title">
   <span class="nm-eyebrow" style="color:var(--nm-accent)">GETTING STARTED</span>
   <h1>03 - Tools & Links</h1>
-  <p class="nm-lede">Your 12 daily tools, bookmarks, and Box folder paths.</p>
+  <p class="nm-lede">Your daily tools, bookmarks and Box folder paths, grouped by what you are doing.</p>
   <hr class="nm-divider">
 </div>
-<section class="nm-section" id="before">
+<section class="nm-section" id="tools">
+<div class="nm-tabs" role="tablist" aria-label="Tool groups"><button type="button" class="nm-tab" role="tab" id="tab-build" aria-controls="panel-build" data-hash="build" aria-selected="true" tabindex="0">Build</button><button type="button" class="nm-tab" role="tab" id="tab-design" aria-controls="panel-design" data-hash="design" aria-selected="false" tabindex="-1">Design</button><button type="button" class="nm-tab" role="tab" id="tab-publish" aria-controls="panel-publish" data-hash="publish" aria-selected="false" tabindex="-1">Publish</button><button type="button" class="nm-tab" role="tab" id="tab-ai" aria-controls="panel-ai" data-hash="ai" aria-selected="false" tabindex="-1">AI helpers</button></div>
+<div class="nm-tabpanel" id="panel-build" role="tabpanel" aria-labelledby="tab-build">
+<p class="nm-prose">Make the block and check it.</p>
 <div class="nm-table-wrap"><table class="nm-table">
 <thead><tr><th>Tool</th><th>What you use it for</th><th>Link</th></tr></thead>
 <tbody>
 <tr><td>All blocks (Code Library)</td><td>Preview verified blocks at three widths and copy or download the starting HTML file.</td><td><a href="blocks.html">Open blocks</a></td></tr>
 <tr><td>Photo Sizer</td><td>Crop and compress new JPG photos at 2x (300 KB max for desktop heroes, under 200 KB for all others).</td><td><a href="photo-sizer.html">Open Photo Sizer</a></td></tr>
 <tr><td>Code Share</td><td>Check line count, secrets, and contrast, then generate one link for the ClickUp HTML Code row.</td><td><a href="https://the-tunnel.netlify.app/code-share/" target="_blank" rel="noopener">Open Code Share</a></td></tr>
-<tr><td>Cabana 8 Figma</td><td>Pull shared brand components and Code Blocks Builders into your Figma file.</td><td>Enable in Figma Assets panel</td></tr>
-<tr><td>MotionFX plugin</td><td>Check and note Figma motion presets (once on load, on scroll, or loop).</td><td><a href="https://www.figma.com/community/plugin/1657016495590941470" target="_blank" rel="noopener">Open MotionFX</a></td></tr>
-<tr><td>The Tunnel</td><td>Copy verified store photo addresses and requester product picks.</td><td><a href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">Open The Tunnel</a></td></tr>
-<tr><td>Fastr CMS</td><td>Paste your code into your store test page and set the three reserved heights.</td><td><a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Open Fastr CMS</a></td></tr>
-<tr><td>Site Change Requests</td><td>Read the brief, link your files, and move the task through the 12 ClickUp statuses.</td><td><a href="https://app.clickup.com/9011460926/v/l/li/901115447365" target="_blank" rel="noopener">Open ClickUp list</a></td></tr>
-<tr><td>Site Updates chat</td><td>Post status updates in the ClickUp Site Updates channel.</td><td><a href="https://app.clickup.com/9011460926/chat/r/8chzyty-50231" target="_blank" rel="noopener">Open ClickUp chat</a></td></tr>
-<tr><td>Box folder</td><td>Read the Link Book (SITE-LINKS) and store your page folder, sized images, and HTML paste file.</td><td><a href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Open Box folder</a></td></tr>
 <tr><td>Responsively App</td><td>Check your test page across all five widths (360, 390, 768, 1024, and 1440).</td><td><a href="https://responsively.app" target="_blank" rel="noopener">Open Responsively</a></td></tr>
 <tr><td>Jam</td><td>Record one walkthrough of desktop and phone widths for ClickUp.</td><td><a href="https://jam.dev/" target="_blank" rel="noopener">Open Jam</a></td></tr>
-<tr><td>Claude Page Route plugin (0.1.2)</td><td>Helper add-on for Claude ("start a page", "make the paste file", "where are we").</td><td><a href="https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" target="_blank" rel="noopener">Open in Box</a></td></tr>
-<tr><td>Universal AI Rule File (.md)</td><td>Attach at the start of ChatGPT, Gemini, Copilot, or Claude chats so any AI follows our exact Fastr rules.</td><td><a href="universal-ai-rule-file.md" download>Download .md file</a></td></tr>
-<tr><td>Chrome-to-Figma Capture</td><td>Capture live web inspiration straight into editable Figma Auto Layout frames.</td><td><a href="videos.html#clip-6">Watch Clip 06</a></td></tr>
 </tbody>
 </table></div>
-
 <h3 class="nm-h3">How to get your starting code file</h3>
 <ul class="nm-list">
 <li>In your browser: open <a href="blocks.html">All blocks</a>, preview the component across Phone, Tablet, and Desktop widths, check its three Fastr heights, and copy or download the starting HTML file.</li>
 <li>In GitHub Desktop (read-only): clone <a href="https://github.com/Sachawd/sei-component-library" target="_blank" rel="noopener">github.com/Sachawd/sei-component-library</a> once, pull before each build, and copy the file into your own working folder. Never edit inside the repository folder, and never commit or push.</li>
 </ul>
+</div>
+<div class="nm-tabpanel" id="panel-design" role="tabpanel" aria-labelledby="tab-design" hidden>
+<p class="nm-prose">Figma and the photo library.</p>
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Tool</th><th>What you use it for</th><th>Link</th></tr></thead>
+<tbody>
+<tr><td>Cabana 8 Figma</td><td>Pull shared brand components and Code Blocks Builders into your Figma file.</td><td>Enable in Figma Assets panel</td></tr>
+<tr><td>MotionFX plugin</td><td>Check and note Figma motion presets (once on load, on scroll, or loop).</td><td><a href="https://www.figma.com/community/plugin/1657016495590941470" target="_blank" rel="noopener">Open MotionFX</a></td></tr>
+<tr><td>Chrome-to-Figma Capture</td><td>Capture live web inspiration straight into editable Figma Auto Layout frames.</td><td><a href="videos.html#clip-6">Watch Clip 06</a></td></tr>
+<tr><td>The Tunnel</td><td>Copy verified store photo addresses and requester product picks.</td><td><a href="https://the-tunnel.netlify.app/" target="_blank" rel="noopener">Open The Tunnel</a></td></tr>
+</tbody>
+</table></div>
 
+</div>
+<div class="nm-tabpanel" id="panel-publish" role="tabpanel" aria-labelledby="tab-publish" hidden>
+<p class="nm-prose">Paste, hand in, and track the task.</p>
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Tool</th><th>What you use it for</th><th>Link</th></tr></thead>
+<tbody>
+<tr><td>Fastr CMS</td><td>Paste your code into your store test page and set the three reserved heights.</td><td><a href="https://sportsendeavors.fastrworkspace.com/optimize/cms/" target="_blank" rel="noopener">Open Fastr CMS</a></td></tr>
+<tr><td>Site Change Requests</td><td>Read the brief, link your files, and move the task through the 12 ClickUp statuses.</td><td><a href="https://app.clickup.com/9011460926/v/l/li/901115447365" target="_blank" rel="noopener">Open ClickUp list</a></td></tr>
+<tr><td>Site Updates chat</td><td>Post status updates in the ClickUp Site Updates channel.</td><td><a href="https://app.clickup.com/9011460926/chat/r/8chzyty-50231" target="_blank" rel="noopener">Open ClickUp chat</a></td></tr>
+<tr><td>Box folder</td><td>Read the Link Book (SITE-LINKS) and store your page folder, sized images, and HTML paste file.</td><td><a href="https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" target="_blank" rel="noopener">Open Box folder</a></td></tr>
+</tbody>
+</table></div>
+
+</div>
+<div class="nm-tabpanel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
+<p class="nm-prose">Rules and add-ons for any AI chat.</p>
+<div class="nm-table-wrap"><table class="nm-table">
+<thead><tr><th>Tool</th><th>What you use it for</th><th>Link</th></tr></thead>
+<tbody>
+<tr><td>Claude Page Route plugin (0.1.2)</td><td>Helper add-on for Claude ("start a page", "make the paste file", "where are we").</td><td><a href="https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" target="_blank" rel="noopener">Open in Box</a></td></tr>
+<tr><td>Universal AI Rule File (.md)</td><td>Attach at the start of ChatGPT, Gemini, Copilot, or Claude chats so any AI follows our exact Fastr rules.</td><td><a href="universal-ai-rule-file.md" download>Download .md file</a></td></tr>
+</tbody>
+</table></div>
 <h3 class="nm-h3">Working with ChatGPT, Gemini, Copilot, or standard / limited AI accounts</h3>
 <ul class="nm-list">
 <li><strong>1. Attach the Universal AI Rule File:</strong> Download <a href="universal-ai-rule-file.md" download>universal-ai-rule-file.md</a> and attach it alongside your starting HTML file at the start of any chat.</li>
@@ -76,6 +103,7 @@
 <li><strong>4. If a limited account stops mid-file:</strong> Never paste a cut-off file into Fastr. Ask the AI to continue from the exact line where it stopped, or ask Sacha to run long multi-section pages.</li>
 <li><strong>5. Measure the 3 heights yourself on web chats:</strong> Browser-based ChatGPT, Gemini, and web Claude cannot open a real 390px, 640px, or 1024px viewport. Open your saved HTML file in Safari or Responsively App on your Mac to measure the 3 pixel heights.</li>
 </ul>
+</div>
 </section>
 <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:48px">
   <a class="nm-btn nm-btn--outline" href="starter-pack-wss.html"><span>Previous: 02 · Starter Kit</span></a>
