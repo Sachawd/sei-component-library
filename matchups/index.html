@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matchup cards · The Tunnel</title>
+<!--
+  The WorldSoccerShop matchup card generator, on the Tunnel.
+  Built by build-matchups.py from the spine at Campaign-UI-Blocks/tools/matchup/email-cards.
+  The card itself comes from card-core.js + matchup-mother.html, the same two files the Mac
+  renderer uses. Do not fix a layout rule here: there is only one place, and it is the spine.
+  Soccer.com and WorldSoccerShop never mix: each brand gets only its own pages and the photos
+  its tier may use.
+-->
+<link rel="stylesheet" href="fonts.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#000;--paper:#fff;--grey:#8A8A8A;--mid:#5C5C5C;--hair:#E3E3E3;--wash:#F6F6F6;
+  --warnbg:#FFF4E5;--warn:#8A4B00;--good:#1E6B3A;--goodbg:#E8F5EC;--f:"Helvetica Neue",Helvetica,Arial,sans-serif}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+body{font-family:var(--f);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.55;padding:0 0 60px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+a{color:inherit}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.eyebrow a{text-decoration:none}.eyebrow a:hover{color:var(--ink)}
+.mast{border-bottom:1px solid var(--hair)}
+.mastrow{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;padding:34px 0 26px}
+h1{font-size:38px;font-weight:500;letter-spacing:-.035em;line-height:1.05;margin-top:10px}
+.lede{max-width:56ch;color:var(--mid)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:40px;padding-top:30px}
+@media(max-width:980px){main{grid-template-columns:minmax(0,1fr)}.wrap{padding:0 16px}h1{font-size:28px}}
+.grp{border:0;margin:0 0 30px}
+.grp legend .step{color:var(--grey);margin-right:8px;font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+legend,.gh{display:block;width:100%;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:14px}
+.hint{font-size:11.5px;line-height:1.35;color:var(--mid);margin:0 0 12px}
+label.field{display:block;margin-bottom:14px}
+label.field span{display:block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:6px}
+select{width:100%;font:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--hair);background:#fff;border-radius:0;color:var(--ink)}
+select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.chip span{display:block;padding:9px 14px;border:1px solid var(--hair);font-size:12.5px;font-weight:500;cursor:pointer;background:#fff}
+.chip span small{display:block;font-size:10px;letter-spacing:.07em;color:var(--grey);text-transform:uppercase}
+.chip input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip input:checked+span small{color:rgba(255,255,255,.6)}
+.chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.notes{list-style:none;margin:12px 0 0}
+.notes li{font-size:12.5px;padding:8px 10px;margin-top:6px;background:var(--wash)}
+.notes li.warn{background:var(--warnbg);color:var(--warn)}
+.notes li.good{background:var(--goodbg);color:var(--good)}
+.side{margin-bottom:22px}
+.side h3{font-size:15px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.side h3 small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:8px}
+.pic{position:relative;aspect-ratio:3/4;background:var(--wash);border:1px solid var(--hair);cursor:pointer;padding:0;overflow:hidden}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pic[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:1px}
+.pic .t{position:absolute;left:0;right:0;bottom:0;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.9);padding:2px 4px;text-align:left}
+.pic.none{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.more{margin-top:8px;background:none;border:0;font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;padding:6px 0;text-decoration:underline}
+.links{list-style:none}
+.links li{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--hair);font-size:12.5px}
+.links li:first-child{border-top:0}
+.links .k{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.links .u{overflow-wrap:anywhere}
+.links button{background:none;border:1px solid var(--ink);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;cursor:pointer}
+.stage{position:sticky;top:20px}
+@media(max-width:980px){.stage{position:static}}
+.frame{width:100%;aspect-ratio:1/1;background:var(--wash);overflow:hidden;display:grid;place-items:center;color:var(--mid);font-size:13px;text-align:center;padding:20px}
+.frame.has-card{display:block;padding:0;position:relative;background:#000}
+.frame iframe{border:0;transform-origin:top left;display:block}
+.split{display:flex;gap:0;margin-top:10px}
+.split .half{flex:1;aspect-ratio:1/2;background:var(--wash);position:relative;overflow:hidden}
+.split .half img{position:absolute;inset:0;width:100%;height:100%}
+.splitcap{font-size:11.5px;color:var(--mid);margin-top:8px}
+button.go{width:100%;margin-top:18px;padding:16px;border:0;background:var(--ink);color:#fff;font:inherit;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+button.go:disabled{background:#C9C9C9;cursor:not-allowed}
+.log{margin-top:12px;font-size:12.5px;color:var(--mid);min-height:18px}
+.feed{font-size:12px;color:var(--mid)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap"><div class="mastrow">
+  <div>
+    <div class="eyebrow"><a href="../index.html">&larr; The Tunnel</a> &middot; <a id="backlink" href="../worldsoccershop-graphics.html">WorldSoccerShop graphics</a></div>
+    <h1 id="title">Matchup cards</h1>
+  </div>
+  <p class="lede" id="lede">Pick a match and get the card. Email cards come cut in half so each club's side links to its own page. Social cards have no button.</p>
+</div></div></header>
+
+<div class="wrap"><main>
+  <div>
+
+    <fieldset class="grp">
+      <legend><span class="step">1</span>Select a channel</legend>
+      <select id="channel" aria-label="Select a channel"></select>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step">2</span>Select a size</legend>
+      <div class="chips" id="formats"></div>
+      <p class="hint" id="varhint" style="margin-top:12px"></p>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step">3</span>Select a match</legend>
+      <p class="feed" id="feed">Loading the fixture list...</p>
+      <label class="field" style="margin-top:12px"><span>Competition</span><select id="league"></select></label>
+      <label class="field"><span>Match</span><select id="match"></select></label>
+      <ul class="notes" id="notes"></ul>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step">4</span>Select the photos</legend>
+      <p class="hint" id="photohint">Only photos from the Tunnel this brand may use. The home side starts on a home kit and the away side on an away kit.</p>
+      <div id="sides"></div>
+    </fieldset>
+
+
+    <fieldset class="grp" id="linksgrp">
+      <legend><span class="step">5</span>Links for the email</legend>
+      <p class="hint">Put the left half on the first link and the right half on the second. No gap, padding or border between the two cells, or the VS shows a seam.</p>
+      <ul class="links" id="links"></ul>
+    </fieldset>
+  </div>
+
+  <aside><div class="stage">
+    <div class="gh">Preview</div>
+    <div class="frame" id="frame">Pick a match to see it.</div>
+    <div id="splitwrap" hidden>
+      <div class="split"><div class="half" id="hl"></div><div class="half" id="hr"></div></div>
+      <p class="splitcap">The two email halves, side by side, the way they meet in the email.</p>
+    </div>
+    <button class="go" id="go" disabled>Download</button>
+    <p class="log" id="log" role="status" aria-live="polite"></p>
+  </div></aside>
+</main></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.js"></script>
+<script src="card-core.js"></script>
+<script>
+(function () {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  // WorldSoccerShop only (Sacha, 25 Sept: "keep them separate"). The Soccer.com matchup design is its own
+  // page, built from its own Figma frame, and never shares this one.
+  const BRAND = "wss";
+  const TIERS = BRAND === "sdc" ? ["", "Soccer.com"] : ["", "WorldSoccerShop"];
+  const B = BRAND === "sdc"
+    ? { name: "Soccer.com", back: "../soccer-com-graphics.html", backName: "Soccer.com graphics", cfg: "card-config-sdc.json" }
+    : { name: "WorldSoccerShop", back: "../worldsoccershop-graphics.html", backName: "WorldSoccerShop graphics", cfg: "card-config.json" };
+  document.title = `Matchup cards, ${B.name} · The Tunnel`;
+  $("title").textContent = `Matchup cards, ${B.name}`;
+  $("backlink").href = B.back; $("backlink").textContent = B.backName;
+
+  // Every image goes through the Tunnel's own /dl/ path (see the-tunnel/_redirects), so the
+  // browser lets the page read the pixels back and the PNG export works.
+  const enc = f => String(f).replace(/%/g, "%25").replace(/\+/g, "%2B").replace(/#/g, "%23").replace(/&/g, "%26").replace(/\?/g, "%3F");
+  const IH = /^https?:\/\/(www\.)?imagehandler\.net\/dxassets\/\?img=Photos\//i;
+  const unreachable = [];
+  const IS_GH = /github\.io$/i.test(location.hostname);
+  const resolveSrc = v => {
+    if (!v) return "";
+    if (IH.test(v)) return IS_GH ? v : "/dl/" + v.replace(IH, "");
+    if (!/^https?:\/\//i.test(v)) return v;               // a file shipped beside this page
+    unreachable.push(v); return "";
+  };
+  const direct = f => "https://www.imagehandler.net/dxassets/?img=Photos/" + enc(f);
+  const viaTunnel = f => IS_GH ? direct(f) : "/dl/" + enc(f);
+
+  const norm = s => String(s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+  let cfg, wssPhotos, tpl, payload, index, byName = {}, matches = [], current = null, variant = null;
+  const pick = { home: undefined, away: undefined };
+  const showAll = { home: false, away: false };
+
+  Promise.all([
+    fetch(B.cfg).then(r => r.json()),
+    fetch("club-photos.json").then(r => r.json()),
+    fetch("matchup-mother.html").then(r => r.text()),
+    fetch("clubs-index.json").then(r => r.json()),
+    fetch("fixtures.json", { cache: "no-store" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => fetch("https://wss-matchup-data.netlify.app/fixtures.json", { cache: "no-store" }).then(r => { if (!r.ok) throw new Error("the fixture list did not load (" + r.status + ")"); return r.json(); })),
+  ]).then(([c, p, t, ix, f]) => {
+    cfg = c; payload = f; index = ix;
+    // WSS photos on file only ever go on the WSS card (asset rights never cross tiers).
+    wssPhotos = BRAND === "wss" ? (p.clubs || {}) : {};
+    ix.clubs.forEach(cl => cl.names.forEach(n => { if (!byName[n]) byName[n] = cl; }));
+    const fontCss = cfg.fonts_css || "fonts.css";
+    tpl = t.replace(/<link[^>]+fonts\.googleapis\.com[^>]*>/i, `<link rel="stylesheet" href="${fontCss}">`);
+    if (cfg.brand_css) tpl = tpl.replace("</style>", cfg.brand_css + "\n</style>");
+    start();
+  }).catch(e => { $("feed").textContent = "Could not load: " + e.message + ". Reload the page to try again."; });
+
+  const clubOf = team => byName[norm(team.name)] || byName[norm(team.short)] || null;
+  const linkFor = team => { const c = clubOf(team); return BRAND === "sdc" ? (c && c.sdc) || null : team.url || (c && c.wss) || null; };
+  const optionsFor = team => { const c = clubOf(team); return c ? c.photos.filter(p => TIERS.includes(p.tier || "")) : []; };
+
+  function start() {
+    const when = new Date(payload.generated);
+    const n = (payload.leagues || []).reduce((a, l) => a + (l.matches || []).length, 0);
+    $("feed").textContent = `${n} fixtures in the feed, updated ${when.toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} PT. Competitions with no fixtures in the next two weeks are left out.`;
+    const leagues = (payload.leagues || []).filter(l => (l.matches || []).length);
+    $("league").innerHTML = leagues.map(l => `<option value="${l.id}">${CardCore.esc(l.name || l.id)} (${l.matches.length})</option>`).join("");
+    $("league").onchange = fillMatches;
+    $("channel").innerHTML = cfg.variants.map(v => `<option value="${v.key}">${v.key === "email" ? "Email" : "Organic social"}</option>`).join("");
+    $("channel").onchange = e => { variant = cfg.variants.find(v => v.key === e.target.value); fillFormats(); };
+    variant = cfg.variants[0];
+    $("go").onclick = generate;
+    if (!leagues.length) { $("notes").innerHTML = `<li class="warn">The feed has no fixtures right now.</li>`; return; }
+    fillMatches(); fillFormats();
+  }
+
+  function fillMatches() {
+    const lg = payload.leagues.find(l => l.id === $("league").value);
+    matches = (lg.matches || []).map(m => ({ ...m, league: lg })).sort((a, b) => String(a.kickoff).localeCompare(String(b.kickoff)));
+    $("match").innerHTML = matches.map((m, i) => {
+      const k = CardCore.kickoffParts(m.kickoff, cfg);
+      return `<option value="${i}">${CardCore.esc(m.home.name)} v ${CardCore.esc(m.away.name)}, ${k.date}${m.status === "final" ? " (played)" : ""}</option>`;
+    }).join("");
+    $("match").onchange = choose;
+    choose();
+  }
+
+  function fillFormats() {
+    const list = cfg.formats.filter(f => !variant.formats || variant.formats.includes(f.key));
+    $("formats").innerHTML = list.map((f, i) => `<label class="chip"><input type="checkbox" name="format" value="${f.key}"${i ? "" : " checked"}><span>${SIZE_NAMES[f.key] || f.key}<small>${f.w} &times; ${f.h}</small></span></label>`).join("");
+    $("varhint").textContent = variant.key === "email"
+      ? "Email: one square card, saved as a left half and a right half. The button shows only when the club has a page on this site."
+      : "Organic social: pick one or more sizes. No button, because nothing in a social image is clickable. 9:16 is for Stories and Reels.";
+    $("linksgrp").hidden = variant.key !== "email";
+    let n = 0; document.querySelectorAll("main fieldset.grp").forEach(f => { const st = f.querySelector(".step"); if (st && !f.hidden) st.textContent = ++n; });
+    if (current) preview();
+  }
+  const SIZE_NAMES = { "1x1": "Square 1:1", "4x5": "Feed 4:5", "9x16": "Stories and Reels 9:16" };
+  const chosenFormats = () => [...document.querySelectorAll('input[name="format"]:checked')].map(i => cfg.formats.find(f => f.key === i.value));
+
+  function choose() {
+    current = matches[Number($("match").value)] || null;
+    pick.home = pick.away = undefined; showAll.home = showAll.away = false;
+    $("go").disabled = !current;
+    buildSides(); links(); preview();
+  }
+
+  // default photo: WSS keeps the one on file; otherwise the newest Tunnel photo in the side's kit
+  function defaultPhoto(team, side) {
+    if (BRAND === "wss") {
+      const e = wssPhotos[CardCore.slug(team.name)];
+      if (e) return { onfile: true };
+    }
+    const opts = optionsFor(team);
+    const want = side === "home" ? "Home" : "Away";
+    const p = opts.find(o => o.kit === want) || opts.find(o => o.kit === "Home") || opts[0];
+    return p ? { f: p.f } : { none: true };
+  }
+
+  function buildSides() {
+    const box = $("sides"); box.innerHTML = "";
+    if (!current) return;
+    for (const side of ["home", "away"]) {
+      const team = current[side];
+      if (pick[side] === undefined) pick[side] = defaultPhoto(team, side);
+      const opts = optionsFor(team);
+      const onfile = BRAND === "wss" && wssPhotos[CardCore.slug(team.name)];
+      const wrap = document.createElement("div"); wrap.className = "side";
+      wrap.innerHTML = `<h3>${CardCore.esc(team.name)} <small>${side === "home" ? "Home side" : "Away side"} &middot; ${opts.length + (onfile ? 1 : 0)} photo${opts.length + (onfile ? 1 : 0) === 1 ? "" : "s"}</small></h3>`;
+      const grid = document.createElement("div"); grid.className = "pics";
+      const add = (label, choice, img, tag) => {
+        const b = document.createElement("button"); b.type = "button"; b.className = "pic" + (img ? "" : " none");
+        const on = (choice.none && pick[side].none) || (choice.onfile && pick[side].onfile) || (choice.f && choice.f === pick[side].f);
+        b.setAttribute("aria-pressed", String(!!on)); b.setAttribute("aria-label", label);
+        if (img) { const i = document.createElement("img"); i.loading = "lazy"; i.alt = ""; i.src = img; b.appendChild(i); }
+        else b.textContent = "No photo";
+        if (tag) { const t = document.createElement("span"); t.className = "t"; t.textContent = tag; b.appendChild(t); }
+        b.onclick = () => { pick[side] = choice; buildSides(); preview(); };
+        grid.appendChild(b);
+      };
+      add("No photo, flat panel", { none: true }, null, null);
+      if (onfile) {
+        const v = typeof onfile === "string" ? onfile : (onfile[side] || onfile.home || onfile.away);
+        add("The photo on file for this club", { onfile: true }, v, "On file");
+      }
+      const shown = showAll[side] ? opts : opts.slice(0, 11);
+      shown.forEach(o => add(`${o.kit || "Photo"} ${o.f}`, { f: o.f }, direct(o.f), o.kit || ""));
+      wrap.appendChild(grid);
+      if (opts.length > 11 && !showAll[side]) {
+        const m = document.createElement("button"); m.type = "button"; m.className = "more"; m.textContent = `Show all ${opts.length}`;
+        m.onclick = () => { showAll[side] = true; buildSides(); };
+        wrap.appendChild(m);
+      }
+      if (!opts.length && !onfile) {
+        const p = document.createElement("p"); p.className = "hint"; p.style.marginTop = "8px";
+        p.textContent = `The Tunnel has no ${B.name} photo of ${team.name} yet, so this side will be a flat panel.`;
+        wrap.appendChild(p);
+      }
+      box.appendChild(wrap);
+    }
+  }
+  // The photos map card-core reads, built from what was picked on this page
+  function photosForCard() {
+    const map = {};
+    for (const side of ["home", "away"]) {
+      const team = current[side], key = CardCore.slug(team.name), c = pick[side] || {};
+      if (c.onfile) { const e = wssPhotos[key]; map[key] = typeof e === "string" ? e : (e[side] || e.home || e.away); }
+      else if (c.f) map[key] = direct(c.f);
+      else map[key] = null;
+    }
+    // same club both sides never happens in a fixture, so one entry per club is enough
+    return map;
+  }
+  function matchForCard() {
+    const m = JSON.parse(JSON.stringify(current));
+    m.home.url = linkFor(current.home); m.away.url = linkFor(current.away);
+    return m;
+  }
+  function build(format) {
+    unreachable.length = 0;
+    return CardCore.buildCard({ tpl, cfg, photos: photosForCard(), match: matchForCard(), variant, format, resolveSrc });
+  }
+
+  function links() {
+    const ul = $("links"); ul.innerHTML = "";
+    if (!current) return;
+    [["Left half", current.home], ["Right half", current.away]].forEach(([k, team]) => {
+      const u = linkFor(team);
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="k">${k}</span><span class="u">${u ? `<a href="${CardCore.esc(u)}" target="_blank" rel="noopener">${CardCore.esc(u)}</a>` : `No ${B.name} page for ${CardCore.esc(team.name)}, so this side has no button. Link it to a search or leave it unlinked.`}</span>`;
+      if (u) { const b = document.createElement("button"); b.type = "button"; b.textContent = "Copy"; b.onclick = () => navigator.clipboard.writeText(u).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); }); li.appendChild(b); }
+      else li.appendChild(document.createElement("span"));
+      ul.appendChild(li);
+    });
+  }
+
+  function notes(built) {
+    const out = [], m = current;
+    if (m.status === "final") out.push(["warn", "This match has been played, so the card shows the final score."]);
+    for (const side of ["home", "away"]) {
+      const name = m[side].name;
+      if (!built.flags[side + "HasCrest"]) out.push(["warn", `No crest for ${name}, so it shows initials.`]);
+      if (!built.flags[side + "HasPhoto"]) out.push(["warn", `No photo on the ${name} side, so it is a flat panel.`]);
+      if (!built.flags[side + "HasUrl"] && variant.cta !== false) out.push(["warn", `${name} has no ${B.name} page, so that side has no button.`]);
+    }
+    if (unreachable.length) out.push(["warn", `${unreachable.length} image${unreachable.length > 1 ? "s" : ""} could not be reached from the Tunnel and will be missing.`]);
+    if (!out.length) out.push(["good", "Everything this card needs is here."]);
+    $("notes").innerHTML = out.map(([c, t]) => `<li class="${c}">${CardCore.esc(t)}</li>`).join("");
+  }
+
+  let previewToken = 0;
+  function preview() {
+    const frame = $("frame");
+    if (!current) { frame.className = "frame"; frame.textContent = "Pick a match to see it."; return; }
+    const f = chosenFormats()[0] || cfg.formats.find(x => !variant.formats || variant.formats.includes(x.key));
+    const built = build(f); notes(built);
+    frame.className = "frame has-card"; frame.style.aspectRatio = `${f.w}/${f.h}`; frame.innerHTML = "";
+    const iframe = document.createElement("iframe"); iframe.width = f.w; iframe.height = f.h;
+    iframe.title = `${current.home.name} versus ${current.away.name}`; iframe.srcdoc = built.html; frame.appendChild(iframe);
+    const fit = () => { iframe.style.transform = "none"; iframe.style.zoom = String(frame.clientWidth / f.w); };
+    fit(); requestAnimationFrame(fit); window.addEventListener("resize", fit, { once: true });
+    $("splitwrap").hidden = true;
+    const token = ++previewToken;
+    if (variant.slice === "half") {
+      clearTimeout(preview.t);
+      preview.t = setTimeout(async () => {
+        try {
+          const url = await renderPng(f);
+          if (token !== previewToken) return;
+          const [l, r] = [await half(url, f, "left"), await half(url, f, "right")];
+          $("hl").innerHTML = `<img alt="Left half" src="${l}">`; $("hr").innerHTML = `<img alt="Right half" src="${r}">`;
+          $("splitwrap").hidden = false;
+        } catch (e) { /* the preview of the halves is a nice-to-have; Download reports real errors */ }
+      }, 400);
+    }
+  }
+
+  async function renderPng(format) {
+    const built = build(format);
+    const host = document.createElement("iframe");
+    host.style.cssText = `position:fixed;left:-20000px;top:0;border:0;width:${format.w}px;height:${format.h}px`;
+    document.body.appendChild(host);
+    host.srcdoc = built.html;
+    await new Promise(r => host.addEventListener("load", r, { once: true }));
+    const doc = host.contentDocument;
+    await Promise.all([...doc.images].map(i => i.complete ? null : new Promise(r => { i.addEventListener("load", r, { once: true }); i.addEventListener("error", r, { once: true }); })));
+    if (doc.fonts) { try { await doc.fonts.ready; } catch (e) {} }
+    await new Promise(r => setTimeout(r, 150));
+    try {
+      return await window.htmlToImage.toPng(doc.body, { width: format.w, height: format.h, pixelRatio: 1, cacheBust: false });
+    } finally { host.remove(); }
+  }
+  function half(url, format, side) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const mid = Math.round(format.w / 2), w = side === "left" ? mid : format.w - mid, x = side === "left" ? 0 : mid;
+        const c = document.createElement("canvas"); c.width = w; c.height = format.h;
+        c.getContext("2d").drawImage(img, x, 0, w, format.h, 0, 0, w, format.h);
+        resolve(c.toDataURL("image/png"));
+      };
+      img.onerror = reject; img.src = url;
+    });
+  }
+  const save = (url, name) => { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); };
+
+  async function generate() {
+    const formats = chosenFormats();
+    if (!formats.length) { $("log").textContent = "Pick at least one size first."; return; }
+    $("go").disabled = true;
+    const stem = `${cfg.brand}-Matchup_${CardCore.slug(current.home.name)}-v-${CardCore.slug(current.away.name)}_${variant.key === "email" ? "Email" : "Organic-Social"}`;
+    let made = 0;
+    try {
+      for (const f of formats) {
+        $("log").textContent = `Drawing the ${f.key}...`;
+        const url = await renderPng(f);
+        if (variant.keep_full !== false) { save(url, `${stem}_${f.w}x${f.h}.png`); made++; }
+        if (variant.slice === "half") for (const s of ["left", "right"]) { save(await half(url, f, s), `${stem}_${f.w}x${f.h}_${s}.png`); made++; await new Promise(r => setTimeout(r, 250)); }
+      }
+      $("log").textContent = `Done. ${made} file${made > 1 ? "s" : ""} saved to your Downloads.`;
+    } catch (e) {
+      $("log").textContent = "That did not work: " + (e && e.message ? e.message : "the card could not be turned into an image") + ".";
+    }
+    $("go").disabled = false;
+  }
+
+  document.addEventListener("change", e => { if (e.target.name === "format") preview(); });
+})();
+</script>
+</body>
+</html>

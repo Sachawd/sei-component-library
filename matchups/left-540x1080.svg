@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="1080" viewBox="0 0 540 1080">
+  <rect width="540" height="1080" fill="#0B162C"/>
+  <rect x="0" y="0" width="540" height="760" fill="#13264B"/>
+  <circle cx="270" cy="340" r="145" fill="#1D3668" stroke="#395A96" stroke-width="3"/>
+  <text x="270" y="330" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="2">HOME CLUB</text>
+  <text x="270" y="368" text-anchor="middle" fill="#9BB5E8" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">540 x 1080 LEFT HALF</text>
+  <rect x="0" y="760" width="540" height="320" fill="#081020"/>
+  <text x="48" y="835" fill="#9BB5E8" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="2">PREMIER LEAGUE · MATCHDAY</text>
+  <text x="48" y="895" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800">EVERTON FC</text>
+  <rect x="48" y="940" width="240" height="64" rx="4" fill="#EF433F"/>
+  <text x="168" y="980" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">SHOP HOME CLUB</text>
+</svg>

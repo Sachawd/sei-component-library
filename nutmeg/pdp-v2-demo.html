@@ -1,0 +1,2054 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+
+<style>
+  html[data-v2-brand="soccer"] {
+    --pdp-brand-primary: #e0154a;
+    --pdp-brand-primary-hover: #9d0f34;
+    --pdp-brand-primary-muted: #fce8ed;
+    --pdp-text-body: #27272a;
+    --pdp-text-muted: #525252;
+    --pdp-border-subtle: #e5e5e5;
+    --pdp-border-input: #525252;
+    --pdp-btn-action: #0348cf;
+    --pdp-btn-action-hover: #0341ba;
+    --pdp-sale-bg: #e0154a;
+    --pdp-font: "Figtree", system-ui, sans-serif;
+    --pdp-font-label: "Figtree", system-ui, sans-serif;
+  }
+  html[data-v2-brand="wss"] {
+    --pdp-brand-primary: #796a39;
+    --pdp-brand-primary-hover: #5e522b;
+    --pdp-brand-primary-muted: #f0eee7;
+    --pdp-text-body: #27272a;
+    --pdp-text-muted: #525252;
+    --pdp-border-subtle: #e5e5e5;
+    --pdp-border-input: #525252;
+    --pdp-btn-action: #0348cf;
+    --pdp-btn-action-hover: #0341ba;
+    --pdp-sale-bg: #9d0f34;
+    --pdp-font: "Inter", system-ui, sans-serif;
+    --pdp-font-label: "Chakra Petch", system-ui, sans-serif;
+  }
+  html[data-v2-brand="431"] {
+    --pdp-brand-primary: #317f89;
+    --pdp-brand-primary-hover: #246068;
+    --pdp-brand-primary-muted: #e6f3f5;
+    --pdp-text-body: #042540;
+    --pdp-text-muted: #525252;
+    --pdp-border-subtle: #e5e5e5;
+    --pdp-border-input: #525252;
+    --pdp-btn-action: #317f89;
+    --pdp-btn-action-hover: #246068;
+    --pdp-sale-bg: #9d0f34;
+    --pdp-font: "Roboto Condensed", system-ui, sans-serif;
+    --pdp-font-label: "Roboto Condensed", system-ui, sans-serif;
+  }
+  .v2-switcher-bar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    background: #111010;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    border-bottom: 1px solid #303030;
+  }
+  .v2-switcher-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .v2-pill-badge {
+    background: #814dfa;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .v2-brand-tabs {
+    display: flex;
+    gap: 6px;
+    background: #242424;
+    padding: 4px;
+    border-radius: 999px;
+  }
+  .v2-brand-tab {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #cacaca;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .v2-brand-tab[aria-selected="true"] {
+    background: #ffffff;
+    color: #111010;
+  }
+  .v2-drawer-btn {
+    appearance: none;
+    border: 1px solid #525252;
+    background: #242424;
+    color: #ffffff;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .v2-token-drawer {
+    position: fixed;
+    top: 53px;
+    right: 0;
+    bottom: 0;
+    width: 380px;
+    max-width: 92vw;
+    background: #ffffff;
+    color: #151515;
+    border-left: 1px solid #d4d4d0;
+    box-shadow: -8px 0 28px rgba(0,0,0,0.12);
+    z-index: 9998;
+    padding: 20px;
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    transform: translateX(100%);
+    transition: transform 220ms cubic-bezier(0.27, 1.06, 0.18, 1);
+  }
+  .v2-token-drawer.open {
+    transform: translateX(0);
+  }
+  .v2-token-drawer h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+  }
+  .v2-token-drawer p {
+    margin: 0 0 14px;
+    font-size: 13px;
+    color: #525252;
+  }
+  .v2-token-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0ed;
+    font-size: 12.5px;
+  }
+  .v2-token-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,0.18);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+</style>
+<div class="v2-switcher-bar" role="region" aria-label="Vue 3 + Reka UI + V2 Token Switcher">
+  <div class="v2-switcher-left">
+    <span class="v2-pill-badge">Nutmeg V2 Pilot</span>
+    <span><strong>One PDP Codebase (Vue 3 + Reka UI + shadcn-vue):</strong> Flip store tokens live</span>
+  </div>
+  <div class="v2-brand-tabs" role="tablist" aria-label="Store brand theme">
+    <button type="button" class="v2-brand-tab" role="tab" data-set-brand="soccer" aria-selected="true">Soccer.com (Figtree)</button>
+    <button type="button" class="v2-brand-tab" role="tab" data-set-brand="wss" aria-selected="false">WorldSoccerShop (Chakra + Gold)</button>
+    <button type="button" class="v2-brand-tab" role="tab" data-set-brand="431" aria-selected="false">431 Sports (Roboto + Teal)</button>
+  </div>
+  <div>
+    <button type="button" class="v2-drawer-btn" id="v2DrawerToggle">Inspect shadcn-vue + V2 Tokens</button>
+  </div>
+</div>
+<aside class="v2-token-drawer" id="v2TokenDrawer" aria-label="Live V2 Token & Reka UI Inspector">
+  <h3>shadcn-vue (Reka UI) + V2 Tokens</h3>
+  <p>Active store: <strong id="v2ActiveBrandName">Soccer.com</strong>. Same HTML &amp; Reka UI primitives, zero rebuilds.</p>
+  <div id="v2TokenList"></div>
+</aside>
+<script>
+(function(){
+  var TOKEN_MAP = {
+    soccer: {
+      label: "Soccer.com",
+      brandLogo: "SOCCER.COM",
+      rows: [
+        ["--primary / surface.brand", "#e0154a", "Crimson brand accent"],
+        ["--foreground / text.default", "#27272a", "Body copy"],
+        ["--action-cart / CTA", "#0348cf", "Shared Add-to-Bag CTA"],
+        ["--border / border.subtle", "#e5e5e5", "Dividers & cards"],
+        ["--input / input.border", "#525252", "AA 3:1 input border"],
+        ["--font-sans", "Figtree", "Display & body font"]
+      ]
+    },
+    wss: {
+      label: "WorldSoccerShop",
+      brandLogo: "WORLDSOCCERSHOP",
+      rows: [
+        ["--primary / surface.brand", "#796a39", "WSS Gold accent"],
+        ["--foreground / text.default", "#27272a", "Body copy"],
+        ["--action-cart / CTA", "#0348cf", "Shared Add-to-Bag CTA"],
+        ["--border / border.subtle", "#e5e5e5", "Dividers & cards"],
+        ["--input / input.border", "#525252", "AA 3:1 input border"],
+        ["--font-display / body", "Chakra Petch + Inter", "Display & body font"]
+      ]
+    },
+    "431": {
+      label: "431 Sports",
+      brandLogo: "431 SPORTS",
+      rows: [
+        ["--primary / surface.brand", "#317f89", "431 Teal primary"],
+        ["--foreground / text.default", "#042540", "431 Navy body copy"],
+        ["--action-cart / CTA", "#317f89", "Teal Add-to-Bag CTA"],
+        ["--border / border.subtle", "#e5e5e5", "Dividers & cards"],
+        ["--input / input.border", "#525252", "AA 3:1 input border"],
+        ["--font-sans", "Roboto Condensed", "Display & body font"]
+      ]
+    }
+  };
+  function renderTokens(key) {
+    var info = TOKEN_MAP[key];
+    document.getElementById("v2ActiveBrandName").textContent = info.label;
+    var brandEl = document.querySelector(".brand");
+    if (brandEl) brandEl.textContent = info.brandLogo;
+    var list = document.getElementById("v2TokenList");
+    list.innerHTML = info.rows.map(function(r){
+      var sw = r[1].indexOf("#") === 0 ? "<span class=\"v2-token-swatch\" style=\"background:" + r[1] + "\"></span>" : "";
+      return "<div class=\"v2-token-row\"><div><strong>" + r[0] + "</strong><div style=\"color:#666;font-size:11.5px\">" + r[2] + "</div></div><div>" + sw + "<code>" + r[1] + "</code></div></div>";
+    }).join("");
+  }
+  document.documentElement.setAttribute("data-v2-brand", "soccer");
+  renderTokens("soccer");
+  Array.prototype.forEach.call(document.querySelectorAll("[data-set-brand]"), function(btn){
+    btn.addEventListener("click", function(){
+      var b = btn.getAttribute("data-set-brand");
+      document.documentElement.setAttribute("data-v2-brand", b);
+      Array.prototype.forEach.call(document.querySelectorAll("[data-set-brand]"), function(other){
+        other.setAttribute("aria-selected", other === btn ? "true" : "false");
+      });
+      renderTokens(b);
+    });
+  });
+  var drawer = document.getElementById("v2TokenDrawer");
+  document.getElementById("v2DrawerToggle").addEventListener("click", function(){
+    drawer.classList.toggle("open");
+  });
+})();
+</script>
+
+<title>Superfly Swipe PDP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=Roboto+Condensed:wght@400;600;700&display=swap">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   LOCAL VARIABLES - NOT SEI DESIGN TOKENS
+
+   Deliberately namespaced --pdp-* so nothing here can be mistaken
+   for, or pasted into, the production system.
+
+   Production is --theme-*. This page does not quote it, because the
+   source of truth (Antigravity Projects/004_Design-System) has not
+   been read.
+
+   What each value below actually is:
+   · Font - Figtree. Source: 04_Work/UX/CABANA-CANONICAL.md, 2026-08-05.
+     84/84 Soccer typography tokens carry the raw string "Figtree".
+   · Colour - OBSERVED from www.soccer.com's rendered DOM on 2026-09-05.
+     An observation of a live page, not a token reading. Unverified
+     against the design system.
+   · Motion - the author's choice. The SEI system has no motion tokens
+     (CABANA-CANONICAL.md §5, 2026-08-05: zero across the system).
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  /* Crimson ramp - derived from the observed #e0154a, not quoted from a token file */
+  --pdpbrand-50:  #fce8ed;
+  --pdpbrand-75:  #f29fb5;
+  --pdpbrand-100: #ed7796;
+  --pdpbrand-200: #e53d69;
+  --pdpbrand-300: #e0154a;
+  --pdpbrand-400: #9d0f34;
+  --pdpbrand-500: #890d2d;
+
+  --pdp-brand-primary:       #e0154a;
+  --pdp-brand-primary-hover: #890d2d;
+  --pdp-brand-primary-muted: #fce8ed;
+
+  /* Page & surface */
+  --pdp-bg-page:    #ffffff;
+  --pdp-bg-surface: #f5f5f5;
+  --pdp-bg-invert:  #171717;
+  --pdp-bg-muted:   #e5e5e5;
+
+  /* Type colour */
+  --pdp-text-body:    #27272a;
+  --pdp-text-muted:   #525252;
+  --pdp-text-subtle:  #737373;
+  --pdp-text-on-dark: #ffffff;
+
+  /* Borders */
+  --pdp-border-subtle: #e5e5e5;
+  --pdp-border-strong: #171717;
+  --pdp-border-input:  #525252;
+
+  /* Action button - blue, observed on the live site 2026-09-05 */
+  --pdp-btn-action:       #0348cf;
+  --pdp-btn-action-hover: #0341ba;
+
+  --pdp-sale-bg:   #e0154a;
+  --pdp-success:   #84cc16;
+
+  /* Typography */
+  --pdp-font:      'Figtree', system-ui, -apple-system, sans-serif;
+  --pdp-font-label: var(--pdp-font); /* labels are Figtree with wide tracking - no second face */
+
+  --pdp-tracking-tight: .04em;
+  --pdp-tracking-base:  .08em;
+  --pdp-tracking-wide:  .12em;
+  --pdp-tracking-wider: .16em;
+
+  /* ── MOTION ──────────────────────────────────────────────────
+     Values taken from 004_Design-System/motion/working/motion-tokens--v0.json
+     dated 2026-08-19. SANDBOX, not production. Zero motion tokens ship today.
+     Easings are string type on purpose: Supernova supports duration natively
+     but has no cubicBezier type (settled by Sacha, 2026-08-19).
+     ───────────────────────────────────────────────────────────── */
+
+  /* core.motion.duration */
+  --m-duration-instant:  100ms;
+  --m-duration-fast:     150ms;
+  --m-duration-normal:   250ms;
+  --m-duration-moderate: 350ms;
+  --m-duration-slow:     500ms;
+  --m-duration-shimmer: 1200ms;
+  --m-duration-spin:     800ms;
+
+  /* ── STORE family · published curves, nothing invented ──────────
+     Material 3 Standard web conversion table, read live 2026-09-05.
+     Carbon's productive exit, read live 2026-09-05 - M3 publishes no
+     separate exit curve and Carbon's is the right shape for leaving. */
+  --m-ease-linear:   linear;
+  --m-ease-spatial:  cubic-bezier(0.27, 1.06, 0.18, 1.00);  /* M3 Standard spatial */
+  --m-ease-effects:  cubic-bezier(0.31, 0.94, 0.34, 1.00);  /* M3 Standard fast effects */
+  --m-ease-exit:     cubic-bezier(0.2, 0, 1, 0.9);          /* Carbon productive exit */
+
+  /* ── STORY family · real springs, as linear() ───────────────────
+     Generated from a damped spring, mass 1, sampled to 0.1% settle.
+     A cubic-bezier can overshoot once. It cannot oscillate. These can.
+     linear() is Baseline widely available since December 2023. */
+  --m-spring-story: linear(0, 0.0721, 0.233, 0.4213, 0.5998, 0.7495, 0.864, 0.9443, 0.9953, 1.0238, 1.0362, 1.0382, 1.0343, 1.0277, 1.0204, 1.0138, 1.0084, 1.0043, 1.0016, 0.9998, 0.9989, 0.9986, 0.9986, 0.9987, 0.999);
+  --m-spring-pop:   linear(0, 0.0761, 0.2501, 0.4573, 0.6552, 0.8198, 0.9418, 1.0218, 1.0658, 1.0825, 1.0808, 1.0685, 1.0516, 1.0345, 1.0196, 1.0081, 1.0002, 0.9955, 0.9934, 0.9931, 0.9938, 0.9952, 0.9966, 0.9979, 0.999);
+  --m-duration-story: 382ms;   /* the spring's own settle time, not a guess */
+  --m-duration-pop:   388ms;
+
+  /* legacy names kept so existing rules resolve */
+  --m-ease-standard: var(--m-ease-effects);
+  --m-ease-enter:    var(--m-ease-spatial);
+
+  /* core.motion.displacement
+     Distance scales with screen. Duration does not - 200ms feels like
+     200ms on any device, but 8px of travel reads very differently on a
+     375px screen than on a 1440px one. */
+  --m-disp-micro: 2px;
+  --m-disp-shake: 6px;
+  --m-disp-lift:  8px;
+
+  /* core.motion.scale */
+  --m-scale-press:    0.96;
+  --m-scale-pop:      1.15;
+  --m-scale-modal-in: 0.92;
+
+  /* semantic.intent - STORE side, transactional. Strict, no bounce. */
+  --intent-press:   var(--m-duration-fast) var(--m-ease-effects);
+  --intent-hover:   var(--m-duration-instant) var(--m-ease-effects);
+  --intent-focus:   var(--m-duration-instant) var(--m-ease-effects);
+  --intent-reveal:  var(--m-duration-moderate) var(--m-ease-spatial);
+  --intent-dismiss: var(--m-duration-fast) var(--m-ease-exit);
+
+  /* semantic.intent - STORY side, editorial. Visible settle. */
+  --intent-story:   var(--m-duration-story) var(--m-spring-story);
+
+  /* legacy aliases so existing rules inherit the tokens */
+  --pdp-ease:          var(--m-ease-standard);
+  --pdp-ease-spring:   var(--m-ease-standard);
+  --pdp-ease-premium:  var(--m-ease-enter);
+  --pdp-duration-fast: var(--m-duration-instant);
+  --pdp-duration-base: var(--m-duration-moderate);
+  --pdp-duration-slow: var(--m-duration-slow);
+
+  /* Layout + */
+  --pad: clamp(18px, 3.2vw, 44px);
+  --max: 1560px;
+  color-scheme: light;
+}
+
+/* Dark extension - not in the vault token files, added for artifact viewing */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --pdp-bg-page:    #0d0d0e;
+    --pdp-bg-surface: #17171a;
+    --pdp-bg-invert:  #f2f2f0;
+    --pdp-bg-muted:   #232327;
+    --pdp-text-body:    #ececef;
+    --pdp-text-muted:   #a4a4ad;
+    --pdp-text-subtle:  #7d7d86;
+    --pdp-text-on-dark: #0d0d0e;
+    --pdp-border-subtle: #2a2a2f;
+    --pdp-border-strong: #ececef;
+    --pdp-border-input:  #6b6b74;
+    --pdp-brand-primary: #ff3d6b;
+    --pdp-brand-primary-muted: #2b0f18;
+    --pdp-btn-action: #4d7fff;
+    --pdp-btn-action-hover: #6a92ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --pdp-bg-page:    #0d0d0e;
+  --pdp-bg-surface: #17171a;
+  --pdp-bg-invert:  #f2f2f0;
+  --pdp-bg-muted:   #232327;
+  --pdp-text-body:    #ececef;
+  --pdp-text-muted:   #a4a4ad;
+  --pdp-text-subtle:  #7d7d86;
+  --pdp-text-on-dark: #0d0d0e;
+  --pdp-border-subtle: #2a2a2f;
+  --pdp-border-strong: #ececef;
+  --pdp-border-input:  #6b6b74;
+  --pdp-brand-primary: #ff3d6b;
+  --pdp-brand-primary-muted: #2b0f18;
+  --pdp-btn-action: #4d7fff;
+  --pdp-btn-action-hover: #6a92ff;
+  color-scheme: dark;
+}
+
+/* displacement scales down on small screens; durations deliberately do not */
+@media (max-width: 767px) {
+  :root { --m-disp-lift: 4px; --m-disp-shake: 4px; --m-disp-micro: 1px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--pdp-bg-page);
+  color: var(--pdp-text-body);
+  font-family: var(--pdp-font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--pdp-brand-primary); outline-offset: 3px; }
+
+/* ── type roles ── */
+.mono {
+  font-family: var(--pdp-font-label);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: var(--pdp-tracking-wide);
+  text-transform: uppercase;
+}
+.h-display { font-weight: 800; letter-spacing: -.028em; line-height: 1.03; margin: 0; text-wrap: balance; }
+.body-lg { font-size: 17px; line-height: 1.5; color: var(--pdp-text-muted); margin: 0; max-width: 34ch; }
+
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); }
+
+/* ══════════════ concept bar ══════════════ */
+.concept {
+  background: var(--pdp-bg-invert); color: var(--pdp-text-on-dark);
+  padding: 9px var(--pad);
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: baseline;
+  font-family: var(--pdp-font-label); font-size: 11px; letter-spacing: .06em;
+}
+.concept b { color: var(--pdp-brand-primary); }
+.concept span { opacity: .62; text-transform: none; font-family: var(--pdp-font); font-size: 12.5px; letter-spacing: 0; }
+
+/* ══════════════ nav ══════════════ */
+.nav { position: sticky; top: 0; z-index: 60; background: var(--pdp-bg-page); border-bottom: 1px solid var(--pdp-border-subtle); }
+.nav-in { display: flex; align-items: center; height: 58px; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); }
+.mark { font-weight: 800; font-size: 15px; letter-spacing: -.03em; text-transform: uppercase; }
+.mark i { font-style: normal; color: var(--pdp-brand-primary); }
+.nav-links { display: flex; gap: 26px; margin-left: auto; }
+.nav-links a {
+  text-decoration: none; font-size: 11px; font-weight: 600;
+  letter-spacing: var(--pdp-tracking-wide); text-transform: uppercase;
+  padding-block: 4px; border-bottom: 1px solid transparent;
+  transition: border-color var(--pdp-duration-fast) var(--pdp-ease);
+}
+.nav-links a:hover { border-bottom-color: currentColor; }
+@media (max-width: 700px) { .nav-links a:nth-child(n+3) { display: none; } }
+
+/* ══════════════ product ══════════════ */
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(340px, 1fr);
+  gap: clamp(24px, 3.6vw, 64px);
+  align-items: start;
+}
+@media (max-width: 1000px) { .product { grid-template-columns: 1fr; gap: 26px; } }
+
+/* ── swipe gallery ── */
+.gallery { position: relative; margin-left: calc(var(--pad) * -1); }
+@media (max-width: 1000px) { .gallery { margin-right: calc(var(--pad) * -1); } }
+
+.track {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  padding-bottom: 4px;
+}
+.track::-webkit-scrollbar { display: none; }
+.slide {
+  flex: 0 0 calc(100% - 56px);
+  scroll-snap-align: start;
+  background: var(--pdp-bg-surface);
+  aspect-ratio: 16 / 11;
+  position: relative;
+  display: grid; place-items: center;
+  overflow: hidden;
+}
+@media (max-width: 1000px) { .slide { flex: 0 0 calc(100% - 40px); aspect-ratio: 4 / 3; } }
+.slide svg { width: 100%; height: 100%; display: block; }
+.slide-tag {
+  position: absolute; left: 20px; top: 18px;
+  font-family: var(--pdp-font-label); font-size: 10.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--pdp-text-subtle);
+}
+.slide { cursor: zoom-in; }
+.slide:focus-visible { outline: 2px solid var(--pdp-brand-primary); outline-offset: -2px; }
+.slide-expand {
+  position: absolute; right: 16px; bottom: 16px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--pdp-bg-page); border: 1px solid var(--pdp-border-subtle);
+  display: grid; place-items: center; pointer-events: none;
+  opacity: 0; transition: opacity var(--intent-hover);
+}
+.slide-expand svg { width: 15px; height: 15px; stroke: var(--pdp-text-body); fill: none; stroke-width: 1.6; }
+@media (hover: hover) and (pointer: fine) {
+  .slide:hover .slide-expand { opacity: 1; }
+}
+@media (hover: none) { .slide-expand { opacity: 1; } }
+
+/* ══════════════ LIGHTBOX ══════════════
+   Native <dialog>, so focus trapping, Esc and the top layer come free.
+   Opens with the story spring, closes on the store exit curve - entrances
+   are an event, exits are getting out of the way.
+   @starting-style + allow-discrete give the entrance with no JS class
+   toggling: Baseline since August 2024, and browsers without it just
+   show the panel instantly. */
+.lb {
+  border: 0; padding: 0; margin: 0; inset: 0;
+  width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh;
+  background: var(--pdp-bg-surface); color: var(--pdp-text-body);
+  overflow: hidden;
+  opacity: 0; scale: .985;
+  transition: opacity var(--intent-dismiss), scale var(--intent-dismiss),
+              display var(--m-duration-fast) allow-discrete,
+              overlay var(--m-duration-fast) allow-discrete;
+}
+.lb[open] {
+  opacity: 1; scale: 1;
+  transition: opacity var(--intent-reveal), scale var(--intent-story),
+              display var(--m-duration-story) allow-discrete,
+              overlay var(--m-duration-story) allow-discrete;
+}
+@starting-style { .lb[open] { opacity: 0; scale: .985; } }
+.lb::backdrop { background: var(--pdp-bg-surface); }
+
+.lb-track {
+  display: flex; height: 100dvh;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; overscroll-behavior: contain;
+}
+.lb-track::-webkit-scrollbar { display: none; }
+.lb-track[data-zoom="1"] { overflow: hidden; scroll-snap-type: none; }
+.lb-slide {
+  flex: 0 0 100%; scroll-snap-align: center;
+  display: grid; place-items: center;
+  padding: clamp(64px, 9vh, 116px) clamp(20px, 7vw, 150px);
+}
+.lb-fig {
+  width: 100%; height: 100%; display: grid; place-items: center;
+  transition: scale var(--intent-reveal), translate var(--intent-hover);
+}
+.lb-fig svg { width: 100%; height: 100%; display: block; }
+.lb-track[data-zoom="1"] .lb-slide { cursor: grab; }
+.lb-track[data-zoom="1"] .lb-slide:active { cursor: grabbing; }
+
+.rnd {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--pdp-bg-page); border: 1px solid var(--pdp-border-input);
+  color: var(--pdp-text-body);
+  display: grid; place-items: center; cursor: pointer; padding: 0;
+  transition: background var(--intent-hover), transform var(--intent-press), opacity var(--intent-hover);
+}
+.rnd:active { transform: scale(var(--m-scale-press)); }
+.rnd:disabled { opacity: .3; cursor: default; }
+.rnd svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+@media (hover: hover) and (pointer: fine) { .rnd:hover:not(:disabled) { background: var(--pdp-bg-muted); } }
+@media (max-width: 620px) { .rnd { width: 44px; height: 44px; } .rnd svg { width: 17px; height: 17px; } }
+
+.lb-close { position: fixed; top: clamp(14px, 2.2vw, 30px); right: clamp(14px, 2.2vw, 30px); z-index: 2; }
+.lb-bar {
+  position: fixed; left: clamp(14px, 2.2vw, 30px); bottom: clamp(14px, 2.2vw, 30px);
+  display: flex; gap: 10px; align-items: center; z-index: 2;
+}
+.lb-count { margin-left: 14px; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--pdp-text-muted); }
+.lb-zoom { position: fixed; right: clamp(14px, 2.2vw, 30px); bottom: clamp(14px, 2.2vw, 30px); z-index: 2; }
+.lb-zoom[aria-pressed="true"] { background: var(--pdp-bg-invert); color: var(--pdp-text-on-dark); border-color: var(--pdp-bg-invert); }
+
+.gal-bar {
+  display: flex; align-items: center; gap: 4px;
+  padding: 14px 0 0 var(--pad);
+}
+.gal-btn {
+  width: 40px; height: 40px; border: 0; background: none; cursor: pointer;
+  color: var(--pdp-text-body);
+  display: grid; place-items: center;
+  transition: opacity var(--pdp-duration-fast) var(--pdp-ease), transform var(--pdp-duration-fast) var(--pdp-ease-spring);
+}
+.gal-btn:hover:not(:disabled) { transform: translateX(calc(var(--m-disp-micro) * -1)); }
+.gal-btn.next:hover:not(:disabled) { transform: translateX(var(--m-disp-micro)); }
+.gal-btn:disabled { opacity: .25; cursor: default; }
+.gal-btn svg { width: 22px; height: 22px; }
+.gal-count {
+  margin-left: 16px;
+  font-family: var(--pdp-font-label); font-size: 13px;
+  font-variant-numeric: tabular-nums; color: var(--pdp-text-muted);
+}
+.gal-dots { display: flex; gap: 5px; margin-left: auto; padding-right: 4px; }
+.dotb { width: 22px; height: 2px; border: 0; padding: 0; cursor: pointer; background: var(--pdp-border-subtle); transition: background var(--pdp-duration-base) var(--pdp-ease-spring); }
+.dotb[aria-current="true"] { background: var(--pdp-text-body); }
+@media (max-width: 620px) { .gal-dots { display: none; } }
+
+/* ── buy pod ── */
+.pod {
+  position: sticky; top: 78px;
+  min-height: calc(100vh - 96px);
+  display: flex; flex-direction: column;
+  padding-top: 4px;
+}
+@media (max-width: 1000px) { .pod { position: static; min-height: 0; } }
+
+.pod-top { display: flex; align-items: flex-start; gap: 16px; }
+.crumb { display: flex; gap: 7px; align-items: center; flex-wrap: wrap; margin-bottom: 18px; }
+.crumb a { text-decoration: none; color: var(--pdp-text-subtle); font-family: var(--pdp-font-label); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.crumb a:hover { color: var(--pdp-text-body); }
+.crumb i { font-style: normal; color: var(--pdp-border-input); font-size: 11px; }
+
+.wish {
+  margin-left: auto; flex: 0 0 auto;
+  background: none; border: 0; padding: 4px; cursor: pointer; color: var(--pdp-text-body);
+  transition: transform var(--pdp-duration-fast) var(--pdp-ease-spring);
+}
+.wish:hover { transform: scale(1.12); }
+.wish[aria-pressed="true"] svg { fill: var(--pdp-brand-primary); stroke: var(--pdp-brand-primary); }
+.wish svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+.p-name { font-size: clamp(28px, 2.5vw, 38px); }
+.p-flag { display: block; margin: 14px 0 0; color: var(--pdp-brand-primary); font-family: var(--pdp-font-label); font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.p-price { margin: 10px 0 0; font-size: 19px; font-weight: 600; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.p-desc { margin: 20px 0 0; font-size: 16px; line-height: 1.45; color: var(--pdp-text-body); max-width: 32ch; }
+
+/* segmented pill */
+.seg { display: inline-flex; background: var(--pdp-bg-surface); border-radius: 40px; padding: 4px; margin-top: 26px; }
+.seg button {
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  background: none; border: 1.5px solid transparent; border-radius: 40px;
+  padding: 10px 26px; cursor: pointer; color: var(--pdp-text-muted);
+  transition: background var(--pdp-duration-fast) var(--pdp-ease), color var(--pdp-duration-fast) var(--pdp-ease), border-color var(--pdp-duration-fast) var(--pdp-ease);
+}
+.seg button[aria-pressed="true"] { background: var(--pdp-bg-page); border-color: var(--pdp-border-strong); color: var(--pdp-text-body); }
+
+.colourway { margin: 26px 0 0; font-size: 14.5px; }
+.swatches { display: flex; gap: 14px; margin-top: 12px; }
+.sw {
+  width: 74px; padding: 0 0 8px; background: none; border: 0; cursor: pointer;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color var(--pdp-duration-fast) var(--pdp-ease);
+}
+.sw[aria-pressed="true"] { border-bottom-color: var(--pdp-text-body); }
+.sw span { display: block; background: var(--pdp-bg-surface); aspect-ratio: 3/2; }
+.sw svg { width: 100%; height: 100%; }
+
+/* bottom-pinned buy - On pins these to the foot of the pod column */
+.pod-buy { margin-top: auto; padding-top: 34px; display: grid; gap: 10px; }
+.pill {
+  font-family: inherit; font-size: 15px; font-weight: 600;
+  border-radius: 40px; padding: 17px 24px; cursor: pointer; width: 100%;
+  transition: background var(--pdp-duration-fast) var(--pdp-ease), color var(--pdp-duration-fast) var(--pdp-ease), opacity var(--pdp-duration-fast) var(--pdp-ease);
+}
+.pill--ghost {
+  background: var(--pdp-bg-page); color: var(--pdp-text-body);
+  border: 1.5px solid var(--pdp-border-strong);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.pill--ghost svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform var(--pdp-duration-base) var(--pdp-ease-spring); }
+.pill--ghost[aria-expanded="true"] svg { transform: rotate(180deg); }
+.pill--action { background: var(--pdp-btn-action); color: #fff; border: 1.5px solid var(--pdp-btn-action); }
+.pill--action:hover { background: var(--pdp-btn-action-hover); border-color: var(--pdp-btn-action-hover); }
+.pill--action[data-done="1"] { background: var(--pdp-success); border-color: var(--pdp-success); color: #0d2b12; }
+
+/* intent.press - 150ms standard, scale 0.96. Any deeper reads as broken. */
+.pill, .size, .seg button, .lg-btn { transition: background var(--intent-hover), color var(--intent-hover), border-color var(--intent-hover), transform var(--intent-press), box-shadow var(--intent-hover); }
+.pill:active, .size:active:not(:disabled), .seg button:active, .lg-btn:active { transform: scale(var(--m-scale-press)); }
+.pill--action { display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+/* intent.reveal / intent.dismiss - the size panel */
+.size-panel { display: grid; grid-template-rows: 0fr; opacity: 0; padding-bottom: 0;
+  transform: scale(var(--m-scale-modal-in)); transform-origin: bottom center;
+  transition: grid-template-rows var(--intent-dismiss), opacity var(--intent-dismiss), transform var(--intent-dismiss), padding var(--intent-dismiss); }
+.size-panel > div { overflow: hidden; min-height: 0; }
+.size-panel[data-open="1"] { grid-template-rows: 1fr; opacity: 1; padding-bottom: 6px; transform: scale(1);
+  transition: grid-template-rows var(--intent-reveal), opacity var(--intent-reveal), transform var(--intent-reveal), padding var(--intent-reveal); }
+.size-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.size-head span { font-family: var(--pdp-font-label); font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--pdp-text-subtle); }
+.size-head button { background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; font-size: 12.5px; color: var(--pdp-btn-action); text-decoration: underline; text-underline-offset: 3px; }
+.sizes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.size {
+  font-family: inherit; font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums;
+  background: none; color: var(--pdp-text-body);
+  border: 1px solid var(--pdp-border-subtle);
+  border-radius: 40px; padding: 11px 2px; cursor: pointer; position: relative;
+  transition: border-color var(--pdp-duration-fast) var(--pdp-ease), box-shadow var(--pdp-duration-fast) var(--pdp-ease);
+}
+.size:hover:not(:disabled) { border-color: var(--pdp-border-strong); }
+.size[aria-pressed="true"] { border-color: var(--pdp-border-strong); box-shadow: inset 0 0 0 1px var(--pdp-border-strong); }
+/* Sold out, but still tappable - tapping is how you find the alternatives.
+   Struck through so it reads as unavailable, not dimmed so far it reads as dead. */
+.size[data-sold="1"] { color: var(--pdp-text-subtle); text-decoration: line-through; border-style: dashed; }
+.size[data-sold="1"]:hover { color: var(--pdp-text-body); border-color: var(--pdp-border-input); }
+.size .dot { position: absolute; top: 6px; right: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--pdp-brand-primary); }
+.stock { margin: 10px 0 0; font-size: 12.5px; color: var(--pdp-text-subtle); min-height: 19px; }
+.stock[data-state="low"], .stock[data-state="err"] { color: var(--pdp-brand-primary); font-weight: 600; }
+
+/* ══════════════ content row - the 3-up ══════════════ */
+.trio { padding-block: clamp(52px, 8vw, 128px); }
+.trio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 48px); align-items: start; }
+@media (max-width: 900px) { .trio-grid { grid-template-columns: 1fr; gap: 48px; } }
+.trio-art { background: var(--pdp-bg-surface); aspect-ratio: 1 / 1; overflow: hidden; }
+.trio-art svg { width: 100%; height: 100%; display: block; }
+.trio h3 { font-size: clamp(26px, 2.7vw, 40px); font-weight: 800; letter-spacing: -.028em; line-height: 1.05; margin: 26px 0 14px; text-wrap: balance; }
+.trio p { margin: 0; font-size: 16.5px; line-height: 1.5; color: var(--pdp-text-body); }
+
+/* ══════════════ fit + assurance ══════════════ */
+.fitband { border-top: 1px solid var(--pdp-border-subtle); border-bottom: 1px solid var(--pdp-border-subtle); padding-block: clamp(28px, 4vw, 48px); }
+.fitband-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 64px); }
+@media (max-width: 820px) { .fitband-grid { grid-template-columns: 1fr; gap: 28px; } }
+.fitband h4 { margin: 0 0 8px; font-size: 21px; font-weight: 800; letter-spacing: -.02em; }
+.fitband .mono { color: var(--pdp-text-subtle); display: block; margin-bottom: 12px; }
+.fitband p { margin: 0; font-size: 15px; color: var(--pdp-text-muted); line-height: 1.5; }
+
+/* ══════════════ ratings ══════════════ */
+.ratings { background: var(--pdp-bg-surface); padding-block: clamp(48px, 7vw, 96px); }
+.sec-head { display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; margin-bottom: 34px; }
+.sec-head h2 { font-size: clamp(24px, 2.4vw, 34px); margin: 0; font-weight: 800; letter-spacing: -.025em; }
+.sec-note { font-size: 14px; color: var(--pdp-text-subtle); max-width: 44ch; margin: 0; }
+.bars { border-top: 1px solid var(--pdp-border-subtle); }
+.bar { display: grid; grid-template-columns: 160px 1fr 150px; gap: 24px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--pdp-border-subtle); }
+@media (max-width: 720px) { .bar { grid-template-columns: 1fr auto; gap: 8px 16px; } .bar .ticks { grid-column: 1 / -1; order: 3; } .bar-val { text-align: left; } }
+.bar-name { font-family: var(--pdp-font-label); font-size: 11.5px; letter-spacing: .13em; text-transform: uppercase; }
+.ticks { display: flex; gap: 4px; height: 24px; }
+.tick { flex: 1; background: var(--pdp-bg-muted); }
+.tick.on { background: var(--pdp-text-body); }
+.tick.on.hot { box-shadow: inset 0 -3px 0 var(--pdp-brand-primary); }
+.bar-val { font-size: 14px; color: var(--pdp-text-muted); text-align: right; }
+
+/* ══════════════ specs ══════════════ */
+.specs { display: grid; grid-template-columns: repeat(4, 1fr); padding-block: clamp(44px, 6vw, 80px); }
+@media (max-width: 820px) { .specs { grid-template-columns: repeat(2, 1fr); gap: 40px 0; } }
+.spec { padding-right: 24px; border-right: 1px solid var(--pdp-border-subtle); }
+.spec:last-child, .spec:nth-child(2n) { border-right: 0; }
+@media (min-width: 821px) { .spec:nth-child(2n) { border-right: 1px solid var(--pdp-border-subtle); } .spec:last-child { border-right: 0; } }
+.spec b { display: block; font-weight: 300; font-size: clamp(48px, 6vw, 82px); letter-spacing: -.04em; line-height: .92; font-variant-numeric: tabular-nums; }
+.spec b em { font-style: normal; font-size: .3em; font-weight: 500; letter-spacing: 0; margin-left: .1em; }
+.spec .mono { display: block; margin-top: 18px; color: var(--pdp-text-subtle); font-size: 10.5px; letter-spacing: .16em; }
+.spec p { margin: 6px 0 0; font-size: 13.5px; color: var(--pdp-text-subtle); }
+
+/* ══════════════ dark weight block ══════════════ */
+.dark { background: var(--pdp-bg-invert); color: var(--pdp-text-on-dark); padding-block: clamp(60px, 9vw, 132px); }
+.dark .mono { color: color-mix(in srgb, var(--pdp-text-on-dark) 55%, transparent); }
+.dark h3 { font-size: clamp(34px, 5.6vw, 82px); font-weight: 800; letter-spacing: -.035em; line-height: .98; margin: 18px 0 0; max-width: 15ch; }
+.dark p { color: color-mix(in srgb, var(--pdp-text-on-dark) 70%, transparent); max-width: 52ch; margin: 26px 0 0; font-size: 17px; }
+.pull { display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; margin-top: 48px; padding-top: 32px; border-top: 1px solid color-mix(in srgb, var(--pdp-text-on-dark) 22%, transparent); }
+.pull b { font-weight: 200; font-size: clamp(76px, 14vw, 180px); letter-spacing: -.05em; line-height: .85; font-variant-numeric: tabular-nums; }
+.pull b i { font-style: normal; color: var(--pdp-brand-primary); }
+.pull div { font-size: 14px; color: color-mix(in srgb, var(--pdp-text-on-dark) 64%, transparent); max-width: 26ch; }
+
+/* ══════════════ compare ══════════════ */
+.cmp-scroll { overflow-x: auto; }
+.cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
+.cmp th, .cmp td { text-align: left; padding: 15px 18px 15px 0; border-bottom: 1px solid var(--pdp-border-subtle); font-size: 14.5px; vertical-align: top; }
+.cmp thead th { border-bottom: 1px solid var(--pdp-border-strong); font-family: var(--pdp-font-label); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding-bottom: 12px; }
+.cmp tbody th { font-family: var(--pdp-font-label); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--pdp-text-subtle); width: 160px; font-weight: 500; }
+.cmp thead .self { color: var(--pdp-brand-primary); }
+.cmp td.self { font-weight: 600; }
+
+/* ══════════════ accordions ══════════════ */
+.acc { border-top: 1px solid var(--pdp-border-subtle); }
+.acc details { border-bottom: 1px solid var(--pdp-border-subtle); }
+.acc summary { list-style: none; cursor: pointer; padding: 22px 0; display: flex; align-items: center; gap: 16px; font-family: var(--pdp-font-label); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: ""; margin-left: auto; width: 11px; height: 11px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translate(-3px,-3px); transition: transform var(--pdp-duration-base) var(--pdp-ease-spring); }
+.acc details[open] summary::after { transform: rotate(225deg) translate(-1px,-1px); }
+.acc .body { padding-bottom: 26px; }
+.acc .body p { margin: 0 0 10px; font-size: 15px; color: var(--pdp-text-muted); max-width: 64ch; }
+.acc .body p:last-child { margin-bottom: 0; }
+
+/* ══════════════ related ══════════════ */
+.rel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 860px) { .rel { grid-template-columns: repeat(2, 1fr); } }
+.rel-card { text-decoration: none; display: block; }
+/* intent.hover - 100ms, 8px lift. Fast enough to survive a mouse sweeping
+   across a grid; anything slower smears.
+   Guarded by @media (hover: hover): on touch there is no hover, and an
+   unguarded :hover sticks on after a tap. Plenty of wide tablets have no
+   cursor, so this is a pointer question, not a breakpoint question. */
+.rel-art { background: var(--pdp-bg-surface); aspect-ratio: 1/1; display: grid; place-items: center;
+  transition: background var(--intent-hover), transform var(--intent-hover); }
+@media (hover: hover) and (pointer: fine) {
+  .rel-card:hover .rel-art { background: var(--pdp-bg-muted); transform: translateY(calc(var(--m-disp-lift) * -1)); }
+}
+.rel-art svg { width: 78%; }
+.rel-name { margin: 14px 0 0; font-size: 14px; font-weight: 500; line-height: 1.35; }
+.rel-price { margin: 4px 0 0; font-family: var(--pdp-font-label); font-size: 13px; color: var(--pdp-text-muted); }
+
+/* ══════════════ token appendix ══════════════ */
+.tok { background: var(--pdp-bg-surface); padding-block: clamp(48px, 7vw, 96px); }
+.tok-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(24px, 4vw, 64px); }
+@media (max-width: 820px) { .tok-grid { grid-template-columns: 1fr; } }
+.tok-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--pdp-border-subtle); }
+.tok-list li { display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--pdp-border-subtle); font-family: var(--pdp-font-label); font-size: 12px; }
+.tok-list li span.chipc { width: 22px; height: 22px; border: 1px solid var(--pdp-border-subtle); }
+.tok-list li b { font-weight: 500; letter-spacing: .02em; text-transform: none; }
+.tok-list li em { font-style: normal; color: var(--pdp-text-subtle); }
+.tok-note { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--pdp-border-subtle); }
+.tok-note li { padding: 13px 0; border-bottom: 1px solid var(--pdp-border-subtle); font-size: 14.5px; display: grid; grid-template-columns: 92px 1fr; gap: 14px; }
+.tok-note li i { font-style: normal; font-family: var(--pdp-font-label); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--pdp-text-subtle); padding-top: 4px; }
+
+.foot { padding-block: 40px 72px; }
+.foot p { margin: 0; font-size: 13px; color: var(--pdp-text-subtle); max-width: 78ch; }
+.foot code { font-family: var(--pdp-font-label); font-size: 12px; }
+
+/* mobile buy bar */
+.mbuy { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: var(--pdp-bg-page); border-top: 1px solid var(--pdp-border-subtle); padding: 10px var(--pad) calc(10px + env(safe-area-inset-bottom)); display: none; gap: 12px; align-items: center; }
+.mbuy .mp { font-family: var(--pdp-font-label); font-size: 14px; white-space: nowrap; }
+.mbuy .pill { padding: 14px 20px; font-size: 14px; }
+@media (max-width: 1000px) { .mbuy { display: flex; } body { padding-bottom: 76px; } }
+
+/* intent.reveal - section entrances. Enhancement, never a dependency:
+   without JS the .rv class is never hidden, so content is visible by default. */
+.js .rv { opacity: 0; transform: translateY(20px); }
+/* STORY family - section entrances get the spring, so they settle rather
+   than stopping dead. This is the one place the two families are meant to
+   feel different from the buy pod. */
+.js .rv.in {
+  opacity: 1; transform: none;
+  transition: opacity var(--m-duration-moderate) var(--m-ease-spatial),
+              transform var(--intent-story);
+}
+
+/* ── REDUCED MOTION, handled at token level ──────────────────────
+   Review item 6: if every component has to remember this, it gets forgotten.
+   Override the tokens once and every rule that reads them follows.
+   intent.focus is SHORTENED, not removed - a focus ring that never
+   appears is an accessibility failure, not a preference.
+   ──────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --m-duration-instant:  1ms;   /* focus still fires, just instantly */
+    --m-duration-fast:     1ms;
+    --m-duration-normal:   1ms;
+    --m-duration-moderate: 1ms;
+    --m-duration-slow:     1ms;
+    --m-duration-story:    1ms;
+    --m-duration-pop:      1ms;
+    --m-disp-lift:  0px;
+    --m-disp-shake: 0px;
+    --m-scale-press:    1;
+    --m-scale-pop:      1;
+    --m-scale-modal-in: 1;
+  }
+  .js .rv { opacity: 1; transform: none; }
+  /* loops stop entirely - review item 5 covered transitions but not animations */
+  .shimmer, .spinner, .badge-pop, .shake { animation: none !important; }
+  * { animation-iteration-count: 1 !important; }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ── intent.feedback.error - 250ms, 6px shake ── */
+@keyframes m-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(calc(var(--m-disp-shake) * -1)); }
+  40% { transform: translateX(var(--m-disp-shake)); }
+  60% { transform: translateX(calc(var(--m-disp-shake) * -0.6)); }
+  80% { transform: translateX(calc(var(--m-disp-shake) * 0.6)); }
+}
+.shake { animation: m-shake var(--m-duration-normal) var(--m-ease-standard); }
+
+/* ── intent.feedback.success ──
+   Driven by a real spring, not a hand-placed midpoint. The keyframe is a
+   plain 0.55 → 1 scale; the overshoot and settle come entirely from
+   --m-spring-pop. Change the spring, the feel changes, the keyframe doesn't. */
+@keyframes m-pop {
+  from { transform: scale(.55); }
+  to   { transform: scale(1); }
+}
+.badge-pop { animation: m-pop var(--m-duration-pop) var(--m-spring-pop); }
+
+/* ── intent.loading.shimmer - 1200ms linear ── */
+@keyframes m-shimmer { from { background-position: -180% 0; } to { background-position: 180% 0; } }
+.shimmer {
+  background-image: linear-gradient(90deg,
+    var(--pdp-bg-surface) 0%, var(--pdp-bg-muted) 45%, var(--pdp-bg-surface) 90%);
+  background-size: 180% 100%;
+  animation: m-shimmer var(--m-duration-shimmer) var(--m-ease-linear) infinite;
+}
+
+/* ── intent.loading.spinner - 800ms linear ── */
+@keyframes m-spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 15px; height: 15px; flex: 0 0 auto;
+  border: 2px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-top-color: currentColor; border-radius: 50%;
+  animation: m-spin var(--m-duration-spin) var(--m-ease-linear) infinite;
+}
+
+/* cart badge in the nav - the thing intent.feedback.success is for */
+.cart {
+  margin-left: 22px; position: relative;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: var(--pdp-tracking-wide); text-transform: uppercase;
+}
+.cart b {
+  display: grid; place-items: center;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  border-radius: 20px; background: var(--pdp-brand-primary); color: #fff;
+  font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+
+/* ── out-of-stock alternatives - the edge case as a design surface ── */
+.alts { margin-top: 12px; border-top: 1px solid var(--pdp-border-subtle); padding-top: 14px; }
+.alts[hidden] { display: none; }
+.alts-head { font-size: 13px; margin: 0 0 12px; color: var(--pdp-text-body); }
+.alts-head b { font-weight: 600; }
+.alt-skel { display: grid; gap: 8px; }
+.alt-skel span { display: block; height: 46px; }
+.alt-row { display: grid; gap: 8px; }
+.alt {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center;
+  padding: 9px 12px 9px 9px; width: 100%; text-align: left; cursor: pointer;
+  background: var(--pdp-bg-surface); border: 1px solid transparent; border-radius: 40px;
+  font-family: inherit; color: inherit;
+  opacity: 1; translate: 0 0;
+  transition: border-color var(--intent-hover), transform var(--intent-hover),
+              opacity var(--intent-reveal), translate var(--intent-story);
+}
+/* @starting-style - Baseline since August 2024. The entry state for an element
+   that did not exist a frame ago, in CSS. No JS class-toggling, no rAF hack.
+   Browsers without it simply skip the entrance; the row is still there. */
+@starting-style {
+  .alt { opacity: 0; translate: 0 10px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .alt:hover { border-color: var(--pdp-border-strong); }
+}
+.alt:active { transform: scale(var(--m-scale-press)); }
+.alt i { font-style: normal; display: grid; place-items: center; height: 30px; background: var(--pdp-bg-page); border-radius: 30px; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.alt span { font-size: 13px; line-height: 1.3; }
+.alt em { font-style: normal; display: block; font-size: 11.5px; color: var(--pdp-text-subtle); }
+.alt strong { font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ── motion legend ── */
+.legend { border-top: 1px solid var(--pdp-border-subtle); }
+.legend-row {
+  display: grid; grid-template-columns: 150px 1fr 190px 96px;
+  gap: 20px; align-items: baseline;
+  padding: 15px 0; border-bottom: 1px solid var(--pdp-border-subtle);
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .legend-row { grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+  .legend-row .lg-val { grid-column: 1 / -1; }
+}
+.lg-name { font-size: 11px; font-weight: 600; letter-spacing: var(--pdp-tracking-wide); text-transform: uppercase; }
+.lg-val { font-size: 12.5px; color: var(--pdp-text-subtle); font-variant-numeric: tabular-nums; }
+.lg-demo { justify-self: end; }
+@media (max-width: 900px) { .lg-demo { justify-self: start; } }
+.lg-btn {
+  font-family: inherit; font-size: 11.5px; font-weight: 600;
+  padding: 8px 16px; border-radius: 40px; cursor: pointer;
+  background: var(--pdp-bg-page); color: var(--pdp-text-body);
+  border: 1px solid var(--pdp-border-strong);
+}
+
+/* line art */
+.ln { stroke: var(--pdp-text-body); fill: none; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.lnf { fill: var(--pdp-bg-surface); stroke: var(--pdp-text-body); stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+.ls { stroke: var(--pdp-border-input); fill: none; stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .7; }
+.lh { stroke: var(--pdp-brand-primary); fill: none; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.fk { fill: var(--pdp-text-body); }
+.ann { fill: var(--pdp-text-subtle); font-family: var(--pdp-font-label); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+</style>
+
+<div class="concept">
+  <b>Concept v2</b>
+  <span>Design study - not a live Soccer.com page, and not built on SEI design tokens. Colour is observed from the live site; see “Where these values came from” at the foot of the page.</span>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="mark">Soccer<i>.</i>com</div>
+    <nav class="nav-links">
+      <a href="#trio">Cleats</a><a href="#ratings">Apparel</a><a href="#motion">Motion</a><a href="#tokens">Tokens</a>
+    </nav>
+    <span class="cart">Bag <b id="cartCount">0</b></span>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="product">
+
+      <!-- ═══ SWIPE GALLERY ═══ -->
+      <section class="gallery" aria-roledescription="carousel" aria-label="Product images">
+        <div class="track" id="track" tabindex="0" aria-label="Swipe or use arrow keys">
+
+          <div class="slide" role="group" aria-label="1 of 6, lateral view">
+            <svg viewBox="0 0 800 400" role="img" aria-label="Lateral profile of a low-cut firm-ground speed boot">
+              <path class="lnf" d="M62 292 C58 264 76 242 112 230 C186 204 274 186 356 178 C408 173 450 176 484 188 C504 195 522 197 546 192 C598 181 650 168 696 160 C742 152 772 170 782 204 C790 232 792 258 792 276 C744 294 596 306 420 308 C258 310 122 304 62 292 Z"/>
+              <path class="ln" d="M484 188 C532 179 588 165 646 152"/>
+              <path class="ls" d="M712 156 C744 178 758 220 760 272"/>
+              <path class="ls" d="M120 228 C132 258 138 282 138 302"/>
+              <path class="ls" d="M188 214 C202 244 208 272 210 298"/>
+              <path class="ls" d="M258 200 C272 232 278 262 280 296"/>
+              <path class="ls" d="M330 188 C344 222 350 254 352 294"/>
+              <path class="lh" d="M392 184 L440 214"/><path class="lh" d="M414 180 L462 210"/><path class="lh" d="M436 178 L484 206"/>
+              <path class="ls" d="M170 268 C270 244 380 232 470 236"/>
+              <path class="ln" d="M62 292 C124 308 258 316 420 314 C596 312 744 300 792 280 L794 296 C748 318 598 330 420 332 C256 334 120 326 60 308 Z"/>
+              <g class="fk">
+                <path d="M108 322 L142 325 L134 356 L112 355 Z"/><path d="M196 328 L230 330 L222 362 L200 361 Z"/>
+                <path d="M300 331 L334 332 L326 364 L304 364 Z"/><path d="M404 332 L438 332 L430 364 L408 364 Z"/>
+                <path d="M640 322 L672 318 L668 350 L646 352 Z"/><path d="M716 312 L746 306 L744 338 L722 342 Z"/>
+              </g>
+              <ellipse class="lh" cx="236" cy="286" rx="72" ry="13"/>
+              <text class="ann" x="236" y="264" text-anchor="middle">Air Zoom</text>
+            </svg>
+            <div class="slide-tag">Lateral</div>
+          </div>
+
+          <div class="slide" role="group" aria-label="2 of 6, soleplate">
+            <svg viewBox="0 0 880 620" role="img" aria-label="Soleplate showing eight chevron and four conical studs, with a legend">
+              <g transform="translate(148,14)">
+                <path class="lnf" d="M130 22 C176 22 204 54 208 106 C211 144 202 180 194 212 C186 244 184 270 188 300 C194 344 206 378 206 424 C206 496 176 556 138 576 C120 585 106 585 94 576 C58 554 34 496 34 424 C34 374 48 338 54 298 C58 266 56 240 48 210 C40 178 30 140 34 102 C40 48 84 22 130 22 Z"/>
+                <path class="ls" d="M52 250 C110 262 158 262 194 250"/>
+                <path class="ls" d="M50 340 C110 328 160 328 200 340"/>
+                <g class="fk">
+                  <path d="M62 86 L92 78 L96 100 L68 108 Z"/><path d="M114 66 L146 66 L148 88 L118 88 Z"/>
+                  <path d="M164 80 L194 90 L188 112 L160 102 Z"/><path d="M46 136 L76 130 L80 152 L52 158 Z"/>
+                  <path d="M180 138 L206 148 L200 170 L174 160 Z"/><path d="M70 182 L100 176 L104 198 L76 204 Z"/>
+                  <path d="M150 178 L180 186 L174 208 L146 200 Z"/><path d="M110 124 L140 124 L142 146 L112 146 Z"/>
+                  <circle cx="76" cy="446" r="13"/><circle cx="164" cy="446" r="13"/>
+                  <circle cx="82" cy="512" r="13"/><circle cx="158" cy="512" r="13"/>
+                </g>
+                <path class="lh" d="M148 78 L232 78"/>
+                <path class="lh" d="M177 446 L232 446"/>
+              </g>
+              <g transform="translate(510,0)">
+                <path class="ls" d="M0 60 L0 560"/>
+                <g class="fk"><path d="M26 118 L60 110 L66 146 L30 154 Z"/></g>
+                <text class="ann" x="94" y="128">8 × chevron</text>
+                <text class="ann" x="94" y="150">Forefoot · push and turn</text>
+                <g class="fk"><circle cx="46" cy="290" r="18"/></g>
+                <text class="ann" x="94" y="286">4 × conical</text>
+                <text class="ann" x="94" y="308">Heel · release on stop</text>
+                <path class="lh" d="M26 430 L66 430"/>
+                <text class="ann" x="94" y="426">Firm ground only</text>
+                <text class="ann" x="94" y="448">Not rated for 3G or 4G</text>
+              </g>
+            </svg>
+            <div class="slide-tag">Soleplate</div>
+          </div>
+
+          <div class="slide" role="group" aria-label="3 of 6, heel and collar">
+            <svg viewBox="0 0 800 400" role="img" aria-label="Heel view showing low-cut collar height">
+              <path class="lnf" d="M300 118 C300 92 340 74 400 74 C460 74 500 92 500 118 L512 274 C514 296 468 312 400 312 C332 312 286 296 288 274 Z"/>
+              <path class="ln" d="M300 118 C300 140 340 154 400 154 C460 154 500 140 500 118"/>
+              <!-- achilles notch -->
+              <path class="ln" d="M368 78 C378 96 386 104 400 104 C414 104 422 96 432 78"/>
+              <!-- heel counter, curved not banded -->
+              <path class="ls" d="M318 168 C348 196 452 196 482 168"/>
+              <path class="ls" d="M312 214 C344 246 456 246 488 214"/>
+              <path class="ls" d="M400 104 L400 300"/>
+              <path class="ln" d="M288 274 C286 296 332 312 400 312 C468 312 514 296 512 274 L516 314 C518 336 470 352 400 352 C330 352 282 336 284 314 Z"/>
+              <path class="lh" d="M556 118 L556 154"/><path class="lh" d="M548 118 L564 118"/><path class="lh" d="M548 154 L564 154"/>
+              <text class="ann" x="578" y="142">Low cut</text>
+            </svg>
+            <div class="slide-tag">Heel</div>
+          </div>
+
+          <div class="slide" role="group" aria-label="4 of 6, midsole cutaway">
+            <svg viewBox="-40 0 580 400" role="img" aria-label="Cutaway of the sockliner, midsole and plate">
+              <path class="lnf" d="M62 178 C162 154 302 144 420 148 C440 149 450 158 448 168 C446 178 436 184 420 184 C302 182 162 192 64 204 Z"/>
+              <path class="lnf" d="M64 204 C162 192 302 182 420 184 C440 185 450 196 450 212 C450 230 438 242 418 244 C302 248 160 252 62 246 C50 245 46 234 48 222 C50 212 56 206 64 204 Z"/>
+              <ellipse class="lh" cx="172" cy="216" rx="82" ry="16"/><ellipse class="lh" cx="172" cy="216" rx="60" ry="9"/>
+              <path class="lnf" d="M62 246 C160 254 302 250 418 244 C438 243 450 250 450 260 C450 270 440 276 420 278 C302 284 158 286 60 276 C48 275 44 268 46 260 C48 252 54 246 62 246 Z"/>
+              <g class="fk">
+                <path d="M98 280 L130 282 L124 312 L104 311 Z"/><path d="M188 284 L220 285 L214 315 L194 314 Z"/>
+                <path d="M282 283 L314 282 L308 312 L288 313 Z"/><path d="M370 278 L400 276 L396 306 L376 308 Z"/>
+              </g>
+              <path class="lh" d="M172 200 L172 116 L438 116"/>
+              <text class="ann" x="438" y="108" text-anchor="end">Forefoot Air Zoom</text>
+              <path class="ls" d="M312 166 L312 76 L84 76"/>
+              <text class="ann" x="84" y="68">ZoomX sockliner</text>
+              <path class="ls" d="M340 262 L340 356 L128 356"/>
+              <text class="ann" x="128" y="374">Nylon plate</text>
+            </svg>
+            <div class="slide-tag">Cutaway</div>
+          </div>
+
+          <div class="slide" role="group" aria-label="5 of 6, upper knit structure">
+            <svg viewBox="-40 0 580 400" role="img" aria-label="Macro of the knit upper structure">
+              <g class="ls">
+                <path d="M30 60 L470 60"/><path d="M30 100 L470 100"/><path d="M30 140 L470 140"/><path d="M30 180 L470 180"/>
+                <path d="M30 220 L470 220"/><path d="M30 260 L470 260"/><path d="M30 300 L470 300"/><path d="M30 340 L470 340"/>
+              </g>
+              <g class="ln">
+                <path d="M60 40 C80 70 40 90 60 120 C80 150 40 170 60 200 C80 230 40 250 60 280 C80 310 40 330 60 360"/>
+                <path d="M120 40 C140 70 100 90 120 120 C140 150 100 170 120 200 C140 230 100 250 120 280 C140 310 100 330 120 360"/>
+                <path d="M180 40 C200 70 160 90 180 120 C200 150 160 170 180 200 C200 230 160 250 180 280 C200 310 160 330 180 360"/>
+                <path d="M240 40 C260 70 220 90 240 120 C260 150 220 170 240 200 C260 230 220 250 240 280 C260 310 220 330 240 360"/>
+              </g>
+              <g class="lh">
+                <path d="M300 40 C320 70 280 90 300 120 C320 150 280 170 300 200 C320 230 280 250 300 280 C320 310 280 330 300 360"/>
+                <path d="M360 40 C380 70 340 90 360 120 C380 150 340 170 360 200 C380 230 340 250 360 280 C380 310 340 330 360 360"/>
+              </g>
+              <g class="ln">
+                <path d="M420 40 C440 70 400 90 420 120 C440 150 400 170 420 200 C440 230 400 250 420 280 C440 310 400 330 420 360"/>
+              </g>
+              <rect x="284" y="26" width="92" height="348" class="lh" fill="none"/>
+              <text class="ann" x="330" y="18" text-anchor="middle">Lockdown zone</text>
+            </svg>
+            <div class="slide-tag">Upper</div>
+          </div>
+
+          <div class="slide" role="group" aria-label="6 of 6, pair">
+            <svg viewBox="0 0 800 400" role="img" aria-label="Pair, three-quarter arrangement">
+              <g transform="translate(0,-40) scale(0.82) translate(60,60)">
+                <path class="lnf" d="M62 292 C58 264 76 242 112 230 C186 204 274 186 356 178 C408 173 450 176 484 188 C504 195 522 197 546 192 C598 181 650 168 696 160 C742 152 772 170 782 204 C790 232 792 258 792 276 C744 294 596 306 420 308 C258 310 122 304 62 292 Z"/>
+                <path class="ln" d="M484 188 C532 179 588 165 646 152"/>
+                <path class="ln" d="M62 292 C124 308 258 316 420 314 C596 312 744 300 792 280 L794 296 C748 318 598 330 420 332 C256 334 120 326 60 308 Z"/>
+                <g class="fk"><path d="M108 322 L142 325 L134 356 L112 355 Z"/><path d="M300 331 L334 332 L326 364 L304 364 Z"/><path d="M716 312 L746 306 L744 338 L722 342 Z"/></g>
+              </g>
+              <g transform="translate(160,150) scale(0.62)">
+                <path class="lnf" d="M62 292 C58 264 76 242 112 230 C186 204 274 186 356 178 C408 173 450 176 484 188 C504 195 522 197 546 192 C598 181 650 168 696 160 C742 152 772 170 782 204 C790 232 792 258 792 276 C744 294 596 306 420 308 C258 310 122 304 62 292 Z"/>
+                <path class="ln" d="M484 188 C532 179 588 165 646 152"/>
+                <path class="ln" d="M62 292 C124 308 258 316 420 314 C596 312 744 300 792 280 L794 296 C748 318 598 330 420 332 C256 334 120 326 60 308 Z"/>
+                <g class="fk"><path d="M196 328 L230 330 L222 362 L200 361 Z"/><path d="M404 332 L438 332 L430 364 L408 364 Z"/><path d="M640 322 L672 318 L668 350 L646 352 Z"/></g>
+              </g>
+            </svg>
+            <div class="slide-tag">Pair</div>
+          </div>
+
+        </div>
+
+        <div class="gal-bar">
+          <button class="gal-btn prev" id="prev" type="button" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12H4M4 12l6-6M4 12l6 6"/></svg>
+          </button>
+          <button class="gal-btn next" id="next" type="button" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M20 12l-6-6M20 12l-6 6"/></svg>
+          </button>
+          <span class="gal-count" id="count" aria-live="polite">1&thinsp;/&thinsp;6</span>
+          <div class="gal-dots" id="dots"></div>
+        </div>
+      </section>
+
+      <!-- ═══ BUY POD ═══ -->
+      <div class="pod">
+        <div>
+          <div class="pod-top">
+            <div class="crumb">
+              <a href="#">Shop</a><i>&rsaquo;</i><a href="#">Mens</a><i>&rsaquo;</i><a href="#">Cleats</a><i>&rsaquo;</i><a href="#">Mercurial</a>
+            </div>
+            <button class="wish" id="wish" type="button" aria-pressed="false" aria-label="Save to wishlist">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6C19 15.4 12 20 12 20Z"/></svg>
+            </button>
+          </div>
+
+          <h1 class="h-display p-name">Mercurial Superfly 11 Elite FG</h1>
+          <span class="p-flag">Top seller</span>
+          <p class="p-price">$294.99</p>
+
+          <p class="p-desc">The fastest Superfly yet - a forefoot Air Zoom unit and a ZoomX sockliner under a single-layer knit upper, back on a low-cut collar for the first time since 2014.</p>
+
+          <div class="seg" role="group" aria-label="Fitting">
+            <button type="button" aria-pressed="true">Standard</button>
+            <button type="button" aria-pressed="false">Wide</button>
+          </div>
+
+          <p class="colourway">White | Blur | Bright Crimson</p>
+          <div class="swatches" role="group" aria-label="Colourway">
+            <button class="sw" type="button" aria-pressed="true" aria-label="White, Blur and Bright Crimson">
+              <span><svg viewBox="0 0 300 200"><path class="lnf" d="M26 148 C24 132 34 122 52 116 C106 96 176 84 222 80 C254 77 270 90 274 108 C278 126 278 142 278 150 C236 162 126 166 26 156 Z"/><path class="ln" d="M26 156 C126 168 240 164 278 152 L280 162 C242 176 124 180 24 168 Z"/><path class="lh" d="M150 88 L176 104"/></svg></span>
+            </button>
+            <button class="sw" type="button" aria-pressed="false" aria-label="Black and Metallic Gold">
+              <span><svg viewBox="0 0 300 200"><path class="lnf" style="fill:var(--pdp-bg-muted)" d="M26 148 C24 132 34 122 52 116 C106 96 176 84 222 80 C254 77 270 90 274 108 C278 126 278 142 278 150 C236 162 126 166 26 156 Z"/><path class="ln" d="M26 156 C126 168 240 164 278 152 L280 162 C242 176 124 180 24 168 Z"/></svg></span>
+            </button>
+            <button class="sw" type="button" aria-pressed="false" aria-label="Multi Colour">
+              <span><svg viewBox="0 0 300 200"><path class="lnf" d="M26 148 C24 132 34 122 52 116 C106 96 176 84 222 80 C254 77 270 90 274 108 C278 126 278 142 278 150 C236 162 126 166 26 156 Z"/><path class="ln" d="M26 156 C126 168 240 164 278 152 L280 162 C242 176 124 180 24 168 Z"/><path class="lh" d="M70 112 C130 96 200 88 250 88"/><path class="lh" d="M64 130 C124 114 196 106 252 106"/></svg></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pod-buy">
+          <div class="size-panel" id="sizePanel">
+            <div>
+              <div class="size-head">
+                <span>US Men's</span>
+                <button type="button" id="guideBtn">Size guide</button>
+              </div>
+              <div class="sizes" id="sizes" role="group" aria-label="Size"></div>
+              <p class="stock" id="stock" role="status">Runs narrow. Most players stay true to size.</p>
+
+              <!-- Sold-out sizes surface alternatives instead of a Notify Me dead end -->
+              <div class="alts" id="alts" hidden>
+                <p class="alts-head" id="altsHead"></p>
+                <div class="alt-skel" id="altSkel" aria-hidden="true">
+                  <span class="shimmer"></span><span class="shimmer"></span><span class="shimmer"></span>
+                </div>
+                <div class="alt-row" id="altRow" hidden></div>
+              </div>
+            </div>
+          </div>
+          <button class="pill pill--ghost" id="sizeToggle" type="button" aria-expanded="false" aria-controls="sizePanel">
+            <span id="sizeLabel">Select a size</span>
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <button class="pill pill--action" id="addBtn" type="button">Add to bag</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 3-UP CONTENT ROW ═══ -->
+  <section class="trio rv" id="trio">
+    <div class="wrap">
+      <div class="trio-grid">
+        <div>
+          <div class="trio-art">
+            <svg viewBox="0 0 400 400" role="img" aria-label="Top-down view of the knit upper and lace zone">
+              <path class="lnf" d="M200 32 C266 32 302 78 306 148 C309 200 296 246 286 288 C276 330 274 352 278 372 L122 372 C126 352 124 330 114 288 C104 246 91 200 94 148 C98 78 134 32 200 32 Z"/>
+              <path class="ls" d="M120 150 C160 162 240 162 280 150"/>
+              <path class="ls" d="M114 196 C158 208 242 208 286 196"/>
+              <path class="ls" d="M112 242 C158 254 242 254 288 242"/>
+              <path class="lh" d="M170 118 L230 148"/><path class="lh" d="M170 152 L230 182"/><path class="lh" d="M170 186 L230 216"/><path class="lh" d="M170 220 L230 250"/>
+              <path class="ln" d="M200 32 L200 96"/>
+              <path class="ls" d="M148 74 C176 62 224 62 252 74"/>
+            </svg>
+          </div>
+          <h3>Nothing between you and it</h3>
+          <p>A single knit layer, no lining, no padding. You feel the seam of the ball through the vamp - which is the whole argument for this boot, and also the reason it isn't for everyone.</p>
+        </div>
+        <div>
+          <div class="trio-art">
+            <svg viewBox="0 0 400 400" role="img" aria-label="Air Zoom unit geometry">
+              <ellipse class="lnf" cx="200" cy="200" rx="150" ry="76"/>
+              <ellipse class="lh" cx="200" cy="200" rx="118" ry="56"/>
+              <ellipse class="lh" cx="200" cy="200" rx="86" ry="38"/>
+              <g class="ls">
+                <path d="M118 156 L118 244"/><path d="M154 146 L154 254"/><path d="M200 142 L200 258"/>
+                <path d="M246 146 L246 254"/><path d="M282 156 L282 244"/>
+              </g>
+              <path class="ln" d="M50 200 C50 158 118 124 200 124 C282 124 350 158 350 200"/>
+              <path class="ls" d="M50 296 L350 296"/>
+              <text class="ann" x="200" y="332" text-anchor="middle">Compress · return</text>
+            </svg>
+          </div>
+          <h3>Air, under the ball of the foot</h3>
+          <p>The Zoom unit sits inside the plate rather than on top of it. Compressed on the plant, returned on the push. It shows up in the last ten metres of a run, not the first.</p>
+        </div>
+        <div>
+          <div class="trio-art">
+            <svg viewBox="0 0 400 400" role="img" aria-label="Chevron and conical stud geometry">
+              <g class="fk" transform="translate(28,-4) scale(0.84)">
+                <path d="M76 86 L124 78 L132 122 L84 130 Z"/>
+                <path d="M164 70 L212 70 L216 114 L168 114 Z"/>
+                <path d="M252 82 L300 94 L292 138 L246 126 Z"/>
+                <path d="M62 172 L110 164 L118 208 L70 216 Z"/>
+                <path d="M266 178 L312 192 L302 236 L258 222 Z"/>
+                <path d="M100 258 L148 250 L156 294 L108 302 Z"/>
+                <path d="M216 254 L264 266 L254 310 L208 298 Z"/>
+                <path d="M158 170 L206 170 L210 214 L162 214 Z"/>
+              </g>
+              <text class="ann" x="34" y="286">8 × chevron · forefoot</text>
+              <path class="ls" d="M34 306 L366 306"/>
+              <g class="fk">
+                <circle cx="66" cy="348" r="17"/><circle cx="152" cy="348" r="17"/>
+                <circle cx="238" cy="348" r="17"/><circle cx="324" cy="348" r="17"/>
+              </g>
+              <text class="ann" x="34" y="392">4 × conical · heel</text>
+            </svg>
+          </div>
+          <h3>Twelve studs, two shapes</h3>
+          <p>Chevrons up front for the push and the turn, cones at the heel so the boot releases when you stop. Firm natural grass only - putting this plate on 3G voids the warranty and hurts your knees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FIT BAND ═══ -->
+  <section class="fitband rv">
+    <div class="wrap">
+      <div class="fitband-grid">
+        <div>
+          <span class="mono">Fit</span>
+          <h4>True to size</h4>
+          <p>Narrow through the forefoot, shallow over the instep. Wide feet should take the half size up rather than the wide fitting - the wide adds midfoot volume, not toe room.</p>
+        </div>
+        <div>
+          <span class="mono">Goal Club</span>
+          <h4>5% back on this pair</h4>
+          <p>Lifetime membership is $4, once, with no renewal and no subscription. Points apply to this boot despite the promotional exclusion.</p>
+        </div>
+        <div>
+          <span class="mono">Returns</span>
+          <h4>30-day wear test</h4>
+          <p>Play a full match in them. If they don't work, send them back used - free returns, no restocking fee. Free shipping over $49.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RATINGS ═══ -->
+  <section class="ratings rv" id="ratings">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>How it plays</h2>
+        <p class="sec-note">Five properties, rated on the same scale as every other firm-ground boot on the site. Comparable across pages, which marketing copy never is.</p>
+      </div>
+      <div class="bars" id="bars"></div>
+    </div>
+  </section>
+
+  <!-- ═══ SPECS ═══ -->
+  <div class="wrap">
+    <section class="specs rv">
+      <div class="spec"><b>6.3<em>oz</em></b><span class="mono">Weight</span><p>Per boot, US 9</p></div>
+      <div class="spec"><b>12</b><span class="mono">Studs</span><p>8 chevron, 4 conical</p></div>
+      <div class="spec"><b>Low</b><span class="mono">Collar</span><p>First since 2014</p></div>
+      <div class="spec"><b>FG</b><span class="mono">Surface</span><p>Firm grass only</p></div>
+    </section>
+  </div>
+
+  <!-- ═══ DARK ═══ -->
+  <section class="dark rv">
+    <div class="wrap">
+      <span class="mono">Weight</span>
+      <h3>Six point three ounces of almost nothing.</h3>
+      <p>The FlyWeave Ultra upper has no lining and no padding. You feel the ball through it, which is the point, and you feel the pitch through it, which is the price.</p>
+      <div class="pull">
+        <b>6.3<i>.</i></b>
+        <div>Ounces per boot at US 9. A standard firm-ground trainer runs 8 to 9.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARE ═══ -->
+  <section class="trio rv" id="compare" style="padding-block:clamp(48px,6vw,96px)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Or one of the other two</h2>
+        <p class="sec-note">Most people landing here are choosing between three silhouettes, not deciding whether to buy this one.</p>
+      </div>
+      <div class="cmp-scroll">
+        <table class="cmp">
+          <thead>
+            <tr><th scope="col">&nbsp;</th><th scope="col" class="self">Superfly 11 Elite</th><th scope="col">Vapor 17 Elite</th><th scope="col">Tiempo Maestro Elite</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Built for</th><td class="self">Running past people</td><td>Running past people</td><td>Playing through them</td></tr>
+            <tr><th scope="row">Weight</th><td class="self">6.3 oz</td><td>6.0 oz</td><td>8.1 oz</td></tr>
+            <tr><th scope="row">Upper</th><td class="self">FlyWeave Ultra knit</td><td>Vaporposite+ knit</td><td>Leather forefoot</td></tr>
+            <tr><th scope="row">Forefoot width</th><td class="self">Narrow</td><td>Narrow</td><td>Standard to wide</td></tr>
+            <tr><th scope="row">Touch</th><td class="self">Bare</td><td>Bare</td><td>Padded</td></tr>
+            <tr><th scope="row">Price</th><td class="self">$294.99</td><td>$279.99</td><td>$249.99</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ACCORDIONS ═══ -->
+  <div class="wrap">
+    <section class="acc rv">
+      <details open><summary>Size &amp; fit</summary><div class="body">
+        <p>True to size for most players. The Mercurial last is narrow through the forefoot and shallow over the instep - a trait of the family, not a fault of this pair.</p>
+        <p>Between sizes, go down. Knit uppers give; plates don't.</p>
+      </div></details>
+      <details><summary>Shipping &amp; returns</summary><div class="body">
+        <p>Free shipping on orders over $49. Standard delivery is 3–5 business days from Greensboro.</p>
+        <p>Thirty-day wear test, free returns, no restocking fee.</p>
+      </div></details>
+      <details><summary>Materials &amp; care</summary><div class="body">
+        <p>Upper: knit textile with polyurethane film. Plate: nylon composite. Sockliner: ZoomX foam, removable.</p>
+        <p>Dry brush after every match. Never dry them on a radiator - the plate warps and the warp is permanent.</p>
+      </div></details>
+      <details><summary>Surface warning</summary><div class="body">
+        <p>Firm ground only. This plate is not rated for artificial grass and wearing it on turf voids the manufacturer warranty. For 3G and 4G, the AG version uses a different plate and stud count.</p>
+      </div></details>
+    </section>
+  </div>
+
+  <!-- ═══ RELATED ═══ -->
+  <div class="wrap">
+    <section class="trio rv" style="padding-block:clamp(44px,5vw,80px)">
+      <div class="sec-head"><h2>The rest of the family</h2></div>
+      <div class="rel">
+        <a class="rel-card" href="#"><div class="rel-art"><svg viewBox="0 0 300 150" aria-hidden="true"><path class="ln" d="M18 106 C16 92 26 82 42 76 C96 56 168 44 214 40 C246 37 262 48 266 66 C270 84 270 98 270 106 C230 118 120 122 18 112 Z"/><path class="ln" d="M18 112 C120 124 232 120 270 108 L272 118 C234 132 118 136 16 124 Z"/></svg></div><p class="rel-name">Mercurial Superfly 11 Pro FG</p><p class="rel-price">$169.99</p></a>
+        <a class="rel-card" href="#"><div class="rel-art"><svg viewBox="0 0 300 150" aria-hidden="true"><path class="ln" d="M18 106 C16 90 28 80 46 74 C100 54 170 42 216 38 C248 35 264 46 268 64 C272 82 272 98 272 106 C230 118 120 122 18 112 Z"/><path class="ln" d="M18 112 C120 124 234 120 272 108 L274 118 C236 132 118 136 16 124 Z"/><path class="ls" d="M84 72 C96 92 100 104 100 114"/></svg></div><p class="rel-name">Mercurial Vapor 17 Elite FG</p><p class="rel-price">$279.99</p></a>
+        <a class="rel-card" href="#"><div class="rel-art"><svg viewBox="0 0 300 150" aria-hidden="true"><path class="ln" d="M18 104 C16 86 30 76 50 70 C104 50 172 40 218 36 C250 33 266 46 270 66 C274 86 274 98 274 106 C230 118 120 122 18 112 Z"/><path class="ln" d="M18 112 C120 124 236 120 274 108 L276 118 C238 132 118 136 16 124 Z"/><path class="ls" d="M150 46 L150 112"/></svg></div><p class="rel-name">Tiempo Maestro Elite FG</p><p class="rel-price">$249.99</p></a>
+        <a class="rel-card" href="#"><div class="rel-art"><svg viewBox="0 0 300 150" aria-hidden="true"><path class="ln" d="M150 18 C176 18 190 36 192 62 C194 82 188 98 184 112 C180 126 180 134 182 142 L118 142 C120 132 120 124 116 110 C112 96 106 80 108 60 C110 34 124 18 150 18 Z"/><path class="ls" d="M116 84 C138 90 162 90 184 84"/></svg></div><p class="rel-name">Currex CleatPro insole, medium arch</p><p class="rel-price">$59.99</p></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ MOTION LEGEND ═══ -->
+  <section class="trio rv" id="motion" style="padding-block:clamp(48px,6vw,96px)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Every motion on this page, and the token behind it</h2>
+        <p class="sec-note">Two families, and you should be able to feel the seam. Store curves are Material 3 and Carbon verbatim, read 2026-09-05. Story springs are generated and written as <code>linear()</code>. Sandbox, not production - nothing here ships today.</p>
+      </div>
+      <div class="legend">
+        <div class="legend-row" style="border-bottom-color:var(--pdp-border-strong)">
+          <span class="mono">Intent</span><span class="mono">Where it fires</span><span class="mono">Value and source</span><span class="mono lg-demo">Try</span>
+        </div>
+        <div class="legend-row" style="background:var(--pdp-bg-surface);border-bottom-color:var(--pdp-border-strong)">
+          <span class="lg-name" style="color:var(--pdp-brand-primary)">Store</span>
+          <span style="grid-column:2/-1;font-size:13.5px;color:var(--pdp-text-muted)">Transactional surfaces. Published curves, no bounce. Nothing here is invented.</span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">hover</span>
+          <span>Related cards, swatches, gallery arrows. Guarded by <code>@media (hover: hover)</code></span>
+          <span class="lg-val">100ms · M3 fast effects curve · lift 8px, 4px under 768</span>
+          <span class="lg-demo"><em style="font-style:normal;font-size:12.5px;color:var(--pdp-text-subtle)">hover a card below</em></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">press</span>
+          <span>Every button and size chip</span>
+          <span class="lg-val">150ms · M3 fast effects curve · scale 0.96</span>
+          <span class="lg-demo"><button class="lg-btn" type="button">Press me</button></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">focus</span>
+          <span>Keyboard ring. Shortened by reduced motion, never removed</span>
+          <span class="lg-val">100ms · M3 fast effects curve</span>
+          <span class="lg-demo"><button class="lg-btn" type="button">Tab to me</button></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">reveal</span>
+          <span>Size panel opening</span>
+          <span class="lg-val">350ms · M3 Standard spatial curve · from scale 0.92</span>
+          <span class="lg-demo"><button class="lg-btn" type="button" data-demo="reveal">Open sizes</button></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">dismiss</span>
+          <span>Size panel closing</span>
+          <span class="lg-val">150ms · Carbon productive exit · 2× faster than reveal</span>
+          <span class="lg-demo"><button class="lg-btn" type="button" data-demo="dismiss">Close sizes</button></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">feedback.error</span>
+          <span>Add to bag with no size chosen</span>
+          <span class="lg-val">250ms · shake 6px, 4px under 768</span>
+          <span class="lg-demo"><button class="lg-btn" type="button" data-demo="error">Shake it</button></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">loading.shimmer</span>
+          <span>Alternatives loading under a sold-out size</span>
+          <span class="lg-val">1200ms · linear · loop</span>
+          <span class="lg-demo"><em style="font-style:normal;font-size:12.5px;color:var(--pdp-text-subtle)">tap size 6 or 7.5</em></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">loading.spinner</span>
+          <span>Add to bag, while it commits</span>
+          <span class="lg-val">800ms · linear · loop</span>
+          <span class="lg-demo"><em style="font-style:normal;font-size:12.5px;color:var(--pdp-text-subtle)">pick a size, add</em></span>
+        </div>
+        <div class="legend-row" style="background:var(--pdp-bg-surface);border-bottom-color:var(--pdp-border-strong)">
+          <span class="lg-name" style="color:var(--pdp-brand-primary)">Story</span>
+          <span style="grid-column:2/-1;font-size:13.5px;color:var(--pdp-text-muted)">Editorial surfaces. Real springs, written as <code>linear()</code>. A curve can overshoot once; a spring can settle. This is the difference you can feel.</span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">story reveal</span>
+          <span>Section entrances down the page</span>
+          <span class="lg-val">382ms · <code>linear()</code> spring, damping 0.72 · peak 1.038</span>
+          <span class="lg-demo"><em style="font-style:normal;font-size:12.5px;color:var(--pdp-text-subtle)">scroll the page</em></span>
+        </div>
+        <div class="legend-row">
+          <span class="lg-name">feedback.success</span>
+          <span>Bag count and wishlist heart</span>
+          <span class="lg-val">388ms · <code>linear()</code> spring, damping 0.62 · peak 1.083</span>
+          <span class="lg-demo"><button class="lg-btn" type="button" data-demo="success">Pop the bag</button></span>
+        </div>
+      </div>
+      <p class="u-body" style="margin-top:28px;max-width:74ch">Reduced motion is handled once, at token level - the durations and displacements are redefined inside a single <code>prefers-reduced-motion</code> block and every rule that reads them follows. No component has to remember. Turn it on in your OS and the page goes still, except the focus ring, which shortens rather than disappearing.</p>
+      <p class="u-body" style="margin-top:14px;max-width:74ch">Two rules about screen size. <strong>Durations never change between breakpoints</strong> - 200ms feels like 200ms on any device. <strong>Distances do</strong> - the 8px card lift drops to 4px under 768px, because 8px of travel reads very differently on a 375px screen. And hover is gated on <code>@media (hover: hover)</code> rather than a width, since plenty of wide tablets have no cursor.</p>
+    </div>
+  </section>
+
+  <!-- ═══ TOKEN APPENDIX ═══ -->
+  <section class="tok rv" id="tokens">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Where these values came from</h2>
+
+        <p class="sec-note">This page does not quote the SEI design system. Its variables are namespaced <code>--pdp-*</code> so nothing here can be pasted into production by mistake. Production is <code>--theme-*</code>.</p>
+      </div>
+      <div class="tok-grid">
+        <div>
+          <p class="mono" style="margin:0 0 14px;color:var(--pdp-text-subtle)">Observed on the live site · 2026-09-05</p>
+          <ul class="tok-list">
+            <li><span class="chipc" style="background:#e0154a"></span><b>Crimson</b><em>#e0154a</em></li>
+            <li><span class="chipc" style="background:#0348cf"></span><b>Action blue</b><em>#0348cf</em></li>
+            <li><span class="chipc" style="background:#171717"></span><b>Invert</b><em>#171717</em></li>
+            <li><span class="chipc" style="background:#f5f5f5"></span><b>Surface</b><em>#f5f5f5</em></li>
+            <li><span class="chipc" style="background:#27272a"></span><b>Body text</b><em>#27272a</em></li>
+            <li><span class="chipc" style="background:#737373"></span><b>Subtle text</b><em>#737373</em></li>
+          </ul>
+          <p style="margin:16px 0 0;font-size:13.5px;color:var(--pdp-text-subtle)">Read out of the rendered DOM, not out of a token file. Treat as unverified until checked against the 2026-08-28 production recon.</p>
+        </div>
+        <div>
+          <p class="mono" style="margin:0 0 14px;color:var(--pdp-text-subtle)">Every claim, with its date and source</p>
+          <ul class="tok-note">
+            <li><i>Font</i><span><strong>Figtree.</strong> Source: <code>CABANA-CANONICAL.md</code>, 2026-08-05 - 84 of 84 Soccer typography tokens carry the raw string <code>"Figtree"</code>, listed as permanent brand identity. Settled, not open.</span></li>
+            <li><i>Type</i><span>Labels are Figtree with wide tracking. No second face. Typography is 0 of 252 referenced and 252 of 252 hard-coded, so adding a typeface costs 84 hand edits per brand - <code>CABANA-CANONICAL.md</code>, 2026-08-05.</span></li>
+            <li><i>Motion</i><span>The easing on this page is the author's choice, not a token. The system has zero motion tokens - <code>CABANA-CANONICAL.md</code> §5, 2026-08-05. <code>cubic-bezier(.25,1,.5,1)</code> is easeOutQuart; it matching On is coincidence.</span></li>
+            <li><i>Colour</i><span>Observed, not quoted. Pending verification against <code>004_Design-System/audits/production-token-recon--2026-08-28.md</code>, which this session has not been able to read.</span></li>
+            <li><i>Crimson use</i><span>Four places on the whole page: the eyebrow, low-stock dots, the ratings underline, the SVG callouts. A signal colour, not a surface colour.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="foot">
+      <hr style="border:0;border-top:1px solid var(--pdp-border-subtle);margin:0 0 26px">
+      <p>Gallery is a horizontal scroll-snap track - drag, swipe, arrow keys, or the controls under the frame. The buy panel is pinned to the bottom of a sticky full-height column, which is how On keeps a short pod next to a tall gallery. Everything else that used to sit in the pod (fit, Goal Club, returns) moved down into the page as a three-up band.</p>
+    </section>
+  </div>
+</main>
+
+<dialog class="lb" id="lb" aria-label="Product images, full screen">
+  <div class="lb-track" id="lbTrack" tabindex="0"></div>
+  <button class="rnd lb-close" id="lbClose" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="lb-bar">
+    <button class="rnd" id="lbPrev" type="button" aria-label="Previous image">
+      <svg viewBox="0 0 24 24"><path d="M20 12H4M4 12l6-6M4 12l6 6"/></svg>
+    </button>
+    <button class="rnd" id="lbNext" type="button" aria-label="Next image">
+      <svg viewBox="0 0 24 24"><path d="M4 12h16M20 12l-6-6M20 12l-6 6"/></svg>
+    </button>
+    <span class="lb-count" id="lbCount" aria-live="polite">1 / 6</span>
+  </div>
+  <button class="rnd lb-zoom" id="lbZoom" type="button" aria-pressed="false" aria-label="Zoom">
+    <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>
+  </button>
+</dialog>
+
+<div class="mbuy">
+  <span class="mp">$294.99</span>
+  <button class="pill pill--action" type="button" data-mirror="1">Add to bag</button>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  /* JS-driven scrolling respects reduced motion too - the CSS token override
+     can't reach scrollTo/scrollIntoView, so every call asks this helper.
+     Checked per call, so a mid-session preference change is honoured. */
+  function scrollBehavior() {
+    return (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) ? "auto" : "smooth";
+  }
+
+  /* ───────── gallery ───────── */
+  var track = document.getElementById("track");
+  var slides = track.querySelectorAll(".slide");
+  var count = document.getElementById("count");
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
+  var dots = document.getElementById("dots");
+  var n = slides.length;
+  var idx = 0;
+
+  for (var i = 0; i < n; i++) {
+    (function (k) {
+      var d = document.createElement("button");
+      d.className = "dotb";
+      d.type = "button";
+      d.setAttribute("aria-label", "Go to image " + (k + 1));
+      d.setAttribute("aria-current", k === 0 ? "true" : "false");
+      d.addEventListener("click", function () { goTo(k); });
+      dots.appendChild(d);
+    })(i);
+  }
+
+  function step() { return slides[0].getBoundingClientRect().width + 8; }
+
+  function goTo(k) {
+    k = Math.max(0, Math.min(n - 1, k));
+    track.scrollTo({ left: k * step(), behavior: scrollBehavior() });
+  }
+
+  function sync() {
+    var k = Math.round(track.scrollLeft / step());
+    k = Math.max(0, Math.min(n - 1, k));
+    if (k === idx) { return; }
+    idx = k;
+    count.innerHTML = (idx + 1) + "&thinsp;/&thinsp;" + n;
+    prev.disabled = idx === 0;
+    next.disabled = idx === n - 1;
+    Array.prototype.forEach.call(dots.children, function (d, j) {
+      d.setAttribute("aria-current", j === idx ? "true" : "false");
+    });
+  }
+
+  var raf = null;
+  track.addEventListener("scroll", function () {
+    if (raf) { return; }
+    raf = requestAnimationFrame(function () { raf = null; sync(); });
+  }, { passive: true });
+
+  prev.addEventListener("click", function () { goTo(idx - 1); });
+  next.addEventListener("click", function () { goTo(idx + 1); });
+  prev.disabled = true;
+
+  track.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); goTo(idx + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); goTo(idx - 1); }
+  });
+
+  /* drag-to-swipe on desktop */
+  var down = false, startX = 0, startL = 0, moved = false;
+  track.addEventListener("pointerdown", function (e) {
+    moved = false;                       /* reset for taps as well as drags */
+    if (e.pointerType === "touch") { return; }
+    down = true;
+    startX = e.clientX; startL = track.scrollLeft;
+    track.style.scrollSnapType = "none";
+  });
+  track.addEventListener("pointermove", function (e) {
+    if (!down) { return; }
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 3) { moved = true; }
+    track.scrollLeft = startL - dx;
+  });
+  function release() {
+    if (!down) { return; }
+    down = false;
+    track.style.scrollSnapType = "x mandatory";
+    if (moved) { goTo(Math.round(track.scrollLeft / step())); }
+  }
+  track.addEventListener("pointerup", release);
+  track.addEventListener("pointercancel", release);
+  track.addEventListener("pointerleave", release);
+
+  window.addEventListener("resize", function () { goTo(idx); });
+
+  /* ───────── lightbox ─────────
+     Same six frames, filling the window. Native <dialog> so Esc, focus
+     trapping and the top layer are the browser's job, not ours. */
+  var lb = document.getElementById("lb");
+  var lbTrack = document.getElementById("lbTrack");
+  var lbCount = document.getElementById("lbCount");
+  var lbPrev = document.getElementById("lbPrev");
+  var lbNext = document.getElementById("lbNext");
+  var lbZoom = document.getElementById("lbZoom");
+  var lbIdx = 0, zoomed = false;
+
+  Array.prototype.forEach.call(slides, function (s, i) {
+    var cell = document.createElement("div");
+    cell.className = "lb-slide";
+    cell.setAttribute("role", "group");
+    cell.setAttribute("aria-label", (i + 1) + " of " + n);
+    var fig = document.createElement("div");
+    fig.className = "lb-fig";
+    fig.appendChild(s.querySelector("svg").cloneNode(true));
+    cell.appendChild(fig);
+    lbTrack.appendChild(cell);
+
+    /* opening the inline slide */
+    var expand = document.createElement("div");
+    expand.className = "slide-expand";
+    expand.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>';
+    s.appendChild(expand);
+    s.setAttribute("tabindex", "0");
+    s.setAttribute("role", "button");
+    s.setAttribute("aria-label", "Open image " + (i + 1) + " full screen");
+    s.addEventListener("click", function () { if (!moved) { openLb(i); } });
+    s.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(i); }
+    });
+  });
+
+  function lbStep() { return lbTrack.clientWidth; }
+
+  function setZoom(on) {
+    zoomed = on;
+    lbTrack.dataset.zoom = on ? "1" : "";
+    lbZoom.setAttribute("aria-pressed", on ? "true" : "false");
+    Array.prototype.forEach.call(lbTrack.children, function (c) {
+      var f = c.querySelector(".lb-fig");
+      f.style.scale = on ? "1.8" : "1";
+      f.style.translate = "0 0";
+    });
+  }
+
+  function lbSync() {
+    var k = Math.round(lbTrack.scrollLeft / lbStep());
+    k = Math.max(0, Math.min(n - 1, k));
+    if (k === lbIdx) { return; }
+    lbIdx = k;
+    lbCount.textContent = (k + 1) + " / " + n;
+    lbPrev.disabled = k === 0;
+    lbNext.disabled = k === n - 1;
+  }
+  var lbRaf = null;
+  lbTrack.addEventListener("scroll", function () {
+    if (zoomed || lbRaf) { return; }
+    lbRaf = requestAnimationFrame(function () { lbRaf = null; lbSync(); });
+  }, { passive: true });
+
+  function lbGo(k) {
+    if (zoomed) { setZoom(false); }
+    k = Math.max(0, Math.min(n - 1, k));
+    lbTrack.scrollTo({ left: k * lbStep(), behavior: scrollBehavior() });
+  }
+  lbPrev.addEventListener("click", function () { lbGo(lbIdx - 1); });
+  lbNext.addEventListener("click", function () { lbGo(lbIdx + 1); });
+  lbZoom.addEventListener("click", function () { setZoom(!zoomed); });
+  document.getElementById("lbClose").addEventListener("click", function () { lb.close(); });
+
+  lbTrack.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); lbGo(lbIdx + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); lbGo(lbIdx - 1); }
+  });
+
+  function openLb(i) {
+    lbIdx = -1;
+    setZoom(false);
+    lb.showModal();
+    document.body.style.overflow = "hidden";
+    lbTrack.scrollLeft = i * lbStep();
+    lbIdx = i;
+    lbCount.textContent = (i + 1) + " / " + n;
+    lbPrev.disabled = i === 0;
+    lbNext.disabled = i === n - 1;
+    lbTrack.focus({ preventScroll: true });
+  }
+
+  lb.addEventListener("close", function () {
+    document.body.style.overflow = "";
+    setZoom(false);
+    /* hand the position back to the inline gallery */
+    track.scrollLeft = lbIdx * step();
+    idx = -1; sync();
+    slides[lbIdx].focus({ preventScroll: true });
+  });
+
+  /* click the empty ground to dismiss, drag to pan when zoomed */
+  var pz = false, pzX = 0, pzY = 0, curX = 0, curY = 0, pzMoved = false;
+  lbTrack.addEventListener("pointerdown", function (e) {
+    if (!zoomed) { return; }
+    pz = true; pzMoved = false;
+    pzX = e.clientX - curX; pzY = e.clientY - curY;
+  });
+  lbTrack.addEventListener("pointermove", function (e) {
+    if (!pz) { return; }
+    curX = e.clientX - pzX; curY = e.clientY - pzY;
+    if (Math.abs(curX) > 3 || Math.abs(curY) > 3) { pzMoved = true; }
+    var f = lbTrack.children[lbIdx].querySelector(".lb-fig");
+    f.style.translate = curX + "px " + curY + "px";
+  });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) {
+    lbTrack.addEventListener(ev, function () { pz = false; });
+  });
+  lbTrack.addEventListener("click", function (e) {
+    if (zoomed) { if (!pzMoved) { setZoom(false); curX = 0; curY = 0; } return; }
+    if (e.target.closest("svg")) { return; }
+    lb.close();
+  });
+
+  /* ───────── sizes ───────── */
+  var SIZES = [
+    { s: "6", q: 0 }, { s: "6.5", q: 4 }, { s: "7", q: 9 }, { s: "7.5", q: 0 }, { s: "8", q: 12 },
+    { s: "8.5", q: 7 }, { s: "9", q: 2 }, { s: "9.5", q: 3 }, { s: "10", q: 2 }, { s: "10.5", q: 8 },
+    { s: "11", q: 6 }, { s: "11.5", q: 5 }, { s: "12", q: 4 }, { s: "12.5", q: 0 }, { s: "13", q: 3 }
+  ];
+  var grid = document.getElementById("sizes");
+  var stock = document.getElementById("stock");
+  var panel = document.getElementById("sizePanel");
+  var toggle = document.getElementById("sizeToggle");
+  var label = document.getElementById("sizeLabel");
+  var addBtn = document.getElementById("addBtn");
+  var mirrors = Array.prototype.slice.call(document.querySelectorAll("[data-mirror]"));
+  var alts = document.getElementById("alts");
+  var altsHead = document.getElementById("altsHead");
+  var altSkel = document.getElementById("altSkel");
+  var altRow = document.getElementById("altRow");
+  var cartCount = document.getElementById("cartCount");
+  var chosen = null;
+  var bag = 0;
+  var altTimer = null;
+
+  /* intent.feedback.success - pop to 1.15 over 250ms */
+  function pop(el) {
+    el.classList.remove("badge-pop");
+    void el.offsetWidth;
+    el.classList.add("badge-pop");
+  }
+  /* intent.feedback.error - 6px shake over 250ms */
+  function shake(el) {
+    el.classList.remove("shake");
+    void el.offsetWidth;
+    el.classList.add("shake");
+  }
+
+  /* The out-of-stock edge case, treated as a design surface rather than a
+     dead end: a sold-out size surfaces what IS available instead of a
+     Notify Me button. Shimmer while it resolves, then intent.reveal. */
+  function showAlternatives(item) {
+    var idx = SIZES.indexOf(item);
+    var near = [];
+    for (var d = 1; d <= 3 && near.length < 2; d++) {
+      [SIZES[idx - d], SIZES[idx + d]].forEach(function (c) {
+        if (c && c.q > 0 && near.length < 2 && near.indexOf(c) === -1) { near.push(c); }
+      });
+    }
+    altsHead.innerHTML = "<b>US " + item.s + " is sold out.</b> Closest in stock:";
+    altRow.hidden = true;
+    altRow.innerHTML = "";
+    altSkel.hidden = false;
+    alts.hidden = false;
+
+    if (altTimer) { clearTimeout(altTimer); }
+    altTimer = setTimeout(function () {
+      near.forEach(function (c) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "alt";
+        b.innerHTML = '<i>' + c.s + '</i><span>Superfly 11 Elite<em>' +
+          (c.q <= 3 ? "Only " + c.q + " left" : "In stock") +
+          '</em></span><strong>$294.99</strong>';
+        b.addEventListener("click", function () {
+          var target = Array.prototype.filter.call(grid.children, function (n) {
+            return n.textContent.trim().replace(/[^0-9.]/g, "") === c.s;
+          })[0];
+          if (target) { target.click(); }
+        });
+        altRow.appendChild(b);
+      });
+      var pro = document.createElement("button");
+      pro.type = "button";
+      pro.className = "alt";
+      pro.innerHTML = '<i>' + item.s + '</i><span>Superfly 11 <b style="font-weight:600">Pro</b><em>Same last, same size, no Zoom unit</em></span><strong>$169.99</strong>';
+      altRow.appendChild(pro);
+
+      altSkel.hidden = true;
+      altRow.hidden = false;
+    }, 900);
+  }
+
+  function hideAlternatives() {
+    if (altTimer) { clearTimeout(altTimer); altTimer = null; }
+    alts.hidden = true;
+  }
+
+  SIZES.forEach(function (item) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "size";
+    b.setAttribute("aria-pressed", "false");
+    b.textContent = item.s;
+    if (item.q === 0) {
+      /* NOT disabled - a sold-out size is still worth tapping, because
+         tapping it is how you find out what IS available. */
+      b.setAttribute("data-sold", "1");
+      b.setAttribute("aria-label", item.s + ", sold out - see alternatives");
+      b.addEventListener("click", function () {
+        Array.prototype.forEach.call(grid.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+        chosen = null;
+        label.textContent = "Select a size";
+        stock.dataset.state = "";
+        stock.textContent = "";
+        showAlternatives(item);
+        reset();
+      });
+      grid.appendChild(b);
+      return;
+    }
+    if (item.q <= 3) {
+      var d = document.createElement("span");
+      d.className = "dot";
+      b.appendChild(d);
+      b.setAttribute("aria-label", item.s + ", low stock");
+    }
+    b.addEventListener("click", function () {
+      Array.prototype.forEach.call(grid.children, function (c) { c.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+      chosen = item;
+      label.textContent = "US " + item.s;
+      hideAlternatives();
+      if (item.q <= 3) {
+        stock.dataset.state = "low";
+        stock.textContent = "Only " + item.q + " left in US " + item.s + ".";
+      } else {
+        stock.dataset.state = "";
+        stock.textContent = "In stock. Ships within 24 hours.";
+      }
+      reset();
+    });
+    grid.appendChild(b);
+  });
+
+  function setPanel(open) {
+    panel.dataset.open = open ? "1" : "";
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  toggle.addEventListener("click", function () {
+    setPanel(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  function reset() {
+    [addBtn].concat(mirrors).forEach(function (el) { el.dataset.done = ""; el.textContent = "Add to bag"; });
+  }
+  var busy = false;
+  function add() {
+    if (busy) { return; }
+    if (!chosen) {
+      setPanel(true);
+      stock.dataset.state = "err";
+      stock.textContent = "Pick a size first.";
+      shake(toggle);                                   /* intent.feedback.error */
+      panel.scrollIntoView({ behavior: scrollBehavior(), block: "center" });
+      return;
+    }
+    busy = true;
+    [addBtn].concat(mirrors).forEach(function (el) {   /* intent.loading.spinner */
+      el.innerHTML = '<span class="spinner"></span>Adding';
+    });
+    setTimeout(function () {
+      busy = false;
+      bag += 1;
+      cartCount.textContent = bag;
+      pop(cartCount);                                  /* intent.feedback.success */
+      [addBtn].concat(mirrors).forEach(function (el) {
+        el.dataset.done = "1";
+        el.textContent = "Added - US " + chosen.s;
+      });
+    }, 850);
+  }
+  addBtn.addEventListener("click", add);
+  mirrors.forEach(function (el) { el.addEventListener("click", add); });
+
+  document.getElementById("guideBtn").addEventListener("click", function () {
+    var d = document.querySelector(".acc details");
+    d.open = true;
+    d.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".seg button, .sw"), function (b) {
+    b.addEventListener("click", function () {
+      var group = b.parentNode;
+      Array.prototype.forEach.call(group.children, function (o) { o.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+    });
+  });
+
+  var wish = document.getElementById("wish");
+  wish.addEventListener("click", function () {
+    var on = wish.getAttribute("aria-pressed") !== "true";
+    wish.setAttribute("aria-pressed", on ? "true" : "false");
+    if (on) { pop(wish); }
+  });
+
+  /* motion legend demos */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-demo]"), function (b) {
+    b.addEventListener("click", function () {
+      var kind = b.getAttribute("data-demo");
+      if (kind === "reveal") { setPanel(true); panel.scrollIntoView({ behavior: scrollBehavior(), block: "center" }); }
+      if (kind === "dismiss") { setPanel(false); panel.scrollIntoView({ behavior: scrollBehavior(), block: "center" }); }
+      if (kind === "error") { shake(b); }
+      if (kind === "success") { bag += 1; cartCount.textContent = bag; pop(cartCount); }
+    });
+  });
+
+  /* ───────── ratings ───────── */
+  var RATINGS = [
+    { name: "Touch", v: 5, note: "Bare - one knit layer" },
+    { name: "Lockdown", v: 5, note: "Locked" },
+    { name: "Cushioning", v: 2, note: "Minimal" },
+    { name: "Stability", v: 2, note: "Low - narrow plate" },
+    { name: "Durability", v: 2, note: "A season, honestly" }
+  ];
+  var bars = document.getElementById("bars");
+  RATINGS.forEach(function (r) {
+    var row = document.createElement("div");
+    row.className = "bar";
+    var nm = document.createElement("div");
+    nm.className = "bar-name";
+    nm.textContent = r.name;
+    var t = document.createElement("div");
+    t.className = "ticks";
+    for (var i = 0; i < 5; i++) {
+      var seg = document.createElement("span");
+      seg.className = "tick" + (i < r.v ? " on" : "") + (r.v === 5 ? " hot" : "");
+      if (i >= r.v) { seg.className = "tick"; }
+      t.appendChild(seg);
+    }
+    var v = document.createElement("div");
+    v.className = "bar-val";
+    v.textContent = r.note;
+    row.appendChild(nm); row.appendChild(t); row.appendChild(v);
+    bars.appendChild(row);
+  });
+
+  /* ───────── reveal ─────────
+     "Motion is never a dependency", enforced for real: the .js class that
+     hides .rv sections is added ONLY after the observer and the fallback
+     timer are wired. A runtime error anywhere earlier in this script, or
+     in this block, leaves every section visible - the entrance is skipped,
+     the content is not. */
+  var targets = document.querySelectorAll(".rv");
+  function showAll() { Array.prototype.forEach.call(targets, function (el) { el.classList.add("in"); }); }
+  if ("IntersectionObserver" in window) {
+    try {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.02 });
+      Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+      setTimeout(showAll, 2500);
+      document.documentElement.classList.add("js");
+    } catch (e) { /* recovery not wired - sections stay visible */ }
+  }
+})();
+</script>
+
+</body></html>

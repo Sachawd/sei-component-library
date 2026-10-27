@@ -209,6 +209,8 @@ EMAIL_TYPES = [
         ("Chivas 2027 Third, rotating hero", "email-chivas-third-rotating.html"),
         ("Chivas 2027 Third, still hero", "email-chivas-third-still.html"),
         ("Team Holiday Pop-Up Store", "email-team-holiday-pop-up.html"),
+        ("WorldSoccerShop Matchup Email", "email-wss-matchups.html"),
+        ("Soccer.com Matchup Email", "email-sdc-matchups.html"),
     ]),
 ]
 
@@ -254,6 +256,8 @@ EXTRA_CARDS = {
     "email-chivas-third-still.html": ("WorldSoccerShop", "Ready", "../chivas-email/assets/chivas-hero-static.jpg", 600, 800),
     "email-team-holiday-pop-up.html": ("Soccer.com", "In progress", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),
     "email-sdc-holiday.html": ("Soccer.com", "In progress", "../sdc-holiday-email/assets/gift-box-hero.jpg", 1280, 1400),
+    "email-wss-matchups.html": ("WorldSoccerShop", "Ready", "../matchups/preview-wss-matchup.svg", 1080, 1080),
+    "email-sdc-matchups.html": ("Soccer.com", "Ready", "../sdc-matchups/preview-sdc-matchup.svg", 1096, 993),
     "page-wss-sale.html": ("WorldSoccerShop", "In progress", None, 0, 0),
     "page-tampa-bay-super-cup.html": ("Soccer.com", "Live", "../pages/tampa-bay-super-cup/images/tbsc26-hero-1.jpg", 1200, 800),
     "page-ncfc-holiday-store.html": ("Soccer.com", "Ready", "../holiday-popup-emails/assets/ncfc-holiday-hero.jpg", 600, 500),

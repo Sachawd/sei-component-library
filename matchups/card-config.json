@@ -1,0 +1,74 @@
+{
+  "_comment": "Campaign-level constants. The MATCH data comes from fixtures.json \u2014 never edit that by hand.",
+  "campaign_slug": "matchday",
+  "brand": "WSS",
+  "cta_label": "SHOP NOW",
+  "home_label": "HOME TEAM",
+  "away_label": "AWAY TEAM",
+  "surface": "#212121",
+  "card_surface": "#000000",
+  "timezone": "America/New_York",
+  "tz_label": "ET",
+  "formats": [
+    {
+      "key": "4x5",
+      "w": 1080,
+      "h": 1350,
+      "photo_pct": 60
+    },
+    {
+      "key": "1x1",
+      "w": 1080,
+      "h": 1080,
+      "photo_pct": 55
+    },
+    {
+      "key": "9x16",
+      "w": 1080,
+      "h": 1920,
+      "photo_pct": 74
+    }
+  ],
+  "variants": [
+    {
+      "key": "email",
+      "cta": true,
+      "slice": "half",
+      "formats": [
+        "1x1"
+      ],
+      "_formats": "1x1 only (Sacha, 2026-09-10). At a 600px email width a square card lands about 600px tall, which leaves room for a header and copy above it; the 4x5 runs to about 750px and pushes everything else below the fold for one fixture. The tall crop earns its keep on social, not here. Add 4x5 back to this list if a template ever wants it.",
+      "keep_full": false,
+      "_keep_full": "false = write ONLY the two halves, not the whole card (Sacha, 2026-09-10). The full card is never placed in an email, so shipping it alongside the halves just invites someone to use the wrong file. Set true to get a proofing copy."
+    },
+    {
+      "key": "social",
+      "cta": false,
+      "slice": "none",
+      "formats": [
+        "4x5",
+        "1x1",
+        "9x16"
+      ]
+    }
+  ],
+  "_variants": "One card, two destinations. key = the output subfolder under output/assets/ and part of every filename. cta true|false \u2014 SOCIAL has no button because there is nothing to click in a feed image. slice 'half'|'none' \u2014 'half' additionally writes -left.png and -right.png so each club's side can be its own linkable image in the email. The cut runs through the VS and only rejoins if the email cells have NO gap, NO padding and NO border. formats = which of the formats above this variant wants; omit the key to get all of them.",
+  "fixtures_url": "https://wss-matchup-data.netlify.app/fixtures.json",
+  "leagues": [
+    "premier-league"
+  ],
+  "max_cards": 6,
+  "statuses": [
+    "upcoming"
+  ],
+  "_statuses": "Which match states to render. 'upcoming' only by default \u2014 roughly halves the cards. Add 'final' when Tyler wants results after a big match; the score card is built and proven.",
+  "require_landing_page": "both",
+  "_require_landing_page": "both | one | off. 'both' skips a match unless BOTH clubs have a WSS landing page \u2014 a card we cannot sell from is not worth sending.",
+  "require_crest": "both",
+  "_require_crest": "both | one | off. A club with no crest renders as initials, which looks unfinished next to a real badge.",
+  "exclude_clubs": [],
+  "_exclude_clubs": "Tyler's editorial call, by club slug. Overrides everything \u2014 a club listed here never appears even if it passes every other check.",
+  "include_only_clubs": [],
+  "_include_only_clubs": "Optional allowlist. If non-empty, ONLY matches where both clubs are listed will render.",
+  "_photo_pct": "How much of the card height the photo panel takes. The info band below needs roughly 350px whatever the format, so a tall canvas gives the photo a bigger share."
+}

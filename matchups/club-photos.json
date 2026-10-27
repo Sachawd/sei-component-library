@@ -1,0 +1,39 @@
+{
+  "_comment": "Per-club photo for the match card. Key = the club slug used in clubs.json.",
+  "_rules": [
+    "WSS ONLY. Asset rights never cross tiers — no Soccer.com imagery in here (Sacha, 2026-08-23).",
+    "A club with no entry renders a flat surface instead. That is deliberate, not a bug.",
+    "Use a full URL the renderer can fetch. Verify it loads in a real browser first."
+  ],
+  "clubs": {
+    "liverpool": {
+      "home": "https://www.imagehandler.net/dxassets/?img=Photos/liverpool-home__GROUP_WIRTZ_EKITIKE_01_3x4.jpg"
+    },
+    "tottenham-hotspur": {
+      "home": "https://www.imagehandler.net/dxassets/?img=Photos/tottenham-home__CK_EMEA_PRODUCT_SUPERIORITY-3.jpg"
+    },
+    "arsenal": {
+      "away": "https://www.imagehandler.net/dxassets/?img=Photos/adidas-arsenal-26-27-away-jersey__H24789-FW26_ARSENAL_ELEVATED_STORY_AWAY_JERSEY_DECLAN_RICE_0076_4X5_F1-1418452.jpg"
+    },
+    "manchester-united": {
+      "home": "https://www.imagehandler.net/dxassets/?img=Photos/manchester-united-home__%2BH24754_MUFC_MEN_GRP_03_3x4.jpg"
+    },
+    "manchester-city": {
+      "away": "https://www.imagehandler.net/dxassets/?img=Photos/puma-manchester-city-26-27-away-jerseys-rid__26AW_TS_Football_Man-City_Away_Matchwear_Haaland_022_RGB.jpg"
+    },
+    "everton": {
+      "home": "local-photos/everton-home.jpeg",
+      "away": "local-photos/everton-away.jpeg"
+    }
+  },
+  "_shape": "Per club: {\"home\": url, \"away\": url}. The side of the card decides which is used — home team gets the home kit, away team the away kit. A plain string still works and is used for both sides. A list is picked deterministically from the match id.",
+  "_howToFill": "Run the renderer once. It writes output/photos-needed.json with the exact club keys it could not match. Paste those keys in here with a URL each — the slug is the join key, so a typo silently renders a flat panel.",
+  "_example": {
+    "arsenal": {
+      "home": "https://.../arsenal-26-27-home.jpg",
+      "away": "https://.../arsenal-26-27-away.jpg"
+    }
+  },
+  "_fallback": "Missing away falls back to home, then third, then a flat panel. Never blank.",
+  "_caution": "The kit is an assumption. A clash can put the away side in third, and the fixtures feed does not say which kit was worn. Safe for pre-match cards; check before using on post-match ones."
+}

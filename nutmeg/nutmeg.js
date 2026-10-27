@@ -390,6 +390,7 @@
 
     var demos = Array.prototype.slice.call(document.querySelectorAll(".nm-demo"));
     demos.forEach(function (demo, demoIdx) {
+      if (demo.hasAttribute("data-no-email-editor")) return;
       var codeBlock = findCodeForDemo(demo);
       var frame = demo.querySelector("iframe.nm-demo__frame");
       if (!codeBlock || !frame) return;

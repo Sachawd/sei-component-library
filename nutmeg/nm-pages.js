@@ -422,5 +422,13 @@ window.NM_PAGES = [
  {
   "title": "Email Template: Team Holiday Pop-Up Store",
   "url": "email-team-holiday-pop-up.html"
+ },
+ {
+  "title": "Email Template: WorldSoccerShop Matchup Email",
+  "url": "email-wss-matchups.html"
+ },
+ {
+  "title": "Email Template: Soccer.com Matchup Email",
+  "url": "email-sdc-matchups.html"
  }
 ];

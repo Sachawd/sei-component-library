@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="1080" viewBox="0 0 540 1080">
+  <rect width="540" height="1080" fill="#1A0E12"/>
+  <rect x="0" y="0" width="540" height="760" fill="#2D141B"/>
+  <circle cx="270" cy="340" r="145" fill="#471D28" stroke="#7A3346" stroke-width="3"/>
+  <text x="270" y="330" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="2">AWAY CLUB</text>
+  <text x="270" y="368" text-anchor="middle" fill="#E8A5B5" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">540 x 1080 RIGHT HALF</text>
+  <rect x="0" y="760" width="540" height="320" fill="#12080B"/>
+  <text x="492" y="835" text-anchor="end" fill="#E8A5B5" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="2">SAT 12:30 PM ET</text>
+  <text x="492" y="895" text-anchor="end" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="800">LIVERPOOL FC</text>
+  <rect x="252" y="940" width="240" height="64" rx="4" fill="#FFFFFF"/>
+  <text x="372" y="980" text-anchor="middle" fill="#12080B" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">SHOP AWAY CLUB</text>
+</svg>

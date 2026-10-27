@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matchup cards, Soccer.com · The Tunnel</title>
+<!--
+  The Soccer.com matchup card generator, on the Tunnel. Soccer.com ONLY.
+  Design: Figma Marketing Master Design System (JAuTYN3BYg7aAJpLTiOR1O), page "↳ Matchups ✅",
+  Slim 3222:10095 (1096 x 339) and Tall 3222:10096 (1096 x 993) [Sacha 2026-09-25 "Soccer.com are these ones"].
+  Source: Campaign-UI-Blocks/tools/matchup/sdc-banner/index.html. Copied into the-tunnel/sdc-matchups/
+  by CLICKUP-ASSET-SWEEP/build-matchups.py. Edit the source, never the Tunnel copy.
+  Never shares a file with the WorldSoccerShop matchups page [Sacha 2026-09-25 "keep them separate"].
+  Photos: shared + Soccer.com tier only. Links: Soccer.com team pages only (sdc-club-links.json).
+-->
+<link rel="stylesheet" href="fonts.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#000;--paper:#fff;--grey:#8A8A8A;--mid:#5C5C5C;--hair:#E3E3E3;--wash:#F6F6F6;
+  --warnbg:#FFF4E5;--warn:#8A4B00;--good:#1E6B3A;--goodbg:#E8F5EC;--f:"Helvetica Neue",Helvetica,Arial,sans-serif}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+body{font-family:var(--f);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.55;padding:0 0 60px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 40px}
+a{color:inherit}
+.eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.eyebrow a{text-decoration:none}.eyebrow a:hover{color:var(--ink)}
+.mast{border-bottom:1px solid var(--hair)}
+.mastrow{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;padding:34px 0 26px}
+h1{font-size:38px;font-weight:500;letter-spacing:-.035em;line-height:1.05;margin-top:10px}
+.lede{max-width:56ch;color:var(--mid)}
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:40px;padding-top:30px}
+@media(max-width:1080px){main{grid-template-columns:minmax(0,1fr)}.wrap{padding:0 16px}h1{font-size:28px}}
+.grp{border:0;margin:0 0 30px}
+.grp legend .step{color:var(--grey);margin-right:8px;font-variant-numeric:tabular-nums}
+legend,.gh{display:block;width:100%;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--ink);margin-bottom:14px}
+.hint{font-size:11.5px;line-height:1.35;color:var(--mid);margin:0 0 12px}
+label.field{display:block;margin-bottom:14px}
+label.field>span{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:6px}
+label.field>span em{font-style:normal;font-weight:500;letter-spacing:0;text-transform:none}
+select,input[type=text]{width:100%;font:inherit;font-size:14px;padding:10px 12px;border:1px solid var(--hair);background:#fff;border-radius:0;color:var(--ink)}
+input[type=text].edited{border-color:var(--warn);background:var(--warnbg)}
+select:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.chip span{display:block;padding:9px 14px;border:1px solid var(--hair);font-size:12.5px;font-weight:500;cursor:pointer;background:#fff}
+.chip span small{display:block;font-size:10px;letter-spacing:.07em;color:var(--grey);text-transform:uppercase}
+.chip input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip input:checked+span small{color:rgba(255,255,255,.6)}
+.chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.notes{list-style:none;margin:12px 0 0}
+.notes li{font-size:12.5px;padding:8px 10px;margin-top:6px;background:var(--wash)}
+.notes li.warn{background:var(--warnbg);color:var(--warn)}
+.notes li.good{background:var(--goodbg);color:var(--good)}
+.side{margin-bottom:22px}
+.side h3{font-size:15px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.side h3 small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:8px}
+.pic{position:relative;aspect-ratio:3/4;background:var(--wash);border:1px solid var(--hair);cursor:pointer;padding:0;overflow:hidden}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pic[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:1px}
+.pic .t{position:absolute;left:0;right:0;bottom:0;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.9);padding:2px 4px;text-align:left}
+.pic.none{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid)}
+.more{margin-top:8px;background:none;border:0;font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;padding:6px 0;text-decoration:underline}
+.links{list-style:none}
+.links li{display:grid;grid-template-columns:100px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--hair);font-size:12.5px}
+.links li:first-child{border-top:0}
+.links .k{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.links .u{overflow-wrap:anywhere}
+.links button{background:none;border:1px solid var(--ink);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;cursor:pointer}
+.stage{position:sticky;top:20px}
+@media(max-width:1080px){.stage{position:static}}
+.frame{width:100%;background:var(--wash);overflow:hidden;position:relative}
+.frame .empty{display:grid;place-items:center;aspect-ratio:1096/339;color:var(--mid);font-size:13px}
+.slices{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+[hidden]{display:none!important}
+.slices figure{margin:0}
+.slices figure.full{grid-column:1/-1}
+.slices img{display:block;width:100%;border:1px solid var(--hair)}
+.slices figcaption{font-size:11px;color:var(--mid);margin-top:4px}
+button.go{width:100%;margin-top:18px;padding:16px;border:0;background:var(--ink);color:#fff;font:inherit;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+button.go:disabled{background:#C9C9C9;cursor:not-allowed}
+.log{margin-top:12px;font-size:12.5px;color:var(--mid);min-height:18px}
+.feed{font-size:12px;color:var(--mid)}
+#offstage{position:fixed;left:-30000px;top:0}
+
+/* ─── The card. Numbers straight from the Figma frames (3222:10095, 3222:10096). ─── */
+.sdcm{width:1096px;background:#fff;padding:8px;font-family:"Aeonik Mono",monospace;color:#fff}
+.sdcm .box{background:#000;padding:36px;display:flex;flex-direction:column;gap:36px}
+.sdcm .top{display:flex;gap:28px;height:251px}
+.sdcm .teams{width:766px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.sdcm .tn{height:84px;display:flex;align-items:center;white-space:nowrap;overflow:visible;
+  font-family:"Trim Poster Average",Impact,sans-serif;font-size:120px;line-height:.76;text-transform:uppercase;color:#fff;position:relative;top:13px}
+/* top:13px lines the cap tops up with the Figma text boxes (y 44 and y 211); measured 25 Sept. */
+.sdcm .vs{width:87px;height:67px;display:block}
+.sdcm .det{width:214px;display:flex;flex-direction:column}
+.sdcm .mono{font-family:"Aeonik Mono",monospace;font-size:16px;line-height:11px;height:11px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;color:#fff}
+.sdcm.slim .det{align-items:flex-end;justify-content:space-between}
+.sdcm.slim .logo{width:143px;height:143px;object-fit:contain;display:block}
+.sdcm.slim .logo.gap{visibility:hidden}
+.sdcm.slim .mono{text-align:right}
+.sdcm.tall .det{justify-content:flex-end}
+.sdcm.tall .pairs{height:173px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+/* Meta lines sit on the bottom line of the away name [Sacha 2026-09-25 "aligned at the bottom"]. Empty lines drop out. Lines in a pair are 4px apart; pairs get 4px more (8px) [Sacha 2026-09-25 "just maybe a 4px pad space"]. */
+.sdcm.tall .pair{display:flex;flex-direction:column;gap:4px}
+.sdcm .tiles{display:flex;gap:28px}
+.sdcm .tile{width:490px;height:618px;background:#fff;padding:2px;display:flex;flex-direction:column;gap:2px}
+.sdcm .ph{width:486px;flex:1;position:relative;overflow:hidden;background:#EDEDED}
+.sdcm .ph img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sdcm .ph img.crest{position:absolute;left:50%;top:50%;width:220px;height:220px;object-fit:contain;transform:translate(-50%,-50%)}
+.sdcm .cta{height:54px;background:#000;padding:12px 16px;display:flex;align-items:center;
+  font-family:"Aeonik Mono",monospace;font-size:30px;line-height:30px;text-transform:uppercase;color:#efe8dd;white-space:nowrap;overflow:hidden}
+</style>
+</head>
+<body>
+<header class="mast"><div class="wrap"><div class="mastrow">
+  <div>
+    <div class="eyebrow"><a href="../index.html">&larr; The Tunnel</a> &middot; <a href="../soccer-com-graphics.html">Soccer.com graphics</a></div>
+    <h1>Matchup cards, Soccer.com</h1>
+  </div>
+  <p class="lede">Pick a match and get the Soccer.com matchup banner. Slim is the header strip. Tall adds a photo tile for each club, and saves as three pieces so each tile links to its own team page.</p>
+</div></div></header>
+
+<div class="wrap"><main>
+  <div>
+
+    <fieldset class="grp">
+      <legend><span class="step">1</span>Select a channel</legend>
+      <select id="channel" aria-label="Select a channel"><option value="Email">Email</option></select>
+      <p class="hint" style="margin-top:8px">These matchup cards are made for email only.</p>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step">2</span>Select a size</legend>
+      <select id="size" aria-label="Select a size">
+        <option value="slim">Slim banner, 1096 &times; 339</option>
+        <option value="tall">Tall with photos, 1096 &times; 993</option>
+      </select>
+      <p class="hint" id="designhint" style="margin-top:8px"></p>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step">3</span>Select a match</legend>
+      <p class="feed" id="feed">Loading the fixture list...</p>
+      <label class="field" style="margin-top:12px"><span>Competition</span><select id="league"></select></label>
+      <label class="field"><span>Match</span><select id="match"></select></label>
+      <ul class="notes" id="notes"></ul>
+    </fieldset>
+
+    <fieldset class="grp">
+      <legend><span class="step">4</span>Copy</legend>
+      <p class="hint">Every line starts from the fixture. Change any of it here. A changed line turns orange so you can see what is yours.</p>
+      <div class="two">
+        <label class="field"><span>Home team <em id="c-t1"></em></span><input type="text" id="t1" maxlength="24"></label>
+        <label class="field"><span>Away team <em id="c-t2"></em></span><input type="text" id="t2" maxlength="24"></label>
+      </div>
+      <div class="two">
+        <label class="field"><span>Date</span><input type="text" id="date" maxlength="22"></label>
+        <label class="field"><span>Kick-off time</span><input type="text" id="time" maxlength="22"></label>
+      </div>
+      <label class="field"><span>Time zone</span></label>
+      <div class="chips" id="tzs" style="margin:-8px 0 16px"></div>
+      <div class="tallonly">
+        <div class="two">
+          <label class="field"><span>Tournament</span><input type="text" id="tour" maxlength="22"></label>
+          <label class="field"><span>Round or info</span><input type="text" id="info" maxlength="22" placeholder="Optional"></label>
+        </div>
+        <div class="two">
+          <label class="field"><span>Stadium</span><input type="text" id="stadium" maxlength="22" placeholder="Not in the feed. Type it."></label>
+          <label class="field"><span>City</span><input type="text" id="city" maxlength="22" placeholder="Not in the feed. Type it."></label>
+        </div>
+        <div class="two">
+          <label class="field"><span>Home button</span><input type="text" id="cta1" maxlength="26"></label>
+          <label class="field"><span>Away button</span><input type="text" id="cta2" maxlength="26"></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="grp tallonly">
+      <legend><span class="step">5</span>Select the photos</legend>
+      <p class="hint">Only Tunnel photos Soccer.com may use (shared, or Soccer.com tier). The home side starts on a home kit and the away side on an away kit.</p>
+      <div id="sides"></div>
+    </fieldset>
+
+    <fieldset class="grp tallonly">
+      <legend><span class="step">6</span>Links for the email</legend>
+      <p class="hint">Tall saves as a top band and two tiles. Stack the band over the two tiles with no gap, padding or border. Put each tile on its club's link.</p>
+      <ul class="links" id="links"></ul>
+    </fieldset>
+  </div>
+
+  <aside><div class="stage">
+    <div class="gh">Preview</div>
+    <div class="frame" id="frame"><div class="empty">Pick a match to see it.</div></div>
+    <div class="slices" id="slices" hidden></div>
+    <button class="go" id="go" disabled>Download</button>
+    <p class="log" id="log" role="status" aria-live="polite"></p>
+  </div></aside>
+</main></div>
+<div id="offstage" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.js"></script>
+<script>
+(function () {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const norm = s => String(s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const slug = norm;
+
+  // Images: thumbnails load direct; the card loads through the Tunnel's own /dl/ path so the
+  // browser lets the page turn it into a PNG (see the-tunnel/_redirects).
+  const enc = f => String(f).replace(/%/g, "%25").replace(/\+/g, "%2B").replace(/#/g, "%23").replace(/&/g, "%26").replace(/\?/g, "%3F");
+  const IH = /^https?:\/\/(www\.)?imagehandler\.net\/dxassets\/\?img=Photos\//i;
+  const IS_GH = /github\.io$/i.test(location.hostname);
+  const direct = f => "https://www.imagehandler.net/dxassets/?img=Photos/" + enc(f);
+  const viaTunnel = f => IS_GH ? direct(f) : "/dl/" + enc(f);
+  const tunnelUrl = u => !u ? "" : IH.test(u) ? (IS_GH ? u : "/dl/" + u.replace(IH, "")) : /^https?:/i.test(u) ? "" : u;
+
+  // The VS mark, exported from Figma (component "VS", ##VS_Colour #DC111D).
+  const VS = '<svg class="vs" viewBox="0 0 88 68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.76311 65.7628L0 12.5263V1.28947H16.8552L21.6446 45.3156H23.1183L28.5525 1.28947H44.4866V12.5263L34.6314 65.7628H9.76311Z" fill="#DC111D"/><path d="M67.5769 67.0523C55.5111 67.0523 49.7085 61.4339 47.6822 57.9339V43.3814H64.0769V51.0261C64.4453 51.855 65.7348 52.8682 67.5769 52.8682C69.5111 52.8682 70.7084 51.9471 71.169 51.0261V43.013C70.6163 41.8156 69.2348 41.1709 64.9979 39.8814C53.2085 36.8419 49.6164 33.3419 47.6822 29.6578V9.11838C49.7085 5.7105 55.3269 0 67.5769 0C79.9189 0 85.5373 5.7105 87.5636 9.11838V23.2104H71.169V16.0262C70.8005 15.1973 69.5111 14.1841 67.5769 14.1841C65.7348 14.1841 64.4453 15.1973 64.0769 16.0262V22.9341C64.5374 24.0394 66.2874 24.7762 70.34 26.0657C81.8531 29.5656 85.6294 32.6972 87.5636 36.4735V57.9339C85.4452 61.4339 79.7347 67.0523 67.5769 67.0523Z" fill="#DC111D"/></svg>';
+
+  const SIZES = { slim: { w: 1096, h: 339 }, tall: { w: 1096, h: 993 } };
+  // Tall email pieces: the band down to the top of the tiles (y 331), then the two tiles split
+  // down the middle of the 28px gap between them (x 548). Numbers from Figma 3222:10096.
+  const CUTS = { top: 331, mid: 548 };
+  const TZ = [["ET", "America/New_York"], ["CT", "America/Chicago"], ["MT", "America/Denver"], ["PT", "America/Los_Angeles"]];
+
+  let index, logos, payload, byName = {}, matches = [], current = null, design = "slim", tz = "ET";
+  const pick = { home: undefined, away: undefined }, showAll = { home: false, away: false };
+  const FIELDS = ["t1", "t2", "date", "time", "tour", "info", "stadium", "city", "cta1", "cta2"];
+  let defaults = {};
+
+  Promise.all([
+    fetch("clubs-index.json").then(r => r.json()),
+    fetch("league-logos.json").then(r => r.json()),
+    fetch("fixtures.json", { cache: "no-store" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).catch(() => fetch("https://wss-matchup-data.netlify.app/fixtures.json", { cache: "no-store" }).then(r => { if (!r.ok) throw new Error("the fixture list did not load (" + r.status + ")"); return r.json(); })),
+  ]).then(([ix, lg, f]) => {
+    index = ix; logos = lg.leagues || {}; payload = f;
+    ix.clubs.forEach(cl => cl.names.forEach(n => { if (!byName[n]) byName[n] = cl; }));
+    const ready = document.fonts && document.fonts.load ? document.fonts.load('120px "Trim Poster Average"').catch(() => {}) : Promise.resolve();
+    ready.then(start);
+  }).catch(e => { $("feed").textContent = "Could not load: " + e.message + ". Reload the page to try again."; });
+
+  const clubOf = t => byName[norm(t.name)] || byName[norm(t.short)] || null;
+  const linkFor = t => { const c = clubOf(t); return (c && c.sdc) || null; };            // Soccer.com team page, or nothing
+  const photosFor = t => { const c = clubOf(t); return c ? c.photos : []; };              // already Soccer.com-safe tiers only
+  const crestFor = t => { const c = clubOf(t); return t.crest || (c && c.crest) || null; };
+  const shortName = t => t.short || t.name;
+  // Team names are the club's real name ("XXX" in Figma is only the template) [Sacha 2026-09-25].
+  // Full name first; if it will not fit the 766px column at full size, use the club's short name;
+  // if that will not fit either, keep the full name and let it shrink.
+  const measure = (() => { const c = document.createElement("canvas").getContext("2d"); return t => { c.font = '120px "Trim Poster Average"'; return c.measureText(String(t).toUpperCase()).width; }; })();
+  const fitName = t => measure(t.name) <= 766 ? t.name : (t.short && measure(t.short) <= 766 ? t.short : t.name);
+
+  function start() {
+    const when = new Date(payload.generated);
+    const n = (payload.leagues || []).reduce((a, l) => a + (l.matches || []).length, 0);
+    $("feed").textContent = `${n} fixtures in the feed, updated ${when.toLocaleString("en-US", { timeZone: "America/Los_Angeles", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} PT. Competitions with no fixtures right now are left out.`;
+    const leagues = (payload.leagues || []).filter(l => (l.matches || []).length);
+    $("league").innerHTML = leagues.map(l => `<option value="${esc(l.id)}">${esc(l.name || l.id)} (${l.matches.length})</option>`).join("");
+    $("league").onchange = fillMatches;
+    $("tzs").innerHTML = TZ.map(([k]) => `<label class="chip"><input type="radio" name="tz" value="${k}"${k === tz ? " checked" : ""}><span>${k}</span></label>`).join("");
+    $("tzs").onchange = e => { tz = e.target.value; const d = seed(current); ["date", "time"].forEach(k => { if (!isEdited(k)) $(k).value = d[k]; defaults[k] = d[k]; }); markEdits(); render(); };
+    $("size").onchange = e => { design = e.target.value; showDesign(); render(); };
+    FIELDS.forEach(k => $(k).addEventListener("input", () => { markEdits(); render(); }));
+    $("go").onclick = download;
+    showDesign();
+    if (!leagues.length) { $("notes").innerHTML = `<li class="warn">The feed has no fixtures right now.</li>`; return; }
+    fillMatches();
+  }
+
+  function showDesign() {
+    document.querySelectorAll(".tallonly").forEach(el => el.hidden = design !== "tall");
+    let n = 0; document.querySelectorAll("main fieldset.grp").forEach(f => { const st = f.querySelector(".step"); if (st && !f.hidden) st.textContent = ++n; });
+    $("designhint").textContent = design === "tall"
+      ? "Tall: team names, match details and a photo tile for each club with a Soccer.com button. Saves the full banner plus three email pieces."
+      : "Slim: team names, the league logo and the kick-off time. One image, no photos.";
+  }
+
+  function fillMatches() {
+    const lg = payload.leagues.find(l => l.id === $("league").value);
+    matches = (lg.matches || []).map(m => ({ ...m, league: lg })).sort((a, b) => String(a.kickoff).localeCompare(String(b.kickoff)));
+    $("match").innerHTML = matches.map((m, i) => `<option value="${i}">${esc(m.home.name)} v ${esc(m.away.name)}, ${esc(kick(m.kickoff).date)}${m.status === "final" ? " (played)" : ""}</option>`).join("");
+    $("match").onchange = choose;
+    choose();
+  }
+
+  function kick(iso) {
+    const zone = (TZ.find(z => z[0] === tz) || TZ[0])[1];
+    const d = new Date(iso);
+    if (isNaN(d)) return { date: "", time: "" };
+    const date = d.toLocaleDateString("en-US", { timeZone: zone, weekday: "short", month: "short", day: "numeric" }).replace(",", "");
+    const time = d.toLocaleTimeString("en-US", { timeZone: zone, hour: "numeric", minute: "2-digit" }) + " " + tz;
+    return { date, time };
+  }
+  function seed(m) {
+    if (!m) return {};
+    const k = kick(m.kickoff);
+    return {
+      t1: fitName(m.home), t2: fitName(m.away),
+      date: k.date, time: k.time,
+      tour: m.league.name || "", info: "", stadium: "", city: "",
+      cta1: "Shop " + fitName(m.home), cta2: "Shop " + fitName(m.away),
+    };
+  }
+  const isEdited = k => $(k).value !== (defaults[k] || "");
+  function markEdits() { FIELDS.forEach(k => $(k).classList.toggle("edited", isEdited(k))); }
+
+  function choose() {
+    current = matches[Number($("match").value)] || null;
+    pick.home = pick.away = undefined; showAll.home = showAll.away = false;
+    defaults = seed(current);
+    FIELDS.forEach(k => $(k).value = defaults[k] || "");
+    markEdits();
+    $("go").disabled = !current;
+    buildSides(); links(); render();
+  }
+
+  function defaultPhoto(team, side) {
+    const opts = photosFor(team), want = side === "home" ? "Home" : "Away";
+    const p = opts.find(o => o.kit === want) || opts.find(o => o.kit === "Home") || opts[0];
+    return p ? { f: p.f } : { none: true };
+  }
+  function buildSides() {
+    const box = $("sides"); box.innerHTML = "";
+    if (!current) return;
+    for (const side of ["home", "away"]) {
+      const team = current[side];
+      if (pick[side] === undefined) pick[side] = defaultPhoto(team, side);
+      const opts = photosFor(team);
+      const wrap = document.createElement("div"); wrap.className = "side";
+      wrap.innerHTML = `<h3>${esc(team.name)} <small>${side === "home" ? "Home side" : "Away side"} &middot; ${opts.length} photo${opts.length === 1 ? "" : "s"}</small></h3>`;
+      const grid = document.createElement("div"); grid.className = "pics";
+      const add = (label, choice, img, tag) => {
+        const b = document.createElement("button"); b.type = "button"; b.className = "pic" + (img ? "" : " none");
+        const on = (choice.none && pick[side].none) || (choice.f && choice.f === pick[side].f);
+        b.setAttribute("aria-pressed", String(!!on)); b.setAttribute("aria-label", label);
+        if (img) { const i = document.createElement("img"); i.loading = "lazy"; i.alt = ""; i.src = img; b.appendChild(i); }
+        else b.textContent = "Crest only";
+        if (tag) { const t = document.createElement("span"); t.className = "t"; t.textContent = tag; b.appendChild(t); }
+        b.onclick = () => { pick[side] = choice; buildSides(); render(); };
+        grid.appendChild(b);
+      };
+      add("No photo, show the crest", { none: true }, null, null);
+      (showAll[side] ? opts : opts.slice(0, 11)).forEach(o => add(`${o.kit || "Photo"} ${o.f}`, { f: o.f }, direct(o.f), (o.tier === "Soccer.com" ? "SDC " : "") + (o.kit || "")));
+      wrap.appendChild(grid);
+      if (opts.length > 11 && !showAll[side]) {
+        const m = document.createElement("button"); m.type = "button"; m.className = "more"; m.textContent = `Show all ${opts.length}`;
+        m.onclick = () => { showAll[side] = true; buildSides(); };
+        wrap.appendChild(m);
+      }
+      if (!opts.length) {
+        const p = document.createElement("p"); p.className = "hint"; p.style.marginTop = "8px";
+        p.textContent = `The Tunnel has no Soccer.com-safe photo of ${team.name} yet, so this tile shows the crest.`;
+        wrap.appendChild(p);
+      }
+      box.appendChild(wrap);
+    }
+  }
+
+  function links() {
+    const ul = $("links"); ul.innerHTML = "";
+    if (!current) return;
+    [["Left tile", current.home], ["Right tile", current.away]].forEach(([k, team]) => {
+      const u = linkFor(team);
+      const li = document.createElement("li");
+      li.innerHTML = `<span class="k">${k}</span><span class="u">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>` : `No Soccer.com team page for ${esc(team.name)}, so this tile has no button.`}</span>`;
+      if (u) { const b = document.createElement("button"); b.type = "button"; b.textContent = "Copy"; b.onclick = () => navigator.clipboard.writeText(u).then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy", 1500); }); li.appendChild(b); }
+      else li.appendChild(document.createElement("span"));
+      ul.appendChild(li);
+    });
+  }
+
+  // ─── build the card DOM ───
+  const val = k => $(k).value.trim();
+  function cardHtml() {
+    const m = current, lk = logos[m.league.id];
+    const names = `<div class="tn" data-fit>${esc(val("t1"))}</div>${VS}<div class="tn" data-fit>${esc(val("t2"))}</div>`;
+    if (design === "slim") {
+      const when = [val("date"), val("time")].filter(Boolean).join(", ");
+      const logo = lk ? `<img class="logo" alt="" src="${esc(tunnelUrl(lk.url))}">` : `<span class="logo gap"></span>`;
+      return `<div class="sdcm slim"><div class="box"><div class="top"><div class="teams">${names}</div>
+        <div class="det">${logo}<div class="mono" data-fitw>${esc(when)}</div></div></div></div></div>`;
+    }
+    const pair = (a, b) => !(a || b) ? "" : `<div class="pair">${[a, b].filter(Boolean).map(x => `<div class="mono" data-fitw>${esc(x)}</div>`).join("")}</div>`;
+    const tile = (side, cta) => {
+      const team = m[side], c = pick[side] || {}, u = linkFor(team);
+      const img = c.f ? `<img class="photo" alt="" src="${esc(viaTunnel(c.f))}">`
+        : crestFor(team) ? `<img class="crest" alt="" src="${esc(tunnelUrl(crestFor(team)))}">` : "";
+      return `<div class="tile"><div class="ph">${img}</div>${u && cta ? `<div class="cta" data-fitw>${esc(cta)}</div>` : ""}</div>`;
+    };
+    return `<div class="sdcm tall"><div class="box"><div class="top"><div class="teams">${names}</div>
+      <div class="det"><div class="pairs">${pair(val("tour"), val("info"))}${pair(val("date"), val("time"))}${pair(val("stadium"), val("city"))}</div></div></div>
+      <div class="tiles">${tile("home", val("cta1"))}${tile("away", val("cta2"))}</div></div></div>`;
+  }
+  // Team names shrink to fit the 766px column; small mono lines shrink to fit their box.
+  function fit(root) {
+    root.querySelectorAll("[data-fit]").forEach(el => {
+      el.style.fontSize = ""; const max = 766;
+      let s = 120; while (el.scrollWidth > max && s > 48) { s -= 2; el.style.fontSize = s + "px"; }
+      el.dataset.size = s;
+    });
+    root.querySelectorAll("[data-fitw]").forEach(el => {
+      el.style.fontSize = ""; const base = parseFloat(getComputedStyle(el).fontSize); let s = base;
+      while (el.scrollWidth > el.clientWidth + 0.5 && s > base * .6) { s -= 0.5; el.style.fontSize = s + "px"; }
+      el.dataset.size = s / base;
+    });
+  }
+  function mount(host) {
+    host.innerHTML = cardHtml();
+    const card = host.firstElementChild;
+    fit(card);
+    return card;
+  }
+
+  function notes(card) {
+    const out = [], m = current;
+    if (m.status === "final") out.push(["warn", "This match has been played. The card still shows it as a fixture."]);
+    if (design === "slim" && !logos[m.league.id]) out.push(["warn", `No league logo on file for ${m.league.name}, so that corner is empty.`]);
+    ["home", "away"].forEach((side, i) => { const t = m[side], v = val(i ? "t2" : "t1"); if (!isEdited(i ? "t2" : "t1") && v !== t.name) out.push(["warn", `${t.name} is too long for one line, so the card says ${v}. Change it under Copy if you want something else.`]); });
+    card.querySelectorAll("[data-fit]").forEach((el, i) => { if (Number(el.dataset.size) < 120) out.push(["warn", `The ${i ? "away" : "home"} name is long, so it was shrunk to ${Math.round(el.dataset.size / 1.2)}%. A shorter name reads better.`]); });
+    if (design === "tall") {
+      for (const side of ["home", "away"]) {
+        const t = m[side];
+        if (!linkFor(t)) out.push(["warn", `${t.name} has no Soccer.com team page, so its tile has no button.`]);
+        if (!(pick[side] || {}).f) out.push(["warn", `No photo on the ${t.name} tile, so it shows the crest${crestFor(t) ? "" : " (and there is no crest either, so it is a grey panel)"}.`]);
+      }
+      if (!val("stadium") || !val("city")) out.push(["warn", "Stadium and city are empty. The feed does not carry them, so type them in or leave the last line blank."]);
+    }
+    if (FIELDS.some(k => (design === "tall" || ["t1", "t2", "date", "time"].includes(k)) && isEdited(k))) out.push(["warn", "Some copy was changed from the fixture (orange fields). Check it before you send."]);
+    if (!out.length) out.push(["good", "Everything this card needs is here."]);
+    $("notes").innerHTML = out.map(([c, t]) => `<li class="${c}">${esc(t)}</li>`).join("");
+  }
+
+  let token = 0;
+  function render() {
+    const frame = $("frame");
+    if (!current) { frame.innerHTML = `<div class="empty">Pick a match to see it.</div>`; return; }
+    const sz = SIZES[design];
+    frame.innerHTML = ""; const inner = document.createElement("div");
+    inner.style.width = sz.w + "px"; inner.style.height = sz.h + "px";
+    frame.appendChild(inner);
+    const card = mount(inner);
+    const fitZoom = () => { inner.style.zoom = String(frame.clientWidth / sz.w); frame.style.height = Math.round(sz.h * frame.clientWidth / sz.w) + "px"; };
+    fitZoom(); window.addEventListener("resize", fitZoom, { once: true });
+    notes(card);
+    $("slices").hidden = true;
+    const my = ++token;
+    clearTimeout(render.t);
+    if (design === "tall") {
+      render.t = setTimeout(async () => {
+        try {
+          const url = await png();
+          if (my !== token) return;
+          const parts = await cut(url);
+          if (my !== token) return;   // the design or match changed while it was drawing
+          $("slices").innerHTML = `<figure class="full"><img alt="Top band" src="${parts.top}"><figcaption>Top band, no link</figcaption></figure>
+            <figure><img alt="Left tile" src="${parts.left}"><figcaption>Left tile, ${esc(current.home.name)}</figcaption></figure>
+            <figure><img alt="Right tile" src="${parts.right}"><figcaption>Right tile, ${esc(current.away.name)}</figcaption></figure>`;
+          $("slices").hidden = false;
+        } catch (e) { /* the pieces preview is a nice-to-have; Download reports real errors */ }
+      }, 500);
+    }
+  }
+
+  async function png() {
+    const sz = SIZES[design], host = $("offstage");
+    host.innerHTML = ""; const box = document.createElement("div"); host.appendChild(box);
+    const card = mount(box);
+    await Promise.all([...card.querySelectorAll("img")].map(i => i.complete ? null : new Promise(r => { i.addEventListener("load", r, { once: true }); i.addEventListener("error", r, { once: true }); })));
+    if (document.fonts) { try { await document.fonts.ready; } catch (e) {} }
+    fit(card);
+    await new Promise(r => setTimeout(r, 120));
+    try { return await window.htmlToImage.toPng(card, { width: sz.w, height: sz.h, pixelRatio: 1, cacheBust: false }); }
+    finally { host.innerHTML = ""; }
+  }
+  function crop(url, x, y, w, h) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => { const c = document.createElement("canvas"); c.width = w; c.height = h; c.getContext("2d").drawImage(img, x, y, w, h, 0, 0, w, h); resolve(c.toDataURL("image/png")); };
+      img.onerror = reject; img.src = url;
+    });
+  }
+  async function cut(url) {
+    const { w, h } = SIZES.tall;
+    return {
+      top: await crop(url, 0, 0, w, CUTS.top),
+      left: await crop(url, 0, CUTS.top, CUTS.mid, h - CUTS.top),
+      right: await crop(url, CUTS.mid, CUTS.top, w - CUTS.mid, h - CUTS.top),
+    };
+  }
+  const save = (url, name) => { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); };
+
+  async function download() {
+    $("go").disabled = true;
+    const sz = SIZES[design];
+    const stem = `sdc-Matchup_${slug(current.home.name)}-v-${slug(current.away.name)}_${$("channel").value}_${design}`;
+    try {
+      $("log").textContent = "Drawing the card...";
+      const url = await png();
+      save(url, `${stem}_${sz.w}x${sz.h}.png`);
+      let made = 1;
+      if (design === "tall") {
+        const p = await cut(url);
+        for (const [k, u] of [["top", p.top], ["left", p.left], ["right", p.right]]) {
+          await new Promise(r => setTimeout(r, 250)); save(u, `${stem}_${sz.w}x${sz.h}_${k}.png`); made++;
+        }
+      }
+      $("log").textContent = `Done. ${made} file${made > 1 ? "s" : ""} saved to your Downloads.`;
+    } catch (e) {
+      $("log").textContent = "That did not work: " + (e && e.message ? e.message : "the card could not be turned into an image") + ".";
+    }
+    $("go").disabled = false;
+  }
+})();
+</script>
+</body>
+</html>

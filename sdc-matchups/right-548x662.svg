@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="548" height="662" viewBox="0 0 548 662">
+  <rect width="548" height="662" fill="#0B0B0B"/>
+  <rect x="14" y="0" width="510" height="530" rx="10" fill="#1C1C1B" stroke="#2E2E2C" stroke-width="2"/>
+  <circle cx="269" cy="240" r="115" fill="#13223D" stroke="#2162E4" stroke-width="3"/>
+  <text x="269" y="232" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">AWAY CLUB TILE</text>
+  <text x="269" y="268" text-anchor="middle" fill="#9BB5E8" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600">548 x 662 Right PNG</text>
+  <rect x="14" y="556" width="510" height="78" rx="6" fill="#FFFFFF"/>
+  <text x="269" y="603" text-anchor="middle" fill="#0B0B0B" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="1">SHOP CHELSEA</text>
+</svg>

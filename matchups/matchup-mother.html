@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<!--
+  matchup-mother.html — the HTML twin of the Figma matchup card.
+  Figma design: Marketing Master Design System, node 3448:5089 (1080x1350).
+
+  THE CREST PATTERN: design in Figma, render in code. This file is the render
+  target; render-matchup.js fills the double-brace placeholders and screenshots it. Do not add
+  logic here — every decision belongs in the renderer or card-config.json.
+
+  ⚠️ Slots are named for the SIDE, not "home" twice. The Figma file names both
+  halves "Home Team" and the away card ships Man City's crest under the words
+  MANCHESTER UTD. That bug must not survive the port.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Mohave:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Mohave is the canon display face and is on Google Fonts.
+     PP Fraktion Mono (the Figma header face) is licensed and may not be on the
+     render machine — the stack falls back rather than silently substituting
+     something that looks wrong at a glance. */
+  :root{
+    --surface: {{surface}};
+    --card: {{card_surface}};
+    --hairline: rgba(255,255,255,.6);
+    --hairline-soft: rgba(255,255,255,.39);
+    --W: {{W}}px; --H: {{H}}px;
+    /* metadata type: eyebrow and side labels share these two values */
+    --meta-size: 16px; --meta-track: .06em;
+    /* where the photo's hairline stroke starts dissolving into the scrim */
+    --stroke-fade-start: 78%;
+    /* CONCENTRIC CORNERS. An inner radius is only parallel to the one outside
+       it when inner = outer MINUS the gap between them. The board is 58 with a
+       12 inset, so the photo has to be 46. It was 58+4 — lifted straight from
+       the standalone Figma card, where nothing sat outside it — which made the
+       inner curve TIGHTER than the outer one and read as a mistake. */
+    --board-radius: 58px;
+    --board-pad: 12px;
+    --photo-radius: calc(var(--board-radius) - var(--board-pad));
+    /* how far down the board's own stroke stays at full strength */
+    --board-fade-start: 62%;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:var(--W);height:var(--H);}
+  body{
+    background:var(--surface);
+    font-family:'Mohave',system-ui,sans-serif;
+    color:#fff;
+    display:flex;flex-direction:column;align-items:center;
+    padding:10px 24px 24px;overflow:hidden;
+  }
+  /* ONE mono size for every piece of metadata on the card: the eyebrow and the
+     HOME TEAM / AWAY TEAM labels. Change --meta-size and both move together. */
+  .mono{font-family:ui-monospace,'PP Fraktion Mono','SFMono-Regular',Menlo,monospace;
+        font-size:var(--meta-size);line-height:1.25;letter-spacing:var(--meta-track);
+        text-transform:uppercase}
+
+  /* the eyebrow sits in its own padded container so it is never flush to the
+     top edge of the card (Sacha, 2026-09-09) */
+  header{display:flex;justify-content:space-between;align-items:baseline;
+         width:100%;flex:0 0 auto;padding:16px 4px 20px}
+  /* horizontal padding stays tiny on purpose: the eyebrow lines up with the
+     outer edge of the board below it, not indented from it */
+  header .right{text-align:right}
+  header .left,header .right{white-space:nowrap}  /* never wrap the eyebrow */
+
+  .container{flex:1 1 0;display:flex;align-items:stretch;justify-content:center;width:100%;min-height:0}
+  .board{
+    flex:1 1 0;display:flex;gap:12px;justify-content:center;align-items:stretch;
+    background:var(--card);
+    border-radius:var(--board-radius);
+    padding:var(--board-pad) var(--board-pad) 24px;position:relative;min-width:0;
+  }
+  /* the board's stroke, same overlay trick as the photo. It does not vanish
+     here — the card still has to close — it just eases back so the foot and the
+     bottom corners are not the brightest thing on a black card. */
+  .board::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+    border:1px solid var(--hairline);
+    border-radius:var(--board-radius);
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 var(--board-fade-start),rgba(0,0,0,.22) 100%);
+            mask-image:linear-gradient(to bottom,#000 0%,#000 var(--board-fade-start),rgba(0,0,0,.22) 100%);
+  }
+
+  .side{flex:1 1 0;display:flex;flex-direction:column;align-items:center;min-width:0;height:100%;overflow:hidden}
+  /* ⚠️ flex:1 1 auto with min-height:0 collapsed to ZERO for a club with no
+     photo, and took the whole card down with it. The panel owns its share of
+     the height whether or not an image ever arrives. */
+  .photo{
+    position:relative;width:100%;flex:0 0 {{photo_pct}}%;
+    border-radius:var(--photo-radius) var(--photo-radius) 0 0;overflow:hidden;
+    background:{{fallback_surface}};              /* used when a club has no photo */
+  }
+  /* THE STROKE IS A GRADIENT, NOT A BORDER (Sacha, 2026-09-10: "the line just
+     looks a bit too harsh"). A real border ran at full strength all the way
+     round and closed the panel with a hard rule across the bottom. This paints
+     the same hairline as an overlay and masks it out over the last fifth, so
+     the outline dissolves into the black instead of terminating in a line.
+     --stroke-fade-start is the knob: lower it to dissolve sooner. */
+  .photo::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    border:.926px solid var(--hairline-soft);
+    border-radius:var(--photo-radius) var(--photo-radius) 0 0;
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 var(--stroke-fade-start),transparent 97%);
+            mask-image:linear-gradient(to bottom,#000 0%,#000 var(--stroke-fade-start),transparent 97%);
+  }
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  /* TWO scrims, exactly as the Figma master (node 3448:5236) stacks them.
+     One alone leaves a hard line where the photo stops.
+       .scrim      = #scrim-bottom 3448:5024 — 199 of 805px (24.7%), to 70% black.
+                     The long, soft fade.
+       .scrim-foot = #scrim-bottom 3448:5412 — 175px starting at 640, running 10px
+                     PAST the bottom of the card, to solid black. It is only ~94%
+                     of the way through its ramp at the photo's bottom stroke,
+                     which is why that stroke reads dense rather than cut off.
+     Heights are percentages of the photo box so all three canvases match: the
+     4x5 photo is ~810px, the 1x1 ~590px, the 9x16 ~1420px. */
+  .photo .scrim{position:absolute;left:0;right:0;bottom:0;height:24.7%;
+                background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.7))}
+  .photo .scrim-foot{position:absolute;left:0;right:0;bottom:0;height:20.5%;
+                background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.96) 100%)}
+
+  .info{display:flex;flex-direction:column;align-items:center;justify-content:center;
+        gap:12px;width:100%;padding-top:18px;flex:1 1 auto;min-height:0}
+  /* ⚠️ the crest is ONE IMAGE from clubs.json, not a 44-path vector group.
+     Sacha's ruling 2026-09-09: "we have logos already in the data." */
+  .crest{width:154px;height:153px;object-fit:contain;display:block}
+  .crest-fallback{width:154px;height:153px;display:flex;align-items:center;justify-content:center;
+                  font-size:44px;font-weight:700;opacity:.85}
+  .label{font-size:var(--meta-size);letter-spacing:var(--meta-track);text-transform:uppercase;
+         line-height:1.25;font-family:ui-monospace,'PP Fraktion Mono',Menlo,monospace}
+  .club{font-size:44.3px;font-weight:700;text-transform:uppercase;line-height:1;text-align:center;
+        max-width:100%;word-break:break-word}
+  .cta{border:1.4px solid rgba(255,255,255,.7);height:46px;width:216px;
+       display:flex;align-items:center;justify-content:center;
+       font-size:15.4px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;margin-top:12px}
+
+  .vs{position:absolute;left:50%;transform:translateX(-50%);
+      top:{{photo_pct}}%;height:calc(100% - {{photo_pct}}%);
+      display:flex;align-items:center;
+      font-size:88.5px;font-weight:700;line-height:1;text-align:center}
+
+  /* the score replaces VS once a match is final. Yellow chip is canon (C-22). */
+  .score{position:absolute;left:50%;transform:translateX(-50%);
+      top:{{photo_pct}}%;height:calc(100% - {{photo_pct}}%);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .score .line{font-size:88.5px;font-weight:700;line-height:1}
+  .score .chip{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:3px;
+               background:#FDE047;color:#131313;font-size:15px;font-weight:600;letter-spacing:.08em}
+</style></head>
+<body>
+  <header class="mono">
+    <div class="left">{{date_line}}{{venue_line}}</div>
+    <div class="right">{{time_line}}{{city_line}}</div>
+  </header>
+
+  <div class="container">
+    <div class="board">
+
+      <div class="side">
+        <div class="photo" style="background:{{home_surface}}">{{home_photo_tag}}<div class="scrim"></div><div class="scrim-foot"></div></div>
+        <div class="info">
+          {{home_crest_tag}}
+          <div class="label">{{home_label}}</div>
+          <div class="club">{{home_name}}</div>
+          {{home_cta}}
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="photo" style="background:{{away_surface}}">{{away_photo_tag}}<div class="scrim"></div><div class="scrim-foot"></div></div>
+        <div class="info">
+          {{away_crest_tag}}
+          <div class="label">{{away_label}}</div>
+          <div class="club">{{away_name}}</div>
+          {{away_cta}}
+        </div>
+      </div>
+
+      {{centre_block}}
+    </div>
+  </div>
+</body></html>

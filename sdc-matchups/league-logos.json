@@ -1,0 +1,58 @@
+{
+  "_comment": "League marks in the imagehandler bucket. Sacha uploaded them 2026-09-10 into /dxassets/Photos. These are BUCKET assets now, not local files.",
+  "_url_pattern": "Built with the documented handler rule (FASTR-FACTS): https://www.imagehandler.net/dxassets/?img=Photos/<filename>. UNVERIFIED until a human opens one in a browser \u2014 the handler returns 400 to curl and to bots, so no agent can confirm these and none should try.",
+  "_light_vs_dark": "Sacha uploaded a light and a dark cut of this one. LIGHT = the WHITE mark, which is the one to use on a BLACK card. Easy to get backwards.",
+  "_format": "PNG, transparent. The handler serves JPG and PNG, never SVG or WebP.",
+  "leagues": {
+    "premier-league": {
+      "file": "leagues_premier_league_light.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_premier_league_light.png",
+      "alt_file": "leagues_premier_league_dark.png",
+      "alt_url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_premier_league_dark.png",
+      "_alt": "The dark cut, for light backgrounds. Not the one the matchup cards use.",
+      "_note": "Sacha uploaded a light and a dark cut of this one. LIGHT = the WHITE mark, which is the one to use on a BLACK card. Easy to get backwards."
+    },
+    "la-liga": {
+      "file": "leagues_la_liga.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_la_liga.png"
+    },
+    "serie-a": {
+      "file": "leagues_serie_a.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_serie_a.png"
+    },
+    "bundesliga": {
+      "file": "leagues_bundesliga.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_bundesliga.png"
+    },
+    "ligue-1": {
+      "file": "leagues_ligue_1_light.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_ligue_1_light.png",
+      "alt_file": "leagues_ligue_1_dark.png",
+      "alt_url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_ligue_1_dark.png",
+      "_alt": "The dark cut, for light backgrounds. Not the one the matchup cards use.",
+      "_note": "Sacha uploaded a light and a dark cut of this one. LIGHT = the WHITE mark, which is the one to use on a BLACK card. Easy to get backwards."
+    },
+    "champions-league": {
+      "file": "leagues_champions_league_light.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_champions_league_light.png",
+      "alt_file": "leagues_champions_league.png",
+      "alt_url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_champions_league.png",
+      "_alt": "The standard cut, for light backgrounds. Not the one the matchup cards use.",
+      "_note": "Sacha made and uploaded this 2026-09-10. NAMING DIFFERS from the other two pairs: here the UNSUFFIXED file is the standard cut and only the white one carries _light. Premier League and Ligue 1 spell both out (_light AND _dark). Match on the exact filename in this manifest, never on a pattern."
+    },
+    "mls": {
+      "file": "leagues_mls.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_mls.png"
+    },
+    "liga-mx": {
+      "file": "leagues_liga_mx.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_liga_mx.png"
+    }
+  },
+  "_also_in_bucket": {
+    "nwsl": {
+      "file": "leagues_nwsl.png",
+      "url": "https://www.imagehandler.net/dxassets/?img=Photos/leagues_nwsl.png"
+    }
+  }
+}
