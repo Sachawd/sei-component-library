@@ -293,6 +293,10 @@ body[data-hub="tunnel"] .nm-search__field svg { color: var(--tn-blue); }
 .tn-kind--graphics { background: var(--nm-chip-green); color: var(--nm-chip-green-ink); }
 .tn-kind--find { background: var(--nm-chip-purple); color: var(--nm-chip-purple-ink); }
 .tn-kind--help { background: var(--nm-chip-yellow); color: var(--nm-chip-yellow-ink); }
+.tn-kind--figma { background: #F0E2F6; color: #4A1A5E; }
+.tn-kind--build { background: #DDEDE2; color: #1D4A2C; }
+.tn-kind--publish { background: #FDE3D6; color: #7A2E12; }
+.tn-kind--ai { background: #DCEEF6; color: #174A63; }
 @media (max-width: 760px) {
   .tn-tools-table thead { display: none; }
   .tn-tools-table tr { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 16px; border-bottom: 1px solid var(--nm-rule); }

@@ -77,7 +77,7 @@
   var S3_DEFAULT = "https://www.imagehandler.net/dxassets/?img=Photos/";
   var REMOTE_FILES_BASE = "https://the-tunnel.netlify.app/v2/files/";
   var TOOLS_SITE = "https://the-tunnel.netlify.app/";
-  var CHIP = { sizes: "Image sizes", graphics: "Graphics", find: "Find", help: "Help" };
+  var CHIP = { sizes: "Image sizes", graphics: "Graphics", figma: "Figma", find: "Find", build: "Build", publish: "Publish", ai: "AI helpers", help: "Help" };
   var TOOLS = [
     { tab: "sizes", name: "DX & Social Resizer", what: "Makes the 16:9, 4:5, 9:16 and 1:1 sizes from one picture.", url: TOOLS_SITE + "dx-resizer.html" },
     { tab: "sizes", name: "Blog Image Sizer", what: "Makes the blog hero, preview and SEO sizes.", url: TOOLS_SITE + "blog-resizer.html" },
@@ -86,6 +86,20 @@
     { tab: "graphics", name: "WorldSoccerShop graphics", what: "Builds WorldSoccerShop matchup cards.", url: TOOLS_SITE + "worldsoccershop-graphics.html" },
     { tab: "find", name: "Find by SKU list", what: "Paste article numbers and see every shoot that has them.", url: TOOLS_SITE + "v1/index.html#skus" },
     { tab: "find", name: "Logo search", what: "Club, federation and brand logos.", url: TOOLS_SITE + "logos.html" },
+    { tab: "figma", name: "Cabana 8 Figma", what: "Pull shared brand components and Code Blocks Builders into your Figma file.", url: "", note: "Enable in the Figma Assets panel" },
+    { tab: "figma", name: "MotionFX plugin", what: "Check and note Figma motion presets (once on load, on scroll, or loop).", url: "https://www.figma.com/community/plugin/1657016495590941470" },
+    { tab: "figma", name: "Chrome-to-Figma Capture", what: "Capture live web inspiration straight into editable Figma Auto Layout frames.", url: "../nutmeg/videos.html#clip-6" },
+    { tab: "build", name: "All blocks (Code Library)", what: "Preview verified blocks at three widths and copy or download the starting HTML file.", url: "../nutmeg/blocks.html" },
+    { tab: "build", name: "Code Share", what: "Check line count, secrets and contrast, then make one link for the ClickUp HTML Code row.", url: TOOLS_SITE + "code-share/" },
+    { tab: "build", name: "Responsively App", what: "Check your test page across all five widths (360, 390, 768, 1024 and 1440).", url: "https://responsively.app" },
+    { tab: "build", name: "Jam", what: "Record one walkthrough of desktop and phone widths for ClickUp.", url: "https://jam.dev/" },
+    { tab: "publish", name: "Fastr CMS", what: "Paste your code into your store test page and set the three reserved heights.", url: "https://sportsendeavors.fastrworkspace.com/optimize/cms/" },
+    { tab: "publish", name: "Site Change Requests", what: "Read the brief, link your files and move the task through the 12 ClickUp statuses.", url: "https://app.clickup.com/9011460926/v/l/li/901115447365" },
+    { tab: "publish", name: "Site Updates chat", what: "Post status updates in the ClickUp Site Updates channel.", url: "https://app.clickup.com/9011460926/chat/r/8chzyty-50231" },
+    { tab: "publish", name: "Box folder", what: "Read the Link Book (SITE-LINKS) and store your page folder, sized images and HTML paste file.", url: "https://app.box.com/s/cmj6gpjoynr2cvemc6zlcqkaecg0lcts" },
+    { tab: "ai", name: "Claude Page Route plugin (0.1.2)", what: "Helper add-on for Claude: start a page, make the paste file, where are we.", url: "https://app.box.com/s/5b7461kq5okfl9okk74ujokz1tyn47us" },
+    { tab: "ai", name: "Universal AI Rule File", what: "Attach at the start of ChatGPT, Gemini, Copilot or Claude chats so any AI follows our exact Fastr rules.", url: "../nutmeg/universal-ai-rule-file.md" },
+    { tab: "help", name: "Designer guide: 03 Tools & Links", what: "How to get your starting code file, and tips for ChatGPT, Gemini and Copilot accounts.", url: "../nutmeg/step-tools.html" },
     { tab: "help", name: "Team guide", what: "How each team uses the Tunnel, step by step.", url: TOOLS_SITE + "v2/team-guide.html" },
     { tab: "help", name: "Aspect ratios and image specs", what: "The size rules, in Box.", url: "https://sportsendeavors.app.box.com/folder/326752475361" },
     { tab: "help", name: "Send feedback", what: "Ask for something to be added or fixed.", url: "https://airtable.com/apppFkTaDMtYW1Zvi/pagFKvi39wdUH9d6V/form" }
@@ -1242,9 +1256,10 @@
     });
     $("tn-tools-rows").innerHTML = TOOLS.filter(function (t) { return tab === "all" || t.tab === tab; }).map(function (t) {
       var ext = /^https?:/.test(t.url);
+      var go = t.note ? '<td class="tn-tools-table__go">' + esc(t.note) + '</td>' : "";
       return "<tr><td class=\"tn-tools-table__name\">" + esc(t.name) + "</td><td>" + esc(t.what) + "</td>" +
         '<td><span class="tn-kind tn-kind--' + t.tab + '">' + esc(CHIP[t.tab]) + "</span></td>" +
-        '<td class="tn-tools-table__go"><a class="tn-btn tn-btn--outline" href="' + esc(t.url) + '" target="_blank" rel="noopener" aria-label="Open ' + esc(t.name) + (ext ? ", opens in a new tab" : "") + '">Open &#8599;</a></td></tr>';
+        (t.note ? go : '<td class="tn-tools-table__go"><a class="tn-btn tn-btn--outline" href="' + esc(t.url) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ' aria-label="Open ' + esc(t.name) + (ext ? ", opens in a new tab" : "") + '">Open &#8599;</a></td>') + "</tr>";
     }).join("");
   }
   function markHub(which) {

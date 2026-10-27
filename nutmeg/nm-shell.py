@@ -37,12 +37,11 @@ OUT = '<span class="nm-visually-hidden"> (opens in a new tab)</span>'
 
 # Top bar. href None means the hub has no page yet, so it is left out.
 HUBS = [
-    ("The Tunnel", "https://the-tunnel.netlify.app/", None),
+    ("The Tunnel", "../index.html", None),
     ("Volley", "index.html", "volley"),
+    ("Tools", "../index.html#/tools", None),
     ("Our Brands", None, None),
-    ("Tools", "step-tools.html", None),
     ("Design System", "foundations.html", "nutmeg"),
-    ("Guides", "get-started.html", None),
 ]
 
 HUB_NAMES = {"nutmeg": "Nutmeg", "volley": "Volley"}
@@ -301,10 +300,8 @@ DRAWERS = {
     ("volley", "email"): ("Email", [("Overview", "email.html")] + EMAIL_TYPES),
     ("volley", "pages"): ("Pages", [("Overview", "pages.html")] + PAGE_TYPES),
     ("volley", "resources"): ("Resources", [
-        ("Photo Sizer", "photo-sizer.html"),
-        ("All 12 Daily Tools", "step-tools.html"),
-        ("The Tunnel", "https://the-tunnel.netlify.app/"),
-        ("Code Share", "https://the-tunnel.netlify.app/code-share/"),
+        ("All tools", "../index.html#/tools"),
+        ("Universal AI rule file", "universal-ai-rule-file.md"),
     ]),
     ("nutmeg", "foundations"): ("Foundations", [
         ("Overview", "foundations.html"),
