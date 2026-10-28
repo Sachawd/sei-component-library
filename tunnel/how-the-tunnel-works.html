@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Tunnel v3 Documentation · System Architecture &amp; Technical Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --g-ink: #151515;
+    --g-ink-2: #2f2f2f;
+    --g-ink-3: #595959;
+    --g-border: #d4d3ce;
+    --g-border-soft: #e6e5e0;
+    --g-surface: #ffffff;
+    --g-bg: #f6f5f1;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--g-ink);
+    background: var(--g-surface);
+    line-height: 1.65;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Monochrome Google Developer Docs Top Header */
+  .g-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 60px;
+    background: var(--g-surface);
+    border-bottom: 1px solid var(--g-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+  .g-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--g-ink);
+  }
+  .g-logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--g-ink);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.02em;
+  }
+  .g-brand-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--g-ink);
+  }
+  .g-brand-sub {
+    font-size: 13px;
+    color: var(--g-ink-3);
+    padding-left: 12px;
+    border-left: 1px solid var(--g-border);
+  }
+  .g-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .g-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid var(--g-border);
+    color: var(--g-ink);
+    background: var(--g-surface);
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .g-btn:hover { background: var(--g-bg); border-color: var(--g-ink-3); }
+  .g-btn.primary {
+    background: var(--g-ink);
+    color: #fff;
+    border-color: var(--g-ink);
+  }
+  .g-btn.primary:hover { background: #333333; }
+
+  /* 3-Column Google Documentation Shell */
+  .g-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) 230px;
+    max-width: 1520px;
+    margin: 0 auto;
+  }
+  @media (max-width: 1180px) {
+    .g-layout { grid-template-columns: 240px minmax(0, 1fr); }
+    .g-toc { display: none; }
+  }
+  @media (max-width: 860px) {
+    .g-layout { grid-template-columns: 1fr; }
+    .g-sidebar { display: none; }
+  }
+
+  /* Left Navigation Sidebar */
+  .g-sidebar {
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    border-right: 1px solid var(--g-border);
+    padding: 24px 16px;
+    background: var(--g-bg);
+  }
+  .nav-group-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--g-ink-3);
+    padding: 8px 12px 6px;
+    margin-top: 12px;
+  }
+  .nav-group-label:first-child { margin-top: 0; }
+  .nav-link {
+    display: block;
+    padding: 7px 12px;
+    font-size: 13.5px;
+    color: var(--g-ink-2);
+    text-decoration: none;
+    border-radius: 6px;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .nav-link:hover {
+    background: #eae8e1;
+    color: var(--g-ink);
+  }
+  .nav-link.active {
+    background: var(--g-ink);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Main Content Column */
+  .g-main {
+    padding: 36px 48px 80px;
+    max-width: 980px;
+  }
+  @media (max-width: 640px) {
+    .g-main { padding: 24px 20px 64px; }
+  }
+
+  .breadcrumbs {
+    font-size: 12.5px;
+    color: var(--g-ink-3);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .breadcrumbs span { color: var(--g-ink); font-weight: 600; }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--g-ink);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .doc-subtitle {
+    font-size: 17px;
+    color: var(--g-ink-3);
+    margin-bottom: 24px;
+    max-width: 780px;
+  }
+  .meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid var(--g-border-soft);
+    border-bottom: 1px solid var(--g-border-soft);
+    font-size: 12.5px;
+    color: var(--g-ink-3);
+    margin-bottom: 32px;
+  }
+  .meta-bar b { color: var(--g-ink); }
+
+  section.doc-sec {
+    margin-bottom: 52px;
+    scroll-margin-top: 80px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--g-ink);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--g-border);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 16.5px;
+    font-weight: 600;
+    color: var(--g-ink);
+    margin: 22px 0 8px;
+  }
+  p {
+    color: var(--g-ink-2);
+    margin-bottom: 14px;
+  }
+  ul.clean-list {
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: var(--g-ink-2);
+  }
+  ul.clean-list li {
+    margin-bottom: 8px;
+  }
+
+  /* Monochrome Callout Banners */
+  .callout {
+    border-left: 3px solid var(--g-ink);
+    background: var(--g-bg);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 18px 0 24px;
+    font-size: 14px;
+    color: var(--g-ink-2);
+  }
+  .callout-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--g-ink);
+    margin-bottom: 4px;
+  }
+
+  /* WIREFRAME BLUEPRINT CANVAS */
+  .wf-canvas {
+    background-color: var(--g-bg);
+    background-image: radial-gradient(#c8c6be 1px, transparent 1px);
+    background-size: 16px 16px;
+    border: 1px solid var(--g-border);
+    border-radius: 10px;
+    padding: 28px 24px;
+    margin: 20px 0 28px;
+    position: relative;
+  }
+  .wf-canvas-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--g-border);
+  }
+  .wf-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--g-ink-2);
+    background: var(--g-surface);
+    border: 1px solid var(--g-border);
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Architectural Wireframe Grid (3 Columns + Connectors) */
+  .arch-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 56px 1.15fr 56px 1.15fr;
+    align-items: center;
+    gap: 0;
+  }
+  @media (max-width: 960px) {
+    .arch-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .arch-connector { display: none; }
+  }
+  .arch-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .arch-col-header {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--g-ink-3);
+    margin-bottom: 2px;
+  }
+
+  /* Miniature Wireframe Windows inside Diagram */
+  .wf-window {
+    background: var(--g-surface);
+    border: 1.5px solid var(--g-ink-3);
+    border-radius: 7px;
+    overflow: hidden;
+  }
+  .wf-win-top {
+    background: var(--g-bg);
+    border-bottom: 1px solid var(--g-border);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--g-ink);
+  }
+  .wf-dots {
+    display: flex;
+    gap: 4px;
+  }
+  .wf-dots i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--g-ink-3);
+    background: #fff;
+    display: inline-block;
+  }
+  .wf-win-body {
+    padding: 12px;
+    font-size: 12.5px;
+    color: var(--g-ink-2);
+  }
+  .wf-field {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--g-bg);
+    border: 1px dashed var(--g-ink-3);
+    padding: 6px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+    color: var(--g-ink);
+  }
+  .wf-tree {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.55;
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: var(--g-bg);
+    border: 1px solid var(--g-border);
+    border-radius: 4px;
+  }
+  .wf-tree .active-node {
+    color: var(--g-ink);
+    font-weight: 600;
+  }
+  .wf-tree .muted-node {
+    color: var(--g-ink-3);
+  }
+  .wf-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .wf-mini-pill {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--g-bg);
+    border: 1px solid var(--g-border);
+    color: var(--g-ink);
+  }
+
+  /* SVG Connector Column */
+  .arch-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  /* UI SCREEN WIREFRAME (THE TUNNEL V3 BROWSER MOCKUP) */
+  .ui-wireframe-browser {
+    background: var(--g-surface);
+    border: 2px solid var(--g-ink);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .ui-wf-chrome {
+    background: var(--g-bg);
+    border-bottom: 1.5px solid var(--g-border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ui-wf-url {
+    flex: 1;
+    background: var(--g-surface);
+    border: 1px solid var(--g-border);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--g-ink-2);
+  }
+  .ui-wf-toolbar {
+    padding: 14px 20px;
+    border-bottom: 1px dashed var(--g-border);
+    background: var(--g-bg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .ui-wf-search {
+    border: 1.5px solid var(--g-ink);
+    background: var(--g-surface);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    width: 340px;
+    color: var(--g-ink);
+  }
+  .ui-wf-filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .ui-wf-chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--g-border);
+    border-radius: 99px;
+    background: var(--g-surface);
+    color: var(--g-ink-2);
+  }
+  .ui-wf-chip.active {
+    background: var(--g-ink);
+    color: #fff;
+    border-color: var(--g-ink);
+  }
+
+  /* 3 Wireframe Cards Inside the Mock Browser */
+  .ui-wf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 22px 20px;
+    background: var(--g-surface);
+  }
+  @media (max-width: 820px) {
+    .ui-wf-grid { grid-template-columns: 1fr; }
+  }
+  .wf-card {
+    border: 1.5px solid var(--g-border);
+    border-radius: 8px;
+    background: var(--g-surface);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .wf-pin {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--g-ink);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .wf-thumb {
+    height: 132px;
+    border-bottom: 1.5px solid var(--g-border);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--g-bg);
+  }
+  .wf-thumb-label {
+    background: var(--g-surface);
+    border: 1px solid var(--g-ink);
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--g-ink);
+    z-index: 1;
+  }
+  .wf-count-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--g-ink);
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .wf-box-initials {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--g-ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .wf-box-pill {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--g-surface);
+    border: 1px solid var(--g-border);
+    color: var(--g-ink);
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+  .wf-play-circle {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--g-ink);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .wf-card-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .wf-card-title {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--g-ink);
+  }
+  .wf-card-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--g-ink-3);
+  }
+  .wf-card-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px dashed var(--g-border);
+  }
+  .wf-btn {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--g-ink);
+    background: var(--g-surface);
+    color: var(--g-ink);
+  }
+  .wf-btn.filled {
+    background: var(--g-ink);
+    color: #fff;
+  }
+
+  /* Tables */
+  .g-table-wrap {
+    border: 1px solid var(--g-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0 24px;
+  }
+  table.g-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .g-table th {
+    background: var(--g-bg);
+    text-align: left;
+    padding: 11px 16px;
+    font-weight: 600;
+    color: var(--g-ink);
+    border-bottom: 1px solid var(--g-border);
+  }
+  .g-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--g-border-soft);
+    color: var(--g-ink-2);
+    vertical-align: top;
+  }
+  .g-table tr:last-child td { border-bottom: none; }
+  .code-chip {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--g-bg);
+    border: 1px solid var(--g-border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--g-ink);
+  }
+
+  /* Step List */
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .step-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px;
+    border: 1px solid var(--g-border);
+    border-radius: 8px;
+    background: var(--g-surface);
+  }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--g-ink);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--g-ink);
+    margin-bottom: 4px;
+  }
+  .step-content p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  /* Right TOC Column */
+  .g-toc {
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    padding: 36px 20px;
+    border-left: 1px solid var(--g-border-soft);
+    background: var(--g-surface);
+  }
+  .toc-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--g-ink);
+    margin-bottom: 12px;
+  }
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc-list a {
+    font-size: 13px;
+    color: var(--g-ink-3);
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+  }
+  .toc-list a:hover { color: var(--g-ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header class="g-header">
+  <a class="g-brand" href="#overview">
+    <div class="g-logo-mark">T3</div>
+    <span class="g-brand-title">The Tunnel v3</span>
+    <span class="g-brand-sub">Technical Architecture &amp; System Reference</span>
+  </a>
+  <div class="g-top-actions">
+    <a class="g-btn" href="checks.html">Contrast &amp; Data Checks</a>
+    <a class="g-btn" href="holiday-2026-partner.html">Superside Partner View</a>
+    <a class="g-btn primary" href="index.html">Open The Tunnel v3 &nearr;</a>
+  </div>
+</header>
+
+<div class="g-layout">
+
+  <aside class="g-sidebar">
+    <div class="nav-group-label">Architecture &amp; v3 Rebuild</div>
+    <a class="nav-link active" href="#overview">1. System Overview</a>
+    <a class="nav-link" href="#v3-build">2. The 26 Oct Tunnel v3 Build</a>
+    <a class="nav-link" href="#system-wireframe">3. Data Pipeline Wireframe</a>
+    <a class="nav-link" href="#ui-wireframe">4. Screen &amp; Viewer Wireframe</a>
+    <a class="nav-link" href="#partner-encryption">5. Superside AES-256-GCM Gate</a>
+    <a class="nav-link" href="#box-shift">6. Two Asset Lanes (S3 vs Box)</a>
+
+    <div class="nav-group-label">Team &amp; Dev Reference</div>
+    <a class="nav-link" href="#tyler-workflow">7. Team Upload Workflow</a>
+    <a class="nav-link" href="#files-reference">8. File &amp; JSON Reference</a>
+    <a class="nav-link" href="#dev-handover">9. Dev &amp; IT Handover</a>
+  </aside>
+
+  <main class="g-main">
+    <div class="breadcrumbs">
+      Creative OS Documentation &rsaquo; The Tunnel v3 &rsaquo; <span>System Architecture &amp; 26 Oct Build Reference</span>
+    </div>
+
+    <h1>How The Tunnel v3 Works</h1>
+    <p class="doc-subtitle">
+      Complete technical reference covering the 26 October 2026 Tunnel v3 rebuild (Nutmeg shell, 5 brand views, Holiday 2026 separation, Osmo GSAP Flip photo viewer, CSV selection bar, and AES-256-GCM Superside partner page) alongside the ClickUp, 2026 Box, S3 ImageHandler, and Daily Product Feed pipelines.
+    </p>
+
+    <div class="meta-bar">
+      <div><b>Last updated:</b> 27 October 2026</div>
+      <div><b>Scope:</b> Soccer.com, WorldSoccerShop, 431 Sports, Team.Soccer.com, Vendor Packs</div>
+      <div><b>Status:</b> Production (Tunnel v3 Live)</div>
+    </div>
+
+    <!-- SECTION 1: OVERVIEW -->
+    <section class="doc-sec" id="overview">
+      <h2>1. System Overview</h2>
+      <p>
+        The Tunnel v3 is Sports Endeavors' internal search engine and creative asset library for Soccer.com, WorldSoccerShop, 431 Sports, Team.Soccer.com, and Vendor Packs. Instead of hunting across ClickUp tasks, Box folders, and email threads, the team searches once by club, player, boot, brand, campaign, or SKU.
+      </p>
+
+      <div class="callout">
+        <div class="callout-title">Key Architecture Principle: Static App + Two Asset Lanes</div>
+        The Tunnel v3 runs as a zero-backend static web application (<span class="code-chip">SEI-COMPONENT-LIBRARY/tunnel/</span>) backed by per-brand JSON indexes (<span class="code-chip">data/*.json</span>) and 918 per-shoot manifests (<span class="code-chip">files/*.json</span>). It uses <b>Lane A (Amazon S3 ImageHandler)</b> for web-sized campaign photos that open inside the Osmo GSAP photo viewer, and <b>Lane B (Direct Box &amp; Vimeo Links)</b> for large 2026 Box shoot folders and studio videos.
+      </div>
+    </section>
+
+    <!-- SECTION 2: YESTERDAY'S V3 BUILD -->
+    <section class="doc-sec" id="v3-build">
+      <h2>2. What Shipped in the 26 October 2026 Tunnel v3 Build</h2>
+      <p>
+        On 26 October 2026, The Tunnel was upgraded from the v2 prototype to the production v3 architecture at <span class="code-chip">SEI-COMPONENT-LIBRARY/tunnel/</span>:
+      </p>
+
+      <div class="g-table-wrap">
+        <table class="g-table">
+          <thead>
+            <tr>
+              <th style="width:26%;">v3 Feature</th>
+              <th style="width:37%;">How It Works Technically</th>
+              <th style="width:37%;">Source Files</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>1. Two-Tier Shell &amp; 5 Brand Views</b></td>
+              <td>Home hub with a brand dropdown in the main search bar (defaults to All brands), plus 5 dedicated views: Soccer.com, WorldSoccerShop, 431 Sports, Team.Soccer.com, and Vendor Packs. Left sidebar accordion sections start closed on every brand and open independently.</td>
+              <td><span class="code-chip">index.html</span> · <span class="code-chip">tunnel.css</span> · <span class="code-chip">tunnel.js</span></td>
+            </tr>
+            <tr>
+              <td><b>2. Brand Card Chips &amp; APCA Contrast</b></td>
+              <td>Each brand has its own contrast-verified chip on shoot cards (Soccer.com blue, WSS green, 431 yellow, Team Soccer purple, Vendor white). Meta tags use white pills with soft grey borders. All colour pairs are verified in <span class="code-chip">checks.html</span>.</td>
+              <td><span class="code-chip">tunnel.css</span> · <span class="code-chip">checks.html</span></td>
+            </tr>
+            <tr>
+              <td><b>3. Holiday 2026 vs. Other Campaigns</b></td>
+              <td>Separated Soccer.com campaigns so the <b>Holiday 2026</b> view lists strictly the 35 Holiday shoots (16 Danny on-pitch/lifestyle shoots + 19 Orbitvu studio shoots with 320 real S3 JPGs, 15 Vimeo 360 spin URLs, and 100% matched SKUs), while the other 10 shoots (such as Warehouse Sale and Arrival Pack) sit under <b>Other campaign shoots</b>.</td>
+              <td><span class="code-chip">data/data-campaign-soccer-com.json</span> · <span class="code-chip">files/sdc-holiday-2026-*.json</span></td>
+            </tr>
+            <tr>
+              <td><b>4. Osmo GSAP Flip Photo Viewer</b></td>
+              <td>Clicking <b>View shoot</b> renders each photo as a card with <b>Select</b> and <b>Details</b>. Clicking a photo uses GSAP Flip to animate the image smoothly from its grid card into a dark viewer modal and back into the exact card when closed. Download opens the full-res photo in a new tab and copies the filename. S3 photos without SKUs display a <b>Needs SKUs</b> indicator.</td>
+              <td><span class="code-chip">tunnel.js</span> · <span class="code-chip">files/*.json</span> (918 shoot manifests)</td>
+            </tr>
+            <tr>
+              <td><b>5. Multi-Photo Selection &amp; CSV Export Bar</b></td>
+              <td>Selecting any photo reveals a fixed dark bottom bar showing how many photos are picked and where the CSV will save. In Chrome/Edge it invokes <span class="code-chip">window.showSaveFilePicker</span> so the user chooses the folder; in Safari it saves directly to the Downloads folder and states that in the bar.</td>
+              <td><span class="code-chip">tunnel.js</span></td>
+            </tr>
+            <tr>
+              <td><b>6. Encrypted Superside Partner View</b></td>
+              <td>Standalone external agency view for the 35 Holiday 2026 shoots protected by client-side Web Crypto API (<span class="code-chip">PBKDF2</span> + <span class="code-chip">AES-256-GCM</span>) so zero shoot data exists in the page source prior to password unlock.</td>
+              <td><span class="code-chip">holiday-2026-partner.html</span> · <span class="code-chip">data/partner-holiday-2026.enc.json</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SYSTEM ARCHITECTURE WIREFRAME -->
+    <section class="doc-sec" id="system-wireframe">
+      <h2>3. End-to-End Data &amp; Asset Pipeline Wireframe</h2>
+      <p>
+        The blueprint below shows how ClickUp tasks, 2026 Box folders, S3 ImageHandler photos, Vimeo 360 spins, and the Daily Product Feed flow into The Tunnel v3:
+      </p>
+
+      <div class="wf-canvas">
+        <div class="wf-canvas-bar">
+          <span class="wf-tag">FIG 1.0 · TUNNEL V3 END-TO-END DATA PIPELINE</span>
+          <span class="wf-tag">READ-ONLY INDEXING</span>
+        </div>
+
+        <div class="arch-grid">
+          <!-- COLUMN 1: SOURCES -->
+          <div class="arch-col">
+            <div class="arch-col-header">STAGE 1 · TEAM SOURCES</div>
+
+            <div class="wf-window">
+              <div class="wf-win-top">
+                <span>ClickUp + Shoot Manifests</span>
+                <span class="wf-dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="wf-win-body">
+                <b>Launch Tasks &amp; Holiday 2026</b>
+                <div>35 Holiday Shoots + Launch Calendar</div>
+                <div class="wf-field">SKUs + Box Links + Vimeo 360 URLs</div>
+                <div class="wf-pill-row">
+                  <span class="wf-mini-pill">Vendor Packs</span>
+                  <span class="wf-mini-pill">15 Vimeo Spins</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="wf-window">
+              <div class="wf-win-top">
+                <span>WSS Marketing Box Tree</span>
+                <span class="wf-dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="wf-win-body">
+                <b>368 Folders Scanned (103,740 Files)</b>
+                <div class="wf-tree">
+                  ├── <span class="active-node">2026 Shoots &amp; Video (71 Active)</span><br>
+                  └── <span class="muted-node">2021-2025 Archive (297 Ignored)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="wf-window">
+              <div class="wf-win-top">
+                <span>Daily Reflektion Product Feed</span>
+                <span class="wf-dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="wf-win-body">
+                <b>Morning TSV Feed (74 Columns)</b>
+                <div class="wf-pill-row">
+                  <span class="wf-mini-pill">WSS</span>
+                  <span class="wf-mini-pill">Soccer.com</span>
+                  <span class="wf-mini-pill">431</span>
+                  <span class="wf-mini-pill">RV Player Jerseys</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SVG ARROWS 1 -> 2 -->
+          <div class="arch-connector" aria-hidden="true">
+            <svg width="52" height="260" viewBox="0 0 52 260" fill="none">
+              <path d="M4 60 H26 V90 H46" stroke="#151515" stroke-width="2" stroke-dasharray="3 3"/>
+              <polygon points="44,86 52,90 44,94" fill="#151515"/>
+              <path d="M4 155 H46" stroke="#151515" stroke-width="2"/>
+              <polygon points="44,151 52,155 44,159" fill="#151515"/>
+              <path d="M4 225 H26 V175 H46" stroke="#595959" stroke-width="1.5" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+
+          <!-- COLUMN 2: TWO PROCESSING LANES -->
+          <div class="arch-col">
+            <div class="arch-col-header">STAGE 2 · TWO ASSET LANES</div>
+
+            <div class="wf-window">
+              <div class="wf-win-top">
+                <span>LANE A · AMAZON S3 IMAGEHANDLER</span>
+                <span>HOSTED</span>
+              </div>
+              <div class="wf-win-body">
+                <b>Website, Holiday &amp; Vendor Photos</b>
+                <p style="font-size:12px; margin:4px 0 6px;">Web-ready JPGs uploaded to S3 so web pages and the Osmo GSAP viewer load them directly.</p>
+                <div class="wf-field">imagehandler.net/dxassets/?img=Photos/...</div>
+                <div class="wf-pill-row">
+                  <span class="wf-mini-pill">918 Shoot JSONs</span>
+                  <span class="wf-mini-pill">320 Holiday JPGs</span>
+                  <span class="wf-mini-pill">256 PNG Logos</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="wf-window">
+              <div class="wf-win-top">
+                <span>LANE B · LIVE BOX &amp; VIMEO INDEX</span>
+                <span>LINKED</span>
+              </div>
+              <div class="wf-win-body">
+                <b>2026 Box Shoots &amp; Studio Videos</b>
+                <p style="font-size:12px; margin:4px 0 6px;">Files stay in Box or Vimeo. The sweep indexes the folder title, club, brand, and live link into a searchable card.</p>
+                <div class="wf-field">data-brand-*.json &rarr; app.box.com / vimeo.com</div>
+                <div class="wf-pill-row">
+                  <span class="wf-mini-pill">71 Active 2026 Folders</span>
+                  <span class="wf-mini-pill">Zero S3 Duplication</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SVG ARROWS 2 -> 3 -->
+          <div class="arch-connector" aria-hidden="true">
+            <svg width="52" height="220" viewBox="0 0 52 220" fill="none">
+              <path d="M4 65 H28 V110 H46" stroke="#151515" stroke-width="2"/>
+              <path d="M4 165 H28 V110 H46" stroke="#151515" stroke-width="2"/>
+              <polygon points="44,106 52,110 44,114" fill="#151515"/>
+            </svg>
+          </div>
+
+          <!-- COLUMN 3: THE TUNNEL V3 APP -->
+          <div class="arch-col">
+            <div class="arch-col-header">STAGE 3 · THE TUNNEL V3 WEB APP</div>
+
+            <div class="wf-window" style="border-width:2px; border-color:#151515;">
+              <div class="wf-win-top" style="background:#151515; color:#fff;">
+                <span>SEI-COMPONENT-LIBRARY/tunnel/</span>
+                <span>STATIC V3</span>
+              </div>
+              <div class="wf-win-body">
+                <b>Nutmeg Shell + 5 Brand Views</b>
+                <div class="wf-field">[ All brands v ] [ Search club, boot, SKU... ]</div>
+                <div style="margin-top:10px; font-size:12px;">
+                  <b>User Actions:</b>
+                  <ul style="padding-left:16px; margin-top:4px;">
+                    <li><b>View shoot:</b> Opens photo cards + Osmo GSAP Flip viewer</li>
+                    <li><b>Select photos:</b> Dark bottom bar exports CSV manifest</li>
+                    <li><b>Open in Box / Vimeo:</b> Jumps to live folder or 360 spin</li>
+                  </ul>
+                </div>
+                <div class="wf-pill-row" style="margin-top:10px;">
+                  <span class="wf-mini-pill">Osmo Viewer</span>
+                  <span class="wf-mini-pill">CSV Export</span>
+                  <span class="wf-mini-pill">AES-256 Partner View</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: UI WIREFRAME OF THE V3 SHELL & VIEWER -->
+    <section class="doc-sec" id="ui-wireframe">
+      <h2>4. Screen, Card &amp; Photo Viewer Wireframes</h2>
+      <p>
+        In Tunnel v3, shoot cards show a brand-scoped chip, white outline meta tags, and clear actions depending on whether the shoot is hosted on S3 (Lane A) or linked in Box/Vimeo (Lane B):
+      </p>
+
+      <div class="wf-canvas">
+        <div class="wf-canvas-bar">
+          <span class="wf-tag">FIG 2.0 · TUNNEL V3 GRID CARDS &amp; OSMO PHOTO VIEWER</span>
+          <span class="wf-tag">BROWSER VIEWPORT</span>
+        </div>
+
+        <div class="ui-wireframe-browser">
+          <div class="ui-wf-chrome">
+            <span class="wf-dots"><i></i><i></i><i></i></span>
+            <div class="ui-wf-url">https://sachawd.github.io/sei-component-library/tunnel/</div>
+          </div>
+
+          <div class="ui-wf-toolbar">
+            <div class="ui-wf-search">[ All brands v ]  Search shoots, Holiday 2026, SKUs...</div>
+            <div class="ui-wf-filters">
+              <span class="ui-wf-chip active">Holiday 2026 (35)</span>
+              <span class="ui-wf-chip">Other Campaigns (10)</span>
+              <span class="ui-wf-chip">Footwear</span>
+              <span class="ui-wf-chip">Kits</span>
+            </div>
+          </div>
+
+          <div class="ui-wf-grid">
+            <!-- CARD 1: HOLIDAY 2026 S3 + VIMEO SHOOT -->
+            <div class="wf-card">
+              <div class="wf-pin">1</div>
+              <div class="wf-thumb">
+                <span class="wf-count-badge">14 PHOTOS · 360 SPIN</span>
+                <span class="wf-thumb-label">S3 JPG THUMBNAIL</span>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-card-title">Holiday 2026 · Adidas Predator Elite FT FG</div>
+                <div class="wf-card-meta">SOCCER.COM · HOLIDAY 2026 · SKU 1094821</div>
+                <p style="font-size:12px; margin:0;">Clicking <b>View shoot</b> opens the 14 photo cards. Clicking any photo flies it out into the dark Osmo viewer with Select, Download, and CSV export.</p>
+                <div class="wf-card-actions">
+                  <span class="wf-btn filled">View shoot</span>
+                  <span class="wf-btn">Vimeo 360 &nearr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 2: BOX FOLDER BADGE -->
+            <div class="wf-card">
+              <div class="wf-pin">2</div>
+              <div class="wf-thumb">
+                <span class="wf-count-badge">BOX LINK</span>
+                <div class="wf-box-initials">EA</div>
+                <span class="wf-box-pill">BOX FOLDER</span>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-card-title">1.15.26 Adidas Predator vs F50 Pack</div>
+                <div class="wf-card-meta">LANE B · LIVE 2026 BOX FOLDER</div>
+                <p style="font-size:12px; margin:0;">Shows the 2-letter folder badge because raw files stay in Box. Clicking <b>Open in Box</b> opens the live shared Box folder.</p>
+                <div class="wf-card-actions">
+                  <span class="wf-btn filled">Open in Box &nearr;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 3: OSMO PHOTO CARD INSIDE A SHOOT -->
+            <div class="wf-card">
+              <div class="wf-pin">3</div>
+              <div class="wf-thumb">
+                <span class="wf-count-badge">NEEDS SKUS</span>
+                <span class="wf-thumb-label">INSIDE SHOOT · PHOTO CARD</span>
+              </div>
+              <div class="wf-card-body">
+                <div class="wf-card-title">sdc-2026-holiday-danny-on-pitch-04.jpg</div>
+                <div class="wf-card-meta">SELECT FOR CSV · OR OPEN DARK VIEWER</div>
+                <p style="font-size:12px; margin:0;">Each photo inside a shoot has <b>Select</b> (adds to bottom CSV export bar) and <b>Details</b> (flies out into the GSAP Flip dark modal).</p>
+                <div class="wf-card-actions">
+                  <span class="wf-btn">Select</span>
+                  <span class="wf-btn filled">Details</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: SUPERSIDE ENCRYPTED PARTNER PAGE -->
+    <section class="doc-sec" id="partner-encryption">
+      <h2>5. Superside External Partner View (AES-256-GCM Gate)</h2>
+      <p>
+        Because GitHub Pages is a static host with no server-side login, the external Superside partner page (<span class="code-chip">holiday-2026-partner.html</span>) uses authenticated client-side encryption via the browser's native Web Crypto API (<span class="code-chip">window.crypto.subtle</span>):
+      </p>
+      <ul class="clean-list">
+        <li><b>Zero plaintext in source:</b> Neither <span class="code-chip">holiday-2026-partner.html</span> nor any unencrypted script on that page contains shoot titles, S3 URLs, Box links, or SKUs.</li>
+        <li><b>Key derivation (<span class="code-chip">PBKDF2</span>):</b> When a user enters the password, the browser derives a 256-bit key using <span class="code-chip">PBKDF2-HMAC-SHA256</span> with 210,000 iterations and a random 16-byte salt stored in <span class="code-chip">data/partner-holiday-2026.enc.json</span>.</li>
+        <li><b>Authenticated decryption (<span class="code-chip">AES-256-GCM</span>):</b> The derived key decrypts the ciphertext payload in memory and renders the 35 Holiday 2026 shoots (16 Danny shoots + 19 Orbitvu shoots) with search, category filters, S3 photo drawers, Vimeo 360 links, and CSV export.</li>
+        <li><b>Session persistence:</b> Once unlocked, the session stays active in <span class="code-chip">sessionStorage</span> until the tab closes or the user clicks <b>Lock</b>.</li>
+      </ul>
+    </section>
+
+    <!-- SECTION 6: WHAT CHANGED WITH BOX -->
+    <section class="doc-sec" id="box-shift">
+      <h2>6. Why The Tunnel Uses Two Asset Lanes (S3 vs. Box)</h2>
+      <p>
+        Here is how the two asset lanes keep The Tunnel fast without duplicating 103,740 Box files:
+      </p>
+
+      <div class="g-table-wrap">
+        <table class="g-table">
+          <thead>
+            <tr>
+              <th style="width:22%;">Topic</th>
+              <th style="width:39%;">Lane A: Amazon S3 ImageHandler</th>
+              <th style="width:39%;">Lane B: Direct 2026 Box &amp; Vimeo Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>What goes here</b></td>
+              <td>Website campaign shoots (such as the 320 Holiday 2026 JPGs and Chivas shoots), vendor launch packs, and 256 PNG logos.</td>
+              <td>Large 2026 Box shoot folders (71 active folders inside the 368-folder WSS Marketing Box tree) and studio videos / Vimeo 360 spins.</td>
+            </tr>
+            <tr>
+              <td><b>How files are served</b></td>
+              <td>Served publicly via <span class="code-chip">imagehandler.net/dxassets/?img=Photos/&lt;filename&gt;</span>.</td>
+              <td><b>Point instead of copy:</b> Raw files stay in Box or Vimeo; the card links straight to the live shared URL.</td>
+            </tr>
+            <tr>
+              <td><b>Experience in Tunnel v3</b></td>
+              <td>Clicking <b>View shoot</b> opens individual photo cards, the Osmo GSAP Flip dark viewer, 1-click download, and multi-photo CSV export.</td>
+              <td>Clicking <b>Open in Box</b> or <b>Watch 360 Spin</b> opens the live Box folder or Vimeo video immediately.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 7: TEAM WORKFLOW -->
+    <section class="doc-sec" id="tyler-workflow">
+      <h2>7. Team Upload Workflow (For Tyler, Alex, Taj &amp; Merch)</h2>
+      <p>
+        Follow this three-step workflow whenever you upload a new pack shoot or video so it flows cleanly into The Tunnel:
+      </p>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Upload into a 2026 Box Folder</h4>
+            <p>Place the shoot or video inside the appropriate <b>2026</b> folder in WSS Marketing Box so our 2026 folder scanner includes it.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Copy the Shared Box Link</h4>
+            <p>In Box, copy the <b>Shared Link</b> for that folder (set access to people in your company or people with the link).</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Paste the Box Link on the ClickUp Launch Task</h4>
+            <p>Paste that Shared Box Link into the ClickUp task description or comments. Our daily Tunnel sweep reads the ClickUp tasks and 2026 Box folders and adds the card to The Tunnel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FILE & JSON REFERENCE -->
+    <section class="doc-sec" id="files-reference">
+      <h2>8. Tunnel v3 File &amp; JSON Reference</h2>
+      <p>
+        Every production file inside <span class="code-chip">SEI-COMPONENT-LIBRARY/tunnel/</span>:
+      </p>
+
+      <div class="g-table-wrap">
+        <table class="g-table">
+          <thead>
+            <tr>
+              <th>File / Path</th>
+              <th>Role in Tunnel v3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="code-chip">tunnel/index.html</span></td>
+              <td>Main Tunnel v3 application shell (Home hub + 5 brand views + left accordion menu + Osmo viewer modal + CSV selection bar).</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/tunnel.css</span></td>
+              <td>Scoped styles for the Nutmeg/Volley shell, APCA-verified brand chips, white outline tags, photo cards, Osmo viewer, and CSV bar.</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/tunnel.js</span></td>
+              <td>Client-side controller: brand routing, search dropdown, independent left menu accordions, GSAP Flip photo viewer, and CSV export (<span class="code-chip">showSaveFilePicker</span> + Safari Downloads fallback).</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/checks.html</span></td>
+              <td>Automated contrast and data verification dashboard.</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/holiday-2026-partner.html</span></td>
+              <td>Password-protected Superside external partner view (<span class="code-chip">PBKDF2</span> + <span class="code-chip">AES-256-GCM</span>).</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/data/data-brand-*.json</span></td>
+              <td>Per-brand shoot indexes (<span class="code-chip">soccer-com</span>, <span class="code-chip">worldsoccershop</span>, <span class="code-chip">431-sports</span>, <span class="code-chip">team-soccer-com</span>, <span class="code-chip">vendor</span>).</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/data/data-campaign-soccer-com.json</span></td>
+              <td>Soccer.com campaign index separating the 35 Holiday 2026 shoots from the 10 Other campaign shoots.</td>
+            </tr>
+            <tr>
+              <td><span class="code-chip">tunnel/files/&lt;slug&gt;.json</span></td>
+              <td>918 individual shoot manifests containing every photo's S3 ImageHandler URL, dimensions, SKUs, and tags.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 9: DEV & IT HANDOVER -->
+    <section class="doc-sec" id="dev-handover">
+      <h2>9. Dev &amp; IT Handover Summary (Anthony &amp; Anil)</h2>
+      <p>
+        The Tunnel v3 is a static web application with zero database servers to maintain. The handover to Dev/IT is strictly to run two scheduled daily jobs off Sacha's laptop:
+      </p>
+
+      <div class="g-table-wrap">
+        <table class="g-table">
+          <thead>
+            <tr>
+              <th>Scheduled Job</th>
+              <th>Cadence</th>
+              <th>What It Reads &amp; Outputs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Job 1: Daily Reflektion Feed Pull</b></td>
+              <td>Daily (every morning)</td>
+              <td>Pulls the daily <span class="code-chip">WSS</span>, <span class="code-chip">SDC</span>, and <span class="code-chip">431</span> TSV product feeds (keeping stores separate) to refresh live prices, stock by size, and Player RV jerseys.</td>
+            </tr>
+            <tr>
+              <td><b>Job 2: Daily ClickUp + 2026 Box Sweep</b></td>
+              <td>Daily (only rebuilds when new shoots appear)</td>
+              <td>Reads ClickUp Launch lists (<span class="code-chip">901109248850</span>, <span class="code-chip">901112708469</span>) and the 71 active 2026 Box folders via a read-only Box Custom App, appends any new shoot cards to <span class="code-chip">data/*.json</span> and <span class="code-chip">files/*.json</span>, and deploys when new assets are found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="g-toc">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      <li><a href="#overview">1. System Overview</a></li>
+      <li><a href="#v3-build">2. The 26 Oct Tunnel v3 Build</a></li>
+      <li><a href="#system-wireframe">3. Data Pipeline Wireframe</a></li>
+      <li><a href="#ui-wireframe">4. Screen &amp; Viewer Wireframe</a></li>
+      <li><a href="#partner-encryption">5. Superside AES-256-GCM Gate</a></li>
+      <li><a href="#box-shift">6. Two Asset Lanes (S3 vs Box)</a></li>
+      <li><a href="#tyler-workflow">7. Team Upload Workflow</a></li>
+      <li><a href="#files-reference">8. File &amp; JSON Reference</a></li>
+      <li><a href="#dev-handover">9. Dev &amp; IT Handover</a></li>
+    </ul>
+  </aside>
+
+</div>
+
+</body>
+</html>

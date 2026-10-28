@@ -4,6 +4,7 @@ This repository powers the public **Sports Endeavors Marketing Code Library** (`
 
 ## 1. Public repository safety (mandatory)
 - **No secrets or real promo codes:** Never include real promo codes (use `XXXXX`), API keys, passwords, internal tokens, or colleague surnames in any file, comment, or commit message.
+- **No licensed fonts, shoot photo dumps, or product feeds:** Never copy licensed font files (`Trim Poster`, `Aeonik`, `.otf`/`.ttf`), bulk studio shoot photo folders, or Reflektion product feed dumps (`sku-index.json`, `sku-index.js`) into `SEI-COMPONENT-LIBRARY/`. Any internal tool that requires licensed fonts or feed data belongs in its private campaign folder (such as `CAMPAIGNS/2026-11__sdc-holiday/`) and deploys behind a password, never to public GitHub Pages.
 - **No deletions:** Never delete files. Prefix superseded drafts with `zz_` so they are ignored by `.gitignore`.
 - **Pull requests only for background agents:** Background workers (such as Google Jules) must never push directly to `main` or deploy. Open a pull request on a branch for human review.
 
