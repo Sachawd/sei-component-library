@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare Access setup for the hub · Volley</title>
+<meta name="description" content="One-page Cloudflare Access setup guide for two owners: Sacha on her account and Jason on the company account.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Adamina&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nutmeg.css">
+</head>
+<body data-hub="volley">
+<script>document.documentElement.classList.add("nm-js");setTimeout(function(){if(!window.NM_READY)document.documentElement.classList.remove("nm-js")},3000)</script>
+<a class="nm-skip" href="#nm-main">Skip to content</a>
+<header class="nm-header">
+  <div class="nm-header__left">
+    <a class="nm-logo" href="index.html"><svg class="nm-logo__mark" width="39" height="39" viewBox="0 0 39 39" fill="none" aria-hidden="true" focusable="false"><path d="M5.81943 12.7935C6.21922 12.5185 6.66399 12.3861 7.17872 12.3861H38.5322V7.40527H7.18371C5.42964 7.40527 3.87546 7.94512 2.57114 9.00443C1.1269 10.186 0.362305 11.7546 0.362305 13.532V16.2312C0.362305 18.0137 1.1269 19.5772 2.56614 20.7537C3.87046 21.8334 5.42464 22.3783 7.18371 22.3783H14.1201C14.6498 22.3783 15.1045 22.5158 15.5043 22.7857C15.9041 23.0709 15.9641 23.3052 15.9641 23.5242V26.2438C15.9641 26.4577 15.9091 26.6971 15.5143 26.9772C15.1095 27.2573 14.6548 27.3948 14.1251 27.3948H0.362305V32.3756H14.1201C15.8292 32.3756 17.3584 31.8561 18.6777 30.8274C20.1719 29.6458 20.9615 28.062 20.9615 26.2489V23.5293C20.9615 21.7519 20.1969 20.1833 18.7426 18.9966C17.4283 17.9373 15.8741 17.4026 14.1201 17.4026H7.18371C6.66899 17.4026 6.22922 17.2651 5.83442 16.985C5.36467 16.6437 5.36467 16.3789 5.36467 16.2363V13.5371C5.36467 13.3283 5.41964 13.094 5.82443 12.7986" fill="#EF433F"/><path d="M24.4502 22.3773H38.5377V17.3965H22.2363C23.4657 18.8225 24.2253 20.5286 24.4452 22.3773" fill="#5B7DBC"/><path d="M22.2363 32.3705H38.5328V27.3896H24.4502C24.2303 29.2435 23.4657 30.9496 22.2363 32.3705Z" fill="#28387A"/></svg><span class="nm-visually-hidden">Sports Endeavors design hub, Volley home</span></a>
+    <div class="nm-search" role="search">
+      <label class="nm-search__field">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M12.6 12.6L17 17" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="nm-visually-hidden">Search Volley</span>
+        <input class="nm-search__input" type="search" placeholder="Search" autocomplete="off" aria-controls="nm-search-results">
+        <span class="nm-kbd" aria-hidden="true">&#8984;</span><span class="nm-kbd" aria-hidden="true">K</span>
+      </label>
+      <div class="nm-search__results" id="nm-search-results" role="listbox" hidden></div>
+    </div>
+  </div>
+  <nav class="nm-hubs" aria-label="Hubs"><ul><li><a class="nm-hubs__link" href="../index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel</a></li><li><a class="nm-hubs__link" href="index.html" aria-current="true"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a></li><li><a class="nm-hubs__link" href="../index.html#/tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></li></ul></nav>
+  <button type="button" class="nm-menu-btn" aria-expanded="false" aria-controls="nm-nav" aria-label="Open the menu"><span class="nm-menu-btn__open"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="nm-menu-btn__close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 5L5 19M5 5L19 19" stroke="currentColor"/></svg></span></button>
+</header>
+<div class="nm-shell">
+<div class="nm-scrim" hidden></div>
+<nav class="nm-nav" id="nm-nav" aria-label="Volley">
+  <ul class="nm-rail">
+    <li><a class="nm-rail__item" href="index.html"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 22H18L17 19H7L6 22Z"/><path d="M11 15L10 19"/><path d="M13 15L14 19"/><path d="M6 2V9C6 10.5913 6.63214 12.1174 7.75736 13.2426C8.88258 14.3679 10.4087 15 12 15C13.5913 15 15.1174 14.3679 16.2426 13.2426C17.3679 12.1174 18 10.5913 18 9V2H6Z"/></svg><span class="nm-rail__label">Home</span></a></li>
+    <li><a class="nm-rail__item" href="get-started.html" aria-current="true"><svg class="nm-rail__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M5 20V15M5 15C5.65678 14.3485 6.43787 13.8357 7.29683 13.4921C8.15579 13.1485 9.07507 12.9812 10 13C13 13 14 15 16 15C17.0807 14.993 18.1312 14.6428 19 14V5C18.1312 5.64277 17.0807 5.99294 16 6C14 6 13 4 10 4C9.07507 3.98115 8.15579 4.14849 7.29683 4.49208C6.43787 4.83566 5.65678 5.34847 5 6V15Z" stroke-miterlimit="10"/></svg><span class="nm-rail__label">Get Started</span></a></li>
+  </ul>
+  <div class="nm-drawer">
+    <p class="nm-drawer__title">Cloudflare Gate</p>
+    <ul class="nm-drawer__list">
+      <li><a class="nm-drawer__link" href="#two-owners" aria-current="page">Two accounts, two owners</a></li>
+      <li><a class="nm-drawer__link" href="#five-steps">Five setup steps</a></li>
+      <li><a class="nm-drawer__link" href="#settings-and-roles">Settings file and role map</a></li>
+      <li><a class="nm-drawer__link" href="#two-doors">Two doors on the Tunnel</a></li>
+      <li><a class="nm-drawer__link" href="#jason-email">Email draft for Jason</a></li>
+      <li><a class="nm-drawer__link" href="step-tools.html">Back to 03 · Tools &amp; Links</a></li>
+    </ul>
+  </div>
+  <div class="nm-nav__extras"><a class="nm-nav__extra" href="../index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>The Tunnel</a><a class="nm-nav__extra" href="index.html"><span class="nm-hubs__dot" aria-hidden="true"></span>Volley</a><a class="nm-nav__extra" href="../index.html#/tools"><span class="nm-hubs__dot" aria-hidden="true"></span>Tools</a></div>
+</nav>
+<main class="nm-main" id="nm-main">
+<div class="nm-panel"><div class="nm-content">
+<div class="nm-title">
+  <h1>Individual logins for the hub: Cloudflare Access setup</h1>
+  <p class="nm-lede">One login gate in front of the site using Cloudflare Access email one-time codes. Same five steps for two separate accounts and owners.</p>
+  <hr class="nm-divider">
+</div>
+
+<div class="nm-callout">
+  <strong>No DNS change, push, or deploy before Monday 2 November and Sacha's word.</strong>
+  <p>Prepared Friday 30 October 2026 at 12:45pm PT. No token, password, or allow list ever sits inside a page; the Cloudflare gate holds them in front of the site. Contrast measured: Ink (#303030) on Panel (#F5F5F5) is 12.1 to 1 (Pass); Body text (#4B4A48) on White (#FFFFFF) is 8.9 to 1 (Pass).</p>
+</div>
+
+<section class="nm-section" id="two-owners">
+  <div class="nm-section__head">
+    <h2 class="nm-h2">1. Two accounts, two owners, never mixed<button type="button" class="nm-anchor" aria-label="Copy a link to Two accounts, two owners"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2>
+    <p class="nm-section__desc">Nothing of Sacha's lives on the company account, and nothing of Sports Endeavors lives on Sacha's account.</p>
+  </div>
+  <div class="nm-cards">
+    <article class="nm-card">
+      <span class="nm-chip nm-chip--green">Owner A · Sacha (Monday)</span>
+      <h3 class="nm-card__title">Client work: hub.theory8.com</h3>
+      <ul class="nm-list">
+        <li><span>Domain and account: <span class="nm-code">hub.theory8.com</span> on Sacha's personal domain and personal Cloudflare account.</span></li>
+        <li><span>Who runs the steps: Sacha does the DNS and Cloudflare clicks herself on Monday.</span></li>
+        <li><span>Hard wall: no Sports Endeavors code, tokens, feeds, or staff names ever sit on Sacha's account or domain.</span></li>
+      </ul>
+    </article>
+    <article class="nm-card">
+      <span class="nm-chip nm-chip--blue">Owner B · Jason (after email reply)</span>
+      <h3 class="nm-card__title">Sports Endeavors hubs: company account</h3>
+      <ul class="nm-list">
+        <li><span>Domain and account: the Sports Endeavors Cloudflare account.</span></li>
+        <li><span>Who runs the steps: Sacha emails Jason first on Monday; nothing starts on the company side until he replies.</span></li>
+        <li><span>What it protects: the private Tunnel hubs (the Site Updates Hub and the private Holiday Hub) and their daily ClickUp JSON feeds.</span></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="nm-section" id="five-steps">
+  <div class="nm-section__head">
+    <h2 class="nm-h2">2. Five setup steps in Cloudflare Access (10 minutes)<button type="button" class="nm-anchor" aria-label="Copy a link to Five setup steps"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2>
+    <p class="nm-section__desc">Both owners follow the exact same five steps inside their own Cloudflare account.</p>
+  </div>
+  <div class="nm-table-wrap">
+    <table class="nm-table">
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Where to click in Cloudflare</th>
+          <th>What to enter</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Step 1 · Add proxied DNS record</strong></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Open <strong>Websites</strong>, pick your domain, and click <strong>DNS &gt; Records</strong>.</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Add a <span class="nm-code">CNAME</span> record for the hub subdomain (<span class="nm-code">hub</span> for <span class="nm-code">hub.theory8.com</span> on Sacha's account; the internal hub subdomain on the company account).</span></li>
+              <li><span>Turn <strong>Proxy status</strong> on (orange cloud) so Cloudflare sits in front of every request.</span></li>
+            </ul>
+          </td>
+          <td>2 mins</td>
+        </tr>
+        <tr>
+          <td><strong>Step 2 · Create a Self-hosted Access app</strong></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>In the left menu, open <strong>Zero Trust &gt; Access &gt; Applications</strong>.</span></li>
+              <li><span>Click <strong>Add an application</strong> and choose <strong>Self-hosted</strong>.</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Give the application a plain name and set <strong>Session Duration</strong> to <span class="nm-code">24 hours</span> or <span class="nm-code">1 week</span>.</span></li>
+            </ul>
+          </td>
+          <td>2 mins</td>
+        </tr>
+        <tr>
+          <td><strong>Step 3 · Protect the hostname and pick One-time pin</strong></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Under <strong>Application domain</strong> and <strong>Identity providers</strong> on the same screen.</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Enter the subdomain (<span class="nm-code">hub.theory8.com</span> for Sacha; the company subdomain for Jason).</span></li>
+              <li><span>Keep <strong>One-time pin (OTP)</strong> enabled so Cloudflare emails a 6-digit login code to approved viewers with zero passwords to manage.</span></li>
+            </ul>
+          </td>
+          <td>2 mins</td>
+        </tr>
+        <tr>
+          <td><strong>Step 4 · Add the Allow policy (email list)</strong></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>On the <strong>Policies</strong> tab, name the policy <span class="nm-code">Approved viewers</span> and set Action to <strong>Allow</strong>.</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Under <strong>Include</strong>, choose <strong>Emails</strong> and enter each viewer's email address.</span></li>
+              <li><span>The gate holds the allow list; never put email addresses or passwords inside the page code.</span></li>
+            </ul>
+          </td>
+          <td>2 mins</td>
+        </tr>
+        <tr>
+          <td><strong>Step 5 · Add or remove a person in one place</strong></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Open <strong>Zero Trust &gt; Access &gt; Applications &gt; Policies</strong>.</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>To remove a viewer, delete their email from the Cloudflare policy and delete their one line from the hub settings file.</span></li>
+            </ul>
+          </td>
+          <td>2 mins</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="nm-section" id="settings-and-roles">
+  <div class="nm-section__head">
+    <h2 class="nm-h2">3. How the hub reads the signed-in role<button type="button" class="nm-anchor" aria-label="Copy a link to How the hub reads the signed-in role"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2>
+    <p class="nm-section__desc">Components builds the settings file and role map on the Mac this weekend so viewer names leave the hub code.</p>
+  </div>
+  <div class="nm-cards">
+    <article class="nm-card">
+      <span class="nm-chip nm-chip--purple">Settings file</span>
+      <h3 class="nm-card__title">One settings file per hub</h3>
+      <ul class="nm-list">
+        <li><span>Holds the logo, colours, brand names, feed paths, the one-line privacy note, and the people list with roles.</span></li>
+        <li><span>Uses first names only (for example Sacha, Jordan, Courtney, Taj for all brands; Soccer.com-only and WorldSoccerShop-only viewers mapped to their store).</span></li>
+        <li><span>Removing a person from the hub view is deleting a single line in this file.</span></li>
+      </ul>
+    </article>
+    <article class="nm-card">
+      <span class="nm-chip nm-chip--yellow">Role map and View-as switch</span>
+      <h3 class="nm-card__title">Header-driven role map</h3>
+      <ul class="nm-list">
+        <li><span>Cloudflare Access passes the signed-in email in the <span class="nm-code">Cf-Access-Authenticated-User-Email</span> request header.</span></li>
+        <li><span>Until the live gate is connected, the hub reads from a local sample role map.</span></li>
+        <li><span>Includes a "View as" switch for all-brand viewers so Sacha can preview a single-brand or client view before anyone else sees it.</span></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="nm-section" id="two-doors">
+  <div class="nm-section__head">
+    <h2 class="nm-h2">4. Two private hub doors on the Tunnel site<button type="button" class="nm-anchor" aria-label="Copy a link to Two private hub doors on the Tunnel site"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2>
+    <p class="nm-section__desc">The Tunnel site hosts two private internal hubs behind the same password and gate, while the public code library keeps only the design on sample data.</p>
+  </div>
+  <div class="nm-table-wrap">
+    <table class="nm-table">
+      <thead>
+        <tr>
+          <th>Door</th>
+          <th>Path on the Tunnel site</th>
+          <th>What lives inside (private)</th>
+          <th>What stays in the public library</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Door 1 · Site Updates Hub</strong></td>
+          <td><span class="nm-code">/site-updates/</span></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Read-only live view of Site Change Requests and daily store updates (ruled 25 Sept 2026).</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Block and page code only, with no internal ClickUp task data.</span></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Door 2 · Holiday Hub (Private)</strong></td>
+          <td><span class="nm-code">/holiday-hub/</span></td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Live campaign calendar, real ClickUp items (from Assets' Tunnel Netlify function), team time off, travel, and viewer brand filtering.</span></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="nm-list">
+              <li><span>Design and UI code running on invented sample data ("Sample designer" and invented dates) with zero real names or time off.</span></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="nm-section" id="jason-email">
+  <div class="nm-section__head">
+    <h2 class="nm-h2">5. Draft email from Sacha to Jason (for Monday)<button type="button" class="nm-anchor" aria-label="Copy a link to Draft email from Sacha to Jason"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="9" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M9 12h6" stroke="currentColor" stroke-width="1.6"/></svg></button></h2>
+    <p class="nm-section__desc">Sacha sends this herself on Monday before anything starts on the company side.</p>
+  </div>
+  <article class="nm-card">
+    <span class="nm-chip nm-chip--blue">Copy-paste draft · Sacha to Jason</span>
+    <h3 class="nm-card__title">Subject: Cloudflare Access one-time email login for our internal creative hubs</h3>
+    <ul class="nm-list">
+      <li><span>Hi Jason,</span></li>
+      <li><span>We have two internal web hubs for the creative and marketing team on the Tunnel site (our Site Updates Hub and our Holiday campaign calendar).</span></li>
+      <li><span>Because the live calendar reads internal ClickUp schedules and team dates, we want individual email logins sitting in front of the site rather than a shared password, with zero tokens or allow lists inside the page code.</span></li>
+      <li><span>Could we put a Cloudflare Access self-hosted gate (using email one-time pin codes and an email allow list) in front of our internal hub hostname on the Sports Endeavors Cloudflare account?</span></li>
+      <li><span>I have a one-page five-step setup sheet ready whenever you have ten minutes to look next week.</span></li>
+      <li><span>Thanks, Sacha</span></li>
+    </ul>
+  </article>
+</section>
+
+<footer class="nm-footer"><span>Volley · Cloudflare Access setup guide, 30 Oct 2026.</span><a href="step-tools.html">Back to 03 · Tools &amp; Links</a></footer>
+</div></div>
+</main>
+</div>
+<script src="nm-pages.js"></script>
+<script src="nutmeg.js"></script>
+</body>
+</html>

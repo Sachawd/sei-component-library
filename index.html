@@ -53,14 +53,13 @@ button{font:inherit}
 .tv-item:focus-visible,.tv-logout:focus-visible,.tv-logo:focus-visible,.tv-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
 /* Sub-navigation chip bar (matches Tunnel v2 storebar) */
-.storebar{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:8px auto 0;padding:10px 20px;
-  width:min(1296px,calc(100% - 48px));border-radius:12px;background:var(--sub-wash)}
-.tv-chip{border:.5px solid var(--ink);border-radius:999px;background:#fff;cursor:pointer;
-  padding:9px 16px;font-size:13px;line-height:15px;font-weight:600;color:var(--ink);white-space:nowrap;
+.storebar{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;width:fit-content;max-width:calc(100% - 48px);margin:8px auto 0;padding:6px;border:.5px solid rgba(129,77,250,.1);border-radius:24px;background:#fff}
+.tv-chip{border:0;border-radius:999px;background:transparent;cursor:pointer;
+  padding:10.4px 20px;font:400 16px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;color:#6F6982;white-space:nowrap;
   transition:background .15s ease,color .15s ease}
-.tv-chip:hover{background:#e9f0ff}
-.tv-chip[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-.storebar .sep{width:0;height:21px;border-left:.5px dashed #bebebe;flex:none}
+.tv-chip:hover:not([aria-selected="true"]){background:#F5F5F5}
+.tv-chip[aria-selected="true"]{background:rgba(46,46,43,.9);color:#FAFBF9}
+.storebar .sep{display:none}
 
 /* Main page shell (matches Tunnel v2) */
 .brand-body{position:relative;width:min(1296px,calc(100% - 48px));margin:0 auto;padding:16px 0 0}
@@ -87,11 +86,11 @@ button{font:inherit}
   padding-bottom:14px;margin-bottom:16px;border-bottom:1px solid var(--hair)}
 .demo-bar-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .demo-label{font-size:14px;font-weight:700;color:var(--ink)}
-.vp-pills{display:inline-flex;gap:6px;flex-wrap:wrap}
-.vp-pill{border:1px solid #d6e2f8;border-radius:999px;background:var(--col-wash);color:var(--ink);
-  padding:6px 14px;font-size:13px;font-weight:700;cursor:pointer;transition:background .15s ease,color .15s ease}
-.vp-pill:hover{background:#e4eeff}
-.vp-pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.vp-pills{display:inline-flex;gap:0;flex-wrap:wrap;padding:6px;border:.5px solid rgba(129,77,250,.1);border-radius:24px;background:#fff}
+.vp-pill{border:0;border-radius:999px;background:transparent;color:#6F6982;
+  padding:8px 16px;font:400 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;cursor:pointer;transition:background .15s ease,color .15s ease}
+.vp-pill:hover:not([aria-pressed="true"]){background:#F5F5F5}
+.vp-pill[aria-pressed="true"]{background:rgba(46,46,43,.9);color:#FAFBF9}
 .demo-stage{display:flex;justify-content:center;background:#f2f4f8;border-radius:10px;padding:16px;overflow-x:auto}
 .demo-iframe{width:100%;max-width:1440px;height:1180px;border:1px solid rgba(40,56,122,.12);border-radius:8px;
   background:#fff;box-shadow:0 4px 16px rgba(9,34,82,.08);transition:width .22s ease,height .22s ease}

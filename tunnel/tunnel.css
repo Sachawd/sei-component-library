@@ -283,7 +283,6 @@ body[data-hub="tunnel"] .nm-search__field svg { color: var(--tn-blue); }
 .tn-tools { display: flex; flex-direction: column; gap: var(--nm-space-6); }
 .tn-tools .nm-tabs { align-self: flex-start; }
 .tn-tools .nm-tabpanel { margin-top: 0; }
-.tn-tools .nm-tab:not([aria-selected="true"]) { color: var(--nm-plum); }
 .tn-tools-table { background: var(--nm-white); }
 .tn-tools-table__name { color: var(--nm-title); font-weight: 500; white-space: nowrap; }
 .tn-tools-table__go { text-align: right; padding-right: 16px !important; }
