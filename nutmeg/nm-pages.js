@@ -430,5 +430,29 @@ window.NM_PAGES = [
  {
   "title": "Email Template: Soccer.com Matchup Email",
   "url": "email-sdc-matchups.html"
+ },
+ {
+  "title": "V2 design system",
+  "url": "v2.html"
+ },
+ {
+  "title": "V2 Button",
+  "url": "v2-button.html"
+ },
+ {
+  "title": "V2 Input",
+  "url": "v2-input.html"
+ },
+ {
+  "title": "V2 Card",
+  "url": "v2-card.html"
+ },
+ {
+  "title": "V2 known contrast fails",
+  "url": "v2.html#fails"
+ },
+ {
+  "title": "Everything built so far",
+  "url": "estate.html"
  }
 ];

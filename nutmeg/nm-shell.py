@@ -56,7 +56,8 @@ RAILS = {
         ("foundations", "Foundations", "diamond", "foundations.html"),
         ("styles", "Styles", "swatch", "v2-tokens.html"),
         ("develop", "Develop", "code", None),
-        ("components", "Components", "layout", "components.html"),
+        ("components", "Doc parts", "layout", "components.html"),
+        ("v2", "V2 System", "window", "v2.html"),
         ("resources", "Resources", "book", None),
     ],
     "volley": [
@@ -323,6 +324,20 @@ DRAWERS = {
         ]),
         ("Icons", "icons.html"),
     ]),
+    ("nutmeg", "v2"): ("V2 design system", [
+        ("Overview", "v2.html"),
+        ("Parts", [
+            ("Button", "v2-button.html"),
+            ("Input", "v2-input.html"),
+            ("Card", "v2-card.html"),
+        ]),
+        ("Blocks", [
+            ("Everything built so far", "estate.html"),
+        ]),
+        ("Cabana 8 to V2", "cabana-map.html"),
+        ("Block Studio", "../block-studio/index.html"),
+        ("Known contrast fails", "v2.html#fails"),
+    ]),
     ("nutmeg", "components"): ("Components", [
         ("Overview", "components.html"),
         ("Buttons", "components.html#buttons"),
@@ -364,6 +379,12 @@ PAGES = {
     "v2-tokens.html": ("nutmeg", "styles"),
     "icons.html": ("nutmeg", "styles"),
     "components.html": ("nutmeg", "components"),
+    "v2.html": ("nutmeg", "v2"),
+    "v2-button.html": ("nutmeg", "v2"),
+    "v2-input.html": ("nutmeg", "v2"),
+    "v2-card.html": ("nutmeg", "v2"),
+    "estate.html": ("nutmeg", "v2"),
+    "cabana-map.html": ("nutmeg", "v2"),
 }
 PAGES["email.html"] = ("volley", "email")
 PAGES["pages.html"] = ("volley", "pages")

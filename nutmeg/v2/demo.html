@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V2 parts, live example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@500;600;700&family=Roboto+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11/dist/index.global.js"></script>
+<style type="text/tailwindcss">
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring);
+  --color-brand: var(--brand); --color-loyalty: var(--loyalty); --color-sale: var(--sale); --color-cart: var(--cart);
+  --color-info: var(--info); --color-success: var(--success); --color-warning: var(--warning);
+  --font-sans: var(--font-body); --font-heading: var(--font-display);
+  --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px);
+}
+@layer base {
+  * { border-color: var(--border); }
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-body); }
+}
+</style>
+<style>
+[data-brand="soccer"]{--background:#ffffff;--foreground:#27272a;--card:#ffffff;--card-foreground:#27272a;--popover:#ffffff;--popover-foreground:#27272a;--primary:#27272a;--primary-foreground:#ffffff;--secondary:#f5f5f5;--secondary-foreground:#27272a;--muted:#f5f5f5;--muted-foreground:#525252;--accent:#f5f5f5;--accent-foreground:#27272a;--destructive:#991b1b;--border:#e5e5e5;--input:#525252;--ring:#171717;--brand:#e0154a;--loyalty:#6a5411;--sale:#9d0f34;--cart:#0348cf;--info:#1d4ed8;--success:#3f6212;--warning:#854d0e;--font-body:"Figtree",sans-serif;--font-display:"Figtree",sans-serif;--radius:0.625rem}
+[data-brand="wss"]{--background:#ffffff;--foreground:#27272a;--card:#ffffff;--card-foreground:#27272a;--popover:#ffffff;--popover-foreground:#27272a;--primary:#27272a;--primary-foreground:#ffffff;--secondary:#f5f5f5;--secondary-foreground:#27272a;--muted:#f5f5f5;--muted-foreground:#525252;--accent:#f5f5f5;--accent-foreground:#27272a;--destructive:#991b1b;--border:#e5e5e5;--input:#525252;--ring:#171717;--brand:#796a39;--loyalty:#6a5411;--sale:#9d0f34;--cart:#0348cf;--info:#1d4ed8;--success:#3f6212;--warning:#854d0e;--font-body:"Inter",sans-serif;--font-display:"Chakra Petch",sans-serif;--radius:0.625rem}
+[data-brand="431"]{--background:#ffffff;--foreground:#042540;--card:#ffffff;--card-foreground:#042540;--popover:#ffffff;--popover-foreground:#042540;--primary:#317f89;--primary-foreground:#ffffff;--secondary:#f5f5f5;--secondary-foreground:#042540;--muted:#f5f5f5;--muted-foreground:#525252;--accent:#f5f5f5;--accent-foreground:#042540;--destructive:#991b1b;--border:#e5e5e5;--input:#525252;--ring:#031e33;--brand:#317f89;--loyalty:#6a5411;--sale:#9d0f34;--cart:#0348cf;--info:#1d4ed8;--success:#3f6212;--warning:#854d0e;--font-body:"Roboto Condensed",sans-serif;--font-display:"Roboto Condensed",sans-serif;--radius:0.625rem}
+[hidden]{display:none!important}
+</style>
+</head>
+<body data-brand="soccer" class="p-6">
+
+<section data-part="button" class="flex flex-col gap-6">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-4 text-xs text-muted-foreground"><span>Rest</span><span>Hover, shown</span><span>Focus, shown</span><span>Disabled</span></div>
+  <div class="flex flex-col gap-2"><p class="text-sm font-medium">Default</p><div class="grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2">Add to bag</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none bg-primary/90 text-primary-foreground shadow-xs h-9 px-4 py-2" tabindex="-1">Add to bag</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border-ring ring-ring/50 ring-[3px] bg-primary text-primary-foreground shadow-xs h-9 px-4 py-2" tabindex="-1">Add to bag</button>
+    <button disabled class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none bg-primary text-primary-foreground shadow-xs h-9 px-4 py-2">Add to bag</button>
+  </div></div>
+  <div class="flex flex-col gap-2"><p class="text-sm font-medium">Secondary</p><div class="grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 h-9 px-4 py-2">Save for later</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none bg-secondary/80 text-secondary-foreground shadow-xs h-9 px-4 py-2" tabindex="-1">Save for later</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border-ring ring-ring/50 ring-[3px] bg-secondary text-secondary-foreground shadow-xs h-9 px-4 py-2" tabindex="-1">Save for later</button>
+    <button disabled class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none bg-secondary text-secondary-foreground shadow-xs h-9 px-4 py-2">Save for later</button>
+  </div></div>
+  <div class="flex flex-col gap-2"><p class="text-sm font-medium">Outline</p><div class="grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">Size guide</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border bg-accent text-accent-foreground shadow-xs h-9 px-4 py-2" tabindex="-1">Size guide</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border border-ring ring-ring/50 ring-[3px] bg-background shadow-xs h-9 px-4 py-2" tabindex="-1">Size guide</button>
+    <button disabled class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none border bg-background shadow-xs h-9 px-4 py-2">Size guide</button>
+  </div></div>
+  <div class="flex flex-col gap-2"><p class="text-sm font-medium">Ghost</p><div class="grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">Cancel</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none bg-accent text-accent-foreground h-9 px-4 py-2" tabindex="-1">Cancel</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border-ring ring-ring/50 ring-[3px] h-9 px-4 py-2" tabindex="-1">Cancel</button>
+    <button disabled class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none h-9 px-4 py-2">Cancel</button>
+  </div></div>
+  <div class="flex flex-col gap-2"><p class="text-sm font-medium">Destructive</p><div class="grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 h-9 px-4 py-2">Remove</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none bg-destructive/90 text-white shadow-xs h-9 px-4 py-2" tabindex="-1">Remove</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border-ring ring-destructive/20 ring-[3px] bg-destructive text-white shadow-xs h-9 px-4 py-2" tabindex="-1">Remove</button>
+    <button disabled class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none bg-destructive text-white shadow-xs h-9 px-4 py-2">Remove</button>
+  </div></div>
+  <div class="flex flex-col gap-2"><p class="text-sm font-medium">Link</p><div class="grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-9 px-4 py-2">See all reviews</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none text-primary underline underline-offset-4 h-9 px-4 py-2" tabindex="-1">See all reviews</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none border-ring ring-ring/50 ring-[3px] text-primary underline-offset-4 h-9 px-4 py-2" tabindex="-1">See all reviews</button>
+    <button disabled class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none text-primary underline-offset-4 h-9 px-4 py-2">See all reviews</button>
+  </div></div>
+</section>
+
+<section data-part="input" class="grid gap-6 sm:grid-cols-2">
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Rest, with placeholder</span><label for="i1" class="flex items-center gap-2 text-sm leading-none font-medium select-none">Email</label>
+    <input id="i1" type="email" placeholder="you@example.com" class="placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 aria-invalid:border-destructive"></div>
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Filled</span><label for="i2" class="flex items-center gap-2 text-sm leading-none font-medium select-none">ZIP code</label>
+    <input id="i2" type="text" value="27410" class="placeholder:text-muted-foreground border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 aria-invalid:border-destructive"></div>
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Focus, shown</span><label for="i3" class="flex items-center gap-2 text-sm leading-none font-medium select-none">Name on order</label>
+    <input id="i3" type="text" value="Alex" tabindex="-1" class="border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm border-ring ring-ring/50 ring-[3px]"></div>
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Disabled</span><label for="i4" class="flex items-center gap-2 text-sm leading-none font-medium select-none opacity-50">Gift card number</label>
+    <input id="i4" type="text" disabled placeholder="Add an item first" class="peer placeholder:text-muted-foreground border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"></div>
+  <div class="grid gap-2 sm:col-span-2"><span class="text-xs text-muted-foreground">Error</span><label for="i5" class="flex items-center gap-2 text-sm leading-none font-medium select-none">Email</label>
+    <input id="i5" type="email" value="you@example" aria-invalid="true" aria-describedby="i5-msg" class="placeholder:text-muted-foreground border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 aria-invalid:border-destructive">
+    <p id="i5-msg" class="text-destructive text-sm">Add the part after the @, for example you@example.com.</p></div>
+</section>
+
+<section data-part="card" class="grid gap-6 md:grid-cols-2 items-start">
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Form step</span>
+  <div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
+    <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6"><h3 class="leading-none font-semibold">Delivery details</h3><p class="text-muted-foreground text-sm">Where should we send your order?</p></div>
+    <div class="px-6 grid gap-2"><label for="c1" class="flex items-center gap-2 text-sm leading-none font-medium select-none">ZIP code</label>
+      <input id="c1" type="text" placeholder="27410" class="placeholder:text-muted-foreground border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"></div>
+    <div class="flex items-center px-6"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2 w-full">Continue</button></div>
+  </div></div>
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Summary with an action</span>
+  <div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
+    <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 grid-cols-[1fr_auto]"><h3 class="leading-none font-semibold">Size guide</h3><p class="text-muted-foreground text-sm">How our jerseys fit, chest and length.</p>
+      <div class="col-start-2 row-span-2 row-start-1 self-start justify-self-end"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] text-primary underline-offset-4 hover:underline h-8 px-3">Open</button></div></div>
+    <div class="px-6"><p class="text-sm">Replica jerseys run true to size. Authentic jerseys are cut slimmer, so most people go one size up.</p></div>
+    <div class="flex items-center px-6 border-t pt-6 gap-2"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">Measure yourself</button></div>
+  </div></div>
+</section>
+
+<section data-part="overview" class="grid gap-6 md:grid-cols-3 items-start">
+  <div class="flex flex-col gap-3"><span class="text-xs text-muted-foreground">Button</span>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-9 px-4 py-2">Add to bag</button>
+    <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">Size guide</button></div>
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Input</span><label for="o1" class="flex items-center gap-2 text-sm leading-none font-medium select-none">Email</label>
+    <input id="o1" type="email" placeholder="you@example.com" class="placeholder:text-muted-foreground border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"></div>
+  <div class="grid gap-2"><span class="text-xs text-muted-foreground">Card</span>
+    <div class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm"><div class="grid auto-rows-min items-start gap-1.5 px-6"><h3 class="leading-none font-semibold font-heading">Order updates</h3><p class="text-muted-foreground text-sm">We'll email you when it ships.</p></div></div></div>
+</section>
+
+<script>
+(function () {
+  var part = new URLSearchParams(location.search).get("part");
+  if (part) document.querySelectorAll("[data-part]").forEach(function (s) { s.hidden = s.getAttribute("data-part") !== part; });
+  var brands = ["soccer", "wss", "431"];
+  var apply = function () {
+    var b = location.hash.slice(1);
+    document.body.setAttribute("data-brand", brands.indexOf(b) > -1 ? b : "soccer");
+  };
+  apply();
+  window.addEventListener("hashchange", apply);
+})();
+</script>
+</body>
+</html>

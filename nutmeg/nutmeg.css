@@ -117,7 +117,7 @@ a.nm-hubs__link:hover { text-decoration: underline; text-underline-offset: 6px; 
 .nm-scrim { display: none; }
 
 /* Shell: icon rail, section drawer, content panel */
-.nm-shell { display: flex; align-items: flex-start; padding-top: var(--nm-space-9); }
+.nm-shell { display: flex; align-items: flex-start; padding-top: var(--nm-space-6); }
 .nm-nav { position: sticky; top: calc(var(--nm-header-h) + 16px); display: flex; flex: none; align-items: stretch; max-height: calc(100vh - var(--nm-header-h) - 16px); }
 .nm-nav ul { margin: 0; padding: 0; list-style: none; }
 .nm-rail { display: flex; flex-direction: column; gap: 4px; flex: none; width: 152px; padding: 16px 32px 32px !important; overflow-y: auto; }
@@ -147,7 +147,7 @@ a.nm-rail__item:hover { background: rgba(0, 0, 0, 0.04); }
 .nm-drawer__sublink[aria-current="page"] { background: var(--nm-surface); font-weight: 500; }
 
 .nm-main { flex: 1; min-width: 0; }
-.nm-panel { min-height: calc(100vh - var(--nm-header-h) - var(--nm-space-9)); padding: var(--nm-panel-pad); border-top-left-radius: var(--nm-radius-panel); background: var(--nm-surface); }
+.nm-panel { min-height: calc(100vh - var(--nm-header-h) - var(--nm-space-6)); padding: var(--nm-panel-pad); border-top-left-radius: var(--nm-radius-panel); background: var(--nm-surface); }
 .nm-content { max-width: 1257px; }
 
 /* Title block */
@@ -321,7 +321,7 @@ a.nm-rail__item:hover { background: rgba(0, 0, 0, 0.04); }
 .nm-specimen__sample { overflow-wrap: anywhere; color: var(--nm-ink); }
 
 /* Stat */
-.nm-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+.nm-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; margin-bottom: var(--nm-space-8); }
 .nm-stat { padding: 24px; border-radius: var(--nm-radius-md); background: var(--nm-white); }
 .nm-stat__num { display: block; color: var(--nm-ink); font: 400 var(--nm-h2)/1 var(--nm-serif); }
 .nm-stat__cap { display: block; margin-top: 8px; color: var(--nm-text); font: 400 16px/22px var(--nm-sans); }

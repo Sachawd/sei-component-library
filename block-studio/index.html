@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en" data-hub="nutmeg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Studio | One System, Seven Parts (SE V2 + Volley)</title>
+  <link rel="stylesheet" href="../nutmeg/nutmeg.css">
+  <link rel="stylesheet" href="../nutmeg/v2/v2.css">
+  <style>
+    .bs-shell {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 20px 24px 64px;
+    }
+    .bs-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--nm-border, #e4e2dd);
+      margin-bottom: 18px;
+    }
+    .bs-header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .bs-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555555;
+      margin: 0 0 6px;
+    }
+    .bs-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+      color: #151515;
+    }
+    .bs-sub {
+      font-size: 14px;
+      color: #4a4a4a;
+      margin: 0;
+      max-width: 78ch;
+      line-height: 1.5;
+    }
+    .bs-seven-bar {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(120px, 1fr));
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .bs-part-pill {
+      background: #ffffff;
+      border: 1px solid #dcdad4;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .bs-part-pill[data-active="true"] {
+      border-color: #151515;
+      background: #151515;
+      color: #ffffff;
+    }
+    .bs-part-num {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.72;
+    }
+    .bs-part-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .bs-part-desc {
+      font-size: 11px;
+      opacity: 0.8;
+      line-height: 1.35;
+    }
+    .bs-workspace {
+      display: grid;
+      grid-template-columns: 350px minmax(520px, 1fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 1280px) {
+      .bs-workspace {
+        grid-template-columns: 1fr;
+      }
+      .bs-seven-bar {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+    .bs-col {
+      background: #ffffff;
+      border: 1px solid #e2e0d8;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bs-card-sec {
+      border-bottom: 1px solid #eceae4;
+      padding-bottom: 14px;
+    }
+    .bs-card-sec:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .bs-sec-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 0 8px;
+    }
+    .bs-sec-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #151515;
+      margin: 0;
+    }
+    .bs-layer-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #d0cec7;
+      background: #f6f5f1;
+      color: #151515;
+    }
+    .bs-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #333333;
+      margin: 8px 0 4px;
+    }
+    .bs-input,
+    .bs-select,
+    .bs-textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #d4d2cb;
+      border-radius: 8px;
+      background: #faf9f6;
+      color: #151515;
+      font: inherit;
+      font-size: 13px;
+    }
+    .bs-textarea {
+      resize: vertical;
+      min-height: 58px;
+    }
+    .bs-preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .bs-chip-btn {
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid #d4d2cb;
+      background: #f6f5f1;
+      color: #151515;
+      cursor: pointer;
+    }
+    .bs-chip-btn[aria-pressed="true"] {
+      background: #151515;
+      color: #ffffff;
+      border-color: #151515;
+    }
+    .bs-btn-primary {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 9px;
+      border: 1px solid #151515;
+      background: #151515;
+      color: #ffffff;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .bs-btn-secondary {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 9px;
+      border: 1px solid #cfcdc6;
+      background: #f6f5f1;
+      color: #151515;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+    .bs-toggle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .bs-toggle-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #222222;
+      cursor: pointer;
+    }
+    .bs-token-mini {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .bs-token-chip {
+      border: 1px solid #dedcd5;
+      border-radius: 8px;
+      padding: 6px 8px;
+      font-size: 11px;
+      background: #faf9f6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+    .bs-token-name {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 600;
+      color: #151515;
+    }
+    .bs-token-ratio {
+      font-weight: 700;
+      color: #151515;
+    }
+    .bs-stage-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eceae4;
+    }
+    .bs-canvas-frame {
+      background: var(--v2-background, #ffffff);
+      color: var(--v2-foreground, #151515);
+      border: 1px solid var(--v2-border, #757575);
+      border-radius: 12px;
+      padding: 20px;
+      transition: max-width 0.2s ease;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .bs-canvas-frame[data-viewport="mobile"] {
+      max-width: 390px;
+    }
+    .bs-preview-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--v2-muted-foreground, #4a4a4a);
+      margin: 0 0 4px;
+    }
+    .bs-preview-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .bs-preview-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0;
+      color: var(--v2-foreground, #151515);
+      letter-spacing: -0.02em;
+    }
+    .bs-preview-cta {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: var(--v2-radius, 6px);
+      background: var(--v2-primary, #151515);
+      color: var(--v2-primary-foreground, #ffffff);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .bs-ambient-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--v2-muted, #f3f2ee);
+      border: 1px solid var(--v2-border, #757575);
+      border-radius: var(--v2-radius, 6px);
+      margin-bottom: 16px;
+    }
+    .bs-ambient-bar[hidden] {
+      display: none;
+    }
+    .bs-ambient-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+    .bs-ambient-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--v2-foreground, #151515);
+      margin-right: 4px;
+    }
+    .bs-ambient-pill {
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--v2-border, #757575);
+      background: var(--v2-card, #ffffff);
+      color: var(--v2-card-foreground, #151515);
+      cursor: pointer;
+    }
+    .bs-ambient-pill[aria-pressed="true"] {
+      background: var(--v2-primary, #151515);
+      color: var(--v2-primary-foreground, #ffffff);
+      border-color: var(--v2-primary, #151515);
+    }
+    .bs-grid-stage {
+      display: grid;
+      gap: 14px;
+    }
+    .bs-grid-stage[data-layout="a-b-c"] {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: "a b c";
+    }
+    .bs-grid-stage[data-layout="a-a-b"] {
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas: "a b" "c b";
+    }
+    .bs-grid-stage[data-layout="a-b-c-d"] {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas: "a b" "c d";
+    }
+    .bs-grid-stage[data-layout="hero-3"] {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas: "a a a" "b c d";
+    }
+    .bs-canvas-frame[data-viewport="mobile"] .bs-grid-stage {
+      grid-template-columns: 1fr;
+      grid-template-areas: none;
+    }
+    .bs-canvas-frame[data-viewport="mobile"] .bs-prod-card {
+      grid-area: auto;
+    }
+    .bs-prod-card {
+      background: var(--v2-card, #ffffff);
+      color: var(--v2-card-foreground, #151515);
+      border: 1px solid var(--v2-border, #757575);
+      border-radius: var(--v2-radius, 6px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+    }
+    .bs-prod-card[data-area="a"] { grid-area: a; }
+    .bs-prod-card[data-area="b"] { grid-area: b; }
+    .bs-prod-card[data-area="c"] { grid-area: c; }
+    .bs-prod-card[data-area="d"] { grid-area: d; }
+    .bs-top-strip {
+      background: var(--v2-brand, #151515);
+      color: var(--v2-brand-foreground, #ffffff);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bs-top-strip[hidden] {
+      display: none;
+    }
+    .bs-card-media {
+      background: #f4f3ef;
+      padding: 18px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--v2-border, #757575);
+    }
+    .bs-card-img {
+      display: block;
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      margin: 0 auto 10px;
+      mix-blend-mode: multiply;
+    }
+    .bs-card-kit-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--v2-loyalty, #3d2c8d);
+      color: var(--v2-loyalty-foreground, #ffffff);
+      margin-bottom: 6px;
+    }
+    .bs-card-sku {
+      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: #4a4a4a;
+      display: block;
+    }
+    .bs-card-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bs-card-club {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--v2-muted-foreground, #4a4a4a);
+    }
+    .bs-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--v2-card-foreground, #151515);
+      margin: 0;
+      line-height: 1.3;
+    }
+    .bs-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .bs-price-sale {
+      font-size: 15px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--v2-sale, #b81d13);
+      color: var(--v2-sale-foreground, #ffffff);
+    }
+    .bs-price-was {
+      font-size: 12px;
+      text-decoration: line-through;
+      color: var(--v2-muted-foreground, #4a4a4a);
+    }
+    .bs-swatches {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 4px;
+    }
+    .bs-swatches[hidden] {
+      display: none;
+    }
+    .bs-swatch-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid #444444;
+      display: inline-block;
+    }
+    .bs-swatch-dot[data-tone="home"] { background: #151515; }
+    .bs-swatch-dot[data-tone="away"] { background: #e8e6df; }
+    .bs-swatch-dot[data-tone="third"] { background: #4a4a4a; }
+    .bs-card-btn {
+      margin-top: 6px;
+      padding: 7px 10px;
+      border-radius: var(--v2-radius, 6px);
+      background: var(--v2-cart, #146c43);
+      color: var(--v2-cart-foreground, #ffffff);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .bs-in-grid-banner {
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: var(--v2-radius, 6px);
+      background: var(--v2-primary, #151515);
+      color: var(--v2-primary-foreground, #ffffff);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .bs-in-grid-banner[hidden] {
+      display: none;
+    }
+    .bs-banner-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0 0 2px;
+    }
+    .bs-banner-sub {
+      font-size: 13px;
+      margin: 0;
+      opacity: 0.9;
+    }
+    .bs-code-pane {
+      background: #151515;
+      color: #f6f5f1;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      max-height: 540px;
+      overflow-y: auto;
+    }
+    .bs-code-pane[hidden] {
+      display: none;
+    }
+    .bs-check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bs-check-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid #e4e2dc;
+      background: #faf9f6;
+      font-size: 12px;
+    }
+    .bs-status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #151515;
+      background: #ffffff;
+      color: #151515;
+      white-space: nowrap;
+    }
+    .bs-status-pill[data-pass="false"] {
+      background: #151515;
+      color: #ffffff;
+    }
+    .bs-status-pill[data-pass="na"] {
+      border-style: dashed;
+      background: #f4f3ef;
+      color: #4a4a4a;
+    }
+    .bs-contract-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .bs-contract-table th,
+    .bs-contract-table td {
+      text-align: left;
+      padding: 5px 6px;
+      border-bottom: 1px solid #e6e4de;
+    }
+    .bs-ledger-box {
+      background: #f6f5f1;
+      border: 1px solid #dbd9d2;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+      margin-top: 8px;
+      line-height: 1.45;
+    }
+    .bs-numbers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .bs-num-card {
+      border: 1px solid #dedcd5;
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #faf9f6;
+    }
+    .bs-num-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: #151515;
+      display: block;
+    }
+    .bs-num-lbl {
+      font-size: 11px;
+      color: #4a4a4a;
+    }
+  </style>
+  <style id="bs-dynamic-vars"></style>
+</head>
+<body>
+  <div class="bs-shell">
+    <header class="bs-header">
+      <div>
+        <p class="bs-eyebrow">One System, Seven Parts · Layer 1: SE V2 (Cabana 8 to shadcn Parts) + Layer 2: Volley (Store Blocks)</p>
+        <h1 class="bs-title">Block Studio</h1>
+        <p class="bs-sub">Type a plain-words brief or pick a recipe. See it on Soccer.com, WorldSoccerShop or 431 Sports with Neil's strict SE V2 values, or switch on the Volley CMS campaign override. Products come from the daily feed. Every Fastr rule and contrast pair is checked live, then export clean Fastr HTML or a Vue 3 recipe.</p>
+      </div>
+      <div class="bs-header-actions">
+        <button type="button" class="nm-btn nm-btn--outline v2-howto-btn" data-v2-open="d-howto" aria-controls="d-howto" aria-expanded="false">How this works</button>
+        <span class="bs-layer-tag" id="bs-active-mode-badge">Mode: WorldSoccerShop</span>
+      </div>
+    </header>
+
+    <!-- The 7-Part Shared Vocabulary Pipeline -->
+    <nav class="bs-seven-bar" aria-label="One System, Seven Parts pipeline">
+      <div class="bs-part-pill" data-active="true" id="pill-ask">
+        <span class="bs-part-num">1. Ask</span>
+        <span class="bs-part-name">Plain-Words Brief</span>
+        <span class="bs-part-desc">Type layout or pick brief</span>
+      </div>
+      <div class="bs-part-pill" data-active="true" id="pill-rules">
+        <span class="bs-part-num">2. Rules</span>
+        <span class="bs-part-name">SE V2 Tokens</span>
+        <span class="bs-part-desc">Cabana 8 to 42 shadcn roles</span>
+      </div>
+      <div class="bs-part-pill" data-active="true" id="pill-data">
+        <span class="bs-part-num">3. Data</span>
+        <span class="bs-part-name">Feed &amp; Link Book</span>
+        <span class="bs-part-desc">74-col feed + verified URLs</span>
+      </div>
+      <div class="bs-part-pill" data-active="true" id="pill-build">
+        <span class="bs-part-num">4. Build</span>
+        <span class="bs-part-name">Volley Block Stage</span>
+        <span class="bs-part-desc">Parts assembled into blocks</span>
+      </div>
+      <div class="bs-part-pill" data-active="true" id="pill-check">
+        <span class="bs-part-num">5. Check</span>
+        <span class="bs-part-name">9-Rule + Contrast Gate</span>
+        <span class="bs-part-desc">Measured WCAG &amp; Fastr rules</span>
+      </div>
+      <div class="bs-part-pill" data-active="false" id="pill-record">
+        <span class="bs-part-num">6. Record</span>
+        <span class="bs-part-name">Approval Ledger</span>
+        <span class="bs-part-desc">Locked inputs &amp; sign-off</span>
+      </div>
+      <div class="bs-part-pill" data-active="true" id="pill-numbers">
+        <span class="bs-part-num">7. Numbers</span>
+        <span class="bs-part-name">Before &amp; After</span>
+        <span class="bs-part-desc">Speed, contrast, turnaround</span>
+      </div>
+    </nav>
+
+    <div class="bs-workspace">
+      <!-- LEFT COLUMN: 1. ASK, 2. RULES (SE V2), 3. DATA -->
+      <aside class="bs-col" aria-label="Ask, Rules, and Data controls">
+        <section class="bs-card-sec">
+          <div class="bs-sec-head">
+            <h2 class="bs-sec-title">1. Ask (Brief or Preset)</h2>
+            <span class="bs-layer-tag">Ask</span>
+          </div>
+          <label class="bs-label" for="bs-prompt">Describe the block in plain words</label>
+          <textarea class="bs-textarea" id="bs-prompt">Holiday Gift Guide 3-card product grid with ambient budget filter bar, official kit top strip, and in-grid promo banner.</textarea>
+          <div class="bs-preset-row" role="group" aria-label="Sample briefs">
+            <button type="button" class="bs-chip-btn" data-preset="gift" aria-pressed="true">Gift Guide + Picker</button>
+            <button type="button" class="bs-chip-btn" data-preset="bento" aria-pressed="false">Matchday Bento (a a b)</button>
+            <button type="button" class="bs-chip-btn" data-preset="hero3" aria-pressed="false">Hero + 3 Player Kits</button>
+          </div>
+          <button type="button" class="bs-btn-secondary" id="bs-apply-prompt">Parse Plain-Words Request</button>
+        </section>
+
+        <section class="bs-card-sec">
+          <div class="bs-sec-head">
+            <h2 class="bs-sec-title">2. Rules (SE V2 Store Tokens)</h2>
+            <span class="bs-layer-tag">Layer 1: SE V2</span>
+          </div>
+          <label class="bs-label" for="bs-brand">Brand theme mode (Cabana 8 to SE V2 shadcn contract)</label>
+          <select class="bs-select" id="bs-brand">
+            <option value="wss" selected>WorldSoccerShop (SE V2)</option>
+            <option value="sdc">Soccer.com (SE V2)</option>
+            <option value="s431">431 Sports (SE V2)</option>
+          </select>
+          <div class="bs-toggle-list">
+            <label class="bs-toggle-item">
+              <input type="checkbox" id="bs-tog-campaign">
+              <span>CMS Campaign Override (Volley): preview an accessible campaign palette</span>
+            </label>
+          </div>
+          <p class="bs-label" id="bs-palette-note">SE V2 strict: Neil's Vue storefront values from the V2 pages and Figma. Placeholders from 29 Oct 2026.</p>
+          <div class="bs-token-mini" id="bs-token-readout" aria-live="polite"></div>
+        </section>
+
+        <section class="bs-card-sec">
+          <div class="bs-sec-head">
+            <h2 class="bs-sec-title">3. Data &amp; Layout Recipe</h2>
+            <span class="bs-layer-tag">Layer 2: Volley</span>
+          </div>
+          <p class="bs-label">Products from the daily feed, as of 19 Oct 2026. One store per brand, never mixed.</p>
+          <label class="bs-label" for="bs-layout">Grid letter layout (CSS grid-template-areas)</label>
+          <select class="bs-select" id="bs-layout">
+            <option value="a-b-c" selected>"a b c" (3-Up Equal Row)</option>
+            <option value="a-a-b">"a b / c b" (Asymmetric Bento)</option>
+            <option value="a-b-c-d">"a b / c d" (2x2 Campaign Grid)</option>
+            <option value="hero-3">"a a a / b c d" (Full-Width Lead + 3 Cards)</option>
+          </select>
+
+          <label class="bs-label" for="bs-headline">Section headline</label>
+          <input class="bs-input" id="bs-headline" type="text" value="Holiday 2026 Player Kit Gift Guide">
+
+          <label class="bs-label" for="bs-cta-url">Primary CTA destination (checked against Link Book)</label>
+          <input class="bs-input" id="bs-cta-url" type="text" value="https://www.worldsoccershop.com/shop/jerseys">
+
+          <div class="bs-toggle-list">
+            <label class="bs-toggle-item">
+              <input type="checkbox" id="bs-tog-ambient" checked>
+              <span>Ambient Gift Guide top bar (Who for + Budget)</span>
+            </label>
+            <label class="bs-toggle-item">
+              <input type="checkbox" id="bs-tog-strip" checked>
+              <span>Top-of-card strip badge (On sale / Authentic, from the feed)</span>
+            </label>
+            <label class="bs-toggle-item">
+              <input type="checkbox" id="bs-tog-swatches" checked>
+              <span>Colour dots (illustrative)</span>
+            </label>
+            <label class="bs-toggle-item">
+              <input type="checkbox" id="bs-tog-banner" checked>
+              <span>In-grid full-width promo banner row</span>
+            </label>
+          </div>
+        </section>
+      </aside>
+
+      <!-- CENTER STAGE: 4. BUILD (LIVE PREVIEW + CODE) -->
+      <main class="bs-col" aria-label="Live block stage and code output">
+        <div class="bs-stage-top">
+          <div>
+            <span class="bs-sec-title">4. Build: Live Stage (SE V2 Parts inside Volley Block)</span>
+          </div>
+          <div class="nm-tabs" role="tablist" aria-label="Stage view">
+            <button type="button" class="nm-tab" role="tab" data-view="desktop" aria-selected="true">Desktop</button>
+            <button type="button" class="nm-tab" role="tab" data-view="mobile" aria-selected="false">Mobile 390px</button>
+            <button type="button" class="nm-tab" role="tab" data-view="fastr" aria-selected="false">Fastr HTML</button>
+            <button type="button" class="nm-tab" role="tab" data-view="vue" aria-selected="false">Vue 3 / shadcn</button>
+          </div>
+        </div>
+
+        <!-- Visual Preview Stage -->
+        <div class="bs-canvas-frame" id="bs-visual-stage" data-viewport="desktop">
+          <div class="bs-preview-head">
+            <div>
+              <p class="bs-preview-eyebrow" id="bs-stage-eyebrow">Daily product feed · As of 19 Oct 2026</p>
+              <h2 class="bs-preview-title" id="bs-stage-title">Holiday 2026 Player Kit Gift Guide</h2>
+            </div>
+            <a class="bs-preview-cta" id="bs-stage-cta" href="https://www.worldsoccershop.com/shop/jerseys" target="_top">Shop the collection</a>
+          </div>
+
+          <!-- Ambient UI Filter Bar (replaces chat box & left sidebar) -->
+          <div class="bs-ambient-bar" id="bs-ambient-bar">
+            <div class="bs-ambient-group" role="group" aria-label="Filter by budget">
+              <span class="bs-ambient-label">Budget:</span>
+              <button type="button" class="bs-ambient-pill" data-budget="all" aria-pressed="true">All Prices</button>
+              <button type="button" class="bs-ambient-pill" data-budget="under100" aria-pressed="false">Under $100</button>
+              <button type="button" class="bs-ambient-pill" data-budget="authentic" aria-pressed="false">Authentic Match ($130+)</button>
+            </div>
+            <div class="bs-ambient-group">
+              <span class="bs-ambient-label" id="bs-feed-count-label">Showing 3 verified feed items</span>
+            </div>
+          </div>
+
+          <!-- Letter-Driven CSS Grid -->
+          <div class="bs-grid-stage" id="bs-grid-stage" data-layout="a-b-c"></div>
+
+          <!-- Full-Width In-Grid Editorial Banner -->
+          <div class="bs-in-grid-banner" id="bs-in-grid-banner">
+            <div>
+              <p class="bs-banner-title" id="bs-banner-title">Your campaign message</p>
+              <p class="bs-banner-sub" id="bs-banner-sub">Sample banner. Write the real offer in the brief.</p>
+            </div>
+            <span class="bs-status-pill">Sample</span>
+          </div>
+        </div>
+
+        <!-- Code Output Pane (Fastr HTML or Vue 3 / shadcn Recipe) -->
+        <pre class="bs-code-pane" id="bs-code-pane" hidden></pre>
+      </main>
+
+      <!-- RIGHT COLUMN: 5. CHECK, 6. RECORD, 7. NUMBERS -->
+      <aside class="bs-col" aria-label="Check, Record, and Numbers">
+        <section class="bs-card-sec">
+          <div class="bs-sec-head">
+            <h2 class="bs-sec-title">5. Check (9 rules, measured live)</h2>
+            <span class="bs-layer-tag" id="bs-check-summary">Checking</span>
+          </div>
+          <ul class="bs-check-list" id="bs-check-list" aria-live="polite"></ul>
+        </section>
+
+        <section class="bs-card-sec">
+          <div class="bs-sec-head">
+            <h2 class="bs-sec-title">6. Record (Locked Inputs &amp; Sign-Off)</h2>
+            <span class="bs-layer-tag">Record</span>
+          </div>
+          <table class="bs-contract-table" aria-label="Locked component inputs contract">
+            <thead>
+              <tr>
+                <th>Input Prop</th>
+                <th>Type</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>layoutAreas</td>
+                <td>Letter Grid</td>
+                <td>Brief / Studio</td>
+              </tr>
+              <tr>
+                <td>skuList</td>
+                <td>Feed ID[]</td>
+                <td>Daily feed</td>
+              </tr>
+              <tr>
+                <td>brandTheme</td>
+                <td>SE V2 or campaign</td>
+                <td>V2 pages / Volley</td>
+              </tr>
+              <tr>
+                <td>ctaUrl</td>
+                <td>Verified URL</td>
+                <td>SITE-LINKS.md</td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="bs-btn-primary" id="bs-approve-btn">Approve &amp; Log to Record</button>
+          <button type="button" class="bs-btn-secondary" id="bs-copy-html-btn">Copy Clean Fastr HTML</button>
+          <div class="bs-ledger-box" id="bs-ledger-box" role="status">
+            Awaiting approval sign-off.
+          </div>
+        </section>
+
+        <section class="bs-card-sec">
+          <div class="bs-sec-head">
+            <h2 class="bs-sec-title">7. Numbers (Before &amp; After)</h2>
+            <span class="bs-layer-tag">Numbers</span>
+          </div>
+          <div class="bs-numbers-grid">
+            <div class="bs-num-card">
+              <span class="bs-num-val" id="bs-num-contrast">100%</span>
+              <span class="bs-num-lbl">Colour pairs passing for this brand and palette</span>
+            </div>
+            <div class="bs-num-card">
+              <span class="bs-num-val">0 KB</span>
+              <span class="bs-num-lbl">External JS libraries required in Fastr</span>
+            </div>
+            <div class="bs-num-card">
+              <span class="bs-num-val">Not timed</span>
+              <span class="bs-num-lbl">Brief to checked Fastr HTML. Not measured yet</span>
+            </div>
+            <div class="bs-num-card">
+              <span class="bs-num-val">3 Stores</span>
+              <span class="bs-num-lbl">WSS, SDC and 431, never mixed</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var FEED_AS_OF = "19 Oct 2026";
+      var BRAND_THEMES = {
+  "sdc": {
+    "background": "#ffffff",
+    "foreground": "#27272a",
+    "card": "#ffffff",
+    "cardForeground": "#27272a",
+    "muted": "#f5f5f5",
+    "mutedForeground": "#525252",
+    "primary": "#27272a",
+    "primaryForeground": "#ffffff",
+    "brand": "#e0154a",
+    "brandForeground": "#ffffff",
+    "loyalty": "#6a5411",
+    "loyaltyForeground": "#ffffff",
+    "sale": "#9d0f34",
+    "saleForeground": "#ffffff",
+    "cart": "#0348cf",
+    "cartForeground": "#ffffff",
+    "border": "#e5e5e5",
+    "radius": "10px",
+    "label": "Soccer.com \u00b7 SE V2 strict (Vue storefront)"
+  },
+  "wss": {
+    "background": "#ffffff",
+    "foreground": "#27272a",
+    "card": "#ffffff",
+    "cardForeground": "#27272a",
+    "muted": "#f5f5f5",
+    "mutedForeground": "#525252",
+    "primary": "#27272a",
+    "primaryForeground": "#ffffff",
+    "brand": "#796a39",
+    "brandForeground": "#ffffff",
+    "loyalty": "#6a5411",
+    "loyaltyForeground": "#ffffff",
+    "sale": "#9d0f34",
+    "saleForeground": "#ffffff",
+    "cart": "#0348cf",
+    "cartForeground": "#ffffff",
+    "border": "#e5e5e5",
+    "radius": "10px",
+    "label": "WorldSoccerShop \u00b7 SE V2 strict (Vue storefront)"
+  },
+  "s431": {
+    "background": "#ffffff",
+    "foreground": "#042540",
+    "card": "#ffffff",
+    "cardForeground": "#042540",
+    "muted": "#f5f5f5",
+    "mutedForeground": "#525252",
+    "primary": "#317f89",
+    "primaryForeground": "#ffffff",
+    "brand": "#317f89",
+    "brandForeground": "#ffffff",
+    "loyalty": "#6a5411",
+    "loyaltyForeground": "#ffffff",
+    "sale": "#9d0f34",
+    "saleForeground": "#ffffff",
+    "cart": "#0348cf",
+    "cartForeground": "#ffffff",
+    "border": "#e5e5e5",
+    "radius": "10px",
+    "label": "431 Sports \u00b7 SE V2 strict (Vue storefront)"
+  }
+};
+      var CAMPAIGN_THEMES = {
+  "sdc": {
+    "background": "#fff7f2",
+    "foreground": "#27272a",
+    "card": "#ffffff",
+    "cardForeground": "#27272a",
+    "muted": "#fbeee6",
+    "mutedForeground": "#525252",
+    "primary": "#27272a",
+    "primaryForeground": "#ffffff",
+    "brand": "#c8102e",
+    "brandForeground": "#ffffff",
+    "loyalty": "#6a5411",
+    "loyaltyForeground": "#ffffff",
+    "sale": "#9d0f34",
+    "saleForeground": "#ffffff",
+    "cart": "#0348cf",
+    "cartForeground": "#ffffff",
+    "border": "#767676",
+    "radius": "10px",
+    "label": "Soccer.com \u00b7 Volley CMS campaign override (sample palette)"
+  },
+  "wss": {
+    "background": "#f7f4ec",
+    "foreground": "#27272a",
+    "card": "#ffffff",
+    "cardForeground": "#27272a",
+    "muted": "#efeadc",
+    "mutedForeground": "#525252",
+    "primary": "#27272a",
+    "primaryForeground": "#ffffff",
+    "brand": "#5c4f22",
+    "brandForeground": "#ffffff",
+    "loyalty": "#6a5411",
+    "loyaltyForeground": "#ffffff",
+    "sale": "#9d0f34",
+    "saleForeground": "#ffffff",
+    "cart": "#0348cf",
+    "cartForeground": "#ffffff",
+    "border": "#767676",
+    "radius": "10px",
+    "label": "WorldSoccerShop \u00b7 Volley CMS campaign override (sample palette)"
+  },
+  "s431": {
+    "background": "#f2f8f8",
+    "foreground": "#042540",
+    "card": "#ffffff",
+    "cardForeground": "#042540",
+    "muted": "#e4f0f1",
+    "mutedForeground": "#525252",
+    "primary": "#1f5f68",
+    "primaryForeground": "#ffffff",
+    "brand": "#1f5f68",
+    "brandForeground": "#ffffff",
+    "loyalty": "#6a5411",
+    "loyaltyForeground": "#ffffff",
+    "sale": "#9d0f34",
+    "saleForeground": "#ffffff",
+    "cart": "#0348cf",
+    "cartForeground": "#ffffff",
+    "border": "#6b7477",
+    "radius": "10px",
+    "label": "431 Sports \u00b7 Volley CMS campaign override (sample palette)"
+  }
+};
+      var FEED_PRODUCTS = {
+  "wss": [
+    {
+      "sku": "RV7032910",
+      "strip": "Authentic",
+      "tag": "adidas",
+      "club": "Club America",
+      "name": "Men's Authentic adidas E. Sanchez Club America Home Jersey 26/27",
+      "salePrice": 194.99,
+      "wasPrice": null,
+      "url": "https://www.worldsoccershop.com/shop/details/men-s-authentic-adidas-e-sanchez-club-america-home-jersey-26-27_RV7032910",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0009&w=350&h=350&img=A1134735000&c=999&l1c=000000&l1lc=0OB302&l1s=10&l1f=CAH2627&l1v=28&l1a=0&l2lc=0OB102&l2s=19&l2l=R1144137"
+    },
+    {
+      "sku": "RV7032734",
+      "strip": "On sale",
+      "tag": "Nike",
+      "club": "USA Mens National Team",
+      "name": "Cavan Sullivan USMNT 2026 Home Jersey T-Shirt by Nike",
+      "salePrice": 64.99,
+      "wasPrice": 99.99,
+      "url": "https://www.worldsoccershop.com/shop/details/nike-usmnt-home-top-2026-sullivan_RV7032734",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0009&w=350&h=350&img=A1142072000&c=999&l2c=18335A&l2lc=0OB102&l2s=2&l2f=USA26&l2v=SULLIVAN&l2a=0&l3c=18335A&l3lc=0OB302&l3s=10&l3f=USA26&l3v=8&l3a=0"
+    },
+    {
+      "sku": "RV7032911",
+      "strip": "Jerseys",
+      "tag": "adidas",
+      "club": "Club America",
+      "name": "Men's Replica adidas B. Rodriguez Club America Home Jersey 26/27",
+      "salePrice": 134.99,
+      "wasPrice": null,
+      "url": "https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-b-rodriguez-club-america-home-jersey-26-27_RV7032911",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0009&w=350&h=350&img=A1134769000&c=999&l1c=000000&l1lc=0OB302&l1s=10&l1f=CAH2627&l1v=7&l1a=0&l2lc=0OB102&l2s=19&l2l=R1144133"
+    },
+    {
+      "sku": "RV7032721",
+      "strip": "Jerseys",
+      "tag": "PUMA",
+      "club": "AC Milan",
+      "name": "AC Milan 26/27 UEL Youth Away Jersey by PUMA",
+      "salePrice": 94.99,
+      "wasPrice": null,
+      "url": "https://www.worldsoccershop.com/shop/details/ac-milan-26-27-uel-youth-away-jersey-by-puma_RV7032721",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=350&h=350&img=A1133960000&c=999&l1lc=0OR203&l1s=4&l1l=R1116021&l2lc=0OR213&l2s=4&l2l=R1064465"
+    }
+  ],
+  "sdc": [
+    {
+      "sku": "RV7032906",
+      "strip": "Authentic",
+      "tag": "adidas",
+      "club": "Club America",
+      "name": "Men's Authentic adidas B. Rodriguez Club America Home Jersey 26/27",
+      "salePrice": 194.99,
+      "wasPrice": null,
+      "url": "https://www.soccer.com/shop/details/men-s-authentic-adidas-b-rodriguez-club-america-home-jersey-26-27_RV7032906",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0009&w=350&h=350&img=A1134735000&c=999&l1c=000000&l1lc=0OB302&l1s=10&l1f=CAH2627&l1v=7&l1a=0&l2lc=0OB102&l2s=19&l2l=R1144133"
+    },
+    {
+      "sku": "RV7032732",
+      "strip": "On sale",
+      "tag": "Nike",
+      "club": "USA Mens National Team",
+      "name": "Kid's Replica Nike Sullivan USMNT Away Jersey 2026",
+      "salePrice": 74.99,
+      "wasPrice": 119.99,
+      "url": "https://www.soccer.com/shop/details/kid-s-replica-nike-sullivan-usmnt-away-jersey-2026_RV7032732",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0009&w=350&h=350&img=A1128905000&c=999&l2c=999998&l2lc=0OB102&l2s=2&l2f=USA26&l2v=SULLIVAN&l2a=0&l3c=999998&l3lc=0OB302&l3s=8&l3f=USA26&l3v=8&l3a=0"
+    },
+    {
+      "sku": "RV7032907",
+      "strip": "Authentic",
+      "tag": "adidas",
+      "club": "Club America",
+      "name": "Men's Authentic adidas Henry Club America Home Jersey 26/27",
+      "salePrice": 194.99,
+      "wasPrice": null,
+      "url": "https://www.soccer.com/shop/details/men-s-authentic-adidas-henry-club-america-home-jersey-26-27_RV7032907",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0009&w=350&h=350&img=A1134735000&c=999&l1c=000000&l1lc=0OB302&l1s=10&l1f=CAH2627&l1v=9&l1a=0&l2lc=0OB102&l2s=19&l2l=R1144134"
+    },
+    {
+      "sku": "RV7032720",
+      "strip": "Jerseys",
+      "tag": "PUMA",
+      "club": "AC Milan",
+      "name": "AC Milan 26/27 UEL Youth Home Jersey by PUMA",
+      "salePrice": 94.99,
+      "wasPrice": null,
+      "url": "https://www.soccer.com/shop/details/ac-milan-26-27-uel-youth-home-jersey-by-puma_RV7032720",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=350&h=350&img=A1133959000&c=999&l1lc=0OR203&l1s=4&l1l=R1116021&l2lc=0OR213&l2s=4&l2l=R1064465"
+    }
+  ],
+  "s431": [
+    {
+      "sku": "A1142148",
+      "strip": "Training Shoes",
+      "tag": "adidas",
+      "club": "Training Shoes",
+      "name": "adidas adizero Dropset Pro Training Shoes White/Royal",
+      "salePrice": 149.99,
+      "wasPrice": null,
+      "url": "https://www.431sports.com/shop/details/adidas-adizero-dropset-pro-training-shoes-white-royal_A1142148",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0096&w=350&h=350&img=A1142148000&c=999"
+    },
+    {
+      "sku": "A1138994",
+      "strip": "Training Wear",
+      "tag": "Nike",
+      "club": "Training Wear",
+      "name": "Nike Storm-Fit ADV Jacket",
+      "salePrice": 209.99,
+      "wasPrice": null,
+      "url": "https://www.431sports.com/shop/details/nike-storm-fit-adv-jacket_A1138994",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=350&h=350&img=A1138994000&c=000"
+    },
+    {
+      "sku": "A1142293",
+      "strip": "Shorts",
+      "tag": "Shorts",
+      "club": "Shorts",
+      "name": "SanMar Women's 5\" Club Short",
+      "salePrice": 16.99,
+      "wasPrice": null,
+      "url": "https://www.431sports.com/shop/details/sanmar-women-s-5-club-short_A1142293",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0007&w=350&h=350&img=A1142293000&c=000"
+    },
+    {
+      "sku": "A1142160",
+      "strip": "Footwear Accessories",
+      "tag": "Superfeet",
+      "club": "Footwear Accessories",
+      "name": "SUPERFEET Cleat Playmaker Elite Insole Green",
+      "salePrice": 94.99,
+      "wasPrice": null,
+      "url": "https://www.431sports.com/shop/details/superfeet-cleat-playmaker-elite-insole-green_A1142160",
+      "img": "https://www.imagehandler.net/preview/?iset=0100&fmt=jpg&iindex=0062&w=350&h=350&img=A1142160000&c=999"
+    }
+  ]
+};
+      var STORE_CTA = {
+  "wss": "https://www.worldsoccershop.com/shop/jerseys",
+  "sdc": "https://www.soccer.com/",
+  "s431": "https://www.431sports.com/"
+};
+      var VERIFIED_URLS = [
+  "https://www.431sports.com/",
+  "https://www.431sports.com/shop/details/adidas-adizero-dropset-pro-training-shoes-white-royal_A1142148",
+  "https://www.431sports.com/shop/details/nike-storm-fit-adv-jacket_A1138994",
+  "https://www.431sports.com/shop/details/sanmar-women-s-5-club-short_A1142293",
+  "https://www.431sports.com/shop/details/superfeet-cleat-playmaker-elite-insole-green_A1142160",
+  "https://www.soccer.com/",
+  "https://www.soccer.com/shop/details/ac-milan-26-27-uel-youth-home-jersey-by-puma_RV7032720",
+  "https://www.soccer.com/shop/details/kid-s-replica-nike-sullivan-usmnt-away-jersey-2026_RV7032732",
+  "https://www.soccer.com/shop/details/men-s-authentic-adidas-b-rodriguez-club-america-home-jersey-26-27_RV7032906",
+  "https://www.soccer.com/shop/details/men-s-authentic-adidas-henry-club-america-home-jersey-26-27_RV7032907",
+  "https://www.worldsoccershop.com/shop/clubs",
+  "https://www.worldsoccershop.com/shop/details/ac-milan-26-27-uel-youth-away-jersey-by-puma_RV7032721",
+  "https://www.worldsoccershop.com/shop/details/men-s-authentic-adidas-e-sanchez-club-america-home-jersey-26-27_RV7032910",
+  "https://www.worldsoccershop.com/shop/details/men-s-replica-adidas-b-rodriguez-club-america-home-jersey-26-27_RV7032911",
+  "https://www.worldsoccershop.com/shop/details/nike-usmnt-home-top-2026-sullivan_RV7032734",
+  "https://www.worldsoccershop.com/shop/jerseys",
+  "https://www.worldsoccershop.com/shop/national-teams",
+  "https://www.worldsoccershop.com/shop/players/",
+  "https://www.worldsoccershop.com/shop/sale"
+];
+
+      var state = {
+        brand: "wss",
+        layout: "a-b-c",
+        budget: "all",
+        view: "desktop",
+        headline: "Holiday 2026 Player Kit Gift Guide",
+        ctaUrl: STORE_CTA.wss,
+        campaign: false,
+        showAmbient: true,
+        showStrip: true,
+        showSwatches: true,
+        showBanner: true
+      };
+
+      function hexToLuminance(hex) {
+        var clean = hex.replace("#", "");
+        var r = parseInt(clean.substring(0, 2), 16) / 255;
+        var g = parseInt(clean.substring(2, 4), 16) / 255;
+        var b = parseInt(clean.substring(4, 6), 16) / 255;
+        var toLinear = function (c) {
+          return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        };
+        return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
+      }
+
+      function contrastRatio(hex1, hex2) {
+        var l1 = hexToLuminance(hex1);
+        var l2 = hexToLuminance(hex2);
+        var lighter = Math.max(l1, l2);
+        var darker = Math.min(l1, l2);
+        return ((lighter + 0.05) / (darker + 0.05)).toFixed(2);
+      }
+
+      function isVerifiedUrl(url) {
+        var u = url.trim();
+        var pattern = /^https:\/\/www\.worldsoccershop\.com\/shop\/players\/[a-z0-9-]+$/;
+        return VERIFIED_URLS.indexOf(u) !== -1 || (state.brand === "wss" && pattern.test(u));
+      }
+
+      function activeTheme() {
+        return state.campaign ? CAMPAIGN_THEMES[state.brand] : BRAND_THEMES[state.brand];
+      }
+
+      function tintRatio(hex, bg, amount) {
+        var a = hex.replace("#", ""), b = bg.replace("#", "");
+        var mixed = [0, 2, 4].map(function (i) {
+          return (parseInt(a.substr(i, 2), 16) * amount + parseInt(b.substr(i, 2), 16) * (1 - amount)) / 255;
+        });
+        var toLinear = function (c) { return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+        var lm = 0.2126 * toLinear(mixed[0]) + 0.7152 * toLinear(mixed[1]) + 0.0722 * toLinear(mixed[2]);
+        var lf = hexToLuminance(hex);
+        return ((Math.max(lm, lf) + 0.05) / (Math.min(lm, lf) + 0.05)).toFixed(2);
+      }
+
+      function applyDynamicTheme() {
+        var t = activeTheme();
+        var styleEl = document.getElementById("bs-dynamic-vars");
+        styleEl.textContent =
+          "#bs-visual-stage {" +
+          "--v2-background:" + t.background + ";" +
+          "--v2-foreground:" + t.foreground + ";" +
+          "--v2-card:" + t.card + ";" +
+          "--v2-card-foreground:" + t.cardForeground + ";" +
+          "--v2-muted:" + t.muted + ";" +
+          "--v2-muted-foreground:" + t.mutedForeground + ";" +
+          "--v2-primary:" + t.primary + ";" +
+          "--v2-primary-foreground:" + t.primaryForeground + ";" +
+          "--v2-brand:" + t.brand + ";" +
+          "--v2-brand-foreground:" + t.brandForeground + ";" +
+          "--v2-loyalty:" + t.loyalty + ";" +
+          "--v2-loyalty-foreground:" + t.loyaltyForeground + ";" +
+          "--v2-sale:" + t.sale + ";" +
+          "--v2-sale-foreground:" + t.saleForeground + ";" +
+          "--v2-cart:" + t.cart + ";" +
+          "--v2-cart-foreground:" + t.cartForeground + ";" +
+          "--v2-border:" + t.border + ";" +
+          "--v2-radius:" + t.radius + ";" +
+          "}";
+
+        document.getElementById("bs-active-mode-badge").textContent = "Mode: " + t.label;
+
+        var pairs = [
+          { name: "primary / fg", ratio: contrastRatio(t.primary, t.primaryForeground) },
+          { name: "brand / fg", ratio: contrastRatio(t.brand, t.brandForeground) },
+          { name: "sale / fg", ratio: contrastRatio(t.sale, t.saleForeground) },
+          { name: "loyalty / fg", ratio: contrastRatio(t.loyalty, t.loyaltyForeground) },
+          { name: "cart / fg", ratio: contrastRatio(t.cart, t.cartForeground) },
+          { name: "brand / 10% tint", ratio: tintRatio(t.brand, t.background, 0.1) },
+          { name: "border / bg", ratio: contrastRatio(t.border, t.background) }
+        ];
+        var passing = pairs.filter(function (p) { return parseFloat(p.ratio) >= (p.name === "border / bg" ? 3 : 4.5); }).length;
+        document.getElementById("bs-num-contrast").textContent = passing + " of " + pairs.length;
+        document.getElementById("bs-palette-note").textContent = state.campaign
+          ? "Volley CMS campaign override: a sample accessible palette Creative can use in a Fastr block. Not approved, not Neil's values."
+          : "SE V2 strict: Neil's Vue storefront values from the V2 pages and Figma. Placeholders from 29 Oct 2026.";
+
+        var readout = document.getElementById("bs-token-readout");
+        readout.innerHTML = pairs
+          .map(function (p) {
+            return (
+              '<div class="bs-token-chip">' +
+              '<span class="bs-token-name">' + p.name + "</span>" +
+              '<span class="bs-token-ratio">' + p.ratio + ":1</span>" +
+              "</div>"
+            );
+          })
+          .join("");
+      }
+
+      function getVisibleProducts() {
+        var pool = FEED_PRODUCTS[state.brand] || [];
+        var filtered = pool.filter(function (item) {
+          if (state.budget === "under100") return item.salePrice < 100;
+          if (state.budget === "authentic") return item.salePrice >= 130;
+          return true;
+        });
+        var maxCount = (state.layout === "a-b-c" || state.layout === "a-a-b") ? 3 : 4;
+        return filtered.slice(0, maxCount);
+      }
+
+      function renderCards() {
+        var items = getVisibleProducts();
+        var grid = document.getElementById("bs-grid-stage");
+        grid.setAttribute("data-layout", state.layout);
+
+        var areas = ["a", "b", "c", "d"];
+        grid.innerHTML = items
+          .map(function (item, idx) {
+            var areaLetter = areas[idx] || "a";
+            var stripAttr = state.showStrip ? "" : " hidden";
+            var swatchAttr = state.showSwatches ? "" : " hidden";
+            return (
+              '<a class="bs-prod-card" data-area="' + areaLetter + '" href="' + item.url + '" target="_top">' +
+              '  <div>' +
+              '    <div class="bs-top-strip"' + stripAttr + '>' +
+              '      <span>' + item.strip + '</span>' +
+              '    </div>' +
+              '    <div class="bs-card-media">' +
+              '      <img class="bs-card-img" src="' + item.img + '" width="350" height="350" alt="' + item.name.replace(/"/g, "&quot;") + '">' +
+              '      <span class="bs-card-kit-tag">' + item.tag + '</span>' +
+              '      <span class="bs-card-sku">Feed ID: ' + item.sku + '</span>' +
+              '    </div>' +
+              '    <div class="bs-card-body">' +
+              '      <span class="bs-card-club">' + item.club + '</span>' +
+              '      <h3 class="bs-card-title">' + item.name + '</h3>' +
+              '      <div class="bs-price-row">' +
+              '        <span class="bs-price-sale">$' + item.salePrice.toFixed(2) + '</span>' +
+              (item.wasPrice ? '        <span class="bs-price-was">$' + item.wasPrice.toFixed(2) + '</span>' : '') +
+              '      </div>' +
+              '      <div class="bs-swatches"' + swatchAttr + ' aria-label="Colour dots, illustrative">' +
+              '        <span class="bs-swatch-dot" data-tone="home"></span>' +
+              '        <span class="bs-swatch-dot" data-tone="away"></span>' +
+              '        <span class="bs-swatch-dot" data-tone="third"></span>' +
+              '      </div>' +
+              '    </div>' +
+              '  </div>' +
+              '  <div class="bs-card-body">' +
+              '    <span class="bs-card-btn">Shop this product</span>' +
+              '  </div>' +
+              '</a>'
+            );
+          })
+          .join("");
+
+        document.getElementById("bs-feed-count-label").textContent =
+          "Showing " + items.length + " feed items, as of " + FEED_AS_OF;
+        document.getElementById("bs-stage-title").textContent = state.headline;
+        var ctaEl = document.getElementById("bs-stage-cta");
+        ctaEl.setAttribute("href", state.ctaUrl);
+
+        document.getElementById("bs-ambient-bar").hidden = !state.showAmbient;
+        document.getElementById("bs-in-grid-banner").hidden = !state.showBanner;
+      }
+
+      var LAYOUT_AREAS = {
+        "a-b-c": '"a b c"',
+        "a-a-b": '"a b" "c b"',
+        "a-b-c-d": '"a b" "c d"',
+        "hero-3": '"a a a" "b c d"'
+      };
+
+      function escAttr(text) {
+        return String(text).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+      }
+
+      function buildFastrHtmlSnippet() {
+        var t = activeTheme();
+        var items = getVisibleProducts();
+        var lines = [
+          "<!--",
+          "  BLOCK: Volley campaign product grid, from Block Studio",
+          "  HEIGHTS: not measured",
+          "  LINKS: " + (items.length + 1),
+          "  TOKENS: " + (state.campaign ? "Volley CMS campaign override, sample palette" : "SE V2 strict") + " (" + state.brand + ") · Layout: " + state.layout,
+          "  FEED: as of " + FEED_AS_OF + ", one store",
+          "-->",
+          "<style>",
+          "  .volley-bs-block { padding: 24px; background: " + t.background + "; color: " + t.foreground + "; border: 1px solid " + t.border + "; border-radius: " + t.radius + "; }",
+          "  .volley-bs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }",
+          "  .volley-bs-head h2 { margin: 0; }",
+          "  .volley-bs-cta { padding: 10px 16px; background: " + t.primary + "; color: " + t.primaryForeground + "; border-radius: " + t.radius + "; text-decoration: none; font-weight: 700; }",
+          "  .volley-bs-grid { display: grid; gap: 16px; grid-template-areas: " + LAYOUT_AREAS[state.layout] + "; }",
+          "  .volley-bs-card { display: flex; flex-direction: column; gap: 8px; padding: 12px; background: " + t.card + "; color: " + t.cardForeground + "; border: 1px solid " + t.border + "; border-radius: " + t.radius + "; text-decoration: none; }",
+          "  .volley-bs-card[data-area=\"a\"] { grid-area: a; }",
+          "  .volley-bs-card[data-area=\"b\"] { grid-area: b; }",
+          "  .volley-bs-card[data-area=\"c\"] { grid-area: c; }",
+          "  .volley-bs-card[data-area=\"d\"] { grid-area: d; }",
+          "  .volley-bs-card img { width: 100%; height: auto; }",
+          "  .volley-bs-strip { align-self: flex-start; padding: 4px 8px; background: " + t.brand + "; color: " + t.brandForeground + "; border-radius: 4px; font-size: 12px; font-weight: 700; }",
+          "  .volley-bs-price { color: " + t.sale + "; font-weight: 700; }",
+          "  @media (max-width: 640px) { .volley-bs-grid { grid-template-areas: none; grid-template-columns: 1fr; } .volley-bs-grid .volley-bs-card[data-area] { grid-area: auto; } }",
+          "</style>",
+          "<section class=\"volley-bs-block\" data-brand=\"" + state.brand + "\" data-layout=\"" + state.layout + "\">",
+          "  <header class=\"volley-bs-head\">",
+          "    <h2>" + escAttr(state.headline) + "</h2>",
+          "    <a class=\"volley-bs-cta\" href=\"" + escAttr(state.ctaUrl) + "\" target=\"_top\">Shop the collection</a>",
+          "  </header>",
+          "  <div class=\"volley-bs-grid\">"
+        ];
+        items.forEach(function (item, idx) {
+          var letter = ["a", "b", "c", "d"][idx] || "a";
+          lines.push(
+            "    <a class=\"volley-bs-card\" data-area=\"" + letter + "\" href=\"" + escAttr(item.url) + "\" target=\"_top\">",
+            "      <span class=\"volley-bs-strip\">" + escAttr(item.strip) + "</span>",
+            "      <img src=\"" + escAttr(item.img) + "\" width=\"350\" height=\"350\" alt=\"" + escAttr(item.name) + "\">",
+            "      <strong>" + escAttr(item.name) + "</strong>",
+            "      <span class=\"volley-bs-price\">$" + item.salePrice.toFixed(2) + "</span>",
+            "    </a>"
+          );
+        });
+        lines.push("  </div>", "</section>");
+        return lines.join("\n");
+      }
+
+      function buildVueRecipeSnippet() {
+        var items = getVisibleProducts();
+        var skuArray = items.map(function (i) { return '"' + i.sku + '"'; }).join(", ");
+        return [
+          "<!-- SE V2 parts (Layer 1) + Volley block (Layer 2) · Vue 3 / shadcn-vue recipe -->",
+          "<script setup lang=\"ts\">",
+          "import { Card, Badge, Button } from '@/components/ui'",
+          "import { VolleyProductGrid } from '@/components/volley/blocks'",
+          "",
+          "// Locked Component Inputs Contract (never rename across versions)",
+          "const blockProps = {",
+          "  brandTheme: '" + state.brand + "',",
+          "  layoutAreas: '" + state.layout + "',",
+          "  headline: '" + state.headline.replace(/'/g, "\\'") + "',",
+          "  ctaUrl: '" + state.ctaUrl + "',",
+          "  skuList: [" + skuArray + "],",
+          "  ambientFilter: " + state.showAmbient + ",",
+          "  topStripBadge: " + state.showStrip,
+          "}",
+          "</" + "script>",
+          "",
+          "<template>",
+          "  <VolleyProductGrid v-bind=\"blockProps\" />",
+          "</template>"
+        ].join("\n");
+      }
+
+      function measureSnippet(snippet) {
+        var body = snippet.replace(/<!--[\s\S]*?-->/, "");
+        var aCount = (body.match(/<a\b/g) || []).length;
+        var topCount = (body.match(/<a\b[^>]*target="_top"/g) || []).length;
+        var styleMatch = snippet.match(/<style>([\s\S]*?)<\/style>/);
+        var css = styleMatch ? styleMatch[1] : "";
+        var imageUrls = (snippet.match(/https:\/\/www\.imagehandler\.net[^"]*/g) || []);
+        return {
+          links: { pass: aCount > 0 && aCount === topCount, detail: topCount + " of " + aCount + " links" },
+          scoped: { pass: css.indexOf(".volley-bs-") !== -1 && !/\b(html|body)\b|:root/.test(css), detail: css ? "Scoped to .volley-bs-" : "No style block" },
+          images: {
+            pass: snippet.indexOf('loading="lazy"') === -1 && imageUrls.every(function (u) { return u.indexOf("+") === -1; }),
+            detail: imageUrls.length + " image links checked"
+          },
+          clean: { pass: !/figma\.com|\b\d+:\d+\b|\u2014|\sstyle\s*=/.test(body), detail: "Figma refs, em dashes, inline styles" },
+          emDash: { pass: snippet.indexOf("\u2014") === -1, detail: "Whole export" }
+        };
+      }
+
+      function runChecks() {
+        var t = activeTheme();
+        var minTextRatio = Math.min(
+          parseFloat(contrastRatio(t.brand, t.brandForeground)),
+          parseFloat(tintRatio(t.brand, t.background, 0.1)),
+          parseFloat(contrastRatio(t.primary, t.primaryForeground)),
+          parseFloat(contrastRatio(t.sale, t.saleForeground)),
+          parseFloat(contrastRatio(t.loyalty, t.loyaltyForeground)),
+          parseFloat(contrastRatio(t.cart, t.cartForeground))
+        );
+        var borderRatio = parseFloat(contrastRatio(t.border, t.background));
+        var urlOk = isVerifiedUrl(state.ctaUrl) && getVisibleProducts().every(function (i) { return isVerifiedUrl(i.url); });
+        var m = measureSnippet(buildFastrHtmlSnippet());
+
+        var checks = [
+          { label: "1. Text contrast: fills, foregrounds and brand on its 10% tint (>= 4.5:1)", pass: minTextRatio >= 4.5, detail: minTextRatio.toFixed(2) + ":1" },
+          { label: "2. Non-text border contrast (>= 3.0:1)", pass: borderRatio >= 3.0, detail: borderRatio.toFixed(2) + ":1" },
+          { label: "3. THE URL RULE (SITE-LINKS.md, feed links, player pattern)", pass: urlOk, detail: urlOk ? "Verified" : "Unverified URL" },
+          { label: "4. Every link in the export carries target=\"_top\"", pass: m.links.pass, detail: m.links.detail },
+          { label: "5. CSS scoped to .volley-bs-, no html, body or :root", pass: m.scoped.pass, detail: m.scoped.detail },
+          { label: "6. No loading=\"lazy\", no raw + in image links", pass: m.images.pass, detail: m.images.detail },
+          { label: "7. Breakpoint heights for the Fastr embed", pass: null, detail: "Not measured" },
+          { label: "8. Zero Figma refs, em dashes or inline styles in the export", pass: m.clean.pass, detail: m.clean.detail },
+          { label: "9. Zero em dashes anywhere in the export", pass: m.emDash.pass, detail: m.emDash.detail }
+        ];
+
+        var measured = checks.filter(function (c) { return c.pass !== null; });
+        var passCount = measured.filter(function (c) { return c.pass; }).length;
+        var stopCount = measured.length - passCount;
+        var notMeasured = checks.length - measured.length;
+        state.checkSummary = passCount + " / " + measured.length + " measured checks pass" +
+          (stopCount ? " · " + stopCount + " STOP" : "") +
+          " · " + notMeasured + " not measured (heights)";
+        document.getElementById("bs-check-summary").textContent = state.checkSummary;
+        document.getElementById("bs-check-list").innerHTML = checks
+          .map(function (c) {
+            var flag = c.pass === null ? "na" : String(c.pass);
+            var word = c.pass === null ? "NOT MEASURED" : (c.pass ? "PASS · " + c.detail : "STOP · " + c.detail);
+            return (
+              '<li class="bs-check-item">' +
+              "<span>" + c.label + "</span>" +
+              '<span class="bs-status-pill" data-pass="' + flag + '">' + word + "</span>" +
+              "</li>"
+            );
+          })
+          .join("");
+      }
+
+      function updateViewMode() {
+        var visualStage = document.getElementById("bs-visual-stage");
+        var codePane = document.getElementById("bs-code-pane");
+        if (state.view === "desktop" || state.view === "mobile") {
+          visualStage.hidden = false;
+          codePane.hidden = true;
+          visualStage.setAttribute("data-viewport", state.view);
+        } else {
+          visualStage.hidden = true;
+          codePane.hidden = false;
+          codePane.textContent =
+            state.view === "fastr" ? buildFastrHtmlSnippet() : buildVueRecipeSnippet();
+        }
+      }
+
+      function renderAll() {
+        applyDynamicTheme();
+        renderCards();
+        runChecks();
+        updateViewMode();
+      }
+
+      // Wire controls
+      document.getElementById("bs-brand").addEventListener("change", function (e) {
+        state.brand = e.target.value;
+        state.ctaUrl = STORE_CTA[state.brand];
+        document.getElementById("bs-cta-url").value = state.ctaUrl;
+        renderAll();
+      });
+
+      document.getElementById("bs-tog-campaign").addEventListener("change", function (e) {
+        state.campaign = e.target.checked;
+        renderAll();
+      });
+
+      document.getElementById("bs-layout").addEventListener("change", function (e) {
+        state.layout = e.target.value;
+        renderAll();
+      });
+
+      document.getElementById("bs-headline").addEventListener("input", function (e) {
+        state.headline = e.target.value;
+        renderAll();
+      });
+
+      document.getElementById("bs-cta-url").addEventListener("input", function (e) {
+        state.ctaUrl = e.target.value;
+        renderAll();
+      });
+
+      document.getElementById("bs-tog-ambient").addEventListener("change", function (e) {
+        state.showAmbient = e.target.checked;
+        renderAll();
+      });
+      document.getElementById("bs-tog-strip").addEventListener("change", function (e) {
+        state.showStrip = e.target.checked;
+        renderAll();
+      });
+      document.getElementById("bs-tog-swatches").addEventListener("change", function (e) {
+        state.showSwatches = e.target.checked;
+        renderAll();
+      });
+      document.getElementById("bs-tog-banner").addEventListener("change", function (e) {
+        state.showBanner = e.target.checked;
+        renderAll();
+      });
+
+      // Ambient budget filter buttons
+      document.querySelectorAll(".bs-ambient-pill").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".bs-ambient-pill").forEach(function (b) {
+            b.setAttribute("aria-pressed", "false");
+          });
+          btn.setAttribute("aria-pressed", "true");
+          state.budget = btn.getAttribute("data-budget");
+          renderAll();
+        });
+      });
+
+      // Stage view tabs
+      document.querySelectorAll(".nm-tab[data-view]").forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          document.querySelectorAll(".nm-tab[data-view]").forEach(function (t) {
+            t.setAttribute("aria-selected", "false");
+          });
+          tab.setAttribute("aria-selected", "true");
+          state.view = tab.getAttribute("data-view");
+          updateViewMode();
+        });
+      });
+
+      // Preset briefs
+      var PRESETS = {
+        gift: {
+          prompt: "Holiday Gift Guide 3-card product grid with ambient budget filter bar, official kit top strip, and in-grid promo banner.",
+          brand: "wss",
+          layout: "a-b-c",
+          headline: "Holiday 2026 Player Kit Gift Guide",
+          showAmbient: true,
+          showStrip: true,
+          showSwatches: true,
+          showBanner: true
+        },
+        bento: {
+          prompt: "Matchday Bento grid typed as letters (a b / c b) for Soccer.com with player kits and swatch dots.",
+          brand: "sdc",
+          layout: "a-a-b",
+          headline: "Matchday Bento: Official Club & Country Kits",
+          showAmbient: false,
+          showStrip: true,
+          showSwatches: true,
+          showBanner: false
+        },
+        hero3: {
+          prompt: "Full-width lead card on top with 3 cards below (a a a / b c d) for 431 Sports training gear.",
+          brand: "s431",
+          layout: "hero-3",
+          headline: "431 Sports Training Essentials",
+          showAmbient: true,
+          showStrip: true,
+          showSwatches: false,
+          showBanner: true
+        }
+      };
+
+      document.querySelectorAll(".bs-chip-btn[data-preset]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          document.querySelectorAll(".bs-chip-btn[data-preset]").forEach(function (b) {
+            b.setAttribute("aria-pressed", "false");
+          });
+          btn.setAttribute("aria-pressed", "true");
+          var p = PRESETS[btn.getAttribute("data-preset")];
+          if (!p) return;
+          document.getElementById("bs-prompt").value = p.prompt;
+          state.brand = p.brand;
+          state.layout = p.layout;
+          state.headline = p.headline;
+          state.showAmbient = p.showAmbient;
+          state.showStrip = p.showStrip;
+          state.showSwatches = p.showSwatches;
+          state.showBanner = p.showBanner;
+          state.ctaUrl = STORE_CTA[p.brand];
+          document.getElementById("bs-cta-url").value = state.ctaUrl;
+          document.getElementById("bs-brand").value = p.brand;
+          document.getElementById("bs-layout").value = p.layout;
+          document.getElementById("bs-headline").value = p.headline;
+          document.getElementById("bs-tog-ambient").checked = p.showAmbient;
+          document.getElementById("bs-tog-strip").checked = p.showStrip;
+          document.getElementById("bs-tog-swatches").checked = p.showSwatches;
+          document.getElementById("bs-tog-banner").checked = p.showBanner;
+          renderAll();
+        });
+      });
+
+      // Plain-words parser button
+      document.getElementById("bs-apply-prompt").addEventListener("click", function () {
+        var text = document.getElementById("bs-prompt").value.toLowerCase();
+        if (text.indexOf("soccer.com") !== -1 || text.indexOf("sdc") !== -1) {
+          state.brand = "sdc";
+        } else if (text.indexOf("431") !== -1) {
+          state.brand = "s431";
+        } else if (text.indexOf("wss") !== -1 || text.indexOf("worldsoccershop") !== -1) {
+          state.brand = "wss";
+        }
+        state.ctaUrl = STORE_CTA[state.brand];
+        document.getElementById("bs-cta-url").value = state.ctaUrl;
+        if (text.indexOf("a a b") !== -1 || text.indexOf("bento") !== -1) {
+          state.layout = "a-a-b";
+        } else if (text.indexOf("2x2") !== -1 || text.indexOf("c d") !== -1) {
+          state.layout = "a-b-c-d";
+        } else if (text.indexOf("hero") !== -1 || text.indexOf("a a a") !== -1) {
+          state.layout = "hero-3";
+        } else {
+          state.layout = "a-b-c";
+        }
+        document.getElementById("bs-brand").value = state.brand;
+        document.getElementById("bs-layout").value = state.layout;
+        renderAll();
+      });
+
+      // Approve & Log to Record
+      document.getElementById("bs-approve-btn").addEventListener("click", function () {
+        var urlOk = isVerifiedUrl(state.ctaUrl);
+        var ledger = document.getElementById("bs-ledger-box");
+        var recordPill = document.getElementById("pill-record");
+        if (!urlOk) {
+          ledger.textContent = "Blocked by Check Gate: CTA URL is not in SITE-LINKS.md, the feed or the verified player pattern.";
+          return;
+        }
+        var stops = document.querySelectorAll('#bs-check-list .bs-status-pill[data-pass="false"]').length;
+        if (stops) {
+          ledger.textContent = "Blocked by Check Gate: " + stops + (stops === 1 ? " check says" : " checks say") + " STOP." + (state.campaign ? " Fix the STOP items, then approve." : " Strict SE V2 values fail until Neil's set is fixed. Try the CMS campaign override.");
+          return;
+        }
+        recordPill.setAttribute("data-active", "true");
+        ledger.textContent =
+          "Approved & logged to Record (Fri 30 Oct 2026 PT) · Mode: " +
+          activeTheme().label +
+          " · Layout: " +
+          state.layout +
+          " · Feed as of " + FEED_AS_OF + " · " + state.checkSummary + ".";
+      });
+
+      // Copy Clean Fastr HTML
+      document.getElementById("bs-copy-html-btn").addEventListener("click", function () {
+        var snippet = buildFastrHtmlSnippet();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(snippet);
+        }
+        document.getElementById("bs-ledger-box").textContent =
+          "Copied production-clean Fastr HTML snippet to clipboard (" + snippet.split("\n").length + " lines, zero inline styles).";
+      });
+
+      renderAll();
+    })();
+  </script>
+<dialog class="v2-drawer" id="d-howto" aria-labelledby="d-howto-title"><div class="v2-drawer__inner"><button type="button" class="nm-btn nm-btn--text v2-drawer__close" data-v2-close>Close</button><p class="nm-eyebrow">How this works</p><h2 class="nm-h2" id="d-howto-title">One foundation, two layers</h2><section class="v2-howto__section" aria-labelledby="d-howto-team"><p class="nm-eyebrow">1. For the team</p><h3 class="nm-h3" id="d-howto-team">One foundation, two layers per brand</h3><ul class="nm-list"><li>Every store brand has two connected layers: a locked Vue storefront base (SE V2) for everyday shopping, and a flexible CMS campaign layer (Volley) on top for launches and holidays.</li><li>Layer 1, the Vue storefront base (SE V2): our everyday uniform across Soccer.com, WorldSoccerShop and 431 Sports, with Soccer Master later. It runs menus, checkout and standard product cards, so the store stays consistent all year.</li><li>Layer 2, the CMS campaign layer (Volley): where Creative builds holiday gift guides, boot drops and matchday stories in Fastr CMS. It inherits the spacing and card bones from the Vue base so it feels like one store, and unlocks campaign fonts, headers, themed buttons and bento layouts without waiting on an engineering sprint.</li><li>How Block Studio works: type a brief in plain words, load real in-stock products from the daily feed, check accessibility and links automatically, then export clean Fastr HTML or a Vue 3 recipe, all on one screen.</li></ul></section><section class="v2-howto__section" aria-labelledby="d-howto-eng"><p class="nm-eyebrow">2. For Neil and Engineering</p><h3 class="nm-h3" id="d-howto-eng">How SE V2 and the CMS layer fit your 42 tokens</h3><ul class="nm-list"><li>Your variable names, not ours: the V2 hub and the Figma file use your shadcn names in all three brand modes. 36 of the 42 are in Figma now; the five chart colours stay unset until a chart ships. The Cabana 8 to V2 page maps every old Cabana part to its V2 replacement.</li><li>Strict Vue baseline first: by default Block Studio runs your exact V2 values from the V2 pages, and flags where they fail contrast: the border at 1.26 to 1, and brand text on its 10% tint at 4.08 to 1 on Soccer.com and 4.09 to 1 on 431 Sports.</li><li>Why the CMS campaign switch exists: turning on CMS Campaign Override (Volley) shows how Creative can fix a border or apply a campaign palette in a Fastr CMS block and ship it at 9 out of 9 today, without touching or blocking the core Vue storefront.</li><li>Clean handoff: every approved block exports scoped Fastr HTML for today&#x27;s CMS pages, plus a Vue 3 and shadcn-vue recipe that imports from @/components/ui.</li></ul></section></div></dialog>
+  <script src="../nutmeg/v2/v2.js"></script>
+</body>
+</html>
